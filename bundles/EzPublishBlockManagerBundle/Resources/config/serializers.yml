@@ -1,14 +1,14 @@
 services:
-    netgen_block_manager.serializer_handler.json.block:
-        class: %netgen_block_manager.serializer_handler.json.block.class%
+    netgen_block_manager.serializer.block:
+        class: %netgen_block_manager.serializer.block.class%
         arguments:
             - $blocks;netgen_block_manager$
         tags:
-            - { name: jms_serializer.subscribing_handler }
+            - { name: jms_serializer.subscribing }
 
-    netgen_block_manager.serializer_handler.json.layout:
-        class: %netgen_block_manager.serializer_handler.json.layout.class%
+    netgen_block_manager.serializer.layout:
+        class: %netgen_block_manager.serializer.layout.class%
         arguments:
             - $layouts;netgen_block_manager$
         tags:
-            - { name: jms_serializer.subscribing_handler }
+            - { name: jms_serializer.subscribing }
