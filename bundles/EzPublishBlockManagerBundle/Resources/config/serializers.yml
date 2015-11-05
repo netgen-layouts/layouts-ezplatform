@@ -4,11 +4,11 @@ services:
         arguments:
             - $blocks;netgen_block_manager$
         tags:
-            - { name: jms_serializer.subscribing }
+            - { name: jms_serializer.subscribing_handler }
 
     netgen_block_manager.serializer.layout:
         class: %netgen_block_manager.serializer.layout.class%
         arguments:
             - $layouts;netgen_block_manager$
         tags:
-            - { name: jms_serializer.subscribing }
+            - { name: jms_serializer.subscribing_handler }
