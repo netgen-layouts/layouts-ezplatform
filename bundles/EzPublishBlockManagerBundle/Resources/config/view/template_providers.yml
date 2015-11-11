@@ -1,6 +1,7 @@
 services:
     netgen_block_manager.view.template_provider.block:
         class: %netgen_block_manager.view.template_provider.block.class%
+        lazy: true
         arguments:
             - $blocks;netgen_block_manager$
         tags:
@@ -8,6 +9,7 @@ services:
 
     netgen_block_manager.view.template_provider.layout:
         class: %netgen_block_manager.view.template_provider.layout.class%
+        lazy: true
         arguments:
             - $layouts;netgen_block_manager$
         tags:
