@@ -1,0 +1,14 @@
+services:
+    netgen_block_manager.normalizer.block:
+        class: %netgen_block_manager.normalizer.block.class%
+        arguments:
+            - $blocks;netgen_block_manager$
+        tags:
+            - { name: serializer.normalizer }
+
+    netgen_block_manager.normalizer.layout:
+        class: %netgen_block_manager.normalizer.layout.class%
+        arguments:
+            - $layouts;netgen_block_manager$
+        tags:
+            - { name: serializer.normalizer }
