@@ -1,13 +1,2 @@
 parameters:
     netgen_block_manager.default_pagelayout: NetgenEzPublishBlockManagerBundle::pagelayout_resolver.html.twig
-
-    netgen_block_manager.default.blocks:
-        title:
-            name: 'Title'
-            templates:
-                default:
-                    view: 'NetgenBlockManagerBundle:block/title:default.html.twig'
-                    api: 'NetgenBlockManagerBundle:block/title:default.html.twig'
-                small:
-                    view: 'NetgenBlockManagerBundle:block/title:small.html.twig'
-                    api: 'NetgenBlockManagerBundle:block/title:small.html.twig'
