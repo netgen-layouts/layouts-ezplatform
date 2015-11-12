@@ -45,7 +45,13 @@ class NetgenEzPublishBlockManagerExtension extends Extension
         $loader->load('view/template_resolvers.yml');
 
         $processor = new ConfigurationProcessor($container, $extensionAlias);
-        $processor->mapConfigArray('block_view', $config, ContextualizerInterface::MERGE_FROM_SECOND_LEVEL);
-        $processor->mapConfigArray('layout_view', $config, ContextualizerInterface::MERGE_FROM_SECOND_LEVEL);
+        foreach ($blockManagerConfig['system']['default'] as $key => $value) {
+            if (is_array($blockManagerConfig['system']['default'][$key])) {
+                $processor->mapConfigArray($key, $config, ContextualizerInterface::MERGE_FROM_SECOND_LEVEL);
+            }
+            else {
+                $processor->mapSetting($key, $config);
+            }
+        }
     }
 }
