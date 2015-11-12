@@ -3,7 +3,7 @@ services:
         class: %netgen_block_manager.view.template_provider.block.class%
         lazy: true
         arguments:
-            - $blocks;netgen_block_manager$
+            - $block_templates;netgen_block_manager$
         tags:
             - { name: netgen_block_manager.view.template_provider, type: 'Netgen\BlockManager\View\BlockView' }
 
