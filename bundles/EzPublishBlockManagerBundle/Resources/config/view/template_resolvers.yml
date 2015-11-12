@@ -1,0 +1,16 @@
+services:
+    netgen_block_manager.view.template_resolver.block:
+        class: %netgen_block_manager.view.template_resolver.block.class%
+        lazy: true
+        arguments:
+            - $block_templates;netgen_block_manager$
+        tags:
+            - { name: netgen_block_manager.view.template_resolver, type: 'Netgen\BlockManager\View\BlockView' }
+
+    netgen_block_manager.view.template_resolver.layout:
+        class: %netgen_block_manager.view.template_resolver.layout.class%
+        lazy: true
+        arguments:
+            - $layouts;netgen_block_manager$
+        tags:
+            - { name: netgen_block_manager.view.template_resolver, type: 'Netgen\BlockManager\View\LayoutView' }

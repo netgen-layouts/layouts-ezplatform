@@ -26,6 +26,6 @@ class NetgenEzPublishBlockManagerExtension extends Extension
         $loader->load('default_settings.yml');
         $loader->load('normalizers.yml');
 
-        $loader->load('view/template_providers.yml');
+        $loader->load('view/template_resolvers.yml');
     }
 }
