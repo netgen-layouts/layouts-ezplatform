@@ -21,6 +21,20 @@ class NetgenEzPublishBlockManagerExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        // With this, we aim to load regular Block manager configuration parameters for views
+        // and make it a default option for eZ Publish configuration which goes through
+        // config resolver. It saves us from having to redefine entire *_view rules in this
+        // bundle again in format config resolver accepts.
+        $blockManagerConfig = array('system' => array('default' => array()));
+        foreach (array('block_view', 'layout_view') as $templateResolverItem) {
+            if ($container->hasParameter('netgen_block_manager.' . $templateResolverItem)) {
+                $templateResolverConfig = $container->getParameter('netgen_block_manager.' . $templateResolverItem);
+                $blockManagerConfig['system']['default'][$templateResolverItem] = $templateResolverConfig;
+            }
+        }
+
+        $configs = array_merge(array($blockManagerConfig), $configs);
+
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
@@ -29,17 +43,6 @@ class NetgenEzPublishBlockManagerExtension extends Extension
         $loader->load('normalizers.yml');
 
         $loader->load('view/template_resolvers.yml');
-
-        foreach(array('block_view', 'layout_view') as $templateResolverItem) {
-            if ($container->hasParameter('netgen_block_manager.' . $templateResolverItem)) {
-                $templateResolverConfig = $container->getParameter('netgen_block_manager.' . $templateResolverItem);
-
-                $container->setParameter(
-                    'netgen_ez_publish_block_manager.default.' . $templateResolverItem,
-                    $templateResolverConfig
-                );
-            }
-        }
 
         $processor = new ConfigurationProcessor($container, 'netgen_ez_publish_block_manager');
         $processor->mapConfigArray('block_view', $config, ContextualizerInterface::MERGE_FROM_SECOND_LEVEL);
