@@ -2,10 +2,11 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection;
 
+use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\Configuration as SiteAccessConfiguration;
+use Netgen\Bundle\BlockManagerBundle\DependencyInjection\Configuration as BlockManagerConfiguration;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
-use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-class Configuration implements ConfigurationInterface
+class Configuration extends SiteAccessConfiguration
 {
     /**
      * Generates the configuration tree builder.
@@ -15,11 +16,13 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('netgen_ezpublish_block_manager');
+        $blockManagerConfiguration = new BlockManagerConfiguration();
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode = $treeBuilder->root('netgen_ez_publish_block_manager');
+        $systemNode = $this->generateScopeBaseNode($rootNode);
+
+        $blockManagerConfiguration->addTemplateResolverNode($systemNode, 'block_view');
+        $blockManagerConfiguration->addTemplateResolverNode($systemNode, 'layout_view');
 
         return $treeBuilder;
     }
