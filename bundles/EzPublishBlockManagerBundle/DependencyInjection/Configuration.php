@@ -9,6 +9,21 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 class Configuration extends SiteAccessConfiguration
 {
     /**
+     * @var string
+     */
+    protected $alias;
+
+    /**
+     * Constructor.
+     *
+     * @param string $alias
+     */
+    public function __construct($alias)
+    {
+        $this->alias = $alias;
+    }
+
+    /**
      * Generates the configuration tree builder.
      *
      * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder
@@ -16,13 +31,12 @@ class Configuration extends SiteAccessConfiguration
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $blockManagerConfiguration = new BlockManagerConfiguration();
 
-        $rootNode = $treeBuilder->root('netgen_ez_publish_block_manager');
+        $rootNode = $treeBuilder->root($this->alias);
         $systemNode = $this->generateScopeBaseNode($rootNode);
 
-        $blockManagerConfiguration->addTemplateResolverNode($systemNode, 'block_view');
-        $blockManagerConfiguration->addTemplateResolverNode($systemNode, 'layout_view');
+        $blockManagerConfiguration = new BlockManagerConfiguration(null);
+        $blockManagerConfiguration->addConfiguration($systemNode);
 
         return $treeBuilder;
     }

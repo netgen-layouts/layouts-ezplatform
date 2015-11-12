@@ -21,21 +21,21 @@ class NetgenEzPublishBlockManagerExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        // With this, we aim to load regular Block manager configuration parameters for views
-        // and make it a default option for eZ Publish configuration which goes through
-        // config resolver. It saves us from having to redefine entire *_view rules in this
+        // With this, we aim to load regular Block manager configuration parameters
+        // and make them a default option for eZ Publish configuration which goes through
+        // config resolver. It saves us from having to redefine entire default config in this
         // bundle again in format config resolver accepts.
         $blockManagerConfig = array('system' => array('default' => array()));
-        foreach (array('block_view', 'layout_view') as $templateResolverItem) {
-            if ($container->hasParameter('netgen_block_manager.' . $templateResolverItem)) {
-                $templateResolverConfig = $container->getParameter('netgen_block_manager.' . $templateResolverItem);
-                $blockManagerConfig['system']['default'][$templateResolverItem] = $templateResolverConfig;
-            }
+        $availableParameters = $container->getParameter('netgen_block_manager.available_configurations');
+        foreach ($availableParameters as $parameterName) {
+            $parameterValue = $container->getParameter('netgen_block_manager.' . $parameterName);
+            $blockManagerConfig['system']['default'][$parameterName] = $parameterValue;
         }
 
         $configs = array_merge(array($blockManagerConfig), $configs);
 
-        $configuration = new Configuration();
+        $extensionAlias = $this->getAlias();
+        $configuration = new Configuration($extensionAlias);
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
@@ -44,7 +44,7 @@ class NetgenEzPublishBlockManagerExtension extends Extension
 
         $loader->load('view/template_resolvers.yml');
 
-        $processor = new ConfigurationProcessor($container, 'netgen_ez_publish_block_manager');
+        $processor = new ConfigurationProcessor($container, $extensionAlias);
         $processor->mapConfigArray('block_view', $config, ContextualizerInterface::MERGE_FROM_SECOND_LEVEL);
         $processor->mapConfigArray('layout_view', $config, ContextualizerInterface::MERGE_FROM_SECOND_LEVEL);
     }
