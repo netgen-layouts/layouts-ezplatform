@@ -4,7 +4,7 @@ services:
         lazy: true
         arguments:
             - []
-            - $block_view;netgen_ez_publish_block_manager$
+            - $block_view;netgen_block_manager$
         tags:
             - { name: netgen_block_manager.view.template_resolver, type: 'Netgen\BlockManager\View\BlockViewInterface' }
 
@@ -13,6 +13,6 @@ services:
         lazy: true
         arguments:
             - []
-            - $layout_view;netgen_ez_publish_block_manager$
+            - $layout_view;netgen_block_manager$
         tags:
             - { name: netgen_block_manager.view.template_resolver, type: 'Netgen\BlockManager\View\LayoutViewInterface' }

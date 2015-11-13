@@ -4,25 +4,10 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection;
 
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\Configuration as SiteAccessConfiguration;
 use Netgen\Bundle\BlockManagerBundle\DependencyInjection\Configuration as BlockManagerConfiguration;
-use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 class Configuration extends SiteAccessConfiguration
 {
-    /**
-     * @var string
-     */
-    protected $alias;
-
-    /**
-     * Constructor.
-     *
-     * @param string $alias
-     */
-    public function __construct($alias)
-    {
-        $this->alias = $alias;
-    }
-
     /**
      * Generates the configuration tree builder.
      *
@@ -30,16 +15,20 @@ class Configuration extends SiteAccessConfiguration
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
+    }
 
-        $rootNode = $treeBuilder->root($this->alias);
-        $systemNode = $this->generateScopeBaseNode($rootNode);
+    /**
+     * Returns the config tree builder closure
+     *
+     * @return \Closure
+     */
+    public function getConfigTreeBuilderClosure() {
+        return function(ArrayNodeDefinition $rootNode, BlockManagerConfiguration $configuration) {
+            $systemNode = $this->generateScopeBaseNode($rootNode);
 
-        $blockManagerConfiguration = new BlockManagerConfiguration(null);
-        foreach ($blockManagerConfiguration->getAvailableNodeDefinitions() as $nodeDefinition) {
-            $systemNode->append($nodeDefinition);
-        }
-
-        return $treeBuilder;
+            foreach ($configuration->getAvailableNodeDefinitions() as $nodeDefinition) {
+                $systemNode->append($nodeDefinition);
+            }
+        };
     }
 }

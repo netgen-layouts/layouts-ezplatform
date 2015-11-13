@@ -1,7 +1,7 @@
 {% set pagelayout = viewbaseLayout is defined ? viewbaseLayout : 'NetgenBlockManagerBundle::pagelayout_empty.html.twig' %}
 
-{% if ( noLayout is not defined or not noLayout ) and ezpublish.configResolver.hasParameter( 'pagelayout', 'netgen_ez_publish_block_manager' ) %}
-    {% set pagelayout = ezpublish.configResolver.getParameter( 'pagelayout', 'netgen_ez_publish_block_manager' ) %}
+{% if ( noLayout is not defined or not noLayout ) and ezpublish.configResolver.hasParameter( 'pagelayout', 'netgen_block_manager' ) %}
+    {% set pagelayout = ezpublish.configResolver.getParameter( 'pagelayout', 'netgen_block_manager' ) %}
 {% endif %}
 
 {% extends pagelayout %}
