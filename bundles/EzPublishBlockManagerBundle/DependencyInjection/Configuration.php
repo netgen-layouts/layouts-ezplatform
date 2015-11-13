@@ -36,7 +36,9 @@ class Configuration extends SiteAccessConfiguration
         $systemNode = $this->generateScopeBaseNode($rootNode);
 
         $blockManagerConfiguration = new BlockManagerConfiguration(null);
-        $blockManagerConfiguration->addConfiguration($systemNode);
+        foreach ($blockManagerConfiguration->getAvailableNodeDefinitions() as $nodeDefinition) {
+            $systemNode->append($nodeDefinition);
+        }
 
         return $treeBuilder;
     }
