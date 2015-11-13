@@ -2,7 +2,7 @@ services:
     netgen_block_manager.normalizer.block:
         class: %netgen_block_manager.normalizer.block.class%
         arguments:
-            - $blocks;netgen_block_manager$
+            - $blocks;netgen_ez_publish_block_manager$
         tags:
             - { name: serializer.normalizer }
 
