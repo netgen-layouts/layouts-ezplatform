@@ -50,8 +50,7 @@ class NetgenEzPublishBlockManagerExtension extends Extension implements PrependE
         foreach ($blockManagerConfig['system']['default'] as $key => $value) {
             if (is_array($blockManagerConfig['system']['default'][$key])) {
                 $processor->mapConfigArray($key, $config, ContextualizerInterface::MERGE_FROM_SECOND_LEVEL);
-            }
-            else {
+            } else {
                 $processor->mapSetting($key, $config);
             }
         }
