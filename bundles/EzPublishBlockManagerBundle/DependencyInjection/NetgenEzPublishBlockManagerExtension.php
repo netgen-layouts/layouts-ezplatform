@@ -31,12 +31,13 @@ class NetgenEzPublishBlockManagerExtension extends Extension
     }
 
     /**
-     * Returns the config preprocessor closure
+     * Returns the config preprocessor closure.
      *
      * @return \Closure
      */
-    public function getPreProcessor() {
-        return function($configs, ContainerBuilder $container) {
+    public function getPreProcessor()
+    {
+        return function ($configs, ContainerBuilder $container) {
             $newConfigs = $configs;
             $appendConfigs = array();
             foreach ($configs as $key => $config) {
@@ -54,12 +55,13 @@ class NetgenEzPublishBlockManagerExtension extends Extension
     }
 
     /**
-     * Returns the config postprocessor closure
+     * Returns the config postprocessor closure.
      *
      * @return \Closure
      */
-    public function getPostProcessor() {
-        return function($config, ContainerBuilder $container) {
+    public function getPostProcessor()
+    {
+        return function ($config, ContainerBuilder $container) {
             $config['pagelayout'] = 'NetgenEzPublishBlockManagerBundle::pagelayout_resolver.html.twig';
 
             $processor = new ConfigurationProcessor($container, 'netgen_block_manager');

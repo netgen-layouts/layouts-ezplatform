@@ -18,12 +18,13 @@ class Configuration extends SiteAccessConfiguration
     }
 
     /**
-     * Returns the config tree builder closure
+     * Returns the config tree builder closure.
      *
      * @return \Closure
      */
-    public function getConfigTreeBuilderClosure() {
-        return function(ArrayNodeDefinition $rootNode, BlockManagerConfiguration $configuration) {
+    public function getConfigTreeBuilderClosure()
+    {
+        return function (ArrayNodeDefinition $rootNode, BlockManagerConfiguration $configuration) {
             $systemNode = $this->generateScopeBaseNode($rootNode);
 
             foreach ($configuration->getAvailableNodeDefinitions() as $nodeDefinition) {
