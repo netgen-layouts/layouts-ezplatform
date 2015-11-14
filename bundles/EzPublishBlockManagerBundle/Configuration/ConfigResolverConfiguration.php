@@ -24,7 +24,7 @@ class ConfigResolverConfiguration implements ConfigurationInterface
     }
 
     /**
-     * Returns if parameter exists in configuration
+     * Returns if parameter exists in configuration.
      *
      * @param string $parameterName
      *
@@ -39,7 +39,7 @@ class ConfigResolverConfiguration implements ConfigurationInterface
     }
 
     /**
-     * Returns the parameter from configuration
+     * Returns the parameter from configuration.
      *
      * @param string $parameterName
      *
