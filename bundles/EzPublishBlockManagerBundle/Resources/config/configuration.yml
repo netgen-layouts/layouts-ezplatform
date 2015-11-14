@@ -1,0 +1,11 @@
+parameters:
+    netgen_block_manager.configuration.config_resolver.class: Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration
+
+services:
+    netgen_block_manager.configuration.config_resolver:
+        class: %netgen_block_manager.configuration.config_resolver.class%
+        calls:
+            - [setConfigResolver, [@ezpublish.config.resolver]]
+
+    netgen_block_manager.configuration:
+        alias: netgen_block_manager.configuration.config_resolver
