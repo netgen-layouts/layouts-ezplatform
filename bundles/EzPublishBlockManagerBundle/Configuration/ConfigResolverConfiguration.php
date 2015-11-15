@@ -3,7 +3,7 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Configuration;
 
 use Netgen\BlockManager\Configuration\ConfigurationInterface;
-use Netgen\BlockManager\Exceptions\InvalidArgumentException;
+use Netgen\BlockManager\API\Exceptions\InvalidArgumentException;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 
 class ConfigResolverConfiguration implements ConfigurationInterface
@@ -43,7 +43,7 @@ class ConfigResolverConfiguration implements ConfigurationInterface
      *
      * @param string $parameterName
      *
-     * @throws \Netgen\BlockManager\Exceptions\InvalidArgumentException If parameter is undefined
+     * @throws \Netgen\BlockManager\API\Exceptions\InvalidArgumentException If parameter is undefined
      *
      * @return mixed
      */

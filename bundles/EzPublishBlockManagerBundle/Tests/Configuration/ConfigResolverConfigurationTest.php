@@ -75,7 +75,7 @@ class ConfigResolverConfigurationTest extends PHPUnit_Framework_TestCase
 
     /**
      * @covers \Netgen\BlockManager\Configuration\ConfigResolverConfiguration::getParameter
-     * @expectedException \Netgen\BlockManager\Exceptions\InvalidArgumentException
+     * @expectedException \Netgen\BlockManager\API\Exceptions\InvalidArgumentException
      */
     public function testGetParameterThrowsInvalidArgumentException()
     {
