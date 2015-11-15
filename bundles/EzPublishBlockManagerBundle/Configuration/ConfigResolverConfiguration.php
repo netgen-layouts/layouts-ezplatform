@@ -3,8 +3,8 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Configuration;
 
 use Netgen\BlockManager\Configuration\ConfigurationInterface;
-use Netgen\BlockManager\API\Exceptions\InvalidArgumentException;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use InvalidArgumentException;
 
 class ConfigResolverConfiguration implements ConfigurationInterface
 {
@@ -43,7 +43,7 @@ class ConfigResolverConfiguration implements ConfigurationInterface
      *
      * @param string $parameterName
      *
-     * @throws \Netgen\BlockManager\API\Exceptions\InvalidArgumentException If parameter is undefined
+     * @throws \InvalidArgumentException If parameter is undefined
      *
      * @return mixed
      */
@@ -51,9 +51,10 @@ class ConfigResolverConfiguration implements ConfigurationInterface
     {
         if (!$this->hasParameter($parameterName)) {
             throw new InvalidArgumentException(
-                'parameterName',
-                $parameterName,
-                'Parameter does not exist in configuration.'
+                sprintf(
+                    'Parameter does not exist in configuration.',
+                    $parameterName
+                )
             );
         }
 

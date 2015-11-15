@@ -8,7 +8,7 @@ use PHPUnit_Framework_TestCase;
 class ConfigResolverConfigurationTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * Sets up the tests
+     * Sets up the tests.
      */
     protected function setUp()
     {
@@ -75,7 +75,7 @@ class ConfigResolverConfigurationTest extends PHPUnit_Framework_TestCase
 
     /**
      * @covers \Netgen\BlockManager\Configuration\ConfigResolverConfiguration::getParameter
-     * @expectedException \Netgen\BlockManager\API\Exceptions\InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testGetParameterThrowsInvalidArgumentException()
     {
