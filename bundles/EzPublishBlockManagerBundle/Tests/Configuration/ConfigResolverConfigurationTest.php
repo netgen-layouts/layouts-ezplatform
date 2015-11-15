@@ -8,6 +8,16 @@ use PHPUnit_Framework_TestCase;
 class ConfigResolverConfigurationTest extends PHPUnit_Framework_TestCase
 {
     /**
+     * Sets up the tests
+     */
+    protected function setUp()
+    {
+        if (!interface_exists('eZ\Publish\Core\MVC\ConfigResolverInterface')) {
+            $this->markTestSkipped('No eZ Publish installed, ConfigResolverConfiguration tests skipped.');
+        }
+    }
+
+    /**
      * @covers \Netgen\BlockManager\Configuration\ConfigResolverConfiguration::hasParameter
      */
     public function testHasParameter()
