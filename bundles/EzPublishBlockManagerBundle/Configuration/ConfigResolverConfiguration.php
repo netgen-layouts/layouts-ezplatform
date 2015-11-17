@@ -2,11 +2,12 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Configuration;
 
+use Netgen\BlockManager\Configuration\Configuration;
 use Netgen\BlockManager\Configuration\ConfigurationInterface;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use InvalidArgumentException;
 
-class ConfigResolverConfiguration implements ConfigurationInterface
+class ConfigResolverConfiguration extends Configuration
 {
     /**
      * @var \eZ\Publish\Core\MVC\ConfigResolverInterface
