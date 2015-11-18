@@ -18,6 +18,7 @@ class ConfigResolverConfigurationTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::setConfigResolver
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::hasParameter
      */
     public function testHasParameter()
@@ -35,6 +36,7 @@ class ConfigResolverConfigurationTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::setConfigResolver
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::hasParameter
      */
     public function testHasParameterWithNoParameter()
@@ -52,6 +54,7 @@ class ConfigResolverConfigurationTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::setConfigResolver
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::getParameter
      */
     public function testGetParameter()
@@ -74,6 +77,7 @@ class ConfigResolverConfigurationTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::setConfigResolver
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::getParameter
      * @expectedException \InvalidArgumentException
      */
