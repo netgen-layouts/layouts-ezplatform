@@ -6,8 +6,17 @@ use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAw
 use Netgen\Bundle\BlockManagerBundle\DependencyInjection\Configuration as BlockManagerConfiguration;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
-abstract class Configuration extends SiteAccessConfiguration
+class Configuration extends SiteAccessConfiguration
 {
+    /**
+     * Generates the configuration tree builder.
+     *
+     * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder
+     */
+    public function getConfigTreeBuilder()
+    {
+    }
+
     /**
      * Returns the config tree builder closure.
      *
