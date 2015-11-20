@@ -32,6 +32,37 @@ class NetgenEzPublishBlockManagerExtension extends Extension
     /**
      * Returns the config preprocessor closure.
      *
+     * The point of the preprocessor is to generate eZ Publish siteaccess aware
+     * configuration for every key that is available under 'netgen_block_manager' key.
+     *
+     * With this, the following:
+     *
+     * array(
+     *     0 => array(
+     *         'netgen_block_manager' => array(
+     *             'param' => 'value'
+     *         )
+     *     )
+     * )
+     *
+     * becomes:
+     *
+     * array(
+     *     0 => array(
+     *         'netgen_block_manager' => array(
+     *             'param' => 'value',
+     *             'system' => array(
+     *                 'default' => array(
+     *                     'param' => 'value'
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     *
+     * If the original array already has a system key, it will be removed and appended
+     * to configs generated from the original parameters.
+     *
      * @return \Closure
      */
     public function getPreProcessor()
@@ -55,6 +86,18 @@ class NetgenEzPublishBlockManagerExtension extends Extension
 
     /**
      * Returns the config postprocessor closure.
+     *
+     * The postprocessor does two things:
+     *
+     * 1) When we convert the configs to siteaccess aware configs with preprocessor,
+     * pagelayout config is also converted. However, since here we need to override
+     * the global netgen_block_manager.pagelayout, but NOT the converted one (otherwise
+     * we would have an infinite loop when rendering the pagelayout), we need to specifically
+     * set it here, after the semantic configuration is processed and merged.
+     *
+     * 2) It calls eZ Publish mapConfigArray and mapSettings methods from siteaccess aware
+     * configuration processor as per documentation, to make the configuration correctly
+     * apply to all siteaccesses.
      *
      * @return \Closure
      */
