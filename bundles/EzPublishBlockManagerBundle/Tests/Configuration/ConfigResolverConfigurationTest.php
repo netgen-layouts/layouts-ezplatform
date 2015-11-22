@@ -3,9 +3,8 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Configuration;
 
 use Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration;
-use PHPUnit_Framework_TestCase;
 
-class ConfigResolverConfigurationTest extends PHPUnit_Framework_TestCase
+class ConfigResolverConfigurationTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Sets up the tests.
