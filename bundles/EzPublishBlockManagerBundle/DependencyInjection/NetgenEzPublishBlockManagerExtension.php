@@ -71,11 +71,11 @@ class NetgenEzPublishBlockManagerExtension extends Extension
         return function ($configs, ContainerBuilder $container) {
             $newConfigs = $configs;
             $appendConfigs = array();
-            foreach ($configs as $key => $config) {
+            foreach ($configs as $index => $config) {
                 if (isset($config['system'])) {
                     $appendConfigs[] = array('system' => $config['system']);
                     unset($config['system']);
-                    $newConfigs[$key] = $config;
+                    $newConfigs[$index] = $config;
                 }
 
                 $newConfigs[] = array('system' => array('default' => $config));
