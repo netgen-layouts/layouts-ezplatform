@@ -1,0 +1,10 @@
+parameters:
+    netgen_block_manager.layout_resolver.condition_matcher.siteaccess.class: Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\ConditionMatcher\Matcher\SiteAccess
+
+services:
+    netgen_block_manager.layout_resolver.condition_matcher.siteaccess:
+        class: %netgen_block_manager.layout_resolver.condition_matcher.siteaccess.class%
+        calls:
+            - [setRequestStack, ["@request_stack"]]
+        tags:
+            - { name: netgen_block_manager.layout_resolver.condition_matcher }
