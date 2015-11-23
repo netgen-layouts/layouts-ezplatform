@@ -21,6 +21,8 @@ class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
     }
 
     /**
+     * We test for existence of one service from each of the config files.
+     *
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::load
      */
     public function testLoad()
@@ -32,5 +34,7 @@ class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
             'netgen_block_manager.configuration',
             'netgen_block_manager.configuration.config_resolver'
         );
+
+        $this->assertContainerBuilderHasService('netgen_block_manager.layout_resolver.condition_matcher.siteaccess');
     }
 }

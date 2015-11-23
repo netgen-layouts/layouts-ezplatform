@@ -27,6 +27,7 @@ class NetgenEzPublishBlockManagerExtension extends Extension
         );
 
         $loader->load('configuration.yml');
+        $loader->load('layout_resolver/condition_matchers.yml');
     }
 
     /**
