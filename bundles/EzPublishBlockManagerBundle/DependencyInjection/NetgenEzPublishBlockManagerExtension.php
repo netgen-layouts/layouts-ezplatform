@@ -119,8 +119,6 @@ class NetgenEzPublishBlockManagerExtension extends Extension
                 }
             }
 
-            unset($config['system']);
-
             return $config;
         };
     }
