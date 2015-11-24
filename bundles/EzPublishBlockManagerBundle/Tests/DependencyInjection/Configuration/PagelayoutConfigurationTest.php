@@ -40,8 +40,8 @@ class PagelayoutConfigurationTest extends ConfigurationTest
                 'system' => array(
                     'default' => array(
                         'pagelayout' => 'other_pagelayout.html.twig',
-                    )
-                )
+                    ),
+                ),
             ),
         );
 

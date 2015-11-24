@@ -75,8 +75,8 @@ class LayoutsConfigurationTest extends ConfigurationTest
                                 ),
                             ),
                         ),
-                    )
-                )
+                    ),
+                ),
             ),
         );
 

@@ -64,7 +64,7 @@ abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
     protected $partialProcessor;
 
     /**
-     * Sets up the test
+     * Sets up the test.
      */
     public function setUp()
     {
@@ -97,7 +97,7 @@ abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Returns the expected config, extended with 'system' node
+     * Returns the expected config, extended with 'system' node.
      *
      * @param array $expectedConfig
      *
@@ -111,7 +111,7 @@ abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Asserts that processed $config is equal to $expectedConfig, after being
-     * processed by preprocessors and postprocessors
+     * processed by preprocessors and postprocessors.
      *
      * @param array $expectedConfig
      * @param array $config

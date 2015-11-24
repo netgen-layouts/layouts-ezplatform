@@ -55,8 +55,8 @@ class BlockGroupsConfigurationTest extends ConfigurationTest
                                 'name' => 'other_block_group',
                             ),
                         ),
-                    )
-                )
+                    ),
+                ),
             ),
         );
 

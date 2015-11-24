@@ -40,7 +40,7 @@ class BlocksConfigurationTest extends ConfigurationTest
                         ),
                     ),
                 ),
-            )
+            ),
         );
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
@@ -79,8 +79,8 @@ class BlocksConfigurationTest extends ConfigurationTest
                                 ),
                             ),
                         ),
-                    )
-                )
+                    ),
+                ),
             ),
         );
 
@@ -103,7 +103,7 @@ class BlocksConfigurationTest extends ConfigurationTest
                         ),
                     ),
                 ),
-            )
+            ),
         );
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
@@ -163,7 +163,7 @@ class BlocksConfigurationTest extends ConfigurationTest
                         ),
                     ),
                 ),
-            )
+            ),
         );
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);

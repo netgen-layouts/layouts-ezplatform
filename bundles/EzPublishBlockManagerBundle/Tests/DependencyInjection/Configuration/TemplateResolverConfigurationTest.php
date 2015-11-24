@@ -74,7 +74,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
                                 ),
                             ),
                         ),
-                    )
+                    ),
                 ),
             ),
         );
