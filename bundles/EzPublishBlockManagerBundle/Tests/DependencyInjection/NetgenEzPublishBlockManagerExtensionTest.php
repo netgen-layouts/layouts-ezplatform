@@ -15,8 +15,23 @@ class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
      */
     protected function getContainerExtensions()
     {
-        return array(
-            new NetgenEzPublishBlockManagerExtension(),
+        return array(new NetgenEzPublishBlockManagerExtension());
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::load
+     */
+    public function testParameters()
+    {
+        $this->load();
+
+        $this->assertContainerBuilderHasParameter('netgen_block_manager.default.blocks', array());
+        $this->assertContainerBuilderHasParameter('netgen_block_manager.default.block_groups', array());
+        $this->assertContainerBuilderHasParameter('netgen_block_manager.default.layouts', array());
+        $this->assertContainerBuilderHasParameter('netgen_block_manager.default.block_view', array());
+        $this->assertContainerBuilderHasParameter('netgen_block_manager.default.layout_view', array());
+        $this->assertContainerBuilderHasParameter('netgen_block_manager.default.pagelayout',
+            'NetgenBlockManagerBundle::pagelayout_empty.html.twig'
         );
     }
 
@@ -25,7 +40,7 @@ class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
      *
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::load
      */
-    public function testLoad()
+    public function testServices()
     {
         $this->load();
 
