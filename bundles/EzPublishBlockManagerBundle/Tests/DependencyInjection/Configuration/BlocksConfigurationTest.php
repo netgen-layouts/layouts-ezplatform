@@ -15,7 +15,6 @@ class BlocksConfigurationTest extends ConfigurationTest
             array(
                 'blocks' => array(
                     'block' => array(
-                        'name' => 'block',
                         'view_types' => array(
                             'default' => array(
                                 'name' => 'Default',
@@ -32,7 +31,6 @@ class BlocksConfigurationTest extends ConfigurationTest
         $expectedConfig = array(
             'blocks' => array(
                 'block' => array(
-                    'name' => 'block',
                     'view_types' => array(
                         'default' => array(
                             'name' => 'Default',
@@ -60,7 +58,6 @@ class BlocksConfigurationTest extends ConfigurationTest
             array(
                 'blocks' => array(
                     'block' => array(
-                        'name' => 'block',
                         'view_types' => array(
                             'default' => array(
                                 'name' => 'Default',
@@ -75,7 +72,6 @@ class BlocksConfigurationTest extends ConfigurationTest
                     'default' => array(
                         'blocks' => array(
                             'other_block' => array(
-                                'name' => 'other_block',
                                 'view_types' => array(
                                     'small' => array(
                                         'name' => 'Small',
@@ -91,7 +87,6 @@ class BlocksConfigurationTest extends ConfigurationTest
         $expectedConfig = array(
             'blocks' => array(
                 'block' => array(
-                    'name' => 'block',
                     'view_types' => array(
                         'default' => array(
                             'name' => 'Default',
@@ -102,7 +97,6 @@ class BlocksConfigurationTest extends ConfigurationTest
                     ),
                 ),
                 'other_block' => array(
-                    'name' => 'other_block',
                     'view_types' => array(
                         'small' => array(
                             'name' => 'Small',
@@ -130,7 +124,6 @@ class BlocksConfigurationTest extends ConfigurationTest
             array(
                 'blocks' => array(
                     'block' => array(
-                        'name' => 'block',
                         'view_types' => array(
                             'default' => array(
                                 'name' => 'Default',
@@ -145,7 +138,6 @@ class BlocksConfigurationTest extends ConfigurationTest
             array(
                 'blocks' => array(
                     'block' => array(
-                        'name' => 'block',
                         'view_types' => array(
                             'title' => array(
                                 'name' => 'Title',
@@ -162,7 +154,6 @@ class BlocksConfigurationTest extends ConfigurationTest
         $expectedConfig = array(
             'blocks' => array(
                 'block' => array(
-                    'name' => 'block',
                     'view_types' => array(
                         'title' => array(
                             'name' => 'Title',
