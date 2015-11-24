@@ -25,6 +25,21 @@ abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
         'block_groups' => array(),
         'block_view' => array(),
         'layout_view' => array(),
+        'pagelayout' => 'NetgenEzPublishBlockManagerBundle::pagelayout_resolver.html.twig',
+    );
+
+    /**
+     * Default config here is used because config test library can't test against
+     * two or more config tree parts.
+     *
+     * @var array
+     */
+    protected $defaultSystemConfig = array(
+        'blocks' => array(),
+        'layouts' => array(),
+        'block_groups' => array(),
+        'block_view' => array(),
+        'layout_view' => array(),
         'pagelayout' => 'NetgenBlockManagerBundle::pagelayout_empty.html.twig',
     );
 
@@ -82,22 +97,32 @@ abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Returns the expected config, extended with 'system' node
+     *
+     * @param array $expectedConfig
+     *
+     * @return array
+     */
+    protected function getExtendedExpectedConfig(array $expectedConfig)
+    {
+        return $expectedConfig + $this->defaultConfig +
+            array('system' => array('default' => $expectedConfig + $this->defaultSystemConfig));
+    }
+
+    /**
      * Asserts that processed $config is equal to $expectedConfig, after being
      * processed by preprocessors and postprocessors
      *
-     * @param $expectedConfig
-     * @param $config
+     * @param array $expectedConfig
+     * @param array $config
      */
-    public function assertInjectedConfigurationEqual($expectedConfig, $config)
+    public function assertInjectedConfigurationEqual(array $expectedConfig, array $config)
     {
-        $expectedConfig = $expectedConfig + $this->defaultConfig +
-            array('system' => array('default' => $expectedConfig + $this->defaultConfig));
-
         $configPreProcessor = $this->configPreProcessor;
         $configPostProcessor = $this->configPostProcessor;
 
         self::assertEquals(
-            $configPostProcessor($expectedConfig, $this->containerBuilderMock),
+            $expectedConfig,
             $configPostProcessor(
                 $this->partialProcessor->processConfiguration(
                     $this->getConfiguration(),

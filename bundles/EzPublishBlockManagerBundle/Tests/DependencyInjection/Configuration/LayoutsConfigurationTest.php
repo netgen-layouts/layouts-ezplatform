@@ -5,7 +5,7 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\DependencyInjection\Co
 class LayoutsConfigurationTest extends ConfigurationTest
 {
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration::getConfigTreeBuilder
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration::getConfigTreeBuilderClosure
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPreProcessor
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPostProcessor
      */
@@ -40,11 +40,78 @@ class LayoutsConfigurationTest extends ConfigurationTest
             ),
         );
 
+        $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
         $this->assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration::getConfigTreeBuilder
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration::getConfigTreeBuilderClosure
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPreProcessor
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPostProcessor
+     */
+    public function testLayoutSettingsWithSystemNode()
+    {
+        $config = array(
+            array(
+                'layouts' => array(
+                    'layout' => array(
+                        'name' => 'layout',
+                        'zones' => array(
+                            'zone' => array(
+                                'name' => 'zone',
+                            ),
+                        ),
+                    ),
+                ),
+                'system' => array(
+                    'default' => array(
+                        'layouts' => array(
+                            'other_layout' => array(
+                                'name' => 'other_layout',
+                                'zones' => array(
+                                    'zone' => array(
+                                        'name' => 'zone',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    )
+                )
+            ),
+        );
+
+        $expectedConfig = array(
+            'layouts' => array(
+                'layout' => array(
+                    'name' => 'layout',
+                    'zones' => array(
+                        'zone' => array(
+                            'name' => 'zone',
+                            'allowed_blocks' => array(),
+                        ),
+                    ),
+                ),
+                'other_layout' => array(
+                    'name' => 'other_layout',
+                    'zones' => array(
+                        'zone' => array(
+                            'name' => 'zone',
+                            'allowed_blocks' => array(),
+                        ),
+                    ),
+                ),
+            ),
+        );
+
+        $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
+        // Other block group should not appear in original config, but only in siteaccess aware one
+        unset($expectedConfig['layouts']['other_layout']);
+
+        $this->assertInjectedConfigurationEqual($expectedConfig, $config);
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration::getConfigTreeBuilderClosure
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPreProcessor
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPostProcessor
      */
@@ -101,11 +168,12 @@ class LayoutsConfigurationTest extends ConfigurationTest
             ),
         );
 
+        $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
         $this->assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration::getConfigTreeBuilder
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration::getConfigTreeBuilderClosure
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPreProcessor
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPostProcessor
      */
@@ -141,11 +209,12 @@ class LayoutsConfigurationTest extends ConfigurationTest
             ),
         );
 
+        $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
         $this->assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration::getConfigTreeBuilder
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration::getConfigTreeBuilderClosure
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPreProcessor
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPostProcessor
      */
@@ -181,6 +250,7 @@ class LayoutsConfigurationTest extends ConfigurationTest
             ),
         );
 
+        $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
         $this->assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 }
