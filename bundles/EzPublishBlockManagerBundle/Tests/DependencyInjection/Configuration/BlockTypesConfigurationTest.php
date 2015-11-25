@@ -22,8 +22,8 @@ class BlockTypesConfigurationTest extends ConfigurationTest
                             'view_type' => 'large',
                             'parameters' => array(
                                 'param1' => 'value1',
-                                'param2' => 'value2'
-                            )
+                                'param2' => 'value2',
+                            ),
                         ),
                     ),
                 ),
@@ -40,8 +40,8 @@ class BlockTypesConfigurationTest extends ConfigurationTest
                         'view_type' => 'large',
                             'parameters' => array(
                                 'param1' => 'value1',
-                                'param2' => 'value2'
-                            )
+                                'param2' => 'value2',
+                            ),
                     ),
                 ),
             ),
@@ -69,8 +69,8 @@ class BlockTypesConfigurationTest extends ConfigurationTest
                             'view_type' => 'large',
                             'parameters' => array(
                                 'param1' => 'value1',
-                                'param2' => 'value2'
-                            )
+                                'param2' => 'value2',
+                            ),
                         ),
                     ),
                 ),
@@ -85,13 +85,13 @@ class BlockTypesConfigurationTest extends ConfigurationTest
                                     'view_type' => 'large',
                                     'parameters' => array(
                                         'param1' => 'value1',
-                                        'param2' => 'value2'
-                                    )
+                                        'param2' => 'value2',
+                                    ),
                                 ),
                             ),
                         ),
-                    )
-                )
+                    ),
+                ),
             ),
         );
 
@@ -105,8 +105,8 @@ class BlockTypesConfigurationTest extends ConfigurationTest
                         'view_type' => 'large',
                             'parameters' => array(
                                 'param1' => 'value1',
-                                'param2' => 'value2'
-                            )
+                                'param2' => 'value2',
+                            ),
                     ),
                 ),
                 'other_block_type' => array(
@@ -117,8 +117,8 @@ class BlockTypesConfigurationTest extends ConfigurationTest
                         'view_type' => 'large',
                             'parameters' => array(
                                 'param1' => 'value1',
-                                'param2' => 'value2'
-                            )
+                                'param2' => 'value2',
+                            ),
                     ),
                 ),
             ),
@@ -148,8 +148,8 @@ class BlockTypesConfigurationTest extends ConfigurationTest
                             'view_type' => 'large',
                             'parameters' => array(
                                 'param1' => 'value1',
-                                'param2' => 'value2'
-                            )
+                                'param2' => 'value2',
+                            ),
                         ),
                     ),
                 ),
@@ -166,8 +166,8 @@ class BlockTypesConfigurationTest extends ConfigurationTest
                         'view_type' => 'large',
                         'parameters' => array(
                             'param1' => 'value1',
-                            'param2' => 'value2'
-                        )
+                            'param2' => 'value2',
+                        ),
                     ),
                 ),
             ),
@@ -207,7 +207,7 @@ class BlockTypesConfigurationTest extends ConfigurationTest
                         'name' => 'Name',
                         'definition_identifier' => 'title',
                         'view_type' => 'large',
-                        'parameters' => array()
+                        'parameters' => array(),
                     ),
                 ),
             ),
@@ -234,8 +234,8 @@ class BlockTypesConfigurationTest extends ConfigurationTest
                             'definition_identifier' => 'title',
                             'view_type' => 'large',
                             'parameters' => array(
-                                'param1' => 'value1'
-                            )
+                                'param1' => 'value1',
+                            ),
                         ),
                     ),
                 ),
@@ -249,8 +249,8 @@ class BlockTypesConfigurationTest extends ConfigurationTest
                             'definition_identifier' => 'title',
                             'view_type' => 'large',
                             'parameters' => array(
-                                'param2' => 'value2'
-                            )
+                                'param2' => 'value2',
+                            ),
                         ),
                     ),
                 ),
@@ -266,8 +266,8 @@ class BlockTypesConfigurationTest extends ConfigurationTest
                         'definition_identifier' => 'title',
                         'view_type' => 'large',
                         'parameters' => array(
-                            'param2' => 'value2'
-                        )
+                            'param2' => 'value2',
+                        ),
                     ),
                 ),
             ),
