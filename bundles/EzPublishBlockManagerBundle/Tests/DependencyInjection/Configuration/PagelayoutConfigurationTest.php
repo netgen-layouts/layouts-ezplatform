@@ -11,7 +11,6 @@ class PagelayoutConfigurationTest extends ConfigurationTest
      */
     public function testPagelayoutSettings()
     {
-        $this->markTestSkipped('Fails for unknown reason. Bug in matthiasnoback/symfony-config-test maybe?');
         $config = array(
             array(
                 'pagelayout' => 'pagelayout.html.twig',
@@ -36,7 +35,6 @@ class PagelayoutConfigurationTest extends ConfigurationTest
      */
     public function testPagelayoutSettingsWithSystemConfig()
     {
-        $this->markTestSkipped('Fails for unknown reason. Bug in matthiasnoback/symfony-config-test maybe?');
         $config = array(
             array(
                 'pagelayout' => 'pagelayout.html.twig',
