@@ -38,18 +38,17 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\ConditionMatcher\Matcher\SiteAccess::matches
      *
-     * @param string $valueIdentifier
-     * @param array $values
+     * @param array $parameters
      * @param bool $matches
      *
      * @dataProvider matchesProvider
      */
-    public function testMatches($valueIdentifier, array $values, $matches)
+    public function testMatches($parameters, $matches)
     {
         $conditionMatcher = new SiteAccess();
         $conditionMatcher->setRequestStack($this->requestStack);
 
-        self::assertEquals($matches, $conditionMatcher->matches($valueIdentifier, $values));
+        self::assertEquals($matches, $conditionMatcher->matches($parameters));
     }
 
     /**
@@ -60,11 +59,12 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
     public function matchesProvider()
     {
         return array(
-            array(null, array('eng'), true),
-            array(null, array('cro'), false),
-            array(null, array('eng', 'cro'), true),
-            array(null, array('cro', 'eng'), true),
-            array(null, array('cro', 'fre'), false),
+            array(array(), false),
+            array(array('eng'), true),
+            array(array('cro'), false),
+            array(array('eng', 'cro'), true),
+            array(array('cro', 'eng'), true),
+            array(array('cro', 'fre'), false),
         );
     }
 
@@ -79,7 +79,7 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
         $conditionMatcher = new SiteAccess();
         $conditionMatcher->setRequestStack($this->requestStack);
 
-        self::assertEquals(false, $conditionMatcher->matches('identifier', array(42)));
+        self::assertEquals(false, $conditionMatcher->matches(array()));
     }
 
     /**
@@ -93,17 +93,6 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
         $conditionMatcher = new SiteAccess();
         $conditionMatcher->setRequestStack($this->requestStack);
 
-        self::assertEquals(false, $conditionMatcher->matches('identifier', array(42)));
-    }
-
-    /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\ConditionMatcher\Matcher\SiteAccess::matches
-     */
-    public function testMatchesWithEmptyValues()
-    {
-        $conditionMatcher = new SiteAccess();
-        $conditionMatcher->setRequestStack($this->requestStack);
-
-        self::assertEquals(false, $conditionMatcher->matches('identifier', array()));
+        self::assertEquals(false, $conditionMatcher->matches(array()));
     }
 }
