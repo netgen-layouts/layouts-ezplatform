@@ -15,6 +15,9 @@ class BlocksConfigurationTest extends ConfigurationTest
             array(
                 'blocks' => array(
                     'block' => array(
+                        'forms' => array(
+                            'edit' => 'form_edit'
+                        ),
                         'view_types' => array(
                             'default' => array(
                                 'name' => 'Default',
@@ -31,6 +34,57 @@ class BlocksConfigurationTest extends ConfigurationTest
         $expectedConfig = array(
             'blocks' => array(
                 'block' => array(
+                    'forms' => array(
+                        'edit' => 'form_edit'
+                    ),
+                    'view_types' => array(
+                        'default' => array(
+                            'name' => 'Default',
+                        ),
+                        'large' => array(
+                            'name' => 'Large',
+                        ),
+                    ),
+                ),
+            ),
+        );
+
+        $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
+        $this->assertInjectedConfigurationEqual($expectedConfig, $config);
+    }
+
+    /**
+     * @covers \Netgen\Bundle\BlockManagerBundle\DependencyInjection\Configuration::__construct
+     * @covers \Netgen\Bundle\BlockManagerBundle\DependencyInjection\Configuration::getConfigTreeBuilder
+     * @covers \Netgen\Bundle\BlockManagerBundle\DependencyInjection\Configuration::getBlocksNodeDefinition
+     * @covers \Netgen\Bundle\BlockManagerBundle\DependencyInjection\Configuration::getAvailableNodeDefinitions
+     */
+    public function testBlockSettingsWithNoFormEdit()
+    {
+        $config = array(
+            array(
+                'blocks' => array(
+                    'block' => array(
+                        'forms' => array(),
+                        'view_types' => array(
+                            'default' => array(
+                                'name' => 'Default',
+                            ),
+                            'large' => array(
+                                'name' => 'Large',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+
+        $expectedConfig = array(
+            'blocks' => array(
+                'block' => array(
+                    'forms' => array(
+                        'edit' => 'block_update'
+                    ),
                     'view_types' => array(
                         'default' => array(
                             'name' => 'Default',
@@ -58,6 +112,9 @@ class BlocksConfigurationTest extends ConfigurationTest
             array(
                 'blocks' => array(
                     'block' => array(
+                        'forms' => array(
+                            'edit' => 'form_edit'
+                        ),
                         'view_types' => array(
                             'default' => array(
                                 'name' => 'Default',
@@ -72,6 +129,9 @@ class BlocksConfigurationTest extends ConfigurationTest
                     'default' => array(
                         'blocks' => array(
                             'other_block' => array(
+                                'forms' => array(
+                                    'edit' => 'form_edit'
+                                ),
                                 'view_types' => array(
                                     'small' => array(
                                         'name' => 'Small',
@@ -87,6 +147,9 @@ class BlocksConfigurationTest extends ConfigurationTest
         $expectedConfig = array(
             'blocks' => array(
                 'block' => array(
+                    'forms' => array(
+                        'edit' => 'form_edit'
+                    ),
                     'view_types' => array(
                         'default' => array(
                             'name' => 'Default',
@@ -97,6 +160,9 @@ class BlocksConfigurationTest extends ConfigurationTest
                     ),
                 ),
                 'other_block' => array(
+                    'forms' => array(
+                        'edit' => 'form_edit'
+                    ),
                     'view_types' => array(
                         'small' => array(
                             'name' => 'Small',
@@ -124,6 +190,9 @@ class BlocksConfigurationTest extends ConfigurationTest
             array(
                 'blocks' => array(
                     'block' => array(
+                        'forms' => array(
+                            'edit' => 'form_edit'
+                        ),
                         'view_types' => array(
                             'default' => array(
                                 'name' => 'Default',
@@ -138,6 +207,9 @@ class BlocksConfigurationTest extends ConfigurationTest
             array(
                 'blocks' => array(
                     'block' => array(
+                        'forms' => array(
+                            'edit' => 'form_edit'
+                        ),
                         'view_types' => array(
                             'title' => array(
                                 'name' => 'Title',
@@ -154,6 +226,9 @@ class BlocksConfigurationTest extends ConfigurationTest
         $expectedConfig = array(
             'blocks' => array(
                 'block' => array(
+                    'forms' => array(
+                        'edit' => 'form_edit'
+                    ),
                     'view_types' => array(
                         'title' => array(
                             'name' => 'Title',
