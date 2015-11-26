@@ -16,7 +16,7 @@ class BlocksConfigurationTest extends ConfigurationTest
                 'blocks' => array(
                     'block' => array(
                         'forms' => array(
-                            'edit' => 'form_edit'
+                            'edit' => 'form_edit',
                         ),
                         'view_types' => array(
                             'default' => array(
@@ -35,7 +35,7 @@ class BlocksConfigurationTest extends ConfigurationTest
             'blocks' => array(
                 'block' => array(
                     'forms' => array(
-                        'edit' => 'form_edit'
+                        'edit' => 'form_edit',
                     ),
                     'view_types' => array(
                         'default' => array(
@@ -83,7 +83,7 @@ class BlocksConfigurationTest extends ConfigurationTest
             'blocks' => array(
                 'block' => array(
                     'forms' => array(
-                        'edit' => 'block_update'
+                        'edit' => 'block_update',
                     ),
                     'view_types' => array(
                         'default' => array(
@@ -113,7 +113,7 @@ class BlocksConfigurationTest extends ConfigurationTest
                 'blocks' => array(
                     'block' => array(
                         'forms' => array(
-                            'edit' => 'form_edit'
+                            'edit' => 'form_edit',
                         ),
                         'view_types' => array(
                             'default' => array(
@@ -130,7 +130,7 @@ class BlocksConfigurationTest extends ConfigurationTest
                         'blocks' => array(
                             'other_block' => array(
                                 'forms' => array(
-                                    'edit' => 'form_edit'
+                                    'edit' => 'form_edit',
                                 ),
                                 'view_types' => array(
                                     'small' => array(
@@ -148,7 +148,7 @@ class BlocksConfigurationTest extends ConfigurationTest
             'blocks' => array(
                 'block' => array(
                     'forms' => array(
-                        'edit' => 'form_edit'
+                        'edit' => 'form_edit',
                     ),
                     'view_types' => array(
                         'default' => array(
@@ -161,7 +161,7 @@ class BlocksConfigurationTest extends ConfigurationTest
                 ),
                 'other_block' => array(
                     'forms' => array(
-                        'edit' => 'form_edit'
+                        'edit' => 'form_edit',
                     ),
                     'view_types' => array(
                         'small' => array(
@@ -191,7 +191,7 @@ class BlocksConfigurationTest extends ConfigurationTest
                 'blocks' => array(
                     'block' => array(
                         'forms' => array(
-                            'edit' => 'form_edit'
+                            'edit' => 'form_edit',
                         ),
                         'view_types' => array(
                             'default' => array(
@@ -208,7 +208,7 @@ class BlocksConfigurationTest extends ConfigurationTest
                 'blocks' => array(
                     'block' => array(
                         'forms' => array(
-                            'edit' => 'form_edit'
+                            'edit' => 'form_edit',
                         ),
                         'view_types' => array(
                             'title' => array(
@@ -227,7 +227,7 @@ class BlocksConfigurationTest extends ConfigurationTest
             'blocks' => array(
                 'block' => array(
                     'forms' => array(
-                        'edit' => 'form_edit'
+                        'edit' => 'form_edit',
                     ),
                     'view_types' => array(
                         'title' => array(
