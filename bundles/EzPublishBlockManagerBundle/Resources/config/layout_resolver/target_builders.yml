@@ -1,0 +1,10 @@
+parameters:
+    netgen_block_manager.layout_resolver.target_builder.location.class: Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Location
+
+services:
+    netgen_block_manager.layout_resolver.target_builder.location:
+        class: %netgen_block_manager.layout_resolver.target_builder.location.class%
+        calls:
+            - [setRequestStack, ["@request_stack"]]
+        tags:
+            - { name: netgen_block_manager.layout_resolver.target_builder, priority: 40 }
