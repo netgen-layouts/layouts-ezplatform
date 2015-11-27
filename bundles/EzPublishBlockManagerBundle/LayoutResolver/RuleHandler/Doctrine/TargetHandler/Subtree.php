@@ -3,7 +3,6 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\RuleHandler\Doctrine\TargetHandler;
 
 use Doctrine\DBAL\Connection;
-use Netgen\BlockManager\LayoutResolver\RuleHandler\Doctrine\TargetHandler;
 use Doctrine\DBAL\Query\QueryBuilder;
 
 class Subtree extends Location

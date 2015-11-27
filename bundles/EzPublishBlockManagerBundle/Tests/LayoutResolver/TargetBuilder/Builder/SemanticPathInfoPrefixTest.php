@@ -39,6 +39,19 @@ class SemanticPathInfoPrefixTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\SemanticPathInfoPrefix::buildTarget
      */
+    public function testBuildTargetWithEmptySemanticPathInfo()
+    {
+        $this->requestStack->getCurrentRequest()->attributes->set('semanticPathinfo', false);
+
+        $targetBuilder = new SemanticPathInfoPrefix();
+        $targetBuilder->setRequestStack($this->requestStack);
+
+        self::assertEquals(new SemanticPathInfoPrefixTarget(array('/')), $targetBuilder->buildTarget());
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\SemanticPathInfoPrefix::buildTarget
+     */
     public function testBuildTargetWithNoRequest()
     {
         // Make sure we have no request
@@ -51,7 +64,7 @@ class SemanticPathInfoPrefixTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\SemanticPathInfo::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\SemanticPathInfoPrefix::buildTarget
      */
     public function testBuildTargetWithNoSemanticPathInfo()
     {
