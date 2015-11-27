@@ -26,7 +26,7 @@ class LocationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\LayoutResolver\TargetBuilder\Builder\Location::getTargetIdentifier
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Location::getTargetIdentifier
      */
     public function testGetTargetIdentifier()
     {
@@ -36,7 +36,7 @@ class LocationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\LayoutResolver\TargetBuilder\Builder\Location::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Location::buildTarget
      */
     public function testBuildTarget()
     {
@@ -47,7 +47,7 @@ class LocationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\LayoutResolver\TargetBuilder\Builder\Location::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Location::buildTarget
      */
     public function testBuildTargetWithNoRequest()
     {
@@ -61,7 +61,7 @@ class LocationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\LayoutResolver\TargetBuilder\Builder\Location::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Location::buildTarget
      */
     public function testBuildTargetWithNoLocationId()
     {
