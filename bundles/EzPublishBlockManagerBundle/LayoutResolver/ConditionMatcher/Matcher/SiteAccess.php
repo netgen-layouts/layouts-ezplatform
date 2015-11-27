@@ -35,12 +35,12 @@ class SiteAccess implements ConditionMatcherInterface
             return false;
         }
 
-        if (empty($parameters)) {
+        $siteAccess = $currentRequest->attributes->get('siteaccess');
+        if (!$siteAccess instanceof EzPublishSiteAccess) {
             return false;
         }
 
-        $siteAccess = $currentRequest->attributes->get('siteaccess');
-        if (!$siteAccess instanceof EzPublishSiteAccess) {
+        if (empty($parameters)) {
             return false;
         }
 
