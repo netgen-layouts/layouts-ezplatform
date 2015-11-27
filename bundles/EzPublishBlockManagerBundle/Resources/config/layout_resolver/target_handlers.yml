@@ -1,8 +1,14 @@
 parameters:
     netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.location.class: Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\RuleHandler\Doctrine\TargetHandler\Location
+    netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.content.class: Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\RuleHandler\Doctrine\TargetHandler\Content
 
 services:
     netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.location:
         class: %netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.location.class%
+        tags:
+            - { name: netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler }
+
+    netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.content:
+        class: %netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.content.class%
         tags:
             - { name: netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler }
