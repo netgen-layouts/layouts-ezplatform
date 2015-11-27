@@ -7,20 +7,11 @@ use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\RuleHandler\Doctrin
 class ChildrenTest extends TargetHandlerTest
 {
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\RuleHandler\Doctrine\TargetHandler\Children::getTargetIdentifier
-     */
-    public function testGetTargetIdentifier()
-    {
-        $targetHandler = $this->getTargetHandler();
-        self::assertEquals('children', $targetHandler->getTargetIdentifier());
-    }
-
-    /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\RuleHandler\Doctrine\TargetHandler\Children::handleQuery
      */
     public function testLoadChildrenRules()
     {
-        $handler = $this->createHandler();
+        $handler = $this->createHandler('children', $this->getTargetHandler());
 
         $expected = array(
             array(

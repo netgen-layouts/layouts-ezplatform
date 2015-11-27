@@ -7,20 +7,11 @@ use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\RuleHandler\Doctrin
 class ContentTest extends TargetHandlerTest
 {
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\RuleHandler\Doctrine\TargetHandler\Content::getTargetIdentifier
-     */
-    public function testGetTargetIdentifier()
-    {
-        $targetHandler = $this->getTargetHandler();
-        self::assertEquals('content', $targetHandler->getTargetIdentifier());
-    }
-
-    /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\RuleHandler\Doctrine\TargetHandler\Content::handleQuery
      */
     public function testLoadContentRules()
     {
-        $handler = $this->createHandler();
+        $handler = $this->createHandler('content', $this->getTargetHandler());
 
         $expected = array(
             array(

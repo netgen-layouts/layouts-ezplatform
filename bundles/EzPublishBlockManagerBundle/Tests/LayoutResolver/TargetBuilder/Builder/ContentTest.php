@@ -3,7 +3,7 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\LayoutResolver\TargetBuilder\Builder;
 
 use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Content;
-use Netgen\BlockManager\LayoutResolver\Target;
+use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\Target\Content as ContentTarget;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,16 +26,6 @@ class ContentTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Content::getTargetIdentifier
-     */
-    public function testGetTargetIdentifier()
-    {
-        $targetBuilder = new Content();
-
-        self::assertEquals('content', $targetBuilder->getTargetIdentifier());
-    }
-
-    /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Content::buildTarget
      */
     public function testBuildTarget()
@@ -43,7 +33,7 @@ class ContentTest extends \PHPUnit_Framework_TestCase
         $targetBuilder = new Content();
         $targetBuilder->setRequestStack($this->requestStack);
 
-        self::assertEquals(new Target('content', array(42)), $targetBuilder->buildTarget());
+        self::assertEquals(new ContentTarget(array(42)), $targetBuilder->buildTarget());
     }
 
     /**

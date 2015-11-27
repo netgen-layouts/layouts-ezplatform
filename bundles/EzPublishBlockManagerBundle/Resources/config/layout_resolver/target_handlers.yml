@@ -7,14 +7,14 @@ services:
     netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.location:
         class: %netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.location.class%
         tags:
-            - { name: netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler }
+            - { name: netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler, alias: location }
 
     netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.content:
         class: %netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.content.class%
         tags:
-            - { name: netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler }
+            - { name: netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler, alias: content }
 
     netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.children:
         class: %netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.children.class%
         tags:
-            - { name: netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler }
+            - { name: netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler, alias: children }

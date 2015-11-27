@@ -6,7 +6,7 @@ use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\LocationService;
 use Netgen\BlockManager\LayoutResolver\TargetBuilder\TargetBuilderInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
-use Netgen\BlockManager\LayoutResolver\Target;
+use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\Target\Subtree as SubtreeTarget;
 use Symfony\Component\HttpFoundation\Request;
 
 class Subtree implements TargetBuilderInterface
@@ -26,16 +26,6 @@ class Subtree implements TargetBuilderInterface
     public function __construct(LocationService $locationService)
     {
         $this->locationService = $locationService;
-    }
-
-    /**
-     * Returns the unique identifier of the target this builder builds.
-     *
-     * @return string
-     */
-    public function getTargetIdentifier()
-    {
-        return 'subtree';
     }
 
     /**
@@ -62,8 +52,7 @@ class Subtree implements TargetBuilderInterface
             return false;
         }
 
-        return new Target(
-            $this->getTargetIdentifier(),
+        return new SubtreeTarget(
             $location->path
         );
     }

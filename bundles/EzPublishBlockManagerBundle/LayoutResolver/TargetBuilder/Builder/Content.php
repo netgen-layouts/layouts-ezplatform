@@ -4,22 +4,12 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder
 
 use Netgen\BlockManager\LayoutResolver\TargetBuilder\TargetBuilderInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
-use Netgen\BlockManager\LayoutResolver\Target;
+use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\Target\Content as ContentTarget;
 use Symfony\Component\HttpFoundation\Request;
 
 class Content implements TargetBuilderInterface
 {
     use RequestStackAwareTrait;
-
-    /**
-     * Returns the unique identifier of the target this builder builds.
-     *
-     * @return string
-     */
-    public function getTargetIdentifier()
-    {
-        return 'content';
-    }
 
     /**
      * Builds the target object that will be used to search for resolver rules.
@@ -37,8 +27,7 @@ class Content implements TargetBuilderInterface
             return false;
         }
 
-        return new Target(
-            $this->getTargetIdentifier(),
+        return new ContentTarget(
             array($currentRequest->attributes->get('contentId'))
         );
     }

@@ -9,16 +9,6 @@ use Doctrine\DBAL\Types\Type;
 class Location extends TargetHandler
 {
     /**
-     * Returns the target identifier this handler handles.
-     *
-     * @return string
-     */
-    public function getTargetIdentifier()
-    {
-        return 'location';
-    }
-
-    /**
      * Handles the query by adding the clause that matches the provided values.
      *
      * @param \Doctrine\DBAL\Query\QueryBuilder $query

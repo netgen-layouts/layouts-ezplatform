@@ -5,7 +5,7 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\LayoutResolver\TargetB
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Children;
-use Netgen\BlockManager\LayoutResolver\Target;
+use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\Target\Children as ChildrenTarget;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,16 +37,7 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Children::getTargetIdentifier
-     */
-    public function testGetTargetIdentifier()
-    {
-        $targetBuilder = new Children($this->locationServiceMock);
-
-        self::assertEquals('children', $targetBuilder->getTargetIdentifier());
-    }
-
-    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Children::__construct
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Children::buildTarget
      */
     public function testBuildTarget()
@@ -60,7 +51,7 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
         $targetBuilder = new Children($this->locationServiceMock);
         $targetBuilder->setRequestStack($this->requestStack);
 
-        self::assertEquals(new Target('children', array(84)), $targetBuilder->buildTarget());
+        self::assertEquals(new ChildrenTarget(array(84)), $targetBuilder->buildTarget());
     }
 
     /**

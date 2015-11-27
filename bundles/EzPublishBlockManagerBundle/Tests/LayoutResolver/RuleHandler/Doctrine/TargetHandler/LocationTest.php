@@ -7,20 +7,11 @@ use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\RuleHandler\Doctrin
 class LocationTest extends TargetHandlerTest
 {
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\RuleHandler\Doctrine\TargetHandler\Location::getTargetIdentifier
-     */
-    public function testGetTargetIdentifier()
-    {
-        $targetHandler = $this->getTargetHandler();
-        self::assertEquals('location', $targetHandler->getTargetIdentifier());
-    }
-
-    /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\RuleHandler\Doctrine\TargetHandler\Location::handleQuery
      */
     public function testLoadLocationRules()
     {
-        $handler = $this->createHandler();
+        $handler = $this->createHandler('location', $this->getTargetHandler());
 
         $expected = array(
             array(

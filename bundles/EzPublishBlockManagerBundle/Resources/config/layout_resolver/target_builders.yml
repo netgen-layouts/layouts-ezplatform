@@ -9,14 +9,14 @@ services:
         calls:
             - [setRequestStack, ["@request_stack"]]
         tags:
-            - { name: netgen_block_manager.layout_resolver.target_builder, priority: 180 }
+            - { name: netgen_block_manager.layout_resolver.target_builder, alias: location, priority: 180 }
 
     netgen_block_manager.layout_resolver.target_builder.content:
         class: %netgen_block_manager.layout_resolver.target_builder.content.class%
         calls:
             - [setRequestStack, ["@request_stack"]]
         tags:
-            - { name: netgen_block_manager.layout_resolver.target_builder, priority: 170 }
+            - { name: netgen_block_manager.layout_resolver.target_builder, alias: content, priority: 170 }
 
     netgen_block_manager.layout_resolver.target_builder.children:
         class: %netgen_block_manager.layout_resolver.target_builder.children.class%
@@ -25,4 +25,4 @@ services:
         calls:
             - [setRequestStack, ["@request_stack"]]
         tags:
-            - { name: netgen_block_manager.layout_resolver.target_builder, priority: 160 }
+            - { name: netgen_block_manager.layout_resolver.target_builder, alias: children, priority: 160 }

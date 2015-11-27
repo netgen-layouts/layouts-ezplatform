@@ -5,7 +5,7 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\LayoutResolver\TargetB
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Subtree;
-use Netgen\BlockManager\LayoutResolver\Target;
+use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\Target\Subtree as SubtreeTarget;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,16 +37,7 @@ class SubtreeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Subtree::getTargetIdentifier
-     */
-    public function testGetTargetIdentifier()
-    {
-        $targetBuilder = new Subtree($this->locationServiceMock);
-
-        self::assertEquals('subtree', $targetBuilder->getTargetIdentifier());
-    }
-
-    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Subtree::__construct
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Subtree::buildTarget
      */
     public function testBuildTarget()
@@ -60,7 +51,7 @@ class SubtreeTest extends \PHPUnit_Framework_TestCase
         $targetBuilder = new Subtree($this->locationServiceMock);
         $targetBuilder->setRequestStack($this->requestStack);
 
-        self::assertEquals(new Target('subtree', array(1, 2, 42)), $targetBuilder->buildTarget());
+        self::assertEquals(new SubtreeTarget(array(1, 2, 42)), $targetBuilder->buildTarget());
     }
 
     /**
