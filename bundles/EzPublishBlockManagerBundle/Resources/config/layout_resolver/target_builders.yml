@@ -3,6 +3,8 @@ parameters:
     netgen_block_manager.layout_resolver.target_builder.content.class: Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Content
     netgen_block_manager.layout_resolver.target_builder.children.class: Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Children
     netgen_block_manager.layout_resolver.target_builder.subtree.class: Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Subtree
+    netgen_block_manager.layout_resolver.target_builder.semantic_path_info.class: Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\SemanticPathInfo
+    netgen_block_manager.layout_resolver.target_builder.semantic_path_info_prefix.class: Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\SemanticPathInfoPrefix
 
 services:
     netgen_block_manager.layout_resolver.target_builder.location:
@@ -36,3 +38,17 @@ services:
             - [setRequestStack, ["@request_stack"]]
         tags:
             - { name: netgen_block_manager.layout_resolver.target_builder, alias: subtree, priority: 150 }
+
+    netgen_block_manager.layout_resolver.target_builder.semantic_path_info:
+        class: %netgen_block_manager.layout_resolver.target_builder.semantic_path_info.class%
+        calls:
+            - [setRequestStack, ["@request_stack"]]
+        tags:
+            - { name: netgen_block_manager.layout_resolver.target_builder, alias: semantic_path_info, priority: 140 }
+
+    netgen_block_manager.layout_resolver.target_builder.semantic_path_info_prefix:
+        class: %netgen_block_manager.layout_resolver.target_builder.semantic_path_info_prefix.class%
+        calls:
+            - [setRequestStack, ["@request_stack"]]
+        tags:
+            - { name: netgen_block_manager.layout_resolver.target_builder, alias: semantic_path_info_prefix, priority: 130 }

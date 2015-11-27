@@ -11,6 +11,8 @@ return array(
         array('id' => 7, 'layout_id' => 7, 'target_identifier' => 'children'),
         array('id' => 8, 'layout_id' => 8, 'target_identifier' => 'subtree'),
         array('id' => 9, 'layout_id' => 9, 'target_identifier' => 'subtree'),
+        array('id' => 10, 'layout_id' => 10, 'target_identifier' => 'semantic_path_info'),
+        array('id' => 11, 'layout_id' => 11, 'target_identifier' => 'semantic_path_info_prefix'),
     ),
     'ngbm_rule_value' => array(
         array('id' => 13, 'rule_id' => 1, 'value' => 42),
@@ -31,5 +33,9 @@ return array(
         array('id' => 28, 'rule_id' => 8, 'value' => 3),
         array('id' => 29, 'rule_id' => 9, 'value' => 4),
         array('id' => 30, 'rule_id' => 9, 'value' => 5),
+        array('id' => 31, 'rule_id' => 10, 'value' => '/the/answer'),
+        array('id' => 32, 'rule_id' => 10, 'value' => '/the/other/answer'),
+        array('id' => 33, 'rule_id' => 11, 'value' => '/the/'),
+        array('id' => 34, 'rule_id' => 11, 'value' => '/a/'),
     ),
 );
