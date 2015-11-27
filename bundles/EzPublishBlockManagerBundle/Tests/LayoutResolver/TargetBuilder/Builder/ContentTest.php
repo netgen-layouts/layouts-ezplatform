@@ -65,7 +65,7 @@ class ContentTest extends \PHPUnit_Framework_TestCase
      */
     public function testBuildTargetWithNoContentId()
     {
-        // Make sure we have no Content ID attribute
+        // Make sure we have no content ID attribute
         $this->requestStack->getCurrentRequest()->attributes->remove('contentId');
 
         $targetBuilder = new Content();

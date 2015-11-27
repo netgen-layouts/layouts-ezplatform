@@ -1,6 +1,7 @@
 parameters:
     netgen_block_manager.layout_resolver.target_builder.location.class: Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Location
     netgen_block_manager.layout_resolver.target_builder.content.class: Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Content
+    netgen_block_manager.layout_resolver.target_builder.children.class: Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Children
 
 services:
     netgen_block_manager.layout_resolver.target_builder.location:
@@ -8,11 +9,20 @@ services:
         calls:
             - [setRequestStack, ["@request_stack"]]
         tags:
-            - { name: netgen_block_manager.layout_resolver.target_builder, priority: 140 }
+            - { name: netgen_block_manager.layout_resolver.target_builder, priority: 180 }
 
     netgen_block_manager.layout_resolver.target_builder.content:
         class: %netgen_block_manager.layout_resolver.target_builder.content.class%
         calls:
             - [setRequestStack, ["@request_stack"]]
         tags:
-            - { name: netgen_block_manager.layout_resolver.target_builder, priority: 130 }
+            - { name: netgen_block_manager.layout_resolver.target_builder, priority: 170 }
+
+    netgen_block_manager.layout_resolver.target_builder.children:
+        class: %netgen_block_manager.layout_resolver.target_builder.children.class%
+        arguments:
+            - "@ezpublish.api.service.location"
+        calls:
+            - [setRequestStack, ["@request_stack"]]
+        tags:
+            - { name: netgen_block_manager.layout_resolver.target_builder, priority: 160 }

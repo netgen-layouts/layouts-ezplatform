@@ -7,6 +7,8 @@ return array(
         array('id' => 3, 'layout_id' => 3, 'target_identifier' => 'location'),
         array('id' => 4, 'layout_id' => 4, 'target_identifier' => 'content'),
         array('id' => 5, 'layout_id' => 5, 'target_identifier' => 'content'),
+        array('id' => 6, 'layout_id' => 6, 'target_identifier' => 'children'),
+        array('id' => 7, 'layout_id' => 7, 'target_identifier' => 'children'),
     ),
     'ngbm_rule_value' => array(
         array('id' => 13, 'rule_id' => 1, 'value' => 42),
@@ -19,5 +21,9 @@ return array(
         array('id' => 20, 'rule_id' => 4, 'value' => 49),
         array('id' => 21, 'rule_id' => 5, 'value' => 50),
         array('id' => 22, 'rule_id' => 5, 'value' => 51),
+        array('id' => 23, 'rule_id' => 6, 'value' => 52),
+        array('id' => 24, 'rule_id' => 6, 'value' => 53),
+        array('id' => 25, 'rule_id' => 7, 'value' => 54),
+        array('id' => 26, 'rule_id' => 7, 'value' => 55),
     ),
 );
