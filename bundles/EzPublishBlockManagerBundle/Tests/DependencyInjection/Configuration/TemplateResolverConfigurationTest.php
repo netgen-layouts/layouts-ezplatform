@@ -14,7 +14,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
         $config = array(
             array(
                 'block_view' => array(
-                    'api' => array(
+                    'view' => array(
                         'block' => array(
                             'template' => 'block.html.twig',
                             'match' => array(
@@ -28,7 +28,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
 
         $expectedConfig = array(
             'block_view' => array(
-                'api' => array(
+                'view' => array(
                     'block' => array(
                         'template' => 'block.html.twig',
                         'match' => array(
@@ -53,7 +53,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
         $config = array(
             array(
                 'block_view' => array(
-                    'api' => array(
+                    'view' => array(
                         'block' => array(
                             'template' => 'block.html.twig',
                             'match' => array(
@@ -65,7 +65,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
                 'system' => array(
                     'default' => array(
                         'block_view' => array(
-                            'view' => array(
+                            'other_view' => array(
                                 'block' => array(
                                     'template' => 'block.html.twig',
                                     'match' => array(
@@ -81,7 +81,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
 
         $expectedConfig = array(
             'block_view' => array(
-                'api' => array(
+                'view' => array(
                     'block' => array(
                         'template' => 'block.html.twig',
                         'match' => array(
@@ -89,7 +89,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
                         ),
                     ),
                 ),
-                'view' => array(
+                'other_view' => array(
                     'block' => array(
                         'template' => 'block.html.twig',
                         'match' => array(
@@ -101,8 +101,8 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
         );
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
-        // View context should not appear in original config, but only in siteaccess aware one
-        unset($expectedConfig['block_view']['view']);
+        // other_view context should not appear in original config, but only in siteaccess aware one
+        unset($expectedConfig['block_view']['other_view']);
 
         $this->assertInjectedConfigurationEqual($expectedConfig, $config);
     }
@@ -117,7 +117,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
         $config = array(
             array(
                 'block_view' => array(
-                    'api' => array(
+                    'view' => array(
                         'block' => array(
                             'template' => 'block.html.twig',
                             'match' => array(24, 42),
@@ -129,7 +129,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
 
         $expectedConfig = array(
             'block_view' => array(
-                'api' => array(
+                'view' => array(
                     'block' => array(
                         'template' => 'block.html.twig',
                         'match' => array(24, 42),
@@ -152,7 +152,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
         $config = array(
             array(
                 'block_view' => array(
-                    'api' => array(
+                    'view' => array(
                         'block' => array(
                             'template' => 'block.html.twig',
                             'match' => null,
@@ -164,7 +164,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
 
         $expectedConfig = array(
             'block_view' => array(
-                'api' => array(
+                'view' => array(
                     'block' => array(
                         'template' => 'block.html.twig',
                         'match' => array(),
