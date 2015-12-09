@@ -2,6 +2,8 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\DependencyInjection\Configuration;
 
+use Netgen\BlockManager\View\ViewInterface;
+
 class TemplateResolverConfigurationTest extends ConfigurationTest
 {
     /**
@@ -14,7 +16,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
         $config = array(
             array(
                 'block_view' => array(
-                    'view' => array(
+                    ViewInterface::CONTEXT_VIEW => array(
                         'block' => array(
                             'template' => 'block.html.twig',
                             'match' => array(
@@ -28,7 +30,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
 
         $expectedConfig = array(
             'block_view' => array(
-                'view' => array(
+                ViewInterface::CONTEXT_VIEW => array(
                     'block' => array(
                         'template' => 'block.html.twig',
                         'match' => array(
@@ -53,7 +55,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
         $config = array(
             array(
                 'block_view' => array(
-                    'view' => array(
+                    ViewInterface::CONTEXT_VIEW => array(
                         'block' => array(
                             'template' => 'block.html.twig',
                             'match' => array(
@@ -81,7 +83,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
 
         $expectedConfig = array(
             'block_view' => array(
-                'view' => array(
+                ViewInterface::CONTEXT_VIEW => array(
                     'block' => array(
                         'template' => 'block.html.twig',
                         'match' => array(
@@ -117,7 +119,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
         $config = array(
             array(
                 'block_view' => array(
-                    'view' => array(
+                    ViewInterface::CONTEXT_VIEW => array(
                         'block' => array(
                             'template' => 'block.html.twig',
                             'match' => array(24, 42),
@@ -129,7 +131,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
 
         $expectedConfig = array(
             'block_view' => array(
-                'view' => array(
+                ViewInterface::CONTEXT_VIEW => array(
                     'block' => array(
                         'template' => 'block.html.twig',
                         'match' => array(24, 42),
@@ -152,7 +154,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
         $config = array(
             array(
                 'block_view' => array(
-                    'view' => array(
+                    ViewInterface::CONTEXT_VIEW => array(
                         'block' => array(
                             'template' => 'block.html.twig',
                             'match' => null,
@@ -164,7 +166,7 @@ class TemplateResolverConfigurationTest extends ConfigurationTest
 
         $expectedConfig = array(
             'block_view' => array(
-                'view' => array(
+                ViewInterface::CONTEXT_VIEW => array(
                     'block' => array(
                         'template' => 'block.html.twig',
                         'match' => array(),
