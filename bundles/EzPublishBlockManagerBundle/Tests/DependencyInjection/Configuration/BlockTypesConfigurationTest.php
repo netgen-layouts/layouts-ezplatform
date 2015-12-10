@@ -15,7 +15,7 @@ class BlockTypesConfigurationTest extends ConfigurationTest
             array(
                 'block_types' => array(
                     'block_type' => array(
-                        'type_name' => 'Block type',
+                        'name' => 'Block type',
                         'defaults' => array(
                             'name' => 'Name',
                             'definition_identifier' => 'title',
@@ -33,7 +33,7 @@ class BlockTypesConfigurationTest extends ConfigurationTest
         $expectedConfig = array(
             'block_types' => array(
                 'block_type' => array(
-                    'type_name' => 'Block type',
+                    'name' => 'Block type',
                     'defaults' => array(
                         'name' => 'Name',
                         'definition_identifier' => 'title',
@@ -62,7 +62,7 @@ class BlockTypesConfigurationTest extends ConfigurationTest
             array(
                 'block_types' => array(
                     'block_type' => array(
-                        'type_name' => 'Block type',
+                        'name' => 'Block type',
                         'defaults' => array(
                             'name' => 'Name',
                             'definition_identifier' => 'title',
@@ -78,7 +78,7 @@ class BlockTypesConfigurationTest extends ConfigurationTest
                     'default' => array(
                         'block_types' => array(
                             'other_block_type' => array(
-                                'type_name' => 'Other block type',
+                                'name' => 'Other block type',
                                 'defaults' => array(
                                     'name' => 'Name',
                                     'definition_identifier' => 'title',
@@ -98,7 +98,7 @@ class BlockTypesConfigurationTest extends ConfigurationTest
         $expectedConfig = array(
             'block_types' => array(
                 'block_type' => array(
-                    'type_name' => 'Block type',
+                    'name' => 'Block type',
                     'defaults' => array(
                         'name' => 'Name',
                         'definition_identifier' => 'title',
@@ -110,7 +110,7 @@ class BlockTypesConfigurationTest extends ConfigurationTest
                     ),
                 ),
                 'other_block_type' => array(
-                    'type_name' => 'Other block type',
+                    'name' => 'Other block type',
                     'defaults' => array(
                         'name' => 'Name',
                         'definition_identifier' => 'title',
@@ -142,7 +142,7 @@ class BlockTypesConfigurationTest extends ConfigurationTest
             array(
                 'block_types' => array(
                     'block_type' => array(
-                        'type_name' => 'Block type',
+                        'name' => 'Block type',
                         'defaults' => array(
                             'definition_identifier' => 'title',
                             'view_type' => 'large',
@@ -159,7 +159,7 @@ class BlockTypesConfigurationTest extends ConfigurationTest
         $expectedConfig = array(
             'block_types' => array(
                 'block_type' => array(
-                    'type_name' => 'Block type',
+                    'name' => 'Block type',
                     'defaults' => array(
                         'name' => '',
                         'definition_identifier' => 'title',
@@ -188,7 +188,7 @@ class BlockTypesConfigurationTest extends ConfigurationTest
             array(
                 'block_types' => array(
                     'block_type' => array(
-                        'type_name' => 'Block type',
+                        'name' => 'Block type',
                         'defaults' => array(
                             'name' => 'Name',
                             'definition_identifier' => 'title',
@@ -202,7 +202,7 @@ class BlockTypesConfigurationTest extends ConfigurationTest
         $expectedConfig = array(
             'block_types' => array(
                 'block_type' => array(
-                    'type_name' => 'Block type',
+                    'name' => 'Block type',
                     'defaults' => array(
                         'name' => 'Name',
                         'definition_identifier' => 'title',
@@ -228,7 +228,7 @@ class BlockTypesConfigurationTest extends ConfigurationTest
             array(
                 'block_types' => array(
                     'block_type' => array(
-                        'type_name' => 'Block type',
+                        'name' => 'Block type',
                         'defaults' => array(
                             'name' => 'Name',
                             'definition_identifier' => 'title',
@@ -243,7 +243,7 @@ class BlockTypesConfigurationTest extends ConfigurationTest
             array(
                 'block_types' => array(
                     'block_type' => array(
-                        'type_name' => 'Block type',
+                        'name' => 'Block type',
                         'defaults' => array(
                             'name' => 'Name',
                             'definition_identifier' => 'title',
@@ -260,7 +260,7 @@ class BlockTypesConfigurationTest extends ConfigurationTest
         $expectedConfig = array(
             'block_types' => array(
                 'block_type' => array(
-                    'type_name' => 'Block type',
+                    'name' => 'Block type',
                     'defaults' => array(
                         'name' => 'Name',
                         'definition_identifier' => 'title',
