@@ -25,7 +25,7 @@ class BlockTypeGroupsConfigurationTest extends ConfigurationTest
             'block_type_groups' => array(
                 'block_type_group' => array(
                     'name' => 'block_type_group',
-                    'blocks' => array(),
+                    'block_types' => array(),
                 ),
             ),
         );
@@ -64,11 +64,11 @@ class BlockTypeGroupsConfigurationTest extends ConfigurationTest
             'block_type_groups' => array(
                 'block_type_group' => array(
                     'name' => 'block_type_group',
-                    'blocks' => array(),
+                    'block_types' => array(),
                 ),
                 'other_block_type_group' => array(
                     'name' => 'other_block_type_group',
-                    'blocks' => array(),
+                    'block_types' => array(),
                 ),
             ),
         );
@@ -85,14 +85,14 @@ class BlockTypeGroupsConfigurationTest extends ConfigurationTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPreProcessor
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPostProcessor
      */
-    public function testBlockTypeGroupsSettingsWithBlocksMerge()
+    public function testBlockTypeGroupsSettingsWithBlockTypesMerge()
     {
         $config = array(
             array(
                 'block_type_groups' => array(
                     'block_type_group' => array(
                         'name' => 'block_type_group',
-                        'blocks' => array('title', 'paragraph'),
+                        'block_types' => array('title', 'paragraph'),
                     ),
                 ),
             ),
@@ -100,7 +100,7 @@ class BlockTypeGroupsConfigurationTest extends ConfigurationTest
                 'block_type_groups' => array(
                     'block_type_group' => array(
                         'name' => 'block_type_group',
-                        'blocks' => array('image'),
+                        'block_types' => array('image'),
                     ),
                 ),
             ),
@@ -110,7 +110,7 @@ class BlockTypeGroupsConfigurationTest extends ConfigurationTest
             'block_type_groups' => array(
                 'block_type_group' => array(
                     'name' => 'block_type_group',
-                    'blocks' => array('title', 'paragraph', 'image'),
+                    'block_types' => array('title', 'paragraph', 'image'),
                 ),
             ),
         );
@@ -124,14 +124,14 @@ class BlockTypeGroupsConfigurationTest extends ConfigurationTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPreProcessor
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPostProcessor
      */
-    public function testBlockTypeGroupsSettingsWithBlocks()
+    public function testBlockTypeGroupsSettingsWithBlockTypes()
     {
         $config = array(
             array(
                 'block_type_groups' => array(
                     'block_type_group' => array(
                         'name' => 'block_type_group',
-                        'blocks' => array('title', 'image'),
+                        'block_types' => array('title', 'image'),
                     ),
                 ),
             ),
@@ -141,7 +141,7 @@ class BlockTypeGroupsConfigurationTest extends ConfigurationTest
             'block_type_groups' => array(
                 'block_type_group' => array(
                     'name' => 'block_type_group',
-                    'blocks' => array('title', 'image'),
+                    'block_types' => array('title', 'image'),
                 ),
             ),
         );
@@ -155,14 +155,14 @@ class BlockTypeGroupsConfigurationTest extends ConfigurationTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPreProcessor
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPostProcessor
      */
-    public function testBlockTypeGroupsSettingsWithNonUniqueBlocks()
+    public function testBlockTypeGroupsSettingsWithNonUniqueBlockTypes()
     {
         $config = array(
             array(
                 'block_type_groups' => array(
                     'block_type_group' => array(
                         'name' => 'block_type_group',
-                        'blocks' => array('title', 'image', 'title'),
+                        'block_types' => array('title', 'image', 'title'),
                     ),
                 ),
             ),
@@ -172,7 +172,7 @@ class BlockTypeGroupsConfigurationTest extends ConfigurationTest
             'block_type_groups' => array(
                 'block_type_group' => array(
                     'name' => 'block_type_group',
-                    'blocks' => array('title', 'image'),
+                    'block_types' => array('title', 'image'),
                 ),
             ),
         );
