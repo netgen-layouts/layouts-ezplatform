@@ -2,29 +2,29 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\DependencyInjection\Configuration;
 
-class BlockGroupsConfigurationTest extends ConfigurationTest
+class BlockTypeGroupsConfigurationTest extends ConfigurationTest
 {
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration::getConfigTreeBuilderClosure
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPreProcessor
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPostProcessor
      */
-    public function testBlockGroupsSettings()
+    public function testBlockTypeGroupsSettings()
     {
         $config = array(
             array(
-                'block_groups' => array(
-                    'block_group' => array(
-                        'name' => 'block_group',
+                'block_type_groups' => array(
+                    'block_type_group' => array(
+                        'name' => 'block_type_group',
                     ),
                 ),
             ),
         );
 
         $expectedConfig = array(
-            'block_groups' => array(
-                'block_group' => array(
-                    'name' => 'block_group',
+            'block_type_groups' => array(
+                'block_type_group' => array(
+                    'name' => 'block_type_group',
                     'blocks' => array(),
                 ),
             ),
@@ -39,20 +39,20 @@ class BlockGroupsConfigurationTest extends ConfigurationTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPreProcessor
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPostProcessor
      */
-    public function testBlockGroupsSettingsWithSystemNode()
+    public function testBlockTypeGroupsSettingsWithSystemNode()
     {
         $config = array(
             array(
-                'block_groups' => array(
-                    'block_group' => array(
-                        'name' => 'block_group',
+                'block_type_groups' => array(
+                    'block_type_group' => array(
+                        'name' => 'block_type_group',
                     ),
                 ),
                 'system' => array(
                     'default' => array(
-                        'block_groups' => array(
-                            'other_block_group' => array(
-                                'name' => 'other_block_group',
+                        'block_type_groups' => array(
+                            'other_block_type_group' => array(
+                                'name' => 'other_block_type_group',
                             ),
                         ),
                     ),
@@ -61,13 +61,13 @@ class BlockGroupsConfigurationTest extends ConfigurationTest
         );
 
         $expectedConfig = array(
-            'block_groups' => array(
-                'block_group' => array(
-                    'name' => 'block_group',
+            'block_type_groups' => array(
+                'block_type_group' => array(
+                    'name' => 'block_type_group',
                     'blocks' => array(),
                 ),
-                'other_block_group' => array(
-                    'name' => 'other_block_group',
+                'other_block_type_group' => array(
+                    'name' => 'other_block_type_group',
                     'blocks' => array(),
                 ),
             ),
@@ -75,7 +75,7 @@ class BlockGroupsConfigurationTest extends ConfigurationTest
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
         // Other block group should not appear in original config, but only in siteaccess aware one
-        unset($expectedConfig['block_groups']['other_block_group']);
+        unset($expectedConfig['block_type_groups']['other_block_type_group']);
 
         $this->assertInjectedConfigurationEqual($expectedConfig, $config);
     }
@@ -85,21 +85,21 @@ class BlockGroupsConfigurationTest extends ConfigurationTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPreProcessor
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPostProcessor
      */
-    public function testBlockGroupsSettingsWithBlocksMerge()
+    public function testBlockTypeGroupsSettingsWithBlocksMerge()
     {
         $config = array(
             array(
-                'block_groups' => array(
-                    'block_group' => array(
-                        'name' => 'block_group',
+                'block_type_groups' => array(
+                    'block_type_group' => array(
+                        'name' => 'block_type_group',
                         'blocks' => array('title', 'paragraph'),
                     ),
                 ),
             ),
             array(
-                'block_groups' => array(
-                    'block_group' => array(
-                        'name' => 'block_group',
+                'block_type_groups' => array(
+                    'block_type_group' => array(
+                        'name' => 'block_type_group',
                         'blocks' => array('image'),
                     ),
                 ),
@@ -107,9 +107,9 @@ class BlockGroupsConfigurationTest extends ConfigurationTest
         );
 
         $expectedConfig = array(
-            'block_groups' => array(
-                'block_group' => array(
-                    'name' => 'block_group',
+            'block_type_groups' => array(
+                'block_type_group' => array(
+                    'name' => 'block_type_group',
                     'blocks' => array('title', 'paragraph', 'image'),
                 ),
             ),
@@ -124,13 +124,13 @@ class BlockGroupsConfigurationTest extends ConfigurationTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPreProcessor
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPostProcessor
      */
-    public function testBlockGroupsSettingsWithBlocks()
+    public function testBlockTypeGroupsSettingsWithBlocks()
     {
         $config = array(
             array(
-                'block_groups' => array(
-                    'block_group' => array(
-                        'name' => 'block_group',
+                'block_type_groups' => array(
+                    'block_type_group' => array(
+                        'name' => 'block_type_group',
                         'blocks' => array('title', 'image'),
                     ),
                 ),
@@ -138,9 +138,9 @@ class BlockGroupsConfigurationTest extends ConfigurationTest
         );
 
         $expectedConfig = array(
-            'block_groups' => array(
-                'block_group' => array(
-                    'name' => 'block_group',
+            'block_type_groups' => array(
+                'block_type_group' => array(
+                    'name' => 'block_type_group',
                     'blocks' => array('title', 'image'),
                 ),
             ),
@@ -155,13 +155,13 @@ class BlockGroupsConfigurationTest extends ConfigurationTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPreProcessor
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPostProcessor
      */
-    public function testBlockGroupsSettingsWithNonUniqueBlocks()
+    public function testBlockTypeGroupsSettingsWithNonUniqueBlocks()
     {
         $config = array(
             array(
-                'block_groups' => array(
-                    'block_group' => array(
-                        'name' => 'block_group',
+                'block_type_groups' => array(
+                    'block_type_group' => array(
+                        'name' => 'block_type_group',
                         'blocks' => array('title', 'image', 'title'),
                     ),
                 ),
@@ -169,9 +169,9 @@ class BlockGroupsConfigurationTest extends ConfigurationTest
         );
 
         $expectedConfig = array(
-            'block_groups' => array(
-                'block_group' => array(
-                    'name' => 'block_group',
+            'block_type_groups' => array(
+                'block_type_group' => array(
+                    'name' => 'block_type_group',
                     'blocks' => array('title', 'image'),
                 ),
             ),
