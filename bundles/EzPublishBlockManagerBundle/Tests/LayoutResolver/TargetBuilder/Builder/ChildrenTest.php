@@ -4,6 +4,7 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\LayoutResolver\TargetB
 
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Values\Content\Location;
+use eZ\Publish\API\Repository\LocationService;
 use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Children;
 use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\Target\Children as ChildrenTarget;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
@@ -31,9 +32,7 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
         $requestStack->push($request);
         $this->setRequestStack($requestStack);
 
-        $this->locationServiceMock = $this->getMock(
-            'eZ\Publish\API\Repository\LocationService'
-        );
+        $this->locationServiceMock = $this->getMock(LocationService::class);
     }
 
     /**

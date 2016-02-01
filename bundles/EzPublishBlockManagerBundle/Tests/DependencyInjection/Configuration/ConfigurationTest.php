@@ -8,6 +8,7 @@ use Netgen\Bundle\BlockManagerBundle\DependencyInjection\Configuration as BlockM
 use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration;
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use Matthias\SymfonyConfigTest\Partial\PartialProcessor;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
 {
@@ -74,9 +75,7 @@ abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $this->configPreProcessor = $extension->getPreProcessor();
         $this->configPostProcessor = $extension->getPostProcessor();
 
-        $this->containerBuilderMock = $this->getMock(
-            'Symfony\Component\DependencyInjection\ContainerBuilder'
-        );
+        $this->containerBuilderMock = $this->getMock(ContainerBuilder::class);
 
         $this->partialProcessor = new PartialProcessor();
     }

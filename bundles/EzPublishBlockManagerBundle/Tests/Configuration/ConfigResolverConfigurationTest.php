@@ -3,6 +3,7 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Configuration;
 
 use Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration;
+use eZ\Publish\Core\MVC\ConfigResolverInterface;
 
 class ConfigResolverConfigurationTest extends \PHPUnit_Framework_TestCase
 {
@@ -22,7 +23,7 @@ class ConfigResolverConfigurationTest extends \PHPUnit_Framework_TestCase
      */
     public function testHasParameter()
     {
-        $configResolver = $this->getMock('eZ\Publish\Core\MVC\ConfigResolverInterface');
+        $configResolver = $this->getMock(ConfigResolverInterface::class);
         $configResolver
             ->expects($this->once())
             ->method('hasParameter')
@@ -40,7 +41,7 @@ class ConfigResolverConfigurationTest extends \PHPUnit_Framework_TestCase
      */
     public function testHasParameterWithNoParameter()
     {
-        $configResolver = $this->getMock('eZ\Publish\Core\MVC\ConfigResolverInterface');
+        $configResolver = $this->getMock(ConfigResolverInterface::class);
         $configResolver
             ->expects($this->once())
             ->method('hasParameter')
@@ -58,7 +59,7 @@ class ConfigResolverConfigurationTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetParameter()
     {
-        $configResolver = $this->getMock('eZ\Publish\Core\MVC\ConfigResolverInterface');
+        $configResolver = $this->getMock(ConfigResolverInterface::class);
         $configResolver
             ->expects($this->once())
             ->method('hasParameter')
@@ -82,7 +83,7 @@ class ConfigResolverConfigurationTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetParameterThrowsInvalidArgumentException()
     {
-        $configResolver = $this->getMock('eZ\Publish\Core\MVC\ConfigResolverInterface');
+        $configResolver = $this->getMock(ConfigResolverInterface::class);
         $configResolver
             ->expects($this->once())
             ->method('hasParameter')
