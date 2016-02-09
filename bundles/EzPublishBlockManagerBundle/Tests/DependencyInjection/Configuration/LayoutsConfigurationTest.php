@@ -177,7 +177,7 @@ class LayoutsConfigurationTest extends ConfigurationTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPreProcessor
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPostProcessor
      */
-    public function testLayoutSettingsWithAllowedBlocktypes()
+    public function testLayoutSettingsWithAllowedBlockTypes()
     {
         $config = array(
             array(
@@ -218,7 +218,7 @@ class LayoutsConfigurationTest extends ConfigurationTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPreProcessor
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPostProcessor
      */
-    public function testLayoutSettingsWithNonUniqueAllowedBlocktypes()
+    public function testLayoutSettingsWithNonUniqueAllowedBlockTypes()
     {
         $config = array(
             array(
