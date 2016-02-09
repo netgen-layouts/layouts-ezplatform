@@ -33,7 +33,7 @@ class LayoutsConfigurationTest extends ConfigurationTest
                     'zones' => array(
                         'zone' => array(
                             'name' => 'zone',
-                            'allowed_blocks' => array(),
+                            'allowed_block_types' => array(),
                         ),
                     ),
                 ),
@@ -87,7 +87,7 @@ class LayoutsConfigurationTest extends ConfigurationTest
                     'zones' => array(
                         'zone' => array(
                             'name' => 'zone',
-                            'allowed_blocks' => array(),
+                            'allowed_block_types' => array(),
                         ),
                     ),
                 ),
@@ -96,7 +96,7 @@ class LayoutsConfigurationTest extends ConfigurationTest
                     'zones' => array(
                         'zone' => array(
                             'name' => 'zone',
-                            'allowed_blocks' => array(),
+                            'allowed_block_types' => array(),
                         ),
                     ),
                 ),
@@ -157,11 +157,11 @@ class LayoutsConfigurationTest extends ConfigurationTest
                     'zones' => array(
                         'top' => array(
                             'name' => 'Top',
-                            'allowed_blocks' => array(),
+                            'allowed_block_types' => array(),
                         ),
                         'bottom' => array(
                             'name' => 'Bottom',
-                            'allowed_blocks' => array(),
+                            'allowed_block_types' => array(),
                         ),
                     ),
                 ),
@@ -177,7 +177,7 @@ class LayoutsConfigurationTest extends ConfigurationTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPreProcessor
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPostProcessor
      */
-    public function testLayoutSettingsWithAllowedBlocks()
+    public function testLayoutSettingsWithAllowedBlocktypes()
     {
         $config = array(
             array(
@@ -187,7 +187,7 @@ class LayoutsConfigurationTest extends ConfigurationTest
                         'zones' => array(
                             'zone' => array(
                                 'name' => 'zone',
-                                'allowed_blocks' => array('title', 'paragraph'),
+                                'allowed_block_types' => array('title', 'paragraph'),
                             ),
                         ),
                     ),
@@ -202,7 +202,7 @@ class LayoutsConfigurationTest extends ConfigurationTest
                     'zones' => array(
                         'zone' => array(
                             'name' => 'zone',
-                            'allowed_blocks' => array('title', 'paragraph'),
+                            'allowed_block_types' => array('title', 'paragraph'),
                         ),
                     ),
                 ),
@@ -218,7 +218,7 @@ class LayoutsConfigurationTest extends ConfigurationTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPreProcessor
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPostProcessor
      */
-    public function testLayoutSettingsWithNonUniqueAllowedBlocks()
+    public function testLayoutSettingsWithNonUniqueAllowedBlocktypes()
     {
         $config = array(
             array(
@@ -228,7 +228,7 @@ class LayoutsConfigurationTest extends ConfigurationTest
                         'zones' => array(
                             'zone' => array(
                                 'name' => 'zone',
-                                'allowed_blocks' => array('title', 'paragraph', 'title'),
+                                'allowed_block_types' => array('title', 'paragraph', 'title'),
                             ),
                         ),
                     ),
@@ -243,7 +243,7 @@ class LayoutsConfigurationTest extends ConfigurationTest
                     'zones' => array(
                         'zone' => array(
                             'name' => 'zone',
-                            'allowed_blocks' => array('title', 'paragraph'),
+                            'allowed_block_types' => array('title', 'paragraph'),
                         ),
                     ),
                 ),
