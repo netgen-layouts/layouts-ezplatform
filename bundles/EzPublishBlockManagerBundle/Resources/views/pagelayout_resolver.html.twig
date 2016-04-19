@@ -1,7 +1,10 @@
-{% set pagelayout = viewbaseLayout is defined ? viewbaseLayout : 'NetgenBlockManagerBundle::pagelayout_empty.html.twig' %}
+{% set main_pagelayout = viewbaseLayout is defined ? viewbaseLayout : 'NetgenBlockManagerBundle::pagelayout_empty.html.twig' %}
 
-{% if (noLayout is not defined or not noLayout) and ngbm.configuration.hasParameter('pagelayout') %}
-    {% set pagelayout = ngbm.configuration.getParameter('pagelayout') %}
+{% if noLayout is not defined or not noLayout %}
+    {% if ngbm.configuration.hasParameter('pagelayout') %}
+        {% set main_pagelayout = ngbm.configuration.getParameter('pagelayout') %}
+    {% elseif pagelayout is defined %}
+        {% set main_pagelayout = pagelayout %}
 {% endif %}
 
-{% extends pagelayout %}
+{% extends main_pagelayout %}
