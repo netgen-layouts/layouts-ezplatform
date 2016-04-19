@@ -8,31 +8,31 @@ parameters:
 
 services:
     netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.location:
-        class: %netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.location.class%
+        class: "%netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.location.class%"
         tags:
             - { name: netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler, alias: location }
 
     netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.content:
-        class: %netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.content.class%
+        class: "%netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.content.class%"
         tags:
             - { name: netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler, alias: content }
 
     netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.children:
-        class: %netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.children.class%
+        class: "%netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.children.class%"
         tags:
             - { name: netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler, alias: children }
 
     netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.subtree:
-        class: %netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.subtree.class%
+        class: "%netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.subtree.class%"
         tags:
             - { name: netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler, alias: subtree }
 
     netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.semantic_path_info:
-        class: %netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.semantic_path_info.class%
+        class: "%netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.semantic_path_info.class%"
         tags:
             - { name: netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler, alias: semantic_path_info }
 
     netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.semantic_path_info_prefix:
-        class: %netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.semantic_path_info_prefix.class%
+        class: "%netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler.semantic_path_info_prefix.class%"
         tags:
             - { name: netgen_block_manager.layout_resolver.rule_handler.doctrine.target_handler, alias: semantic_path_info_prefix }

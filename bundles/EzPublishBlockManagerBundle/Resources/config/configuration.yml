@@ -3,7 +3,7 @@ parameters:
 
 services:
     netgen_block_manager.configuration.config_resolver:
-        class: %netgen_block_manager.configuration.config_resolver.class%
+        class: "%netgen_block_manager.configuration.config_resolver.class%"
         calls:
             - [setConfigResolver, ["@ezpublish.config.resolver"]]
 

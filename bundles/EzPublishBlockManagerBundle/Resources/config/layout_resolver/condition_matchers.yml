@@ -3,7 +3,7 @@ parameters:
 
 services:
     netgen_block_manager.layout_resolver.condition_matcher.siteaccess:
-        class: %netgen_block_manager.layout_resolver.condition_matcher.siteaccess.class%
+        class: "%netgen_block_manager.layout_resolver.condition_matcher.siteaccess.class%"
         calls:
             - [setRequestStack, ["@request_stack"]]
         tags:
