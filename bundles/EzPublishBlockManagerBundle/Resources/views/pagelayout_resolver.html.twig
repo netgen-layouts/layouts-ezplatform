@@ -5,6 +5,7 @@
         {% set main_pagelayout = ngbm.configuration.getParameter('pagelayout') %}
     {% elseif pagelayout is defined %}
         {% set main_pagelayout = pagelayout %}
+    {% endif %}
 {% endif %}
 
 {% extends main_pagelayout %}
