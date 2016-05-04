@@ -47,7 +47,7 @@ class LocationTest extends \PHPUnit_Framework_TestCase
         $targetBuilder = new Location();
         $targetBuilder->setRequestStack($this->requestStack);
 
-        self::assertEquals(false, $targetBuilder->buildTarget());
+        self::assertFalse($targetBuilder->buildTarget());
     }
 
     /**
@@ -61,6 +61,6 @@ class LocationTest extends \PHPUnit_Framework_TestCase
         $targetBuilder = new Location();
         $targetBuilder->setRequestStack($this->requestStack);
 
-        self::assertEquals(false, $targetBuilder->buildTarget());
+        self::assertFalse($targetBuilder->buildTarget());
     }
 }

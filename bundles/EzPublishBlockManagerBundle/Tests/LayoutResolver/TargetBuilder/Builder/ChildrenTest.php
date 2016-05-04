@@ -68,7 +68,7 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
         $targetBuilder = new Children($this->locationServiceMock);
         $targetBuilder->setRequestStack($this->requestStack);
 
-        self::assertEquals(false, $targetBuilder->buildTarget());
+        self::assertFalse($targetBuilder->buildTarget());
     }
 
     /**
@@ -86,7 +86,7 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
         $targetBuilder = new Children($this->locationServiceMock);
         $targetBuilder->setRequestStack($this->requestStack);
 
-        self::assertEquals(false, $targetBuilder->buildTarget());
+        self::assertFalse($targetBuilder->buildTarget());
     }
 
     /**
@@ -103,6 +103,6 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
         $targetBuilder = new Children($this->locationServiceMock);
         $targetBuilder->setRequestStack($this->requestStack);
 
-        self::assertEquals(false, $targetBuilder->buildTarget());
+        self::assertFalse($targetBuilder->buildTarget());
     }
 }

@@ -32,7 +32,7 @@ class ConfigResolverConfigurationTest extends \PHPUnit_Framework_TestCase
 
         $configuration = new ConfigResolverConfiguration();
         $configuration->setConfigResolver($configResolver);
-        self::assertEquals(true, $configuration->hasParameter('some_param'));
+        self::assertTrue($configuration->hasParameter('some_param'));
     }
 
     /**
@@ -50,7 +50,7 @@ class ConfigResolverConfigurationTest extends \PHPUnit_Framework_TestCase
 
         $configuration = new ConfigResolverConfiguration();
         $configuration->setConfigResolver($configResolver);
-        self::assertEquals(false, $configuration->hasParameter('some_param'));
+        self::assertFalse($configuration->hasParameter('some_param'));
     }
 
     /**

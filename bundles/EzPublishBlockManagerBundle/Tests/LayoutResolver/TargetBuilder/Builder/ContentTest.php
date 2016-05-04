@@ -47,7 +47,7 @@ class ContentTest extends \PHPUnit_Framework_TestCase
         $targetBuilder = new Content();
         $targetBuilder->setRequestStack($this->requestStack);
 
-        self::assertEquals(false, $targetBuilder->buildTarget());
+        self::assertFalse($targetBuilder->buildTarget());
     }
 
     /**
@@ -61,6 +61,6 @@ class ContentTest extends \PHPUnit_Framework_TestCase
         $targetBuilder = new Content();
         $targetBuilder->setRequestStack($this->requestStack);
 
-        self::assertEquals(false, $targetBuilder->buildTarget());
+        self::assertFalse($targetBuilder->buildTarget());
     }
 }

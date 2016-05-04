@@ -60,7 +60,7 @@ class SemanticPathInfoTest extends \PHPUnit_Framework_TestCase
         $targetBuilder = new SemanticPathInfo();
         $targetBuilder->setRequestStack($this->requestStack);
 
-        self::assertEquals(false, $targetBuilder->buildTarget());
+        self::assertFalse($targetBuilder->buildTarget());
     }
 
     /**
@@ -74,6 +74,6 @@ class SemanticPathInfoTest extends \PHPUnit_Framework_TestCase
         $targetBuilder = new SemanticPathInfo();
         $targetBuilder->setRequestStack($this->requestStack);
 
-        self::assertEquals(false, $targetBuilder->buildTarget());
+        self::assertFalse($targetBuilder->buildTarget());
     }
 }

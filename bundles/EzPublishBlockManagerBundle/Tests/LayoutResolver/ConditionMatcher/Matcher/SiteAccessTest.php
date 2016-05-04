@@ -79,7 +79,7 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
         $conditionMatcher = new SiteAccess();
         $conditionMatcher->setRequestStack($this->requestStack);
 
-        self::assertEquals(false, $conditionMatcher->matches(array()));
+        self::assertFalse($conditionMatcher->matches(array()));
     }
 
     /**
@@ -93,6 +93,6 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
         $conditionMatcher = new SiteAccess();
         $conditionMatcher->setRequestStack($this->requestStack);
 
-        self::assertEquals(false, $conditionMatcher->matches(array()));
+        self::assertFalse($conditionMatcher->matches(array()));
     }
 }
