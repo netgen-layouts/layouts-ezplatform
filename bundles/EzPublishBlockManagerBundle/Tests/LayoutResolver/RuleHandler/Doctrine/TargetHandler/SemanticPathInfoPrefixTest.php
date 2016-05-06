@@ -2,6 +2,7 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\LayoutResolver\RuleHandler\Doctrine\TargetHandler;
 
+use Netgen\BlockManager\Tests\LayoutResolver\RuleHandler\Doctrine\TargetHandler\TargetHandlerTest;
 use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\RuleHandler\Doctrine\TargetHandler\SemanticPathInfoPrefix;
 
 class SemanticPathInfoPrefixTest extends TargetHandlerTest
@@ -9,18 +10,26 @@ class SemanticPathInfoPrefixTest extends TargetHandlerTest
     /**
      * @covers \Netgen\BlockManager\LayoutResolver\RuleHandler\Doctrine\TargetHandler\PathInfoPrefix::handleQuery
      */
-    public function testLoadSemanticPathInfoPrefixRules()
+    public function testLoadRules()
     {
-        $handler = $this->createHandler('semantic_path_info_prefix', $this->getTargetHandler());
-
         $expected = array(
             array(
-                'layout_id' => 11,
+                'layout_id' => 21,
                 'conditions' => array(),
             ),
         );
 
-        self::assertEquals($expected, $handler->loadRules('semantic_path_info_prefix', array('/the/answer')));
+        self::assertEquals($expected, $this->handler->loadRules($this->getTargetIdentifier(), array('/the/answer')));
+    }
+
+    /**
+     * Returns the target identifier under test.
+     *
+     * @return \Netgen\BlockManager\LayoutResolver\RuleHandler\Doctrine\TargetHandler
+     */
+    protected function getTargetIdentifier()
+    {
+        return 'semantic_path_info_prefix';
     }
 
     /**

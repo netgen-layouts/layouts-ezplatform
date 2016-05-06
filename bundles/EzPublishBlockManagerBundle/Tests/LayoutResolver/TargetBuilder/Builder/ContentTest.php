@@ -13,6 +13,11 @@ class ContentTest extends \PHPUnit_Framework_TestCase
     use RequestStackAwareTrait;
 
     /**
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Content
+     */
+    protected $targetBuilder;
+
+    /**
      * Sets up the route target builder tests.
      */
     public function setUp()
@@ -23,6 +28,9 @@ class ContentTest extends \PHPUnit_Framework_TestCase
         $requestStack = new RequestStack();
         $requestStack->push($request);
         $this->setRequestStack($requestStack);
+
+        $this->targetBuilder = new Content();
+        $this->targetBuilder->setRequestStack($this->requestStack);
     }
 
     /**
@@ -30,10 +38,7 @@ class ContentTest extends \PHPUnit_Framework_TestCase
      */
     public function testBuildTarget()
     {
-        $targetBuilder = new Content();
-        $targetBuilder->setRequestStack($this->requestStack);
-
-        self::assertEquals(new ContentTarget(array(42)), $targetBuilder->buildTarget());
+        self::assertEquals(new ContentTarget(array(42)), $this->targetBuilder->buildTarget());
     }
 
     /**
@@ -44,10 +49,7 @@ class ContentTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no request
         $this->requestStack->pop();
 
-        $targetBuilder = new Content();
-        $targetBuilder->setRequestStack($this->requestStack);
-
-        self::assertFalse($targetBuilder->buildTarget());
+        self::assertFalse($this->targetBuilder->buildTarget());
     }
 
     /**
@@ -58,9 +60,6 @@ class ContentTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no content ID attribute
         $this->requestStack->getCurrentRequest()->attributes->remove('contentId');
 
-        $targetBuilder = new Content();
-        $targetBuilder->setRequestStack($this->requestStack);
-
-        self::assertFalse($targetBuilder->buildTarget());
+        self::assertFalse($this->targetBuilder->buildTarget());
     }
 }

@@ -21,6 +21,11 @@ class SubtreeTest extends \PHPUnit_Framework_TestCase
     protected $locationServiceMock;
 
     /**
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Subtree
+     */
+    protected $targetBuilder;
+
+    /**
      * Sets up the route target builder tests.
      */
     public function setUp()
@@ -33,6 +38,9 @@ class SubtreeTest extends \PHPUnit_Framework_TestCase
         $this->setRequestStack($requestStack);
 
         $this->locationServiceMock = $this->getMock(LocationService::class);
+
+        $this->targetBuilder = new Subtree($this->locationServiceMock);
+        $this->targetBuilder->setRequestStack($this->requestStack);
     }
 
     /**
@@ -47,10 +55,7 @@ class SubtreeTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo(42))
             ->will($this->returnValue(new Location(array('pathString' => '/1/2/42/'))));
 
-        $targetBuilder = new Subtree($this->locationServiceMock);
-        $targetBuilder->setRequestStack($this->requestStack);
-
-        self::assertEquals(new SubtreeTarget(array(1, 2, 42)), $targetBuilder->buildTarget());
+        self::assertEquals(new SubtreeTarget(array(1, 2, 42)), $this->targetBuilder->buildTarget());
     }
 
     /**
@@ -65,10 +70,7 @@ class SubtreeTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no request
         $this->requestStack->pop();
 
-        $targetBuilder = new Subtree($this->locationServiceMock);
-        $targetBuilder->setRequestStack($this->requestStack);
-
-        self::assertFalse($targetBuilder->buildTarget());
+        self::assertFalse($this->targetBuilder->buildTarget());
     }
 
     /**
@@ -83,10 +85,7 @@ class SubtreeTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no location ID attribute
         $this->requestStack->getCurrentRequest()->attributes->remove('locationId');
 
-        $targetBuilder = new Subtree($this->locationServiceMock);
-        $targetBuilder->setRequestStack($this->requestStack);
-
-        self::assertFalse($targetBuilder->buildTarget());
+        self::assertFalse($this->targetBuilder->buildTarget());
     }
 
     /**
@@ -100,9 +99,6 @@ class SubtreeTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo(42))
             ->will($this->throwException(new NotFoundException('location', 42)));
 
-        $targetBuilder = new Subtree($this->locationServiceMock);
-        $targetBuilder->setRequestStack($this->requestStack);
-
-        self::assertFalse($targetBuilder->buildTarget());
+        self::assertFalse($this->targetBuilder->buildTarget());
     }
 }

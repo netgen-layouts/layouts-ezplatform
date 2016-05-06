@@ -16,6 +16,11 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
     use RequestStackAwareTrait;
 
     /**
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\Children
+     */
+    protected $targetBuilder;
+
+    /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
     protected $locationServiceMock;
@@ -33,6 +38,9 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
         $this->setRequestStack($requestStack);
 
         $this->locationServiceMock = $this->getMock(LocationService::class);
+
+        $this->targetBuilder = new Children($this->locationServiceMock);
+        $this->targetBuilder->setRequestStack($this->requestStack);
     }
 
     /**
@@ -47,10 +55,7 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo(42))
             ->will($this->returnValue(new Location(array('parentLocationId' => 84))));
 
-        $targetBuilder = new Children($this->locationServiceMock);
-        $targetBuilder->setRequestStack($this->requestStack);
-
-        self::assertEquals(new ChildrenTarget(array(84)), $targetBuilder->buildTarget());
+        self::assertEquals(new ChildrenTarget(array(84)), $this->targetBuilder->buildTarget());
     }
 
     /**
@@ -65,10 +70,7 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no request
         $this->requestStack->pop();
 
-        $targetBuilder = new Children($this->locationServiceMock);
-        $targetBuilder->setRequestStack($this->requestStack);
-
-        self::assertFalse($targetBuilder->buildTarget());
+        self::assertFalse($this->targetBuilder->buildTarget());
     }
 
     /**
@@ -83,10 +85,7 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no location ID attribute
         $this->requestStack->getCurrentRequest()->attributes->remove('locationId');
 
-        $targetBuilder = new Children($this->locationServiceMock);
-        $targetBuilder->setRequestStack($this->requestStack);
-
-        self::assertFalse($targetBuilder->buildTarget());
+        self::assertFalse($this->targetBuilder->buildTarget());
     }
 
     /**
@@ -100,9 +99,6 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo(42))
             ->will($this->throwException(new NotFoundException('location', 42)));
 
-        $targetBuilder = new Children($this->locationServiceMock);
-        $targetBuilder->setRequestStack($this->requestStack);
-
-        self::assertFalse($targetBuilder->buildTarget());
+        self::assertFalse($this->targetBuilder->buildTarget());
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\LayoutResolver\RuleHandler\Doctrine\TargetHandler;
 
+use Netgen\BlockManager\Tests\LayoutResolver\RuleHandler\Doctrine\TargetHandler\TargetHandlerTest;
 use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\RuleHandler\Doctrine\TargetHandler\Children;
 
 class ChildrenTest extends TargetHandlerTest
@@ -9,18 +10,26 @@ class ChildrenTest extends TargetHandlerTest
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\RuleHandler\Doctrine\TargetHandler\Children::handleQuery
      */
-    public function testLoadChildrenRules()
+    public function testLoadRules()
     {
-        $handler = $this->createHandler('children', $this->getTargetHandler());
-
         $expected = array(
             array(
-                'layout_id' => 7,
+                'layout_id' => 17,
                 'conditions' => array(),
             ),
         );
 
-        self::assertEquals($expected, $handler->loadRules('children', array(54)));
+        self::assertEquals($expected, $this->handler->loadRules($this->getTargetIdentifier(), array(54)));
+    }
+
+    /**
+     * Returns the target identifier under test.
+     *
+     * @return \Netgen\BlockManager\LayoutResolver\RuleHandler\Doctrine\TargetHandler
+     */
+    protected function getTargetIdentifier()
+    {
+        return 'children';
     }
 
     /**

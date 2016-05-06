@@ -2,6 +2,7 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\LayoutResolver\RuleHandler\Doctrine\TargetHandler;
 
+use Netgen\BlockManager\Tests\LayoutResolver\RuleHandler\Doctrine\TargetHandler\TargetHandlerTest;
 use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\RuleHandler\Doctrine\TargetHandler\Content;
 
 class ContentTest extends TargetHandlerTest
@@ -9,18 +10,26 @@ class ContentTest extends TargetHandlerTest
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\RuleHandler\Doctrine\TargetHandler\Content::handleQuery
      */
-    public function testLoadContentRules()
+    public function testLoadRules()
     {
-        $handler = $this->createHandler('content', $this->getTargetHandler());
-
         $expected = array(
             array(
-                'layout_id' => 4,
+                'layout_id' => 14,
                 'conditions' => array(),
             ),
         );
 
-        self::assertEquals($expected, $handler->loadRules('content', array(48)));
+        self::assertEquals($expected, $this->handler->loadRules($this->getTargetIdentifier(), array(48)));
+    }
+
+    /**
+     * Returns the target identifier under test.
+     *
+     * @return \Netgen\BlockManager\LayoutResolver\RuleHandler\Doctrine\TargetHandler
+     */
+    protected function getTargetIdentifier()
+    {
+        return 'content';
     }
 
     /**

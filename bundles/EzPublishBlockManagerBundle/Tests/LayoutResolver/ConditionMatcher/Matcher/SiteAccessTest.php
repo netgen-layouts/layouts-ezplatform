@@ -13,6 +13,11 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
     use RequestStackAwareTrait;
 
     /**
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\ConditionMatcher\Matcher\SiteAccess
+     */
+    protected $conditionMatcher;
+
+    /**
      * Sets up the route target tests.
      */
     public function setUp()
@@ -23,6 +28,9 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
         $requestStack = new RequestStack();
         $requestStack->push($request);
         $this->setRequestStack($requestStack);
+
+        $this->conditionMatcher = new SiteAccess();
+        $this->conditionMatcher->setRequestStack($this->requestStack);
     }
 
     /**
@@ -30,9 +38,7 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetConditionIdentifier()
     {
-        $conditionMatcher = new SiteAccess();
-
-        self::assertEquals('siteaccess', $conditionMatcher->getConditionIdentifier());
+        self::assertEquals('siteaccess', $this->conditionMatcher->getConditionIdentifier());
     }
 
     /**
@@ -45,10 +51,7 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
      */
     public function testMatches($parameters, $matches)
     {
-        $conditionMatcher = new SiteAccess();
-        $conditionMatcher->setRequestStack($this->requestStack);
-
-        self::assertEquals($matches, $conditionMatcher->matches($parameters));
+        self::assertEquals($matches, $this->conditionMatcher->matches($parameters));
     }
 
     /**
@@ -76,10 +79,7 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no request
         $this->requestStack->pop();
 
-        $conditionMatcher = new SiteAccess();
-        $conditionMatcher->setRequestStack($this->requestStack);
-
-        self::assertFalse($conditionMatcher->matches(array()));
+        self::assertFalse($this->conditionMatcher->matches(array()));
     }
 
     /**
@@ -90,9 +90,6 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no siteaccess
         $this->requestStack->getCurrentRequest()->attributes->remove('siteaccess');
 
-        $conditionMatcher = new SiteAccess();
-        $conditionMatcher->setRequestStack($this->requestStack);
-
-        self::assertFalse($conditionMatcher->matches(array()));
+        self::assertFalse($this->conditionMatcher->matches(array()));
     }
 }

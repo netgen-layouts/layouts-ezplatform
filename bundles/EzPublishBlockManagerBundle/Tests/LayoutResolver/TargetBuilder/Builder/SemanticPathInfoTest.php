@@ -13,6 +13,11 @@ class SemanticPathInfoTest extends \PHPUnit_Framework_TestCase
     use RequestStackAwareTrait;
 
     /**
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\SemanticPathInfo
+     */
+    protected $targetBuilder;
+
+    /**
      * Sets up the route target builder tests.
      */
     public function setUp()
@@ -23,6 +28,9 @@ class SemanticPathInfoTest extends \PHPUnit_Framework_TestCase
         $requestStack = new RequestStack();
         $requestStack->push($request);
         $this->setRequestStack($requestStack);
+
+        $this->targetBuilder = new SemanticPathInfo();
+        $this->targetBuilder->setRequestStack($this->requestStack);
     }
 
     /**
@@ -30,10 +38,7 @@ class SemanticPathInfoTest extends \PHPUnit_Framework_TestCase
      */
     public function testBuildTarget()
     {
-        $targetBuilder = new SemanticPathInfo();
-        $targetBuilder->setRequestStack($this->requestStack);
-
-        self::assertEquals(new SemanticPathInfoTarget(array('/the/answer')), $targetBuilder->buildTarget());
+        self::assertEquals(new SemanticPathInfoTarget(array('/the/answer')), $this->targetBuilder->buildTarget());
     }
 
     /**
@@ -43,10 +48,7 @@ class SemanticPathInfoTest extends \PHPUnit_Framework_TestCase
     {
         $this->requestStack->getCurrentRequest()->attributes->set('semanticPathinfo', false);
 
-        $targetBuilder = new SemanticPathInfo();
-        $targetBuilder->setRequestStack($this->requestStack);
-
-        self::assertEquals(new SemanticPathInfoTarget(array('/')), $targetBuilder->buildTarget());
+        self::assertEquals(new SemanticPathInfoTarget(array('/')), $this->targetBuilder->buildTarget());
     }
 
     /**
@@ -57,10 +59,7 @@ class SemanticPathInfoTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no request
         $this->requestStack->pop();
 
-        $targetBuilder = new SemanticPathInfo();
-        $targetBuilder->setRequestStack($this->requestStack);
-
-        self::assertFalse($targetBuilder->buildTarget());
+        self::assertFalse($this->targetBuilder->buildTarget());
     }
 
     /**
@@ -71,9 +70,6 @@ class SemanticPathInfoTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no semantic path info attribute
         $this->requestStack->getCurrentRequest()->attributes->remove('semanticPathinfo');
 
-        $targetBuilder = new SemanticPathInfo();
-        $targetBuilder->setRequestStack($this->requestStack);
-
-        self::assertFalse($targetBuilder->buildTarget());
+        self::assertFalse($this->targetBuilder->buildTarget());
     }
 }
