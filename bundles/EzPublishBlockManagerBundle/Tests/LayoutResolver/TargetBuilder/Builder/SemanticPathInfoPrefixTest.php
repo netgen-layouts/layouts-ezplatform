@@ -17,7 +17,6 @@ class SemanticPathInfoPrefixTest extends \PHPUnit_Framework_TestCase
      */
     protected $targetBuilder;
 
-
     /**
      * Sets up the route target builder tests.
      */
