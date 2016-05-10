@@ -126,7 +126,7 @@ class SourcesConfigurationTest extends ConfigurationTest
                             'default' => array(
                                 'query_type' => 'type',
                                 'default_parameters' => array(
-                                    'param' => 'value'
+                                    'param' => 'value',
                                 ),
                             ),
                         ),
@@ -141,7 +141,7 @@ class SourcesConfigurationTest extends ConfigurationTest
                             'default' => array(
                                 'query_type' => 'type2',
                                 'default_parameters' => array(
-                                    'param2' => 'value2'
+                                    'param2' => 'value2',
                                 ),
                             ),
                         ),
@@ -158,7 +158,7 @@ class SourcesConfigurationTest extends ConfigurationTest
                         'default' => array(
                             'query_type' => 'type2',
                             'default_parameters' => array(
-                                'param2' => 'value2'
+                                'param2' => 'value2',
                             ),
                         ),
                     ),
@@ -186,7 +186,7 @@ class SourcesConfigurationTest extends ConfigurationTest
                             'default' => array(
                                 'query_type' => 'type',
                                 'default_parameters' => array(
-                                    'param' => 'value'
+                                    'param' => 'value',
                                 ),
                             ),
                         ),
@@ -203,7 +203,7 @@ class SourcesConfigurationTest extends ConfigurationTest
                         'default' => array(
                             'query_type' => 'type',
                             'default_parameters' => array(
-                                'param' => 'value'
+                                'param' => 'value',
                             ),
                         ),
                     ),
