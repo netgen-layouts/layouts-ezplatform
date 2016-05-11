@@ -1,0 +1,18 @@
+parameters:
+    netgen_block_manager.collection.value_loader.ezcontent.class: Netgen\Bundle\EzPublishBlockManagerBundle\Collection\ValueLoader\EzContentValueLoader
+    netgen_block_manager.collection.value_loader.ezlocation.class: Netgen\Bundle\EzPublishBlockManagerBundle\Collection\ValueLoader\EzLocationValueLoader
+
+services:
+    netgen_block_manager.collection.value_loader.ezcontent:
+        class: "%netgen_block_manager.collection.value_loader.ezcontent.class%"
+        arguments:
+            - "@ezpublish.api.service.content"
+        tags:
+            - { name: netgen_block_manager.collection.value_loader }
+
+    netgen_block_manager.collection.value_loader.ezlocation:
+        class: "%netgen_block_manager.collection.value_loader.ezlocation.class%"
+        arguments:
+            - "@ezpublish.api.service.location"
+        tags:
+            - { name: netgen_block_manager.collection.value_loader }
