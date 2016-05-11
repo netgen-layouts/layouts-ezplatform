@@ -8,6 +8,16 @@ use eZ\Publish\Core\MVC\ConfigResolverInterface;
 class ConfigResolverConfigurationTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $configResolverMock;
+
+    /**
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration
+     */
+    protected $configuration;
+
+    /**
      * Sets up the tests.
      */
     protected function setUp()
@@ -15,6 +25,11 @@ class ConfigResolverConfigurationTest extends \PHPUnit_Framework_TestCase
         if (!interface_exists('eZ\Publish\Core\MVC\ConfigResolverInterface')) {
             $this->markTestSkipped('No eZ Publish installed, ConfigResolverConfiguration tests skipped.');
         }
+
+        $this->configResolverMock = $this->getMock(ConfigResolverInterface::class);
+
+        $this->configuration = new ConfigResolverConfiguration();
+        $this->configuration->setConfigResolver($this->configResolverMock);
     }
 
     /**
@@ -23,16 +38,13 @@ class ConfigResolverConfigurationTest extends \PHPUnit_Framework_TestCase
      */
     public function testHasParameter()
     {
-        $configResolver = $this->getMock(ConfigResolverInterface::class);
-        $configResolver
+        $this->configResolverMock
             ->expects($this->once())
             ->method('hasParameter')
             ->with($this->equalTo('some_param'), $this->equalTo('netgen_block_manager'))
             ->will($this->returnValue(true));
 
-        $configuration = new ConfigResolverConfiguration();
-        $configuration->setConfigResolver($configResolver);
-        self::assertTrue($configuration->hasParameter('some_param'));
+        self::assertTrue($this->configuration->hasParameter('some_param'));
     }
 
     /**
@@ -41,16 +53,13 @@ class ConfigResolverConfigurationTest extends \PHPUnit_Framework_TestCase
      */
     public function testHasParameterWithNoParameter()
     {
-        $configResolver = $this->getMock(ConfigResolverInterface::class);
-        $configResolver
+        $this->configResolverMock
             ->expects($this->once())
             ->method('hasParameter')
             ->with($this->equalTo('some_param'), $this->equalTo('netgen_block_manager'))
             ->will($this->returnValue(false));
 
-        $configuration = new ConfigResolverConfiguration();
-        $configuration->setConfigResolver($configResolver);
-        self::assertFalse($configuration->hasParameter('some_param'));
+        self::assertFalse($this->configuration->hasParameter('some_param'));
     }
 
     /**
@@ -59,21 +68,19 @@ class ConfigResolverConfigurationTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetParameter()
     {
-        $configResolver = $this->getMock(ConfigResolverInterface::class);
-        $configResolver
+        $this->configResolverMock
             ->expects($this->once())
             ->method('hasParameter')
             ->with($this->equalTo('some_param'), $this->equalTo('netgen_block_manager'))
             ->will($this->returnValue(true));
-        $configResolver
+
+        $this->configResolverMock
             ->expects($this->once())
             ->method('getParameter')
             ->with($this->equalTo('some_param'), $this->equalTo('netgen_block_manager'))
             ->will($this->returnValue('some_param_value'));
 
-        $configuration = new ConfigResolverConfiguration();
-        $configuration->setConfigResolver($configResolver);
-        self::assertEquals('some_param_value', $configuration->getParameter('some_param'));
+        self::assertEquals('some_param_value', $this->configuration->getParameter('some_param'));
     }
 
     /**
@@ -83,15 +90,12 @@ class ConfigResolverConfigurationTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetParameterThrowsInvalidArgumentException()
     {
-        $configResolver = $this->getMock(ConfigResolverInterface::class);
-        $configResolver
+        $this->configResolverMock
             ->expects($this->once())
             ->method('hasParameter')
             ->with($this->equalTo('some_param'), $this->equalTo('netgen_block_manager'))
             ->will($this->returnValue(false));
 
-        $configuration = new ConfigResolverConfiguration();
-        $configuration->setConfigResolver($configResolver);
-        $configuration->getParameter('some_param');
+        $this->configuration->getParameter('some_param');
     }
 }
