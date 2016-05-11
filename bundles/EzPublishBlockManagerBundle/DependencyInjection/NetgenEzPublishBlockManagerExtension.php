@@ -26,11 +26,11 @@ class NetgenEzPublishBlockManagerExtension extends Extension
             new FileLocator(__DIR__ . '/../Resources/config')
         );
 
-        $loader->load('configuration.yml');
         $loader->load('default_settings.yml');
-        $loader->load('layout_resolver/condition_matchers.yml');
-        $loader->load('layout_resolver/target_builders.yml');
-        $loader->load('layout_resolver/target_handlers.yml');
+        $loader->load('services/configuration.yml');
+        $loader->load('services/layout_resolver/condition_matchers.yml');
+        $loader->load('services/layout_resolver/target_builders.yml');
+        $loader->load('services/layout_resolver/target_handlers.yml');
     }
 
     /**
