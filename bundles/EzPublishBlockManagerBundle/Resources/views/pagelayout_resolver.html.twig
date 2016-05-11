@@ -5,6 +5,8 @@
         {% set main_pagelayout = ngbm.configuration.getParameter('pagelayout') %}
     {% elseif pagelayout is defined %}
         {% set main_pagelayout = pagelayout %}
+    {% elseif ezpublish.configResolver.hasParameter('pagelayout') %}
+        {% set main_pagelayout = ezpublish.configResolver.parameter('pagelayout') %}
     {% endif %}
 {% endif %}
 
