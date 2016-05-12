@@ -3,7 +3,9 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Collection\ValueLoader;
 
 use Netgen\BlockManager\Collection\ValueLoaderInterface;
+use Netgen\BlockManager\API\Exception\NotFoundException;
 use eZ\Publish\API\Repository\LocationService;
+use Exception;
 
 class EzLocationValueLoader implements ValueLoaderInterface
 {
@@ -37,10 +39,16 @@ class EzLocationValueLoader implements ValueLoaderInterface
      *
      * @param int|string $id
      *
+     * @throws \Netgen\BlockManager\API\Exception\NotFoundException If value cannot be loaded
+     *
      * @return mixed
      */
     public function load($id)
     {
-        return $this->locationService->loadLocation($id);
+        try {
+            return $this->locationService->loadLocation($id);
+        } catch (Exception $e) {
+            throw new NotFoundException('item', $id, $e);
+        }
     }
 }
