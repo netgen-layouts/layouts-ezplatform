@@ -27,9 +27,9 @@ class Configuration extends SiteAccessConfiguration
         return function (ArrayNodeDefinition $rootNode, BlockManagerConfiguration $configuration) {
             $systemNode = $this->generateScopeBaseNode($rootNode);
 
-            foreach ($configuration->getAvailableNodeDefinitions() as $nodeDefinition) {
-                $systemNode->append($nodeDefinition);
-            }
+            $systemNode->append($configuration->getTemplateResolverNodeDefinition('block_view'));
+            $systemNode->append($configuration->getTemplateResolverNodeDefinition('layout_view'));
+            $systemNode->append($configuration->getPagelayoutNodeDefinition());
         };
     }
 }

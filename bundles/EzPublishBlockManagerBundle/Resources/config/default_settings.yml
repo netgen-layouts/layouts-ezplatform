@@ -1,8 +1,4 @@
 parameters:
     netgen_block_manager.default.block_view: []
     netgen_block_manager.default.layout_view: []
-    netgen_block_manager.default.block_definitions: []
-    netgen_block_manager.default.layouts: []
-    netgen_block_manager.default.block_types: []
-    netgen_block_manager.default.block_type_groups: []
     netgen_block_manager.default.pagelayout: 'NetgenBlockManagerBundle::pagelayout_empty.html.twig'

@@ -38,13 +38,8 @@ abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
      * @var array
      */
     protected $defaultSystemConfig = array(
-        'block_definitions' => array(),
-        'block_types' => array(),
-        'layouts' => array(),
-        'block_type_groups' => array(),
         'block_view' => array(),
         'layout_view' => array(),
-        'sources' => array(),
         'pagelayout' => 'NetgenBlockManagerBundle::pagelayout_empty.html.twig',
     );
 

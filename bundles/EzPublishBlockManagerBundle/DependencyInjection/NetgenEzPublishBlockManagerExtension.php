@@ -11,6 +11,12 @@ use Symfony\Component\Config\FileLocator;
 
 class NetgenEzPublishBlockManagerExtension extends Extension
 {
+    protected $siteAccessAwareSettings = array(
+        'block_view',
+        'layout_view',
+        'pagelayout',
+    );
+
     /**
      * Loads a specific configuration.
      *
@@ -74,6 +80,7 @@ class NetgenEzPublishBlockManagerExtension extends Extension
     public function getPreProcessor()
     {
         return function ($configs, ContainerBuilder $container) {
+
             $newConfigs = $configs;
             $appendConfigs = array();
             foreach ($configs as $index => $config) {
@@ -81,6 +88,12 @@ class NetgenEzPublishBlockManagerExtension extends Extension
                     $appendConfigs[] = array('system' => $config['system']);
                     unset($config['system']);
                     $newConfigs[$index] = $config;
+                }
+
+                foreach ($config as $configName => $configValues) {
+                    if (!in_array($configName, $this->siteAccessAwareSettings)) {
+                        unset($config[$configName]);
+                    }
                 }
 
                 $newConfigs[] = array('system' => array('default' => $config));
@@ -114,12 +127,14 @@ class NetgenEzPublishBlockManagerExtension extends Extension
 
             $processor = new ConfigurationProcessor($container, 'netgen_block_manager');
             foreach ($config as $key => $value) {
-                if ($key !== 'system') {
-                    if (is_array($config[$key])) {
-                        $processor->mapConfigArray($key, $config, ContextualizerInterface::MERGE_FROM_SECOND_LEVEL);
-                    } else {
-                        $processor->mapSetting($key, $config);
-                    }
+                if ($key === 'system' || !in_array($key, $this->siteAccessAwareSettings)) {
+                    continue;
+                }
+
+                if (is_array($config[$key])) {
+                    $processor->mapConfigArray($key, $config, ContextualizerInterface::MERGE_FROM_SECOND_LEVEL);
+                } else {
+                    $processor->mapSetting($key, $config);
                 }
             }
 

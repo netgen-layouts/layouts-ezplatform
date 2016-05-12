@@ -10,9 +10,24 @@ use InvalidArgumentException;
 class ConfigResolverConfiguration extends Configuration
 {
     /**
+     * @var \Netgen\BlockManager\Configuration\ConfigurationInterface
+     */
+    protected $fallbackConfiguration;
+
+    /**
      * @var \eZ\Publish\Core\MVC\ConfigResolverInterface
      */
     protected $configResolver;
+
+    /**
+     * Constructor.
+     *
+     * @param \Netgen\BlockManager\Configuration\ConfigurationInterface $fallbackConfiguration
+     */
+    public function __construct(ConfigurationInterface $fallbackConfiguration)
+    {
+        $this->fallbackConfiguration = $fallbackConfiguration;
+    }
 
     /**
      * Sets the config resolver.
@@ -33,10 +48,16 @@ class ConfigResolverConfiguration extends Configuration
      */
     public function hasParameter($parameterName)
     {
-        return $this->configResolver->hasParameter(
+        $hasParam = $this->configResolver->hasParameter(
             $parameterName,
             ConfigurationInterface::PARAMETER_NAMESPACE
         );
+
+        if (!$hasParam) {
+            $hasParam = $this->fallbackConfiguration->hasParameter($parameterName);
+        }
+
+        return $hasParam;
     }
 
     /**
@@ -59,9 +80,18 @@ class ConfigResolverConfiguration extends Configuration
             );
         }
 
-        return $this->configResolver->getParameter(
-            $parameterName,
-            ConfigurationInterface::PARAMETER_NAMESPACE
-        );
+        if (
+            $this->configResolver->hasParameter(
+                $parameterName,
+                ConfigurationInterface::PARAMETER_NAMESPACE
+            )
+        ) {
+            return $this->configResolver->getParameter(
+                $parameterName,
+                ConfigurationInterface::PARAMETER_NAMESPACE
+            );
+        }
+
+        return $this->fallbackConfiguration->getParameter($parameterName);
     }
 }
