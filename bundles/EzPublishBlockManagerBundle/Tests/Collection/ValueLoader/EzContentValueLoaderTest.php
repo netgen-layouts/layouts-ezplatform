@@ -5,6 +5,7 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Collection\ValueLoader
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Collection\ValueLoader\EzContentValueLoader;
+use Exception;
 
 class EzContentValueLoaderTest extends \PHPUnit_Framework_TestCase
 {
@@ -22,14 +23,6 @@ class EzContentValueLoaderTest extends \PHPUnit_Framework_TestCase
     {
         $this->contentServiceMock = $this->getMock(ContentService::class);
 
-        $this->contentServiceMock
-            ->expects($this->any())
-            ->method('loadContentInfo')
-            ->with($this->isType('int'))
-            ->will($this->returnCallback(
-                function ($id) { return new ContentInfo(array('id' => $id)); })
-            );
-
         $this->valueLoader = new EzContentValueLoader($this->contentServiceMock);
     }
 
@@ -39,9 +32,32 @@ class EzContentValueLoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoad()
     {
+        $this->contentServiceMock
+            ->expects($this->any())
+            ->method('loadContentInfo')
+            ->with($this->isType('int'))
+            ->will($this->returnCallback(
+                function ($id) { return new ContentInfo(array('id' => $id)); })
+            );
+
         $contentInfo = $this->valueLoader->load(52);
 
         self::assertEquals(new ContentInfo(array('id' => 52)), $contentInfo);
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Collection\ValueLoader\EzContentValueLoader::load
+     * @expectedException \RuntimeException
+     */
+    public function testLoadThrowsRuntimeException()
+    {
+        $this->contentServiceMock
+            ->expects($this->any())
+            ->method('loadContentInfo')
+            ->with($this->isType('int'))
+            ->will($this->throwException(new Exception()));
+
+        $this->valueLoader->load(52);
     }
 
     /**

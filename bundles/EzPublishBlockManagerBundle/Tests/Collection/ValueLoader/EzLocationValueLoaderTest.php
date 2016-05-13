@@ -5,6 +5,7 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Collection\ValueLoader
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Collection\ValueLoader\EzLocationValueLoader;
+use Exception;
 
 class EzLocationValueLoaderTest extends \PHPUnit_Framework_TestCase
 {
@@ -22,14 +23,6 @@ class EzLocationValueLoaderTest extends \PHPUnit_Framework_TestCase
     {
         $this->locationServiceMock = $this->getMock(LocationService::class);
 
-        $this->locationServiceMock
-            ->expects($this->any())
-            ->method('loadLocation')
-            ->with($this->isType('int'))
-            ->will($this->returnCallback(
-                function ($id) { return new Location(array('id' => $id)); })
-            );
-
         $this->valueLoader = new EzLocationValueLoader($this->locationServiceMock);
     }
 
@@ -39,9 +32,32 @@ class EzLocationValueLoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoad()
     {
+        $this->locationServiceMock
+            ->expects($this->any())
+            ->method('loadLocation')
+            ->with($this->isType('int'))
+            ->will($this->returnCallback(
+                function ($id) { return new Location(array('id' => $id)); })
+            );
+
         $location = $this->valueLoader->load(52);
 
         self::assertEquals(new Location(array('id' => 52)), $location);
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Collection\ValueLoader\EzLocationValueLoader::load
+     * @expectedException \RuntimeException
+     */
+    public function testLoadThrowsRuntimeException()
+    {
+        $this->locationServiceMock
+            ->expects($this->any())
+            ->method('loadLocation')
+            ->with($this->isType('int'))
+            ->will($this->throwException(new Exception()));
+
+        $this->valueLoader->load(52);
     }
 
     /**

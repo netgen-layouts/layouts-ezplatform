@@ -3,8 +3,8 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Collection\ValueLoader;
 
 use Netgen\BlockManager\Collection\ValueLoaderInterface;
-use Netgen\BlockManager\API\Exception\NotFoundException;
 use eZ\Publish\API\Repository\ContentService;
+use RuntimeException;
 use Exception;
 
 class EzContentValueLoader implements ValueLoaderInterface
@@ -39,7 +39,7 @@ class EzContentValueLoader implements ValueLoaderInterface
      *
      * @param int|string $id
      *
-     * @throws \Netgen\BlockManager\API\Exception\NotFoundException If value cannot be loaded
+     * @throws \RuntimeException If value cannot be loaded
      *
      * @return mixed
      */
@@ -48,7 +48,7 @@ class EzContentValueLoader implements ValueLoaderInterface
         try {
             return $this->contentService->loadContentInfo($id);
         } catch (Exception $e) {
-            throw new NotFoundException('item', $id, $e);
+            throw new RuntimeException('Value with ID ' . $id . ' could not be loaded.');
         }
     }
 }
