@@ -14,6 +14,7 @@ class NetgenEzPublishBlockManagerExtension extends Extension
     protected $siteAccessAwareSettings = array(
         'block_view',
         'layout_view',
+        'query_view',
         'pagelayout',
     );
 
@@ -39,6 +40,7 @@ class NetgenEzPublishBlockManagerExtension extends Extension
         $loader->load('services/layout_resolver/target_handlers.yml');
         $loader->load('services/collection/value_loaders.yml');
         $loader->load('services/collection/value_converters.yml');
+        $loader->load('services/collection/query_types.yml');
     }
 
     /**

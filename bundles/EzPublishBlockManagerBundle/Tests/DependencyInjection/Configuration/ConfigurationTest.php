@@ -27,7 +27,9 @@ abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
         'block_type_groups' => array(),
         'block_view' => array(),
         'layout_view' => array(),
+        'query_view' => array(),
         'sources' => array(),
+        'query_types' => array(),
         'pagelayout' => 'NetgenEzPublishBlockManagerBundle::pagelayout_resolver.html.twig',
     );
 
@@ -40,6 +42,7 @@ abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
     protected $defaultSystemConfig = array(
         'block_view' => array(),
         'layout_view' => array(),
+        'query_view' => array(),
         'pagelayout' => 'NetgenBlockManagerBundle::pagelayout_empty.html.twig',
     );
 
