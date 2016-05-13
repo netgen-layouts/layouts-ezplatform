@@ -7,7 +7,7 @@ use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\Helper\TranslationHelper;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Collection\ValueConverter\EzLocationValueConverter;
 
-class EzLocationValueConverterTest extends \PHPUnit_Framework_TestCase
+class EzLocationValueLoaderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
