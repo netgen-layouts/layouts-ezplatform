@@ -23,7 +23,7 @@ abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
     protected $defaultConfig = array(
         'block_definitions' => array(),
         'block_types' => array(),
-        'layouts' => array(),
+        'layout_types' => array(),
         'block_type_groups' => array(),
         'block_view' => array(),
         'layout_view' => array(),
