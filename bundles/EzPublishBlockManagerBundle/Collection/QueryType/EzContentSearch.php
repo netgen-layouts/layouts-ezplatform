@@ -2,13 +2,14 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Collection\QueryType;
 
+use Netgen\BlockManager\Collection\QueryType;
 use eZ\Publish\API\Repository\ContentTypeService;
 use Netgen\BlockManager\Collection\QueryTypeInterface;
 use Netgen\BlockManager\Parameters\Parameter;
 use eZ\Publish\API\Repository\SearchService;
 use Symfony\Component\Validator\Constraints;
 
-class EzContentSearch implements QueryTypeInterface
+class EzContentSearch extends QueryType implements QueryTypeInterface
 {
     /**
      * @var array
