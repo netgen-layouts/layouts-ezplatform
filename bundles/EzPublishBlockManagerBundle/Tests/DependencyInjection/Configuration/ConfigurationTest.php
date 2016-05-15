@@ -30,7 +30,7 @@ abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
         'query_view' => array(),
         'sources' => array(),
         'query_types' => array(),
-        'pagelayout' => 'NetgenEzPublishBlockManagerBundle::pagelayout_resolver.html.twig',
+        'pagelayout' => 'NetgenBlockManagerBundle::pagelayout_empty.html.twig',
     );
 
     /**

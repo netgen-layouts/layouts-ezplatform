@@ -22,9 +22,6 @@ class PagelayoutConfigurationTest extends ConfigurationTest
         );
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
-        // Config post processor overrides the original pagelayout parameter
-        $expectedConfig['pagelayout'] = 'NetgenEzPublishBlockManagerBundle::pagelayout_resolver.html.twig';
-
         $this->assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 
@@ -51,8 +48,7 @@ class PagelayoutConfigurationTest extends ConfigurationTest
         );
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
-        // Config post processor overrides the original pagelayout parameter
-        $expectedConfig['pagelayout'] = 'NetgenEzPublishBlockManagerBundle::pagelayout_resolver.html.twig';
+        $expectedConfig['pagelayout'] = 'pagelayout.html.twig';
 
         $this->assertInjectedConfigurationEqual($expectedConfig, $config);
     }
