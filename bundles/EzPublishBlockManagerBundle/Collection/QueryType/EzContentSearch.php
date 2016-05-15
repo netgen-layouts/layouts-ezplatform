@@ -53,7 +53,7 @@ class EzContentSearch extends QueryType implements QueryTypeInterface
      *
      * The keys are parameter identifiers.
      *
-     * @return \Netgen\BlockManager\Parameters\Parameter[]
+     * @return \Netgen\BlockManager\Parameters\ParameterInterface[]
      */
     public function getParameters()
     {
@@ -61,28 +61,6 @@ class EzContentSearch extends QueryType implements QueryTypeInterface
             'parent_location_id' => new Parameter\Text(array(), true),
             'content_types' => new Parameter\Select(
                 array('options' => $this->getContentTypes(), 'multiple' => true)
-            ),
-        );
-    }
-
-    /**
-     * Returns the array specifying query parameter validator constraints.
-     *
-     * @return array
-     */
-    public function getParameterConstraints()
-    {
-        return array(
-            'parent_location_id' => array(
-                new Constraints\NotBlank(),
-            ),
-            'content_types' => array(
-                new Constraints\Choice(
-                    array(
-                        'choices' => array_values($this->getContentTypes()),
-                        'multiple' => true
-                    )
-                ),
             ),
         );
     }
