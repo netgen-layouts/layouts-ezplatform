@@ -8,6 +8,7 @@ services:
             - "@netgen_block_manager.configuration.container"
         calls:
             - [setConfigResolver, ["@ezpublish.config.resolver"]]
+        lazy: true
 
     netgen_block_manager.configuration:
         alias: netgen_block_manager.configuration.config_resolver

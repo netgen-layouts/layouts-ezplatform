@@ -108,25 +108,15 @@ class NetgenEzPublishBlockManagerExtension extends Extension
     /**
      * Returns the config postprocessor closure.
      *
-     * The postprocessor does two things:
-     *
-     * 1) When we convert the configs to siteaccess aware configs with preprocessor,
-     * pagelayout config is also converted. However, since here we need to override
-     * the global netgen_block_manager.pagelayout, but NOT the converted one (otherwise
-     * we would have an infinite loop when rendering the pagelayout), we need to specifically
-     * set it here, after the semantic configuration is processed and merged.
-     *
-     * 2) It calls eZ Publish mapConfigArray and mapSettings methods from siteaccess aware
-     * configuration processor as per documentation, to make the configuration correctly
-     * apply to all siteaccesses.
+     * The postprocessor calls eZ Publish mapConfigArray and mapSettings methods from siteaccess aware
+     * configuration processor as per documentation, to make the configuration correctly apply to all
+     * siteaccesses.
      *
      * @return \Closure
      */
     public function getPostProcessor()
     {
         return function ($config, ContainerBuilder $container) {
-            $config['pagelayout'] = 'NetgenEzPublishBlockManagerBundle::pagelayout_resolver.html.twig';
-
             $processor = new ConfigurationProcessor($container, 'netgen_block_manager');
             foreach ($config as $key => $value) {
                 if ($key === 'system' || !in_array($key, $this->siteAccessAwareSettings)) {
