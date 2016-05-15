@@ -7,7 +7,6 @@ use eZ\Publish\API\Repository\ContentTypeService;
 use Netgen\BlockManager\Collection\QueryTypeInterface;
 use Netgen\BlockManager\Parameters\Parameter;
 use eZ\Publish\API\Repository\SearchService;
-use Symfony\Component\Validator\Constraints;
 
 class EzContentSearch extends QueryType implements QueryTypeInterface
 {
@@ -60,7 +59,10 @@ class EzContentSearch extends QueryType implements QueryTypeInterface
         return array(
             'parent_location_id' => new Parameter\Text(array(), true),
             'content_types' => new Parameter\Select(
-                array('options' => $this->getContentTypes(), 'multiple' => true)
+                array(
+                    'options' => $this->getContentTypes(),
+                    'multiple' => true,
+                )
             ),
         );
     }
@@ -91,22 +93,25 @@ class EzContentSearch extends QueryType implements QueryTypeInterface
 
     /**
      * Returns all content types from eZ Publish.
+     * Uses closure to make sure content types are fetched only when used.
      *
-     * @return array
+     * @return \Closure
      */
     protected function getContentTypes()
     {
-        if ($this->contentTypes === null) {
-            $groups = $this->contentTypeService->loadContentTypeGroups();
-            foreach ($groups as $group) {
-                $contentTypes = $this->contentTypeService->loadContentTypes($group);
-                foreach ($contentTypes as $contentType) {
-                    $contentTypeNames = array_values($contentType->getNames());
-                    $this->contentTypes[$contentTypeNames[0]] = $contentType->identifier;
+        return function () {
+            if ($this->contentTypes === null) {
+                $groups = $this->contentTypeService->loadContentTypeGroups();
+                foreach ($groups as $group) {
+                    $contentTypes = $this->contentTypeService->loadContentTypes($group);
+                    foreach ($contentTypes as $contentType) {
+                        $contentTypeNames = array_values($contentType->getNames());
+                        $this->contentTypes[$contentTypeNames[0]] = $contentType->identifier;
+                    }
                 }
             }
-        }
 
-        return $this->contentTypes;
+            return $this->contentTypes;
+        };
     }
 }
