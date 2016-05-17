@@ -30,7 +30,7 @@ abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
         'query_view' => array(),
         'sources' => array(),
         'query_types' => array(),
-        'pagelayout' => 'NetgenBlockManagerBundle::pagelayout_empty.html.twig',
+        'pagelayout' => 'NetgenBlockManagerBundle::pagelayout.html.twig',
     );
 
     /**
@@ -43,7 +43,6 @@ abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
         'block_view' => array(),
         'layout_view' => array(),
         'query_view' => array(),
-        'pagelayout' => 'NetgenBlockManagerBundle::pagelayout_empty.html.twig',
     );
 
     /**

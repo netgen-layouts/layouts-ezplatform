@@ -1,0 +1,14 @@
+parameters:
+    netgen_block_manager.templating.pagelayout_resolver.ezpublish.class: Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver
+
+services:
+    netgen_block_manager.templating.pagelayout_resolver.ezpublish:
+        class: "%netgen_block_manager.templating.pagelayout_resolver.ezpublish.class%"
+        arguments:
+            - "@ezpublish.config.resolver"
+            - "@request_stack"
+            - "%ezpublish.content_view.viewbase_layout%"
+            - "%netgen_block_manager.pagelayout%"
+
+    netgen_block_manager.templating.pagelayout_resolver:
+        alias: netgen_block_manager.templating.pagelayout_resolver.ezpublish
