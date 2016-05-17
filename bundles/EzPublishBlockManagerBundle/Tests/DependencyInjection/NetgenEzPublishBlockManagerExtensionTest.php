@@ -44,7 +44,7 @@ class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
             'netgen_block_manager.templating.pagelayout_resolver',
             'netgen_block_manager.templating.pagelayout_resolver.ezpublish'
         );
-        
+
         $this->assertContainerBuilderHasService('netgen_block_manager.configuration.config_resolver');
         $this->assertContainerBuilderHasAlias(
             'netgen_block_manager.configuration',

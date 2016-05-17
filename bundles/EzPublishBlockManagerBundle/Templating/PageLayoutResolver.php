@@ -2,8 +2,8 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Templating;
 
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use Netgen\Bundle\BlockManagerBundle\Templating\PageLayoutResolver as BasePageLayoutResolver;
+use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
