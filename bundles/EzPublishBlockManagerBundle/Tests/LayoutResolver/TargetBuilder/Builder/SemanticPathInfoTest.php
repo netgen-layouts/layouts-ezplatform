@@ -1,9 +1,9 @@
 <?php
 
-namespace Netgen\BlockManager\Tests\LayoutResolver\TargetBuilder\Builder;
+namespace Netgen\BlockManager\Tests\Layout\Resolver\TargetBuilder\Builder;
 
-use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\Target\SemanticPathInfo as SemanticPathInfoTarget;
-use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\SemanticPathInfo;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Target\SemanticPathInfo as SemanticPathInfoTarget;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\SemanticPathInfo;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +13,7 @@ class SemanticPathInfoTest extends \PHPUnit_Framework_TestCase
     use RequestStackAwareTrait;
 
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\SemanticPathInfo
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\SemanticPathInfo
      */
     protected $targetBuilder;
 
@@ -34,7 +34,7 @@ class SemanticPathInfoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\SemanticPathInfo::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\SemanticPathInfo::buildTarget
      */
     public function testBuildTarget()
     {
@@ -42,7 +42,7 @@ class SemanticPathInfoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\SemanticPathInfo::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\SemanticPathInfo::buildTarget
      */
     public function testBuildTargetWithEmptySemanticPathInfo()
     {
@@ -52,7 +52,7 @@ class SemanticPathInfoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\SemanticPathInfo::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\SemanticPathInfo::buildTarget
      */
     public function testBuildTargetWithNoRequest()
     {
@@ -63,7 +63,7 @@ class SemanticPathInfoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder\SemanticPathInfo::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\SemanticPathInfo::buildTarget
      */
     public function testBuildTargetWithNoSemanticPathInfo()
     {

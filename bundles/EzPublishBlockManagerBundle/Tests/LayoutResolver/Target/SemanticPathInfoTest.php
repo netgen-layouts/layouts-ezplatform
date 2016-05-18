@@ -1,13 +1,13 @@
 <?php
 
-namespace Netgen\Bundle\BlockManagerBundle\Tests\LayoutResolver\Target;
+namespace Netgen\Bundle\BlockManagerBundle\Tests\Layout\Resolver\Target;
 
-use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\Target\SemanticPathInfo;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Target\SemanticPathInfo;
 
 class SemanticPathInfoTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\Target\SemanticPathInfo::getIdentifier
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Target\SemanticPathInfo::getIdentifier
      */
     public function testGetIdentifier()
     {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\ConditionMatcher\Matcher;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\Matcher;
 
-use Netgen\BlockManager\LayoutResolver\ConditionMatcher\ConditionMatcherInterface;
+use Netgen\BlockManager\Layout\Resolver\ConditionMatcher\ConditionMatcherInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzPublishSiteAccess;

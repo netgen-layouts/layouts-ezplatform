@@ -1,13 +1,13 @@
 <?php
 
-namespace Netgen\Bundle\BlockManagerBundle\Tests\LayoutResolver\Target;
+namespace Netgen\Bundle\BlockManagerBundle\Tests\Layout\Resolver\Target;
 
-use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\Target\Location;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Target\Location;
 
 class LocationTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\Target\Location::getIdentifier
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Target\Location::getIdentifier
      */
     public function testGetIdentifier()
     {

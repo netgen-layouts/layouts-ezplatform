@@ -1,10 +1,10 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder;
 
-use Netgen\BlockManager\LayoutResolver\TargetBuilder\TargetBuilderInterface;
+use Netgen\BlockManager\Layout\Resolver\TargetBuilder\TargetBuilderInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
-use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\Target\Location as LocationTarget;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Target\Location as LocationTarget;
 use Symfony\Component\HttpFoundation\Request;
 
 class Location implements TargetBuilderInterface
@@ -14,7 +14,7 @@ class Location implements TargetBuilderInterface
     /**
      * Builds the target object that will be used to search for resolver rules.
      *
-     * @return \Netgen\BlockManager\LayoutResolver\Target
+     * @return \Netgen\BlockManager\Layout\Resolver\Target
      */
     public function buildTarget()
     {

@@ -1,15 +1,15 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder;
 
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\LocationService;
-use Netgen\BlockManager\LayoutResolver\TargetBuilder\TargetBuilderInterface;
+use Netgen\BlockManager\Layout\Resolver\TargetBuilder\TargetBuilderInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
-use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\Target\Children as ChildrenTarget;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Target\Subtree as SubtreeTarget;
 use Symfony\Component\HttpFoundation\Request;
 
-class Children implements TargetBuilderInterface
+class Subtree implements TargetBuilderInterface
 {
     use RequestStackAwareTrait;
 
@@ -31,7 +31,7 @@ class Children implements TargetBuilderInterface
     /**
      * Builds the target object that will be used to search for resolver rules.
      *
-     * @return \Netgen\BlockManager\LayoutResolver\Target
+     * @return \Netgen\BlockManager\Layout\Resolver\Target
      */
     public function buildTarget()
     {
@@ -52,8 +52,8 @@ class Children implements TargetBuilderInterface
             return false;
         }
 
-        return new ChildrenTarget(
-            array($location->parentLocationId)
+        return new SubtreeTarget(
+            $location->path
         );
     }
 }

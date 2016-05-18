@@ -1,13 +1,13 @@
 <?php
 
-namespace Netgen\Bundle\BlockManagerBundle\Tests\LayoutResolver\Target;
+namespace Netgen\Bundle\BlockManagerBundle\Tests\Layout\Resolver\Target;
 
-use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\Target\Children;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Target\Children;
 
 class ChildrenTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\Target\Children::getIdentifier
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Target\Children::getIdentifier
      */
     public function testGetIdentifier()
     {

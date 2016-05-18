@@ -1,8 +1,8 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\Target;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Target;
 
-use Netgen\BlockManager\LayoutResolver\Target;
+use Netgen\BlockManager\Layout\Resolver\Target;
 
 class Children extends Target
 {

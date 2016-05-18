@@ -1,20 +1,20 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\TargetBuilder\Builder;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder;
 
-use Netgen\BlockManager\LayoutResolver\TargetBuilder\TargetBuilderInterface;
+use Netgen\BlockManager\Layout\Resolver\TargetBuilder\TargetBuilderInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
-use Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\Target\SemanticPathInfo as SemanticPathInfoTarget;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Target\SemanticPathInfoPrefix as SemanticPathInfoPrefixTarget;
 use Symfony\Component\HttpFoundation\Request;
 
-class SemanticPathInfo implements TargetBuilderInterface
+class SemanticPathInfoPrefix implements TargetBuilderInterface
 {
     use RequestStackAwareTrait;
 
     /**
      * Builds the target object that will be used to search for resolver rules.
      *
-     * @return \Netgen\BlockManager\LayoutResolver\Target
+     * @return \Netgen\BlockManager\Layout\Resolver\Target
      */
     public function buildTarget()
     {
@@ -34,7 +34,7 @@ class SemanticPathInfo implements TargetBuilderInterface
             $semanticPathInfo = '/';
         }
 
-        return new SemanticPathInfoTarget(
+        return new SemanticPathInfoPrefixTarget(
             array($semanticPathInfo)
         );
     }

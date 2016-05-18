@@ -1,8 +1,8 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\LayoutResolver\RuleHandler\Doctrine\TargetHandler;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\RuleHandler\Doctrine\TargetHandler;
 
-use Netgen\BlockManager\LayoutResolver\RuleHandler\Doctrine\TargetHandler;
+use Netgen\BlockManager\Layout\Resolver\RuleHandler\Doctrine\TargetHandler;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Types\Type;
 
