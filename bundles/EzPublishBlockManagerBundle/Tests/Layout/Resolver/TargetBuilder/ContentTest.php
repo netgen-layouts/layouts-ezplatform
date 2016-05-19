@@ -1,9 +1,9 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\TargetBuilder\Builder;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\TargetBuilder;
 
-use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\Content;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Target\Content as ContentTarget;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Content;
+use Netgen\BlockManager\Layout\Resolver\Target;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +13,7 @@ class ContentTest extends \PHPUnit_Framework_TestCase
     use RequestStackAwareTrait;
 
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\Content
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Content
      */
     protected $targetBuilder;
 
@@ -34,15 +34,15 @@ class ContentTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\Content::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Content::buildTarget
      */
     public function testBuildTarget()
     {
-        self::assertEquals(new ContentTarget(array(42)), $this->targetBuilder->buildTarget());
+        self::assertEquals(new Target('content', array(42)), $this->targetBuilder->buildTarget());
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\Content::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Content::buildTarget
      */
     public function testBuildTargetWithNoRequest()
     {
@@ -53,7 +53,7 @@ class ContentTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\Content::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Content::buildTarget
      */
     public function testBuildTargetWithNoContentId()
     {

@@ -1,5 +1,5 @@
 parameters:
-    netgen_block_manager.layout.resolver.condition_matcher.siteaccess.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\Matcher\SiteAccess
+    netgen_block_manager.layout.resolver.condition_matcher.siteaccess.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\SiteAccess
 
 services:
     netgen_block_manager.layout.resolver.condition_matcher.siteaccess:

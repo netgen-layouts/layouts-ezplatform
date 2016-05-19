@@ -160,9 +160,9 @@ class ConfigResolverConfigurationTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::setConfigResolver
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::getParameter
-     * @expectedException \InvalidArgumentException
+     * @expectedException \OutOfBoundsException
      */
-    public function testGetParameterThrowsInvalidArgumentException()
+    public function testGetParameterThrowsOutOfBoundsException()
     {
         $this->configResolverMock
             ->expects($this->once())

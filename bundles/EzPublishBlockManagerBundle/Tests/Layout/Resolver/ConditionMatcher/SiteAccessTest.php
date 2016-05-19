@@ -1,8 +1,8 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\ConditionMatcher\Matcher;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\ConditionMatcher;
 
-use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\Matcher\SiteAccess;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\SiteAccess;
 use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzPublishSiteAccess;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -13,7 +13,7 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
     use RequestStackAwareTrait;
 
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\Matcher\SiteAccess
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\SiteAccess
      */
     protected $conditionMatcher;
 
@@ -34,7 +34,7 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\Matcher\SiteAccess::getConditionIdentifier
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\SiteAccess::getConditionIdentifier
      */
     public function testGetConditionIdentifier()
     {
@@ -42,7 +42,7 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\Matcher\SiteAccess::matches
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\SiteAccess::matches
      *
      * @param array $parameters
      * @param bool $matches
@@ -72,7 +72,7 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\Matcher\SiteAccess::matches
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\SiteAccess::matches
      */
     public function testMatchesWithNoRequest()
     {
@@ -83,7 +83,7 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\Matcher\SiteAccess::matches
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\SiteAccess::matches
      */
     public function testMatchesWithNoSiteAccess()
     {

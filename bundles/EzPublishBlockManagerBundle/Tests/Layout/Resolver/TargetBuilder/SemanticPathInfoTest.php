@@ -1,9 +1,9 @@
 <?php
 
-namespace Netgen\BlockManager\Tests\Layout\Resolver\TargetBuilder\Builder;
+namespace Netgen\BlockManager\Tests\Layout\Resolver\TargetBuilder;
 
-use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Target\SemanticPathInfo as SemanticPathInfoTarget;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\SemanticPathInfo;
+use Netgen\BlockManager\Layout\Resolver\Target;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\SemanticPathInfo;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +13,7 @@ class SemanticPathInfoTest extends \PHPUnit_Framework_TestCase
     use RequestStackAwareTrait;
 
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\SemanticPathInfo
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\SemanticPathInfo
      */
     protected $targetBuilder;
 
@@ -34,25 +34,25 @@ class SemanticPathInfoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\SemanticPathInfo::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\SemanticPathInfo::buildTarget
      */
     public function testBuildTarget()
     {
-        self::assertEquals(new SemanticPathInfoTarget(array('/the/answer')), $this->targetBuilder->buildTarget());
+        self::assertEquals(new Target('semantic_path_info', array('/the/answer')), $this->targetBuilder->buildTarget());
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\SemanticPathInfo::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\SemanticPathInfo::buildTarget
      */
     public function testBuildTargetWithEmptySemanticPathInfo()
     {
         $this->requestStack->getCurrentRequest()->attributes->set('semanticPathinfo', false);
 
-        self::assertEquals(new SemanticPathInfoTarget(array('/')), $this->targetBuilder->buildTarget());
+        self::assertEquals(new Target('semantic_path_info', array('/')), $this->targetBuilder->buildTarget());
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\SemanticPathInfo::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\SemanticPathInfo::buildTarget
      */
     public function testBuildTargetWithNoRequest()
     {
@@ -63,7 +63,7 @@ class SemanticPathInfoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\SemanticPathInfo::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\SemanticPathInfo::buildTarget
      */
     public function testBuildTargetWithNoSemanticPathInfo()
     {

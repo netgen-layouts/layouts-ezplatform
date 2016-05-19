@@ -1,15 +1,15 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder;
 
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\LocationService;
 use Netgen\BlockManager\Layout\Resolver\TargetBuilder\TargetBuilderInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Target\Subtree as SubtreeTarget;
+use Netgen\BlockManager\Layout\Resolver\Target;
 use Symfony\Component\HttpFoundation\Request;
 
-class Subtree implements TargetBuilderInterface
+class Children implements TargetBuilderInterface
 {
     use RequestStackAwareTrait;
 
@@ -52,8 +52,9 @@ class Subtree implements TargetBuilderInterface
             return false;
         }
 
-        return new SubtreeTarget(
-            $location->path
+        return new Target(
+            'children',
+            array($location->parentLocationId)
         );
     }
 }

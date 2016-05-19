@@ -1,12 +1,12 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\TargetBuilder\Builder;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\TargetBuilder;
 
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\LocationService;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\Children;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Target\Children as ChildrenTarget;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Children;
+use Netgen\BlockManager\Layout\Resolver\Target;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +16,7 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
     use RequestStackAwareTrait;
 
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\Children
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Children
      */
     protected $targetBuilder;
 
@@ -44,8 +44,8 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\Children::__construct
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\Children::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Children::__construct
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Children::buildTarget
      */
     public function testBuildTarget()
     {
@@ -55,11 +55,11 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo(42))
             ->will($this->returnValue(new Location(array('parentLocationId' => 84))));
 
-        self::assertEquals(new ChildrenTarget(array(84)), $this->targetBuilder->buildTarget());
+        self::assertEquals(new Target('children', array(84)), $this->targetBuilder->buildTarget());
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\Children::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Children::buildTarget
      */
     public function testBuildTargetWithNoRequest()
     {
@@ -74,7 +74,7 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\Children::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Children::buildTarget
      */
     public function testBuildTargetWithNoLocationId()
     {
@@ -89,7 +89,7 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder\Children::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Children::buildTarget
      */
     public function testBuildTargetWithNoLocation()
     {

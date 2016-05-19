@@ -1,6 +1,6 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\Matcher;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher;
 
 use Netgen\BlockManager\Layout\Resolver\ConditionMatcher\ConditionMatcherInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;

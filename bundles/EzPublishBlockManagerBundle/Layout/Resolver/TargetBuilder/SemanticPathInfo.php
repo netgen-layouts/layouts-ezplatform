@@ -1,13 +1,13 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Builder;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder;
 
 use Netgen\BlockManager\Layout\Resolver\TargetBuilder\TargetBuilderInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Target\SemanticPathInfoPrefix as SemanticPathInfoPrefixTarget;
+use Netgen\BlockManager\Layout\Resolver\Target;
 use Symfony\Component\HttpFoundation\Request;
 
-class SemanticPathInfoPrefix implements TargetBuilderInterface
+class SemanticPathInfo implements TargetBuilderInterface
 {
     use RequestStackAwareTrait;
 
@@ -34,7 +34,8 @@ class SemanticPathInfoPrefix implements TargetBuilderInterface
             $semanticPathInfo = '/';
         }
 
-        return new SemanticPathInfoPrefixTarget(
+        return new Target(
+            'semantic_path_info',
             array($semanticPathInfo)
         );
     }
