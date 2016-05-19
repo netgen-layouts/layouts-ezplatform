@@ -78,6 +78,7 @@ class EzContentSearch extends QueryType implements QueryTypeInterface
      */
     public function getValues(array $parameters, $offset = 0, $limit = null)
     {
+        return array();
     }
 
     /**
@@ -89,6 +90,7 @@ class EzContentSearch extends QueryType implements QueryTypeInterface
      */
     public function getCount(array $parameters)
     {
+        return 0;
     }
 
     /**
