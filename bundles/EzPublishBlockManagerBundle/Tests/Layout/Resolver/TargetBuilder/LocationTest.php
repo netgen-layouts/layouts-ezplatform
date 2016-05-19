@@ -49,7 +49,7 @@ class LocationTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no request
         $this->requestStack->pop();
 
-        self::assertFalse($this->targetBuilder->buildTarget());
+        self::assertNull($this->targetBuilder->buildTarget());
     }
 
     /**
@@ -60,6 +60,6 @@ class LocationTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no location ID attribute
         $this->requestStack->getCurrentRequest()->attributes->remove('locationId');
 
-        self::assertFalse($this->targetBuilder->buildTarget());
+        self::assertNull($this->targetBuilder->buildTarget());
     }
 }

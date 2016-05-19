@@ -70,7 +70,7 @@ class SubtreeTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no request
         $this->requestStack->pop();
 
-        self::assertFalse($this->targetBuilder->buildTarget());
+        self::assertNull($this->targetBuilder->buildTarget());
     }
 
     /**
@@ -85,7 +85,7 @@ class SubtreeTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no location ID attribute
         $this->requestStack->getCurrentRequest()->attributes->remove('locationId');
 
-        self::assertFalse($this->targetBuilder->buildTarget());
+        self::assertNull($this->targetBuilder->buildTarget());
     }
 
     /**
@@ -99,6 +99,6 @@ class SubtreeTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo(42))
             ->will($this->throwException(new NotFoundException('location', 42)));
 
-        self::assertFalse($this->targetBuilder->buildTarget());
+        self::assertNull($this->targetBuilder->buildTarget());
     }
 }

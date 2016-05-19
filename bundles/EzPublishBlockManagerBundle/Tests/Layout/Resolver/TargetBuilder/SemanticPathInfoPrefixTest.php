@@ -59,7 +59,7 @@ class SemanticPathInfoPrefixTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no request
         $this->requestStack->pop();
 
-        self::assertFalse($this->targetBuilder->buildTarget());
+        self::assertNull($this->targetBuilder->buildTarget());
     }
 
     /**
@@ -70,6 +70,6 @@ class SemanticPathInfoPrefixTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no semantic path info attribute
         $this->requestStack->getCurrentRequest()->attributes->remove('semanticPathinfo');
 
-        self::assertFalse($this->targetBuilder->buildTarget());
+        self::assertNull($this->targetBuilder->buildTarget());
     }
 }

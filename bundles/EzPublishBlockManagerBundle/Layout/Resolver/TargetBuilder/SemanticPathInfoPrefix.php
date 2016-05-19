@@ -14,17 +14,17 @@ class SemanticPathInfoPrefix implements TargetBuilderInterface
     /**
      * Builds the target object that will be used to search for resolver rules.
      *
-     * @return \Netgen\BlockManager\Layout\Resolver\Target
+     * @return \Netgen\BlockManager\Layout\Resolver\Target|null
      */
     public function buildTarget()
     {
         $currentRequest = $this->requestStack->getCurrentRequest();
         if (!$currentRequest instanceof Request) {
-            return false;
+            return;
         }
 
         if (!$currentRequest->attributes->has('semanticPathinfo')) {
-            return false;
+            return;
         }
 
         // Semantic path info can in some cases be false (for example, on homepage
