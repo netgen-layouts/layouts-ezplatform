@@ -2,12 +2,11 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Configuration;
 
-use Netgen\BlockManager\Configuration\Configuration;
 use Netgen\BlockManager\Configuration\ConfigurationInterface;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use OutOfBoundsException;
 
-class ConfigResolverConfiguration extends Configuration
+class ConfigResolverConfiguration implements ConfigurationInterface
 {
     /**
      * @var \Netgen\BlockManager\Configuration\ConfigurationInterface
