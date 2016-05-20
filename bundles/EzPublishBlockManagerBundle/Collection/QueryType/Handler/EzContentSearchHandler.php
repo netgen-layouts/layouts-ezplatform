@@ -1,14 +1,14 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Collection\QueryType;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Collection\QueryType\Handler;
 
+use Netgen\BlockManager\Collection\QueryType\QueryTypeHandlerInterface;
 use Netgen\BlockManager\Collection\QueryType;
 use eZ\Publish\API\Repository\ContentTypeService;
-use Netgen\BlockManager\Collection\QueryTypeInterface;
 use Netgen\BlockManager\Parameters\Parameter;
 use eZ\Publish\API\Repository\SearchService;
 
-class EzContentSearch extends QueryType implements QueryTypeInterface
+class EzContentSearchHandler implements QueryTypeHandlerInterface
 {
     /**
      * @var array
@@ -35,16 +35,6 @@ class EzContentSearch extends QueryType implements QueryTypeInterface
     {
         $this->contentTypeService = $contentTypeService;
         $this->searchService = $searchService;
-    }
-
-    /**
-     * Returns the query type.
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return 'ezcontent_search';
     }
 
     /**

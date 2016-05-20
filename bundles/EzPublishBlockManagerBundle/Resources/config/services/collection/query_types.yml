@@ -1,11 +1,11 @@
 parameters:
-    netgen_block_manager.collection.query_type.ezcontent_search.class: Netgen\Bundle\EzPublishBlockManagerBundle\Collection\QueryType\EzContentSearch
+    netgen_block_manager.collection.query_type.handler.ezcontent_search.class: Netgen\Bundle\EzPublishBlockManagerBundle\Collection\QueryType\Handler\EzContentSearchHandler
 
 services:
-    netgen_block_manager.collection.query_type.ezcontent_search:
-        class: "%netgen_block_manager.collection.query_type.ezcontent_search.class%"
+    netgen_block_manager.collection.query_type.handler.ezcontent_search:
+        class: "%netgen_block_manager.collection.query_type.handler.ezcontent_search.class%"
         arguments:
             - "@ezpublish.api.service.content_type"
             - "@ezpublish.api.service.search"
         tags:
-            - { name: netgen_block_manager.collection.query_type, identifier: ezcontent_search }
+            - { name: netgen_block_manager.collection.query_type_handler, type: ezcontent_search }
