@@ -1,8 +1,8 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Collection\ValueConverter;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueConverter;
 
-use Netgen\BlockManager\Collection\ValueConverterInterface;
+use Netgen\BlockManager\Value\ValueConverterInterface;
 use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\Core\Helper\TranslationHelper;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Collection\ValueLoader;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Value\ValueLoader;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Collection\ValueLoader\EzContentValueLoader;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueLoader\EzContentValueLoader;
 use Exception;
 
 class EzContentValueLoaderTest extends \PHPUnit_Framework_TestCase
@@ -15,7 +15,7 @@ class EzContentValueLoaderTest extends \PHPUnit_Framework_TestCase
     protected $contentServiceMock;
 
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Collection\ValueLoader\EzContentValueLoader
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueLoader\EzContentValueLoader
      */
     protected $valueLoader;
 
@@ -27,8 +27,8 @@ class EzContentValueLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Collection\ValueLoader\EzContentValueLoader::__construct
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Collection\ValueLoader\EzContentValueLoader::load
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueLoader\EzContentValueLoader::__construct
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueLoader\EzContentValueLoader::load
      */
     public function testLoad()
     {
@@ -46,7 +46,7 @@ class EzContentValueLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Collection\ValueLoader\EzContentValueLoader::load
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueLoader\EzContentValueLoader::load
      * @expectedException \RuntimeException
      */
     public function testLoadThrowsRuntimeException()
@@ -61,7 +61,7 @@ class EzContentValueLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Collection\ValueLoader\EzContentValueLoader::getValueType
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueLoader\EzContentValueLoader::getValueType
      */
     public function testGetValueType()
     {

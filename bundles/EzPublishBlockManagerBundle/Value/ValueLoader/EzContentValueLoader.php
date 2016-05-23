@@ -1,8 +1,8 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Collection\ValueLoader;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueLoader;
 
-use Netgen\BlockManager\Collection\ValueLoaderInterface;
+use Netgen\BlockManager\Value\ValueLoaderInterface;
 use eZ\Publish\API\Repository\ContentService;
 use RuntimeException;
 use Exception;

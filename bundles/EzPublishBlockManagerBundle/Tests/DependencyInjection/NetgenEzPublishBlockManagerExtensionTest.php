@@ -54,8 +54,7 @@ class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasService('netgen_block_manager.layout.resolver.condition_matcher.siteaccess');
         $this->assertContainerBuilderHasService('netgen_block_manager.layout.resolver.target_builder.location');
         $this->assertContainerBuilderHasService('netgen_block_manager.layout.resolver.rule_handler.doctrine.target_handler.location');
-        $this->assertContainerBuilderHasService('netgen_block_manager.collection.value_loader.ezcontent');
-        $this->assertContainerBuilderHasService('netgen_block_manager.collection.value_converter.ezcontent');
         $this->assertContainerBuilderHasService('netgen_block_manager.collection.query_type.handler.ezcontent_search');
+        $this->assertContainerBuilderHasService('netgen_block_manager.value.value_loader.ezcontent');
     }
 }
