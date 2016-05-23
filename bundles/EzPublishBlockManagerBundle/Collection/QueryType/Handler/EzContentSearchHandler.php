@@ -3,7 +3,6 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Collection\QueryType\Handler;
 
 use Netgen\BlockManager\Collection\QueryType\QueryTypeHandlerInterface;
-use Netgen\BlockManager\Collection\QueryType;
 use eZ\Publish\API\Repository\ContentTypeService;
 use Netgen\BlockManager\Parameters\Parameter;
 use eZ\Publish\API\Repository\SearchService;
