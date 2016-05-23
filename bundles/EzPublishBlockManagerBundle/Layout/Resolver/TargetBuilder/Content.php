@@ -28,8 +28,10 @@ class Content implements TargetBuilderInterface
         }
 
         return new Target(
-            'content',
-            array($currentRequest->attributes->get('contentId'))
+            array(
+                'identifier' => 'content',
+                'values' => array($currentRequest->attributes->get('contentId'))
+            )
         );
     }
 }

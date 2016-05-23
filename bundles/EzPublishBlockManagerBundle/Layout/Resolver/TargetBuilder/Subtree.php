@@ -53,8 +53,10 @@ class Subtree implements TargetBuilderInterface
         }
 
         return new Target(
-            'subtree',
-            $location->path
+            array(
+                'identifier' => 'subtree',
+                'values' => $location->path
+            )
         );
     }
 }

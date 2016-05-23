@@ -55,7 +55,10 @@ class SubtreeTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo(42))
             ->will($this->returnValue(new Location(array('pathString' => '/1/2/42/'))));
 
-        self::assertEquals(new Target('subtree', array(1, 2, 42)), $this->targetBuilder->buildTarget());
+        self::assertEquals(
+            new Target(array('identifier' => 'subtree', 'values' => array(1, 2, 42))),
+            $this->targetBuilder->buildTarget()
+        );
     }
 
     /**

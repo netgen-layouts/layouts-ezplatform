@@ -38,7 +38,10 @@ class LocationTest extends \PHPUnit_Framework_TestCase
      */
     public function testBuildTarget()
     {
-        self::assertEquals(new Target('location', array(42)), $this->targetBuilder->buildTarget());
+        self::assertEquals(
+            new Target(array('identifier' => 'location', 'values' => array(42))),
+            $this->targetBuilder->buildTarget()
+        );
     }
 
     /**

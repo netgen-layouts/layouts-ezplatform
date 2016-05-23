@@ -38,7 +38,10 @@ class ContentTest extends \PHPUnit_Framework_TestCase
      */
     public function testBuildTarget()
     {
-        self::assertEquals(new Target('content', array(42)), $this->targetBuilder->buildTarget());
+        self::assertEquals(
+            new Target(array('identifier' => 'content', 'values' => array(42))),
+            $this->targetBuilder->buildTarget()
+        );
     }
 
     /**

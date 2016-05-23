@@ -55,7 +55,10 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo(42))
             ->will($this->returnValue(new Location(array('parentLocationId' => 84))));
 
-        self::assertEquals(new Target('children', array(84)), $this->targetBuilder->buildTarget());
+        self::assertEquals(
+            new Target(array('identifier' => 'children', 'values' => array(84))),
+            $this->targetBuilder->buildTarget()
+        );
     }
 
     /**

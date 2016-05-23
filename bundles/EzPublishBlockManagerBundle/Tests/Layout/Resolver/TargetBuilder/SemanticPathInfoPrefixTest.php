@@ -38,7 +38,10 @@ class SemanticPathInfoPrefixTest extends \PHPUnit_Framework_TestCase
      */
     public function testBuildTarget()
     {
-        self::assertEquals(new Target('semantic_path_info_prefix', array('/the/answer')), $this->targetBuilder->buildTarget());
+        self::assertEquals(
+            new Target(array('identifier' => 'semantic_path_info_prefix', 'values' => array('/the/answer'))),
+            $this->targetBuilder->buildTarget()
+        );
     }
 
     /**
@@ -48,7 +51,10 @@ class SemanticPathInfoPrefixTest extends \PHPUnit_Framework_TestCase
     {
         $this->requestStack->getCurrentRequest()->attributes->set('semanticPathinfo', false);
 
-        self::assertEquals(new Target('semantic_path_info_prefix', array('/')), $this->targetBuilder->buildTarget());
+        self::assertEquals(
+            new Target(array('identifier' => 'semantic_path_info_prefix', 'values' => array('/'))),
+            $this->targetBuilder->buildTarget()
+        );
     }
 
     /**
