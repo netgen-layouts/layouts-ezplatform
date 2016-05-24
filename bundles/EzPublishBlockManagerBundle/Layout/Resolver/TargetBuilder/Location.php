@@ -30,7 +30,7 @@ class Location implements TargetBuilderInterface
         return new Target(
             array(
                 'identifier' => 'location',
-                'values' => array($currentRequest->attributes->get('locationId'))
+                'values' => array($currentRequest->attributes->get('locationId')),
             )
         );
     }

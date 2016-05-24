@@ -30,7 +30,7 @@ class Content implements TargetBuilderInterface
         return new Target(
             array(
                 'identifier' => 'content',
-                'values' => array($currentRequest->attributes->get('contentId'))
+                'values' => array($currentRequest->attributes->get('contentId')),
             )
         );
     }

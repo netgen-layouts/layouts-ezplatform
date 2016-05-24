@@ -37,7 +37,7 @@ class SemanticPathInfo implements TargetBuilderInterface
         return new Target(
             array(
                 'identifier' => 'semantic_path_info',
-                'values' => array($semanticPathInfo)
+                'values' => array($semanticPathInfo),
             )
         );
     }

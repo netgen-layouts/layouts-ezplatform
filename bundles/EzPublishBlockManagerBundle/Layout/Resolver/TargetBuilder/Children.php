@@ -55,7 +55,7 @@ class Children implements TargetBuilderInterface
         return new Target(
             array(
                 'identifier' => 'children',
-                'values' => array($location->parentLocationId)
+                'values' => array($location->parentLocationId),
             )
         );
     }
