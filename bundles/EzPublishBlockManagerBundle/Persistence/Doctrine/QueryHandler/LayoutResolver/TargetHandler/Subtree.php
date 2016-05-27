@@ -2,10 +2,11 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler;
 
+use Netgen\BlockManager\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Connection;
 
-class Subtree extends Location
+class Subtree implements TargetHandler
 {
     /**
      * Handles the query by adding the clause that matches the provided target values.
