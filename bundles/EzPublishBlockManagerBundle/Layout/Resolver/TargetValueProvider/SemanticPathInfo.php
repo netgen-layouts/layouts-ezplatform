@@ -1,22 +1,21 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider;
 
-use Netgen\BlockManager\Layout\Resolver\TargetBuilder\TargetBuilderInterface;
+use Netgen\BlockManager\Layout\Resolver\TargetValueProviderInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
-use Netgen\BlockManager\Layout\Resolver\Target;
 use Symfony\Component\HttpFoundation\Request;
 
-class SemanticPathInfo implements TargetBuilderInterface
+class SemanticPathInfo implements TargetValueProviderInterface
 {
     use RequestStackAwareTrait;
 
     /**
-     * Builds the target object that will be used to search for resolver rules.
+     * Provides the value for the target to be used in matching process.
      *
-     * @return \Netgen\BlockManager\Layout\Resolver\Target|null
+     * @return mixed
      */
-    public function buildTarget()
+    public function provideValue()
     {
         $currentRequest = $this->requestStack->getCurrentRequest();
         if (!$currentRequest instanceof Request) {
@@ -28,17 +27,12 @@ class SemanticPathInfo implements TargetBuilderInterface
         }
 
         // Semantic path info can in some cases be false (for example, on homepage
-        // of Croatian siteaccess: /cro)
+        // of a secondary siteaccess: i.e. /cro)
         $semanticPathInfo = $currentRequest->attributes->get('semanticPathinfo');
         if (empty($semanticPathInfo)) {
             $semanticPathInfo = '/';
         }
 
-        return new Target(
-            array(
-                'identifier' => 'semantic_path_info',
-                'values' => array($semanticPathInfo),
-            )
-        );
+        return $semanticPathInfo;
     }
 }

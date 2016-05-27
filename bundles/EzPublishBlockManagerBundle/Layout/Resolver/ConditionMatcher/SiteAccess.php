@@ -2,7 +2,7 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher;
 
-use Netgen\BlockManager\Layout\Resolver\ConditionMatcher\ConditionMatcherInterface;
+use Netgen\BlockManager\Layout\Resolver\ConditionMatcherInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzPublishSiteAccess;
@@ -22,13 +22,13 @@ class SiteAccess implements ConditionMatcherInterface
     }
 
     /**
-     * Returns if this condition matches provided parameters.
+     * Returns if this condition matches the provided value.
      *
-     * @param array $parameters
+     * @param mixed $value
      *
      * @return bool
      */
-    public function matches(array $parameters)
+    public function matches($value)
     {
         $currentRequest = $this->requestStack->getCurrentRequest();
         if (!$currentRequest instanceof Request) {
@@ -40,10 +40,10 @@ class SiteAccess implements ConditionMatcherInterface
             return false;
         }
 
-        if (empty($parameters)) {
+        if (!is_array($value) || empty($value)) {
             return false;
         }
 
-        return in_array($siteAccess->name, $parameters);
+        return in_array($siteAccess->name, $value);
     }
 }

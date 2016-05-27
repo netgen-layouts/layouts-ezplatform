@@ -44,14 +44,14 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\SiteAccess::matches
      *
-     * @param array $parameters
+     * @param mixed $value
      * @param bool $matches
      *
      * @dataProvider matchesProvider
      */
-    public function testMatches($parameters, $matches)
+    public function testMatches($value, $matches)
     {
-        self::assertEquals($matches, $this->conditionMatcher->matches($parameters));
+        self::assertEquals($matches, $this->conditionMatcher->matches($value));
     }
 
     /**
@@ -62,6 +62,7 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
     public function matchesProvider()
     {
         return array(
+            array('not_array', false),
             array(array(), false),
             array(array('eng'), true),
             array(array('cro'), false),
@@ -79,7 +80,7 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no request
         $this->requestStack->pop();
 
-        self::assertFalse($this->conditionMatcher->matches(array()));
+        self::assertFalse($this->conditionMatcher->matches(array('eng')));
     }
 
     /**
@@ -90,6 +91,6 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no siteaccess
         $this->requestStack->getCurrentRequest()->attributes->remove('siteaccess');
 
-        self::assertFalse($this->conditionMatcher->matches(array()));
+        self::assertFalse($this->conditionMatcher->matches(array('eng')));
     }
 }

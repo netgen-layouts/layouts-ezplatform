@@ -1,24 +1,18 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\TargetBuilder;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\TargetValueProvider;
 
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\LocationService;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Children;
-use Netgen\BlockManager\Layout\Resolver\Target;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Subtree;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
 
-class ChildrenTest extends \PHPUnit_Framework_TestCase
+class SubtreeTest extends \PHPUnit_Framework_TestCase
 {
     use RequestStackAwareTrait;
-
-    /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Children
-     */
-    protected $targetBuilder;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
@@ -26,8 +20,10 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
     protected $locationServiceMock;
 
     /**
-     * Sets up the route target builder tests.
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Subtree
      */
+    protected $targetBuilder;
+
     public function setUp()
     {
         $request = Request::create('/');
@@ -39,32 +35,32 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
 
         $this->locationServiceMock = $this->getMock(LocationService::class);
 
-        $this->targetBuilder = new Children($this->locationServiceMock);
+        $this->targetBuilder = new Subtree($this->locationServiceMock);
         $this->targetBuilder->setRequestStack($this->requestStack);
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Children::__construct
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Children::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Subtree::__construct
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Subtree::provideValue
      */
-    public function testBuildTarget()
+    public function testProvideValue()
     {
         $this->locationServiceMock
             ->expects($this->once())
             ->method('loadLocation')
             ->with($this->equalTo(42))
-            ->will($this->returnValue(new Location(array('parentLocationId' => 84))));
+            ->will($this->returnValue(new Location(array('pathString' => '/1/2/42/'))));
 
         self::assertEquals(
-            new Target(array('identifier' => 'children', 'values' => array(84))),
-            $this->targetBuilder->buildTarget()
+            array(1, 2, 42),
+            $this->targetBuilder->provideValue()
         );
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Children::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Subtree::provideValue
      */
-    public function testBuildTargetWithNoRequest()
+    public function testProvideValueWithNoRequest()
     {
         $this->locationServiceMock
             ->expects($this->never())
@@ -73,13 +69,13 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no request
         $this->requestStack->pop();
 
-        self::assertNull($this->targetBuilder->buildTarget());
+        self::assertNull($this->targetBuilder->provideValue());
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Children::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Subtree::provideValue
      */
-    public function testBuildTargetWithNoLocationId()
+    public function testProvideValueWithNoLocationId()
     {
         $this->locationServiceMock
             ->expects($this->never())
@@ -88,13 +84,13 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
         // Make sure we have no location ID attribute
         $this->requestStack->getCurrentRequest()->attributes->remove('locationId');
 
-        self::assertNull($this->targetBuilder->buildTarget());
+        self::assertNull($this->targetBuilder->provideValue());
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder\Children::buildTarget
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Subtree::provideValue
      */
-    public function testBuildTargetWithNoLocation()
+    public function testProvideValueWithNoLocation()
     {
         $this->locationServiceMock
             ->expects($this->once())
@@ -102,6 +98,6 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo(42))
             ->will($this->throwException(new NotFoundException('location', 42)));
 
-        self::assertNull($this->targetBuilder->buildTarget());
+        self::assertNull($this->targetBuilder->provideValue());
     }
 }

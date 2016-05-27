@@ -1,15 +1,14 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetBuilder;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider;
 
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\LocationService;
-use Netgen\BlockManager\Layout\Resolver\TargetBuilder\TargetBuilderInterface;
+use Netgen\BlockManager\Layout\Resolver\TargetValueProviderInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
-use Netgen\BlockManager\Layout\Resolver\Target;
 use Symfony\Component\HttpFoundation\Request;
 
-class Subtree implements TargetBuilderInterface
+class Children implements TargetValueProviderInterface
 {
     use RequestStackAwareTrait;
 
@@ -29,11 +28,11 @@ class Subtree implements TargetBuilderInterface
     }
 
     /**
-     * Builds the target object that will be used to search for resolver rules.
+     * Provides the value for the target to be used in matching process.
      *
-     * @return \Netgen\BlockManager\Layout\Resolver\Target|null
+     * @return mixed
      */
-    public function buildTarget()
+    public function provideValue()
     {
         $currentRequest = $this->requestStack->getCurrentRequest();
         if (!$currentRequest instanceof Request) {
@@ -52,11 +51,6 @@ class Subtree implements TargetBuilderInterface
             return;
         }
 
-        return new Target(
-            array(
-                'identifier' => 'subtree',
-                'values' => $location->path,
-            )
-        );
+        return $location->parentLocationId;
     }
 }
