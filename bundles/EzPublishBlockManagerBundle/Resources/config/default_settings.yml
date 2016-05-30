@@ -1,4 +1,5 @@
 parameters:
     netgen_block_manager.default.block_view: []
+    netgen_block_manager.default.item_view: []
     netgen_block_manager.default.layout_view: []
     netgen_block_manager.default.query_view: []

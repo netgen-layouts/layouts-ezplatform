@@ -13,6 +13,7 @@ class NetgenEzPublishBlockManagerExtension extends Extension
 {
     protected $siteAccessAwareSettings = array(
         'block_view',
+        'item_view',
         'layout_view',
         'query_view',
     );

@@ -26,6 +26,7 @@ abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
         'layout_types' => array(),
         'block_type_groups' => array(),
         'block_view' => array(),
+        'item_view' => array(),
         'layout_view' => array(),
         'query_view' => array(),
         'sources' => array(),
@@ -41,6 +42,7 @@ abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
      */
     protected $defaultSystemConfig = array(
         'block_view' => array(),
+        'item_view' => array(),
         'layout_view' => array(),
         'query_view' => array(),
     );
