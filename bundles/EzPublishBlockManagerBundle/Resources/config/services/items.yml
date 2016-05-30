@@ -1,0 +1,35 @@
+parameters:
+    netgen_block_manager.item.value_converter.ezcontent.class: Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzContentValueConverter
+    netgen_block_manager.item.value_converter.ezlocation.class: Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzLocationValueConverter
+    netgen_block_manager.item.value_loader.ezcontent.class: Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\EzContentValueLoader
+    netgen_block_manager.item.value_loader.ezlocation.class: Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\EzLocationValueLoader
+
+services:
+    netgen_block_manager.item.value_converter.ezcontent:
+        class: "%netgen_block_manager.item.value_converter.ezcontent.class%"
+        arguments:
+            - "@ezpublish.api.service.location"
+            - "@ezpublish.translation_helper"
+        tags:
+            - { name: netgen_block_manager.item.value_converter }
+
+    netgen_block_manager.item.value_converter.ezlocation:
+        class: "%netgen_block_manager.item.value_converter.ezlocation.class%"
+        arguments:
+            - "@ezpublish.translation_helper"
+        tags:
+            - { name: netgen_block_manager.item.value_converter }
+
+    netgen_block_manager.item.value_loader.ezcontent:
+        class: "%netgen_block_manager.item.value_loader.ezcontent.class%"
+        arguments:
+            - "@ezpublish.api.service.content"
+        tags:
+            - { name: netgen_block_manager.item.value_loader }
+
+    netgen_block_manager.item.value_loader.ezlocation:
+        class: "%netgen_block_manager.item.value_loader.ezlocation.class%"
+        arguments:
+            - "@ezpublish.api.service.location"
+        tags:
+            - { name: netgen_block_manager.item.value_loader }

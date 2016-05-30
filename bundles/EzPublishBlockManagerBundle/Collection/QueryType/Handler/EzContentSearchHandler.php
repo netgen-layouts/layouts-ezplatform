@@ -2,10 +2,13 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Collection\QueryType\Handler;
 
+use eZ\Publish\API\Repository\Values\Content\Query;
+use eZ\Publish\API\Repository\Values\Content\Search\SearchHit;
 use Netgen\BlockManager\Collection\QueryType\QueryTypeHandlerInterface;
 use eZ\Publish\API\Repository\ContentTypeService;
 use Netgen\BlockManager\Parameters\Parameter;
 use eZ\Publish\API\Repository\SearchService;
+use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 
 class EzContentSearchHandler implements QueryTypeHandlerInterface
 {
@@ -67,7 +70,25 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
      */
     public function getValues(array $parameters, $offset = 0, $limit = null)
     {
-        return array();
+        $query = new Query();
+
+        $query->filter = new Criterion\LogicalAnd(
+            array(
+                new Criterion\ParentLocationId(71)
+            )
+        );
+
+        $query->offset = $offset;
+        $query->limit = 3;
+
+        $searchResult = $this->searchService->findContentInfo($query);
+
+        return array_map(
+            function (SearchHit $searchHit) {
+                return $searchHit->valueObject;
+            },
+            $searchResult->searchHits
+        );
     }
 
     /**
@@ -79,7 +100,7 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
      */
     public function getCount(array $parameters)
     {
-        return 0;
+        return 3;
     }
 
     /**

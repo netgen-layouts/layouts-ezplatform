@@ -1,11 +1,11 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Value\ValueConverter;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Item\ValueConverter;
 
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\Helper\TranslationHelper;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueConverter\EzLocationValueConverter;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzLocationValueConverter;
 
 class EzLocationValueLoaderTest extends \PHPUnit_Framework_TestCase
 {
@@ -15,7 +15,7 @@ class EzLocationValueLoaderTest extends \PHPUnit_Framework_TestCase
     protected $translationHelperMock;
 
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueConverter\EzLocationValueConverter
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzLocationValueConverter
      */
     protected $valueConverter;
 
@@ -37,8 +37,8 @@ class EzLocationValueLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueConverter\EzLocationValueConverter::__construct
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueConverter\EzLocationValueConverter::supports
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzLocationValueConverter::__construct
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzLocationValueConverter::supports
      */
     public function testSupports()
     {
@@ -47,7 +47,7 @@ class EzLocationValueLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueConverter\EzLocationValueConverter::getValueType
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzLocationValueConverter::getValueType
      */
     public function testGetValueType()
     {
@@ -60,7 +60,7 @@ class EzLocationValueLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueConverter\EzLocationValueConverter::getId
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzLocationValueConverter::getId
      */
     public function testGetId()
     {
@@ -73,7 +73,7 @@ class EzLocationValueLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueConverter\EzLocationValueConverter::getName
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzLocationValueConverter::getName
      */
     public function testGetName()
     {
@@ -86,7 +86,7 @@ class EzLocationValueLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueConverter\EzLocationValueConverter::getIsVisible
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzLocationValueConverter::getIsVisible
      */
     public function testGetIsVisible()
     {

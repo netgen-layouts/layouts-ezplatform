@@ -1,12 +1,12 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Value\ValueConverter;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Item\ValueConverter;
 
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\Helper\TranslationHelper;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueConverter\EzContentValueConverter;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzContentValueConverter;
 
 class EzContentValueLoaderTest extends \PHPUnit_Framework_TestCase
 {
@@ -21,7 +21,7 @@ class EzContentValueLoaderTest extends \PHPUnit_Framework_TestCase
     protected $translationHelperMock;
 
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueConverter\EzContentValueConverter
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzContentValueConverter
      */
     protected $valueConverter;
 
@@ -54,8 +54,8 @@ class EzContentValueLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueConverter\EzContentValueConverter::__construct
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueConverter\EzContentValueConverter::supports
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzContentValueConverter::__construct
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzContentValueConverter::supports
      */
     public function testSupports()
     {
@@ -64,7 +64,7 @@ class EzContentValueLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueConverter\EzContentValueConverter::getValueType
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzContentValueConverter::getValueType
      */
     public function testGetValueType()
     {
@@ -77,7 +77,7 @@ class EzContentValueLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueConverter\EzContentValueConverter::getId
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzContentValueConverter::getId
      */
     public function testGetId()
     {
@@ -90,7 +90,7 @@ class EzContentValueLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueConverter\EzContentValueConverter::getName
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzContentValueConverter::getName
      */
     public function testGetName()
     {
@@ -103,7 +103,7 @@ class EzContentValueLoaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueConverter\EzContentValueConverter::getIsVisible
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzContentValueConverter::getIsVisible
      */
     public function testGetIsVisible()
     {

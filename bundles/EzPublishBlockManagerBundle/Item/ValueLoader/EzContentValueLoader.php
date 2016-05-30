@@ -1,27 +1,27 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Value\ValueLoader;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader;
 
-use Netgen\BlockManager\Value\ValueLoaderInterface;
-use eZ\Publish\API\Repository\LocationService;
+use Netgen\BlockManager\Item\ValueLoaderInterface;
+use eZ\Publish\API\Repository\ContentService;
 use RuntimeException;
 use Exception;
 
-class EzLocationValueLoader implements ValueLoaderInterface
+class EzContentValueLoader implements ValueLoaderInterface
 {
     /**
-     * @var \eZ\Publish\API\Repository\LocationService
+     * @var \eZ\Publish\API\Repository\ContentService
      */
-    protected $locationService;
+    protected $contentService;
 
     /**
      * Constructor.
      *
-     * @param \eZ\Publish\API\Repository\LocationService $locationService
+     * @param \eZ\Publish\API\Repository\ContentService $contentService
      */
-    public function __construct(LocationService $locationService)
+    public function __construct(ContentService $contentService)
     {
-        $this->locationService = $locationService;
+        $this->contentService = $contentService;
     }
 
     /**
@@ -31,7 +31,7 @@ class EzLocationValueLoader implements ValueLoaderInterface
      */
     public function getValueType()
     {
-        return 'ezlocation';
+        return 'ezcontent';
     }
 
     /**
@@ -46,7 +46,7 @@ class EzLocationValueLoader implements ValueLoaderInterface
     public function load($id)
     {
         try {
-            return $this->locationService->loadLocation($id);
+            return $this->contentService->loadContentInfo($id);
         } catch (Exception $e) {
             throw new RuntimeException('Value with ID ' . $id . ' could not be loaded.');
         }
