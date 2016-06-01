@@ -74,7 +74,7 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
 
         $query->filter = new Criterion\LogicalAnd(
             array(
-                new Criterion\ParentLocationId(71)
+                new Criterion\ParentLocationId(71),
             )
         );
 
