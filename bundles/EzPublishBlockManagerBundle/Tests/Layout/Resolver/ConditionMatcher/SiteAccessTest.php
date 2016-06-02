@@ -34,14 +34,6 @@ class SiteAccessTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\SiteAccess::getConditionIdentifier
-     */
-    public function testGetConditionIdentifier()
-    {
-        self::assertEquals('siteaccess', $this->conditionMatcher->getConditionIdentifier());
-    }
-
-    /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\SiteAccess::matches
      *
      * @param mixed $value

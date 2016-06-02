@@ -12,16 +12,6 @@ class SiteAccess implements ConditionMatcherInterface
     use RequestStackAwareTrait;
 
     /**
-     * Returns the unique identifier of the condition this matcher matches.
-     *
-     * @return string
-     */
-    public function getConditionIdentifier()
-    {
-        return 'siteaccess';
-    }
-
-    /**
      * Returns if this condition matches the provided value.
      *
      * @param mixed $value
