@@ -2,9 +2,9 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader;
 
+use Netgen\BlockManager\Exception\InvalidItemException;
 use Netgen\BlockManager\Item\ValueLoaderInterface;
 use eZ\Publish\API\Repository\LocationService;
-use RuntimeException;
 use Exception;
 
 class EzLocationValueLoader implements ValueLoaderInterface
@@ -39,7 +39,7 @@ class EzLocationValueLoader implements ValueLoaderInterface
      *
      * @param int|string $id
      *
-     * @throws \RuntimeException If value cannot be loaded
+     * @throws \Netgen\BlockManager\Exception\InvalidItemException If value cannot be loaded
      *
      * @return mixed
      */
@@ -48,7 +48,7 @@ class EzLocationValueLoader implements ValueLoaderInterface
         try {
             return $this->locationService->loadLocation($id);
         } catch (Exception $e) {
-            throw new RuntimeException('Value with ID ' . $id . ' could not be loaded.');
+            throw new InvalidItemException('Value with ID ' . $id . ' could not be loaded.');
         }
     }
 }

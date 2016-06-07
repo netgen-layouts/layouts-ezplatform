@@ -47,9 +47,9 @@ class EzLocationValueLoaderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\EzLocationValueLoader::load
-     * @expectedException \RuntimeException
+     * @expectedException \Netgen\BlockManager\Exception\InvalidItemException
      */
-    public function testLoadThrowsRuntimeException()
+    public function testLoadThrowsInvalidItemException()
     {
         $this->locationServiceMock
             ->expects($this->any())
