@@ -21,7 +21,7 @@ class EzLocationValueLoaderTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->locationServiceMock = $this->getMock(LocationService::class);
+        $this->locationServiceMock = $this->createMock(LocationService::class);
 
         $this->valueLoader = new EzLocationValueLoader($this->locationServiceMock);
     }

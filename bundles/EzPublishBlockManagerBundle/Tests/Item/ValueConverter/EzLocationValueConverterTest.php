@@ -21,9 +21,7 @@ class EzLocationValueConverterTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->translationHelperMock = $this->getMockBuilder(TranslationHelper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->translationHelperMock = $this->createMock(TranslationHelper::class);
 
         $this->translationHelperMock
             ->expects($this->any())

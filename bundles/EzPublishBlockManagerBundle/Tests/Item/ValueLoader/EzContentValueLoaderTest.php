@@ -21,7 +21,7 @@ class EzContentValueLoaderTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->contentServiceMock = $this->getMock(ContentService::class);
+        $this->contentServiceMock = $this->createMock(ContentService::class);
 
         $this->valueLoader = new EzContentValueLoader($this->contentServiceMock);
     }

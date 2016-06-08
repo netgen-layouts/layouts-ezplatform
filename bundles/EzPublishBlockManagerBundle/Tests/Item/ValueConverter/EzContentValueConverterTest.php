@@ -27,7 +27,7 @@ class EzContentValueConverterTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->locationServiceMock = $this->getMock(LocationService::class);
+        $this->locationServiceMock = $this->createMock(LocationService::class);
 
         $this->locationServiceMock
             ->expects($this->any())
@@ -37,9 +37,7 @@ class EzContentValueConverterTest extends \PHPUnit_Framework_TestCase
                 function ($id) { return new Location(array('id' => $id, 'invisible' => false)); })
             );
 
-        $this->translationHelperMock = $this->getMockBuilder(TranslationHelper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->translationHelperMock = $this->createMock(TranslationHelper::class);
 
         $this->translationHelperMock
             ->expects($this->any())

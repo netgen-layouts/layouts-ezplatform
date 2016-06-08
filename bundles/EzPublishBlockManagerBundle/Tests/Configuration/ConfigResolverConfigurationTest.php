@@ -32,8 +32,8 @@ class ConfigResolverConfigurationTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped('No eZ Publish installed, ConfigResolverConfiguration tests skipped.');
         }
 
-        $this->configResolverMock = $this->getMock(ConfigResolverInterface::class);
-        $this->fallbackConfigurationMock = $this->getMock(ConfigurationInterface::class);
+        $this->configResolverMock = $this->createMock(ConfigResolverInterface::class);
+        $this->fallbackConfigurationMock = $this->createMock(ConfigurationInterface::class);
 
         $this->configuration = new ConfigResolverConfiguration($this->fallbackConfigurationMock);
         $this->configuration->setConfigResolver($this->configResolverMock);

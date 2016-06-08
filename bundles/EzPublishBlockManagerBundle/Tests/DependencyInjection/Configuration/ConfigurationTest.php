@@ -76,7 +76,7 @@ abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $this->configPreProcessor = $extension->getPreProcessor();
         $this->configPostProcessor = $extension->getPostProcessor();
 
-        $this->containerBuilderMock = $this->getMock(ContainerBuilder::class);
+        $this->containerBuilderMock = $this->createMock(ContainerBuilder::class);
 
         $this->partialProcessor = new PartialProcessor();
     }

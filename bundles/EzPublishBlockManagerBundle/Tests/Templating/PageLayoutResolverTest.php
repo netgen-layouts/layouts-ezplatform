@@ -26,9 +26,9 @@ class PageLayoutResolverTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->configResolverMock = $this->getMock(ConfigResolverInterface::class);
+        $this->configResolverMock = $this->createMock(ConfigResolverInterface::class);
 
-        $this->requestStackMock = $this->getMock(RequestStack::class);
+        $this->requestStackMock = $this->createMock(RequestStack::class);
 
         $this->resolver = new PageLayoutResolver(
             $this->configResolverMock,
