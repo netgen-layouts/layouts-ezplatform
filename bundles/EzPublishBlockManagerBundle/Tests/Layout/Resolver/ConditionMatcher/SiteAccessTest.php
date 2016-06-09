@@ -7,8 +7,9 @@ use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzPublishSiteAccess;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
+use PHPUnit\Framework\TestCase;
 
-class SiteAccessTest extends \PHPUnit\Framework\TestCase
+class SiteAccessTest extends TestCase
 {
     use RequestStackAwareTrait;
 

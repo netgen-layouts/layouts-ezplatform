@@ -9,8 +9,9 @@ use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvide
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
+use PHPUnit\Framework\TestCase;
 
-class ChildrenTest extends \PHPUnit\Framework\TestCase
+class ChildrenTest extends TestCase
 {
     use RequestStackAwareTrait;
 

@@ -6,8 +6,9 @@ use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\Helper\TranslationHelper;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzLocationValueConverter;
+use PHPUnit\Framework\TestCase;
 
-class EzLocationValueConverterTest extends \PHPUnit\Framework\TestCase
+class EzLocationValueConverterTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject

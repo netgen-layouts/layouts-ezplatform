@@ -6,8 +6,9 @@ use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\EzContentValueLoader;
 use Exception;
+use PHPUnit\Framework\TestCase;
 
-class EzContentValueLoaderTest extends \PHPUnit\Framework\TestCase
+class EzContentValueLoaderTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject

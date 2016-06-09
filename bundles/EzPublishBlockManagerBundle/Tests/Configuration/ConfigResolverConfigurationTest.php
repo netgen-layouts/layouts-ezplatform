@@ -5,8 +5,9 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Configuration;
 use Netgen\BlockManager\Configuration\ConfigurationInterface;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use PHPUnit\Framework\TestCase;
 
-class ConfigResolverConfigurationTest extends \PHPUnit\Framework\TestCase
+class ConfigResolverConfigurationTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject

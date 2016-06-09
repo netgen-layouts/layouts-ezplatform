@@ -6,8 +6,9 @@ use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\EzLocationValueLoader;
 use Exception;
+use PHPUnit\Framework\TestCase;
 
-class EzLocationValueLoaderTest extends \PHPUnit\Framework\TestCase
+class EzLocationValueLoaderTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject

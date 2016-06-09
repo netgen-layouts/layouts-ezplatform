@@ -6,8 +6,9 @@ use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use PHPUnit\Framework\TestCase;
 
-class PageLayoutResolverTest extends \PHPUnit\Framework\TestCase
+class PageLayoutResolverTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject

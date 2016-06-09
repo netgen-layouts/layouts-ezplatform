@@ -9,8 +9,9 @@ use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration;
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use Matthias\SymfonyConfigTest\Partial\PartialProcessor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use PHPUnit\Framework\TestCase;
 
-abstract class ConfigurationTest extends \PHPUnit\Framework\TestCase
+abstract class ConfigurationTest extends TestCase
 {
     use ConfigurationTestCaseTrait;
 

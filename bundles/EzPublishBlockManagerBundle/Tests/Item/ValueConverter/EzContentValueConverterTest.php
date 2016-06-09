@@ -7,8 +7,9 @@ use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\Helper\TranslationHelper;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzContentValueConverter;
+use PHPUnit\Framework\TestCase;
 
-class EzContentValueConverterTest extends \PHPUnit\Framework\TestCase
+class EzContentValueConverterTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
