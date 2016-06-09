@@ -7,15 +7,15 @@ use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class PageLayoutResolverTest extends \PHPUnit_Framework_TestCase
+class PageLayoutResolverTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     protected $configResolverMock;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     protected $requestStackMock;
 

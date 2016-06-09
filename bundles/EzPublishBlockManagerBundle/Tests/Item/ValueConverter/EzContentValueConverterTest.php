@@ -8,15 +8,15 @@ use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\Helper\TranslationHelper;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzContentValueConverter;
 
-class EzContentValueConverterTest extends \PHPUnit_Framework_TestCase
+class EzContentValueConverterTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     protected $locationServiceMock;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     protected $translationHelperMock;
 

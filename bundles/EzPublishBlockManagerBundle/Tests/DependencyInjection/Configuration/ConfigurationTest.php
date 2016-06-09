@@ -10,7 +10,7 @@ use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use Matthias\SymfonyConfigTest\Partial\PartialProcessor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
+abstract class ConfigurationTest extends \PHPUnit\Framework\TestCase
 {
     use ConfigurationTestCaseTrait;
 
@@ -58,7 +58,7 @@ abstract class ConfigurationTest extends \PHPUnit_Framework_TestCase
     protected $configPostProcessor;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     protected $containerBuilderMock;
 

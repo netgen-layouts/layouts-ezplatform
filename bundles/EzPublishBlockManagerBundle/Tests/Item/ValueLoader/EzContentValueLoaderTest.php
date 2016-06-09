@@ -7,10 +7,10 @@ use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\EzContentValueLoader;
 use Exception;
 
-class EzContentValueLoaderTest extends \PHPUnit_Framework_TestCase
+class EzContentValueLoaderTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     protected $contentServiceMock;
 

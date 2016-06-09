@@ -6,15 +6,15 @@ use Netgen\BlockManager\Configuration\ConfigurationInterface;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 
-class ConfigResolverConfigurationTest extends \PHPUnit_Framework_TestCase
+class ConfigResolverConfigurationTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     protected $configResolverMock;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     protected $fallbackConfigurationMock;
 

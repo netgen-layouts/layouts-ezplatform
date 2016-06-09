@@ -8,7 +8,7 @@ use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
 
-class SiteAccessTest extends \PHPUnit_Framework_TestCase
+class SiteAccessTest extends \PHPUnit\Framework\TestCase
 {
     use RequestStackAwareTrait;
 

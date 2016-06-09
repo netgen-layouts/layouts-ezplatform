@@ -10,12 +10,12 @@ use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
 
-class SubtreeTest extends \PHPUnit_Framework_TestCase
+class SubtreeTest extends \PHPUnit\Framework\TestCase
 {
     use RequestStackAwareTrait;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     protected $locationServiceMock;
 

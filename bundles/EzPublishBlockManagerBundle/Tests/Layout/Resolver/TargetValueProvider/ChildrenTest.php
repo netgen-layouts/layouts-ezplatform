@@ -10,7 +10,7 @@ use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
 
-class ChildrenTest extends \PHPUnit_Framework_TestCase
+class ChildrenTest extends \PHPUnit\Framework\TestCase
 {
     use RequestStackAwareTrait;
 
@@ -20,7 +20,7 @@ class ChildrenTest extends \PHPUnit_Framework_TestCase
     protected $targetValueProvider;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     protected $locationServiceMock;
 

@@ -7,10 +7,10 @@ use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\EzLocationValueLoader;
 use Exception;
 
-class EzLocationValueLoaderTest extends \PHPUnit_Framework_TestCase
+class EzLocationValueLoaderTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     protected $locationServiceMock;
 
