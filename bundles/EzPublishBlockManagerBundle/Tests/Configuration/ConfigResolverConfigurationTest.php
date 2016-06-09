@@ -9,12 +9,12 @@ use eZ\Publish\Core\MVC\ConfigResolverInterface;
 class ConfigResolverConfigurationTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
+     * @var \PHPUnit_Framework_MockObject_MockObject
      */
     protected $configResolverMock;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
+     * @var \PHPUnit_Framework_MockObject_MockObject
      */
     protected $fallbackConfigurationMock;
 

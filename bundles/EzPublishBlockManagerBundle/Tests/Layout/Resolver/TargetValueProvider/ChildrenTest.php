@@ -20,7 +20,7 @@ class ChildrenTest extends \PHPUnit\Framework\TestCase
     protected $targetValueProvider;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
+     * @var \PHPUnit_Framework_MockObject_MockObject
      */
     protected $locationServiceMock;
 

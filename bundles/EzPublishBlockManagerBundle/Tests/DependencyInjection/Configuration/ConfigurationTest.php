@@ -58,7 +58,7 @@ abstract class ConfigurationTest extends \PHPUnit\Framework\TestCase
     protected $configPostProcessor;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
+     * @var \PHPUnit_Framework_MockObject_MockObject
      */
     protected $containerBuilderMock;
 

@@ -11,12 +11,12 @@ use Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzContentValue
 class EzContentValueConverterTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
+     * @var \PHPUnit_Framework_MockObject_MockObject
      */
     protected $locationServiceMock;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
+     * @var \PHPUnit_Framework_MockObject_MockObject
      */
     protected $translationHelperMock;
 

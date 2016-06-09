@@ -10,12 +10,12 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class PageLayoutResolverTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
+     * @var \PHPUnit_Framework_MockObject_MockObject
      */
     protected $configResolverMock;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
+     * @var \PHPUnit_Framework_MockObject_MockObject
      */
     protected $requestStackMock;
 
