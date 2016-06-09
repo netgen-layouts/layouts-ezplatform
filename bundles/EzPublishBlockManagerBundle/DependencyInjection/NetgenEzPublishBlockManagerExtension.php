@@ -15,7 +15,7 @@ class NetgenEzPublishBlockManagerExtension extends Extension
         'block_view',
         'item_view',
         'layout_view',
-        'query_view',
+        'form_view',
     );
 
     /**

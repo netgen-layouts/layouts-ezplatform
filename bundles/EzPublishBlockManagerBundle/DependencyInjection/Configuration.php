@@ -30,7 +30,7 @@ class Configuration extends SiteAccessConfiguration
             $systemNode->append($configuration->getTemplateResolverNodeDefinition('block_view'));
             $systemNode->append($configuration->getTemplateResolverNodeDefinition('item_view'));
             $systemNode->append($configuration->getTemplateResolverNodeDefinition('layout_view'));
-            $systemNode->append($configuration->getTemplateResolverNodeDefinition('query_view'));
+            $systemNode->append($configuration->getTemplateResolverNodeDefinition('form_view'));
         };
     }
 }
