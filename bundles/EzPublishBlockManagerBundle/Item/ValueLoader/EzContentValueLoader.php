@@ -46,9 +46,19 @@ class EzContentValueLoader implements ValueLoaderInterface
     public function load($id)
     {
         try {
-            return $this->contentService->loadContentInfo($id);
+            $contentInfo = $this->contentService->loadContentInfo($id);
+
+            if (!$contentInfo->published || $contentInfo->mainLocationId === null) {
+                throw new InvalidItemException(
+                    sprintf('Value with ID "%s" could not be loaded.', $id)
+                );
+            }
+
+            return $contentInfo;
         } catch (Exception $e) {
-            throw new InvalidItemException('Value with ID ' . $id . ' could not be loaded.');
+            throw new InvalidItemException(
+                sprintf('Value with ID "%s" could not be loaded.', $id)
+            );
         }
     }
 }

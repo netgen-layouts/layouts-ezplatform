@@ -46,9 +46,19 @@ class EzLocationValueLoader implements ValueLoaderInterface
     public function load($id)
     {
         try {
-            return $this->locationService->loadLocation($id);
+            $location = $this->locationService->loadLocation($id);
+
+            if (!$location->contentInfo->published) {
+                throw new InvalidItemException(
+                    sprintf('Value with ID "%s" could not be loaded.', $id)
+                );
+            }
+
+            return $location;
         } catch (Exception $e) {
-            throw new InvalidItemException('Value with ID ' . $id . ' could not be loaded.');
+            throw new InvalidItemException(
+                sprintf('Value with ID "%s" could not be loaded.', $id)
+            );
         }
     }
 }
