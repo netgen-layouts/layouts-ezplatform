@@ -5,6 +5,7 @@ services:
     netgen_block_manager.collection.query_type.handler.ezcontent_search:
         class: "%netgen_block_manager.collection.query_type.handler.ezcontent_search.class%"
         arguments:
+            - "@ezpublish.api.service.location"
             - "@ezpublish.api.service.content_type"
             - "@ezpublish.api.service.search"
         tags:
