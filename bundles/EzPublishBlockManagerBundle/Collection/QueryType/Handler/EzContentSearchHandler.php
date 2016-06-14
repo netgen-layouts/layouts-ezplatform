@@ -240,16 +240,16 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
             new Criterion\LogicalNot(new Criterion\LocationId($parentLocation->id)),
         );
 
-        if ($parameters['query_type'] === 'list') {
+        if (!isset($parameters['query_type']) || $parameters['query_type'] === 'list') {
             $criteria[] = new Criterion\Location\Depth(
                 Criterion\Operator::EQ, $parentLocation->depth + 1
             );
         }
 
-        if ($parameters['filter_by_content_type'] && !empty($parameters['content_types'])) {
+        if (!empty($parameters['filter_by_content_type']) && !empty($parameters['content_types'])) {
             $contentTypeFilter = new Criterion\ContentTypeIdentifier($parameters['content_types']);
 
-            if ($parameters['content_types_filter'] === 'exclude') {
+            if (isset($parameters['content_types_filter']) && $parameters['content_types_filter'] === 'exclude') {
                 $contentTypeFilter = new Criterion\LogicalNot($contentTypeFilter);
             }
 
@@ -260,8 +260,11 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
 
         $query->limit = 0;
         if (!$buildCountQuery) {
-            $query->offset = $parameters['offset'];
-            $query->limit = is_int($parameters['limit']) ?
+            $query->offset = isset($parameters['offset']) && is_int($parameters['offset']) ?
+                $parameters['offset'] :
+                0;
+
+            $query->limit = isset($parameters['limit']) && is_int($parameters['limit']) ?
                 $parameters['limit'] :
                 self::DEFAULT_LIMIT;
         }
