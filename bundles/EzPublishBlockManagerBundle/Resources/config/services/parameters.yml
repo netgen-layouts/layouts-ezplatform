@@ -1,0 +1,8 @@
+parameters:
+    netgen_block_manager.parameters.parameter_handler.ezlocation.class: Netgen\Bundle\EzPublishBlockManagerBundle\Parameters\FormMapper\ParameterHandler\EzLocation
+
+services:
+    netgen_block_manager.parameters.parameter_handler.ezlocation:
+        class: "%netgen_block_manager.parameters.parameter_handler.ezlocation.class%"
+        tags:
+            - { name: netgen_block_manager.parameters.parameter_handler, type: ezlocation }

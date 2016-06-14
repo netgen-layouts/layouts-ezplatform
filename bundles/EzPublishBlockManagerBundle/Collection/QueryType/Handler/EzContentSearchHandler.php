@@ -9,6 +9,7 @@ use eZ\Publish\API\Repository\Values\Content\Search\SearchHit;
 use Netgen\BlockManager\Collection\QueryType\QueryTypeHandlerInterface;
 use eZ\Publish\API\Repository\ContentTypeService;
 use Netgen\BlockManager\Parameters\Parameter;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Parameters\Parameter as EzParameter;
 use eZ\Publish\API\Repository\SearchService;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use Exception;
@@ -67,7 +68,7 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
     public function getParameters()
     {
         return array(
-            'parent_location_id' => new Parameter\Text(array(), true),
+            'parent_location_id' => new EzParameter\EzLocation(array(), true),
             'sort_direction' => new Parameter\Select(
                 array(
                     'options' => array(
