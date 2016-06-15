@@ -3,8 +3,8 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Parameters\FormMapper\ParameterHandler;
 
 use Netgen\BlockManager\Parameters\FormMapper\ParameterHandler;
-use Netgen\BlockManager\Parameters\FormMapper\Type\ContentBrowserType;
 use Netgen\BlockManager\Parameters\ParameterInterface;
+use Netgen\Bundle\ContentBrowserBundle\Form\Type\ContentBrowserType;
 
 class EzLocation extends ParameterHandler
 {
@@ -28,7 +28,7 @@ class EzLocation extends ParameterHandler
     public function convertOptions(ParameterInterface $parameter)
     {
         return array(
-            'item_type' => 'ezlocation',
+            'value_type' => 'ezlocation',
             'config_name' => 'ezlocation',
         );
     }
