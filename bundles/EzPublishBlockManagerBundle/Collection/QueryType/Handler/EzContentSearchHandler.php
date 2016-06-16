@@ -98,7 +98,7 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
     {
         return array(
             'parent_location_id' => new EzParameter\EzLocation(array(), true),
-            'sort_direction' => new Parameter\Select(
+            'sort_direction' => new Parameter\Choice(
                 array(
                     'options' => array(
                         'Descending' => LocationQuery::SORT_DESC,
@@ -107,7 +107,7 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
                 ),
                 true
             ),
-            'sort_type' => new Parameter\Select(
+            'sort_type' => new Parameter\Choice(
                 array(
                     'options' => array(
                         'Published' => 'date_published',
@@ -121,7 +121,7 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
             ),
             'limit' => new Parameter\Integer(array('min' => 1)),
             'offset' => new Parameter\Integer(array('min' => 0), true),
-            'query_type' => new Parameter\Select(
+            'query_type' => new Parameter\Choice(
                 array(
                     'options' => array(
                         'List' => 'list',
@@ -132,13 +132,13 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
             ),
             'filter_by_content_type' => new Parameter\Compound\Boolean(
                 array(
-                    'content_types' => new Parameter\Select(
+                    'content_types' => new Parameter\Choice(
                         array(
                             'options' => $this->getContentTypes(),
                             'multiple' => true,
                         )
                     ),
-                    'content_types_filter' => new Parameter\Select(
+                    'content_types_filter' => new Parameter\Choice(
                         array(
                             'options' => array(
                                 'Include content types' => 'include',
