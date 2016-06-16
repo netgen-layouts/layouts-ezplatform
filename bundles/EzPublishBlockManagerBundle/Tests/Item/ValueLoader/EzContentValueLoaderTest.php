@@ -5,7 +5,7 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Item\ValueLoader;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\EzContentValueLoader;
-use Exception;
+use Netgen\BlockManager\Exception\InvalidItemException;
 use PHPUnit\Framework\TestCase;
 
 class EzContentValueLoaderTest extends TestCase
@@ -33,17 +33,21 @@ class EzContentValueLoaderTest extends TestCase
      */
     public function testLoad()
     {
+        $contentInfo = new ContentInfo(
+            array(
+                'id' => 52,
+                'published' => true,
+                'mainLocationId' => 42,
+            )
+        );
+
         $this->contentServiceMock
             ->expects($this->any())
             ->method('loadContentInfo')
             ->with($this->isType('int'))
-            ->will($this->returnCallback(
-                function ($id) { return new ContentInfo(array('id' => $id)); })
-            );
+            ->will($this->returnValue($contentInfo));
 
-        $contentInfo = $this->valueLoader->load(52);
-
-        self::assertEquals(new ContentInfo(array('id' => 52)), $contentInfo);
+        self::assertEquals($contentInfo, $this->valueLoader->load(52));
     }
 
     /**
@@ -56,7 +60,7 @@ class EzContentValueLoaderTest extends TestCase
             ->expects($this->any())
             ->method('loadContentInfo')
             ->with($this->isType('int'))
-            ->will($this->throwException(new Exception()));
+            ->will($this->throwException(new InvalidItemException()));
 
         $this->valueLoader->load(52);
     }

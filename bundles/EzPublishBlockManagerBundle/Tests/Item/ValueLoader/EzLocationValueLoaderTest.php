@@ -3,9 +3,10 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Item\ValueLoader;
 
 use eZ\Publish\API\Repository\LocationService;
+use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\EzLocationValueLoader;
-use Exception;
+use Netgen\BlockManager\Exception\InvalidItemException;
 use PHPUnit\Framework\TestCase;
 
 class EzLocationValueLoaderTest extends TestCase
@@ -33,17 +34,24 @@ class EzLocationValueLoaderTest extends TestCase
      */
     public function testLoad()
     {
+        $location = new Location(
+            array(
+                'id' => 52,
+                'contentInfo' => new ContentInfo(
+                    array(
+                        'published' => true,
+                    )
+                )
+            )
+        );
+
         $this->locationServiceMock
             ->expects($this->any())
             ->method('loadLocation')
             ->with($this->isType('int'))
-            ->will($this->returnCallback(
-                function ($id) { return new Location(array('id' => $id)); })
-            );
+            ->will($this->returnValue($location));
 
-        $location = $this->valueLoader->load(52);
-
-        self::assertEquals(new Location(array('id' => 52)), $location);
+        self::assertEquals($location, $this->valueLoader->load(52));
     }
 
     /**
@@ -56,7 +64,7 @@ class EzLocationValueLoaderTest extends TestCase
             ->expects($this->any())
             ->method('loadLocation')
             ->with($this->isType('int'))
-            ->will($this->throwException(new Exception()));
+            ->will($this->throwException(new InvalidItemException()));
 
         $this->valueLoader->load(52);
     }
