@@ -103,7 +103,7 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
                     'options' => array(
                         'Descending' => LocationQuery::SORT_DESC,
                         'Ascending' => LocationQuery::SORT_ASC,
-                    )
+                    ),
                 ),
                 true
             ),
@@ -115,7 +115,7 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
                         'Alphabetical' => 'content_name',
                         'Priority' => 'location_priority',
                         'Defined by parent' => 'defined_by_parent',
-                    )
+                    ),
                 ),
                 true
             ),
@@ -126,7 +126,7 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
                     'options' => array(
                         'List' => 'list',
                         'Tree' => 'tree',
-                    )
+                    ),
                 ),
                 true
             ),
@@ -143,12 +143,12 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
                             'options' => array(
                                 'Include content types' => 'include',
                                 'Exclude content types' => 'exclude',
-                            )
+                            ),
                         ),
                         true
-                    )
+                    ),
                 )
-            )
+            ),
         );
     }
 
@@ -247,7 +247,7 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
 
             return $parentLocation->invisible ? null : $parentLocation;
         } catch (Exception $e) {
-            return null;
+            return;
         }
     }
 
@@ -314,7 +314,7 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
         }
 
         $query->sortClauses = array(
-            new $this->sortClauses[$sortType]($sortDirection)
+            new $this->sortClauses[$sortType]($sortDirection),
         );
 
         return $query;

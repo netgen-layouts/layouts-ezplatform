@@ -41,7 +41,7 @@ class EzLocationValueLoaderTest extends TestCase
                     array(
                         'published' => true,
                     )
-                )
+                ),
             )
         );
 
