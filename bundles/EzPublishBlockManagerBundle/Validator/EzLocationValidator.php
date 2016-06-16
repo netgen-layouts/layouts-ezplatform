@@ -38,7 +38,7 @@ class EzLocationValidator extends ConstraintValidator
                 try {
                     return $repository->getLocationService()->loadLocation($value);
                 } catch (NotFoundException $e) {
-                    return null;
+                    return;
                 }
             }
         );
