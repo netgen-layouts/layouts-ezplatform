@@ -1,0 +1,11 @@
+{% extends 'NetgenBlockManagerBundle:block:view.html.twig' %}
+
+{% block content %}
+    {% set field_identifier = block_definition.handler.fieldIdentifier(block) %}
+
+    {% if content.fields[field_identifier] is defined and not ez_is_field_empty(content, field_identifier) %}
+        {% block ezcontent_field %}
+            {{ ez_render_field(content, field_identifier) }}
+        {% endblock %}
+    {% endif %}
+{% endblock %}

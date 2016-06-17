@@ -1,0 +1,8 @@
+parameters:
+    netgen_block_manager.block.block_definition.handler.ezcontent_field.class: Netgen\Bundle\EzPublishBlockManagerBundle\Block\BlockDefinition\Handler\EzContentFieldHandler
+
+services:
+    netgen_block_manager.block.block_definition.handler.ezcontent_field:
+        class: "%netgen_block_manager.block.block_definition.handler.ezcontent_field.class%"
+        tags:
+            - { name: netgen_block_manager.block.block_definition_handler, identifier: ezcontent_field }

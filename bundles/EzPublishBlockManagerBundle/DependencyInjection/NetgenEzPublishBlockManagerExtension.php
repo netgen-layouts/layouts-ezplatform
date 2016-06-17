@@ -4,12 +4,15 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection;
 
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ConfigurationProcessor;
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ContextualizerInterface;
+use Symfony\Component\Config\Resource\FileResource;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Yaml\Yaml;
 
-class NetgenEzPublishBlockManagerExtension extends Extension
+class NetgenEzPublishBlockManagerExtension extends Extension implements PrependExtensionInterface
 {
     protected $siteAccessAwareSettings = array(
         'block_view',
@@ -35,6 +38,8 @@ class NetgenEzPublishBlockManagerExtension extends Extension
 
         $loader->load('default_settings.yml');
         $loader->load('services/configuration.yml');
+        $loader->load('services/block_definitions.yml');
+        $loader->load('services/event_listeners.yml');
         $loader->load('services/validators.yml');
         $loader->load('services/parameters.yml');
         $loader->load('services/templating.yml');
@@ -43,6 +48,27 @@ class NetgenEzPublishBlockManagerExtension extends Extension
         $loader->load('services/layout_resolver/target_value_providers.yml');
         $loader->load('services/layout_resolver/target_handlers.yml');
         $loader->load('services/collection/query_types.yml');
+    }
+
+    /**
+     * Allow an extension to prepend the extension configurations.
+     *
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     */
+    public function prepend(ContainerBuilder $container)
+    {
+        $prependConfigs = array(
+            'block_definitions.yml' => 'netgen_block_manager',
+            'block_types.yml' => 'netgen_block_manager',
+            'view/block_view.yml' => 'netgen_block_manager',
+        );
+
+        foreach ($prependConfigs as $configFile => $prependConfig) {
+            $configFile = __DIR__ . '/../Resources/config/' . $configFile;
+            $config = Yaml::parse(file_get_contents($configFile));
+            $container->prependExtensionConfig($prependConfig, $config);
+            $container->addResource(new FileResource($configFile));
+        }
     }
 
     /**

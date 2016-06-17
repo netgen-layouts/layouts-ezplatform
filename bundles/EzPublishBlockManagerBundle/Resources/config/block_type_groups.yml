@@ -1,0 +1,4 @@
+block_type_groups:
+    ezpublish:
+        name: 'eZ Publish'
+        block_types: [ezcontent_field]

@@ -3,3 +3,5 @@ parameters:
     netgen_block_manager.default.item_view: []
     netgen_block_manager.default.layout_view: []
     netgen_block_manager.default.form_view: []
+
+    netgen_block_manager.block_view.ezcontent_field_contexts: ['view']
