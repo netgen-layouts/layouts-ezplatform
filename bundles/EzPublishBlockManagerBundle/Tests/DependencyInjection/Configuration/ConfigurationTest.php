@@ -30,6 +30,8 @@ abstract class ConfigurationTest extends TestCase
         'item_view' => array(),
         'layout_view' => array(),
         'form_view' => array(),
+        'rule_target_view' => array(),
+        'rule_condition_view' => array(),
         'sources' => array(),
         'query_types' => array(),
         'pagelayout' => 'NetgenBlockManagerBundle::pagelayout.html.twig',
@@ -46,6 +48,8 @@ abstract class ConfigurationTest extends TestCase
         'item_view' => array(),
         'layout_view' => array(),
         'form_view' => array(),
+        'rule_target_view' => array(),
+        'rule_condition_view' => array(),
     );
 
     /**

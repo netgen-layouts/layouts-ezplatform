@@ -19,6 +19,8 @@ class NetgenEzPublishBlockManagerExtension extends Extension implements PrependE
         'item_view',
         'layout_view',
         'form_view',
+        'rule_target_view',
+        'rule_condition_view',
     );
 
     /**
