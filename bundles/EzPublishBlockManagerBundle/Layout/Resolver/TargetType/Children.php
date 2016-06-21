@@ -1,14 +1,14 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType;
 
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\LocationService;
-use Netgen\BlockManager\Layout\Resolver\TargetValueProviderInterface;
+use Netgen\BlockManager\Layout\Resolver\TargetTypeInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 
-class Subtree implements TargetValueProviderInterface
+class Children implements TargetTypeInterface
 {
     use RequestStackAwareTrait;
 
@@ -25,6 +25,16 @@ class Subtree implements TargetValueProviderInterface
     public function __construct(LocationService $locationService)
     {
         $this->locationService = $locationService;
+    }
+
+    /**
+     * Returns the target type identifier.
+     *
+     * @return string
+     */
+    public function getIdentifier()
+    {
+        return 'children';
     }
 
     /**
@@ -51,6 +61,6 @@ class Subtree implements TargetValueProviderInterface
             return;
         }
 
-        return $location->path;
+        return $location->parentLocationId;
     }
 }

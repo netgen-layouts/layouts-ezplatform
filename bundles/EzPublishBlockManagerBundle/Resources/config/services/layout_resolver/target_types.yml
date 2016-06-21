@@ -1,0 +1,54 @@
+parameters:
+    netgen_block_manager.layout.resolver.target_type.location.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Location
+    netgen_block_manager.layout.resolver.target_type.content.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Content
+    netgen_block_manager.layout.resolver.target_type.children.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children
+    netgen_block_manager.layout.resolver.target_type.subtree.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Subtree
+    netgen_block_manager.layout.resolver.target_type.semantic_path_info.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\SemanticPathInfo
+    netgen_block_manager.layout.resolver.target_type.semantic_path_info_prefix.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\SemanticPathInfoPrefix
+
+services:
+    netgen_block_manager.layout.resolver.target_type.location:
+        class: "%netgen_block_manager.layout.resolver.target_type.location.class%"
+        calls:
+            - [setRequestStack, ["@request_stack"]]
+        tags:
+            - { name: netgen_block_manager.layout.resolver.target_type }
+
+    netgen_block_manager.layout.resolver.target_type.content:
+        class: "%netgen_block_manager.layout.resolver.target_type.content.class%"
+        calls:
+            - [setRequestStack, ["@request_stack"]]
+        tags:
+            - { name: netgen_block_manager.layout.resolver.target_type }
+
+    netgen_block_manager.layout.resolver.target_type.children:
+        class: "%netgen_block_manager.layout.resolver.target_type.children.class%"
+        arguments:
+            - "@ezpublish.api.service.location"
+        calls:
+            - [setRequestStack, ["@request_stack"]]
+        tags:
+            - { name: netgen_block_manager.layout.resolver.target_type }
+
+    netgen_block_manager.layout.resolver.target_type.subtree:
+        class: "%netgen_block_manager.layout.resolver.target_type.subtree.class%"
+        arguments:
+            - "@ezpublish.api.service.location"
+        calls:
+            - [setRequestStack, ["@request_stack"]]
+        tags:
+            - { name: netgen_block_manager.layout.resolver.target_type }
+
+    netgen_block_manager.layout.resolver.target_type.semantic_path_info:
+        class: "%netgen_block_manager.layout.resolver.target_type.semantic_path_info.class%"
+        calls:
+            - [setRequestStack, ["@request_stack"]]
+        tags:
+            - { name: netgen_block_manager.layout.resolver.target_type }
+
+    netgen_block_manager.layout.resolver.target_type.semantic_path_info_prefix:
+        class: "%netgen_block_manager.layout.resolver.target_type.semantic_path_info_prefix.class%"
+        calls:
+            - [setRequestStack, ["@request_stack"]]
+        tags:
+            - { name: netgen_block_manager.layout.resolver.target_type }

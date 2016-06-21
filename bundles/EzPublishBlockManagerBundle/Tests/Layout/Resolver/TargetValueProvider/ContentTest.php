@@ -1,8 +1,8 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\TargetValueProvider;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\TargetType;
 
-use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Content;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Content;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,9 +13,9 @@ class ContentTest extends TestCase
     use RequestStackAwareTrait;
 
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Content
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Content
      */
-    protected $targetValueProvider;
+    protected $targetType;
 
     public function setUp()
     {
@@ -26,40 +26,40 @@ class ContentTest extends TestCase
         $requestStack->push($request);
         $this->setRequestStack($requestStack);
 
-        $this->targetValueProvider = new Content();
-        $this->targetValueProvider->setRequestStack($this->requestStack);
+        $this->targetType = new Content();
+        $this->targetType->setRequestStack($this->requestStack);
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Content::provideValue
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Content::provideValue
      */
     public function testProvideValue()
     {
         self::assertEquals(
             42,
-            $this->targetValueProvider->provideValue()
+            $this->targetType->provideValue()
         );
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Content::provideValue
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Content::provideValue
      */
     public function testProvideValueWithNoRequest()
     {
         // Make sure we have no request
         $this->requestStack->pop();
 
-        self::assertNull($this->targetValueProvider->provideValue());
+        self::assertNull($this->targetType->provideValue());
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Content::provideValue
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Content::provideValue
      */
     public function testProvideValueWithNoContentId()
     {
         // Make sure we have no content ID attribute
         $this->requestStack->getCurrentRequest()->attributes->remove('contentId');
 
-        self::assertNull($this->targetValueProvider->provideValue());
+        self::assertNull($this->targetType->provideValue());
     }
 }

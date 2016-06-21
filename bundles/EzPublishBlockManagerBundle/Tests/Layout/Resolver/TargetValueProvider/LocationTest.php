@@ -1,8 +1,8 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\TargetValueProvider;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\TargetType;
 
-use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Location;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Location;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,9 +13,9 @@ class LocationTest extends TestCase
     use RequestStackAwareTrait;
 
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Location
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Location
      */
-    protected $targetValueProvider;
+    protected $targetType;
 
     public function setUp()
     {
@@ -26,40 +26,40 @@ class LocationTest extends TestCase
         $requestStack->push($request);
         $this->setRequestStack($requestStack);
 
-        $this->targetValueProvider = new Location();
-        $this->targetValueProvider->setRequestStack($this->requestStack);
+        $this->targetType = new Location();
+        $this->targetType->setRequestStack($this->requestStack);
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Location::provideValue
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Location::provideValue
      */
     public function testProvideValue()
     {
         self::assertEquals(
             42,
-            $this->targetValueProvider->provideValue()
+            $this->targetType->provideValue()
         );
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Location::provideValue
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Location::provideValue
      */
     public function testProvideValueWithNoRequest()
     {
         // Make sure we have no request
         $this->requestStack->pop();
 
-        self::assertNull($this->targetValueProvider->provideValue());
+        self::assertNull($this->targetType->provideValue());
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Location::provideValue
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Location::provideValue
      */
     public function testProvideValueWithNoLocationId()
     {
         // Make sure we have no location ID attribute
         $this->requestStack->getCurrentRequest()->attributes->remove('locationId');
 
-        self::assertNull($this->targetValueProvider->provideValue());
+        self::assertNull($this->targetType->provideValue());
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\TargetValueProvider;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\TargetType;
 
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\LocationService;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Children;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,9 +16,9 @@ class ChildrenTest extends TestCase
     use RequestStackAwareTrait;
 
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Children
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children
      */
-    protected $targetValueProvider;
+    protected $targetType;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
@@ -36,13 +36,13 @@ class ChildrenTest extends TestCase
 
         $this->locationServiceMock = $this->createMock(LocationService::class);
 
-        $this->targetValueProvider = new Children($this->locationServiceMock);
-        $this->targetValueProvider->setRequestStack($this->requestStack);
+        $this->targetType = new Children($this->locationServiceMock);
+        $this->targetType->setRequestStack($this->requestStack);
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Children::__construct
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Children::provideValue
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children::__construct
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children::provideValue
      */
     public function testProvideValue()
     {
@@ -54,12 +54,12 @@ class ChildrenTest extends TestCase
 
         self::assertEquals(
             84,
-            $this->targetValueProvider->provideValue()
+            $this->targetType->provideValue()
         );
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Children::provideValue
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children::provideValue
      */
     public function testProvideValueWithNoRequest()
     {
@@ -70,11 +70,11 @@ class ChildrenTest extends TestCase
         // Make sure we have no request
         $this->requestStack->pop();
 
-        self::assertNull($this->targetValueProvider->provideValue());
+        self::assertNull($this->targetType->provideValue());
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Children::provideValue
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children::provideValue
      */
     public function testProvideValueWithNoLocationId()
     {
@@ -85,11 +85,11 @@ class ChildrenTest extends TestCase
         // Make sure we have no location ID attribute
         $this->requestStack->getCurrentRequest()->attributes->remove('locationId');
 
-        self::assertNull($this->targetValueProvider->provideValue());
+        self::assertNull($this->targetType->provideValue());
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider\Children::provideValue
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children::provideValue
      */
     public function testProvideValueWithNoLocation()
     {
@@ -99,6 +99,6 @@ class ChildrenTest extends TestCase
             ->with($this->equalTo(42))
             ->will($this->throwException(new NotFoundException('location', 42)));
 
-        self::assertNull($this->targetValueProvider->provideValue());
+        self::assertNull($this->targetType->provideValue());
     }
 }

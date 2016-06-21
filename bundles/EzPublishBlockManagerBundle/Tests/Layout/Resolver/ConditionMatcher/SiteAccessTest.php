@@ -1,8 +1,8 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\ConditionMatcher;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\ConditionType;
 
-use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\SiteAccess;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionType\SiteAccess;
 use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzPublishSiteAccess;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -14,9 +14,9 @@ class SiteAccessTest extends TestCase
     use RequestStackAwareTrait;
 
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\SiteAccess
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionType\SiteAccess
      */
-    protected $conditionMatcher;
+    protected $conditionType;
 
     /**
      * Sets up the route target tests.
@@ -30,12 +30,12 @@ class SiteAccessTest extends TestCase
         $requestStack->push($request);
         $this->setRequestStack($requestStack);
 
-        $this->conditionMatcher = new SiteAccess();
-        $this->conditionMatcher->setRequestStack($this->requestStack);
+        $this->conditionType = new SiteAccess();
+        $this->conditionType->setRequestStack($this->requestStack);
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\SiteAccess::matches
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionType\SiteAccess::matches
      *
      * @param mixed $value
      * @param bool $matches
@@ -44,7 +44,7 @@ class SiteAccessTest extends TestCase
      */
     public function testMatches($value, $matches)
     {
-        self::assertEquals($matches, $this->conditionMatcher->matches($value));
+        self::assertEquals($matches, $this->conditionType->matches($value));
     }
 
     /**
@@ -66,24 +66,24 @@ class SiteAccessTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\SiteAccess::matches
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionType\SiteAccess::matches
      */
     public function testMatchesWithNoRequest()
     {
         // Make sure we have no request
         $this->requestStack->pop();
 
-        self::assertFalse($this->conditionMatcher->matches(array('eng')));
+        self::assertFalse($this->conditionType->matches(array('eng')));
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher\SiteAccess::matches
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionType\SiteAccess::matches
      */
     public function testMatchesWithNoSiteAccess()
     {
         // Make sure we have no siteaccess
         $this->requestStack->getCurrentRequest()->attributes->remove('siteaccess');
 
-        self::assertFalse($this->conditionMatcher->matches(array('eng')));
+        self::assertFalse($this->conditionType->matches(array('eng')));
     }
 }

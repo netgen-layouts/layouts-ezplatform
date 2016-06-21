@@ -1,14 +1,24 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetValueProvider;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType;
 
-use Netgen\BlockManager\Layout\Resolver\TargetValueProviderInterface;
+use Netgen\BlockManager\Layout\Resolver\TargetTypeInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 
-class SemanticPathInfo implements TargetValueProviderInterface
+class SemanticPathInfo implements TargetTypeInterface
 {
     use RequestStackAwareTrait;
+
+    /**
+     * Returns the target type identifier.
+     *
+     * @return string
+     */
+    public function getIdentifier()
+    {
+        return 'semantic_path_info';
+    }
 
     /**
      * Provides the value for the target to be used in matching process.

@@ -1,15 +1,25 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionMatcher;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionType;
 
-use Netgen\BlockManager\Layout\Resolver\ConditionMatcherInterface;
+use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzPublishSiteAccess;
 
-class SiteAccess implements ConditionMatcherInterface
+class SiteAccess implements ConditionTypeInterface
 {
     use RequestStackAwareTrait;
+
+    /**
+     * Returns the condition type identifier.
+     *
+     * @return string
+     */
+    public function getIdentifier()
+    {
+        return 'siteaccess';
+    }
 
     /**
      * Returns if this condition matches the provided value.
