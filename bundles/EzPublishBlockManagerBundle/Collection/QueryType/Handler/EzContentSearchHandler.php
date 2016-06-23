@@ -120,7 +120,7 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
                 true
             ),
             'limit' => new Parameter\Integer(array('min' => 1)),
-            'offset' => new Parameter\Integer(array('min' => 0), true),
+            'offset' => new Parameter\Integer(array('min' => 0)),
             'query_type' => new Parameter\Choice(
                 array(
                     'options' => array(
