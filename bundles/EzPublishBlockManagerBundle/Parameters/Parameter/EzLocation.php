@@ -21,18 +21,14 @@ class EzLocation extends Parameter
     /**
      * Returns constraints that are specific to parameter.
      *
-     * @param array $groups
-     *
      * @return \Symfony\Component\Validator\Constraint[]
      */
-    public function getParameterConstraints(array $groups = null)
+    public function getParameterConstraints()
     {
-        $groupOptions = $this->getBaseConstraintOptions($groups);
-
         $constraints = array(
-            new Constraints\Type(array('type' => 'numeric') + $groupOptions),
-            new Constraints\GreaterThan(array('value' => 0) + $groupOptions),
-            new EzLocationConstraint($groupOptions),
+            new Constraints\Type(array('type' => 'numeric')),
+            new Constraints\GreaterThan(array('value' => 0)),
+            new EzLocationConstraint(),
         );
 
         return $constraints;
