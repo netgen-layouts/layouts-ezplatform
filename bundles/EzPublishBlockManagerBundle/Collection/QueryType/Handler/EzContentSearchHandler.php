@@ -119,7 +119,7 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
                 ),
                 true
             ),
-            'limit' => new Parameter\Integer(array('min' => 1)),
+            'limit' => new Parameter\Integer(array('min' => 0)),
             'offset' => new Parameter\Integer(array('min' => 0)),
             'query_type' => new Parameter\Choice(
                 array(
@@ -294,7 +294,7 @@ class EzContentSearchHandler implements QueryTypeHandlerInterface
                 $parameters['offset'] :
                 0;
 
-            $query->limit = isset($parameters['limit']) && is_int($parameters['limit']) ?
+            $query->limit = isset($parameters['limit']) && is_int($parameters['limit']) && $parameters['limit'] > 0 ?
                 $parameters['limit'] :
                 self::DEFAULT_LIMIT;
         }
