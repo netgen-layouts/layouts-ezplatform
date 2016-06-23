@@ -13,7 +13,7 @@ class EzLocation extends ParameterHandler
      *
      * @return string
      */
-    protected function getFormType()
+    public function getFormType()
     {
         return ContentBrowserType::class;
     }
