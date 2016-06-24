@@ -4,14 +4,16 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\Condit
 
 use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionType\SiteAccess;
 use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzPublishSiteAccess;
-use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
 use PHPUnit\Framework\TestCase;
 
 class SiteAccessTest extends TestCase
 {
-    use RequestStackAwareTrait;
+    /**
+     * @var \Symfony\Component\HttpFoundation\RequestStack
+     */
+    protected $requestStack;
 
     /**
      * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionType\SiteAccess
@@ -26,12 +28,19 @@ class SiteAccessTest extends TestCase
         $request = Request::create('/');
         $request->attributes->set('siteaccess', new EzPublishSiteAccess('eng'));
 
-        $requestStack = new RequestStack();
-        $requestStack->push($request);
-        $this->setRequestStack($requestStack);
+        $this->requestStack = new RequestStack();
+        $this->requestStack->push($request);
 
         $this->conditionType = new SiteAccess();
         $this->conditionType->setRequestStack($this->requestStack);
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionType\SiteAccess::getIdentifier
+     */
+    public function testGetIdentifier()
+    {
+        self::assertEquals('siteaccess', $this->conditionType->getIdentifier());
     }
 
     /**

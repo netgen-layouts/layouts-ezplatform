@@ -5,44 +5,53 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\Target
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\LocationService;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children;
-use Netgen\BlockManager\Traits\RequestStackAwareTrait;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Subtree;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
 use PHPUnit\Framework\TestCase;
 
-class ChildrenTest extends TestCase
+class SubtreeTest extends TestCase
 {
-    use RequestStackAwareTrait;
-
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children
+     * @var \Symfony\Component\HttpFoundation\RequestStack
      */
-    protected $targetType;
+    protected $requestStack;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
     protected $locationServiceMock;
 
+    /**
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Subtree
+     */
+    protected $targetType;
+
     public function setUp()
     {
         $request = Request::create('/');
         $request->attributes->set('locationId', 42);
 
-        $requestStack = new RequestStack();
-        $requestStack->push($request);
-        $this->setRequestStack($requestStack);
+        $this->requestStack = new RequestStack();
+        $this->requestStack->push($request);
 
         $this->locationServiceMock = $this->createMock(LocationService::class);
 
-        $this->targetType = new Children($this->locationServiceMock);
+        $this->targetType = new Subtree($this->locationServiceMock);
         $this->targetType->setRequestStack($this->requestStack);
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children::__construct
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children::provideValue
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Subtree::getIdentifier
+     */
+    public function testGetIdentifier()
+    {
+        self::assertEquals('subtree', $this->targetType->getIdentifier());
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Subtree::__construct
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Subtree::provideValue
      */
     public function testProvideValue()
     {
@@ -50,16 +59,16 @@ class ChildrenTest extends TestCase
             ->expects($this->once())
             ->method('loadLocation')
             ->with($this->equalTo(42))
-            ->will($this->returnValue(new Location(array('parentLocationId' => 84))));
+            ->will($this->returnValue(new Location(array('pathString' => '/1/2/42/'))));
 
         self::assertEquals(
-            84,
+            array(1, 2, 42),
             $this->targetType->provideValue()
         );
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children::provideValue
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Subtree::provideValue
      */
     public function testProvideValueWithNoRequest()
     {
@@ -74,7 +83,7 @@ class ChildrenTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children::provideValue
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Subtree::provideValue
      */
     public function testProvideValueWithNoLocationId()
     {
@@ -89,7 +98,7 @@ class ChildrenTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children::provideValue
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Subtree::provideValue
      */
     public function testProvideValueWithNoLocation()
     {

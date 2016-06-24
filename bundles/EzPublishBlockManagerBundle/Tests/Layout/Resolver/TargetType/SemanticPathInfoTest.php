@@ -1,16 +1,18 @@
 <?php
 
-namespace Netgen\BlockManager\Tests\Layout\Resolver\TargetType;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\TargetType;
 
 use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\SemanticPathInfo;
-use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
 use PHPUnit\Framework\TestCase;
 
 class SemanticPathInfoTest extends TestCase
 {
-    use RequestStackAwareTrait;
+    /**
+     * @var \Symfony\Component\HttpFoundation\RequestStack
+     */
+    protected $requestStack;
 
     /**
      * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\SemanticPathInfo
@@ -22,12 +24,19 @@ class SemanticPathInfoTest extends TestCase
         $request = Request::create('/the/answer');
         $request->attributes->set('semanticPathinfo', '/the/answer');
 
-        $requestStack = new RequestStack();
-        $requestStack->push($request);
-        $this->setRequestStack($requestStack);
+        $this->requestStack = new RequestStack();
+        $this->requestStack->push($request);
 
         $this->targetType = new SemanticPathInfo();
         $this->targetType->setRequestStack($this->requestStack);
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\SemanticPathInfo::getIdentifier
+     */
+    public function testGetIdentifier()
+    {
+        self::assertEquals('semantic_path_info', $this->targetType->getIdentifier());
     }
 
     /**

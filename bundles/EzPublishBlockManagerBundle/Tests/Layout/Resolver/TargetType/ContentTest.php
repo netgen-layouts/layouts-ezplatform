@@ -3,14 +3,16 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\TargetType;
 
 use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Content;
-use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
 use PHPUnit\Framework\TestCase;
 
 class ContentTest extends TestCase
 {
-    use RequestStackAwareTrait;
+    /**
+     * @var \Symfony\Component\HttpFoundation\RequestStack
+     */
+    protected $requestStack;
 
     /**
      * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Content
@@ -22,12 +24,19 @@ class ContentTest extends TestCase
         $request = Request::create('/');
         $request->attributes->set('contentId', 42);
 
-        $requestStack = new RequestStack();
-        $requestStack->push($request);
-        $this->setRequestStack($requestStack);
+        $this->requestStack = new RequestStack();
+        $this->requestStack->push($request);
 
         $this->targetType = new Content();
         $this->targetType->setRequestStack($this->requestStack);
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Content::getIdentifier
+     */
+    public function testGetIdentifier()
+    {
+        self::assertEquals('content', $this->targetType->getIdentifier());
     }
 
     /**
