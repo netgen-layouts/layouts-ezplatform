@@ -4,7 +4,6 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Validator;
 
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\Values\Content\Location;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Constraint;
 
@@ -33,18 +32,18 @@ class LocationValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-        $location = $this->repository->sudo(
-            function (Repository $repository) use ($value) {
-                try {
-                    return $repository->getLocationService()->loadLocation($value);
-                } catch (NotFoundException $e) {
-                    return;
-                }
-            }
-        );
+        if ($value === null) {
+            return;
+        }
 
-        /** @var \Netgen\Bundle\EzPublishBlockManagerBundle\Validator\Constraint\Location $constraint */
-        if (!$location instanceof Location) {
+        try {
+            $this->repository->sudo(
+                function (Repository $repository) use ($value) {
+                    $repository->getLocationService()->loadLocation($value);
+                }
+            );
+        } catch (NotFoundException $e) {
+            /** @var \Netgen\Bundle\EzPublishBlockManagerBundle\Validator\Constraint\Location $constraint */
             $this->context->buildViolation($constraint->message)
                 ->setParameter('%locationId%', $value)
                 ->addViolation();

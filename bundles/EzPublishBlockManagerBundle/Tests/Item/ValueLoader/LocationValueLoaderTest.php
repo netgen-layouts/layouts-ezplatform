@@ -70,6 +70,33 @@ class LocationValueLoaderTest extends TestCase
     }
 
     /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\LocationValueLoader::load
+     * @expectedException \Netgen\BlockManager\Exception\InvalidItemException
+     */
+    public function testLoadThrowsInvalidItemExceptionWithNonPublishedContent()
+    {
+        $this->locationServiceMock
+            ->expects($this->any())
+            ->method('loadLocation')
+            ->with($this->isType('int'))
+            ->will(
+                $this->returnValue(
+                    new Location(
+                        array(
+                            'contentInfo' => new ContentInfo(
+                                array(
+                                    'published' => false,
+                                )
+                            ),
+                        )
+                    )
+                )
+            );
+
+        $this->valueLoader->load(52);
+    }
+
+    /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\LocationValueLoader::getValueType
      */
     public function testGetValueType()

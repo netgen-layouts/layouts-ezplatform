@@ -66,6 +66,53 @@ class ContentValueLoaderTest extends TestCase
     }
 
     /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\ContentValueLoader::load
+     * @expectedException \Netgen\BlockManager\Exception\InvalidItemException
+     */
+    public function testLoadThrowsInvalidItemExceptionWithNonPublishedContent()
+    {
+        $this->contentServiceMock
+            ->expects($this->any())
+            ->method('loadContentInfo')
+            ->with($this->isType('int'))
+            ->will(
+                $this->returnValue(
+                    new ContentInfo(
+                        array(
+                            'published' => false,
+                            'mainLocationId' => 42,
+                        )
+                    )
+                )
+            );
+
+        $this->valueLoader->load(52);
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\ContentValueLoader::load
+     * @expectedException \Netgen\BlockManager\Exception\InvalidItemException
+     */
+    public function testLoadThrowsInvalidItemExceptionWithNoMainLocation()
+    {
+        $this->contentServiceMock
+            ->expects($this->any())
+            ->method('loadContentInfo')
+            ->with($this->isType('int'))
+            ->will(
+                $this->returnValue(
+                    new ContentInfo(
+                        array(
+                            'published' => true,
+                        )
+                    )
+                )
+            );
+
+        $this->valueLoader->load(52);
+    }
+
+    /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\ContentValueLoader::getValueType
      */
     public function testGetValueType()
