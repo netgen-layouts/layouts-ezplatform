@@ -49,6 +49,7 @@ class NetgenEzPublishBlockManagerExtension extends Extension implements PrependE
         $loader->load('services/layout_resolver/condition_types.yml');
         $loader->load('services/layout_resolver/target_types.yml');
         $loader->load('services/layout_resolver/target_handlers.yml');
+        $loader->load('services/layout_resolver/forms.yml');
         $loader->load('services/collection/query_types.yml');
     }
 
@@ -65,6 +66,8 @@ class NetgenEzPublishBlockManagerExtension extends Extension implements PrependE
             'query_types.yml' => 'netgen_block_manager',
             'sources.yml' => 'netgen_block_manager',
             'view/block_view.yml' => 'netgen_block_manager',
+            'view/rule_condition_view.yml' => 'netgen_block_manager',
+            'view/rule_target_view.yml' => 'netgen_block_manager',
         );
 
         foreach ($prependConfigs as $configFile => $prependConfig) {

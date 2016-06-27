@@ -1,0 +1,6 @@
+rule_condition_view:
+    view:
+        ezsiteaccess:
+            template: "NetgenEzPublishBlockManagerBundle:admin/layout_resolver/condition/view:ezsiteaccess.html.twig"
+            match:
+                rule_condition\type: ezsiteaccess

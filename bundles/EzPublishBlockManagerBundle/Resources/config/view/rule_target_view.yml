@@ -1,0 +1,26 @@
+rule_target_view:
+    view:
+        ezchildren:
+            template: "NetgenEzPublishBlockManagerBundle:admin/layout_resolver/target/view:ezchildren.html.twig"
+            match:
+                rule_target\type: ezchildren
+        ezcontent:
+            template: "NetgenEzPublishBlockManagerBundle:admin/layout_resolver/target/view:ezcontent.html.twig"
+            match:
+                rule_target\type: ezcontent
+        ezlocation:
+            template: "NetgenEzPublishBlockManagerBundle:admin/layout_resolver/target/view:ezlocation.html.twig"
+            match:
+                rule_target\type: ezlocation
+        ezsubtree:
+            template: "NetgenEzPublishBlockManagerBundle:admin/layout_resolver/target/view:ezsubtree.html.twig"
+            match:
+                rule_target\type: ezsubtree
+        ez_semantic_path_info:
+            template: "NetgenEzPublishBlockManagerBundle:admin/layout_resolver/target/view:ez_semantic_path_info.html.twig"
+            match:
+                rule_target\type: ez_semantic_path_info
+        ez_semantic_path_info_prefix:
+            template: "NetgenEzPublishBlockManagerBundle:admin/layout_resolver/target/view:ez_semantic_path_info_prefix.html.twig"
+            match:
+                rule_target\type: ez_semantic_path_info_prefix

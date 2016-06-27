@@ -1,0 +1,10 @@
+parameters:
+    netgen_block_manager.layout.resolver.form.condition_type.mapper.ezsiteaccess.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess
+
+services:
+    netgen_block_manager.layout.resolver.form.condition_type.mapper.ezsiteaccess:
+        class: "%netgen_block_manager.layout.resolver.form.condition_type.mapper.ezsiteaccess.class%"
+        arguments:
+            - "%ezpublish.siteaccess.list%"
+        tags:
+            - { name: netgen_block_manager.layout.resolver.form.condition_type.mapper, identifier: ezsiteaccess }
