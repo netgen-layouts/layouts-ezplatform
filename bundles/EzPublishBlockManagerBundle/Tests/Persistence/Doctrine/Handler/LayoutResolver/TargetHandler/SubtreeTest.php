@@ -27,7 +27,7 @@ class SubtreeTest extends AbstractTargetHandlerTest
      */
     protected function getTargetIdentifier()
     {
-        return 'subtree';
+        return 'ezsubtree';
     }
 
     /**

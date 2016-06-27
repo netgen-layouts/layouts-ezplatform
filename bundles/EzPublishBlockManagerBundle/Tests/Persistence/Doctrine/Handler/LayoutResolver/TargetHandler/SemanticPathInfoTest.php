@@ -27,7 +27,7 @@ class SemanticPathInfoTest extends AbstractTargetHandlerTest
      */
     protected function getTargetIdentifier()
     {
-        return 'semantic_path_info';
+        return 'ez_semantic_path_info';
     }
 
     /**

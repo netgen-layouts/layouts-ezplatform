@@ -17,7 +17,7 @@ class Location implements TargetTypeInterface
      */
     public function getIdentifier()
     {
-        return 'location';
+        return 'ezlocation';
     }
 
     /**

@@ -27,7 +27,7 @@ class ContentTest extends AbstractTargetHandlerTest
      */
     protected function getTargetIdentifier()
     {
-        return 'content';
+        return 'ezcontent';
     }
 
     /**

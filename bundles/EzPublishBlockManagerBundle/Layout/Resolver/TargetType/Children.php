@@ -34,7 +34,7 @@ class Children implements TargetTypeInterface
      */
     public function getIdentifier()
     {
-        return 'children';
+        return 'ezchildren';
     }
 
     /**

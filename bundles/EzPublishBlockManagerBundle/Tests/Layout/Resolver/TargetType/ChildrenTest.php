@@ -46,7 +46,7 @@ class ChildrenTest extends TestCase
      */
     public function testGetIdentifier()
     {
-        self::assertEquals('children', $this->targetType->getIdentifier());
+        self::assertEquals('ezchildren', $this->targetType->getIdentifier());
     }
 
     /**

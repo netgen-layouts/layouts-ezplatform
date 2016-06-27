@@ -11,6 +11,6 @@ class SemanticPathInfoPrefix extends SemanticPathInfo
      */
     public function getIdentifier()
     {
-        return 'semantic_path_info_prefix';
+        return 'ez_semantic_path_info_prefix';
     }
 }

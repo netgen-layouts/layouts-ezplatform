@@ -27,7 +27,7 @@ class LocationTest extends AbstractTargetHandlerTest
      */
     protected function getTargetIdentifier()
     {
-        return 'location';
+        return 'ezlocation';
     }
 
     /**

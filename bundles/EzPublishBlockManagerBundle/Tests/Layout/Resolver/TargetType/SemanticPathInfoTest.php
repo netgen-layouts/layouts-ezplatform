@@ -36,7 +36,7 @@ class SemanticPathInfoTest extends TestCase
      */
     public function testGetIdentifier()
     {
-        self::assertEquals('semantic_path_info', $this->targetType->getIdentifier());
+        self::assertEquals('ez_semantic_path_info', $this->targetType->getIdentifier());
     }
 
     /**

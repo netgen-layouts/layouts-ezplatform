@@ -46,7 +46,7 @@ class SubtreeTest extends TestCase
      */
     public function testGetIdentifier()
     {
-        self::assertEquals('subtree', $this->targetType->getIdentifier());
+        self::assertEquals('ezsubtree', $this->targetType->getIdentifier());
     }
 
     /**

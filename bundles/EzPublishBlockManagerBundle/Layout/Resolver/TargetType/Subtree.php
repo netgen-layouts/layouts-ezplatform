@@ -34,7 +34,7 @@ class Subtree implements TargetTypeInterface
      */
     public function getIdentifier()
     {
-        return 'subtree';
+        return 'ezsubtree';
     }
 
     /**

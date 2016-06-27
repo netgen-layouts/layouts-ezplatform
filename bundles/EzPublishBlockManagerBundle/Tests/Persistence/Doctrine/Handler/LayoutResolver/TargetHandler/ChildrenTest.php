@@ -27,7 +27,7 @@ class ChildrenTest extends AbstractTargetHandlerTest
      */
     protected function getTargetIdentifier()
     {
-        return 'children';
+        return 'ezchildren';
     }
 
     /**

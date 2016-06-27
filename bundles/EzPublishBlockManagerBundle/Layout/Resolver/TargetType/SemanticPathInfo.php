@@ -17,7 +17,7 @@ class SemanticPathInfo implements TargetTypeInterface
      */
     public function getIdentifier()
     {
-        return 'semantic_path_info';
+        return 'ez_semantic_path_info';
     }
 
     /**

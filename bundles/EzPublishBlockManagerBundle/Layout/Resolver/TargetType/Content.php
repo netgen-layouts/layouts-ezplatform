@@ -17,7 +17,7 @@ class Content implements TargetTypeInterface
      */
     public function getIdentifier()
     {
-        return 'content';
+        return 'ezcontent';
     }
 
     /**

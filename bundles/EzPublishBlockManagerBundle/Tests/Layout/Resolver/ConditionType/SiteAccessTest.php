@@ -40,7 +40,7 @@ class SiteAccessTest extends TestCase
      */
     public function testGetIdentifier()
     {
-        self::assertEquals('siteaccess', $this->conditionType->getIdentifier());
+        self::assertEquals('ezsiteaccess', $this->conditionType->getIdentifier());
     }
 
     /**

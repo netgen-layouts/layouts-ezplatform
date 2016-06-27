@@ -36,7 +36,7 @@ class LocationTest extends TestCase
      */
     public function testGetIdentifier()
     {
-        self::assertEquals('location', $this->targetType->getIdentifier());
+        self::assertEquals('ezlocation', $this->targetType->getIdentifier());
     }
 
     /**

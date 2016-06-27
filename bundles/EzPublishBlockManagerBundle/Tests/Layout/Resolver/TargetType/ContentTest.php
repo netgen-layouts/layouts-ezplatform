@@ -36,7 +36,7 @@ class ContentTest extends TestCase
      */
     public function testGetIdentifier()
     {
-        self::assertEquals('content', $this->targetType->getIdentifier());
+        self::assertEquals('ezcontent', $this->targetType->getIdentifier());
     }
 
     /**

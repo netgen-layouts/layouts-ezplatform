@@ -1,9 +1,9 @@
 parameters:
-    netgen_block_manager.layout.resolver.condition_type.siteaccess.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionType\SiteAccess
+    netgen_block_manager.layout.resolver.condition_type.ezsiteaccess.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionType\SiteAccess
 
 services:
-    netgen_block_manager.layout.resolver.condition_type.siteaccess:
-        class: "%netgen_block_manager.layout.resolver.condition_type.siteaccess.class%"
+    netgen_block_manager.layout.resolver.condition_type.ezsiteaccess:
+        class: "%netgen_block_manager.layout.resolver.condition_type.ezsiteaccess.class%"
         calls:
             - [setRequestStack, ["@request_stack"]]
         tags:
