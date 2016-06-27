@@ -1,5 +1,5 @@
 parameters:
-    netgen_block_manager.collection.query_type.handler.ezcontent_search.class: Netgen\Bundle\EzPublishBlockManagerBundle\Collection\QueryType\Handler\EzContentSearchHandler
+    netgen_block_manager.collection.query_type.handler.ezcontent_search.class: Netgen\Bundle\EzPublishBlockManagerBundle\Collection\QueryType\Handler\ContentSearchHandler
 
 services:
     netgen_block_manager.collection.query_type.handler.ezcontent_search:

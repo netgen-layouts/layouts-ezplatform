@@ -15,7 +15,7 @@ use eZ\Publish\API\Repository\SearchService;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use Exception;
 
-class EzContentSearchHandler implements QueryTypeHandlerInterface
+class ContentSearchHandler implements QueryTypeHandlerInterface
 {
     /**
      * @const int
