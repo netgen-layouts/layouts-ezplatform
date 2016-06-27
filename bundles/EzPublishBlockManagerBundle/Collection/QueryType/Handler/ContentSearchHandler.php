@@ -97,7 +97,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     public function getParameters()
     {
         return array(
-            'parent_location_id' => new EzParameter\EzLocation(array(), true),
+            'parent_location_id' => new EzParameter\Location(array(), true),
             'sort_direction' => new Parameter\Choice(
                 array(
                     'options' => array(

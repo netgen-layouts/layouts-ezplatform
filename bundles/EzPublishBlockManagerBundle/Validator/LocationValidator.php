@@ -8,7 +8,7 @@ use eZ\Publish\API\Repository\Values\Content\Location;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Constraint;
 
-class EzLocationValidator extends ConstraintValidator
+class LocationValidator extends ConstraintValidator
 {
     /**
      * @var \eZ\Publish\API\Repository\Repository
@@ -43,7 +43,7 @@ class EzLocationValidator extends ConstraintValidator
             }
         );
 
-        /** @var \Netgen\Bundle\EzPublishBlockManagerBundle\Validator\Constraint\EzLocation $constraint */
+        /** @var \Netgen\Bundle\EzPublishBlockManagerBundle\Validator\Constraint\Location $constraint */
         if (!$location instanceof Location) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('%locationId%', $value)

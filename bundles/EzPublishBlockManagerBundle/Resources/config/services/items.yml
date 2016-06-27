@@ -1,8 +1,8 @@
 parameters:
-    netgen_block_manager.item.value_converter.ezcontent.class: Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzContentValueConverter
-    netgen_block_manager.item.value_converter.ezlocation.class: Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\EzLocationValueConverter
-    netgen_block_manager.item.value_loader.ezcontent.class: Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\EzContentValueLoader
-    netgen_block_manager.item.value_loader.ezlocation.class: Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\EzLocationValueLoader
+    netgen_block_manager.item.value_converter.ezcontent.class: Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\ContentValueConverter
+    netgen_block_manager.item.value_converter.ezlocation.class: Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter\LocationValueConverter
+    netgen_block_manager.item.value_loader.ezcontent.class: Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\ContentValueLoader
+    netgen_block_manager.item.value_loader.ezlocation.class: Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\LocationValueLoader
 
 services:
     netgen_block_manager.item.value_converter.ezcontent:

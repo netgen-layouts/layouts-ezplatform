@@ -4,9 +4,9 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Parameters\Parameter;
 
 use Netgen\BlockManager\Parameters\Parameter;
 use Symfony\Component\Validator\Constraints;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Validator\Constraint\EzLocation as EzLocationConstraint;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Validator\Constraint\Location as LocationConstraint;
 
-class EzLocation extends Parameter
+class Location extends Parameter
 {
     /**
      * Returns the parameter type.
@@ -28,7 +28,7 @@ class EzLocation extends Parameter
         $constraints = array(
             new Constraints\Type(array('type' => 'numeric')),
             new Constraints\GreaterThan(array('value' => 0)),
-            new EzLocationConstraint(),
+            new LocationConstraint(),
         );
 
         return $constraints;

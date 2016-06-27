@@ -3,11 +3,17 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueConverter;
 
 use Netgen\BlockManager\Item\ValueConverterInterface;
-use eZ\Publish\API\Repository\Values\Content\Location;
+use eZ\Publish\API\Repository\LocationService;
+use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Helper\TranslationHelper;
 
-class EzLocationValueConverter implements ValueConverterInterface
+class ContentValueConverter implements ValueConverterInterface
 {
+    /**
+     * @var \eZ\Publish\API\Repository\LocationService
+     */
+    protected $locationService;
+
     /**
      * @var \eZ\Publish\Core\Helper\TranslationHelper
      */
@@ -16,10 +22,12 @@ class EzLocationValueConverter implements ValueConverterInterface
     /**
      * Constructor.
      *
+     * @param \eZ\Publish\API\Repository\LocationService $locationService
      * @param \eZ\Publish\Core\Helper\TranslationHelper $translationHelper
      */
-    public function __construct(TranslationHelper $translationHelper)
+    public function __construct(LocationService $locationService, TranslationHelper $translationHelper)
     {
+        $this->locationService = $locationService;
         $this->translationHelper = $translationHelper;
     }
 
@@ -32,7 +40,7 @@ class EzLocationValueConverter implements ValueConverterInterface
      */
     public function supports($object)
     {
-        return $object instanceof Location;
+        return $object instanceof ContentInfo;
     }
 
     /**
@@ -44,13 +52,13 @@ class EzLocationValueConverter implements ValueConverterInterface
      */
     public function getValueType($object)
     {
-        return 'ezlocation';
+        return 'ezcontent';
     }
 
     /**
      * Returns the object ID.
      *
-     * @param \eZ\Publish\API\Repository\Values\Content\Location $object
+     * @param \eZ\Publish\API\Repository\Values\Content\ContentInfo $object
      *
      * @return int|string
      */
@@ -62,26 +70,26 @@ class EzLocationValueConverter implements ValueConverterInterface
     /**
      * Returns the object name.
      *
-     * @param \eZ\Publish\API\Repository\Values\Content\Location $object
+     * @param \eZ\Publish\API\Repository\Values\Content\ContentInfo $object
      *
      * @return string
      */
     public function getName($object)
     {
-        return $this->translationHelper->getTranslatedContentNameByContentInfo(
-            $object->getContentInfo()
-        );
+        return $this->translationHelper->getTranslatedContentNameByContentInfo($object);
     }
 
     /**
      * Returns if the object is visible.
      *
-     * @param \eZ\Publish\API\Repository\Values\Content\Location $object
+     * @param \eZ\Publish\API\Repository\Values\Content\ContentInfo $object
      *
      * @return bool
      */
     public function getIsVisible($object)
     {
-        return !$object->invisible;
+        $mainLocation = $this->locationService->loadLocation($object->mainLocationId);
+
+        return !$mainLocation->invisible;
     }
 }

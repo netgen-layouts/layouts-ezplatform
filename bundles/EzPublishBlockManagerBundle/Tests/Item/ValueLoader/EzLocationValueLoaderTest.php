@@ -5,11 +5,11 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Item\ValueLoader;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Repository\Values\Content\Location;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\EzLocationValueLoader;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\LocationValueLoader;
 use Netgen\BlockManager\Exception\InvalidItemException;
 use PHPUnit\Framework\TestCase;
 
-class EzLocationValueLoaderTest extends TestCase
+class LocationValueLoaderTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
@@ -17,7 +17,7 @@ class EzLocationValueLoaderTest extends TestCase
     protected $locationServiceMock;
 
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\EzLocationValueLoader
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\LocationValueLoader
      */
     protected $valueLoader;
 
@@ -25,12 +25,12 @@ class EzLocationValueLoaderTest extends TestCase
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
 
-        $this->valueLoader = new EzLocationValueLoader($this->locationServiceMock);
+        $this->valueLoader = new LocationValueLoader($this->locationServiceMock);
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\EzLocationValueLoader::__construct
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\EzLocationValueLoader::load
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\LocationValueLoader::__construct
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\LocationValueLoader::load
      */
     public function testLoad()
     {
@@ -55,7 +55,7 @@ class EzLocationValueLoaderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\EzLocationValueLoader::load
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\LocationValueLoader::load
      * @expectedException \Netgen\BlockManager\Exception\InvalidItemException
      */
     public function testLoadThrowsInvalidItemException()
@@ -70,7 +70,7 @@ class EzLocationValueLoaderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\EzLocationValueLoader::getValueType
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\LocationValueLoader::getValueType
      */
     public function testGetValueType()
     {

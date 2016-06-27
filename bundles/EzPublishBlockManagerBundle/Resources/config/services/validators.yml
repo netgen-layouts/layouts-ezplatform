@@ -1,5 +1,5 @@
 parameters:
-    netgen_block_manager.validator.ezlocation.class: Netgen\Bundle\EzPublishBlockManagerBundle\Validator\EzLocationValidator
+    netgen_block_manager.validator.ezlocation.class: Netgen\Bundle\EzPublishBlockManagerBundle\Validator\LocationValidator
 
 services:
     netgen_block_manager.validator.ezlocation:

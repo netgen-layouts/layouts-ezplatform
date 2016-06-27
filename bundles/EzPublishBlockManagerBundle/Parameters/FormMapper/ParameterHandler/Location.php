@@ -6,7 +6,7 @@ use Netgen\BlockManager\Parameters\FormMapper\ParameterHandler;
 use Netgen\BlockManager\Parameters\ParameterInterface;
 use Netgen\Bundle\ContentBrowserBundle\Form\Type\ContentBrowserType;
 
-class EzLocation extends ParameterHandler
+class Location extends ParameterHandler
 {
     /**
      * Returns the form type for the parameter.
