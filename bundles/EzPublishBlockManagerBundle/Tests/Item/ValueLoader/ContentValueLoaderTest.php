@@ -8,7 +8,7 @@ use Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\ContentValueLoade
 use Netgen\BlockManager\Exception\InvalidItemException;
 use PHPUnit\Framework\TestCase;
 
-class ContentValueLoaderTest extends TestCase
+class EzContentValueLoaderTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject

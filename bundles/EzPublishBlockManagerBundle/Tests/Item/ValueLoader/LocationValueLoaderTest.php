@@ -9,7 +9,7 @@ use Netgen\Bundle\EzPublishBlockManagerBundle\Item\ValueLoader\LocationValueLoad
 use Netgen\BlockManager\Exception\InvalidItemException;
 use PHPUnit\Framework\TestCase;
 
-class LocationValueLoaderTest extends TestCase
+class EzLocationValueLoaderTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
