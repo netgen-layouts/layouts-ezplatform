@@ -5,7 +5,7 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Block\BlockDefinition;
 use Netgen\BlockManager\Block\BlockDefinition\BlockDefinitionHandlerInterface;
 use Netgen\BlockManager\API\Values\Page\Block;
 
-interface EzContentFieldDefinitionHandlerInterface extends BlockDefinitionHandlerInterface
+interface ContentFieldDefinitionHandlerInterface extends BlockDefinitionHandlerInterface
 {
     /**
      * Returns the identifier of the eZ Publish content field to use.

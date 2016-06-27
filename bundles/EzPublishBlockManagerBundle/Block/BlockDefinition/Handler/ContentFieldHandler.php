@@ -2,10 +2,10 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Block\BlockDefinition\Handler;
 
-use Netgen\Bundle\EzPublishBlockManagerBundle\Block\BlockDefinition\EzContentFieldDefinitionHandler;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Block\BlockDefinition\ContentFieldDefinitionHandler;
 use Netgen\BlockManager\Parameters\Parameter;
 
-class EzContentFieldHandler extends EzContentFieldDefinitionHandler
+class ContentFieldHandler extends ContentFieldDefinitionHandler
 {
     /**
      * Returns the array specifying block parameters.

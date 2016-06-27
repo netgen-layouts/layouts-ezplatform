@@ -6,7 +6,7 @@ use Netgen\BlockManager\Block\BlockDefinition\BlockDefinitionHandler;
 use Netgen\BlockManager\API\Values\Page\Block;
 use Netgen\BlockManager\Parameters\Parameter;
 
-abstract class EzContentFieldDefinitionHandler extends BlockDefinitionHandler implements EzContentFieldDefinitionHandlerInterface
+abstract class ContentFieldDefinitionHandler extends BlockDefinitionHandler implements ContentFieldDefinitionHandlerInterface
 {
     /**
      * Returns the identifier of the eZ Publish content field to use.

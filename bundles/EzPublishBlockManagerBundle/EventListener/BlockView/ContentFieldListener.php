@@ -2,7 +2,7 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\BlockView;
 
-use Netgen\Bundle\EzPublishBlockManagerBundle\Block\BlockDefinition\EzContentFieldDefinitionHandlerInterface;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Block\BlockDefinition\ContentFieldDefinitionHandlerInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Netgen\BlockManager\View\BlockViewInterface;
 use Netgen\BlockManager\Event\View\CollectViewParametersEvent;
@@ -13,7 +13,7 @@ use eZ\Publish\Core\MVC\Symfony\View\ContentView;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class EzContentFieldListener implements EventSubscriberInterface
+class ContentFieldListener implements EventSubscriberInterface
 {
     use RequestStackAwareTrait;
 
@@ -58,7 +58,7 @@ class EzContentFieldListener implements EventSubscriberInterface
             return;
         }
 
-        if (!$view->getBlockDefinition()->getHandler() instanceof EzContentFieldDefinitionHandlerInterface) {
+        if (!$view->getBlockDefinition()->getHandler() instanceof ContentFieldDefinitionHandlerInterface) {
             return;
         }
 
