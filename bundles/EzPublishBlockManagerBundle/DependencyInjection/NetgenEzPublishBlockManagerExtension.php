@@ -66,6 +66,7 @@ class NetgenEzPublishBlockManagerExtension extends Extension implements PrependE
             'query_types.yml' => 'netgen_block_manager',
             'sources.yml' => 'netgen_block_manager',
             'view/block_view.yml' => 'netgen_block_manager',
+            'view/form_view.yml' => 'netgen_block_manager',
             'view/rule_condition_view.yml' => 'netgen_block_manager',
             'view/rule_target_view.yml' => 'netgen_block_manager',
         );
