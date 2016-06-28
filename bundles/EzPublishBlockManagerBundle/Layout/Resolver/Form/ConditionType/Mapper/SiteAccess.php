@@ -2,11 +2,11 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\ConditionType\Mapper;
 
-use Netgen\BlockManager\Layout\Resolver\Form\ConditionType\MapperInterface;
+use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
+use Netgen\BlockManager\Layout\Resolver\Form\ConditionType\Mapper;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\FormBuilderInterface;
 
-class SiteAccess implements MapperInterface
+class SiteAccess extends Mapper
 {
     /**
      * @var array
@@ -41,29 +41,19 @@ class SiteAccess implements MapperInterface
     /**
      * Returns the form type options.
      *
+     * @param \Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface $conditionType
+     *
      * @return array
      */
-    public function getOptions()
+    public function getOptions(ConditionTypeInterface $conditionType)
     {
+        $baseOptions = parent::getOptions($conditionType);
+
         return array(
             'choices' => $this->siteAccessList,
             'choice_translation_domain' => false,
             'choices_as_values' => true,
-            'label' => 'condition_type.siteaccess.label',
             'multiple' => true,
-        );
-    }
-
-    /**
-     * Handles the form for this condition type.
-     *
-     * This is the place where you will usually add data mappers and transformers to the form.
-     *
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     *
-     * @return array
-     */
-    public function handleForm(FormBuilderInterface $builder)
-    {
+        ) + $baseOptions;
     }
 }

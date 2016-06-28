@@ -48,10 +48,11 @@ class SiteAccessTest extends FormTestCase
 
     /**
      * @covers \Netgen\BlockManager\Layout\Resolver\Form\ConditionType::buildForm
+     * @covers \Netgen\BlockManager\Layout\Resolver\Form\ConditionType\Mapper::getOptions
+     * @covers \Netgen\BlockManager\Layout\Resolver\Form\ConditionType\Mapper::handleForm
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess::__construct
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess::getFormType
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess::getOptions
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess::handleForm
      */
     public function testSubmitValidData()
     {
