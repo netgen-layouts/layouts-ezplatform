@@ -1,0 +1,8 @@
+layout_resolver.target.ezchildren: 'eZ children'
+layout_resolver.target.ezsubtree: 'eZ subtree'
+layout_resolver.target.ezcontent: 'eZ content'
+layout_resolver.target.ezlocation: 'eZ location'
+layout_resolver.target.ez_semantic_path_info: 'eZ semantic path info'
+layout_resolver.target.ez_semantic_path_info_prefix: 'eZ semantic path info prefix'
+
+layout_resolver.condition.ezsiteaccess: 'eZ siteaccess'
