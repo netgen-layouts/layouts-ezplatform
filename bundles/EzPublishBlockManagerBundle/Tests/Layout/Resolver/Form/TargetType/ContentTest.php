@@ -55,7 +55,7 @@ class ContentTest extends FormTestCase
         return array(
             new ContentBrowserType(
                 $itemRepositoryMock
-            )
+            ),
         );
     }
 

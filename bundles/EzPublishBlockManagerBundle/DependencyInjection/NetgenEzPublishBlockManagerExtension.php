@@ -88,7 +88,7 @@ class NetgenEzPublishBlockManagerExtension extends Extension implements PrependE
     public function getAppendConfigs()
     {
         return array(
-            __DIR__ . '/../Resources/config/block_type_groups.yml' => 'netgen_block_manager'
+            __DIR__ . '/../Resources/config/block_type_groups.yml' => 'netgen_block_manager',
         );
     }
 

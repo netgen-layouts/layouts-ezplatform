@@ -55,7 +55,7 @@ class LocationTest extends FormTestCase
         return array(
             new ContentBrowserType(
                 $itemRepositoryMock
-            )
+            ),
         );
     }
 

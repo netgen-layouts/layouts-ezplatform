@@ -55,7 +55,7 @@ class SubtreeTest extends FormTestCase
         return array(
             new ContentBrowserType(
                 $itemRepositoryMock
-            )
+            ),
         );
     }
 

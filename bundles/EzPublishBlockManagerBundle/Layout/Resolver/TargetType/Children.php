@@ -50,7 +50,7 @@ class Children implements TargetTypeInterface
             new Constraints\NotBlank(),
             new Constraints\Type(array('type' => 'numeric')),
             new Constraints\GreaterThan(array('value' => 0)),
-            new EzConstraints\Location()
+            new EzConstraints\Location(),
         );
     }
 

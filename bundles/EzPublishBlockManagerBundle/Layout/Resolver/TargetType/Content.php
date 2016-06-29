@@ -33,7 +33,7 @@ class Content implements TargetTypeInterface
             new Constraints\NotBlank(),
             new Constraints\Type(array('type' => 'numeric')),
             new Constraints\GreaterThan(array('value' => 0)),
-            new EzConstraints\Content()
+            new EzConstraints\Content(),
         );
     }
 
