@@ -2,9 +2,10 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Parameters\Parameter;
 
-use eZ\Publish\Core\Repository\Repository;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Parameters\Parameter\Location;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Validator\RepositoryValidatorFactory;
+use eZ\Publish\Core\Base\Exceptions\NotFoundException;
+use eZ\Publish\Core\Repository\Repository;
 use Symfony\Component\Validator\Validation;
 use PHPUnit\Framework\TestCase;
 
@@ -119,7 +120,7 @@ class LocationTest extends TestCase
 
         $parameter = $this->getParameter(array(), $required);
         $validator = Validation::createValidatorBuilder()
-            ->setConstraintValidatorFactory(new ValidatorFactory($repositoryMock))
+            ->setConstraintValidatorFactory(new RepositoryValidatorFactory($repositoryMock))
             ->getValidator();
 
         $errors = $validator->validate($value, $parameter->getConstraints());

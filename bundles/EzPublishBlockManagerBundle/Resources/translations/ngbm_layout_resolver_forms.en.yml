@@ -1,1 +1,7 @@
+target_type.ezchildren.label: 'Children'
+target_type.ezsubtree.label: 'Subtree'
+target_type.ezlocation.label: 'Location'
+target_type.ezcontent.label: 'Content'
+target_type.ez_semantic_path_info.label: 'Semantic path info'
+
 condition_type.ezsiteaccess.label: 'Siteaccess'

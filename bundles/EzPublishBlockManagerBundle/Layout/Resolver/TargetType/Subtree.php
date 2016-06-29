@@ -2,11 +2,13 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType;
 
+use Netgen\Bundle\EzPublishBlockManagerBundle\Validator\Constraint as EzConstraints;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\LocationService;
 use Netgen\BlockManager\Layout\Resolver\TargetTypeInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints;
 
 class Subtree implements TargetTypeInterface
 {
@@ -44,7 +46,12 @@ class Subtree implements TargetTypeInterface
      */
     public function getConstraints()
     {
-        return array();
+        return array(
+            new Constraints\NotBlank(),
+            new Constraints\Type(array('type' => 'numeric')),
+            new Constraints\GreaterThan(array('value' => 0)),
+            new EzConstraints\Location()
+        );
     }
 
     /**

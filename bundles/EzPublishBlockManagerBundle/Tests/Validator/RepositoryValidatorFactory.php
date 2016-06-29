@@ -1,13 +1,14 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Parameters\Parameter;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Validator;
 
 use eZ\Publish\API\Repository\Repository;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Validator\ContentValidator;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Validator\LocationValidator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorFactory;
 
-class ValidatorFactory extends ConstraintValidatorFactory
+class RepositoryValidatorFactory extends ConstraintValidatorFactory
 {
     /**
      * @var \eZ\Publish\API\Repository\Repository
@@ -35,6 +36,8 @@ class ValidatorFactory extends ConstraintValidatorFactory
 
         if ($name === 'ngbm_ezlocation') {
             return new LocationValidator($this->repository);
+        } elseif ($name === 'ngbm_ezcontent') {
+            return new ContentValidator($this->repository);
         } else {
             return parent::getInstance($constraint);
         }

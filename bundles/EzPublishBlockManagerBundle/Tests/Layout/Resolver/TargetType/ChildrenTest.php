@@ -2,13 +2,16 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\TargetType;
 
+use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\LocationService;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Validator\RepositoryValidatorFactory;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Validator\Validation;
 
 class ChildrenTest extends TestCase
 {
@@ -47,6 +50,39 @@ class ChildrenTest extends TestCase
     public function testGetIdentifier()
     {
         self::assertEquals('ezchildren', $this->targetType->getIdentifier());
+    }
+
+    /**
+     * @param mixed $value
+     * @param bool $isValid
+     *
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children::getConstraints
+     * @dataProvider validationProvider
+     */
+    public function testValidation($value, $isValid)
+    {
+        $repositoryMock = $this->createMock(Repository::class);
+        if ($value !== null) {
+            $repositoryMock
+                ->expects($this->once())
+                ->method('sudo')
+                ->will(
+                    $this->returnCallback(
+                        function () use ($value) {
+                            if (!is_int($value) || $value > 20) {
+                                throw new NotFoundException('location', $value);
+                            }
+                        }
+                    )
+                );
+        }
+
+        $validator = Validation::createValidatorBuilder()
+            ->setConstraintValidatorFactory(new RepositoryValidatorFactory($repositoryMock))
+            ->getValidator();
+
+        $errors = $validator->validate($value, $this->targetType->getConstraints());
+        self::assertEquals($isValid, $errors->count() == 0);
     }
 
     /**
@@ -109,5 +145,23 @@ class ChildrenTest extends TestCase
             ->will($this->throwException(new NotFoundException('location', 42)));
 
         self::assertNull($this->targetType->provideValue());
+    }
+
+    /**
+     * Provider for testing valid parameter values.
+     *
+     * @return array
+     */
+    public function validationProvider()
+    {
+        return array(
+            array(12, true),
+            array(24, false),
+            array(-12, false),
+            array(0, false),
+            array('12', false),
+            array('', false),
+            array(null, false),
+        );
     }
 }

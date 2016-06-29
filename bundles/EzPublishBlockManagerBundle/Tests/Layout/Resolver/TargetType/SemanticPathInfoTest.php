@@ -6,6 +6,7 @@ use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Semanti
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Validator\Validation;
 
 class SemanticPathInfoTest extends TestCase
 {
@@ -37,6 +38,21 @@ class SemanticPathInfoTest extends TestCase
     public function testGetIdentifier()
     {
         self::assertEquals('ez_semantic_path_info', $this->targetType->getIdentifier());
+    }
+
+    /**
+     * @param mixed $value
+     * @param bool $isValid
+     *
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\SemanticPathInfo::getConstraints
+     * @dataProvider validationProvider
+     */
+    public function testValidation($value, $isValid)
+    {
+        $validator = Validation::createValidator();
+
+        $errors = $validator->validate($value, $this->targetType->getConstraints());
+        self::assertEquals($isValid, $errors->count() == 0);
     }
 
     /**
@@ -83,5 +99,20 @@ class SemanticPathInfoTest extends TestCase
         $this->requestStack->getCurrentRequest()->attributes->remove('semanticPathinfo');
 
         self::assertNull($this->targetType->provideValue());
+    }
+
+    /**
+     * Provider for testing target type validation.
+     *
+     * @return array
+     */
+    public function validationProvider()
+    {
+        return array(
+            array('/some/route', true),
+            array('/', true),
+            array('', false),
+            array(null, false),
+        );
     }
 }
