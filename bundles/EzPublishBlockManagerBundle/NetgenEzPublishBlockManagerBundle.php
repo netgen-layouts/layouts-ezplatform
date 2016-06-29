@@ -23,5 +23,6 @@ class NetgenEzPublishBlockManagerBundle extends Bundle
         $blockManagerExtension->addConfigTreeBuilder($configuration->getConfigTreeBuilderClosure());
         $blockManagerExtension->addPreProcessor($this->extension->getPreProcessor());
         $blockManagerExtension->addPostProcessor($this->extension->getPostProcessor());
+        $blockManagerExtension->addAppendConfigs($this->extension->getAppendConfigs());
     }
 }

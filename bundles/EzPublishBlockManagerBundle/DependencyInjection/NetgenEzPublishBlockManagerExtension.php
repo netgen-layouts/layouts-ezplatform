@@ -81,6 +81,18 @@ class NetgenEzPublishBlockManagerExtension extends Extension implements PrependE
     }
 
     /**
+     * Returns the list of config files that will be appended to main bundle config.
+     *
+     * @return array
+     */
+    public function getAppendConfigs()
+    {
+        return array(
+            __DIR__ . '/../Resources/config/block_type_groups.yml' => 'netgen_block_manager'
+        );
+    }
+
+    /**
      * Returns the config preprocessor closure.
      *
      * The point of the preprocessor is to generate eZ Publish siteaccess aware
