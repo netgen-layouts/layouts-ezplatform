@@ -36,11 +36,11 @@ class ContentTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Content::getIdentifier
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Content::getType
      */
-    public function testGetIdentifier()
+    public function testGetType()
     {
-        self::assertEquals('ezcontent', $this->targetType->getIdentifier());
+        self::assertEquals('ezcontent', $this->targetType->getType());
     }
 
     /**

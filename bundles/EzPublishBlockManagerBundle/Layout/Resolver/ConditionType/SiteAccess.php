@@ -28,11 +28,11 @@ class SiteAccess implements ConditionTypeInterface
     }
 
     /**
-     * Returns the condition type identifier.
+     * Returns the condition type.
      *
      * @return string
      */
-    public function getIdentifier()
+    public function getType()
     {
         return 'ezsiteaccess';
     }

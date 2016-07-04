@@ -45,11 +45,11 @@ class ChildrenTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children::getIdentifier
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children::getType
      */
-    public function testGetIdentifier()
+    public function testGetType()
     {
-        self::assertEquals('ezchildren', $this->targetType->getIdentifier());
+        self::assertEquals('ezchildren', $this->targetType->getType());
     }
 
     /**

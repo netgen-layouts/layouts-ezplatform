@@ -30,11 +30,11 @@ class Children implements TargetTypeInterface
     }
 
     /**
-     * Returns the target type identifier.
+     * Returns the target type.
      *
      * @return string
      */
-    public function getIdentifier()
+    public function getType()
     {
         return 'ezchildren';
     }

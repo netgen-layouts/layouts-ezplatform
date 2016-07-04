@@ -45,11 +45,11 @@ class SubtreeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Subtree::getIdentifier
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Subtree::getType
      */
-    public function testGetIdentifier()
+    public function testGetType()
     {
-        self::assertEquals('ezsubtree', $this->targetType->getIdentifier());
+        self::assertEquals('ezsubtree', $this->targetType->getType());
     }
 
     /**

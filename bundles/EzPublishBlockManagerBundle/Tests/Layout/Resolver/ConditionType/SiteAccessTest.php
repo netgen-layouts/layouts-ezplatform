@@ -38,11 +38,11 @@ class SiteAccessTest extends TestCase
 
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionType\SiteAccess::__construct
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionType\SiteAccess::getIdentifier
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionType\SiteAccess::getType
      */
-    public function testGetIdentifier()
+    public function testGetType()
     {
-        self::assertEquals('ezsiteaccess', $this->conditionType->getIdentifier());
+        self::assertEquals('ezsiteaccess', $this->conditionType->getType());
     }
 
     /**

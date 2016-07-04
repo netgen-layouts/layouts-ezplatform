@@ -10,29 +10,29 @@ services:
     netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezlocation:
         class: "%netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezlocation.class%"
         tags:
-            - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, identifier: ezlocation }
+            - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, target_type: ezlocation }
 
     netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezcontent:
         class: "%netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezcontent.class%"
         tags:
-            - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, identifier: ezcontent }
+            - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, target_type: ezcontent }
 
     netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezchildren:
         class: "%netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezchildren.class%"
         tags:
-            - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, identifier: ezchildren }
+            - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, target_type: ezchildren }
 
     netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezsubtree:
         class: "%netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezsubtree.class%"
         tags:
-            - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, identifier: ezsubtree }
+            - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, target_type: ezsubtree }
 
     netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ez_semantic_path_info:
         class: "%netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ez_semantic_path_info.class%"
         tags:
-            - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, identifier: ez_semantic_path_info }
+            - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, target_type: ez_semantic_path_info }
 
     netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ez_semantic_path_info_prefix:
         class: "%netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ez_semantic_path_info_prefix.class%"
         tags:
-            - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, identifier: ez_semantic_path_info_prefix }
+            - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, target_type: ez_semantic_path_info_prefix }

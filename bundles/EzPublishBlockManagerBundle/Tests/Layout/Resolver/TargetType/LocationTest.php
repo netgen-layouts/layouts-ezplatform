@@ -36,11 +36,11 @@ class LocationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Location::getIdentifier
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Location::getType
      */
-    public function testGetIdentifier()
+    public function testGetType()
     {
-        self::assertEquals('ezlocation', $this->targetType->getIdentifier());
+        self::assertEquals('ezlocation', $this->targetType->getType());
     }
 
     /**

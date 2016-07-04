@@ -33,11 +33,11 @@ class SemanticPathInfoTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\SemanticPathInfo::getIdentifier
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\SemanticPathInfo::getType
      */
-    public function testGetIdentifier()
+    public function testGetType()
     {
-        self::assertEquals('ez_semantic_path_info', $this->targetType->getIdentifier());
+        self::assertEquals('ez_semantic_path_info', $this->targetType->getType());
     }
 
     /**

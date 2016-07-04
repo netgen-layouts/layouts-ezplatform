@@ -15,10 +15,10 @@ class SemanticPathInfoPrefixTest extends SemanticPathInfoTest
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\SemanticPathInfoPrefix::getIdentifier
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\SemanticPathInfoPrefix::getType
      */
-    public function testGetIdentifier()
+    public function testGetType()
     {
-        self::assertEquals('ez_semantic_path_info_prefix', $this->targetType->getIdentifier());
+        self::assertEquals('ez_semantic_path_info_prefix', $this->targetType->getType());
     }
 }
