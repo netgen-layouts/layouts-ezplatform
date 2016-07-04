@@ -2,8 +2,6 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Validator;
 
-use eZ\Publish\API\Repository\Repository;
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Constraint;
 
