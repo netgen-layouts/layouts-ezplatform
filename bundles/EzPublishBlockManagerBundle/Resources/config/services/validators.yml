@@ -1,8 +1,8 @@
 parameters:
-    netgen_block_manager.validator.ezlocation.class: Netgen\Bundle\EzPublishBlockManagerBundle\Validator\LocationValidator
-    netgen_block_manager.validator.ezcontent.class: Netgen\Bundle\EzPublishBlockManagerBundle\Validator\ContentValidator
-    netgen_block_manager.validator.ez_site_access.class: Netgen\Bundle\EzPublishBlockManagerBundle\Validator\SiteAccessValidator
-    netgen_block_manager.validator.ez_content_type.class: Netgen\Bundle\EzPublishBlockManagerBundle\Validator\ContentTypeValidator
+    netgen_block_manager.validator.ezlocation.class: Netgen\BlockManager\Ez\Validator\LocationValidator
+    netgen_block_manager.validator.ezcontent.class: Netgen\BlockManager\Ez\Validator\ContentValidator
+    netgen_block_manager.validator.ez_site_access.class: Netgen\BlockManager\Ez\Validator\SiteAccessValidator
+    netgen_block_manager.validator.ez_content_type.class: Netgen\BlockManager\Ez\Validator\ContentTypeValidator
 
 services:
     netgen_block_manager.validator.ezlocation:

@@ -1,10 +1,10 @@
 parameters:
-    netgen_block_manager.layout.resolver.target_type.ezlocation.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Location
-    netgen_block_manager.layout.resolver.target_type.ezcontent.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Content
-    netgen_block_manager.layout.resolver.target_type.ezchildren.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Children
-    netgen_block_manager.layout.resolver.target_type.ezsubtree.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\Subtree
-    netgen_block_manager.layout.resolver.target_type.ez_semantic_path_info.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\SemanticPathInfo
-    netgen_block_manager.layout.resolver.target_type.ez_semantic_path_info_prefix.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\TargetType\SemanticPathInfoPrefix
+    netgen_block_manager.layout.resolver.target_type.ezlocation.class: Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Location
+    netgen_block_manager.layout.resolver.target_type.ezcontent.class: Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content
+    netgen_block_manager.layout.resolver.target_type.ezchildren.class: Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children
+    netgen_block_manager.layout.resolver.target_type.ezsubtree.class: Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Subtree
+    netgen_block_manager.layout.resolver.target_type.ez_semantic_path_info.class: Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfo
+    netgen_block_manager.layout.resolver.target_type.ez_semantic_path_info_prefix.class: Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix
 
 services:
     netgen_block_manager.layout.resolver.target_type.ezlocation:

@@ -2,7 +2,7 @@
 
 namespace Netgen\Bundle\BlockManagerBundle\Tests\EventListener\BlockView;
 
-use Netgen\Bundle\EzPublishBlockManagerBundle\Block\BlockDefinition\ContentFieldDefinitionHandlerInterface;
+use Netgen\BlockManager\Ez\Block\BlockDefinition\ContentFieldDefinitionHandlerInterface;
 use Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\BlockView\ContentFieldListener;
 use Netgen\BlockManager\Block\BlockDefinition;
 use Netgen\BlockManager\Block\BlockDefinition\BlockDefinitionHandlerInterface;

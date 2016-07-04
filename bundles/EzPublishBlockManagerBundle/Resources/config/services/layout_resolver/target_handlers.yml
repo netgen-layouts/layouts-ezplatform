@@ -1,10 +1,10 @@
 parameters:
-    netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezlocation.class: Netgen\Bundle\EzPublishBlockManagerBundle\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Location
-    netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezcontent.class: Netgen\Bundle\EzPublishBlockManagerBundle\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Content
-    netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezchildren.class: Netgen\Bundle\EzPublishBlockManagerBundle\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Children
-    netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezsubtree.class: Netgen\Bundle\EzPublishBlockManagerBundle\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Subtree
-    netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ez_semantic_path_info.class: Netgen\Bundle\EzPublishBlockManagerBundle\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\SemanticPathInfo
-    netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ez_semantic_path_info_prefix.class: Netgen\Bundle\EzPublishBlockManagerBundle\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\SemanticPathInfoPrefix
+    netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezlocation.class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Location
+    netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezcontent.class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Content
+    netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezchildren.class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Children
+    netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezsubtree.class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Subtree
+    netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ez_semantic_path_info.class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\SemanticPathInfo
+    netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ez_semantic_path_info_prefix.class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\SemanticPathInfoPrefix
 
 services:
     netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezlocation:

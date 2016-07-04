@@ -1,13 +1,13 @@
 parameters:
-    netgen_block_manager.layout.resolver.form.target_type.mapper.ezchildren.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\TargetType\Mapper\Children
-    netgen_block_manager.layout.resolver.form.target_type.mapper.ezsubtree.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\TargetType\Mapper\Subtree
-    netgen_block_manager.layout.resolver.form.target_type.mapper.ezlocation.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\TargetType\Mapper\Location
-    netgen_block_manager.layout.resolver.form.target_type.mapper.ezcontent.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\TargetType\Mapper\Content
-    netgen_block_manager.layout.resolver.form.target_type.mapper.ez_semantic_path_info.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\TargetType\Mapper\SemanticPathInfo
-    netgen_block_manager.layout.resolver.form.target_type.mapper.ez_semantic_path_info_prefix.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\TargetType\Mapper\SemanticPathInfoPrefix
+    netgen_block_manager.layout.resolver.form.target_type.mapper.ezchildren.class: Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Children
+    netgen_block_manager.layout.resolver.form.target_type.mapper.ezsubtree.class: Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Subtree
+    netgen_block_manager.layout.resolver.form.target_type.mapper.ezlocation.class: Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Location
+    netgen_block_manager.layout.resolver.form.target_type.mapper.ezcontent.class: Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Content
+    netgen_block_manager.layout.resolver.form.target_type.mapper.ez_semantic_path_info.class: Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\SemanticPathInfo
+    netgen_block_manager.layout.resolver.form.target_type.mapper.ez_semantic_path_info_prefix.class: Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\SemanticPathInfoPrefix
 
-    netgen_block_manager.layout.resolver.form.condition_type.mapper.ez_site_access.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess
-    netgen_block_manager.layout.resolver.form.condition_type.mapper.ez_content_type.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\ConditionType\Mapper\ContentType
+    netgen_block_manager.layout.resolver.form.condition_type.mapper.ez_site_access.class: Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess
+    netgen_block_manager.layout.resolver.form.condition_type.mapper.ez_content_type.class: Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\ContentType
 
 services:
     netgen_block_manager.layout.resolver.form.target_type.mapper.ezchildren:

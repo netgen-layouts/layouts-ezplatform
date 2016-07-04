@@ -1,5 +1,5 @@
 parameters:
-    netgen_block_manager.configuration.config_resolver.class: Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration
+    netgen_block_manager.configuration.config_resolver.class: Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration
 
 services:
     netgen_block_manager.configuration.config_resolver:
