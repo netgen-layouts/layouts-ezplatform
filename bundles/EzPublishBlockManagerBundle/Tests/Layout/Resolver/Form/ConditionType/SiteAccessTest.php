@@ -39,7 +39,7 @@ class SiteAccessTest extends FormTestCase
 
         return new ConditionType(
             array(
-                'ezsiteaccess' => new SiteAccessMapper(
+                'ez_site_access' => new SiteAccessMapper(
                     $this->siteAccessList
                 ),
             )

@@ -34,7 +34,7 @@ class SiteAccess implements ConditionTypeInterface
      */
     public function getType()
     {
-        return 'ezsiteaccess';
+        return 'ez_site_access';
     }
 
     /**

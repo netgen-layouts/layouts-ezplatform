@@ -6,7 +6,7 @@ parameters:
     netgen_block_manager.layout.resolver.form.target_type.mapper.ez_semantic_path_info.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\TargetType\Mapper\SemanticPathInfo
     netgen_block_manager.layout.resolver.form.target_type.mapper.ez_semantic_path_info_prefix.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\TargetType\Mapper\SemanticPathInfoPrefix
 
-    netgen_block_manager.layout.resolver.form.condition_type.mapper.ezsiteaccess.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess
+    netgen_block_manager.layout.resolver.form.condition_type.mapper.ez_site_access.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess
     netgen_block_manager.layout.resolver.form.condition_type.mapper.ez_content_type.class: Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\Form\ConditionType\Mapper\ContentType
 
 services:
@@ -40,12 +40,12 @@ services:
         tags:
             - { name: netgen_block_manager.layout.resolver.form.target_type.mapper, target_type: ez_semantic_path_info_prefix }
 
-    netgen_block_manager.layout.resolver.form.condition_type.mapper.ezsiteaccess:
-        class: "%netgen_block_manager.layout.resolver.form.condition_type.mapper.ezsiteaccess.class%"
+    netgen_block_manager.layout.resolver.form.condition_type.mapper.ez_site_access:
+        class: "%netgen_block_manager.layout.resolver.form.condition_type.mapper.ez_site_access.class%"
         arguments:
             - "%ezpublish.siteaccess.list%"
         tags:
-            - { name: netgen_block_manager.layout.resolver.form.condition_type.mapper, condition_type: ezsiteaccess }
+            - { name: netgen_block_manager.layout.resolver.form.condition_type.mapper, condition_type: ez_site_access }
 
     netgen_block_manager.layout.resolver.form.condition_type.mapper.ez_content_type:
         class: "%netgen_block_manager.layout.resolver.form.condition_type.mapper.ez_content_type.class%"
