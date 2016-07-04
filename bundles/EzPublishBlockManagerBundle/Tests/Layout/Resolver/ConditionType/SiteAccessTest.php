@@ -4,6 +4,7 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Layout\Resolver\Condit
 
 use Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionType\SiteAccess;
 use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzPublishSiteAccess;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Validator\ValidatorFactory;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
@@ -54,7 +55,9 @@ class SiteAccessTest extends TestCase
      */
     public function testValidation($value, $isValid)
     {
-        $validator = Validation::createValidator();
+        $validator = Validation::createValidatorBuilder()
+            ->setConstraintValidatorFactory(new ValidatorFactory())
+            ->getValidator();
 
         $errors = $validator->validate($value, $this->conditionType->getConstraints());
         self::assertEquals($isValid, $errors->count() == 0);

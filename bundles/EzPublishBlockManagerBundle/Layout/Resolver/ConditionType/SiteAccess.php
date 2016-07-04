@@ -2,6 +2,7 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Layout\Resolver\ConditionType;
 
+use Netgen\Bundle\EzPublishBlockManagerBundle\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\Validator\Constraints;
@@ -11,21 +12,6 @@ use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzPublishSiteAccess;
 class SiteAccess implements ConditionTypeInterface
 {
     use RequestStackAwareTrait;
-
-    /**
-     * @var array
-     */
-    protected $siteAccessList;
-
-    /**
-     * Constructor.
-     *
-     * @param array $siteAccessList
-     */
-    public function __construct(array $siteAccessList)
-    {
-        $this->siteAccessList = $siteAccessList;
-    }
 
     /**
      * Returns the condition type.
@@ -46,11 +32,13 @@ class SiteAccess implements ConditionTypeInterface
     {
         return array(
             new Constraints\NotBlank(),
-            new Constraints\Choice(
+            new Constraints\Type(array('type' => 'array')),
+            new Constraints\All(
                 array(
-                    'choices' => $this->siteAccessList,
-                    'multiple' => true,
-                    'strict' => true,
+                    'constraints' => array(
+                        new Constraints\Type(array('type' => 'string')),
+                        new EzConstraints\SiteAccess(),
+                    ),
                 )
             ),
         );

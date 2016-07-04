@@ -5,8 +5,6 @@ parameters:
 services:
     netgen_block_manager.layout.resolver.condition_type.ez_site_access:
         class: "%netgen_block_manager.layout.resolver.condition_type.ez_site_access.class%"
-        arguments:
-            - "%ezpublish.siteaccess.list%"
         calls:
             - [setRequestStack, ["@request_stack"]]
         tags:

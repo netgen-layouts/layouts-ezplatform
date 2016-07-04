@@ -1,6 +1,7 @@
 parameters:
     netgen_block_manager.validator.ezlocation.class: Netgen\Bundle\EzPublishBlockManagerBundle\Validator\LocationValidator
     netgen_block_manager.validator.ezcontent.class: Netgen\Bundle\EzPublishBlockManagerBundle\Validator\ContentValidator
+    netgen_block_manager.validator.ez_site_access.class: Netgen\Bundle\EzPublishBlockManagerBundle\Validator\SiteAccessValidator
     netgen_block_manager.validator.ez_content_type.class: Netgen\Bundle\EzPublishBlockManagerBundle\Validator\ContentTypeValidator
 
 services:
@@ -17,6 +18,14 @@ services:
             - "@ezpublish.api.repository"
         tags:
             - { name: validator.constraint_validator, alias: ngbm_ezcontent }
+
+    netgen_block_manager.validator.ez_site_access:
+        class: "%netgen_block_manager.validator.ez_site_access.class%"
+        arguments:
+            - "%ezpublish.siteaccess.list%"
+        tags:
+            - { name: validator.constraint_validator, alias: ngbm_ez_site_access }
+
 
     netgen_block_manager.validator.ez_content_type:
         class: "%netgen_block_manager.validator.ez_content_type.class%"

@@ -7,21 +7,21 @@ use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Constraint;
 
-class ContentTypeValidator extends ConstraintValidator
+class SiteAccessValidator extends ConstraintValidator
 {
     /**
-     * @var \eZ\Publish\API\Repository\Repository
+     * @var array
      */
-    protected $repository;
+    protected $siteAccessList;
 
     /**
      * Constructor.
      *
-     * @param \eZ\Publish\API\Repository\Repository $repository
+     * @param array $siteAccessList
      */
-    public function __construct(Repository $repository)
+    public function __construct(array $siteAccessList)
     {
-        $this->repository = $repository;
+        $this->siteAccessList = $siteAccessList;
     }
 
     /**
@@ -36,16 +36,10 @@ class ContentTypeValidator extends ConstraintValidator
             return;
         }
 
-        try {
-            $this->repository->sudo(
-                function (Repository $repository) use ($value) {
-                    $repository->getContentTypeService()->loadContentTypeByIdentifier($value);
-                }
-            );
-        } catch (NotFoundException $e) {
-            /** @var \Netgen\Bundle\EzPublishBlockManagerBundle\Validator\Constraint\ContentType $constraint */
+        if (!in_array($value, $this->siteAccessList)) {
+            /** @var \Netgen\Bundle\EzPublishBlockManagerBundle\Validator\Constraint\SiteAccess $constraint */
             $this->context->buildViolation($constraint->message)
-                ->setParameter('%identifier%', $value)
+                ->setParameter('%siteAccess%', $value)
                 ->addViolation();
         }
     }
