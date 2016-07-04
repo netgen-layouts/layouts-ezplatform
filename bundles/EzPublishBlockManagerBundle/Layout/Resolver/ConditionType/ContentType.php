@@ -58,7 +58,10 @@ class ContentType implements ConditionTypeInterface
             new Constraints\Type(array('type' => 'array')),
             new Constraints\All(
                 array(
-                    'constraints' => new EzConstraints\ContentType(),
+                    'constraints' => array(
+                        new Constraints\Type(array('type' => 'string')),
+                        new EzConstraints\ContentType(),
+                    ),
                 )
             ),
         );

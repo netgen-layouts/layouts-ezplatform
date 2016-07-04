@@ -25,12 +25,10 @@ class Location extends Parameter
      */
     public function getValueConstraints()
     {
-        $constraints = array(
+        return array(
             new Constraints\Type(array('type' => 'numeric')),
             new Constraints\GreaterThan(array('value' => 0)),
             new EzConstraints\Location(),
         );
-
-        return $constraints;
     }
 }
