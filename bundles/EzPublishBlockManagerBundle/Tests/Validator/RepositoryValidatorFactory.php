@@ -3,6 +3,7 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Validator;
 
 use eZ\Publish\API\Repository\Repository;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Validator\ContentTypeValidator;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Validator\ContentValidator;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Validator\LocationValidator;
 use Symfony\Component\Validator\Constraint;
@@ -38,6 +39,8 @@ class RepositoryValidatorFactory extends ConstraintValidatorFactory
             return new LocationValidator($this->repository);
         } elseif ($name === 'ngbm_ezcontent') {
             return new ContentValidator($this->repository);
+        } elseif ($name === 'ngbm_ez_content_type') {
+            return new ContentTypeValidator($this->repository);
         } else {
             return parent::getInstance($constraint);
         }

@@ -5,3 +5,4 @@ target_type.ezcontent.label: 'Content'
 target_type.ez_semantic_path_info.label: 'Semantic path info'
 
 condition_type.ezsiteaccess.label: 'Siteaccess'
+condition_type.ez_content_type.label: 'Content type'

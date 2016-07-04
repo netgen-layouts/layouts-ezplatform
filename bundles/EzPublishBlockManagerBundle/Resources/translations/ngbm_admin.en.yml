@@ -13,3 +13,4 @@ layout_resolver.target.ez_semantic_path_info.header: 'Applied to eZ semantic pat
 layout_resolver.target.ez_semantic_path_info_prefix.header: 'Applied to eZ semantic path info prefix:'
 
 layout_resolver.condition.ezsiteaccess: 'eZ siteaccess'
+layout_resolver.condition.ez_content_type: 'eZ content type'
