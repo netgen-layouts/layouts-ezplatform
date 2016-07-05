@@ -1,3 +1,7 @@
+block.ezcontent_field.field_identifier: 'Field identifier'
+block.ezcontent_field.css_class: 'CSS class'
+block.ezcontent_field.css_id: 'CSS ID'
+
 query.ezcontent_search.advanced_options: 'Advanced options'
 
 query.ezcontent_search.parent_location_id: 'Parent location'
@@ -9,3 +13,12 @@ query.ezcontent_search.query_type: 'Query type'
 query.ezcontent_search.filter_by_content_type: 'Filter by content type'
 query.ezcontent_search.content_types: 'Content types'
 query.ezcontent_search.content_types_filter: 'Filter type'
+
+target_type.ezchildren.label: 'Children'
+target_type.ezsubtree.label: 'Subtree'
+target_type.ezlocation.label: 'Location'
+target_type.ezcontent.label: 'Content'
+target_type.ez_semantic_path_info.label: 'Semantic path info'
+
+condition_type.ez_site_access.label: 'Siteaccess'
+condition_type.ez_content_type.label: 'Content type'
