@@ -132,7 +132,6 @@ class NetgenEzPublishBlockManagerExtension extends Extension implements PrependE
     public function getPreProcessor()
     {
         return function ($configs, ContainerBuilder $container) {
-
             $newConfigs = $configs;
             $appendConfigs = array();
             foreach ($configs as $index => $config) {
