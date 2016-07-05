@@ -1,10 +1,9 @@
 {% trans_default_domain 'ngbm_admin' %}
 
-{{ ('layout_resolver.condition.' ~ condition.type)|trans }}:
+<span class="settings-value editable-value">
+    {{ ('layout_resolver.condition.' ~ condition.type)|trans }}:
 
-{{ condition.value|join(', ') }}
-
-<span class="pull-right">
-    <a href="#" class="card-button">edit</a>
-    <a href="#" class="remove-setting"><i class="fa fa-remove"></i></a>
+    {{ condition.value|join(', ') }}
 </span>
+
+<a href="#" class="remove-setting"><i class="material-icons">clear</i></a>
