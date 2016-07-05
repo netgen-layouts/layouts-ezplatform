@@ -55,9 +55,8 @@ class ContentType extends Mapper
 
     /**
      * Returns all content types from eZ Publish.
-     * Uses closure to make sure content types are fetched only when used.
      *
-     * @return \Closure
+     * @return array
      */
     protected function getContentTypes()
     {
