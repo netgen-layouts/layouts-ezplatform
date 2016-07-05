@@ -1,6 +1,6 @@
 block_view:
     view:
         ezcontent_field:
-            template: "NetgenEzPublishBlockManagerBundle:block/view:ezcontent_field.html.twig"
+            template: "NetgenEzPublishBlockManagerBundle:block:ezcontent_field.html.twig"
             match:
                 block\definition: ezcontent_field
