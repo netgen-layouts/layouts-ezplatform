@@ -2,28 +2,12 @@
 
 namespace Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper;
 
-use eZ\Publish\API\Repository\ContentTypeService;
 use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
 use Netgen\BlockManager\Layout\Resolver\Form\ConditionType\Mapper;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Netgen\BlockManager\Ez\Form\ContentTypeType;
 
 class ContentType extends Mapper
 {
-    /**
-     * @var \eZ\Publish\API\Repository\ContentTypeService
-     */
-    protected $contentTypeService;
-
-    /**
-     * Constructor.
-     *
-     * @param \eZ\Publish\API\Repository\ContentTypeService $contentTypeService
-     */
-    public function __construct(ContentTypeService $contentTypeService)
-    {
-        $this->contentTypeService = $contentTypeService;
-    }
-
     /**
      * Returns the form type that will be used to edit the value of this condition type.
      *
@@ -31,7 +15,7 @@ class ContentType extends Mapper
      */
     public function getFormType()
     {
-        return ChoiceType::class;
+        return ContentTypeType::class;
     }
 
     /**
@@ -46,31 +30,7 @@ class ContentType extends Mapper
         $baseOptions = parent::getOptions($conditionType);
 
         return array(
-            'choices' => $this->getContentTypes(),
-            'choice_translation_domain' => false,
-            'choices_as_values' => true,
             'multiple' => true,
         ) + $baseOptions;
-    }
-
-    /**
-     * Returns all content types from eZ Publish.
-     *
-     * @return array
-     */
-    protected function getContentTypes()
-    {
-        $allContentTypes = array();
-
-        $groups = $this->contentTypeService->loadContentTypeGroups();
-        foreach ($groups as $group) {
-            $contentTypes = $this->contentTypeService->loadContentTypes($group);
-            foreach ($contentTypes as $contentType) {
-                $contentTypeNames = array_values($contentType->getNames());
-                $allContentTypes[$contentTypeNames[0]] = $contentType->identifier;
-            }
-        }
-
-        return $allContentTypes;
     }
 }

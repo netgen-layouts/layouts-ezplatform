@@ -49,7 +49,5 @@ services:
 
     netgen_block_manager.layout.resolver.form.condition_type.mapper.ez_content_type:
         class: "%netgen_block_manager.layout.resolver.form.condition_type.mapper.ez_content_type.class%"
-        arguments:
-            - "@ezpublish.api.service.content_type"
         tags:
             - { name: netgen_block_manager.layout.resolver.form.condition_type.mapper, condition_type: ez_content_type }

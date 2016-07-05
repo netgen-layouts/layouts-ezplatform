@@ -8,7 +8,6 @@ use eZ\Publish\API\Repository\Values\Content\LocationQuery;
 use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
 use eZ\Publish\API\Repository\Values\Content\Search\SearchHit;
 use Netgen\BlockManager\Collection\QueryType\QueryTypeHandlerInterface;
-use eZ\Publish\API\Repository\ContentTypeService;
 use Netgen\BlockManager\Parameters\Parameter;
 use Netgen\BlockManager\Ez\Parameters\Parameter as EzParameter;
 use eZ\Publish\API\Repository\SearchService;
@@ -31,11 +30,6 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      * @var \eZ\Publish\API\Repository\LocationService
      */
     protected $locationService;
-
-    /**
-     * @var \eZ\Publish\API\Repository\ContentTypeService
-     */
-    protected $contentTypeService;
 
     /**
      * @var \eZ\Publish\API\Repository\SearchService
@@ -74,16 +68,13 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      * Constructor.
      *
      * @param \eZ\Publish\API\Repository\LocationService $locationService
-     * @param \eZ\Publish\API\Repository\ContentTypeService $contentTypeService
      * @param \eZ\Publish\API\Repository\SearchService $searchService
      */
     public function __construct(
         LocationService $locationService,
-        ContentTypeService $contentTypeService,
         SearchService $searchService
     ) {
         $this->locationService = $locationService;
-        $this->contentTypeService = $contentTypeService;
         $this->searchService = $searchService;
     }
 
@@ -132,9 +123,8 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
             ),
             'filter_by_content_type' => new Parameter\Compound\Boolean(
                 array(
-                    'content_types' => new Parameter\Choice(
+                    'content_types' => new EzParameter\ContentType(
                         array(
-                            'options' => $this->getContentTypes(),
                             'multiple' => true,
                         )
                     ),
@@ -205,30 +195,6 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         );
 
         return $searchResult->totalCount;
-    }
-
-    /**
-     * Returns all content types from eZ Publish.
-     * Uses closure to make sure content types are fetched only when used.
-     *
-     * @return \Closure
-     */
-    protected function getContentTypes()
-    {
-        return function () {
-            if ($this->contentTypes === null) {
-                $groups = $this->contentTypeService->loadContentTypeGroups();
-                foreach ($groups as $group) {
-                    $contentTypes = $this->contentTypeService->loadContentTypes($group);
-                    foreach ($contentTypes as $contentType) {
-                        $contentTypeNames = array_values($contentType->getNames());
-                        $this->contentTypes[$contentTypeNames[0]] = $contentType->identifier;
-                    }
-                }
-            }
-
-            return $this->contentTypes;
-        };
     }
 
     /**

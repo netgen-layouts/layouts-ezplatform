@@ -2,12 +2,12 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\Form\ConditionType;
 
+use Netgen\BlockManager\Ez\Form\ContentTypeType;
 use Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\ContentType as ContentTypeMapper;
 use Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType;
 use Netgen\BlockManager\API\Values\ConditionCreateStruct;
 use Netgen\BlockManager\Layout\Resolver\Form\ConditionType;
 use Netgen\BlockManager\Tests\TestCase\FormTestCase;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentTypeGroup;
@@ -50,10 +50,20 @@ class ContentTypeTest extends FormTestCase
 
         return new ConditionType(
             array(
-                'ez_content_type' => new ContentTypeMapper(
-                    $this->contentTypeServiceMock
-                ),
+                'ez_content_type' => new ContentTypeMapper(),
             )
+        );
+    }
+
+    /**
+     * @return \Symfony\Component\Form\FormTypeInterface[]
+     */
+    public function getTypes()
+    {
+        return array(
+            new ContentTypeType(
+                $this->contentTypeServiceMock
+            ),
         );
     }
 
@@ -61,10 +71,8 @@ class ContentTypeTest extends FormTestCase
      * @covers \Netgen\BlockManager\Layout\Resolver\Form\ConditionType::buildForm
      * @covers \Netgen\BlockManager\Layout\Resolver\Form\ConditionType\Mapper::getOptions
      * @covers \Netgen\BlockManager\Layout\Resolver\Form\ConditionType\Mapper::handleForm
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\ContentType::__construct
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\ContentType::getFormType
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\ContentType::getOptions
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\ContentType::getContentTypes
      */
     public function testSubmitValidData()
     {
@@ -116,7 +124,7 @@ class ContentTypeTest extends FormTestCase
         );
 
         $valueFormConfig = $form->get('value')->getConfig();
-        self::assertInstanceOf(ChoiceType::class, $valueFormConfig->getType()->getInnerType());
+        self::assertInstanceOf(ContentTypeType::class, $valueFormConfig->getType()->getInnerType());
 
         $form->submit($submittedData);
         $this->assertTrue($form->isSynchronized());

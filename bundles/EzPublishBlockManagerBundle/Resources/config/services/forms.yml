@@ -1,0 +1,10 @@
+parameters:
+    netgen_block_manager.form.ez_content_type.class: Netgen\BlockManager\Ez\Form\ContentTypeType
+
+services:
+    netgen_block_manager.form.ez_content_type:
+        class: "%netgen_block_manager.form.ez_content_type.class%"
+        arguments:
+            - "@ezpublish.api.service.content_type"
+        tags:
+            - { name: form.type }
