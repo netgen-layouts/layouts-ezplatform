@@ -1,3 +1,5 @@
-<span class="settings-value">{{ target.value }}</span>
+{% set content_name = ngbm_ezcontent_name(target.value) %}
+
+<span class="settings-value">{{ content_name != null ? content_name : '(INVALID CONTENT)' }}</span>
 
 <a href="#" class="remove-setting"><i class="material-icons">clear</i></a>

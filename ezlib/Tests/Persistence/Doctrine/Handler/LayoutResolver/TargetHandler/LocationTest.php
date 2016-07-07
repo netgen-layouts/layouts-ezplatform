@@ -14,7 +14,7 @@ class LocationTest extends AbstractTargetHandlerTest
      */
     public function testMatchRules()
     {
-        $rules = $this->handler->matchRules($this->getTargetIdentifier(), 42);
+        $rules = $this->handler->matchRules($this->getTargetIdentifier(), 72);
 
         self::assertCount(1, $rules);
         self::assertEquals(11, $rules[0]->id);

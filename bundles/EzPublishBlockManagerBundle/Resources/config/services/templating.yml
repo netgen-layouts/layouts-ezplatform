@@ -1,5 +1,6 @@
 parameters:
     netgen_block_manager.templating.pagelayout_resolver.ezpublish.class: Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver
+    netgen_block_manager.templating.twig.extension.ez_publish.class: Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension
 
 services:
     netgen_block_manager.templating.pagelayout_resolver.ezpublish:
@@ -12,3 +13,11 @@ services:
 
     netgen_block_manager.templating.pagelayout_resolver:
         alias: netgen_block_manager.templating.pagelayout_resolver.ezpublish
+
+    netgen_block_manager.templating.twig.extension.ez_publish:
+        class: "%netgen_block_manager.templating.twig.extension.ez_publish.class%"
+        arguments:
+            - "@ezpublish.api.repository"
+            - "@ezpublish.translation_helper"
+        tags:
+            - { name: twig.extension }

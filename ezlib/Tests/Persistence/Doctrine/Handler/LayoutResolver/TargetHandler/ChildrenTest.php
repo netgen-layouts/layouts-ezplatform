@@ -14,7 +14,7 @@ class ChildrenTest extends AbstractTargetHandlerTest
      */
     public function testMatchRules()
     {
-        $rules = $this->handler->matchRules($this->getTargetIdentifier(), 54);
+        $rules = $this->handler->matchRules($this->getTargetIdentifier(), 72);
 
         self::assertCount(1, $rules);
         self::assertEquals(17, $rules[0]->id);

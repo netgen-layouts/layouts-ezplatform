@@ -1,3 +1,5 @@
-<span class="settings-value">{{ target.value }}</span>
+{% set path = ngbm_ezlocation_path(target.value) %}
+
+<span class="settings-value">{{ path != null ? path|join(' / ') : '(INVALID LOCATION)' }}</span>
 
 <a href="#" class="remove-setting"><i class="material-icons">clear</i></a>
