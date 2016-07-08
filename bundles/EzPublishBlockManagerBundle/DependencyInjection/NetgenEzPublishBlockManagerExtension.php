@@ -15,12 +15,7 @@ use Symfony\Component\Yaml\Yaml;
 class NetgenEzPublishBlockManagerExtension extends Extension implements PrependExtensionInterface
 {
     protected $siteAccessAwareSettings = array(
-        'block_view',
-        'item_view',
-        'layout_view',
-        'form_view',
-        'rule_target_view',
-        'rule_condition_view',
+        'view',
     );
 
     /**

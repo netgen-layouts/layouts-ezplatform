@@ -25,12 +25,7 @@ class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
     {
         $this->load();
 
-        $this->assertContainerBuilderHasParameter('netgen_block_manager.default.block_view', array());
-        $this->assertContainerBuilderHasParameter('netgen_block_manager.default.item_view', array());
-        $this->assertContainerBuilderHasParameter('netgen_block_manager.default.layout_view', array());
-        $this->assertContainerBuilderHasParameter('netgen_block_manager.default.form_view', array());
-        $this->assertContainerBuilderHasParameter('netgen_block_manager.default.rule_target_view', array());
-        $this->assertContainerBuilderHasParameter('netgen_block_manager.default.rule_condition_view', array());
+        $this->assertContainerBuilderHasParameter('netgen_block_manager.default.view', array());
     }
 
     /**

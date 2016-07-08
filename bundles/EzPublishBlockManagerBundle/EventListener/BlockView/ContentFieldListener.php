@@ -4,7 +4,7 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\BlockView;
 
 use Netgen\BlockManager\Ez\Block\BlockDefinition\ContentFieldDefinitionHandlerInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
-use Netgen\BlockManager\View\BlockViewInterface;
+use Netgen\BlockManager\View\View\BlockViewInterface;
 use Netgen\BlockManager\Event\View\CollectViewParametersEvent;
 use Netgen\BlockManager\Event\View\ViewEvents;
 use eZ\Publish\API\Repository\Values\Content\Content;
