@@ -77,8 +77,10 @@ class ContentTypeTypeTest extends FormTestCase
         self::assertFalse($options['choice_translation_domain']);
         self::assertEquals(
             array(
-                'Article' => 'article',
-                'News' => 'news',
+                'Group' => array(
+                    'Article' => 'article',
+                    'News' => 'news',
+                ),
             ),
             $options['choices']
         );
@@ -86,15 +88,17 @@ class ContentTypeTypeTest extends FormTestCase
 
     protected function configureContentTypeService()
     {
+        $contentTypeGroup = new ContentTypeGroup(array('identifier' => 'Group'));
+
         $this->contentTypeServiceMock
             ->expects($this->at(0))
             ->method('loadContentTypeGroups')
-            ->will($this->returnValue(array(new ContentTypeGroup())));
+            ->will($this->returnValue(array($contentTypeGroup)));
 
         $this->contentTypeServiceMock
             ->expects($this->at(1))
             ->method('loadContentTypes')
-            ->with($this->equalTo(new ContentTypeGroup()))
+            ->with($this->equalTo($contentTypeGroup))
             ->will(
                 $this->returnValue(
                     array(

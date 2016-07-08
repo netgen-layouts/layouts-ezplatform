@@ -60,7 +60,7 @@ class ContentTypeType extends AbstractType
             $contentTypes = $this->contentTypeService->loadContentTypes($group);
             foreach ($contentTypes as $contentType) {
                 $contentTypeNames = array_values($contentType->getNames());
-                $allContentTypes[$contentTypeNames[0]] = $contentType->identifier;
+                $allContentTypes[$group->identifier][$contentTypeNames[0]] = $contentType->identifier;
             }
         }
 
