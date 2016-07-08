@@ -1,9 +1,9 @@
 {% trans_default_domain 'ngbm_admin' %}
 
-<span class="settings-value editable-value">
+<span class="settings-value editable-value js-condition-edit" data-condition-id="{{ condition.id }}">
     {{ ('layout_resolver.condition.' ~ condition.type)|trans }}:
 
     {{ condition.value|join(', ') }}
 </span>
 
-<a href="#" class="remove-setting"><i class="material-icons">clear</i></a>
+<a href="#" class="remove-setting js-condition-delete" data-condition-id="{{ condition.id }}"><i class="material-icons">clear</i></a>
