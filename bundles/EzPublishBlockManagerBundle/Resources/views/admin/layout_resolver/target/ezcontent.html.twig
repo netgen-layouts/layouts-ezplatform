@@ -2,4 +2,6 @@
 
 <span class="settings-value">{{ content_name != null ? content_name : '(INVALID CONTENT)' }}</span>
 
-<a href="#" class="remove-setting"><i class="material-icons">clear</i></a>
+<a href="#" class="remove-setting js-target-delete" data-target-id="{{ target.id }}">
+    <i class="material-icons">clear</i>
+</a>
