@@ -3,7 +3,13 @@
 <span class="settings-value editable-value js-condition-edit" data-condition-id="{{ condition.id }}">
     {{ ('layout_resolver.condition.' ~ condition.type)|trans }}:
 
-    {{ condition.value|join(', ') }}
+    {% set content_type_names = [] %}
+
+    {% for value in condition.value %}
+        {% set content_type_names = content_type_names|merge([ngbm_ez_content_type_name(value)]) %}
+    {% endfor %}
+
+    {{ content_type_names|join(', ') }}
 </span>
 
 <a href="#" class="remove-setting js-condition-delete" data-condition-id="{{ condition.id }}">

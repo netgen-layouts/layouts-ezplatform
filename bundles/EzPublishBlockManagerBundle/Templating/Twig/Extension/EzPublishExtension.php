@@ -58,6 +58,10 @@ class EzPublishExtension extends Twig_Extension
                 'ngbm_ezlocation_path',
                 array($this, 'getLocationPath')
             ),
+            new Twig_SimpleFunction(
+                'ngbm_ez_content_type_name',
+                array($this, 'getContentTypeName')
+            ),
         );
     }
 
@@ -111,6 +115,27 @@ class EzPublishExtension extends Twig_Extension
     }
 
     /**
+     * Returns the content type name.
+     *
+     * @param string $identifier
+     *
+     * @return string
+     */
+    public function getContentTypeName($identifier)
+    {
+        try {
+            $contentType = $this->loadContentType($identifier);
+
+            return $this->translationHelper->getTranslatedByMethod(
+                $contentType,
+                'getName'
+            );
+        } catch (Exception $e) {
+            return;
+        }
+    }
+
+    /**
      * Loads the content for provided content ID.
      *
      * @param int|string $contentId
@@ -138,6 +163,22 @@ class EzPublishExtension extends Twig_Extension
         return $this->repository->sudo(
             function (Repository $repository) use ($locationId) {
                 return $repository->getLocationService()->loadLocation($locationId);
+            }
+        );
+    }
+
+    /**
+     * Loads the content type for provided identifier.
+     *
+     * @param string $identifier
+     *
+     * @return \eZ\Publish\API\Repository\Values\ContentType\ContentType
+     */
+    protected function loadContentType($identifier)
+    {
+        return $this->repository->sudo(
+            function (Repository $repository) use ($identifier) {
+                return $repository->getContentTypeService()->loadContentTypeByIdentifier($identifier);
             }
         );
     }
