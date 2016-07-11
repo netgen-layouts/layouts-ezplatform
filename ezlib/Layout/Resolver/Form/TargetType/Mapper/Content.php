@@ -29,7 +29,7 @@ class Content extends Mapper
     {
         return array(
             'value_type' => 'ezcontent',
-            'config_name' => 'ezcontent',
+            'config_name' => 'ezcontent-single',
         ) + parent::getOptions($targetType);
     }
 }
