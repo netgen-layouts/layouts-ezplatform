@@ -1,4 +1,4 @@
 parameters:
     netgen_block_manager.default.view: []
 
-    netgen_block_manager.block_view.ezcontent_field_contexts: ['view']
+    netgen_block_manager.block_view.ezcontent_field_contexts: ['default']
