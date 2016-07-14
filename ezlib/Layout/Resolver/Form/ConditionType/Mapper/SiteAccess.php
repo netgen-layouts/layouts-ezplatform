@@ -54,6 +54,7 @@ class SiteAccess extends Mapper
             'choice_translation_domain' => false,
             'choices_as_values' => true,
             'multiple' => true,
+            'expanded' => true,
         ) + $baseOptions;
     }
 }
