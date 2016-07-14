@@ -1,8 +1,5 @@
 block_definitions:
     ezcontent_field:
-        forms:
-            full:
-                type: ~
         view_types:
             ezcontent_field:
                 name: 'eZ content field'
