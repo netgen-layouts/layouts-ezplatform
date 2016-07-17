@@ -16,6 +16,11 @@ use Symfony\Component\Validator\Validation;
 class SubtreeTest extends TestCase
 {
     /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $repositoryMock;
+
+    /**
      * @var \Symfony\Component\HttpFoundation\RequestStack
      */
     protected $requestStack;
@@ -40,6 +45,16 @@ class SubtreeTest extends TestCase
 
         $this->locationServiceMock = $this->createMock(LocationService::class);
 
+        $this->repositoryMock = $this->getMockBuilder(Repository::class)
+            ->disableOriginalConstructor()
+            ->setMethods(array('getLocationService'))
+            ->getMock();
+
+        $this->repositoryMock
+            ->expects($this->any())
+            ->method('getLocationService')
+            ->will($this->returnValue($this->locationServiceMock));
+
         $this->targetType = new Subtree($this->locationServiceMock);
         $this->targetType->setRequestStack($this->requestStack);
     }
@@ -61,11 +76,11 @@ class SubtreeTest extends TestCase
      */
     public function testValidation($value, $isValid)
     {
-        $repositoryMock = $this->createMock(Repository::class);
         if ($value !== null) {
-            $repositoryMock
+            $this->locationServiceMock
                 ->expects($this->once())
-                ->method('sudo')
+                ->method('loadLocation')
+                ->with($this->equalTo($value))
                 ->will(
                     $this->returnCallback(
                         function () use ($value) {
@@ -78,7 +93,7 @@ class SubtreeTest extends TestCase
         }
 
         $validator = Validation::createValidatorBuilder()
-            ->setConstraintValidatorFactory(new RepositoryValidatorFactory($repositoryMock))
+            ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
 
         $errors = $validator->validate($value, $this->targetType->getConstraints());

@@ -2,6 +2,7 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\TargetType;
 
+use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
 use Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content;
@@ -14,6 +15,16 @@ use Symfony\Component\Validator\Validation;
 class ContentTest extends TestCase
 {
     /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $repositoryMock;
+
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $contentServiceMock;
+
+    /**
      * @var \Symfony\Component\HttpFoundation\RequestStack
      */
     protected $requestStack;
@@ -25,6 +36,18 @@ class ContentTest extends TestCase
 
     public function setUp()
     {
+        $this->contentServiceMock = $this->createMock(ContentService::class);
+
+        $this->repositoryMock = $this->getMockBuilder(Repository::class)
+            ->disableOriginalConstructor()
+            ->setMethods(array('getContentService'))
+            ->getMock();
+
+        $this->repositoryMock
+            ->expects($this->any())
+            ->method('getContentService')
+            ->will($this->returnValue($this->contentServiceMock));
+
         $request = Request::create('/');
         $request->attributes->set('contentId', 42);
 
@@ -52,11 +75,11 @@ class ContentTest extends TestCase
      */
     public function testValidation($value, $isValid)
     {
-        $repositoryMock = $this->createMock(Repository::class);
         if ($value !== null) {
-            $repositoryMock
+            $this->contentServiceMock
                 ->expects($this->once())
-                ->method('sudo')
+                ->method('loadContentInfo')
+                ->with($this->equalTo($value))
                 ->will(
                     $this->returnCallback(
                         function () use ($value) {
@@ -69,7 +92,7 @@ class ContentTest extends TestCase
         }
 
         $validator = Validation::createValidatorBuilder()
-            ->setConstraintValidatorFactory(new RepositoryValidatorFactory($repositoryMock))
+            ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
 
         $errors = $validator->validate($value, $this->targetType->getConstraints());

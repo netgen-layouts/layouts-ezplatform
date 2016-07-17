@@ -2,6 +2,7 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Validator;
 
+use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
@@ -15,6 +16,11 @@ class LocationValidatorTest extends ValidatorTestCase
      */
     protected $repositoryMock;
 
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $locationServiceMock;
+
     public function setUp()
     {
         parent::setUp();
@@ -27,7 +33,17 @@ class LocationValidatorTest extends ValidatorTestCase
      */
     public function getValidator()
     {
-        $this->repositoryMock = $this->createMock(Repository::class);
+        $this->locationServiceMock = $this->createMock(LocationService::class);
+
+        $this->repositoryMock = $this->getMockBuilder(Repository::class)
+            ->disableOriginalConstructor()
+            ->setMethods(array('getLocationService'))
+            ->getMock();
+
+        $this->repositoryMock
+            ->expects($this->any())
+            ->method('getLocationService')
+            ->will($this->returnValue($this->locationServiceMock));
 
         return new LocationValidator($this->repositoryMock);
     }
@@ -43,9 +59,10 @@ class LocationValidatorTest extends ValidatorTestCase
     public function testValidate($locationId, $isValid)
     {
         if ($locationId !== null) {
-            $this->repositoryMock
+            $this->locationServiceMock
                 ->expects($this->once())
-                ->method('sudo')
+                ->method('loadLocation')
+                ->with($this->equalTo($locationId))
                 ->will(
                     $this->returnCallback(
                         function () use ($locationId) {

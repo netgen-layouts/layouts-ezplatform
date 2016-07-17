@@ -2,6 +2,7 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Validator;
 
+use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
@@ -15,6 +16,11 @@ class ContentValidatorTest extends ValidatorTestCase
      */
     protected $repositoryMock;
 
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $contentServiceMock;
+
     public function setUp()
     {
         parent::setUp();
@@ -27,7 +33,17 @@ class ContentValidatorTest extends ValidatorTestCase
      */
     public function getValidator()
     {
-        $this->repositoryMock = $this->createMock(Repository::class);
+        $this->contentServiceMock = $this->createMock(ContentService::class);
+
+        $this->repositoryMock = $this->getMockBuilder(Repository::class)
+            ->disableOriginalConstructor()
+            ->setMethods(array('getContentService'))
+            ->getMock();
+
+        $this->repositoryMock
+            ->expects($this->any())
+            ->method('getContentService')
+            ->will($this->returnValue($this->contentServiceMock));
 
         return new ContentValidator($this->repositoryMock);
     }
@@ -43,9 +59,10 @@ class ContentValidatorTest extends ValidatorTestCase
     public function testValidate($contentId, $isValid)
     {
         if ($contentId !== null) {
-            $this->repositoryMock
+            $this->contentServiceMock
                 ->expects($this->once())
-                ->method('sudo')
+                ->method('loadContentInfo')
+                ->with($this->equalTo($contentId))
                 ->will(
                     $this->returnCallback(
                         function () use ($contentId) {

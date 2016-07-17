@@ -2,6 +2,7 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Parameters\Parameter;
 
+use eZ\Publish\API\Repository\LocationService;
 use Netgen\BlockManager\Ez\Parameters\Parameter\Location;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
@@ -11,6 +12,31 @@ use PHPUnit\Framework\TestCase;
 
 class LocationTest extends TestCase
 {
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $repositoryMock;
+
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $locationServiceMock;
+
+    public function setUp()
+    {
+        $this->locationServiceMock = $this->createMock(LocationService::class);
+
+        $this->repositoryMock = $this->getMockBuilder(Repository::class)
+            ->disableOriginalConstructor()
+            ->setMethods(array('getLocationService'))
+            ->getMock();
+
+        $this->repositoryMock
+            ->expects($this->any())
+            ->method('getLocationService')
+            ->will($this->returnValue($this->locationServiceMock));
+    }
+
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Location::getType
      */
@@ -102,11 +128,11 @@ class LocationTest extends TestCase
      */
     public function testValidation($value, $required, $isValid)
     {
-        $repositoryMock = $this->createMock(Repository::class);
         if ($value !== null) {
-            $repositoryMock
+            $this->locationServiceMock
                 ->expects($this->once())
-                ->method('sudo')
+                ->method('loadLocation')
+                ->with($this->equalTo($value))
                 ->will(
                     $this->returnCallback(
                         function () use ($value) {
@@ -120,7 +146,7 @@ class LocationTest extends TestCase
 
         $parameter = $this->getParameter(array(), $required);
         $validator = Validation::createValidatorBuilder()
-            ->setConstraintValidatorFactory(new RepositoryValidatorFactory($repositoryMock))
+            ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
 
         $errors = $validator->validate($value, $parameter->getConstraints());

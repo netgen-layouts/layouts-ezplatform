@@ -18,6 +18,11 @@ use PHPUnit\Framework\TestCase;
 class ContentTypeTest extends TestCase
 {
     /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $repositoryMock;
+
+    /**
      * @var \Symfony\Component\HttpFoundation\RequestStack
      */
     protected $requestStack;
@@ -51,6 +56,16 @@ class ContentTypeTest extends TestCase
         $this->contentServiceMock = $this->createMock(ContentService::class);
         $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
 
+        $this->repositoryMock = $this->getMockBuilder(Repository::class)
+            ->disableOriginalConstructor()
+            ->setMethods(array('getContentTypeService'))
+            ->getMock();
+
+        $this->repositoryMock
+            ->expects($this->any())
+            ->method('getContentTypeService')
+            ->will($this->returnValue($this->contentTypeServiceMock));
+
         $this->conditionType = new ContentType(
             $this->contentServiceMock,
             $this->contentTypeServiceMock
@@ -77,12 +92,12 @@ class ContentTypeTest extends TestCase
      */
     public function testValidation($value, $isValid)
     {
-        $repositoryMock = $this->createMock(Repository::class);
         if ($value !== null) {
             foreach ($value as $index => $valueItem) {
-                $repositoryMock
+                $this->contentTypeServiceMock
                     ->expects($this->at($index))
-                    ->method('sudo')
+                    ->method('loadContentTypeByIdentifier')
+                    ->with($this->equalTo($valueItem))
                     ->will(
                         $this->returnCallback(
                             function () use ($valueItem) {
@@ -96,7 +111,7 @@ class ContentTypeTest extends TestCase
         }
 
         $validator = Validation::createValidatorBuilder()
-            ->setConstraintValidatorFactory(new RepositoryValidatorFactory($repositoryMock))
+            ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
 
         $errors = $validator->validate($value, $this->conditionType->getConstraints());
