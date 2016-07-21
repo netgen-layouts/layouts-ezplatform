@@ -63,7 +63,7 @@ class ContentTest extends TestCase
      */
     public function testGetType()
     {
-        self::assertEquals('ezcontent', $this->targetType->getType());
+        $this->assertEquals('ezcontent', $this->targetType->getType());
     }
 
     /**
@@ -96,7 +96,7 @@ class ContentTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $this->targetType->getConstraints());
-        self::assertEquals($isValid, $errors->count() == 0);
+        $this->assertEquals($isValid, $errors->count() == 0);
     }
 
     /**
@@ -104,7 +104,7 @@ class ContentTest extends TestCase
      */
     public function testProvideValue()
     {
-        self::assertEquals(
+        $this->assertEquals(
             42,
             $this->targetType->provideValue()
         );
@@ -118,7 +118,7 @@ class ContentTest extends TestCase
         // Make sure we have no request
         $this->requestStack->pop();
 
-        self::assertNull($this->targetType->provideValue());
+        $this->assertNull($this->targetType->provideValue());
     }
 
     /**
@@ -129,7 +129,7 @@ class ContentTest extends TestCase
         // Make sure we have no content ID attribute
         $this->requestStack->getCurrentRequest()->attributes->remove('contentId');
 
-        self::assertNull($this->targetType->provideValue());
+        $this->assertNull($this->targetType->provideValue());
     }
 
     /**

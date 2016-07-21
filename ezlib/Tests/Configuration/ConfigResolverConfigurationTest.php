@@ -57,7 +57,7 @@ class ConfigResolverConfigurationTest extends TestCase
             ->expects($this->never())
             ->method('hasParameter');
 
-        self::assertTrue($this->configuration->hasParameter('some_param'));
+        $this->assertTrue($this->configuration->hasParameter('some_param'));
     }
 
     /**
@@ -78,7 +78,7 @@ class ConfigResolverConfigurationTest extends TestCase
             ->with($this->equalTo('some_param'))
             ->will($this->returnValue(true));
 
-        self::assertTrue($this->configuration->hasParameter('some_param'));
+        $this->assertTrue($this->configuration->hasParameter('some_param'));
     }
 
     /**
@@ -99,7 +99,7 @@ class ConfigResolverConfigurationTest extends TestCase
             ->with($this->equalTo('some_param'))
             ->will($this->returnValue(false));
 
-        self::assertFalse($this->configuration->hasParameter('some_param'));
+        $this->assertFalse($this->configuration->hasParameter('some_param'));
     }
 
     /**
@@ -124,7 +124,7 @@ class ConfigResolverConfigurationTest extends TestCase
             ->expects($this->never())
             ->method('getParameter');
 
-        self::assertEquals('some_param_value', $this->configuration->getParameter('some_param'));
+        $this->assertEquals('some_param_value', $this->configuration->getParameter('some_param'));
     }
 
     /**
@@ -155,7 +155,7 @@ class ConfigResolverConfigurationTest extends TestCase
             ->with($this->equalTo('some_param'))
             ->will($this->returnValue('some_param_value'));
 
-        self::assertEquals('some_param_value', $this->configuration->getParameter('some_param'));
+        $this->assertEquals('some_param_value', $this->configuration->getParameter('some_param'));
     }
 
     /**

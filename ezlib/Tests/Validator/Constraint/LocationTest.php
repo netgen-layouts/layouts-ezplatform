@@ -13,6 +13,6 @@ class LocationTest extends TestCase
     public function testValidatedBy()
     {
         $constraint = new Location();
-        self::assertEquals('ngbm_ezlocation', $constraint->validatedBy());
+        $this->assertEquals('ngbm_ezlocation', $constraint->validatedBy());
     }
 }

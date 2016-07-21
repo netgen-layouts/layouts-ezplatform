@@ -13,6 +13,6 @@ class ContentTest extends TestCase
     public function testValidatedBy()
     {
         $constraint = new Content();
-        self::assertEquals('ngbm_ezcontent', $constraint->validatedBy());
+        $this->assertEquals('ngbm_ezcontent', $constraint->validatedBy());
     }
 }

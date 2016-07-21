@@ -51,7 +51,7 @@ class LocationValueLoaderTest extends TestCase
             ->with($this->isType('int'))
             ->will($this->returnValue($location));
 
-        self::assertEquals($location, $this->valueLoader->load(52));
+        $this->assertEquals($location, $this->valueLoader->load(52));
     }
 
     /**
@@ -101,6 +101,6 @@ class LocationValueLoaderTest extends TestCase
      */
     public function testGetValueType()
     {
-        self::assertEquals('ezlocation', $this->valueLoader->getValueType());
+        $this->assertEquals('ezlocation', $this->valueLoader->getValueType());
     }
 }

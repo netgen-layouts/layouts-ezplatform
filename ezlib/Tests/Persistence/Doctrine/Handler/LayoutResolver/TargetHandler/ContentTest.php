@@ -16,8 +16,8 @@ class ContentTest extends AbstractTargetHandlerTest
     {
         $rules = $this->handler->matchRules($this->getTargetIdentifier(), 70);
 
-        self::assertCount(1, $rules);
-        self::assertEquals(14, $rules[0]->id);
+        $this->assertCount(1, $rules);
+        $this->assertEquals(14, $rules[0]->id);
     }
 
     /**

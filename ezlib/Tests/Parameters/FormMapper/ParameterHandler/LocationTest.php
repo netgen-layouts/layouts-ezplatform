@@ -25,7 +25,7 @@ class LocationTest extends TestCase
      */
     public function testGetFormType()
     {
-        self::assertEquals(ContentBrowserType::class, $this->parameterHandler->getFormType());
+        $this->assertEquals(ContentBrowserType::class, $this->parameterHandler->getFormType());
     }
 
     /**
@@ -33,7 +33,7 @@ class LocationTest extends TestCase
      */
     public function testConvertOptions()
     {
-        self::assertEquals(
+        $this->assertEquals(
             array(
                 'value_type' => 'ezlocation',
                 'config_name' => 'ezlocation',

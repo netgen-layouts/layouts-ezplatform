@@ -13,6 +13,6 @@ class ContentTypeTest extends TestCase
     public function testValidatedBy()
     {
         $constraint = new ContentType();
-        self::assertEquals('ngbm_ez_content_type', $constraint->validatedBy());
+        $this->assertEquals('ngbm_ez_content_type', $constraint->validatedBy());
     }
 }

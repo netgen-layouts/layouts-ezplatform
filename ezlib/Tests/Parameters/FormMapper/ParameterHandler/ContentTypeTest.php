@@ -25,7 +25,7 @@ class ContentTypeTest extends TestCase
      */
     public function testGetFormType()
     {
-        self::assertEquals(ContentTypeType::class, $this->parameterHandler->getFormType());
+        $this->assertEquals(ContentTypeType::class, $this->parameterHandler->getFormType());
     }
 
     /**
@@ -33,7 +33,7 @@ class ContentTypeTest extends TestCase
      */
     public function testConvertOptions()
     {
-        self::assertEquals(
+        $this->assertEquals(
             array(
                 'multiple' => true,
             ),

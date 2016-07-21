@@ -41,8 +41,8 @@ class LocationValueConverterTest extends TestCase
      */
     public function testSupports()
     {
-        self::assertTrue($this->valueConverter->supports(new Location()));
-        self::assertFalse($this->valueConverter->supports(new ContentInfo()));
+        $this->assertTrue($this->valueConverter->supports(new Location()));
+        $this->assertFalse($this->valueConverter->supports(new ContentInfo()));
     }
 
     /**
@@ -50,7 +50,7 @@ class LocationValueConverterTest extends TestCase
      */
     public function testGetValueType()
     {
-        self::assertEquals(
+        $this->assertEquals(
             'ezlocation',
             $this->valueConverter->getValueType(
                 new Location()
@@ -63,7 +63,7 @@ class LocationValueConverterTest extends TestCase
      */
     public function testGetId()
     {
-        self::assertEquals(
+        $this->assertEquals(
             24,
             $this->valueConverter->getId(
                 new Location(array('id' => 24))
@@ -76,7 +76,7 @@ class LocationValueConverterTest extends TestCase
      */
     public function testGetName()
     {
-        self::assertEquals(
+        $this->assertEquals(
             'Cool name',
             $this->valueConverter->getName(
                 new Location(array('contentInfo' => new ContentInfo()))
@@ -89,7 +89,7 @@ class LocationValueConverterTest extends TestCase
      */
     public function testGetIsVisible()
     {
-        self::assertTrue(
+        $this->assertTrue(
             $this->valueConverter->getIsVisible(
                 new Location(array('invisible' => false))
             )

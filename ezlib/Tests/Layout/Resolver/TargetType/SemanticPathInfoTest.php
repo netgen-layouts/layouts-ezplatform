@@ -37,7 +37,7 @@ class SemanticPathInfoTest extends TestCase
      */
     public function testGetType()
     {
-        self::assertEquals('ez_semantic_path_info', $this->targetType->getType());
+        $this->assertEquals('ez_semantic_path_info', $this->targetType->getType());
     }
 
     /**
@@ -52,7 +52,7 @@ class SemanticPathInfoTest extends TestCase
         $validator = Validation::createValidator();
 
         $errors = $validator->validate($value, $this->targetType->getConstraints());
-        self::assertEquals($isValid, $errors->count() == 0);
+        $this->assertEquals($isValid, $errors->count() == 0);
     }
 
     /**
@@ -60,7 +60,7 @@ class SemanticPathInfoTest extends TestCase
      */
     public function testProvideValue()
     {
-        self::assertEquals(
+        $this->assertEquals(
             '/the/answer',
             $this->targetType->provideValue()
         );
@@ -73,7 +73,7 @@ class SemanticPathInfoTest extends TestCase
     {
         $this->requestStack->getCurrentRequest()->attributes->set('semanticPathinfo', false);
 
-        self::assertEquals(
+        $this->assertEquals(
             '/',
             $this->targetType->provideValue()
         );
@@ -87,7 +87,7 @@ class SemanticPathInfoTest extends TestCase
         // Make sure we have no request
         $this->requestStack->pop();
 
-        self::assertNull($this->targetType->provideValue());
+        $this->assertNull($this->targetType->provideValue());
     }
 
     /**
@@ -98,7 +98,7 @@ class SemanticPathInfoTest extends TestCase
         // Make sure we have no semantic path info attribute
         $this->requestStack->getCurrentRequest()->attributes->remove('semanticPathinfo');
 
-        self::assertNull($this->targetType->provideValue());
+        $this->assertNull($this->targetType->provideValue());
     }
 
     /**

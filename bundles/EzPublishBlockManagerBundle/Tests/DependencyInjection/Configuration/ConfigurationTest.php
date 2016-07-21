@@ -118,7 +118,7 @@ abstract class ConfigurationTest extends TestCase
         $configPreProcessor = $this->configPreProcessor;
         $configPostProcessor = $this->configPostProcessor;
 
-        self::assertEquals(
+        $this->assertEquals(
             $expectedConfig,
             $configPostProcessor(
                 $this->partialProcessor->processConfiguration(

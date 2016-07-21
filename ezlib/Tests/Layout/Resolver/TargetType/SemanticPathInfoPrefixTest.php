@@ -19,6 +19,6 @@ class SemanticPathInfoPrefixTest extends SemanticPathInfoTest
      */
     public function testGetType()
     {
-        self::assertEquals('ez_semantic_path_info_prefix', $this->targetType->getType());
+        $this->assertEquals('ez_semantic_path_info_prefix', $this->targetType->getType());
     }
 }

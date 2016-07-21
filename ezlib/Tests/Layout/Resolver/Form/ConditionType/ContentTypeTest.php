@@ -124,12 +124,12 @@ class ContentTypeTest extends FormTestCase
         );
 
         $valueFormConfig = $form->get('value')->getConfig();
-        self::assertInstanceOf(ContentTypeType::class, $valueFormConfig->getType()->getInnerType());
+        $this->assertInstanceOf(ContentTypeType::class, $valueFormConfig->getType()->getInnerType());
 
         $form->submit($submittedData);
         $this->assertTrue($form->isSynchronized());
         $this->assertEquals($updatedStruct, $form->getData());
 
-        self::assertArrayHasKey('value', $form->createView()->children);
+        $this->assertArrayHasKey('value', $form->createView()->children);
     }
 }

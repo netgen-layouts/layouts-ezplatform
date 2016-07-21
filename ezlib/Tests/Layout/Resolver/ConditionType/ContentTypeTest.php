@@ -80,7 +80,7 @@ class ContentTypeTest extends TestCase
      */
     public function testGetType()
     {
-        self::assertEquals('ez_content_type', $this->conditionType->getType());
+        $this->assertEquals('ez_content_type', $this->conditionType->getType());
     }
 
     /**
@@ -115,7 +115,7 @@ class ContentTypeTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $this->conditionType->getConstraints());
-        self::assertEquals($isValid, $errors->count() == 0);
+        $this->assertEquals($isValid, $errors->count() == 0);
     }
 
     /**
@@ -149,7 +149,7 @@ class ContentTypeTest extends TestCase
                 )
             );
 
-        self::assertEquals($matches, $this->conditionType->matches($value));
+        $this->assertEquals($matches, $this->conditionType->matches($value));
     }
 
     /**
@@ -160,7 +160,7 @@ class ContentTypeTest extends TestCase
         // Make sure we have no request
         $this->requestStack->pop();
 
-        self::assertFalse($this->conditionType->matches(array('article')));
+        $this->assertFalse($this->conditionType->matches(array('article')));
     }
 
     /**
@@ -171,7 +171,7 @@ class ContentTypeTest extends TestCase
         // Make sure we have no content ID
         $this->requestStack->getCurrentRequest()->attributes->remove('contentId');
 
-        self::assertFalse($this->conditionType->matches(array('article')));
+        $this->assertFalse($this->conditionType->matches(array('article')));
     }
 
     /**

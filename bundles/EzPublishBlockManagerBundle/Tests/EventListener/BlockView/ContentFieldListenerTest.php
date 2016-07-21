@@ -43,7 +43,7 @@ class ContentFieldListenerTest extends TestCase
      */
     public function testGetSubscribedEvents()
     {
-        self::assertEquals(
+        $this->assertEquals(
             array(ViewEvents::BUILD_VIEW => 'onBuildView'),
             $this->listener->getSubscribedEvents()
         );
@@ -77,7 +77,7 @@ class ContentFieldListenerTest extends TestCase
         $this->listener->setRequestStack($requestStack);
         $this->listener->onBuildView($event);
 
-        self::assertEquals(
+        $this->assertEquals(
             array(
                 'content' => new Content(),
                 'location' => new Location(),
@@ -113,7 +113,7 @@ class ContentFieldListenerTest extends TestCase
         $this->listener->setRequestStack($requestStack);
         $this->listener->onBuildView($event);
 
-        self::assertEquals(
+        $this->assertEquals(
             array(
                 'content' => new Content(),
             ),
@@ -146,7 +146,7 @@ class ContentFieldListenerTest extends TestCase
         $this->listener->setRequestStack($requestStack);
         $this->listener->onBuildView($event);
 
-        self::assertEquals(
+        $this->assertEquals(
             array(
                 'content' => new Content(),
                 'location' => new Location(),
@@ -179,7 +179,7 @@ class ContentFieldListenerTest extends TestCase
         $this->listener->setRequestStack($requestStack);
         $this->listener->onBuildView($event);
 
-        self::assertEquals(
+        $this->assertEquals(
             array(
                 'content' => new Content(),
             ),
@@ -197,7 +197,7 @@ class ContentFieldListenerTest extends TestCase
         $event = new CollectViewParametersEvent($view);
         $this->listener->onBuildView($event);
 
-        self::assertEquals(array(), $event->getViewParameters());
+        $this->assertEquals(array(), $event->getViewParameters());
     }
 
     /**
@@ -218,7 +218,7 @@ class ContentFieldListenerTest extends TestCase
 
         $this->listener->onBuildView($event);
 
-        self::assertEquals(array(), $event->getViewParameters());
+        $this->assertEquals(array(), $event->getViewParameters());
     }
 
     /**
@@ -238,7 +238,7 @@ class ContentFieldListenerTest extends TestCase
         $event = new CollectViewParametersEvent($view);
         $this->listener->onBuildView($event);
 
-        self::assertEquals(array(), $event->getViewParameters());
+        $this->assertEquals(array(), $event->getViewParameters());
     }
 
     /**
@@ -262,7 +262,7 @@ class ContentFieldListenerTest extends TestCase
         $this->listener->setRequestStack($requestStack);
         $this->listener->onBuildView($event);
 
-        self::assertEquals(array(), $event->getViewParameters());
+        $this->assertEquals(array(), $event->getViewParameters());
     }
 
     /**
@@ -288,6 +288,6 @@ class ContentFieldListenerTest extends TestCase
         $this->listener->setRequestStack($requestStack);
         $this->listener->onBuildView($event);
 
-        self::assertEquals(array(), $event->getViewParameters());
+        $this->assertEquals(array(), $event->getViewParameters());
     }
 }

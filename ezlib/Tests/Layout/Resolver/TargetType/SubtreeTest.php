@@ -64,7 +64,7 @@ class SubtreeTest extends TestCase
      */
     public function testGetType()
     {
-        self::assertEquals('ezsubtree', $this->targetType->getType());
+        $this->assertEquals('ezsubtree', $this->targetType->getType());
     }
 
     /**
@@ -97,7 +97,7 @@ class SubtreeTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $this->targetType->getConstraints());
-        self::assertEquals($isValid, $errors->count() == 0);
+        $this->assertEquals($isValid, $errors->count() == 0);
     }
 
     /**
@@ -112,7 +112,7 @@ class SubtreeTest extends TestCase
             ->with($this->equalTo(42))
             ->will($this->returnValue(new Location(array('pathString' => '/1/2/42/'))));
 
-        self::assertEquals(
+        $this->assertEquals(
             array(1, 2, 42),
             $this->targetType->provideValue()
         );
@@ -130,7 +130,7 @@ class SubtreeTest extends TestCase
         // Make sure we have no request
         $this->requestStack->pop();
 
-        self::assertNull($this->targetType->provideValue());
+        $this->assertNull($this->targetType->provideValue());
     }
 
     /**
@@ -145,7 +145,7 @@ class SubtreeTest extends TestCase
         // Make sure we have no location ID attribute
         $this->requestStack->getCurrentRequest()->attributes->remove('locationId');
 
-        self::assertNull($this->targetType->provideValue());
+        $this->assertNull($this->targetType->provideValue());
     }
 
     /**
@@ -159,7 +159,7 @@ class SubtreeTest extends TestCase
             ->with($this->equalTo(42))
             ->will($this->throwException(new NotFoundException('location', 42)));
 
-        self::assertNull($this->targetType->provideValue());
+        $this->assertNull($this->targetType->provideValue());
     }
 
     /**

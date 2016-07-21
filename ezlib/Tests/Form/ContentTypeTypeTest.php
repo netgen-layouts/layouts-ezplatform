@@ -56,7 +56,7 @@ class ContentTypeTypeTest extends FormTestCase
      */
     public function testGetParent()
     {
-        self::assertEquals(ChoiceType::class, $this->formType->getParent());
+        $this->assertEquals(ChoiceType::class, $this->formType->getParent());
     }
 
     /**
@@ -73,9 +73,9 @@ class ContentTypeTypeTest extends FormTestCase
 
         $options = $optionsResolver->resolve(array());
 
-        self::assertTrue($options['choices_as_values']);
-        self::assertFalse($options['choice_translation_domain']);
-        self::assertEquals(
+        $this->assertTrue($options['choices_as_values']);
+        $this->assertFalse($options['choice_translation_domain']);
+        $this->assertEquals(
             array(
                 'Group' => array(
                     'Article' => 'article',

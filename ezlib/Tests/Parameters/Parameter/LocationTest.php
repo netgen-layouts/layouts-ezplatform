@@ -43,7 +43,7 @@ class LocationTest extends TestCase
     public function testGetType()
     {
         $parameter = $this->getParameter();
-        self::assertEquals('ezlocation', $parameter->getType());
+        $this->assertEquals('ezlocation', $parameter->getType());
     }
 
     /**
@@ -57,7 +57,7 @@ class LocationTest extends TestCase
     public function testValidOptions($options, $resolvedOptions)
     {
         $parameter = $this->getParameter($options);
-        self::assertEquals($resolvedOptions, $parameter->getOptions());
+        $this->assertEquals($resolvedOptions, $parameter->getOptions());
     }
 
     /**
@@ -150,7 +150,7 @@ class LocationTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $parameter->getConstraints());
-        self::assertEquals($isValid, $errors->count() == 0);
+        $this->assertEquals($isValid, $errors->count() == 0);
     }
 
     /**

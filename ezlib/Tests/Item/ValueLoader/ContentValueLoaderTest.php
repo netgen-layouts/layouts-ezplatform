@@ -47,7 +47,7 @@ class ContentValueLoaderTest extends TestCase
             ->with($this->isType('int'))
             ->will($this->returnValue($contentInfo));
 
-        self::assertEquals($contentInfo, $this->valueLoader->load(52));
+        $this->assertEquals($contentInfo, $this->valueLoader->load(52));
     }
 
     /**
@@ -117,6 +117,6 @@ class ContentValueLoaderTest extends TestCase
      */
     public function testGetValueType()
     {
-        self::assertEquals('ezcontent', $this->valueLoader->getValueType());
+        $this->assertEquals('ezcontent', $this->valueLoader->getValueType());
     }
 }

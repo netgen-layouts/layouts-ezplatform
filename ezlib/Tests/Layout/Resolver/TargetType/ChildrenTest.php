@@ -64,7 +64,7 @@ class ChildrenTest extends TestCase
      */
     public function testGetType()
     {
-        self::assertEquals('ezchildren', $this->targetType->getType());
+        $this->assertEquals('ezchildren', $this->targetType->getType());
     }
 
     /**
@@ -97,7 +97,7 @@ class ChildrenTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $this->targetType->getConstraints());
-        self::assertEquals($isValid, $errors->count() == 0);
+        $this->assertEquals($isValid, $errors->count() == 0);
     }
 
     /**
@@ -112,7 +112,7 @@ class ChildrenTest extends TestCase
             ->with($this->equalTo(42))
             ->will($this->returnValue(new Location(array('parentLocationId' => 84))));
 
-        self::assertEquals(
+        $this->assertEquals(
             84,
             $this->targetType->provideValue()
         );
@@ -130,7 +130,7 @@ class ChildrenTest extends TestCase
         // Make sure we have no request
         $this->requestStack->pop();
 
-        self::assertNull($this->targetType->provideValue());
+        $this->assertNull($this->targetType->provideValue());
     }
 
     /**
@@ -145,7 +145,7 @@ class ChildrenTest extends TestCase
         // Make sure we have no location ID attribute
         $this->requestStack->getCurrentRequest()->attributes->remove('locationId');
 
-        self::assertNull($this->targetType->provideValue());
+        $this->assertNull($this->targetType->provideValue());
     }
 
     /**
@@ -159,7 +159,7 @@ class ChildrenTest extends TestCase
             ->with($this->equalTo(42))
             ->will($this->throwException(new NotFoundException('location', 42)));
 
-        self::assertNull($this->targetType->provideValue());
+        $this->assertNull($this->targetType->provideValue());
     }
 
     /**

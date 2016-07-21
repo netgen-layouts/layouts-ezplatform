@@ -16,8 +16,8 @@ class SemanticPathInfoTest extends AbstractTargetHandlerTest
     {
         $rules = $this->handler->matchRules($this->getTargetIdentifier(), '/the/answer');
 
-        self::assertCount(1, $rules);
-        self::assertEquals(20, $rules[0]->id);
+        $this->assertCount(1, $rules);
+        $this->assertEquals(20, $rules[0]->id);
     }
 
     /**
