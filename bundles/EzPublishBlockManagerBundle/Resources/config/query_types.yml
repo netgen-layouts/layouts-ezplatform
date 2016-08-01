@@ -1,6 +1,3 @@
 query_types:
     ezcontent_search:
         name: 'eZ Publish'
-        defaults:
-            parameters:
-                parent_location_id: 2

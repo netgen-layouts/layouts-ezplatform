@@ -88,7 +88,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     public function getParameters()
     {
         return array(
-            'parent_location_id' => new EzParameter\Location(array(), true),
+            'parent_location_id' => new EzParameter\Location(),
             'sort_direction' => new Parameter\Choice(
                 array(
                     'options' => array(
@@ -153,6 +153,10 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      */
     public function getValues(array $parameters, $offset = 0, $limit = null)
     {
+        if (empty($parameters['parent_location_id'])) {
+            return array();
+        }
+
         $parentLocation = $this->getParentLocation(
             $parameters['parent_location_id']
         );
@@ -182,6 +186,10 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      */
     public function getCount(array $parameters)
     {
+        if (empty($parameters['parent_location_id'])) {
+            return 0;
+        }
+
         $parentLocation = $this->getParentLocation(
             $parameters['parent_location_id']
         );
