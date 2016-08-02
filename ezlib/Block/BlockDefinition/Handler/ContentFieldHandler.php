@@ -15,7 +15,7 @@ class ContentFieldHandler extends ContentFieldDefinitionHandler
     public function getParameters()
     {
         return array(
-            'field_identifier' => new Parameter\Identifier(array(), true),
+            'field_identifier' => new Parameter\Identifier(),
         ) + $this->getCommonParameters();
     }
 

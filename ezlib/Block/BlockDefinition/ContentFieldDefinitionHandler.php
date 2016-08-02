@@ -4,7 +4,6 @@ namespace Netgen\BlockManager\Ez\Block\BlockDefinition;
 
 use Netgen\BlockManager\Block\BlockDefinition\BlockDefinitionHandler;
 use Netgen\BlockManager\API\Values\Page\Block;
-use Netgen\BlockManager\Parameters\Parameter;
 
 abstract class ContentFieldDefinitionHandler extends BlockDefinitionHandler implements ContentFieldDefinitionHandlerInterface
 {

@@ -1,0 +1,13 @@
+{% extends 'NetgenBlockManagerBundle:block:block.html.twig' %}
+
+{% import 'NetgenBlockManagerBundle:api/parts:macros.html.twig' as macros %}
+
+{% trans_default_domain 'ngbm_app' %}
+
+{% block content %}
+    {% if block.parameter('field_identifier') is empty %}
+        {{ macros.notice('block.notice.empty_ezcontent_field'|trans) }}
+    {% else %}
+        <h1>{{ block.parameter('field_identifier') }}</h1>
+    {% endif %}
+{% endblock %}

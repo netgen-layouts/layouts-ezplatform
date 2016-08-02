@@ -5,5 +5,3 @@ block_types:
         defaults:
             view_type: ezcontent_field
             item_view_type: standard
-            parameters:
-                field_identifier: title
