@@ -8,6 +8,6 @@
     {% if block.parameter('field_identifier') is empty %}
         {{ macros.notice('block.notice.empty_ezcontent_field'|trans) }}
     {% else %}
-        <h1>{{ block.parameter('field_identifier') }}</h1>
+        {{ macros.notice('block.notice.ezcontent_field'|trans({ '%field%': block.parameter('field_identifier') })) }}
     {% endif %}
 {% endblock %}
