@@ -1,4 +1,3 @@
 block_type_groups:
-    ezpublish:
-        name: 'eZ Publish'
-        block_types: [ezcontent_field]
+    placeholders:
+        block_types: [twig_block, full_view, ezcontent_field]
