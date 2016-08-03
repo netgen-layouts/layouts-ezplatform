@@ -2,8 +2,9 @@
     controller(
         'ez_content:viewAction', {
             'contentId': item.object.contentInfo.id,
-            'locationId': item.object.id,
-            'viewType': viewType
+            'location': item.object,
+            'viewType': viewType,
+            'layout': false
         }
     )
 ) }}
