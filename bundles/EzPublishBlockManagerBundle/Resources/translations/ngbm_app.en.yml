@@ -16,4 +16,5 @@ layout_resolver.rules.target_header.ez_semantic_path_info: 'Applied to eZ semant
 layout_resolver.rules.target_header.ez_semantic_path_info_prefix: 'Applied to eZ semantic path info prefix'
 
 block.notice.empty_ezcontent_field: 'This block is not configured yet. Please define the eZ content field identifier which will be used to render the block.'
-block.notice.ezcontent_field: 'eZ content field with identifier "%field%" will be rendered here.'
+
+block.info.ezcontent_field: 'eZ content field with identifier "%field%" will be rendered here.'

@@ -8,6 +8,6 @@
     {% if block.parameter('field_identifier') is empty %}
         {{ macros.notice('block.notice.empty_ezcontent_field'|trans) }}
     {% else %}
-        {{ macros.info('block.notice.ezcontent_field'|trans({ '%field%': block.parameter('field_identifier') }), 'icon-ez_content_field') }}
+        {{ macros.info('block.info.ezcontent_field'|trans({ '%field%': block.parameter('field_identifier') }), 'icon-ez_content_field') }}
     {% endif %}
 {% endblock %}
