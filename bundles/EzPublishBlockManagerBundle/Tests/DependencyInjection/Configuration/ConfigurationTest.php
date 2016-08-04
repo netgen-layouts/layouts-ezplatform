@@ -30,6 +30,7 @@ abstract class ConfigurationTest extends TestCase
         'sources' => array(),
         'query_types' => array(),
         'pagelayout' => 'NetgenBlockManagerBundle::pagelayout.html.twig',
+        'google_maps_api_key' => '',
     );
 
     /**
