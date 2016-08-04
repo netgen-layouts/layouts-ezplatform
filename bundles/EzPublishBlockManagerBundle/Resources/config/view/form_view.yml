@@ -1,6 +1,6 @@
 view:
     form_view:
-        default:
+        api:
             query\full_edit\ezcontent_search:
                 template: "NetgenEzPublishBlockManagerBundle:app/form/query/edit/full:ezcontent_search.html.twig"
                 match:

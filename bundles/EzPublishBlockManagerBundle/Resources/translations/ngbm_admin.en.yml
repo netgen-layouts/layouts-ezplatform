@@ -1,3 +1,10 @@
+layout_resolver.rule.target_header.ezchildren: 'Applied to eZ children'
+layout_resolver.rule.target_header.ezsubtree: 'Applied to eZ subtree'
+layout_resolver.rule.target_header.ezcontent: 'Applied to eZ content'
+layout_resolver.rule.target_header.ezlocation: 'Applied to eZ location'
+layout_resolver.rule.target_header.ez_semantic_path_info: 'Applied to eZ semantic path info'
+layout_resolver.rule.target_header.ez_semantic_path_info_prefix: 'Applied to eZ semantic path info prefix'
+
 layout_resolver.target.ezchildren: 'eZ children'
 layout_resolver.target.ezsubtree: 'eZ subtree'
 layout_resolver.target.ezcontent: 'eZ content'
@@ -7,10 +14,3 @@ layout_resolver.target.ez_semantic_path_info_prefix: 'eZ semantic path info pref
 
 layout_resolver.condition.ez_site_access: 'eZ siteaccess'
 layout_resolver.condition.ez_content_type: 'eZ content type'
-
-layout_resolver.rules.target_header.ezchildren: 'Applied to eZ children'
-layout_resolver.rules.target_header.ezsubtree: 'Applied to eZ subtree'
-layout_resolver.rules.target_header.ezcontent: 'Applied to eZ content'
-layout_resolver.rules.target_header.ezlocation: 'Applied to eZ location'
-layout_resolver.rules.target_header.ez_semantic_path_info: 'Applied to eZ semantic path info'
-layout_resolver.rules.target_header.ez_semantic_path_info_prefix: 'Applied to eZ semantic path info prefix'

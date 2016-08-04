@@ -1,6 +1,6 @@
 view:
     rule_target_view:
-        default:
+        admin:
             ezchildren:
                 template: "NetgenEzPublishBlockManagerBundle:admin/layout_resolver/target:ezchildren.html.twig"
                 match:
