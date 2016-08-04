@@ -3,6 +3,7 @@
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\TargetType;
 
 use eZ\Publish\API\Repository\LocationService;
+use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Location;
@@ -50,6 +51,7 @@ class LocationTest extends TestCase
 
         $request = Request::create('/');
         $request->attributes->set('locationId', 42);
+        $request->attributes->set('_route', UrlAliasRouter::URL_ALIAS_ROUTE_NAME);
 
         $this->requestStack = new RequestStack();
         $this->requestStack->push($request);
@@ -117,6 +119,17 @@ class LocationTest extends TestCase
     {
         // Make sure we have no request
         $this->requestStack->pop();
+
+        $this->assertNull($this->targetType->provideValue());
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Location::provideValue
+     */
+    public function testProvideValueWithNoRoute()
+    {
+        // Make sure we have no URL alias route
+        $this->requestStack->getCurrentRequest()->attributes->remove('_route');
 
         $this->assertNull($this->targetType->provideValue());
     }

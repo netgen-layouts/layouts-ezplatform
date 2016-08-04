@@ -2,11 +2,12 @@
 
 namespace Netgen\BlockManager\Ez\Layout\Resolver\TargetType;
 
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\LocationService;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Layout\Resolver\TargetTypeInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
+use eZ\Publish\API\Repository\Exceptions\NotFoundException;
+use eZ\Publish\API\Repository\LocationService;
+use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
 
@@ -66,13 +67,18 @@ class Children implements TargetTypeInterface
             return;
         }
 
-        if (!$currentRequest->attributes->has('locationId')) {
+        $attributes = $currentRequest->attributes;
+        if ($attributes->get('_route') !== UrlAliasRouter::URL_ALIAS_ROUTE_NAME) {
+            return;
+        }
+
+        if (!$attributes->has('locationId')) {
             return;
         }
 
         try {
             $location = $this->locationService->loadLocation(
-                $currentRequest->attributes->get('locationId')
+                $attributes->get('locationId')
             );
         } catch (NotFoundException $e) {
             return;

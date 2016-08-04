@@ -5,6 +5,7 @@ namespace Netgen\BlockManager\Ez\Layout\Resolver\TargetType;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Layout\Resolver\TargetTypeInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
+use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
 
@@ -49,10 +50,15 @@ class Content implements TargetTypeInterface
             return;
         }
 
-        if (!$currentRequest->attributes->has('contentId')) {
+        $attributes = $currentRequest->attributes;
+        if ($attributes->get('_route') !== UrlAliasRouter::URL_ALIAS_ROUTE_NAME) {
             return;
         }
 
-        return $currentRequest->attributes->get('contentId');
+        if (!$attributes->has('contentId')) {
+            return;
+        }
+
+        return $attributes->get('contentId');
     }
 }
