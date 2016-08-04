@@ -161,6 +161,8 @@ class NetgenEzPublishBlockManagerExtension extends Extension implements PrependE
     public function getPostProcessor()
     {
         return function ($config, ContainerBuilder $container) {
+            $config = $this->fixUpViewConfig($config);
+
             $processor = new ConfigurationProcessor($container, 'netgen_block_manager');
             foreach ($config as $key => $value) {
                 if ($key === 'system' || !in_array($key, $this->siteAccessAwareSettings)) {
@@ -176,5 +178,52 @@ class NetgenEzPublishBlockManagerExtension extends Extension implements PrependE
 
             return $config;
         };
+    }
+
+    /**
+     * Ugly hack to support semantic view config. The problem is, eZ semantic config
+     * supports only merging arrays up to second level, but in view config we have three.
+     *
+     * view:
+     *     block_view:
+     *         context:
+     *             config1: ...
+     *             config2: ...
+     *
+     * So instead of merging view.block_view.context, eZ merges view.block_view, thus loosing
+     * a good deal of config.
+     *
+     * This iterates over all default view configs for each view and context, and merges
+     * them in any found siteaccess or siteaccess group config, to make sure they're not lost
+     * after contextualizer does it's thing.
+     *
+     * @param array $config
+     *
+     * @return array
+     */
+    protected function fixUpViewConfig(array $config)
+    {
+        foreach ($config['system'] as $scope => $scopeConfig) {
+            if ($scope === 'default') {
+                continue;
+            }
+
+            foreach ($scopeConfig['view'] as $viewName => $viewConfig) {
+                if (isset($config['system']['default']['view'][$viewName])) {
+                    foreach ($config['system']['default']['view'][$viewName] as $context => $defaultRules) {
+                        if (!isset($config['system'][$scope]['view'][$viewName][$context])) {
+                            $config['system'][$scope]['view'][$viewName][$context] = array();
+                        }
+
+                        $config['system'][$scope]['view'][$viewName][$context] = array_merge(
+                            $defaultRules,
+                            $config['system'][$scope]['view'][$viewName][$context]
+                        );
+                    }
+                }
+            }
+        }
+
+        return $config;
     }
 }
