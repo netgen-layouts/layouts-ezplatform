@@ -29,7 +29,7 @@ abstract class ConfigurationTest extends TestCase
         'view' => array(),
         'sources' => array(),
         'query_types' => array(),
-        'pagelayout' => 'NetgenBlockManagerBundle::pagelayout.html.twig',
+        'pagelayout' => 'NetgenBlockManagerBundle::empty_pagelayout.html.twig',
         'google_maps_api_key' => '',
     );
 
