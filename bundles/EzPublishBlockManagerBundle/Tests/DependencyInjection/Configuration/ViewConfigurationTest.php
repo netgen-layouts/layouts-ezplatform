@@ -172,11 +172,19 @@ class ViewConfigurationTest extends ConfigurationTest
             ),
         );
 
-        // Both original and siteaccess aware config should have "some_context"
+        // All configs should have "some_context"
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
 
         // But only "cro" siteaccess aware one should have "other_context"
         $expectedConfig['system']['cro']['view']['block_view'] = array(
+            'some_context' => array(
+                'block' => array(
+                    'template' => 'block.html.twig',
+                    'match' => array(
+                        'block_identifier' => 42,
+                    ),
+                ),
+            ),
             'other_context' => array(
                 'block' => array(
                     'template' => 'block.html.twig',
