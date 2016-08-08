@@ -1,7 +1,7 @@
 block.ezcontent_field.field_identifier: 'Field identifier'
 block.ezcontent_field.css_class: 'CSS class'
 block.ezcontent_field.css_id: 'CSS ID'
-block.ezcontent_field.set_container: 'Set container'
+block.ezcontent_field.set_container: 'Wrap in container'
 
 query.ezcontent_search.advanced_options: 'Advanced options'
 
