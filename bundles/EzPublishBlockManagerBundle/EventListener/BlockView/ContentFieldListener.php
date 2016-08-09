@@ -58,7 +58,8 @@ class ContentFieldListener implements EventSubscriberInterface
             return;
         }
 
-        if (!$view->getBlockDefinition()->getHandler() instanceof ContentFieldDefinitionHandlerInterface) {
+        $blockDefinition = $view->getBlock()->getBlockDefinition();
+        if (!$blockDefinition->getHandler() instanceof ContentFieldDefinitionHandlerInterface) {
             return;
         }
 

@@ -2,11 +2,11 @@
 
 namespace Netgen\Bundle\BlockManagerBundle\Tests\EventListener\BlockView;
 
+use Netgen\BlockManager\Block\BlockDefinition;
+use Netgen\BlockManager\Tests\Block\Stubs\BlockDefinition as BlockDefinitionStub;
+use Netgen\BlockManager\Block\BlockDefinition\Configuration\Configuration;
 use Netgen\BlockManager\Ez\Block\BlockDefinition\ContentFieldDefinitionHandlerInterface;
 use Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\BlockView\ContentFieldListener;
-use Netgen\BlockManager\Block\BlockDefinition;
-use Netgen\BlockManager\Block\BlockDefinition\BlockDefinitionHandlerInterface;
-use Netgen\BlockManager\Block\BlockDefinition\Configuration\Configuration;
 use Netgen\BlockManager\Event\View\CollectViewParametersEvent;
 use Netgen\BlockManager\Core\Values\Page\Block;
 use Netgen\BlockManager\Tests\Core\Stubs\Value;
@@ -23,6 +23,8 @@ use PHPUnit\Framework\TestCase;
 
 class ContentFieldListenerTest extends TestCase
 {
+    protected $blockDefinition;
+
     /**
      * @var \Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\BlockView\ContentFieldListener
      */
@@ -33,6 +35,12 @@ class ContentFieldListenerTest extends TestCase
      */
     public function setUp()
     {
+        $this->blockDefinition = new BlockDefinition(
+            'def',
+            $this->createMock(ContentFieldDefinitionHandlerInterface::class),
+            $this->createMock(Configuration::class)
+        );
+
         $this->listener = new ContentFieldListener(
             array(ViewInterface::CONTEXT_DEFAULT)
         );
@@ -55,13 +63,7 @@ class ContentFieldListenerTest extends TestCase
      */
     public function testOnBuildView()
     {
-        $blockDefinition = new BlockDefinition(
-            'def',
-            $this->createMock(ContentFieldDefinitionHandlerInterface::class),
-            $this->createMock(Configuration::class)
-        );
-
-        $view = new BlockView(new Block(), $blockDefinition);
+        $view = new BlockView(new Block(array('blockDefinition' => $this->blockDefinition)));
         $view->setContext(ViewInterface::CONTEXT_DEFAULT);
         $event = new CollectViewParametersEvent($view);
 
@@ -92,13 +94,7 @@ class ContentFieldListenerTest extends TestCase
      */
     public function testOnBuildViewWithNoLocation()
     {
-        $blockDefinition = new BlockDefinition(
-            'def',
-            $this->createMock(ContentFieldDefinitionHandlerInterface::class),
-            $this->createMock(Configuration::class)
-        );
-
-        $view = new BlockView(new Block(), $blockDefinition);
+        $view = new BlockView(new Block(array('blockDefinition' => $this->blockDefinition)));
         $view->setContext(ViewInterface::CONTEXT_DEFAULT);
         $event = new CollectViewParametersEvent($view);
 
@@ -127,13 +123,7 @@ class ContentFieldListenerTest extends TestCase
      */
     public function testOnBuildViewWithNoContentViewAndLegacyFallback()
     {
-        $blockDefinition = new BlockDefinition(
-            'def',
-            $this->createMock(ContentFieldDefinitionHandlerInterface::class),
-            $this->createMock(Configuration::class)
-        );
-
-        $view = new BlockView(new Block(), $blockDefinition);
+        $view = new BlockView(new Block(array('blockDefinition' => $this->blockDefinition)));
         $view->setContext(ViewInterface::CONTEXT_DEFAULT);
         $event = new CollectViewParametersEvent($view);
 
@@ -161,13 +151,7 @@ class ContentFieldListenerTest extends TestCase
      */
     public function testOnBuildViewWithNoContentViewAndLegacyFallbackAndNoLocation()
     {
-        $blockDefinition = new BlockDefinition(
-            'def',
-            $this->createMock(ContentFieldDefinitionHandlerInterface::class),
-            $this->createMock(Configuration::class)
-        );
-
-        $view = new BlockView(new Block(), $blockDefinition);
+        $view = new BlockView(new Block(array('blockDefinition' => $this->blockDefinition)));
         $view->setContext(ViewInterface::CONTEXT_DEFAULT);
         $event = new CollectViewParametersEvent($view);
 
@@ -206,13 +190,7 @@ class ContentFieldListenerTest extends TestCase
      */
     public function testOnBuildViewWithWrongContext()
     {
-        $blockDefinition = new BlockDefinition(
-            'def',
-            $this->createMock(ContentFieldDefinitionHandlerInterface::class),
-            $this->createMock(Configuration::class)
-        );
-
-        $view = new BlockView(new Block(), $blockDefinition);
+        $view = new BlockView(new Block(array('blockDefinition' => $this->blockDefinition)));
         $view->setContext(ViewInterface::CONTEXT_API);
         $event = new CollectViewParametersEvent($view);
 
@@ -227,13 +205,7 @@ class ContentFieldListenerTest extends TestCase
      */
     public function testOnBuildViewWithNoContentFieldBlock()
     {
-        $blockDefinition = new BlockDefinition(
-            'def',
-            $this->createMock(BlockDefinitionHandlerInterface::class),
-            $this->createMock(Configuration::class)
-        );
-
-        $view = new BlockView(new Block(), $blockDefinition);
+        $view = new BlockView(new Block(array('blockDefinition' => new BlockDefinitionStub('def'))));
         $view->setContext(ViewInterface::CONTEXT_DEFAULT);
         $event = new CollectViewParametersEvent($view);
         $this->listener->onBuildView($event);
@@ -247,13 +219,7 @@ class ContentFieldListenerTest extends TestCase
      */
     public function testOnBuildViewWithNoRequest()
     {
-        $blockDefinition = new BlockDefinition(
-            'def',
-            $this->createMock(ContentFieldDefinitionHandlerInterface::class),
-            $this->createMock(Configuration::class)
-        );
-
-        $view = new BlockView(new Block(), $blockDefinition);
+        $view = new BlockView(new Block(array('blockDefinition' => $this->blockDefinition)));
         $view->setContext(ViewInterface::CONTEXT_DEFAULT);
         $event = new CollectViewParametersEvent($view);
 
@@ -271,13 +237,7 @@ class ContentFieldListenerTest extends TestCase
      */
     public function testOnBuildViewWithNoContentView()
     {
-        $blockDefinition = new BlockDefinition(
-            'def',
-            $this->createMock(ContentFieldDefinitionHandlerInterface::class),
-            $this->createMock(Configuration::class)
-        );
-
-        $view = new BlockView(new Block(), $blockDefinition);
+        $view = new BlockView(new Block(array('blockDefinition' => $this->blockDefinition)));
         $view->setContext(ViewInterface::CONTEXT_DEFAULT);
         $event = new CollectViewParametersEvent($view);
 
