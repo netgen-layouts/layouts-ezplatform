@@ -1,4 +1,4 @@
 parameters:
     netgen_block_manager.default.view: []
-
     netgen_block_manager.block_view.ezcontent_field_contexts: ['default']
+    netgen_block_manager.app.ezpublish.item_preview_template: 'NetgenEzPublishBlockManagerBundle:api/item:ngbm_app_preview.html.twig'

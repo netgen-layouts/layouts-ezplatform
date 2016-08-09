@@ -1,0 +1,8 @@
+system:
+    default:
+        image_variations:
+            ngbm_app_preview:
+                reference: original
+                filters:
+                    - { name: geometry/scale, params: [50, 50] }
+                    - { name: strip }

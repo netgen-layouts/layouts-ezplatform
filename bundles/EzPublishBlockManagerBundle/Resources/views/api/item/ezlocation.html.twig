@@ -1,1 +1,10 @@
-<p>{{ item.name }}</p>
+{{ render(
+    controller(
+        'ez_content:viewAction', {
+            'contentId': item.object.contentInfo.id,
+            'location': item.object,
+            'viewType': 'ngbm_app_preview',
+            'layout': false,
+        }
+    )
+) }}

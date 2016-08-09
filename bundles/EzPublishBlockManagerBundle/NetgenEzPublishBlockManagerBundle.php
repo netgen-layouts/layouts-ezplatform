@@ -29,5 +29,6 @@ class NetgenEzPublishBlockManagerBundle extends Bundle
         $blockManagerExtension->addAppendConfigs($this->extension->getAppendConfigs());
 
         $container->addCompilerPass(new CompilerPass\View\DefaultViewTemplatesPass());
+        $container->addCompilerPass(new CompilerPass\DefaultAppPreviewPass());
     }
 }

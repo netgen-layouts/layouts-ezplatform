@@ -66,6 +66,7 @@ class NetgenEzPublishBlockManagerExtension extends Extension implements PrependE
             'view/form_view.yml' => 'netgen_block_manager',
             'view/rule_condition_view.yml' => 'netgen_block_manager',
             'view/rule_target_view.yml' => 'netgen_block_manager',
+            'ezplatform/image.yml' => 'ezpublish',
         );
 
         foreach ($prependConfigs as $configFile => $prependConfig) {
