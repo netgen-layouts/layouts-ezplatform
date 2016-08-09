@@ -46,11 +46,7 @@ class ChildrenTest extends TestCase
         $this->requestStack->push($request);
 
         $this->locationServiceMock = $this->createMock(LocationService::class);
-
-        $this->repositoryMock = $this->getMockBuilder(Repository::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('getLocationService'))
-            ->getMock();
+        $this->repositoryMock = $this->createPartialMock(Repository::class, array('getLocationService'));
 
         $this->repositoryMock
             ->expects($this->any())

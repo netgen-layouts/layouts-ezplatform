@@ -38,11 +38,7 @@ class ContentTest extends TestCase
     public function setUp()
     {
         $this->contentServiceMock = $this->createMock(ContentService::class);
-
-        $this->repositoryMock = $this->getMockBuilder(Repository::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('getContentService'))
-            ->getMock();
+        $this->repositoryMock = $this->createPartialMock(Repository::class, array('getContentService'));
 
         $this->repositoryMock
             ->expects($this->any())

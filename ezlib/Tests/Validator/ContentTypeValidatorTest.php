@@ -34,11 +34,7 @@ class ContentTypeValidatorTest extends ValidatorTestCase
     public function getValidator()
     {
         $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
-
-        $this->repositoryMock = $this->getMockBuilder(Repository::class)
-            ->disableOriginalConstructor()
-            ->setMethods(array('getContentTypeService'))
-            ->getMock();
+        $this->repositoryMock = $this->createPartialMock(Repository::class, array('getContentTypeService'));
 
         $this->repositoryMock
             ->expects($this->any())
