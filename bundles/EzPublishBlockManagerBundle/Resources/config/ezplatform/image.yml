@@ -4,5 +4,5 @@ system:
             ngbm_app_preview:
                 reference: original
                 filters:
-                    - { name: thumbnail, params: { size: [80, 45], mode: outbound } }
+                    - { name: thumbnail, params: { size: [160, 90], mode: outbound } }
                     - { name: strip }
