@@ -2,38 +2,12 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\EventListener;
 
+use Netgen\Bundle\BlockManagerBundle\EventListener\PageLayoutListener as BasePageLayoutListener;
 use eZ\Publish\Core\MVC\Symfony\Event\ScopeChangeEvent;
 use eZ\Publish\Core\MVC\Symfony\MVCEvents;
-use Netgen\Bundle\BlockManagerBundle\Templating\PageLayoutResolverInterface;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Netgen\Bundle\BlockManagerBundle\Templating\Twig\GlobalVariable;
 
-class PageLayoutListener implements EventSubscriberInterface
+class PageLayoutListener extends BasePageLayoutListener
 {
-    /**
-     * @var \Netgen\Bundle\BlockManagerBundle\Templating\PageLayoutResolverInterface
-     */
-    protected $pageLayoutResolver;
-
-    /**
-     * @var \Netgen\Bundle\BlockManagerBundle\Templating\Twig\GlobalVariable
-     */
-    protected $globalVariable;
-
-    /**
-     * Constructor.
-     *
-     * @param \Netgen\Bundle\BlockManagerBundle\Templating\PageLayoutResolverInterface $pageLayoutResolver
-     * @param \Netgen\Bundle\BlockManagerBundle\Templating\Twig\GlobalVariable $globalVariable
-     */
-    public function __construct(
-        PageLayoutResolverInterface $pageLayoutResolver,
-        GlobalVariable $globalVariable
-    ) {
-        $this->pageLayoutResolver = $pageLayoutResolver;
-        $this->globalVariable = $globalVariable;
-    }
-
     /**
      * Returns an array of event names this subscriber wants to listen to.
      *
@@ -54,8 +28,6 @@ class PageLayoutListener implements EventSubscriberInterface
      */
     public function onScopeChange(ScopeChangeEvent $event)
     {
-        $this->globalVariable->setPageLayoutTemplate(
-            $this->pageLayoutResolver->resolvePageLayout()
-        );
+        $this->resolvePageLayout();
     }
 }
