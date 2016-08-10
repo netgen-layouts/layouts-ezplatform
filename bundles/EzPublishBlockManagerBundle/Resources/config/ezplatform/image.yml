@@ -4,5 +4,5 @@ system:
             ngbm_app_preview:
                 reference: original
                 filters:
-                    - { name: geometry/scale, params: [50, 50] }
+                    - { name: thumbnail, params: { size: [80, 45], mode: inset } }
                     - { name: strip }
