@@ -1,6 +1,6 @@
 <?php
 
-namespace Netgen\Bundle\BlockManagerBundle\Tests\EventListener\BlockView;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\EventListener\BlockView;
 
 use Netgen\BlockManager\Block\BlockDefinition;
 use Netgen\BlockManager\Tests\Block\Stubs\BlockDefinition as BlockDefinitionStub;
