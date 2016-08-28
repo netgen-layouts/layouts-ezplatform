@@ -8,7 +8,7 @@
         }
     ],
     "require": {
-        "netgen/block-manager": "^1.0"
+        "netgen/block-manager": "^1.0@dev"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.5",
