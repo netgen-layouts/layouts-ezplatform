@@ -39,6 +39,11 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     /**
      * @var array
      */
+    protected $languages;
+
+    /**
+     * @var array
+     */
     protected $sortClauses = array(
         'default' => SortClause\DatePublished::class,
         'date_published' => SortClause\DatePublished::class,
@@ -76,6 +81,16 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     ) {
         $this->locationService = $locationService;
         $this->searchService = $searchService;
+    }
+
+    /**
+     * Sets the current siteaccess languages into the handler.
+     *
+     * @param array $languages
+     */
+    public function setLanguages(array $languages = array())
+    {
+        $this->languages = $languages;
     }
 
     /**
@@ -166,7 +181,8 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         }
 
         $searchResult = $this->searchService->findLocations(
-            $this->buildQuery($parentLocation, $parameters)
+            $this->buildQuery($parentLocation, $parameters),
+            array('languages' => $this->languages)
         );
 
         return array_map(
@@ -199,7 +215,8 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         }
 
         $searchResult = $this->searchService->findLocations(
-            $this->buildQuery($parentLocation, $parameters, true)
+            $this->buildQuery($parentLocation, $parameters, true),
+            array('languages' => $this->languages)
         );
 
         return $searchResult->totalCount;
