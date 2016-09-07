@@ -2,6 +2,3 @@ block_types:
     ezcontent_field:
         name: 'eZ content field'
         definition_identifier: ezcontent_field
-        defaults:
-            view_type: ezcontent_field
-            item_view_type: standard
