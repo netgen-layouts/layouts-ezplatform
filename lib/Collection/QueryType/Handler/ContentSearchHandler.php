@@ -7,15 +7,20 @@ use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\Values\Content\LocationQuery;
 use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
 use eZ\Publish\API\Repository\Values\Content\Search\SearchHit;
+use eZ\Publish\Core\MVC\Symfony\View\LocationValueView;
 use Netgen\BlockManager\Collection\QueryType\QueryTypeHandlerInterface;
 use Netgen\BlockManager\Parameters\Parameter;
 use Netgen\BlockManager\Ez\Parameters\Parameter as EzParameter;
+use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use eZ\Publish\API\Repository\SearchService;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use Exception;
+use Symfony\Component\HttpFoundation\Request;
 
 class ContentSearchHandler implements QueryTypeHandlerInterface
 {
+    use RequestStackAwareTrait;
+
     /**
      * @const int
      */
@@ -103,7 +108,14 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     public function getParameters()
     {
         return array(
-            'parent_location_id' => new EzParameter\Location(),
+            'use_current_location' => new Parameter\Compound\Boolean(
+                array(
+                    'parent_location_id' => new EzParameter\Location(),
+                ),
+                array(
+                    'reverse' => true,
+                )
+            ),
             'sort_direction' => new Parameter\Choice(
                 array(
                     'options' => array(
@@ -168,13 +180,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      */
     public function getValues(array $parameters, $offset = 0, $limit = null)
     {
-        if (empty($parameters['parent_location_id'])) {
-            return array();
-        }
-
-        $parentLocation = $this->getParentLocation(
-            $parameters['parent_location_id']
-        );
+        $parentLocation = $this->getParentLocation($parameters);
 
         if (!$parentLocation instanceof Location) {
             return array();
@@ -202,13 +208,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      */
     public function getCount(array $parameters)
     {
-        if (empty($parameters['parent_location_id'])) {
-            return 0;
-        }
-
-        $parentLocation = $this->getParentLocation(
-            $parameters['parent_location_id']
-        );
+        $parentLocation = $this->getParentLocation($parameters);
 
         if (!$parentLocation instanceof Location) {
             return 0;
@@ -223,23 +223,52 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     }
 
     /**
-     * Returns the parent location by its ID.
+     * Returns the parent location to use for the query.
      *
-     * @param int $parentLocationId
+     * @param array $parameters
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Location
      */
-    protected function getParentLocation($parentLocationId)
+    protected function getParentLocation(array $parameters = array())
     {
+        if (isset($parameters['use_current_location']) && $parameters['use_current_location'] === true) {
+            return $this->getCurrentLocation();
+        }
+
+        if (empty($parameters['parent_location_id'])) {
+            return;
+        }
+
         try {
             $parentLocation = $this->locationService->loadLocation(
-                $parentLocationId
+                $parameters['parent_location_id']
             );
 
             return $parentLocation->invisible ? null : $parentLocation;
         } catch (Exception $e) {
             return;
         }
+    }
+
+    /**
+     * Returns the current location from the request.
+     *
+     * @return \eZ\Publish\API\Repository\Values\Content\Location
+     */
+    protected function getCurrentLocation()
+    {
+        $currentRequest = $this->requestStack->getCurrentRequest();
+        if (!$currentRequest instanceof Request) {
+            return;
+        }
+
+        $view = $currentRequest->attributes->get('view');
+        if ($view instanceof LocationValueView) {
+            return $view->getLocation();
+        }
+
+        // BC for eZ Publish 5
+        return $currentRequest->attributes->get('location');
     }
 
     /**

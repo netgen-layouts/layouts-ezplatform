@@ -11,5 +11,6 @@ services:
             - "@ezpublish.api.service.search"
         calls:
             - [setLanguages, ["$languages$"]]
+            - [setRequestStack, ["@request_stack"]]
         tags:
             - { name: netgen_block_manager.collection.query_type_handler, type: ezcontent_search }
