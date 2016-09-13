@@ -3,19 +3,20 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\BlockView;
 
 use Netgen\BlockManager\Ez\Block\BlockDefinition\ContentFieldDefinitionHandlerInterface;
-use Netgen\BlockManager\Traits\RequestStackAwareTrait;
+use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
 use Netgen\BlockManager\View\View\BlockViewInterface;
 use Netgen\BlockManager\Event\View\CollectViewParametersEvent;
 use Netgen\BlockManager\Event\View\ViewEvents;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\Location;
-use eZ\Publish\Core\MVC\Symfony\View\ContentValueView;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\Request;
 
 class ContentFieldListener implements EventSubscriberInterface
 {
-    use RequestStackAwareTrait;
+    /**
+     * @var \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface
+     */
+    protected $contentProvider;
 
     /**
      * @var array
@@ -25,10 +26,12 @@ class ContentFieldListener implements EventSubscriberInterface
     /**
      * Constructor.
      *
+     * @param \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface $contentProvider
      * @param array $enabledContexts
      */
-    public function __construct(array $enabledContexts = array())
+    public function __construct(ContentProviderInterface $contentProvider, array $enabledContexts = array())
     {
+        $this->contentProvider = $contentProvider;
         $this->enabledContexts = $enabledContexts;
     }
 
@@ -63,20 +66,8 @@ class ContentFieldListener implements EventSubscriberInterface
             return;
         }
 
-        $currentRequest = $this->requestStack->getCurrentRequest();
-        if (!$currentRequest instanceof Request) {
-            return;
-        }
-
-        $view = $currentRequest->attributes->get('view');
-        if ($view instanceof ContentValueView) {
-            $content = $view->getContent();
-            $location = $view->getLocation();
-        } else {
-            // @deprecated BC for eZ Publish 5
-            $content = $currentRequest->attributes->get('content');
-            $location = $currentRequest->attributes->get('location');
-        }
+        $content = $this->contentProvider->provideContent();
+        $location = $this->contentProvider->provideLocation();
 
         if ($content instanceof Content) {
             $event->getParameterBag()->set('content', $content);

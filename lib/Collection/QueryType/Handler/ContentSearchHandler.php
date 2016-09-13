@@ -3,24 +3,20 @@
 namespace Netgen\BlockManager\Ez\Collection\QueryType\Handler;
 
 use eZ\Publish\API\Repository\LocationService;
+use eZ\Publish\API\Repository\SearchService;
 use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\Values\Content\LocationQuery;
 use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
 use eZ\Publish\API\Repository\Values\Content\Search\SearchHit;
-use eZ\Publish\Core\MVC\Symfony\View\LocationValueView;
-use Netgen\BlockManager\Collection\QueryType\QueryTypeHandlerInterface;
-use Netgen\BlockManager\Parameters\Parameter;
-use Netgen\BlockManager\Ez\Parameters\Parameter as EzParameter;
-use Netgen\BlockManager\Traits\RequestStackAwareTrait;
-use eZ\Publish\API\Repository\SearchService;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
+use Netgen\BlockManager\Collection\QueryType\QueryTypeHandlerInterface;
+use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
+use Netgen\BlockManager\Ez\Parameters\Parameter as EzParameter;
+use Netgen\BlockManager\Parameters\Parameter;
 use Exception;
-use Symfony\Component\HttpFoundation\Request;
 
 class ContentSearchHandler implements QueryTypeHandlerInterface
 {
-    use RequestStackAwareTrait;
-
     /**
      * @const int
      */
@@ -40,6 +36,11 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      * @var \eZ\Publish\API\Repository\SearchService
      */
     protected $searchService;
+
+    /**
+     * @var \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface
+     */
+    protected $contentProvider;
 
     /**
      * @var array
@@ -79,13 +80,16 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      *
      * @param \eZ\Publish\API\Repository\LocationService $locationService
      * @param \eZ\Publish\API\Repository\SearchService $searchService
+     * @param \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface $contentProvider
      */
     public function __construct(
         LocationService $locationService,
-        SearchService $searchService
+        SearchService $searchService,
+        ContentProviderInterface $contentProvider
     ) {
         $this->locationService = $locationService;
         $this->searchService = $searchService;
+        $this->contentProvider = $contentProvider;
     }
 
     /**
@@ -232,7 +236,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     protected function getParentLocation(array $parameters = array())
     {
         if (isset($parameters['use_current_location']) && $parameters['use_current_location'] === true) {
-            return $this->getCurrentLocation();
+            return $this->contentProvider->provideLocation();
         }
 
         if (empty($parameters['parent_location_id'])) {
@@ -248,27 +252,6 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         } catch (Exception $e) {
             return;
         }
-    }
-
-    /**
-     * Returns the current location from the request.
-     *
-     * @return \eZ\Publish\API\Repository\Values\Content\Location
-     */
-    protected function getCurrentLocation()
-    {
-        $currentRequest = $this->requestStack->getCurrentRequest();
-        if (!$currentRequest instanceof Request) {
-            return;
-        }
-
-        $view = $currentRequest->attributes->get('view');
-        if ($view instanceof LocationValueView) {
-            return $view->getLocation();
-        }
-
-        // @deprecated BC for eZ Publish 5
-        return $currentRequest->attributes->get('location');
     }
 
     /**

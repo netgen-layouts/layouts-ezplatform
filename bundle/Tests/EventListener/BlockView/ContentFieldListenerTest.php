@@ -3,6 +3,7 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\EventListener\BlockView;
 
 use Netgen\BlockManager\Block\BlockDefinition;
+use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
 use Netgen\BlockManager\Tests\Block\Stubs\BlockDefinition as BlockDefinitionStub;
 use Netgen\BlockManager\Block\BlockDefinition\Configuration\Configuration;
 use Netgen\BlockManager\Ez\Block\BlockDefinition\ContentFieldDefinitionHandlerInterface;
@@ -14,16 +15,21 @@ use Netgen\BlockManager\Tests\View\Stubs\View;
 use Netgen\BlockManager\View\View\BlockView;
 use Netgen\BlockManager\Event\View\ViewEvents;
 use Netgen\BlockManager\View\ViewInterface;
-use eZ\Publish\Core\MVC\Symfony\View\ContentView;
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use PHPUnit\Framework\TestCase;
 
 class ContentFieldListenerTest extends TestCase
 {
+    /**
+     * @var \Netgen\BlockManager\Block\BlockDefinitionInterface
+     */
     protected $blockDefinition;
+
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $contentProviderMock;
 
     /**
      * @var \Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\BlockView\ContentFieldListener
@@ -41,7 +47,10 @@ class ContentFieldListenerTest extends TestCase
             $this->createMock(Configuration::class)
         );
 
+        $this->contentProviderMock = $this->createMock(ContentProviderInterface::class);
+
         $this->listener = new ContentFieldListener(
+            $this->contentProviderMock,
             array(ViewInterface::CONTEXT_DEFAULT)
         );
     }
@@ -67,16 +76,16 @@ class ContentFieldListenerTest extends TestCase
         $view->setContext(ViewInterface::CONTEXT_DEFAULT);
         $event = new CollectViewParametersEvent($view);
 
-        $contentView = new ContentView();
-        $contentView->setContent(new Content());
-        $contentView->setLocation(new Location());
+        $this->contentProviderMock
+            ->expects($this->any())
+            ->method('provideContent')
+            ->will($this->returnValue(new Content()));
 
-        $request = Request::create('/');
-        $request->attributes->set('view', $contentView);
-        $requestStack = new RequestStack();
-        $requestStack->push($request);
+        $this->contentProviderMock
+            ->expects($this->any())
+            ->method('provideLocation')
+            ->will($this->returnValue(new Location()));
 
-        $this->listener->setRequestStack($requestStack);
         $this->listener->onBuildView($event);
 
         $this->assertEquals(
@@ -98,69 +107,16 @@ class ContentFieldListenerTest extends TestCase
         $view->setContext(ViewInterface::CONTEXT_DEFAULT);
         $event = new CollectViewParametersEvent($view);
 
-        $contentView = new ContentView();
-        $contentView->setContent(new Content());
+        $this->contentProviderMock
+            ->expects($this->any())
+            ->method('provideContent')
+            ->will($this->returnValue(new Content()));
 
-        $request = Request::create('/');
-        $request->attributes->set('view', $contentView);
-        $requestStack = new RequestStack();
-        $requestStack->push($request);
+        $this->contentProviderMock
+            ->expects($this->any())
+            ->method('provideLocation')
+            ->will($this->returnValue(null));
 
-        $this->listener->setRequestStack($requestStack);
-        $this->listener->onBuildView($event);
-
-        $this->assertEquals(
-            array(
-                'content' => new Content(),
-            ),
-            $event->getViewParameters()
-        );
-    }
-
-    /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\BlockView\ContentFieldListener::__construct
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\BlockView\ContentFieldListener::onBuildView
-     */
-    public function testOnBuildViewWithNoContentViewAndLegacyFallback()
-    {
-        $view = new BlockView(new Block(array('blockDefinition' => $this->blockDefinition)));
-        $view->setContext(ViewInterface::CONTEXT_DEFAULT);
-        $event = new CollectViewParametersEvent($view);
-
-        $request = Request::create('/');
-        $request->attributes->set('content', new Content());
-        $request->attributes->set('location', new Location());
-        $requestStack = new RequestStack();
-        $requestStack->push($request);
-
-        $this->listener->setRequestStack($requestStack);
-        $this->listener->onBuildView($event);
-
-        $this->assertEquals(
-            array(
-                'content' => new Content(),
-                'location' => new Location(),
-            ),
-            $event->getViewParameters()
-        );
-    }
-
-    /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\BlockView\ContentFieldListener::__construct
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\BlockView\ContentFieldListener::onBuildView
-     */
-    public function testOnBuildViewWithNoContentViewAndLegacyFallbackAndNoLocation()
-    {
-        $view = new BlockView(new Block(array('blockDefinition' => $this->blockDefinition)));
-        $view->setContext(ViewInterface::CONTEXT_DEFAULT);
-        $event = new CollectViewParametersEvent($view);
-
-        $request = Request::create('/');
-        $request->attributes->set('content', new Content());
-        $requestStack = new RequestStack();
-        $requestStack->push($request);
-
-        $this->listener->setRequestStack($requestStack);
         $this->listener->onBuildView($event);
 
         $this->assertEquals(
@@ -208,44 +164,6 @@ class ContentFieldListenerTest extends TestCase
         $view = new BlockView(new Block(array('blockDefinition' => new BlockDefinitionStub('def'))));
         $view->setContext(ViewInterface::CONTEXT_DEFAULT);
         $event = new CollectViewParametersEvent($view);
-        $this->listener->onBuildView($event);
-
-        $this->assertEquals(array(), $event->getViewParameters());
-    }
-
-    /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\BlockView\ContentFieldListener::__construct
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\BlockView\ContentFieldListener::onBuildView
-     */
-    public function testOnBuildViewWithNoRequest()
-    {
-        $view = new BlockView(new Block(array('blockDefinition' => $this->blockDefinition)));
-        $view->setContext(ViewInterface::CONTEXT_DEFAULT);
-        $event = new CollectViewParametersEvent($view);
-
-        $requestStack = new RequestStack();
-
-        $this->listener->setRequestStack($requestStack);
-        $this->listener->onBuildView($event);
-
-        $this->assertEquals(array(), $event->getViewParameters());
-    }
-
-    /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\BlockView\ContentFieldListener::__construct
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\BlockView\ContentFieldListener::onBuildView
-     */
-    public function testOnBuildViewWithNoContentView()
-    {
-        $view = new BlockView(new Block(array('blockDefinition' => $this->blockDefinition)));
-        $view->setContext(ViewInterface::CONTEXT_DEFAULT);
-        $event = new CollectViewParametersEvent($view);
-
-        $request = Request::create('/');
-        $requestStack = new RequestStack();
-        $requestStack->push($request);
-
-        $this->listener->setRequestStack($requestStack);
         $this->listener->onBuildView($event);
 
         $this->assertEquals(array(), $event->getViewParameters());

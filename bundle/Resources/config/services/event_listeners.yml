@@ -12,8 +12,7 @@ services:
     netgen_block_manager.event_listener.block_view.ezcontent_field:
         class: "%netgen_block_manager.event_listener.block_view.ezcontent_field.class%"
         arguments:
+            - "@netgen_block_manager.ezpublish.content_provider.request"
             - "%netgen_block_manager.block_view.ezcontent_field_contexts%"
-        calls:
-            - [setRequestStack, ["@request_stack"]]
         tags:
             - { name: kernel.event_subscriber }

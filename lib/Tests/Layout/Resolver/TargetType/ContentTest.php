@@ -2,17 +2,15 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\TargetType;
 
-use eZ\Publish\Core\MVC\Symfony\View\ContentView;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\Content\Content as EzContent;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
+use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
 use Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Request;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
 
@@ -29,9 +27,9 @@ class ContentTest extends TestCase
     protected $contentServiceMock;
 
     /**
-     * @var \Symfony\Component\HttpFoundation\RequestStack
+     * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $requestStack;
+    protected $contentProviderMock;
 
     /**
      * @var \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content
@@ -40,6 +38,7 @@ class ContentTest extends TestCase
 
     public function setUp()
     {
+        $this->contentProviderMock = $this->createMock(ContentProviderInterface::class);
         $this->contentServiceMock = $this->createMock(ContentService::class);
         $this->repositoryMock = $this->createPartialMock(Repository::class, array('getContentService'));
 
@@ -48,31 +47,7 @@ class ContentTest extends TestCase
             ->method('getContentService')
             ->will($this->returnValue($this->contentServiceMock));
 
-        $view = new ContentView();
-        $view->setContent(
-            new EzContent(
-                array(
-                    'versionInfo' => new VersionInfo(
-                        array(
-                            'contentInfo' => new ContentInfo(
-                                array(
-                                    'id' => 42,
-                                )
-                            ),
-                        )
-                    ),
-                )
-            )
-        );
-
-        $request = Request::create('/');
-        $request->attributes->set('view', $view);
-
-        $this->requestStack = new RequestStack();
-        $this->requestStack->push($request);
-
-        $this->targetType = new Content();
-        $this->targetType->setRequestStack($this->requestStack);
+        $this->targetType = new Content($this->contentProviderMock);
     }
 
     /**
@@ -121,29 +96,39 @@ class ContentTest extends TestCase
      */
     public function testProvideValue()
     {
+        $content = new EzContent(
+            array(
+                'versionInfo' => new VersionInfo(
+                    array(
+                        'contentInfo' => new ContentInfo(
+                            array(
+                                'id' => 42,
+                            )
+                        ),
+                    )
+                ),
+            )
+        );
+
+        $this->contentProviderMock
+            ->expects($this->any())
+            ->method('provideContent')
+            ->will($this->returnValue($content));
+
         $this->assertEquals(42, $this->targetType->provideValue());
     }
 
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content::provideValue
      */
-    public function testProvideValueWithNoRequest()
+    public function testProvideValueWithNoContent()
     {
-        // Make sure we have no request
-        $this->requestStack->pop();
+        $this->contentProviderMock
+            ->expects($this->any())
+            ->method('provideContent')
+            ->will($this->returnValue(null));
 
-        $this->assertNull($this->targetType->provideValue());
-    }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children::provideValue
-     */
-    public function testProvideValueWithNoView()
-    {
-        // Make sure we have no view attribute
-        $this->requestStack->getCurrentRequest()->attributes->remove('view');
-
-        $this->assertNull($this->targetType->provideValue());
+        $this->assertEquals(null, $this->targetType->provideValue());
     }
 
     /**

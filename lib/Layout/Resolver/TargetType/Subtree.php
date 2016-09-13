@@ -2,17 +2,28 @@
 
 namespace Netgen\BlockManager\Ez\Layout\Resolver\TargetType;
 
-use eZ\Publish\Core\MVC\Symfony\View\LocationValueView;
 use eZ\Publish\API\Repository\Values\Content\Location as APILocation;
+use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Layout\Resolver\TargetTypeInterface;
-use Netgen\BlockManager\Traits\RequestStackAwareTrait;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
 
 class Subtree implements TargetTypeInterface
 {
-    use RequestStackAwareTrait;
+    /**
+     * @var \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface
+     */
+    protected $contentProvider;
+
+    /**
+     * Constructor.
+     *
+     * @param \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface $contentProvider
+     */
+    public function __construct(ContentProviderInterface $contentProvider)
+    {
+        $this->contentProvider = $contentProvider;
+    }
 
     /**
      * Returns the target type.
@@ -46,18 +57,7 @@ class Subtree implements TargetTypeInterface
      */
     public function provideValue()
     {
-        $currentRequest = $this->requestStack->getCurrentRequest();
-        if (!$currentRequest instanceof Request) {
-            return;
-        }
-
-        $view = $currentRequest->attributes->get('view');
-        if ($view instanceof LocationValueView) {
-            $location = $view->getLocation();
-        } else {
-            // @deprecated BC for eZ Publish 5
-            $location = $currentRequest->attributes->get('location');
-        }
+        $location = $this->contentProvider->provideLocation();
 
         return $location instanceof APILocation ? $location->path : null;
     }

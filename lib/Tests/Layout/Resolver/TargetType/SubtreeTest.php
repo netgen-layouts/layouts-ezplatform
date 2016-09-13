@@ -2,15 +2,13 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\TargetType;
 
-use eZ\Publish\Core\MVC\Symfony\View\ContentView;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\LocationService;
+use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
 use Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Subtree;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Request;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
 
@@ -22,9 +20,9 @@ class SubtreeTest extends TestCase
     protected $repositoryMock;
 
     /**
-     * @var \Symfony\Component\HttpFoundation\RequestStack
+     * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $requestStack;
+    protected $contentProviderMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
@@ -38,21 +36,7 @@ class SubtreeTest extends TestCase
 
     public function setUp()
     {
-        $view = new ContentView();
-        $view->setLocation(
-            new Location(
-                array(
-                    'path' => array(1, 2, 42),
-                )
-            )
-        );
-
-        $request = Request::create('/');
-        $request->attributes->set('view', $view);
-
-        $this->requestStack = new RequestStack();
-        $this->requestStack->push($request);
-
+        $this->contentProviderMock = $this->createMock(ContentProviderInterface::class);
         $this->locationServiceMock = $this->createMock(LocationService::class);
         $this->repositoryMock = $this->createPartialMock(Repository::class, array('getLocationService'));
 
@@ -61,8 +45,7 @@ class SubtreeTest extends TestCase
             ->method('getLocationService')
             ->will($this->returnValue($this->locationServiceMock));
 
-        $this->targetType = new Subtree();
-        $this->targetType->setRequestStack($this->requestStack);
+        $this->targetType = new Subtree($this->contentProviderMock);
     }
 
     /**
@@ -112,29 +95,32 @@ class SubtreeTest extends TestCase
      */
     public function testProvideValue()
     {
+        $location = new Location(
+            array(
+                'path' => array(1, 2, 42),
+            )
+        );
+
+        $this->contentProviderMock
+            ->expects($this->any())
+            ->method('provideLocation')
+            ->will($this->returnValue($location));
+
         $this->assertEquals(array(1, 2, 42), $this->targetType->provideValue());
     }
 
     /**
+     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Subtree::__construct
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Subtree::provideValue
      */
-    public function testProvideValueWithNoRequest()
+    public function testProvideValueWithNoLocation()
     {
-        // Make sure we have no request
-        $this->requestStack->pop();
+        $this->contentProviderMock
+            ->expects($this->any())
+            ->method('provideLocation')
+            ->will($this->returnValue(null));
 
-        $this->assertNull($this->targetType->provideValue());
-    }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children::provideValue
-     */
-    public function testProvideValueWithNoView()
-    {
-        // Make sure we have no view attribute
-        $this->requestStack->getCurrentRequest()->attributes->remove('view');
-
-        $this->assertNull($this->targetType->provideValue());
+        $this->assertEquals(null, $this->targetType->provideValue());
     }
 
     /**

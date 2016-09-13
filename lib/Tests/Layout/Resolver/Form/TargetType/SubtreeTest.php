@@ -2,7 +2,7 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\Form\TargetType;
 
-use eZ\Publish\API\Repository\LocationService;
+use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
 use Netgen\Bundle\ContentBrowserBundle\Tests\Stubs\Item;
 use Netgen\Bundle\ContentBrowserBundle\Item\ItemRepositoryInterface;
 use Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Subtree as SubtreeMapper;
@@ -24,7 +24,7 @@ class SubtreeTest extends FormTestCase
         parent::setUp();
 
         $this->targetType = new Subtree(
-            $this->createMock(LocationService::class)
+            $this->createMock(ContentProviderInterface::class)
         );
     }
 

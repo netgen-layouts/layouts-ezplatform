@@ -2,17 +2,28 @@
 
 namespace Netgen\BlockManager\Ez\Layout\Resolver\TargetType;
 
-use eZ\Publish\Core\MVC\Symfony\View\ContentValueView;
 use eZ\Publish\API\Repository\Values\Content\Content as APIContent;
+use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Layout\Resolver\TargetTypeInterface;
-use Netgen\BlockManager\Traits\RequestStackAwareTrait;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
 
 class Content implements TargetTypeInterface
 {
-    use RequestStackAwareTrait;
+    /**
+     * @var \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface
+     */
+    protected $contentProvider;
+
+    /**
+     * Constructor.
+     *
+     * @param \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface $contentProvider
+     */
+    public function __construct(ContentProviderInterface $contentProvider)
+    {
+        $this->contentProvider = $contentProvider;
+    }
 
     /**
      * Returns the target type.
@@ -46,18 +57,7 @@ class Content implements TargetTypeInterface
      */
     public function provideValue()
     {
-        $currentRequest = $this->requestStack->getCurrentRequest();
-        if (!$currentRequest instanceof Request) {
-            return;
-        }
-
-        $view = $currentRequest->attributes->get('view');
-        if ($view instanceof ContentValueView) {
-            $content = $view->getContent();
-        } else {
-            // @deprecated BC for eZ Publish 5
-            $content = $currentRequest->attributes->get('content');
-        }
+        $content = $this->contentProvider->provideContent();
 
         return $content instanceof APIContent ? $content->id : null;
     }

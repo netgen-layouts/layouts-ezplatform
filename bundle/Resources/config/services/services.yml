@@ -1,0 +1,9 @@
+parameters:
+    netgen_block_manager.ezpublish.content_provider.request.class: Netgen\BlockManager\Ez\ContentProvider\RequestContentProvider
+    netgen_block_manager.ezpublish.content_provider.ez5_request.class: Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentProvider
+
+services:
+    netgen_block_manager.ezpublish.content_provider.request:
+        class: "%netgen_block_manager.ezpublish.content_provider.request.class%"
+        calls:
+            - [setRequestStack, ["@request_stack"]]
