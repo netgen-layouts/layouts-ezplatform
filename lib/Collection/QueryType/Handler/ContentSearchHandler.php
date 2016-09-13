@@ -97,9 +97,9 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      *
      * @param array $languages
      */
-    public function setLanguages(array $languages = array())
+    public function setLanguages(array $languages = null)
     {
-        $this->languages = $languages;
+        $this->languages = is_array($languages) ? $languages : array();
     }
 
     /**
