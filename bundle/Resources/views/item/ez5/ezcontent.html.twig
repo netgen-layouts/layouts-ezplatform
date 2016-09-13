@@ -1,0 +1,12 @@
+{# @deprecated #}
+
+{{ render(
+    controller(
+        'ez_content:viewLocation', {
+            'contentId': item.object.id,
+            'locationId': item.object.mainLocationId,
+            'viewType': viewType,
+            'layout': false,
+        }
+    )
+) }}
