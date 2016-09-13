@@ -45,7 +45,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     /**
      * @var array
      */
-    protected $languages;
+    protected $languages = array();
 
     /**
      * @var array
