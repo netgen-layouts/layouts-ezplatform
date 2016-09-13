@@ -9,7 +9,7 @@ use Netgen\BlockManager\Event\View\CollectViewParametersEvent;
 use Netgen\BlockManager\Event\View\ViewEvents;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\Location;
-use eZ\Publish\Core\MVC\Symfony\View\ContentView;
+use eZ\Publish\Core\MVC\Symfony\View\ContentValueView;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -69,11 +69,11 @@ class ContentFieldListener implements EventSubscriberInterface
         }
 
         $view = $currentRequest->attributes->get('view');
-        if ($view instanceof ContentView) {
+        if ($view instanceof ContentValueView) {
             $content = $view->getContent();
             $location = $view->getLocation();
         } else {
-            // BC for eZ Publish 5
+            // @deprecated BC for eZ Publish 5
             $content = $currentRequest->attributes->get('content');
             $location = $currentRequest->attributes->get('location');
         }

@@ -2,7 +2,7 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\TargetType;
 
-use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
+use eZ\Publish\Core\MVC\Symfony\View\ContentView;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Values\Content\Location;
@@ -38,9 +38,17 @@ class ChildrenTest extends TestCase
 
     public function setUp()
     {
+        $view = new ContentView();
+        $view->setLocation(
+            new Location(
+                array(
+                    'parentLocationId' => 84,
+                )
+            )
+        );
+
         $request = Request::create('/');
-        $request->attributes->set('locationId', 42);
-        $request->attributes->set('_route', UrlAliasRouter::URL_ALIAS_ROUTE_NAME);
+        $request->attributes->set('view', $view);
 
         $this->requestStack = new RequestStack();
         $this->requestStack->push($request);
@@ -53,7 +61,7 @@ class ChildrenTest extends TestCase
             ->method('getLocationService')
             ->will($this->returnValue($this->locationServiceMock));
 
-        $this->targetType = new Children($this->locationServiceMock);
+        $this->targetType = new Children();
         $this->targetType->setRequestStack($this->requestStack);
     }
 
@@ -104,16 +112,7 @@ class ChildrenTest extends TestCase
      */
     public function testProvideValue()
     {
-        $this->locationServiceMock
-            ->expects($this->once())
-            ->method('loadLocation')
-            ->with($this->equalTo(42))
-            ->will($this->returnValue(new Location(array('parentLocationId' => 84))));
-
-        $this->assertEquals(
-            84,
-            $this->targetType->provideValue()
-        );
+        $this->assertEquals(84, $this->targetType->provideValue());
     }
 
     /**
@@ -121,10 +120,6 @@ class ChildrenTest extends TestCase
      */
     public function testProvideValueWithNoRequest()
     {
-        $this->locationServiceMock
-            ->expects($this->never())
-            ->method('loadLocation');
-
         // Make sure we have no request
         $this->requestStack->pop();
 
@@ -134,39 +129,10 @@ class ChildrenTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children::provideValue
      */
-    public function testProvideValueWithNoRoute()
+    public function testProvideValueWithNoView()
     {
-        // Make sure we have no URL alias route
-        $this->requestStack->getCurrentRequest()->attributes->remove('_route');
-
-        $this->assertNull($this->targetType->provideValue());
-    }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children::provideValue
-     */
-    public function testProvideValueWithNoLocationId()
-    {
-        $this->locationServiceMock
-            ->expects($this->never())
-            ->method('loadLocation');
-
-        // Make sure we have no location ID attribute
-        $this->requestStack->getCurrentRequest()->attributes->remove('locationId');
-
-        $this->assertNull($this->targetType->provideValue());
-    }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children::provideValue
-     */
-    public function testProvideValueWithNoLocation()
-    {
-        $this->locationServiceMock
-            ->expects($this->once())
-            ->method('loadLocation')
-            ->with($this->equalTo(42))
-            ->will($this->throwException(new NotFoundException('location', 42)));
+        // Make sure we have no view attribute
+        $this->requestStack->getCurrentRequest()->attributes->remove('view');
 
         $this->assertNull($this->targetType->provideValue());
     }

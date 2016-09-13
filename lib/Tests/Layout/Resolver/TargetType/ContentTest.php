@@ -2,10 +2,13 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\TargetType;
 
+use eZ\Publish\Core\MVC\Symfony\View\ContentView;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use eZ\Publish\Core\Repository\Repository;
+use eZ\Publish\Core\Repository\Values\Content\Content as EzContent;
+use eZ\Publish\API\Repository\Values\Content\ContentInfo;
+use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -45,9 +48,25 @@ class ContentTest extends TestCase
             ->method('getContentService')
             ->will($this->returnValue($this->contentServiceMock));
 
+        $view = new ContentView();
+        $view->setContent(
+            new EzContent(
+                array(
+                    'versionInfo' => new VersionInfo(
+                        array(
+                            'contentInfo' => new ContentInfo(
+                                array(
+                                    'id' => 42,
+                                )
+                            ),
+                        )
+                    ),
+                )
+            )
+        );
+
         $request = Request::create('/');
-        $request->attributes->set('contentId', 42);
-        $request->attributes->set('_route', UrlAliasRouter::URL_ALIAS_ROUTE_NAME);
+        $request->attributes->set('view', $view);
 
         $this->requestStack = new RequestStack();
         $this->requestStack->push($request);
@@ -102,10 +121,7 @@ class ContentTest extends TestCase
      */
     public function testProvideValue()
     {
-        $this->assertEquals(
-            42,
-            $this->targetType->provideValue()
-        );
+        $this->assertEquals(42, $this->targetType->provideValue());
     }
 
     /**
@@ -120,23 +136,12 @@ class ContentTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content::provideValue
+     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children::provideValue
      */
-    public function testProvideValueWithNoRoute()
+    public function testProvideValueWithNoView()
     {
-        // Make sure we have no URL alias route
-        $this->requestStack->getCurrentRequest()->attributes->remove('_route');
-
-        $this->assertNull($this->targetType->provideValue());
-    }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content::provideValue
-     */
-    public function testProvideValueWithNoContentId()
-    {
-        // Make sure we have no content ID attribute
-        $this->requestStack->getCurrentRequest()->attributes->remove('contentId');
+        // Make sure we have no view attribute
+        $this->requestStack->getCurrentRequest()->attributes->remove('view');
 
         $this->assertNull($this->targetType->provideValue());
     }

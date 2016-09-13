@@ -267,7 +267,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
             return $view->getLocation();
         }
 
-        // BC for eZ Publish 5
+        // @deprecated BC for eZ Publish 5
         return $currentRequest->attributes->get('location');
     }
 

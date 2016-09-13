@@ -3,7 +3,8 @@
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\TargetType;
 
 use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
+use eZ\Publish\Core\Repository\Values\Content\Location as EzLocation;
+use eZ\Publish\Core\MVC\Symfony\View\ContentView;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Location;
@@ -45,9 +46,17 @@ class LocationTest extends TestCase
             ->method('getLocationService')
             ->will($this->returnValue($this->locationServiceMock));
 
+        $view = new ContentView();
+        $view->setLocation(
+            new EzLocation(
+                array(
+                    'id' => 42,
+                )
+            )
+        );
+
         $request = Request::create('/');
-        $request->attributes->set('locationId', 42);
-        $request->attributes->set('_route', UrlAliasRouter::URL_ALIAS_ROUTE_NAME);
+        $request->attributes->set('view', $view);
 
         $this->requestStack = new RequestStack();
         $this->requestStack->push($request);
@@ -102,10 +111,7 @@ class LocationTest extends TestCase
      */
     public function testProvideValue()
     {
-        $this->assertEquals(
-            42,
-            $this->targetType->provideValue()
-        );
+        $this->assertEquals(42, $this->targetType->provideValue());
     }
 
     /**
@@ -120,23 +126,12 @@ class LocationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Location::provideValue
+     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children::provideValue
      */
-    public function testProvideValueWithNoRoute()
+    public function testProvideValueWithNoView()
     {
-        // Make sure we have no URL alias route
-        $this->requestStack->getCurrentRequest()->attributes->remove('_route');
-
-        $this->assertNull($this->targetType->provideValue());
-    }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Location::provideValue
-     */
-    public function testProvideValueWithNoLocationId()
-    {
-        // Make sure we have no location ID attribute
-        $this->requestStack->getCurrentRequest()->attributes->remove('locationId');
+        // Make sure we have no view attribute
+        $this->requestStack->getCurrentRequest()->attributes->remove('view');
 
         $this->assertNull($this->targetType->provideValue());
     }

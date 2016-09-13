@@ -23,8 +23,6 @@ services:
 
     netgen_block_manager.layout.resolver.target_type.ezchildren:
         class: "%netgen_block_manager.layout.resolver.target_type.ezchildren.class%"
-        arguments:
-            - "@ezpublish.api.service.location"
         calls:
             - [setRequestStack, ["@request_stack"]]
         tags:
@@ -32,8 +30,6 @@ services:
 
     netgen_block_manager.layout.resolver.target_type.ezsubtree:
         class: "%netgen_block_manager.layout.resolver.target_type.ezsubtree.class%"
-        arguments:
-            - "@ezpublish.api.service.location"
         calls:
             - [setRequestStack, ["@request_stack"]]
         tags:

@@ -2,33 +2,17 @@
 
 namespace Netgen\BlockManager\Ez\Layout\Resolver\TargetType;
 
+use eZ\Publish\Core\MVC\Symfony\View\LocationValueView;
+use eZ\Publish\API\Repository\Values\Content\Location as APILocation;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Layout\Resolver\TargetTypeInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
 
 class Children implements TargetTypeInterface
 {
     use RequestStackAwareTrait;
-
-    /**
-     * @var \eZ\Publish\API\Repository\LocationService
-     */
-    protected $locationService;
-
-    /**
-     * Constructor.
-     *
-     * @param \eZ\Publish\API\Repository\LocationService $locationService
-     */
-    public function __construct(LocationService $locationService)
-    {
-        $this->locationService = $locationService;
-    }
 
     /**
      * Returns the target type.
@@ -67,23 +51,14 @@ class Children implements TargetTypeInterface
             return;
         }
 
-        $attributes = $currentRequest->attributes;
-        if ($attributes->get('_route') !== UrlAliasRouter::URL_ALIAS_ROUTE_NAME) {
-            return;
+        $view = $currentRequest->attributes->get('view');
+        if ($view instanceof LocationValueView) {
+            $location = $view->getLocation();
+        } else {
+            // @deprecated BC for eZ Publish 5
+            $location = $currentRequest->attributes->get('location');
         }
 
-        if (!$attributes->has('locationId')) {
-            return;
-        }
-
-        try {
-            $location = $this->locationService->loadLocation(
-                $attributes->get('locationId')
-            );
-        } catch (NotFoundException $e) {
-            return;
-        }
-
-        return $location->parentLocationId;
+        return $location instanceof APILocation ? $location->parentLocationId : null;
     }
 }

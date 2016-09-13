@@ -2,7 +2,7 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\TargetType;
 
-use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
+use eZ\Publish\Core\MVC\Symfony\View\ContentView;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Values\Content\Location;
@@ -38,9 +38,17 @@ class SubtreeTest extends TestCase
 
     public function setUp()
     {
+        $view = new ContentView();
+        $view->setLocation(
+            new Location(
+                array(
+                    'path' => array(1, 2, 42),
+                )
+            )
+        );
+
         $request = Request::create('/');
-        $request->attributes->set('locationId', 42);
-        $request->attributes->set('_route', UrlAliasRouter::URL_ALIAS_ROUTE_NAME);
+        $request->attributes->set('view', $view);
 
         $this->requestStack = new RequestStack();
         $this->requestStack->push($request);
@@ -53,7 +61,7 @@ class SubtreeTest extends TestCase
             ->method('getLocationService')
             ->will($this->returnValue($this->locationServiceMock));
 
-        $this->targetType = new Subtree($this->locationServiceMock);
+        $this->targetType = new Subtree();
         $this->targetType->setRequestStack($this->requestStack);
     }
 
@@ -104,16 +112,7 @@ class SubtreeTest extends TestCase
      */
     public function testProvideValue()
     {
-        $this->locationServiceMock
-            ->expects($this->once())
-            ->method('loadLocation')
-            ->with($this->equalTo(42))
-            ->will($this->returnValue(new Location(array('pathString' => '/1/2/42/'))));
-
-        $this->assertEquals(
-            array(1, 2, 42),
-            $this->targetType->provideValue()
-        );
+        $this->assertEquals(array(1, 2, 42), $this->targetType->provideValue());
     }
 
     /**
@@ -121,10 +120,6 @@ class SubtreeTest extends TestCase
      */
     public function testProvideValueWithNoRequest()
     {
-        $this->locationServiceMock
-            ->expects($this->never())
-            ->method('loadLocation');
-
         // Make sure we have no request
         $this->requestStack->pop();
 
@@ -132,41 +127,12 @@ class SubtreeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Subtree::provideValue
+     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children::provideValue
      */
-    public function testProvideValueWithNoRoute()
+    public function testProvideValueWithNoView()
     {
-        // Make sure we have no URL alias route
-        $this->requestStack->getCurrentRequest()->attributes->remove('_route');
-
-        $this->assertNull($this->targetType->provideValue());
-    }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Subtree::provideValue
-     */
-    public function testProvideValueWithNoLocationId()
-    {
-        $this->locationServiceMock
-            ->expects($this->never())
-            ->method('loadLocation');
-
-        // Make sure we have no location ID attribute
-        $this->requestStack->getCurrentRequest()->attributes->remove('locationId');
-
-        $this->assertNull($this->targetType->provideValue());
-    }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Subtree::provideValue
-     */
-    public function testProvideValueWithNoLocation()
-    {
-        $this->locationServiceMock
-            ->expects($this->once())
-            ->method('loadLocation')
-            ->with($this->equalTo(42))
-            ->will($this->throwException(new NotFoundException('location', 42)));
+        // Make sure we have no view attribute
+        $this->requestStack->getCurrentRequest()->attributes->remove('view');
 
         $this->assertNull($this->targetType->provideValue());
     }
