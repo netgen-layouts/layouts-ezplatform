@@ -9,7 +9,7 @@ services:
         arguments:
             - "@ezpublish.api.service.location"
             - "@ezpublish.api.service.search"
-            - "@netgen_block_manager.ezpublish.content_provider.request"
+            - "@netgen_block_manager.ezpublish.content_provider"
         calls:
             - [setLanguages, ["$languages$"]]
         tags:

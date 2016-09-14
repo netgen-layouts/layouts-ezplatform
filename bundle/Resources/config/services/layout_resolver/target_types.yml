@@ -10,28 +10,28 @@ services:
     netgen_block_manager.layout.resolver.target_type.ezlocation:
         class: "%netgen_block_manager.layout.resolver.target_type.ezlocation.class%"
         arguments:
-            - "@netgen_block_manager.ezpublish.content_provider.request"
+            - "@netgen_block_manager.ezpublish.content_provider"
         tags:
             - { name: netgen_block_manager.layout.resolver.target_type, priority: 24 }
 
     netgen_block_manager.layout.resolver.target_type.ezcontent:
         class: "%netgen_block_manager.layout.resolver.target_type.ezcontent.class%"
         arguments:
-            - "@netgen_block_manager.ezpublish.content_provider.request"
+            - "@netgen_block_manager.ezpublish.content_provider"
         tags:
             - { name: netgen_block_manager.layout.resolver.target_type, priority: 25 }
 
     netgen_block_manager.layout.resolver.target_type.ezchildren:
         class: "%netgen_block_manager.layout.resolver.target_type.ezchildren.class%"
         arguments:
-            - "@netgen_block_manager.ezpublish.content_provider.request"
+            - "@netgen_block_manager.ezpublish.content_provider"
         tags:
             - { name: netgen_block_manager.layout.resolver.target_type, priority: 22 }
 
     netgen_block_manager.layout.resolver.target_type.ezsubtree:
         class: "%netgen_block_manager.layout.resolver.target_type.ezsubtree.class%"
         arguments:
-            - "@netgen_block_manager.ezpublish.content_provider.request"
+            - "@netgen_block_manager.ezpublish.content_provider"
         tags:
             - { name: netgen_block_manager.layout.resolver.target_type, priority: 23 }
 
