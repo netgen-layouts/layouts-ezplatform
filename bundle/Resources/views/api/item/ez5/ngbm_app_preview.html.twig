@@ -1,5 +1,5 @@
 {% if content.fields.image is defined and not ez_is_field_empty(content, 'image') %}
-    {% set image_alias = ez_image_alias(content.fields.image, content.versionInfo, 'ngbm_app_preview') %}
+    {% set image_alias = ez_image_alias(content.field('image'), content.versionInfo, 'ngbm_app_preview') %}
 
     {% if image_alias %}
         <div class="image">
