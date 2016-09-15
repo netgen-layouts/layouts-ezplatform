@@ -1,14 +1,7 @@
 parameters:
-    netgen_block_manager.event_listener.ez_pagelayout.class: Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\PageLayoutListener
     netgen_block_manager.event_listener.block_view.ezcontent_field.class: Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\BlockView\ContentFieldListener
 
 services:
-    netgen_block_manager.event_listener.ez_pagelayout:
-        class: "%netgen_block_manager.event_listener.ez_pagelayout.class%"
-        parent: netgen_block_manager.event_listener.pagelayout
-        tags:
-            - { name: kernel.event_subscriber }
-
     netgen_block_manager.event_listener.block_view.ezcontent_field:
         class: "%netgen_block_manager.event_listener.block_view.ezcontent_field.class%"
         arguments:
