@@ -293,11 +293,11 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
 
         $query->limit = 0;
         if (!$buildCountQuery) {
-            $query->offset = isset($parameters['offset']) && is_int($parameters['offset']) ?
+            $query->offset = isset($parameters['offset']) && is_int($parameters['offset']) && $parameters['offset'] >= 0 ?
                 $parameters['offset'] :
                 0;
 
-            $query->limit = isset($parameters['limit']) && is_int($parameters['limit']) && $parameters['limit'] > 0 ?
+            $query->limit = isset($parameters['limit']) && is_int($parameters['limit']) && $parameters['limit'] >= 0 ?
                 $parameters['limit'] :
                 self::DEFAULT_LIMIT;
         }
