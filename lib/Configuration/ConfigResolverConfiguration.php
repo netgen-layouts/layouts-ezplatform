@@ -4,7 +4,7 @@ namespace Netgen\BlockManager\Ez\Configuration;
 
 use Netgen\BlockManager\Configuration\ConfigurationInterface;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use OutOfBoundsException;
+use Netgen\BlockManager\Exception\InvalidArgumentException;
 
 class ConfigResolverConfiguration implements ConfigurationInterface
 {
@@ -64,18 +64,16 @@ class ConfigResolverConfiguration implements ConfigurationInterface
      *
      * @param string $parameterName
      *
-     * @throws \OutOfBoundsException If parameter is undefined
+     * @throws \Netgen\BlockManager\Exception\InvalidArgumentException If parameter is undefined
      *
      * @return mixed
      */
     public function getParameter($parameterName)
     {
         if (!$this->hasParameter($parameterName)) {
-            throw new OutOfBoundsException(
-                sprintf(
-                    'Parameter "%s" does not exist in configuration.',
-                    $parameterName
-                )
+            throw new InvalidArgumentException(
+                $parameterName,
+                'Parameter does not exist in configuration'
             );
         }
 

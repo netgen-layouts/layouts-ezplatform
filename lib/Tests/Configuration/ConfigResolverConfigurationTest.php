@@ -161,7 +161,7 @@ class ConfigResolverConfigurationTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration::setConfigResolver
      * @covers \Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration::getParameter
-     * @expectedException \OutOfBoundsException
+     * @expectedException \Netgen\BlockManager\Exception\InvalidArgumentException
      */
     public function testGetParameterThrowsOutOfBoundsException()
     {
