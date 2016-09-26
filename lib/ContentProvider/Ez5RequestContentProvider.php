@@ -55,11 +55,11 @@ class Ez5RequestContentProvider implements ContentProviderInterface
 
         $content = $currentRequest->attributes->get('content');
         if ($content !== null && !$content instanceof Content) {
-            //return;
+            return;
         }
 
         if ($content instanceof Content) {
-            //return $content;
+            return $content;
         }
 
         $contentId = $currentRequest->attributes->get('contentId');
