@@ -17,8 +17,8 @@ class ValidatorFactory extends ConstraintValidatorFactory
 
         if ($name === 'ngbm_ez_site_access') {
             return new SiteAccessValidator(array('eng', 'cro'));
-        } else {
-            return parent::getInstance($constraint);
         }
+
+        return parent::getInstance($constraint);
     }
 }

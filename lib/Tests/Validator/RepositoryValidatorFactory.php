@@ -41,8 +41,8 @@ class RepositoryValidatorFactory extends ConstraintValidatorFactory
             return new ContentValidator($this->repository);
         } elseif ($name === 'ngbm_ez_content_type') {
             return new ContentTypeValidator($this->repository);
-        } else {
-            return parent::getInstance($constraint);
         }
+
+        return parent::getInstance($constraint);
     }
 }
