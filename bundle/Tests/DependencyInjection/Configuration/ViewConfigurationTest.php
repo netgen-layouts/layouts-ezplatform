@@ -21,6 +21,9 @@ class ViewConfigurationTest extends ConfigurationTest
                                 'match' => array(
                                     'block_identifier' => 42,
                                 ),
+                                'parameters' => array(
+                                    'param' => 'value',
+                                ),
                             ),
                         ),
                     ),
@@ -36,6 +39,9 @@ class ViewConfigurationTest extends ConfigurationTest
                             'template' => 'block.html.twig',
                             'match' => array(
                                 'block_identifier' => 42,
+                            ),
+                            'parameters' => array(
+                                'param' => 'value',
                             ),
                         ),
                     ),
@@ -64,6 +70,9 @@ class ViewConfigurationTest extends ConfigurationTest
                                 'match' => array(
                                     'block_identifier' => 42,
                                 ),
+                                'parameters' => array(
+                                    'param' => 'value',
+                                ),
                             ),
                         ),
                     ),
@@ -77,6 +86,9 @@ class ViewConfigurationTest extends ConfigurationTest
                                         'template' => 'block.html.twig',
                                         'match' => array(
                                             'block_identifier' => 42,
+                                        ),
+                                        'parameters' => array(
+                                            'param2' => 'value2',
                                         ),
                                     ),
                                 ),
@@ -96,6 +108,9 @@ class ViewConfigurationTest extends ConfigurationTest
                             'match' => array(
                                 'block_identifier' => 42,
                             ),
+                            'parameters' => array(
+                                'param' => 'value',
+                            ),
                         ),
                     ),
                     'other_context' => array(
@@ -103,6 +118,9 @@ class ViewConfigurationTest extends ConfigurationTest
                             'template' => 'block.html.twig',
                             'match' => array(
                                 'block_identifier' => 42,
+                            ),
+                            'parameters' => array(
+                                'param2' => 'value2',
                             ),
                         ),
                     ),
@@ -134,6 +152,9 @@ class ViewConfigurationTest extends ConfigurationTest
                                 'match' => array(
                                     'block_identifier' => 42,
                                 ),
+                                'parameters' => array(
+                                    'param' => 'value',
+                                ),
                             ),
                         ),
                     ),
@@ -147,6 +168,9 @@ class ViewConfigurationTest extends ConfigurationTest
                                         'template' => 'block.html.twig',
                                         'match' => array(
                                             'block_identifier' => 42,
+                                        ),
+                                        'parameters' => array(
+                                            'param2' => 'value2',
                                         ),
                                     ),
                                 ),
@@ -166,6 +190,9 @@ class ViewConfigurationTest extends ConfigurationTest
                             'match' => array(
                                 'block_identifier' => 42,
                             ),
+                            'parameters' => array(
+                                'param' => 'value',
+                            ),
                         ),
                     ),
                 ),
@@ -183,6 +210,9 @@ class ViewConfigurationTest extends ConfigurationTest
                     'match' => array(
                         'block_identifier' => 42,
                     ),
+                    'parameters' => array(
+                        'param' => 'value',
+                    ),
                 ),
             ),
             'other_context' => array(
@@ -190,6 +220,9 @@ class ViewConfigurationTest extends ConfigurationTest
                     'template' => 'block.html.twig',
                     'match' => array(
                         'block_identifier' => 42,
+                    ),
+                    'parameters' => array(
+                        'param2' => 'value2',
                     ),
                 ),
             ),
@@ -213,6 +246,9 @@ class ViewConfigurationTest extends ConfigurationTest
                             'block' => array(
                                 'template' => 'block.html.twig',
                                 'match' => array(24, 42),
+                                'parameters' => array(
+                                    'param' => 'value',
+                                ),
                             ),
                         ),
                     ),
@@ -227,6 +263,9 @@ class ViewConfigurationTest extends ConfigurationTest
                         'block' => array(
                             'template' => 'block.html.twig',
                             'match' => array(24, 42),
+                            'parameters' => array(
+                                'param' => 'value',
+                            ),
                         ),
                     ),
                 ),
@@ -252,6 +291,9 @@ class ViewConfigurationTest extends ConfigurationTest
                             'block' => array(
                                 'template' => 'block.html.twig',
                                 'match' => null,
+                                'parameters' => array(
+                                    'param' => 'value',
+                                ),
                             ),
                         ),
                     ),
@@ -266,6 +308,49 @@ class ViewConfigurationTest extends ConfigurationTest
                         'block' => array(
                             'template' => 'block.html.twig',
                             'match' => array(),
+                            'parameters' => array(
+                                'param' => 'value',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+
+        $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
+        $this->assertInjectedConfigurationEqual($expectedConfig, $config);
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration::getConfigTreeBuilderClosure
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPreProcessor
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::getPostProcessor
+     */
+    public function testViewSettingsWithNoParameters()
+    {
+        $config = array(
+            array(
+                'view' => array(
+                    'block_view' => array(
+                        'some_context' => array(
+                            'block' => array(
+                                'template' => 'block.html.twig',
+                                'match' => array(24, 42),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+
+        $expectedConfig = array(
+            'view' => array(
+                'block_view' => array(
+                    'some_context' => array(
+                        'block' => array(
+                            'template' => 'block.html.twig',
+                            'match' => array(24, 42),
+                            'parameters' => array(),
                         ),
                     ),
                 ),
