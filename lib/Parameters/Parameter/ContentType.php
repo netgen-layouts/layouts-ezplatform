@@ -38,14 +38,20 @@ class ContentType extends Parameter
      */
     public function getValueConstraints()
     {
+        $contentTypeConstraints = array(
+            new Constraints\Type(array('type' => 'string')),
+            new EzConstraints\ContentType(),
+        );
+
+        if (!$this->options['multiple']) {
+            return $contentTypeConstraints;
+        }
+
         return array(
             new Constraints\Type(array('type' => 'array')),
             new Constraints\All(
                 array(
-                    'constraints' => array(
-                        new Constraints\Type(array('type' => 'string')),
-                        new EzConstraints\ContentType(),
-                    ),
+                    'constraints' => $contentTypeConstraints,
                 )
             ),
         );
