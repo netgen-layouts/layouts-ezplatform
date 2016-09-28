@@ -2,11 +2,28 @@
 
 namespace Netgen\BlockManager\Ez\Block\BlockDefinition\Handler;
 
-use Netgen\BlockManager\Ez\Block\BlockDefinition\ContentFieldDefinitionHandler;
+use Netgen\BlockManager\API\Values\Page\Block;
+use Netgen\BlockManager\Block\BlockDefinition\BlockDefinitionHandler;
+use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
 use Netgen\BlockManager\Parameters\Parameter;
 
-class ContentFieldHandler extends ContentFieldDefinitionHandler
+class ContentFieldHandler extends BlockDefinitionHandler
 {
+    /**
+     * @var \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface
+     */
+    protected $contentProvider;
+
+    /**
+     * Constructor.
+     *
+     * @param \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface $contentProvider
+     */
+    public function __construct(ContentProviderInterface $contentProvider)
+    {
+        $this->contentProvider = $contentProvider;
+    }
+
     /**
      * Returns the array specifying block parameters.
      *
@@ -20,12 +37,17 @@ class ContentFieldHandler extends ContentFieldDefinitionHandler
     }
 
     /**
-     * Returns the name of the parameter which will provide the field identifier.
+     * Returns the array of dynamic parameters provided by this block definition.
      *
-     * @return string
+     * @param \Netgen\BlockManager\API\Values\Page\Block $block
+     *
+     * @return array
      */
-    public function getFieldIdentifierParameter()
+    public function getDynamicParameters(Block $block)
     {
-        return 'field_identifier';
+        return array(
+            'content' => $this->contentProvider->provideContent(),
+            'location' => $this->contentProvider->provideLocation(),
+        );
     }
 }

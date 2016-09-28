@@ -4,5 +4,7 @@ parameters:
 services:
     netgen_block_manager.block.block_definition.handler.ezcontent_field:
         class: "%netgen_block_manager.block.block_definition.handler.ezcontent_field.class%"
+        arguments:
+            - "@netgen_block_manager.ezpublish.content_provider"
         tags:
             - { name: netgen_block_manager.block.block_definition_handler, identifier: ezcontent_field }

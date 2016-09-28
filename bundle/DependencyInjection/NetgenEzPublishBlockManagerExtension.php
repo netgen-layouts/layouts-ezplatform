@@ -36,7 +36,6 @@ class NetgenEzPublishBlockManagerExtension extends Extension implements PrependE
         $loader->load('default_settings.yml');
         $loader->load('services/configuration.yml');
         $loader->load('services/block_definitions.yml');
-        $loader->load('services/event_listeners.yml');
         $loader->load('services/validators.yml');
         $loader->load('services/parameters.yml');
         $loader->load('services/templating.yml');

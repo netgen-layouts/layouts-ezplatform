@@ -1,11 +1,14 @@
 {% extends 'NetgenBlockManagerBundle:block:block.html.twig' %}
 
 {% block content %}
-    {% set field_identifier = block.blockDefinition.handler.fieldIdentifier(block) %}
+    {% set field_identifier = block.parameter('field_identifier') %}
+    {% set content = dynamic_parameters.parameter('content') %}
 
-    {% if content.fields[field_identifier] is defined and not ez_is_field_empty(content, field_identifier) %}
+    {% if field_identifier is not empty and content.fields[field_identifier] is defined %}
         {% block ezcontent_field %}
-            {{ ez_render_field(content, field_identifier) }}
+            {% if not ez_is_field_empty(content, field_identifier) %}
+                {{ ez_render_field(content, field_identifier) }}
+            {% endif %}
         {% endblock %}
     {% endif %}
 {% endblock %}
