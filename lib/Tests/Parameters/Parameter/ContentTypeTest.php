@@ -145,8 +145,10 @@ class ContentTypeTest extends TestCase
      */
     public function testValidation($value, $required, $isValid)
     {
+        $options = array();
         if ($value !== null) {
-            foreach ($value as $index => $identifier) {
+            $options = array('multiple' => is_array($value));
+            foreach ((array)$value as $index => $identifier) {
                 $this->contentTypeServiceMock
                     ->expects($this->at($index))
                     ->method('loadContentTypeByIdentifier')
@@ -163,7 +165,7 @@ class ContentTypeTest extends TestCase
             }
         }
 
-        $parameter = $this->getParameter(array(), $required);
+        $parameter = $this->getParameter($options, $required);
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
@@ -180,12 +182,14 @@ class ContentTypeTest extends TestCase
     public function validationProvider()
     {
         return array(
+            array('news', false, true),
             array(array(), false, true),
             array(array('news'), false, true),
             array(array('article', 'news'), false, true),
             array(array('article', 'other'), false, false),
             array(array('other'), false, false),
             array(null, false, true),
+            array('news', true, true),
             array(array(), true, false),
             array(array('news'), true, true),
             array(array('article', 'news'), true, true),
