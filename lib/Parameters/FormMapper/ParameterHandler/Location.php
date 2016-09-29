@@ -28,7 +28,7 @@ class Location extends ParameterHandler
     public function convertOptions(ParameterInterface $parameter)
     {
         return array(
-            'value_type' => 'ezlocation',
+            'item_type' => 'ezlocation',
             'config_name' => 'ezlocation',
         );
     }

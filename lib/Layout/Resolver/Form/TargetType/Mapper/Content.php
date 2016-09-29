@@ -28,7 +28,7 @@ class Content extends Mapper
     public function getOptions(TargetTypeInterface $targetType)
     {
         return array(
-            'value_type' => 'ezcontent',
+            'item_type' => 'ezcontent',
             'config_name' => 'ezcontent-single',
         ) + parent::getOptions($targetType);
     }

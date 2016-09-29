@@ -28,7 +28,7 @@ class Location extends Mapper
     public function getOptions(TargetTypeInterface $targetType)
     {
         return array(
-            'value_type' => 'ezlocation',
+            'item_type' => 'ezlocation',
             'config_name' => 'ezlocation',
         ) + parent::getOptions($targetType);
     }

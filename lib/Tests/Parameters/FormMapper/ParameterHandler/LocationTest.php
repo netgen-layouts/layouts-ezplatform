@@ -4,7 +4,6 @@ namespace Netgen\BlockManager\Ez\Tests\Parameters\FormMapper\ParameterHandler;
 
 use Netgen\BlockManager\Ez\Parameters\Parameter\Location as LocationParameter;
 use Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\Location;
-use Netgen\BlockManager\Parameters\FormMapper\ParameterHandler;
 use Netgen\Bundle\ContentBrowserBundle\Form\Type\ContentBrowserType;
 use PHPUnit\Framework\TestCase;
 
@@ -35,7 +34,7 @@ class LocationTest extends TestCase
     {
         $this->assertEquals(
             array(
-                'value_type' => 'ezlocation',
+                'item_type' => 'ezlocation',
                 'config_name' => 'ezlocation',
             ),
             $this->parameterHandler->convertOptions(new LocationParameter())
