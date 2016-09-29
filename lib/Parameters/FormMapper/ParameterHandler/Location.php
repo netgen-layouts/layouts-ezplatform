@@ -29,7 +29,6 @@ class Location extends ParameterHandler
     {
         return array(
             'item_type' => 'ezlocation',
-            'config_name' => 'ezlocation',
         );
     }
 }

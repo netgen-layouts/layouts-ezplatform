@@ -35,7 +35,6 @@ class LocationTest extends TestCase
         $this->assertEquals(
             array(
                 'item_type' => 'ezlocation',
-                'config_name' => 'ezlocation',
             ),
             $this->parameterHandler->convertOptions(new LocationParameter())
         );
