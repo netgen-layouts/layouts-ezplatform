@@ -39,7 +39,7 @@ class EzPublishExtension extends Twig_Extension
      */
     public function getName()
     {
-        return 'ngbm_ez_publish';
+        return self::class;
     }
 
     /**
