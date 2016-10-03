@@ -227,6 +227,22 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     }
 
     /**
+     * Returns the limit internal to this query.
+     *
+     * @param array $parameters
+     *
+     * @return int
+     */
+    public function getInternalLimit(array $parameters)
+    {
+        if (!isset($parameters['limit']) || !is_int($parameters['limit'])) {
+            return null;
+        }
+
+        return $parameters['limit'] >= 0 ? $parameters['limit'] : 0;
+    }
+
+    /**
      * Returns the parent location to use for the query.
      *
      * @param array $parameters
