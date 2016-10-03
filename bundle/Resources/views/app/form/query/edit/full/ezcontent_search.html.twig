@@ -3,18 +3,16 @@
 {% trans_default_domain 'ngbm_forms' %}
 
 {% block children %}
-    {% set parameters = form.children.parameters %}
-
-    {{ form_row(parameters.children.use_current_location) }}
-    {{ form_row(parameters.children.sort_type) }}
-    {{ form_row(parameters.children.sort_direction) }}
-    {{ form_row(parameters.children.limit) }}
+    {{ form_row(form.parameters.use_current_location) }}
+    {{ form_row(form.parameters.sort_type) }}
+    {{ form_row(form.parameters.sort_direction) }}
+    {{ form_row(form.parameters.limit) }}
 
     <a class="toggle-link sub-toggle" role="button" data-toggle="collapse" href="#collapseAdvanced" aria-expanded="true" aria-controls="collapseAdvanced">
         {{ 'query.ezcontent_search.advanced_options'|trans }}
     </a>
 
     <div class="collapse in" id="collapseAdvanced">
-        {{ form_rest(parameters) }}
+        {{ form_rest(form.parameters) }}
     </div>
 {% endblock %}
