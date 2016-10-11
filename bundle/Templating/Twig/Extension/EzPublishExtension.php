@@ -93,7 +93,6 @@ class EzPublishExtension extends Twig_Extension
     public function getLocationPath($locationId)
     {
         try {
-            /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
             $location = $this->loadLocation($locationId);
 
             $locationPath = $location->path;
