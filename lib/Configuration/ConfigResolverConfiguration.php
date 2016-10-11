@@ -73,7 +73,7 @@ class ConfigResolverConfiguration implements ConfigurationInterface
         if (!$this->hasParameter($parameterName)) {
             throw new InvalidArgumentException(
                 $parameterName,
-                'Parameter does not exist in configuration'
+                'Parameter does not exist in configuration.'
             );
         }
 
