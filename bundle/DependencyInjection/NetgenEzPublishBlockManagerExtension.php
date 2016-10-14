@@ -47,6 +47,12 @@ class NetgenEzPublishBlockManagerExtension extends Extension implements PrependE
         $loader->load('services/layout_resolver/target_handlers.yml');
         $loader->load('services/layout_resolver/forms.yml');
         $loader->load('services/collection/query_types.yml');
+
+        $activatedBundles = array_keys($container->getParameter('kernel.bundles'));
+
+        if (in_array('NetgenTagsBundle', $activatedBundles)) {
+            $loader->load('eztags/services.yml');
+        }
     }
 
     /**

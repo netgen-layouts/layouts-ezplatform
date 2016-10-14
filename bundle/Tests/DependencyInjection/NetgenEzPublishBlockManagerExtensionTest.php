@@ -23,6 +23,13 @@ class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
      */
     public function testParameters()
     {
+        $this->container->setParameter(
+            'kernel.bundles',
+            array(
+                'NetgenTagsBundle' => 'NetgenTagsBundle',
+            )
+        );
+
         $this->load();
 
         $this->assertContainerBuilderHasParameter('netgen_block_manager.default.view', array());
@@ -35,6 +42,13 @@ class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
      */
     public function testServices()
     {
+        $this->container->setParameter(
+            'kernel.bundles',
+            array(
+                'NetgenTagsBundle' => 'NetgenTagsBundle',
+            )
+        );
+
         $this->load();
 
         $this->assertContainerBuilderHasService('netgen_block_manager.templating.pagelayout_resolver.ezpublish');
