@@ -29,6 +29,7 @@ class Location extends ParameterHandler
     {
         return array(
             'item_type' => 'ezlocation',
+            'required' => $parameter->isRequired(),
         );
     }
 }

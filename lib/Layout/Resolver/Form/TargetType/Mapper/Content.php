@@ -29,6 +29,7 @@ class Content extends Mapper
     {
         return array(
             'item_type' => 'ezcontent',
+            'required' => true,
         ) + parent::getOptions($targetType);
     }
 }
