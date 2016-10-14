@@ -180,7 +180,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      * @param int $offset
      * @param int $limit
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\ContentInfo[]
+     * @return \eZ\Publish\API\Repository\Values\Content\Location[]
      */
     public function getValues(array $parameters, $offset = 0, $limit = null)
     {
@@ -197,7 +197,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
 
         return array_map(
             function (SearchHit $searchHit) {
-                return $searchHit->valueObject->contentInfo;
+                return $searchHit->valueObject;
             },
             $searchResult->searchHits
         );
