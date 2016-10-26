@@ -21,9 +21,11 @@ class Location extends Parameter
     /**
      * Returns constraints that will be used to validate the parameter value.
      *
+     * @param mixed $value
+     *
      * @return \Symfony\Component\Validator\Constraint[]
      */
-    public function getValueConstraints()
+    public function getValueConstraints($value)
     {
         return array(
             new Constraints\Type(array('type' => 'numeric')),
