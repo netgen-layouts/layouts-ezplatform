@@ -3,6 +3,8 @@ parameters:
     netgen_block_manager.item.value_converter.ezlocation.class: Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter
     netgen_block_manager.item.value_loader.ezcontent.class: Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader
     netgen_block_manager.item.value_loader.ezlocation.class: Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader
+    netgen_block_manager.item.value_url_builder.ezcontent.class: Netgen\BlockManager\Ez\Item\ValueUrlBuilder\ContentValueUrlBuilder
+    netgen_block_manager.item.value_url_builder.ezlocation.class: Netgen\BlockManager\Ez\Item\ValueUrlBuilder\LocationValueUrlBuilder
 
 services:
     netgen_block_manager.item.value_converter.ezlocation:
@@ -33,3 +35,17 @@ services:
             - "@ezpublish.api.service.content"
         tags:
             - { name: netgen_block_manager.item.value_loader, value_type: ezcontent }
+
+    netgen_block_manager.item.value_url_builder.ezlocation:
+        class: "%netgen_block_manager.item.value_url_builder.ezlocation.class%"
+        arguments:
+            - "@router"
+        tags:
+            - { name: netgen_block_manager.item.value_url_builder, value_type: ezlocation }
+
+    netgen_block_manager.item.value_url_builder.ezcontent:
+        class: "%netgen_block_manager.item.value_url_builder.ezcontent.class%"
+        arguments:
+            - "@router"
+        tags:
+            - { name: netgen_block_manager.item.value_url_builder, value_type: ezcontent }
