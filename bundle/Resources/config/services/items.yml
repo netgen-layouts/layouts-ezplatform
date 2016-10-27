@@ -5,6 +5,13 @@ parameters:
     netgen_block_manager.item.value_loader.ezlocation.class: Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader
 
 services:
+    netgen_block_manager.item.value_converter.ezlocation:
+        class: "%netgen_block_manager.item.value_converter.ezlocation.class%"
+        arguments:
+            - "@ezpublish.translation_helper"
+        tags:
+            - { name: netgen_block_manager.item.value_converter }
+
     netgen_block_manager.item.value_converter.ezcontent:
         class: "%netgen_block_manager.item.value_converter.ezcontent.class%"
         arguments:
@@ -13,23 +20,16 @@ services:
         tags:
             - { name: netgen_block_manager.item.value_converter }
 
-    netgen_block_manager.item.value_converter.ezlocation:
-        class: "%netgen_block_manager.item.value_converter.ezlocation.class%"
+    netgen_block_manager.item.value_loader.ezlocation:
+        class: "%netgen_block_manager.item.value_loader.ezlocation.class%"
         arguments:
-            - "@ezpublish.translation_helper"
+            - "@ezpublish.api.service.location"
         tags:
-            - { name: netgen_block_manager.item.value_converter }
+            - { name: netgen_block_manager.item.value_loader, value_type: ezlocation }
 
     netgen_block_manager.item.value_loader.ezcontent:
         class: "%netgen_block_manager.item.value_loader.ezcontent.class%"
         arguments:
             - "@ezpublish.api.service.content"
         tags:
-            - { name: netgen_block_manager.item.value_loader }
-
-    netgen_block_manager.item.value_loader.ezlocation:
-        class: "%netgen_block_manager.item.value_loader.ezlocation.class%"
-        arguments:
-            - "@ezpublish.api.service.location"
-        tags:
-            - { name: netgen_block_manager.item.value_loader }
+            - { name: netgen_block_manager.item.value_loader, value_type: ezcontent }
