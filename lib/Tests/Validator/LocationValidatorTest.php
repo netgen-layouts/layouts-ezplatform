@@ -34,7 +34,15 @@ class LocationValidatorTest extends ValidatorTestCase
     public function getValidator()
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, array('getLocationService'));
+        $this->repositoryMock = $this->createPartialMock(Repository::class, array('sudo', 'getLocationService'));
+
+        $this->repositoryMock
+            ->expects($this->any())
+            ->method('sudo')
+            ->with($this->anything())
+            ->will($this->returnCallback(function ($callback) {
+                return $callback($this->repositoryMock);
+            }));
 
         $this->repositoryMock
             ->expects($this->any())

@@ -25,7 +25,15 @@ class LocationTest extends TestCase
     public function setUp()
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, array('getLocationService'));
+        $this->repositoryMock = $this->createPartialMock(Repository::class, array('sudo', 'getLocationService'));
+
+        $this->repositoryMock
+            ->expects($this->any())
+            ->method('sudo')
+            ->with($this->anything())
+            ->will($this->returnCallback(function ($callback) {
+                return $callback($this->repositoryMock);
+            }));
 
         $this->repositoryMock
             ->expects($this->any())
@@ -145,7 +153,7 @@ class LocationTest extends TestCase
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
 
-        $errors = $validator->validate($value, $parameter->getConstraints());
+        $errors = $validator->validate($value, $parameter->getConstraints($value));
         $this->assertEquals($isValid, $errors->count() == 0);
     }
 

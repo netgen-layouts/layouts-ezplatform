@@ -215,7 +215,7 @@ class TagsTest extends TestCase
             ->setConstraintValidatorFactory(new TagsServiceValidatorFactory($this->tagsServiceMock))
             ->getValidator();
 
-        $errors = $validator->validate($values, $parameter->getConstraints());
+        $errors = $validator->validate($values, $parameter->getConstraints($values));
         $this->assertEquals($isValid, $errors->count() == 0);
     }
 
