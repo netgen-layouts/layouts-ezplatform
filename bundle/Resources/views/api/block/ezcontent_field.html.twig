@@ -5,9 +5,11 @@
 {% trans_default_domain 'ngbm_app' %}
 
 {% block content %}
-    {% if block.parameter('field_identifier') is empty %}
-        {{ macros.notice('block.notice.empty_ezcontent_field'|trans) }}
+    {% set field_identifier = block.parameter('field_identifier') %}
+
+    {% if not field_identifier.empty %}
+        {{ macros.info('block.info.ezcontent_field'|trans({ '%field%': field_identifier.value }), 'icon-ez_content_field') }}
     {% else %}
-        {{ macros.info('block.info.ezcontent_field'|trans({ '%field%': block.parameter('field_identifier') }), 'icon-ez_content_field') }}
+        {{ macros.notice('block.notice.empty_ezcontent_field'|trans) }}
     {% endif %}
 {% endblock %}
