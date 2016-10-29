@@ -1,13 +1,13 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Parameters\Parameter;
+namespace Netgen\BlockManager\Ez\Parameters\ParameterType;
 
-use Netgen\BlockManager\Parameters\Parameter;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Netgen\BlockManager\Parameters\ParameterDefinition;
+use Netgen\BlockManager\Parameters\ParameterType;
 use Symfony\Component\Validator\Constraints;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 
-class ContentType extends Parameter
+class ContentType extends ParameterType
 {
     /**
      * Returns the parameter type.
@@ -20,32 +20,23 @@ class ContentType extends Parameter
     }
 
     /**
-     * Configures the options for this parameter.
-     *
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $optionsResolver
-     */
-    protected function configureOptions(OptionsResolver $optionsResolver)
-    {
-        $optionsResolver->setDefault('multiple', false);
-        $optionsResolver->setRequired(array('multiple'));
-        $optionsResolver->setAllowedTypes('multiple', 'bool');
-    }
-
-    /**
      * Returns constraints that will be used to validate the parameter value.
      *
+     * @param \Netgen\BlockManager\Parameters\ParameterDefinition $parameterDefinition
      * @param mixed $value
      *
      * @return \Symfony\Component\Validator\Constraint[]
      */
-    public function getValueConstraints($value)
+    public function getValueConstraints(ParameterDefinition $parameterDefinition, $value)
     {
+        $options = $parameterDefinition->getOptions();
+
         $contentTypeConstraints = array(
             new Constraints\Type(array('type' => 'string')),
             new EzConstraints\ContentType(),
         );
 
-        if (!$this->options['multiple']) {
+        if (!$options['multiple']) {
             return $contentTypeConstraints;
         }
 

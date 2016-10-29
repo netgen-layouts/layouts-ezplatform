@@ -1,8 +1,21 @@
 parameters:
+    netgen_block_manager.parameters.parameter_type.ezlocation.class: Netgen\BlockManager\Ez\Parameters\ParameterType\Location
+    netgen_block_manager.parameters.parameter_type.ez_content_type.class: Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType
+
     netgen_block_manager.parameters.parameter_handler.ezlocation.class: Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\Location
     netgen_block_manager.parameters.parameter_handler.ez_content_type.class: Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\ContentType
 
 services:
+    netgen_block_manager.parameters.parameter_type.ezlocation:
+        class: "%netgen_block_manager.parameters.parameter_type.ezlocation.class%"
+        tags:
+            - { name: netgen_block_manager.parameters.parameter_type }
+
+    netgen_block_manager.parameters.parameter_type.ez_content_type:
+        class: "%netgen_block_manager.parameters.parameter_type.ez_content_type.class%"
+        tags:
+            - { name: netgen_block_manager.parameters.parameter_type }
+
     netgen_block_manager.parameters.parameter_handler.ezlocation:
         class: "%netgen_block_manager.parameters.parameter_handler.ezlocation.class%"
         tags:

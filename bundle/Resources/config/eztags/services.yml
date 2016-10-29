@@ -1,8 +1,14 @@
 parameters:
+    netgen_block_manager.parameters.parameter_type.eztags.class: Netgen\BlockManager\Ez\Parameters\ParameterType\Tags
     netgen_block_manager.parameters.parameter_handler.eztags.class: Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\Tags
     netgen_block_manager.validator.eztag.class: Netgen\BlockManager\Ez\Validator\TagValidator
 
 services:
+    netgen_block_manager.parameters.parameter_type.eztags:
+        class: "%netgen_block_manager.parameters.parameter_type.eztags.class%"
+        tags:
+            - { name: netgen_block_manager.parameters.parameter_type }
+
     netgen_block_manager.parameters.parameter_handler.eztags:
         class: "%netgen_block_manager.parameters.parameter_handler.eztags.class%"
         tags:

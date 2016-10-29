@@ -5,7 +5,7 @@ namespace Netgen\BlockManager\Ez\Block\BlockDefinition\Handler;
 use Netgen\BlockManager\API\Values\Page\Block;
 use Netgen\BlockManager\Block\BlockDefinition\BlockDefinitionHandler;
 use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
-use Netgen\BlockManager\Parameters\Parameter;
+use Netgen\BlockManager\Parameters\ParameterDefinition;
 
 class ContentFieldHandler extends BlockDefinitionHandler
 {
@@ -27,12 +27,12 @@ class ContentFieldHandler extends BlockDefinitionHandler
     /**
      * Returns the array specifying block parameters.
      *
-     * @return \Netgen\BlockManager\Parameters\ParameterInterface[]
+     * @return \Netgen\BlockManager\Parameters\ParameterDefinitionInterface[]
      */
     public function getParameters()
     {
         return array(
-            'field_identifier' => new Parameter\Identifier(),
+            'field_identifier' => new ParameterDefinition\Identifier(),
         ) + $this->getCommonParameters();
     }
 

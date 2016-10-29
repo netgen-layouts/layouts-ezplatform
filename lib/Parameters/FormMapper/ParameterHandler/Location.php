@@ -3,7 +3,7 @@
 namespace Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler;
 
 use Netgen\BlockManager\Parameters\FormMapper\ParameterHandler;
-use Netgen\BlockManager\Parameters\ParameterInterface;
+use Netgen\BlockManager\Parameters\ParameterDefinitionInterface;
 use Netgen\Bundle\ContentBrowserBundle\Form\Type\ContentBrowserType;
 
 class Location extends ParameterHandler
@@ -21,15 +21,15 @@ class Location extends ParameterHandler
     /**
      * Converts parameter options to Symfony form options.
      *
-     * @param \Netgen\BlockManager\Parameters\ParameterInterface $parameter
+     * @param \Netgen\BlockManager\Parameters\ParameterDefinitionInterface $parameterDefinition
      *
      * @return array
      */
-    public function convertOptions(ParameterInterface $parameter)
+    public function convertOptions(ParameterDefinitionInterface $parameterDefinition)
     {
         return array(
             'item_type' => 'ezlocation',
-            'required' => $parameter->isRequired(),
+            'required' => $parameterDefinition->isRequired(),
         );
     }
 }

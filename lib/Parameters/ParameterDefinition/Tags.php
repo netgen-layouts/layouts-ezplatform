@@ -1,14 +1,12 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Parameters\Parameter;
+namespace Netgen\BlockManager\Ez\Parameters\ParameterDefinition;
 
-use Netgen\BlockManager\Parameters\Parameter;
+use Netgen\BlockManager\Parameters\ParameterDefinition;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints;
-use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 
-class Tags extends Parameter
+class Tags extends ParameterDefinition
 {
     /**
      * Returns the parameter type.
@@ -57,40 +55,5 @@ class Tags extends Parameter
                 return $value;
             }
         );
-    }
-
-    /**
-     * Returns constraints that will be used to validate the parameter value.
-     *
-     * @param mixed $value
-     *
-     * @return \Symfony\Component\Validator\Constraint[]
-     */
-    public function getValueConstraints($value)
-    {
-        $constraints = array(
-            new Constraints\Type(array('type' => 'array')),
-            new Constraints\All(
-                array(
-                    'constraints' => array(
-                        new Constraints\NotBlank(),
-                        new Constraints\Type(array('type' => 'numeric')),
-                        new Constraints\GreaterThan(array('value' => 0)),
-                        new EzConstraints\Tag(),
-                    ),
-                )
-            ),
-        );
-
-        if ($this->options['min'] !== null || $this->options['max'] !== null) {
-            $constraints[] = new Constraints\Count(
-                array(
-                    'min' => $this->options['min'] !== null ? $this->options['min'] : null,
-                    'max' => $this->options['max'] !== null ? $this->options['max'] : null,
-                )
-            );
-        }
-
-        return $constraints;
     }
 }

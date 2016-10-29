@@ -2,7 +2,7 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Parameters\FormMapper\ParameterHandler;
 
-use Netgen\BlockManager\Ez\Parameters\Parameter\Tags as TagsParameter;
+use Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Tags as TagsParameter;
 use Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\Tags;
 use Netgen\Bundle\ContentBrowserBundle\Form\Type\ContentBrowserMultipleType;
 use PHPUnit\Framework\TestCase;
