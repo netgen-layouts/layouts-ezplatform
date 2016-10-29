@@ -9,6 +9,7 @@ use eZ\Publish\API\Repository\Values\Content\LocationQuery;
 use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
 use eZ\Publish\API\Repository\Values\Content\Search\SearchHit;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
+use Netgen\BlockManager\API\Values\Collection\Query;
 use Netgen\BlockManager\Collection\QueryType\QueryTypeHandlerInterface;
 use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
 use Netgen\BlockManager\Ez\Parameters\Parameter as EzParameter;
@@ -176,22 +177,22 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     /**
      * Returns the values from the query.
      *
-     * @param array $parameters
+     * @param \Netgen\BlockManager\API\Values\Collection\Query $query
      * @param int $offset
      * @param int $limit
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Location[]
      */
-    public function getValues(array $parameters, $offset = 0, $limit = null)
+    public function getValues(Query $query, $offset = 0, $limit = null)
     {
-        $parentLocation = $this->getParentLocation($parameters);
+        $parentLocation = $this->getParentLocation($query);
 
         if (!$parentLocation instanceof Location) {
             return array();
         }
 
         $searchResult = $this->searchService->findLocations(
-            $this->buildQuery($parentLocation, $parameters),
+            $this->buildQuery($parentLocation, $query),
             array('languages' => $this->languages)
         );
 
@@ -206,20 +207,20 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     /**
      * Returns the value count from the query.
      *
-     * @param array $parameters
+     * @param \Netgen\BlockManager\API\Values\Collection\Query $query
      *
      * @return int
      */
-    public function getCount(array $parameters)
+    public function getCount(Query $query)
     {
-        $parentLocation = $this->getParentLocation($parameters);
+        $parentLocation = $this->getParentLocation($query);
 
         if (!$parentLocation instanceof Location) {
             return 0;
         }
 
         $searchResult = $this->searchService->findLocations(
-            $this->buildQuery($parentLocation, $parameters, true),
+            $this->buildQuery($parentLocation, $query, true),
             array('languages' => $this->languages)
         );
 
@@ -229,39 +230,40 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     /**
      * Returns the limit internal to this query.
      *
-     * @param array $parameters
+     * @param \Netgen\BlockManager\API\Values\Collection\Query $query
      *
      * @return int
      */
-    public function getInternalLimit(array $parameters)
+    public function getInternalLimit(Query $query)
     {
-        if (!isset($parameters['limit']) || !is_int($parameters['limit'])) {
+        $limit = $query->getParameter('limit')->getValue();
+        if (!is_int($limit)) {
             return null;
         }
 
-        return $parameters['limit'] >= 0 ? $parameters['limit'] : 0;
+        return $limit >= 0 ? $limit : 0;
     }
 
     /**
      * Returns the parent location to use for the query.
      *
-     * @param array $parameters
+     * @param \Netgen\BlockManager\API\Values\Collection\Query $query
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Location
      */
-    protected function getParentLocation(array $parameters = array())
+    protected function getParentLocation(Query $query)
     {
-        if (isset($parameters['use_current_location']) && $parameters['use_current_location'] === true) {
+        if ($query->getParameter('use_current_location')->getValue() === true) {
             return $this->contentProvider->provideLocation();
         }
 
-        if (empty($parameters['parent_location_id'])) {
+        if (empty($query->getParameter('parent_location_id')->getValue())) {
             return;
         }
 
         try {
             $parentLocation = $this->locationService->loadLocation(
-                $parameters['parent_location_id']
+                $query->getParameter('parent_location_id')->getValue()
             );
 
             return $parentLocation->invisible ? null : $parentLocation;
@@ -274,14 +276,14 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      * Builds the query from current parameters.
      *
      * @param \eZ\Publish\API\Repository\Values\Content\Location $parentLocation
-     * @param array $parameters
+     * @param \Netgen\BlockManager\API\Values\Collection\Query $query
      * @param bool $buildCountQuery
      *
      * @return \eZ\Publish\API\Repository\Values\Content\LocationQuery
      */
-    protected function buildQuery(Location $parentLocation, array $parameters, $buildCountQuery = false)
+    protected function buildQuery(Location $parentLocation, Query $query, $buildCountQuery = false)
     {
-        $query = new LocationQuery();
+        $locationQuery = new LocationQuery();
 
         $criteria = array(
             new Criterion\Subtree($parentLocation->pathString),
@@ -289,53 +291,53 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
             new Criterion\LogicalNot(new Criterion\LocationId($parentLocation->id)),
         );
 
-        if (!isset($parameters['query_type']) || $parameters['query_type'] === 'list') {
+        if ($query->getParameter('query_type')->getValue() === 'list') {
             $criteria[] = new Criterion\Location\Depth(
                 Criterion\Operator::EQ, $parentLocation->depth + 1
             );
         }
 
-        if (!empty($parameters['filter_by_content_type']) && !empty($parameters['content_types'])) {
-            $contentTypeFilter = new Criterion\ContentTypeIdentifier($parameters['content_types']);
+        if (!empty($query->getParameter('filter_by_content_type')->getValue()) && !empty($query->getParameter('content_types')->getValue())) {
+            $contentTypeFilter = new Criterion\ContentTypeIdentifier($query->getParameter('content_types')->getValue());
 
-            if (isset($parameters['content_types_filter']) && $parameters['content_types_filter'] === 'exclude') {
+            if ($query->getParameter('content_types_filter')->getValue() === 'exclude') {
                 $contentTypeFilter = new Criterion\LogicalNot($contentTypeFilter);
             }
 
             $criteria[] = $contentTypeFilter;
         }
 
-        $query->filter = new Criterion\LogicalAnd($criteria);
+        $locationQuery->filter = new Criterion\LogicalAnd($criteria);
 
-        $query->limit = 0;
+        $locationQuery->limit = 0;
         if (!$buildCountQuery) {
-            $query->offset = isset($parameters['offset']) && is_int($parameters['offset']) && $parameters['offset'] >= 0 ?
-                $parameters['offset'] :
+            $locationQuery->offset = is_int($query->getParameter('offset')->getValue()) && $query->getParameter('offset')->getValue() >= 0 ?
+                $query->getParameter('offset')->getValue() :
                 0;
 
-            $query->limit = isset($parameters['limit']) && is_int($parameters['limit']) && $parameters['limit'] >= 0 ?
-                $parameters['limit'] :
+            $locationQuery->limit = is_int($query->getParameter('limit')->getValue()) && $query->getParameter('limit')->getValue() >= 0 ?
+                $query->getParameter('limit')->getValue() :
                 self::DEFAULT_LIMIT;
         }
 
         $sortType = 'default';
-        if (!empty($parameters['sort_type'])) {
-            $sortType = $parameters['sort_type'] === 'defined_by_parent' ?
+        if (!empty($query->getParameter('sort_type')->getValue())) {
+            $sortType = $query->getParameter('sort_type')->getValue() === 'defined_by_parent' ?
                 $parentLocation->sortField :
-                $parameters['sort_type'];
+                $query->getParameter('sort_type')->getValue();
         }
 
         $sortDirection = LocationQuery::SORT_DESC;
-        if (!empty($parameters['sort_direction'])) {
-            $sortDirection = isset($parameters['sort_type']) && $parameters['sort_type'] === 'defined_by_parent' ?
+        if (!empty($query->getParameter('sort_direction')->getValue())) {
+            $sortDirection = $query->getParameter('sort_type')->getValue() === 'defined_by_parent' ?
                 $this->sortDirections[$parentLocation->sortOrder] :
-                $parameters['sort_direction'];
+                $query->getParameter('sort_direction')->getValue();
         }
 
-        $query->sortClauses = array(
+        $locationQuery->sortClauses = array(
             new $this->sortClauses[$sortType]($sortDirection),
         );
 
-        return $query;
+        return $locationQuery;
     }
 }
