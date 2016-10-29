@@ -288,6 +288,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         $criteria = array(
             new Criterion\Subtree($parentLocation->pathString),
             new Criterion\Visibility(Criterion\Visibility::VISIBLE),
+            new Criterion\Location\IsMainLocation(Criterion\Location\IsMainLocation::MAIN),
             new Criterion\LogicalNot(new Criterion\LocationId($parentLocation->id)),
         );
 
