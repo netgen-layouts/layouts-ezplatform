@@ -5,7 +5,7 @@ namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
 use Netgen\BlockManager\Ez\Tests\Validator\TagsServiceValidatorFactory;
 use Netgen\TagsBundle\Core\Repository\TagsService;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\Tags as TagsType;
-use Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Tags;
+use Netgen\BlockManager\Ez\Parameters\Parameter\Tags;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
@@ -23,7 +23,7 @@ class TagsTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Tags::getType
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Tags::getType
      */
     public function testGetType()
     {
@@ -38,9 +38,9 @@ class TagsTest extends TestCase
      * @param bool $required
      * @param mixed $defaultValue
      *
-     * @return \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Tags
+     * @return \Netgen\BlockManager\Ez\Parameters\Parameter\Tags
      */
-    public function getParameterDefinition(array $options = array(), $required = false, $defaultValue = null)
+    public function getParameter(array $options = array(), $required = false, $defaultValue = null)
     {
         return new Tags($options, $required, $defaultValue);
     }
@@ -50,7 +50,7 @@ class TagsTest extends TestCase
      * @param bool $required
      * @param bool $isValid
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Tags::getValueConstraints
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Tags::getValueConstraints
      * @dataProvider validationProvider
      */
     public function testValidation($values, $required, $isValid)
@@ -76,12 +76,12 @@ class TagsTest extends TestCase
         }
 
         $type = new TagsType();
-        $parameterDefinition = $this->getParameterDefinition(array(), $required);
+        $parameter = $this->getParameter(array(), $required);
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new TagsServiceValidatorFactory($this->tagsServiceMock))
             ->getValidator();
 
-        $errors = $validator->validate($values, $type->getConstraints($parameterDefinition, $values));
+        $errors = $validator->validate($values, $type->getConstraints($parameter, $values));
         $this->assertEquals($isValid, $errors->count() == 0);
     }
 

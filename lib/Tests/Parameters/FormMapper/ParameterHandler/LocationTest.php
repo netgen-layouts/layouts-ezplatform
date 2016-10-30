@@ -2,7 +2,7 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Parameters\FormMapper\ParameterHandler;
 
-use Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Location as LocationParameter;
+use Netgen\BlockManager\Ez\Parameters\Parameter\Location as LocationParameter;
 use Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\Location;
 use Netgen\Bundle\ContentBrowserBundle\Form\Type\ContentBrowserType;
 use PHPUnit\Framework\TestCase;

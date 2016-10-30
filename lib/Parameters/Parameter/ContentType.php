@@ -1,11 +1,11 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Parameters\ParameterDefinition;
+namespace Netgen\BlockManager\Ez\Parameters\Parameter;
 
-use Netgen\BlockManager\Parameters\ParameterDefinition;
+use Netgen\BlockManager\Parameters\Parameter;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContentType extends ParameterDefinition
+class ContentType extends Parameter
 {
     /**
      * Returns the parameter type.

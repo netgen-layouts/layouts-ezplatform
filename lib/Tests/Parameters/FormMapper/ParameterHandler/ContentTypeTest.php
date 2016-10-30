@@ -3,7 +3,7 @@
 namespace Netgen\BlockManager\Ez\Tests\Parameters\FormMapper\ParameterHandler;
 
 use Netgen\BlockManager\Ez\Form\ContentTypeType;
-use Netgen\BlockManager\Ez\Parameters\ParameterDefinition\ContentType as ContentTypeParameter;
+use Netgen\BlockManager\Ez\Parameters\Parameter\ContentType as ContentTypeParameter;
 use Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\ContentType;
 use PHPUnit\Framework\TestCase;
 

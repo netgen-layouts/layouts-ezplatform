@@ -12,8 +12,8 @@ use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use Netgen\BlockManager\API\Values\Collection\Query;
 use Netgen\BlockManager\Collection\QueryType\QueryTypeHandlerInterface;
 use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
-use Netgen\BlockManager\Ez\Parameters\ParameterDefinition as EzParameterDefinition;
-use Netgen\BlockManager\Parameters\ParameterDefinition;
+use Netgen\BlockManager\Ez\Parameters\Parameter as EzParameter;
+use Netgen\BlockManager\Parameters\Parameter;
 use Exception;
 
 class ContentSearchHandler implements QueryTypeHandlerInterface
@@ -108,20 +108,20 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      *
      * The keys are parameter identifiers.
      *
-     * @return \Netgen\BlockManager\Parameters\ParameterDefinitionInterface[]
+     * @return \Netgen\BlockManager\Parameters\ParameterInterface[]
      */
     public function getParameters()
     {
         return array(
-            'use_current_location' => new ParameterDefinition\Compound\Boolean(
+            'use_current_location' => new Parameter\Compound\Boolean(
                 array(
-                    'parent_location_id' => new EzParameterDefinition\Location(),
+                    'parent_location_id' => new EzParameter\Location(),
                 ),
                 array(
                     'reverse' => true,
                 )
             ),
-            'sort_direction' => new ParameterDefinition\Choice(
+            'sort_direction' => new Parameter\Choice(
                 array(
                     'options' => array(
                         'Descending' => LocationQuery::SORT_DESC,
@@ -130,7 +130,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
                 ),
                 true
             ),
-            'sort_type' => new ParameterDefinition\Choice(
+            'sort_type' => new Parameter\Choice(
                 array(
                     'options' => array(
                         'Published' => 'date_published',
@@ -142,9 +142,9 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
                 ),
                 true
             ),
-            'limit' => new ParameterDefinition\Integer(array('min' => 0)),
-            'offset' => new ParameterDefinition\Integer(array('min' => 0)),
-            'query_type' => new ParameterDefinition\Choice(
+            'limit' => new Parameter\Integer(array('min' => 0)),
+            'offset' => new Parameter\Integer(array('min' => 0)),
+            'query_type' => new Parameter\Choice(
                 array(
                     'options' => array(
                         'List' => 'list',
@@ -153,14 +153,14 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
                 ),
                 true
             ),
-            'filter_by_content_type' => new ParameterDefinition\Compound\Boolean(
+            'filter_by_content_type' => new Parameter\Compound\Boolean(
                 array(
-                    'content_types' => new EzParameterDefinition\ContentType(
+                    'content_types' => new EzParameter\ContentType(
                         array(
                             'multiple' => true,
                         )
                     ),
-                    'content_types_filter' => new ParameterDefinition\Choice(
+                    'content_types_filter' => new Parameter\Choice(
                         array(
                             'options' => array(
                                 'Include content types' => 'include',

@@ -1,10 +1,10 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Parameters\ParameterDefinition;
+namespace Netgen\BlockManager\Ez\Parameters\Parameter;
 
-use Netgen\BlockManager\Parameters\ParameterDefinition;
+use Netgen\BlockManager\Parameters\Parameter;
 
-class Location extends ParameterDefinition
+class Location extends Parameter
 {
     /**
      * Returns the parameter type.

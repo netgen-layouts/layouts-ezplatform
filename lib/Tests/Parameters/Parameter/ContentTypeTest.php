@@ -1,9 +1,9 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterDefinition;
+namespace Netgen\BlockManager\Ez\Tests\Parameters\Parameter;
 
 use eZ\Publish\API\Repository\ContentTypeService;
-use Netgen\BlockManager\Ez\Parameters\ParameterDefinition\ContentType;
+use Netgen\BlockManager\Ez\Parameters\Parameter\ContentType;
 use eZ\Publish\Core\Repository\Repository;
 use PHPUnit\Framework\TestCase;
 
@@ -39,17 +39,17 @@ class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\ContentType::getType
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\ContentType::getType
      */
     public function testGetType()
     {
-        $parameterDefinition = $this->getParameterDefinition();
-        $this->assertEquals('ez_content_type', $parameterDefinition->getType());
+        $parameter = $this->getParameter();
+        $this->assertEquals('ez_content_type', $parameter->getType());
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\ContentType::getOptions
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\ContentType::configureOptions
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\ContentType::getOptions
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\ContentType::configureOptions
      * @dataProvider validOptionsProvider
      *
      * @param array $options
@@ -57,13 +57,13 @@ class ContentTypeTest extends TestCase
      */
     public function testValidOptions($options, $resolvedOptions)
     {
-        $parameterDefinition = $this->getParameterDefinition($options);
-        $this->assertEquals($resolvedOptions, $parameterDefinition->getOptions());
+        $parameter = $this->getParameter($options);
+        $this->assertEquals($resolvedOptions, $parameter->getOptions());
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\ContentType::getOptions
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\ContentType::configureOptions
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\ContentType::getOptions
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\ContentType::configureOptions
      * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidArgumentException
      * @dataProvider invalidOptionsProvider
      *
@@ -71,7 +71,7 @@ class ContentTypeTest extends TestCase
      */
     public function testInvalidOptions($options)
     {
-        $this->getParameterDefinition($options);
+        $this->getParameter($options);
     }
 
     /**
@@ -81,9 +81,9 @@ class ContentTypeTest extends TestCase
      * @param bool $required
      * @param mixed $defaultValue
      *
-     * @return \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\ContentType
+     * @return \Netgen\BlockManager\Ez\Parameters\Parameter\ContentType
      */
-    public function getParameterDefinition(array $options = array(), $required = false, $defaultValue = null)
+    public function getParameter(array $options = array(), $required = false, $defaultValue = null)
     {
         return new ContentType($options, $required, $defaultValue);
     }

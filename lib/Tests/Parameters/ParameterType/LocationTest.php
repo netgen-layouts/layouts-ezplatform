@@ -3,7 +3,7 @@
 namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
 
 use eZ\Publish\API\Repository\LocationService;
-use Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Location;
+use Netgen\BlockManager\Ez\Parameters\Parameter\Location;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\Location as LocationType;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
@@ -43,7 +43,7 @@ class LocationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Location::getType
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Location::getType
      */
     public function testGetType()
     {
@@ -58,9 +58,9 @@ class LocationTest extends TestCase
      * @param bool $required
      * @param mixed $defaultValue
      *
-     * @return \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Location
+     * @return \Netgen\BlockManager\Ez\Parameters\Parameter\Location
      */
-    public function getParameterDefinition(array $options = array(), $required = false, $defaultValue = null)
+    public function getParameter(array $options = array(), $required = false, $defaultValue = null)
     {
         return new Location($options, $required, $defaultValue);
     }
@@ -70,7 +70,7 @@ class LocationTest extends TestCase
      * @param bool $required
      * @param bool $isValid
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Location::getValueConstraints
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Location::getValueConstraints
      * @dataProvider validationProvider
      */
     public function testValidation($value, $required, $isValid)
@@ -92,12 +92,12 @@ class LocationTest extends TestCase
         }
 
         $type = new LocationType();
-        $parameterDefinition = $this->getParameterDefinition(array(), $required);
+        $parameter = $this->getParameter(array(), $required);
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
 
-        $errors = $validator->validate($value, $type->getConstraints($parameterDefinition, $value));
+        $errors = $validator->validate($value, $type->getConstraints($parameter, $value));
         $this->assertEquals($isValid, $errors->count() == 0);
     }
 

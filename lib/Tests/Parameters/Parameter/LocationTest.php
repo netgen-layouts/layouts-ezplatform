@@ -1,9 +1,9 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterDefinition;
+namespace Netgen\BlockManager\Ez\Tests\Parameters\Parameter;
 
 use eZ\Publish\API\Repository\LocationService;
-use Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Location;
+use Netgen\BlockManager\Ez\Parameters\Parameter\Location;
 use eZ\Publish\Core\Repository\Repository;
 use PHPUnit\Framework\TestCase;
 
@@ -39,17 +39,17 @@ class LocationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Location::getType
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Location::getType
      */
     public function testGetType()
     {
-        $parameterDefinition = $this->getParameterDefinition();
-        $this->assertEquals('ezlocation', $parameterDefinition->getType());
+        $parameter = $this->getParameter();
+        $this->assertEquals('ezlocation', $parameter->getType());
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Location::getOptions
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Location::configureOptions
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Location::getOptions
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Location::configureOptions
      * @dataProvider validOptionsProvider
      *
      * @param array $options
@@ -57,13 +57,13 @@ class LocationTest extends TestCase
      */
     public function testValidOptions($options, $resolvedOptions)
     {
-        $parameterDefinition = $this->getParameterDefinition($options);
-        $this->assertEquals($resolvedOptions, $parameterDefinition->getOptions());
+        $parameter = $this->getParameter($options);
+        $this->assertEquals($resolvedOptions, $parameter->getOptions());
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Location::getOptions
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Location::configureOptions
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Location::getOptions
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Location::configureOptions
      * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidArgumentException
      * @dataProvider invalidOptionsProvider
      *
@@ -71,7 +71,7 @@ class LocationTest extends TestCase
      */
     public function testInvalidOptions($options)
     {
-        $this->getParameterDefinition($options);
+        $this->getParameter($options);
     }
 
     /**
@@ -81,9 +81,9 @@ class LocationTest extends TestCase
      * @param bool $required
      * @param mixed $defaultValue
      *
-     * @return \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Location
+     * @return \Netgen\BlockManager\Ez\Parameters\Parameter\Location
      */
-    public function getParameterDefinition(array $options = array(), $required = false, $defaultValue = null)
+    public function getParameter(array $options = array(), $required = false, $defaultValue = null)
     {
         return new Location($options, $required, $defaultValue);
     }

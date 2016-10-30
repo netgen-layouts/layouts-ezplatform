@@ -1,9 +1,9 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterDefinition;
+namespace Netgen\BlockManager\Ez\Tests\Parameters\Parameter;
 
 use Netgen\TagsBundle\Core\Repository\TagsService;
-use Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Tags;
+use Netgen\BlockManager\Ez\Parameters\Parameter\Tags;
 use PHPUnit\Framework\TestCase;
 
 class TagsTest extends TestCase
@@ -19,17 +19,17 @@ class TagsTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Tags::getType
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Tags::getType
      */
     public function testGetType()
     {
-        $parameterDefinition = $this->getParameterDefinition();
-        $this->assertEquals('eztags', $parameterDefinition->getType());
+        $parameter = $this->getParameter();
+        $this->assertEquals('eztags', $parameter->getType());
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Tags::getOptions
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Tags::configureOptions
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Tags::getOptions
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Tags::configureOptions
      * @dataProvider validOptionsProvider
      *
      * @param array $options
@@ -37,13 +37,13 @@ class TagsTest extends TestCase
      */
     public function testValidOptions($options, $resolvedOptions)
     {
-        $parameterDefinition = $this->getParameterDefinition($options);
-        $this->assertEquals($resolvedOptions, $parameterDefinition->getOptions());
+        $parameter = $this->getParameter($options);
+        $this->assertEquals($resolvedOptions, $parameter->getOptions());
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Tags::getOptions
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Tags::configureOptions
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Tags::getOptions
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Tags::configureOptions
      * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidArgumentException
      * @dataProvider invalidOptionsProvider
      *
@@ -51,7 +51,7 @@ class TagsTest extends TestCase
      */
     public function testInvalidOptions($options)
     {
-        $this->getParameterDefinition($options);
+        $this->getParameter($options);
     }
 
     /**
@@ -61,9 +61,9 @@ class TagsTest extends TestCase
      * @param bool $required
      * @param mixed $defaultValue
      *
-     * @return \Netgen\BlockManager\Ez\Parameters\ParameterDefinition\Tags
+     * @return \Netgen\BlockManager\Ez\Parameters\Parameter\Tags
      */
-    public function getParameterDefinition(array $options = array(), $required = false, $defaultValue = null)
+    public function getParameter(array $options = array(), $required = false, $defaultValue = null)
     {
         return new Tags($options, $required, $defaultValue);
     }
