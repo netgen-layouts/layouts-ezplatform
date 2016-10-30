@@ -238,10 +238,10 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     {
         $limit = $query->getParameter('limit')->getValue();
         if (!is_int($limit)) {
-            return null;
+            return self::DEFAULT_LIMIT;
         }
 
-        return $limit >= 0 ? $limit : 0;
+        return $limit >= 0 ? $limit : self::DEFAULT_LIMIT;
     }
 
     /**
@@ -253,18 +253,17 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      */
     protected function getParentLocation(Query $query)
     {
-        if ($query->getParameter('use_current_location')->getValue() === true) {
+        if ($query->getParameter('use_current_location')->getValue()) {
             return $this->contentProvider->provideLocation();
         }
 
-        if (empty($query->getParameter('parent_location_id')->getValue())) {
+        $parentLocationId = $query->getParameter('parent_location_id')->getValue();
+        if (empty($parentLocationId)) {
             return;
         }
 
         try {
-            $parentLocation = $this->locationService->loadLocation(
-                $query->getParameter('parent_location_id')->getValue()
-            );
+            $parentLocation = $this->locationService->loadLocation($parentLocationId);
 
             return $parentLocation->invisible ? null : $parentLocation;
         } catch (Exception $e) {
@@ -298,41 +297,36 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
             );
         }
 
-        if (!empty($query->getParameter('filter_by_content_type')->getValue()) && !empty($query->getParameter('content_types')->getValue())) {
-            $contentTypeFilter = new Criterion\ContentTypeIdentifier($query->getParameter('content_types')->getValue());
+        if ($query->getParameter('filter_by_content_type')->getValue()) {
+            $contentTypes = $query->getParameter('content_types')->getValue();
+            if (!empty($contentTypes)) {
+                $contentTypeFilter = new Criterion\ContentTypeIdentifier($contentTypes);
 
-            if ($query->getParameter('content_types_filter')->getValue() === 'exclude') {
-                $contentTypeFilter = new Criterion\LogicalNot($contentTypeFilter);
+                if ($query->getParameter('content_types_filter')->getValue() === 'exclude') {
+                    $contentTypeFilter = new Criterion\LogicalNot($contentTypeFilter);
+                }
+
+                $criteria[] = $contentTypeFilter;
             }
-
-            $criteria[] = $contentTypeFilter;
         }
 
         $locationQuery->filter = new Criterion\LogicalAnd($criteria);
 
         $locationQuery->limit = 0;
         if (!$buildCountQuery) {
-            $locationQuery->offset = is_int($query->getParameter('offset')->getValue()) && $query->getParameter('offset')->getValue() >= 0 ?
-                $query->getParameter('offset')->getValue() :
-                0;
+            $offset = $query->getParameter('offset')->getValue();
+            $locationQuery->offset = is_int($offset) && $offset >= 0 ? $offset : 0;
 
-            $locationQuery->limit = is_int($query->getParameter('limit')->getValue()) && $query->getParameter('limit')->getValue() >= 0 ?
-                $query->getParameter('limit')->getValue() :
-                self::DEFAULT_LIMIT;
+            $limit = $query->getParameter('limit')->getValue();
+            $locationQuery->limit = is_int($limit) && $limit >= 0 ? $limit : self::DEFAULT_LIMIT;
         }
 
-        $sortType = 'default';
-        if (!empty($query->getParameter('sort_type')->getValue())) {
-            $sortType = $query->getParameter('sort_type')->getValue() === 'defined_by_parent' ?
-                $parentLocation->sortField :
-                $query->getParameter('sort_type')->getValue();
-        }
+        $sortType = $query->getParameter('sort_type')->getValue() ?: 'default';
+        $sortDirection = $query->getParameter('sort_direction')->getValue() ?: LocationQuery::SORT_DESC;
 
-        $sortDirection = LocationQuery::SORT_DESC;
-        if (!empty($query->getParameter('sort_direction')->getValue())) {
-            $sortDirection = $query->getParameter('sort_type')->getValue() === 'defined_by_parent' ?
-                $this->sortDirections[$parentLocation->sortOrder] :
-                $query->getParameter('sort_direction')->getValue();
+        if ($sortType === 'defined_by_parent') {
+            $sortType = $parentLocation->sortField;
+            $sortDirection = $this->sortDirections[$parentLocation->sortOrder];
         }
 
         $locationQuery->sortClauses = array(
