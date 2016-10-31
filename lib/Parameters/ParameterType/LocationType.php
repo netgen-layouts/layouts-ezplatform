@@ -7,7 +7,7 @@ use Netgen\BlockManager\Parameters\ParameterType;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Symfony\Component\Validator\Constraints;
 
-class Location extends ParameterType
+class LocationType extends ParameterType
 {
     /**
      * Returns the parameter type.

@@ -4,9 +4,9 @@ namespace Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler;
 
 use Netgen\BlockManager\Parameters\FormMapper\ParameterHandler;
 use Netgen\BlockManager\Parameters\ParameterInterface;
-use Netgen\Bundle\ContentBrowserBundle\Form\Type\ContentBrowserMultipleType;
+use Netgen\Bundle\ContentBrowserBundle\Form\Type\ContentBrowserType;
 
-class Tags extends ParameterHandler
+class LocationHandler extends ParameterHandler
 {
     /**
      * Returns the form type for the parameter.
@@ -15,7 +15,7 @@ class Tags extends ParameterHandler
      */
     public function getFormType()
     {
-        return ContentBrowserMultipleType::class;
+        return ContentBrowserType::class;
     }
 
     /**
@@ -28,7 +28,8 @@ class Tags extends ParameterHandler
     public function convertOptions(ParameterInterface $parameter)
     {
         return array(
-            'item_type' => 'eztags',
+            'item_type' => 'ezlocation',
+            'required' => $parameter->isRequired(),
         );
     }
 }

@@ -4,7 +4,7 @@ namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
 
 use eZ\Publish\API\Repository\ContentTypeService;
 use Netgen\BlockManager\Ez\Parameters\Parameter\ContentType;
-use Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType as ContentTypeType;
+use Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
@@ -43,7 +43,7 @@ class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\ContentType::getType
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\ContentTypeType::getType
      */
     public function testGetType()
     {
@@ -70,7 +70,7 @@ class ContentTypeTest extends TestCase
      * @param bool $required
      * @param bool $isValid
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\ContentType::getValueConstraints
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\ContentTypeType::getValueConstraints
      * @dataProvider validationProvider
      */
     public function testValidation($value, $required, $isValid)

@@ -4,7 +4,7 @@ namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
 
 use Netgen\BlockManager\Ez\Tests\Validator\TagsServiceValidatorFactory;
 use Netgen\TagsBundle\Core\Repository\TagsService;
-use Netgen\BlockManager\Ez\Parameters\ParameterType\Tags as TagsType;
+use Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType;
 use Netgen\BlockManager\Ez\Parameters\Parameter\Tags;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use PHPUnit\Framework\TestCase;
@@ -23,7 +23,7 @@ class TagsTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Tags::getType
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\TagsType::getType
      */
     public function testGetType()
     {
@@ -50,7 +50,7 @@ class TagsTest extends TestCase
      * @param bool $required
      * @param bool $isValid
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Tags::getValueConstraints
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\TagsType::getValueConstraints
      * @dataProvider validationProvider
      */
     public function testValidation($values, $required, $isValid)

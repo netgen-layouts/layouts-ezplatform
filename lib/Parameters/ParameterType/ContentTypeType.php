@@ -7,7 +7,7 @@ use Netgen\BlockManager\Parameters\ParameterType;
 use Symfony\Component\Validator\Constraints;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 
-class Tags extends ParameterType
+class ContentTypeType extends ParameterType
 {
     /**
      * Returns the parameter type.
@@ -16,7 +16,7 @@ class Tags extends ParameterType
      */
     public function getType()
     {
-        return 'eztags';
+        return 'ez_content_type';
     }
 
     /**
@@ -31,29 +31,22 @@ class Tags extends ParameterType
     {
         $options = $parameter->getOptions();
 
-        $constraints = array(
+        $contentTypeConstraints = array(
+            new Constraints\Type(array('type' => 'string')),
+            new EzConstraints\ContentType(),
+        );
+
+        if (!$options['multiple']) {
+            return $contentTypeConstraints;
+        }
+
+        return array(
             new Constraints\Type(array('type' => 'array')),
             new Constraints\All(
                 array(
-                    'constraints' => array(
-                        new Constraints\NotBlank(),
-                        new Constraints\Type(array('type' => 'numeric')),
-                        new Constraints\GreaterThan(array('value' => 0)),
-                        new EzConstraints\Tag(),
-                    ),
+                    'constraints' => $contentTypeConstraints,
                 )
             ),
         );
-
-        if ($options['min'] !== null || $options['max'] !== null) {
-            $constraints[] = new Constraints\Count(
-                array(
-                    'min' => $options['min'] !== null ? $options['min'] : null,
-                    'max' => $options['max'] !== null ? $options['max'] : null,
-                )
-            );
-        }
-
-        return $constraints;
     }
 }

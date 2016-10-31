@@ -3,24 +3,24 @@
 namespace Netgen\BlockManager\Ez\Tests\Parameters\FormMapper\ParameterHandler;
 
 use Netgen\BlockManager\Ez\Parameters\Parameter\Location as LocationParameter;
-use Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\Location;
+use Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\LocationHandler;
 use Netgen\Bundle\ContentBrowserBundle\Form\Type\ContentBrowserType;
 use PHPUnit\Framework\TestCase;
 
-class LocationTest extends TestCase
+class LocationHandlerTest extends TestCase
 {
     /**
-     * @var \Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\Location
+     * @var \Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\LocationHandler
      */
     protected $parameterHandler;
 
     public function setUp()
     {
-        $this->parameterHandler = new Location();
+        $this->parameterHandler = new LocationHandler();
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\Location::getFormType
+     * @covers \Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\LocationHandler::getFormType
      */
     public function testGetFormType()
     {
@@ -28,7 +28,7 @@ class LocationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\Location::convertOptions
+     * @covers \Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\LocationHandler::convertOptions
      */
     public function testConvertOptions()
     {

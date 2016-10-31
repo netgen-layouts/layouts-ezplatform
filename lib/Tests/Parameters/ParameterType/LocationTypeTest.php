@@ -4,7 +4,7 @@ namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
 
 use eZ\Publish\API\Repository\LocationService;
 use Netgen\BlockManager\Ez\Parameters\Parameter\Location;
-use Netgen\BlockManager\Ez\Parameters\ParameterType\Location as LocationType;
+use Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
@@ -43,7 +43,7 @@ class LocationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Location::getType
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\LocationType::getType
      */
     public function testGetType()
     {
@@ -70,7 +70,7 @@ class LocationTest extends TestCase
      * @param bool $required
      * @param bool $isValid
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\Location::getValueConstraints
+     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\LocationType::getValueConstraints
      * @dataProvider validationProvider
      */
     public function testValidation($value, $required, $isValid)

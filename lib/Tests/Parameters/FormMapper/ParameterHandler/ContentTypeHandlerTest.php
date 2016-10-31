@@ -4,23 +4,23 @@ namespace Netgen\BlockManager\Ez\Tests\Parameters\FormMapper\ParameterHandler;
 
 use Netgen\BlockManager\Ez\Form\ContentTypeType;
 use Netgen\BlockManager\Ez\Parameters\Parameter\ContentType as ContentTypeParameter;
-use Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\ContentType;
+use Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\ContentTypeHandler;
 use PHPUnit\Framework\TestCase;
 
-class ContentTypeTest extends TestCase
+class ContentTypeHandlerTest extends TestCase
 {
     /**
-     * @var \Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\ContentType
+     * @var \Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\ContentTypeHandler
      */
     protected $parameterHandler;
 
     public function setUp()
     {
-        $this->parameterHandler = new ContentType();
+        $this->parameterHandler = new ContentTypeHandler();
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\ContentType::getFormType
+     * @covers \Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\ContentTypeHandler::getFormType
      */
     public function testGetFormType()
     {
@@ -28,7 +28,7 @@ class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\ContentType::convertOptions
+     * @covers \Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\ContentTypeHandler::convertOptions
      */
     public function testConvertOptions()
     {

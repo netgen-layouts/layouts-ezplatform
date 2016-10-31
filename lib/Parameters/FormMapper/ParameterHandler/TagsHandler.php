@@ -4,9 +4,9 @@ namespace Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler;
 
 use Netgen\BlockManager\Parameters\FormMapper\ParameterHandler;
 use Netgen\BlockManager\Parameters\ParameterInterface;
-use Netgen\BlockManager\Ez\Form\ContentTypeType;
+use Netgen\Bundle\ContentBrowserBundle\Form\Type\ContentBrowserMultipleType;
 
-class ContentType extends ParameterHandler
+class TagsHandler extends ParameterHandler
 {
     /**
      * Returns the form type for the parameter.
@@ -15,7 +15,7 @@ class ContentType extends ParameterHandler
      */
     public function getFormType()
     {
-        return ContentTypeType::class;
+        return ContentBrowserMultipleType::class;
     }
 
     /**
@@ -28,7 +28,7 @@ class ContentType extends ParameterHandler
     public function convertOptions(ParameterInterface $parameter)
     {
         return array(
-            'multiple' => $parameter->getOptions()['multiple'],
+            'item_type' => 'eztags',
         );
     }
 }
