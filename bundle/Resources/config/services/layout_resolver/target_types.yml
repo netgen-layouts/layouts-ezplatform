@@ -12,39 +12,39 @@ services:
         arguments:
             - "@netgen_block_manager.ezpublish.content_provider"
         tags:
-            - { name: netgen_block_manager.layout.resolver.target_type, priority: 24 }
+            - { name: netgen_block_manager.layout.resolver.target_type, priority: 140 }
 
     netgen_block_manager.layout.resolver.target_type.ezcontent:
         class: "%netgen_block_manager.layout.resolver.target_type.ezcontent.class%"
         arguments:
             - "@netgen_block_manager.ezpublish.content_provider"
         tags:
-            - { name: netgen_block_manager.layout.resolver.target_type, priority: 25 }
+            - { name: netgen_block_manager.layout.resolver.target_type, priority: 150 }
 
     netgen_block_manager.layout.resolver.target_type.ezchildren:
         class: "%netgen_block_manager.layout.resolver.target_type.ezchildren.class%"
         arguments:
             - "@netgen_block_manager.ezpublish.content_provider"
         tags:
-            - { name: netgen_block_manager.layout.resolver.target_type, priority: 22 }
+            - { name: netgen_block_manager.layout.resolver.target_type, priority: 120 }
 
     netgen_block_manager.layout.resolver.target_type.ezsubtree:
         class: "%netgen_block_manager.layout.resolver.target_type.ezsubtree.class%"
         arguments:
             - "@netgen_block_manager.ezpublish.content_provider"
         tags:
-            - { name: netgen_block_manager.layout.resolver.target_type, priority: 23 }
+            - { name: netgen_block_manager.layout.resolver.target_type, priority: 130 }
 
     netgen_block_manager.layout.resolver.target_type.ez_semantic_path_info:
         class: "%netgen_block_manager.layout.resolver.target_type.ez_semantic_path_info.class%"
         calls:
             - [setRequestStack, ["@request_stack"]]
         tags:
-            - { name: netgen_block_manager.layout.resolver.target_type, priority: 20 }
+            - { name: netgen_block_manager.layout.resolver.target_type, priority: 100 }
 
     netgen_block_manager.layout.resolver.target_type.ez_semantic_path_info_prefix:
         class: "%netgen_block_manager.layout.resolver.target_type.ez_semantic_path_info_prefix.class%"
         calls:
             - [setRequestStack, ["@request_stack"]]
         tags:
-            - { name: netgen_block_manager.layout.resolver.target_type, priority: 21 }
+            - { name: netgen_block_manager.layout.resolver.target_type, priority: 110 }
