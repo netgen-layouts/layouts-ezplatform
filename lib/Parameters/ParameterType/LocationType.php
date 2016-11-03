@@ -27,7 +27,7 @@ class LocationType extends ParameterType
      *
      * @return \Symfony\Component\Validator\Constraint[]
      */
-    public function getValueConstraints(ParameterInterface $parameter, $value)
+    protected function getValueConstraints(ParameterInterface $parameter, $value)
     {
         return array(
             new Constraints\Type(array('type' => 'numeric')),
