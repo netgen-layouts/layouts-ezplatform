@@ -1,12 +1,12 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler;
+namespace Netgen\BlockManager\Ez\Parameters\Form\Mapper;
 
-use Netgen\BlockManager\Parameters\FormMapper\ParameterHandler;
+use Netgen\BlockManager\Parameters\Form\Mapper;
 use Netgen\BlockManager\Parameters\ParameterInterface;
 use Netgen\Bundle\ContentBrowserBundle\Form\Type\ContentBrowserMultipleType;
 
-class TagsHandler extends ParameterHandler
+class TagsMapper extends Mapper
 {
     /**
      * Returns the form type for the parameter.
@@ -19,13 +19,15 @@ class TagsHandler extends ParameterHandler
     }
 
     /**
-     * Converts parameter options to Symfony form options.
+     * Maps parameter options to Symfony form options.
      *
      * @param \Netgen\BlockManager\Parameters\ParameterInterface $parameter
+     * @param string $parameterName
+     * @param array $formOptions
      *
      * @return array
      */
-    public function convertOptions(ParameterInterface $parameter)
+    public function mapOptions(ParameterInterface $parameter, $parameterName, array $formOptions)
     {
         return array(
             'item_type' => 'eztags',

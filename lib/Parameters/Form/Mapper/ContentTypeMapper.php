@@ -1,12 +1,12 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler;
+namespace Netgen\BlockManager\Ez\Parameters\Form\Mapper;
 
-use Netgen\BlockManager\Parameters\FormMapper\ParameterHandler;
+use Netgen\BlockManager\Parameters\Form\Mapper;
 use Netgen\BlockManager\Parameters\ParameterInterface;
 use Netgen\BlockManager\Ez\Form\ContentTypeType;
 
-class ContentTypeHandler extends ParameterHandler
+class ContentTypeMapper extends Mapper
 {
     /**
      * Returns the form type for the parameter.
@@ -19,13 +19,15 @@ class ContentTypeHandler extends ParameterHandler
     }
 
     /**
-     * Converts parameter options to Symfony form options.
+     * Maps parameter options to Symfony form options.
      *
      * @param \Netgen\BlockManager\Parameters\ParameterInterface $parameter
+     * @param string $parameterName
+     * @param array $formOptions
      *
      * @return array
      */
-    public function convertOptions(ParameterInterface $parameter)
+    public function mapOptions(ParameterInterface $parameter, $parameterName, array $formOptions)
     {
         return array(
             'multiple' => $parameter->getOptions()['multiple'],

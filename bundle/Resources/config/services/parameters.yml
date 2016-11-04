@@ -2,8 +2,8 @@ parameters:
     netgen_block_manager.parameters.parameter_type.ezlocation.class: Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType
     netgen_block_manager.parameters.parameter_type.ez_content_type.class: Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType
 
-    netgen_block_manager.parameters.parameter_handler.ezlocation.class: Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\LocationHandler
-    netgen_block_manager.parameters.parameter_handler.ez_content_type.class: Netgen\BlockManager\Ez\Parameters\FormMapper\ParameterHandler\ContentTypeHandler
+    netgen_block_manager.parameters.form.mapper.ezlocation.class: Netgen\BlockManager\Ez\Parameters\Form\Mapper\LocationMapper
+    netgen_block_manager.parameters.form.mapper.ez_content_type.class: Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentTypeMapper
 
 services:
     netgen_block_manager.parameters.parameter_type.ezlocation:
@@ -16,12 +16,12 @@ services:
         tags:
             - { name: netgen_block_manager.parameters.parameter_type }
 
-    netgen_block_manager.parameters.parameter_handler.ezlocation:
-        class: "%netgen_block_manager.parameters.parameter_handler.ezlocation.class%"
+    netgen_block_manager.parameters.form.mapper.ezlocation:
+        class: "%netgen_block_manager.parameters.form.mapper.ezlocation.class%"
         tags:
-            - { name: netgen_block_manager.parameters.parameter_handler, type: ezlocation }
+            - { name: netgen_block_manager.parameters.form.mapper, type: ezlocation }
 
-    netgen_block_manager.parameters.parameter_handler.ez_content_type:
-        class: "%netgen_block_manager.parameters.parameter_handler.ez_content_type.class%"
+    netgen_block_manager.parameters.form.mapper.ez_content_type:
+        class: "%netgen_block_manager.parameters.form.mapper.ez_content_type.class%"
         tags:
-            - { name: netgen_block_manager.parameters.parameter_handler, type: ez_content_type }
+            - { name: netgen_block_manager.parameters.form.mapper, type: ez_content_type }
