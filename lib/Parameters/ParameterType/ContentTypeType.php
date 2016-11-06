@@ -4,19 +4,32 @@ namespace Netgen\BlockManager\Ez\Parameters\ParameterType;
 
 use Netgen\BlockManager\Parameters\ParameterInterface;
 use Netgen\BlockManager\Parameters\ParameterType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 
 class ContentTypeType extends ParameterType
 {
     /**
-     * Returns the parameter type.
+     * Returns the parameter type identifier.
      *
      * @return string
      */
-    public function getType()
+    public function getIdentifier()
     {
         return 'ez_content_type';
+    }
+
+    /**
+     * Configures the options for this parameter.
+     *
+     * @param \Symfony\Component\OptionsResolver\OptionsResolver $optionsResolver
+     */
+    public function configureOptions(OptionsResolver $optionsResolver)
+    {
+        $optionsResolver->setDefault('multiple', false);
+        $optionsResolver->setRequired(array('multiple'));
+        $optionsResolver->setAllowedTypes('multiple', 'bool');
     }
 
     /**

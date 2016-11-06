@@ -10,11 +10,11 @@ use Symfony\Component\Validator\Constraints;
 class LocationType extends ParameterType
 {
     /**
-     * Returns the parameter type.
+     * Returns the parameter type identifier.
      *
      * @return string
      */
-    public function getType()
+    public function getIdentifier()
     {
         return 'ezlocation';
     }

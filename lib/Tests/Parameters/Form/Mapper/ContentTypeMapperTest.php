@@ -3,8 +3,9 @@
 namespace Netgen\BlockManager\Ez\Tests\Parameters\Form\Mapper;
 
 use Netgen\BlockManager\Ez\Form\ContentTypeType;
-use Netgen\BlockManager\Ez\Parameters\Parameter\ContentType as ContentTypeParameter;
+use Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType as ParameterType;
 use Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentTypeMapper;
+use Netgen\BlockManager\Parameters\Parameter;
 use PHPUnit\Framework\TestCase;
 
 class ContentTypeMapperTest extends TestCase
@@ -37,7 +38,7 @@ class ContentTypeMapperTest extends TestCase
                 'multiple' => true,
             ),
             $this->mapper->mapOptions(
-                new ContentTypeParameter(array('multiple' => true)),
+                new Parameter('name', new ParameterType(), array('multiple' => true)),
                 'name',
                 array()
             )

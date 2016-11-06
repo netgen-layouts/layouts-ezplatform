@@ -3,15 +3,15 @@
 namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
 
 use eZ\Publish\API\Repository\ContentTypeService;
-use Netgen\BlockManager\Ez\Parameters\Parameter\ContentType;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
+use Netgen\BlockManager\Tests\Parameters\Stubs\Parameter;
 use Symfony\Component\Validator\Validation;
 use PHPUnit\Framework\TestCase;
 
-class ContentTypeTest extends TestCase
+class ContentTypeTypeTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
@@ -43,12 +43,12 @@ class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\ContentTypeType::getType
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType::getIdentifier
      */
-    public function testGetType()
+    public function testGetIdentifier()
     {
         $type = new ContentTypeType();
-        $this->assertEquals('ez_content_type', $type->getType());
+        $this->assertEquals('ez_content_type', $type->getIdentifier());
     }
 
     /**
@@ -58,11 +58,88 @@ class ContentTypeTest extends TestCase
      * @param bool $required
      * @param mixed $defaultValue
      *
-     * @return \Netgen\BlockManager\Ez\Parameters\Parameter\ContentType
+     * @return \Netgen\BlockManager\Parameters\ParameterInterface
      */
     public function getParameter(array $options = array(), $required = false, $defaultValue = null)
     {
-        return new ContentType($options, $required, $defaultValue);
+        return new Parameter('name', new ContentTypeType(), $options, $required, $defaultValue);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType::configureOptions
+     * @dataProvider validOptionsProvider
+     *
+     * @param array $options
+     * @param array $resolvedOptions
+     */
+    public function testValidOptions($options, $resolvedOptions)
+    {
+        $parameter = $this->getParameter($options);
+        $this->assertEquals($resolvedOptions, $parameter->getOptions());
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType::configureOptions
+     * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidArgumentException
+     * @dataProvider invalidOptionsProvider
+     *
+     * @param array $options
+     */
+    public function testInvalidOptions($options)
+    {
+        $this->getParameter($options);
+    }
+
+    /**
+     * Provider for testing valid parameter attributes.
+     *
+     * @return array
+     */
+    public function validOptionsProvider()
+    {
+        return array(
+            array(
+                array(),
+                array(
+                    'multiple' => false,
+                ),
+            ),
+            array(
+                array(
+                    'multiple' => false,
+                ),
+                array(
+                    'multiple' => false,
+                ),
+            ),
+            array(
+                array(
+                    'multiple' => true,
+                ),
+                array(
+                    'multiple' => true,
+                ),
+            ),
+        );
+    }
+
+    /**
+     * Provider for testing invalid parameter attributes.
+     *
+     * @return array
+     */
+    public function invalidOptionsProvider()
+    {
+        return array(
+            array(
+                array(
+                    'multiple' => 'true',
+                ),
+                array(
+                    'undefined_value' => 'Value',
+                ),
+            ),
+        );
     }
 
     /**
@@ -70,7 +147,7 @@ class ContentTypeTest extends TestCase
      * @param bool $required
      * @param bool $isValid
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\ContentTypeType::getValueConstraints
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType::getValueConstraints
      * @dataProvider validationProvider
      */
     public function testValidation($value, $required, $isValid)

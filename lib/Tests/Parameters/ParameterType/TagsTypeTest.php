@@ -3,14 +3,14 @@
 namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
 
 use Netgen\BlockManager\Ez\Tests\Validator\TagsServiceValidatorFactory;
+use Netgen\BlockManager\Tests\Parameters\Stubs\Parameter;
 use Netgen\TagsBundle\Core\Repository\TagsService;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType;
-use Netgen\BlockManager\Ez\Parameters\Parameter\Tags;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
 
-class TagsTest extends TestCase
+class TagsTypeTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
@@ -23,12 +23,37 @@ class TagsTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\TagsType::getType
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::getIdentifier
      */
-    public function testGetType()
+    public function testGetIdentifier()
     {
         $type = new TagsType();
-        $this->assertEquals('eztags', $type->getType());
+        $this->assertEquals('eztags', $type->getIdentifier());
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::configureOptions
+     * @dataProvider validOptionsProvider
+     *
+     * @param array $options
+     * @param array $resolvedOptions
+     */
+    public function testValidOptions($options, $resolvedOptions)
+    {
+        $parameter = $this->getParameter($options);
+        $this->assertEquals($resolvedOptions, $parameter->getOptions());
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::configureOptions
+     * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidArgumentException
+     * @dataProvider invalidOptionsProvider
+     *
+     * @param array $options
+     */
+    public function testInvalidOptions($options)
+    {
+        $this->getParameter($options);
     }
 
     /**
@@ -38,11 +63,120 @@ class TagsTest extends TestCase
      * @param bool $required
      * @param mixed $defaultValue
      *
-     * @return \Netgen\BlockManager\Ez\Parameters\Parameter\Tags
+     * @return \Netgen\BlockManager\Parameters\ParameterInterface
      */
     public function getParameter(array $options = array(), $required = false, $defaultValue = null)
     {
-        return new Tags($options, $required, $defaultValue);
+        return new Parameter('name', new TagsType(), $options, $required, $defaultValue);
+    }
+
+    /**
+     * Provider for testing valid parameter attributes.
+     *
+     * @return array
+     */
+    public function validOptionsProvider()
+    {
+        return array(
+            array(
+                array(
+                ),
+                array(
+                    'max' => null,
+                    'min' => null,
+                ),
+            ),
+            array(
+                array(
+                    'max' => 5,
+                ),
+                array(
+                    'max' => 5,
+                    'min' => null,
+                ),
+            ),
+            array(
+                array(
+                    'max' => null,
+                ),
+                array(
+                    'max' => null,
+                    'min' => null,
+                ),
+            ),
+            array(
+                array(
+                    'min' => 5,
+                ),
+                array(
+                    'min' => 5,
+                    'max' => null,
+                ),
+            ),
+            array(
+                array(
+                    'min' => null,
+                ),
+                array(
+                    'max' => null,
+                    'min' => null,
+                ),
+            ),
+            array(
+                array(
+                    'min' => 5,
+                    'max' => 10,
+                ),
+                array(
+                    'min' => 5,
+                    'max' => 10,
+                ),
+            ),
+            array(
+                array(
+                    'min' => 5,
+                    'max' => 3,
+                ),
+                array(
+                    'min' => 5,
+                    'max' => 5,
+                ),
+            ),
+        );
+    }
+
+    /**
+     * Provider for testing invalid parameter attributes.
+     *
+     * @return array
+     */
+    public function invalidOptionsProvider()
+    {
+        return array(
+            array(
+                array(
+                    'min' => '0',
+                ),
+                array(
+                    'min' => -5,
+                ),
+                array(
+                    'min' => 0,
+                ),
+                array(
+                    'max' => '0',
+                ),
+                array(
+                    'max' => -5,
+                ),
+                array(
+                    'max' => 0,
+                ),
+                array(
+                    'undefined_value' => 'Value',
+                ),
+            ),
+        );
     }
 
     /**
@@ -50,7 +184,7 @@ class TagsTest extends TestCase
      * @param bool $required
      * @param bool $isValid
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\Parameter\TagsType::getValueConstraints
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::getValueConstraints
      * @dataProvider validationProvider
      */
     public function testValidation($values, $required, $isValid)

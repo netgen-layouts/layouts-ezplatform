@@ -2,8 +2,9 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Parameters\Form\Mapper;
 
-use Netgen\BlockManager\Ez\Parameters\Parameter\Location as LocationParameter;
+use Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType as ParameterType;
 use Netgen\BlockManager\Ez\Parameters\Form\Mapper\LocationMapper;
+use Netgen\BlockManager\Parameters\Parameter;
 use Netgen\Bundle\ContentBrowserBundle\Form\Type\ContentBrowserType;
 use PHPUnit\Framework\TestCase;
 
@@ -36,7 +37,7 @@ class LocationMapperTest extends TestCase
             array(
                 'item_type' => 'ezlocation',
             ),
-            $this->mapper->mapOptions(new LocationParameter(), 'name', array())
+            $this->mapper->mapOptions(new Parameter('name', new ParameterType()), 'name', array())
         );
     }
 }

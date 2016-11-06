@@ -2,8 +2,9 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Parameters\Form\Mapper;
 
-use Netgen\BlockManager\Ez\Parameters\Parameter\Tags as TagsParameter;
+use Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType as ParameterType;
 use Netgen\BlockManager\Ez\Parameters\Form\Mapper\TagsMapper;
+use Netgen\BlockManager\Parameters\Parameter;
 use Netgen\Bundle\ContentBrowserBundle\Form\Type\ContentBrowserMultipleType;
 use PHPUnit\Framework\TestCase;
 
@@ -36,7 +37,7 @@ class TagsMapperTest extends TestCase
             array(
                 'item_type' => 'eztags',
             ),
-            $this->mapper->mapOptions(new TagsParameter(), 'name', array())
+            $this->mapper->mapOptions(new Parameter('name', new ParameterType()), 'name', array())
         );
     }
 }

@@ -12,8 +12,9 @@ use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use Netgen\BlockManager\API\Values\Collection\Query;
 use Netgen\BlockManager\Collection\QueryType\QueryTypeHandlerInterface;
 use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
-use Netgen\BlockManager\Ez\Parameters\Parameter as EzParameter;
-use Netgen\BlockManager\Parameters\Parameter;
+use Netgen\BlockManager\Ez\Parameters\ParameterType as EzParameterType;
+use Netgen\BlockManager\Parameters\ParameterType;
+use Netgen\BlockManager\Parameters\ParameterBuilderInterface;
 use Exception;
 
 class ContentSearchHandler implements QueryTypeHandlerInterface
@@ -104,73 +105,103 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     }
 
     /**
-     * Returns the array specifying query parameters.
+     * Builds the parameters by using provided parameter builder.
      *
-     * The keys are parameter identifiers.
-     *
-     * @return \Netgen\BlockManager\Parameters\ParameterInterface[]
+     * @param \Netgen\BlockManager\Parameters\ParameterBuilderInterface $builder
      */
-    public function getParameters()
+    public function buildParameters(ParameterBuilderInterface $builder)
     {
-        return array(
-            'use_current_location' => new Parameter\Compound\Boolean(
-                array(
-                    'parent_location_id' => new EzParameter\Location(),
+        $builder->add(
+            'use_current_location',
+            ParameterType\Compound\BooleanType::class,
+            array(
+                'reverse' => true,
+            )
+        );
+
+        $builder->get('use_current_location')->add(
+            'parent_location_id',
+            EzParameterType\LocationType::class
+        );
+
+        $builder->add(
+            'sort_direction',
+            ParameterType\ChoiceType::class,
+            array(
+                'required' => true,
+                'options' => array(
+                    'Descending' => LocationQuery::SORT_DESC,
+                    'Ascending' => LocationQuery::SORT_ASC,
                 ),
-                array(
-                    'reverse' => true,
-                )
-            ),
-            'sort_direction' => new Parameter\Choice(
-                array(
-                    'options' => array(
-                        'Descending' => LocationQuery::SORT_DESC,
-                        'Ascending' => LocationQuery::SORT_ASC,
-                    ),
+            )
+        );
+
+        $builder->add(
+            'sort_type',
+            ParameterType\ChoiceType::class,
+            array(
+                'required' => true,
+                'options' => array(
+                    'Published' => 'date_published',
+                    'Modified' => 'date_modified',
+                    'Alphabetical' => 'content_name',
+                    'Priority' => 'location_priority',
+                    'Defined by parent' => 'defined_by_parent',
                 ),
-                true
-            ),
-            'sort_type' => new Parameter\Choice(
-                array(
-                    'options' => array(
-                        'Published' => 'date_published',
-                        'Modified' => 'date_modified',
-                        'Alphabetical' => 'content_name',
-                        'Priority' => 'location_priority',
-                        'Defined by parent' => 'defined_by_parent',
-                    ),
+            )
+        );
+
+        $builder->add(
+            'limit',
+            ParameterType\IntegerType::class,
+            array(
+                'min' => 0,
+            )
+        );
+
+        $builder->add(
+            'offset',
+            ParameterType\IntegerType::class,
+            array(
+                'min' => 0,
+            )
+        );
+
+        $builder->add(
+            'query_type',
+            ParameterType\ChoiceType::class,
+            array(
+                'required' => true,
+                'options' => array(
+                    'List' => 'list',
+                    'Tree' => 'tree',
                 ),
-                true
-            ),
-            'limit' => new Parameter\Integer(array('min' => 0)),
-            'offset' => new Parameter\Integer(array('min' => 0)),
-            'query_type' => new Parameter\Choice(
-                array(
-                    'options' => array(
-                        'List' => 'list',
-                        'Tree' => 'tree',
-                    ),
+            )
+        );
+
+        $builder->add(
+            'filter_by_content_type',
+            ParameterType\Compound\BooleanType::class
+        );
+
+        $builder->get('filter_by_content_type')->add(
+            'content_types',
+            EzParameterType\ContentTypeType::class,
+            array(
+                'multiple' => true,
+            )
+        );
+
+        $builder->get('filter_by_content_type')->add(
+            'content_types_filter',
+            ParameterType\ChoiceType::class,
+            array(
+                'required' => true,
+                'options' => array(
+                    'Include content types' => 'include',
+                    'Exclude content types' => 'exclude',
                 ),
-                true
-            ),
-            'filter_by_content_type' => new Parameter\Compound\Boolean(
-                array(
-                    'content_types' => new EzParameter\ContentType(
-                        array(
-                            'multiple' => true,
-                        )
-                    ),
-                    'content_types_filter' => new Parameter\Choice(
-                        array(
-                            'options' => array(
-                                'Include content types' => 'include',
-                                'Exclude content types' => 'exclude',
-                            ),
-                        ),
-                        true
-                    ),
-                )
-            ),
+            )
         );
     }
 
