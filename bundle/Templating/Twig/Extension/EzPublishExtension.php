@@ -79,7 +79,7 @@ class EzPublishExtension extends Twig_Extension
 
             return $this->translationHelper->getTranslatedContentName($content);
         } catch (Exception $e) {
-            return;
+            return '';
         }
     }
 
@@ -130,7 +130,7 @@ class EzPublishExtension extends Twig_Extension
                 'getName'
             );
         } catch (Exception $e) {
-            return;
+            return '';
         }
     }
 
