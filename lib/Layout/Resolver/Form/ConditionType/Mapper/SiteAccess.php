@@ -39,15 +39,15 @@ class SiteAccess extends Mapper
     }
 
     /**
-     * Returns the form type options.
+     * Maps the form type options from provided condition type.
      *
      * @param \Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface $conditionType
      *
      * @return array
      */
-    public function getOptions(ConditionTypeInterface $conditionType)
+    public function mapOptions(ConditionTypeInterface $conditionType)
     {
-        $baseOptions = parent::getOptions($conditionType);
+        $baseOptions = parent::mapOptions($conditionType);
 
         return array(
             'choices' => $this->siteAccessList,

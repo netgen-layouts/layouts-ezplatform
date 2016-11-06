@@ -19,17 +19,17 @@ class Content extends Mapper
     }
 
     /**
-     * Returns the form type options.
+     * Maps the form type options from provided target type.
      *
      * @param \Netgen\BlockManager\Layout\Resolver\TargetTypeInterface $targetType
      *
      * @return array
      */
-    public function getOptions(TargetTypeInterface $targetType)
+    public function mapOptions(TargetTypeInterface $targetType)
     {
         return array(
             'item_type' => 'ezcontent',
             'required' => true,
-        ) + parent::getOptions($targetType);
+        ) + parent::mapOptions($targetType);
     }
 }
