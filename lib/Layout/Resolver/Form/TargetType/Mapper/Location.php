@@ -29,7 +29,6 @@ class Location extends Mapper
     {
         return array(
             'item_type' => 'ezlocation',
-            'required' => true,
-        ) + parent::mapOptions($targetType);
+        );
     }
 }

@@ -47,14 +47,12 @@ class SiteAccess extends Mapper
      */
     public function mapOptions(ConditionTypeInterface $conditionType)
     {
-        $baseOptions = parent::mapOptions($conditionType);
-
         return array(
             'choices' => $this->siteAccessList,
             'choice_translation_domain' => false,
             'choices_as_values' => true,
             'multiple' => true,
             'expanded' => true,
-        ) + $baseOptions;
+        );
     }
 }

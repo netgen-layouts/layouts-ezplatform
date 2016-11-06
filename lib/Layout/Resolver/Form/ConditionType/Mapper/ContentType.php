@@ -27,10 +27,8 @@ class ContentType extends Mapper
      */
     public function mapOptions(ConditionTypeInterface $conditionType)
     {
-        $baseOptions = parent::mapOptions($conditionType);
-
         return array(
             'multiple' => true,
-        ) + $baseOptions;
+        );
     }
 }
