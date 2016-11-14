@@ -280,7 +280,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      *
      * @param \Netgen\BlockManager\API\Values\Collection\Query $query
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Location
+     * @return \eZ\Publish\API\Repository\Values\Content\Location|null
      */
     protected function getParentLocation(Query $query)
     {
@@ -290,7 +290,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
 
         $parentLocationId = $query->getParameter('parent_location_id')->getValue();
         if (empty($parentLocationId)) {
-            return;
+            return null;
         }
 
         try {
@@ -298,7 +298,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
 
             return $parentLocation->invisible ? null : $parentLocation;
         } catch (Exception $e) {
-            return;
+            return null;
         }
     }
 
