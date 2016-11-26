@@ -2,8 +2,10 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\DependencyInjection;
 
+use Netgen\Bundle\BlockManagerBundle\DependencyInjection\NetgenBlockManagerExtension;
 use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
 {
@@ -78,5 +80,56 @@ class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
             'netgen_block_manager.ezpublish.content_provider',
             'netgen_block_manager.ezpublish.content_provider.request'
         );
+    }
+
+    /**
+     * We test for existence of one config value from each of the config files.
+     *
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::prepend
+     */
+    public function testPrepend()
+    {
+        $container = new ContainerBuilder();
+        $container->setParameter('kernel.bundles', array('NetgenBlockManagerBundle' => true));
+        $container->registerExtension(new NetgenBlockManagerExtension());
+        $extension = new NetgenEzPublishBlockManagerExtension();
+
+        $extension->prepend($container);
+
+        $config = call_user_func_array(
+            'array_merge_recursive',
+            $container->getExtensionConfig('netgen_block_manager')
+        );
+
+        $this->assertInternalType('array', $config);
+
+        $this->assertArrayHasKey('block_definitions', $config);
+        $this->assertArrayHasKey('ezcontent_field', $config['block_definitions']);
+
+        $this->assertArrayHasKey('query_types', $config);
+        $this->assertArrayHasKey('ezcontent_search', $config['query_types']);
+
+        $this->assertArrayHasKey('sources', $config);
+        $this->assertArrayHasKey('dynamic', $config['sources']);
+
+        $this->assertArrayHasKey('block_view', $config['view']);
+        $this->assertArrayHasKey('default', $config['view']['block_view']);
+        $this->assertArrayHasKey('ezcontent_field', $config['view']['block_view']['default']);
+
+        $this->assertArrayHasKey('item_view', $config['view']);
+        $this->assertArrayHasKey('default', $config['view']['item_view']);
+        $this->assertArrayHasKey('ezcontent', $config['view']['item_view']['default']);
+
+        $this->assertArrayHasKey('form_view', $config['view']);
+        $this->assertArrayHasKey('api', $config['view']['form_view']);
+        $this->assertArrayHasKey('query\full_edit\ezcontent_search', $config['view']['form_view']['api']);
+
+        $this->assertArrayHasKey('rule_condition_view', $config['view']);
+        $this->assertArrayHasKey('admin', $config['view']['rule_condition_view']);
+        $this->assertArrayHasKey('ez_site_access', $config['view']['rule_condition_view']['admin']);
+
+        $this->assertArrayHasKey('rule_target_view', $config['view']);
+        $this->assertArrayHasKey('admin', $config['view']['rule_target_view']);
+        $this->assertArrayHasKey('ezchildren', $config['view']['rule_target_view']['admin']);
     }
 }
