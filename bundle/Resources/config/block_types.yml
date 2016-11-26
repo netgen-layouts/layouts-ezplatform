@@ -1,4 +1,0 @@
-block_types:
-    ezcontent_field:
-        name: 'eZ content field'
-        definition_identifier: ezcontent_field
