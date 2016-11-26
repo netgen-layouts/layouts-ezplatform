@@ -103,7 +103,7 @@ class EzPublishExtension extends Twig_Extension
             for ($i = 0, $pathLength = count($locationPath); $i < $pathLength; ++$i) {
                 $locationInPath = $this->loadLocation($locationPath[$i]);
                 $translatedNames[] = $this->translationHelper->getTranslatedContentName(
-                    $this->loadContent($locationInPath->contentId)
+                    $this->loadContent($locationInPath->contentInfo->id)
                 );
             }
 
