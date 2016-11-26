@@ -64,12 +64,14 @@ class Ez5RequestContentProvider implements ContentProviderInterface
 
         $contentId = $currentRequest->attributes->get('contentId');
         $currentRoute = $currentRequest->attributes->get('_route');
-        if ($contentId !== null && $currentRoute === UrlAliasRouter::URL_ALIAS_ROUTE_NAME) {
-            try {
-                return $this->contentService->loadContent((int)$contentId);
-            } catch (NotFoundException $e) {
-                // Do nothing
-            }
+        if ($contentId === null || $currentRoute !== UrlAliasRouter::URL_ALIAS_ROUTE_NAME) {
+            return;
+        }
+
+        try {
+            return $this->contentService->loadContent((int)$contentId);
+        } catch (NotFoundException $e) {
+            // Do nothing
         }
     }
 
@@ -96,12 +98,14 @@ class Ez5RequestContentProvider implements ContentProviderInterface
 
         $locationId = $currentRequest->attributes->get('locationId');
         $currentRoute = $currentRequest->attributes->get('_route');
-        if ($locationId !== null && $currentRoute === UrlAliasRouter::URL_ALIAS_ROUTE_NAME) {
-            try {
-                return $this->locationService->loadLocation((int)$locationId);
-            } catch (NotFoundException $e) {
-                // Do nothing
-            }
+        if ($locationId === null || $currentRoute !== UrlAliasRouter::URL_ALIAS_ROUTE_NAME) {
+            return;
+        }
+
+        try {
+            return $this->locationService->loadLocation((int)$locationId);
+        } catch (NotFoundException $e) {
+            // Do nothing
         }
     }
 }
