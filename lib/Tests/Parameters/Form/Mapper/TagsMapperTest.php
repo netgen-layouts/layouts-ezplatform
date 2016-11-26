@@ -37,7 +37,7 @@ class TagsMapperTest extends TestCase
             array(
                 'item_type' => 'eztags',
             ),
-            $this->mapper->mapOptions(new Parameter('name', new ParameterType()), 'name', array())
+            $this->mapper->mapOptions(new Parameter('name', new ParameterType()))
         );
     }
 }

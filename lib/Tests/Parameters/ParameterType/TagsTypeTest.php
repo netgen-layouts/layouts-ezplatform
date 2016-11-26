@@ -190,10 +190,10 @@ class TagsTypeTest extends TestCase
     public function testValidation($values, $required, $isValid)
     {
         if ($values !== null) {
-            foreach ($values as $value) {
+            foreach ($values as $i => $value) {
                 if ($value !== null) {
                     $this->tagsServiceMock
-                        ->expects($this->once())
+                        ->expects($this->at($i))
                         ->method('loadTag')
                         ->with($this->equalTo($value))
                         ->will(
@@ -210,7 +210,7 @@ class TagsTypeTest extends TestCase
         }
 
         $type = new TagsType();
-        $parameter = $this->getParameter(array(), $required);
+        $parameter = $this->getParameter(array('min' => 1, 'max' => 3), $required);
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new TagsServiceValidatorFactory($this->tagsServiceMock))
             ->getValidator();
@@ -228,20 +228,24 @@ class TagsTypeTest extends TestCase
     {
         return array(
             array(array(12), false, true),
+            array(array(12, 13, 14, 15), false, false),
             array(array(24), false, false),
             array(array(-12), false, false),
             array(array(0), false, false),
             array(array('12'), false, false),
             array(array(''), false, false),
             array(array(null), false, false),
+            array(array(), false, false),
             array(null, false, true),
             array(array(12), true, true),
+            array(array(12, 13, 14, 15), true, false),
             array(array(24), true, false),
             array(array(-12), true, false),
             array(array(0), true, false),
             array(array('12'), true, false),
             array(array(''), true, false),
             array(array(null), true, false),
+            array(array(), true, false),
             array(null, true, false),
         );
     }

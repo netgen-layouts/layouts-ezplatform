@@ -38,9 +38,7 @@ class ContentTypeMapperTest extends TestCase
                 'multiple' => true,
             ),
             $this->mapper->mapOptions(
-                new Parameter('name', new ParameterType(), array('multiple' => true)),
-                'name',
-                array()
+                new Parameter('name', new ParameterType(), array('multiple' => true))
             )
         );
     }

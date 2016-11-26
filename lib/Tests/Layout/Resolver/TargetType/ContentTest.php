@@ -59,6 +59,7 @@ class ContentTest extends TestCase
     }
 
     /**
+     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content::__construct
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content::getType
      */
     public function testGetType()

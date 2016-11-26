@@ -37,7 +37,7 @@ class LocationMapperTest extends TestCase
             array(
                 'item_type' => 'ezlocation',
             ),
-            $this->mapper->mapOptions(new Parameter('name', new ParameterType()), 'name', array())
+            $this->mapper->mapOptions(new Parameter('name', new ParameterType()))
         );
     }
 }

@@ -3,6 +3,7 @@
 namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
 
 use eZ\Publish\API\Repository\LocationService;
+use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
@@ -179,6 +180,32 @@ class LocationTypeTest extends TestCase
             array('12', true, false),
             array('', true, false),
             array(null, true, false),
+        );
+    }
+
+    /**
+     * @param mixed $value
+     * @param bool $isEmpty
+     *
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::isValueEmpty
+     * @dataProvider emptyProvider
+     */
+    public function testIsValueEmpty($value, $isEmpty)
+    {
+        $type = new LocationType();
+        $this->assertEquals($isEmpty, $type->isValueEmpty($value));
+    }
+
+    /**
+     * Provider for testing if the value is empty.
+     *
+     * @return array
+     */
+    public function emptyProvider()
+    {
+        return array(
+            array(null, true),
+            array(new Location(), false),
         );
     }
 }
