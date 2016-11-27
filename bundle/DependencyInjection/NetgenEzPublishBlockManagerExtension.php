@@ -2,8 +2,6 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection;
 
-use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ConfigurationProcessor;
-use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ContextualizerInterface;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
@@ -14,10 +12,6 @@ use Symfony\Component\Yaml\Yaml;
 
 class NetgenEzPublishBlockManagerExtension extends Extension implements PrependExtensionInterface
 {
-    protected $siteAccessAwareSettings = array(
-        'view',
-    );
-
     /**
      * Loads a specific configuration.
      *
@@ -80,156 +74,5 @@ class NetgenEzPublishBlockManagerExtension extends Extension implements PrependE
             $container->prependExtensionConfig($prependConfig, $config);
             $container->addResource(new FileResource($configFile));
         }
-    }
-
-    /**
-     * Returns the list of config files that will be appended to main bundle config.
-     *
-     * @return array
-     */
-    public function getAppendConfigs()
-    {
-        return array(
-            __DIR__ . '/../Resources/config/block_type_groups.yml' => 'netgen_block_manager',
-        );
-    }
-
-    /**
-     * Returns the config preprocessor closure.
-     *
-     * The point of the preprocessor is to generate eZ Publish siteaccess aware
-     * configuration for every key that is available under 'netgen_block_manager' key.
-     *
-     * With this, the following:
-     *
-     * array(
-     *     0 => array(
-     *         'netgen_block_manager' => array(
-     *             'param' => 'value'
-     *         )
-     *     )
-     * )
-     *
-     * becomes:
-     *
-     * array(
-     *     0 => array(
-     *         'netgen_block_manager' => array(
-     *             'param' => 'value',
-     *             'system' => array(
-     *                 'default' => array(
-     *                     'param' => 'value'
-     *                 )
-     *             )
-     *         )
-     *     )
-     * )
-     *
-     * If the original array already has a system key, it will be removed and appended
-     * to configs generated from the original parameters.
-     *
-     * @return \Closure
-     */
-    public function getPreProcessor()
-    {
-        return function ($configs, ContainerBuilder $container) {
-            $newConfigs = $configs;
-            $appendConfigs = array();
-            foreach ($configs as $index => $config) {
-                if (isset($config['system'])) {
-                    $appendConfigs[] = array('system' => $config['system']);
-                    unset($config['system']);
-                    $newConfigs[$index] = $config;
-                }
-
-                foreach ($config as $configName => $configValues) {
-                    if (!in_array($configName, $this->siteAccessAwareSettings)) {
-                        unset($config[$configName]);
-                    }
-                }
-
-                $newConfigs[] = array('system' => array('default' => $config));
-            }
-
-            return array_merge($newConfigs, $appendConfigs);
-        };
-    }
-
-    /**
-     * Returns the config postprocessor closure.
-     *
-     * The postprocessor calls eZ Publish mapConfigArray and mapSettings methods from siteaccess aware
-     * configuration processor as per documentation, to make the configuration correctly apply to all
-     * siteaccesses.
-     *
-     * @return \Closure
-     */
-    public function getPostProcessor()
-    {
-        return function ($config, ContainerBuilder $container) {
-            $config = $this->fixUpViewConfig($config);
-
-            $processor = new ConfigurationProcessor($container, 'netgen_block_manager');
-            foreach ($config as $key => $value) {
-                if ($key === 'system' || !in_array($key, $this->siteAccessAwareSettings)) {
-                    continue;
-                }
-
-                if (is_array($config[$key])) {
-                    $processor->mapConfigArray($key, $config, ContextualizerInterface::MERGE_FROM_SECOND_LEVEL);
-                } else {
-                    $processor->mapSetting($key, $config);
-                }
-            }
-
-            return $config;
-        };
-    }
-
-    /**
-     * Ugly hack to support semantic view config. The problem is, eZ semantic config
-     * supports only merging arrays up to second level, but in view config we have three.
-     *
-     * view:
-     *     block_view:
-     *         context:
-     *             config1: ...
-     *             config2: ...
-     *
-     * So instead of merging view.block_view.context, eZ merges view.block_view, thus loosing
-     * a good deal of config.
-     *
-     * This iterates over all default view configs for each view and context, and merges
-     * them in any found siteaccess or siteaccess group config, to make sure they're not lost
-     * after contextualizer does it's thing.
-     *
-     * @param array $config
-     *
-     * @return array
-     */
-    protected function fixUpViewConfig(array $config)
-    {
-        foreach ($config['system'] as $scope => $scopeConfig) {
-            if ($scope === 'default') {
-                continue;
-            }
-
-            foreach ($scopeConfig['view'] as $viewName => $viewConfig) {
-                if (isset($config['system']['default']['view'][$viewName])) {
-                    foreach ($config['system']['default']['view'][$viewName] as $context => $defaultRules) {
-                        if (!isset($config['system'][$scope]['view'][$viewName][$context])) {
-                            $config['system'][$scope]['view'][$viewName][$context] = array();
-                        }
-
-                        $config['system'][$scope]['view'][$viewName][$context] = array_merge(
-                            $defaultRules,
-                            $config['system'][$scope]['view'][$viewName][$context]
-                        );
-                    }
-                }
-            }
-        }
-
-        return $config;
     }
 }

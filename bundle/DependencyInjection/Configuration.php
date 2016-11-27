@@ -3,8 +3,7 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection;
 
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\Configuration as SiteAccessConfiguration;
-use Netgen\Bundle\BlockManagerBundle\DependencyInjection\Configuration as BlockManagerConfiguration;
-use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
 class Configuration extends SiteAccessConfiguration
 {
@@ -15,19 +14,6 @@ class Configuration extends SiteAccessConfiguration
      */
     public function getConfigTreeBuilder()
     {
-    }
-
-    /**
-     * Returns the config tree builder closure.
-     *
-     * @return \Closure
-     */
-    public function getConfigTreeBuilderClosure()
-    {
-        return function (ArrayNodeDefinition $rootNode, BlockManagerConfiguration $configuration) {
-            $systemNode = $this->generateScopeBaseNode($rootNode);
-
-            $systemNode->append($configuration->getViewNodeDefinition());
-        };
+        return new TreeBuilder();
     }
 }

@@ -2,10 +2,9 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\DependencyInjection\Configuration;
 
+use Netgen\Bundle\BlockManagerBundle\DependencyInjection\Configuration;
 use Netgen\Bundle\BlockManagerBundle\DependencyInjection\NetgenBlockManagerExtension;
-use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension;
-use Netgen\Bundle\BlockManagerBundle\DependencyInjection\Configuration as BlockManagerConfiguration;
-use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration;
+use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin;
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use Matthias\SymfonyConfigTest\Partial\PartialProcessor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -45,14 +44,14 @@ abstract class ConfigurationTest extends TestCase
     );
 
     /**
-     * @var \Closure
+     * @var \Netgen\Bundle\BlockManagerBundle\DependencyInjection\NetgenBlockManagerExtension
      */
-    protected $configPreProcessor;
+    protected $extension;
 
     /**
-     * @var \Closure
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin
      */
-    protected $configPostProcessor;
+    protected $plugin;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
@@ -69,11 +68,12 @@ abstract class ConfigurationTest extends TestCase
      */
     public function setUp()
     {
-        $extension = new NetgenEzPublishBlockManagerExtension();
-        $this->configPreProcessor = $extension->getPreProcessor();
-        $this->configPostProcessor = $extension->getPostProcessor();
-
         $this->containerBuilderMock = $this->createMock(ContainerBuilder::class);
+
+        $this->plugin = new ExtensionPlugin($this->containerBuilderMock);
+
+        $this->extension = new NetgenBlockManagerExtension();
+        $this->extension->addPlugin($this->plugin);
 
         $this->partialProcessor = new PartialProcessor();
     }
@@ -86,13 +86,7 @@ abstract class ConfigurationTest extends TestCase
      */
     protected function getConfiguration()
     {
-        $configuration = new Configuration();
-        $blockManagerExtension = new NetgenBlockManagerExtension();
-
-        return new BlockManagerConfiguration(
-            $blockManagerExtension->getAlias(),
-            array($configuration->getConfigTreeBuilderClosure())
-        );
+        return new Configuration($this->extension);
     }
 
     /**
@@ -117,18 +111,17 @@ abstract class ConfigurationTest extends TestCase
      */
     public function assertInjectedConfigurationEqual(array $expectedConfig, array $config)
     {
-        $configPreProcessor = $this->configPreProcessor;
-        $configPostProcessor = $this->configPostProcessor;
+        $containerBuilder = new ContainerBuilder();
 
         $this->assertEquals(
             $expectedConfig,
-            $configPostProcessor(
+            $this->plugin->postProcessConfiguration(
                 $this->partialProcessor->processConfiguration(
                     $this->getConfiguration(),
                     null,
-                    $configPreProcessor($config, $this->containerBuilderMock)
+                    $this->plugin->preProcessConfiguration($config, $containerBuilder)
                 ),
-                $this->containerBuilderMock
+                $containerBuilder
             )
         );
     }

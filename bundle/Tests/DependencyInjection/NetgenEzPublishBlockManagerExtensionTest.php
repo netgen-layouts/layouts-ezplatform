@@ -5,7 +5,6 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\DependencyInjection;
 use Netgen\Bundle\BlockManagerBundle\DependencyInjection\NetgenBlockManagerExtension;
 use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
 {
@@ -89,16 +88,15 @@ class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
      */
     public function testPrepend()
     {
-        $container = new ContainerBuilder();
-        $container->setParameter('kernel.bundles', array('NetgenBlockManagerBundle' => true));
-        $container->registerExtension(new NetgenBlockManagerExtension());
-        $extension = new NetgenEzPublishBlockManagerExtension();
+        $this->container->setParameter('kernel.bundles', array('NetgenBlockManagerBundle' => true));
+        $this->container->registerExtension(new NetgenBlockManagerExtension());
 
-        $extension->prepend($container);
+        $extension = $this->container->getExtension('netgen_ez_publish_block_manager');
+        $extension->prepend($this->container);
 
         $config = call_user_func_array(
             'array_merge_recursive',
-            $container->getExtensionConfig('netgen_block_manager')
+            $this->container->getExtensionConfig('netgen_block_manager')
         );
 
         $this->assertInternalType('array', $config);
