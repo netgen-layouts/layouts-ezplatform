@@ -4,7 +4,7 @@ namespace Netgen\BlockManager\Ez\Parameters\Form\Mapper;
 
 use Netgen\BlockManager\Parameters\Form\Mapper;
 use Netgen\BlockManager\Parameters\ParameterInterface;
-use Netgen\Bundle\ContentBrowserBundle\Form\Type\ContentBrowserType;
+use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 
 class LocationMapper extends Mapper
 {

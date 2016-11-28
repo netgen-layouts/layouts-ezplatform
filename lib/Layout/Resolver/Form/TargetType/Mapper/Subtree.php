@@ -4,7 +4,7 @@ namespace Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper;
 
 use Netgen\BlockManager\Layout\Resolver\Form\TargetType\Mapper;
 use Netgen\BlockManager\Layout\Resolver\TargetTypeInterface;
-use Netgen\Bundle\ContentBrowserBundle\Form\Type\ContentBrowserType;
+use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 
 class Subtree extends Mapper
 {

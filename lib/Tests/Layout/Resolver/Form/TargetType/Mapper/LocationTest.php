@@ -4,7 +4,7 @@ namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\Form\TargetType\Mapper;
 
 use Netgen\BlockManager\Layout\Resolver\TargetTypeInterface;
 use Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Location;
-use Netgen\Bundle\ContentBrowserBundle\Form\Type\ContentBrowserType;
+use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 use PHPUnit\Framework\TestCase;
 
 class LocationTest extends TestCase

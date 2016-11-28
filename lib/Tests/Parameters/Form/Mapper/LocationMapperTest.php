@@ -5,7 +5,7 @@ namespace Netgen\BlockManager\Ez\Tests\Parameters\Form\Mapper;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType as ParameterType;
 use Netgen\BlockManager\Ez\Parameters\Form\Mapper\LocationMapper;
 use Netgen\BlockManager\Parameters\Parameter;
-use Netgen\Bundle\ContentBrowserBundle\Form\Type\ContentBrowserType;
+use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 use PHPUnit\Framework\TestCase;
 
 class LocationMapperTest extends TestCase

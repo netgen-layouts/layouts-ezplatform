@@ -5,7 +5,7 @@ namespace Netgen\BlockManager\Ez\Tests\Parameters\Form\Mapper;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType as ParameterType;
 use Netgen\BlockManager\Ez\Parameters\Form\Mapper\TagsMapper;
 use Netgen\BlockManager\Parameters\Parameter;
-use Netgen\Bundle\ContentBrowserBundle\Form\Type\ContentBrowserMultipleType;
+use Netgen\ContentBrowser\Form\Type\ContentBrowserMultipleType;
 use PHPUnit\Framework\TestCase;
 
 class TagsMapperTest extends TestCase
