@@ -1,26 +1,20 @@
-parameters:
-    netgen_block_manager.validator.ezlocation.class: Netgen\BlockManager\Ez\Validator\LocationValidator
-    netgen_block_manager.validator.ezcontent.class: Netgen\BlockManager\Ez\Validator\ContentValidator
-    netgen_block_manager.validator.ez_site_access.class: Netgen\BlockManager\Ez\Validator\SiteAccessValidator
-    netgen_block_manager.validator.ez_content_type.class: Netgen\BlockManager\Ez\Validator\ContentTypeValidator
-
 services:
     netgen_block_manager.validator.ezlocation:
-        class: "%netgen_block_manager.validator.ezlocation.class%"
+        class: Netgen\BlockManager\Ez\Validator\LocationValidator
         arguments:
             - "@ezpublish.api.repository"
         tags:
             - { name: validator.constraint_validator, alias: ngbm_ezlocation }
 
     netgen_block_manager.validator.ezcontent:
-        class: "%netgen_block_manager.validator.ezcontent.class%"
+        class: Netgen\BlockManager\Ez\Validator\ContentValidator
         arguments:
             - "@ezpublish.api.repository"
         tags:
             - { name: validator.constraint_validator, alias: ngbm_ezcontent }
 
     netgen_block_manager.validator.ez_site_access:
-        class: "%netgen_block_manager.validator.ez_site_access.class%"
+        class: Netgen\BlockManager\Ez\Validator\SiteAccessValidator
         arguments:
             - "%ezpublish.siteaccess.list%"
         tags:
@@ -28,7 +22,7 @@ services:
 
 
     netgen_block_manager.validator.ez_content_type:
-        class: "%netgen_block_manager.validator.ez_content_type.class%"
+        class: Netgen\BlockManager\Ez\Validator\ContentTypeValidator
         arguments:
             - "@ezpublish.api.repository"
         tags:

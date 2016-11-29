@@ -1,17 +1,13 @@
-parameters:
-    netgen_block_manager.layout.resolver.condition_type.ez_site_access.class: Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccess
-    netgen_block_manager.layout.resolver.condition_type.ez_content_type.class: Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType
-
 services:
     netgen_block_manager.layout.resolver.condition_type.ez_site_access:
-        class: "%netgen_block_manager.layout.resolver.condition_type.ez_site_access.class%"
+        class: Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccess
         calls:
             - [setRequestStack, ["@request_stack"]]
         tags:
             - { name: netgen_block_manager.layout.resolver.condition_type, priority: 21 }
 
     netgen_block_manager.layout.resolver.condition_type.ez_content_type:
-        class: "%netgen_block_manager.layout.resolver.condition_type.ez_content_type.class%"
+        class: Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType
         arguments:
             - "@ezpublish.api.service.content"
             - "@ezpublish.api.service.content_type"

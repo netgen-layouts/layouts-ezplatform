@@ -1,21 +1,13 @@
-parameters:
-    netgen_block_manager.item.value_converter.ezcontent.class: Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter
-    netgen_block_manager.item.value_converter.ezlocation.class: Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter
-    netgen_block_manager.item.value_loader.ezcontent.class: Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader
-    netgen_block_manager.item.value_loader.ezlocation.class: Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader
-    netgen_block_manager.item.value_url_builder.ezcontent.class: Netgen\BlockManager\Ez\Item\ValueUrlBuilder\ContentValueUrlBuilder
-    netgen_block_manager.item.value_url_builder.ezlocation.class: Netgen\BlockManager\Ez\Item\ValueUrlBuilder\LocationValueUrlBuilder
-
 services:
     netgen_block_manager.item.value_converter.ezlocation:
-        class: "%netgen_block_manager.item.value_converter.ezlocation.class%"
+        class: Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter
         arguments:
             - "@ezpublish.translation_helper"
         tags:
             - { name: netgen_block_manager.item.value_converter }
 
     netgen_block_manager.item.value_converter.ezcontent:
-        class: "%netgen_block_manager.item.value_converter.ezcontent.class%"
+        class: Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter
         arguments:
             - "@ezpublish.api.service.location"
             - "@ezpublish.translation_helper"
@@ -23,28 +15,28 @@ services:
             - { name: netgen_block_manager.item.value_converter }
 
     netgen_block_manager.item.value_loader.ezlocation:
-        class: "%netgen_block_manager.item.value_loader.ezlocation.class%"
+        class: Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader
         arguments:
             - "@ezpublish.api.service.location"
         tags:
             - { name: netgen_block_manager.item.value_loader, value_type: ezlocation }
 
     netgen_block_manager.item.value_loader.ezcontent:
-        class: "%netgen_block_manager.item.value_loader.ezcontent.class%"
+        class: Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader
         arguments:
             - "@ezpublish.api.service.content"
         tags:
             - { name: netgen_block_manager.item.value_loader, value_type: ezcontent }
 
     netgen_block_manager.item.value_url_builder.ezlocation:
-        class: "%netgen_block_manager.item.value_url_builder.ezlocation.class%"
+        class: Netgen\BlockManager\Ez\Item\ValueUrlBuilder\LocationValueUrlBuilder
         arguments:
             - "@router"
         tags:
             - { name: netgen_block_manager.item.value_url_builder, value_type: ezlocation }
 
     netgen_block_manager.item.value_url_builder.ezcontent:
-        class: "%netgen_block_manager.item.value_url_builder.ezcontent.class%"
+        class: Netgen\BlockManager\Ez\Item\ValueUrlBuilder\ContentValueUrlBuilder
         arguments:
             - "@router"
         tags:

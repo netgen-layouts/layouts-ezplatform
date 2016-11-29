@@ -1,27 +1,20 @@
-parameters:
-    netgen_block_manager.parameters.parameter_type.ezlocation.class: Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType
-    netgen_block_manager.parameters.parameter_type.ez_content_type.class: Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType
-
-    netgen_block_manager.parameters.form.mapper.ezlocation.class: Netgen\BlockManager\Ez\Parameters\Form\Mapper\LocationMapper
-    netgen_block_manager.parameters.form.mapper.ez_content_type.class: Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentTypeMapper
-
 services:
     netgen_block_manager.parameters.parameter_type.ezlocation:
-        class: "%netgen_block_manager.parameters.parameter_type.ezlocation.class%"
+        class: Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType
         tags:
             - { name: netgen_block_manager.parameters.parameter_type }
 
     netgen_block_manager.parameters.parameter_type.ez_content_type:
-        class: "%netgen_block_manager.parameters.parameter_type.ez_content_type.class%"
+        class: Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType
         tags:
             - { name: netgen_block_manager.parameters.parameter_type }
 
     netgen_block_manager.parameters.form.mapper.ezlocation:
-        class: "%netgen_block_manager.parameters.form.mapper.ezlocation.class%"
+        class: Netgen\BlockManager\Ez\Parameters\Form\Mapper\LocationMapper
         tags:
             - { name: netgen_block_manager.parameters.form.mapper, type: ezlocation }
 
     netgen_block_manager.parameters.form.mapper.ez_content_type:
-        class: "%netgen_block_manager.parameters.form.mapper.ez_content_type.class%"
+        class: Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentTypeMapper
         tags:
             - { name: netgen_block_manager.parameters.form.mapper, type: ez_content_type }

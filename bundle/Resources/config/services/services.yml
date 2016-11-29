@@ -1,18 +1,14 @@
-parameters:
-    netgen_block_manager.ezpublish.content_provider.request.class: Netgen\BlockManager\Ez\ContentProvider\RequestContentProvider
-    netgen_block_manager.ezpublish.content_provider.ez5_request.class: Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentProvider
-
 services:
     netgen_block_manager.ezpublish.content_provider:
         alias: netgen_block_manager.ezpublish.content_provider.request
 
     netgen_block_manager.ezpublish.content_provider.request:
-        class: "%netgen_block_manager.ezpublish.content_provider.request.class%"
+        class: Netgen\BlockManager\Ez\ContentProvider\RequestContentProvider
         calls:
             - [setRequestStack, ["@request_stack"]]
 
     netgen_block_manager.ezpublish.content_provider.ez5_request:
-        class: "%netgen_block_manager.ezpublish.content_provider.ez5_request.class%"
+        class: Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentProvider
         arguments:
             - "@ezpublish.api.service.content"
             - "@ezpublish.api.service.location"

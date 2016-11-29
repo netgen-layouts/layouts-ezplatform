@@ -1,38 +1,30 @@
-parameters:
-    netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezlocation.class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Location
-    netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezcontent.class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Content
-    netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezchildren.class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Children
-    netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezsubtree.class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Subtree
-    netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ez_semantic_path_info.class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\SemanticPathInfo
-    netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ez_semantic_path_info_prefix.class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\SemanticPathInfoPrefix
-
 services:
     netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezlocation:
-        class: "%netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezlocation.class%"
+        class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Location
         tags:
             - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, target_type: ezlocation }
 
     netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezcontent:
-        class: "%netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezcontent.class%"
+        class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Content
         tags:
             - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, target_type: ezcontent }
 
     netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezchildren:
-        class: "%netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezchildren.class%"
+        class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Children
         tags:
             - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, target_type: ezchildren }
 
     netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezsubtree:
-        class: "%netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezsubtree.class%"
+        class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Subtree
         tags:
             - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, target_type: ezsubtree }
 
     netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ez_semantic_path_info:
-        class: "%netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ez_semantic_path_info.class%"
+        class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\SemanticPathInfo
         tags:
             - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, target_type: ez_semantic_path_info }
 
     netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ez_semantic_path_info_prefix:
-        class: "%netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ez_semantic_path_info_prefix.class%"
+        class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\SemanticPathInfoPrefix
         tags:
             - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, target_type: ez_semantic_path_info_prefix }

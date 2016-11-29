@@ -1,9 +1,6 @@
-parameters:
-    netgen_block_manager.configuration.config_resolver.class: Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration
-
 services:
     netgen_block_manager.configuration.config_resolver:
-        class: "%netgen_block_manager.configuration.config_resolver.class%"
+        class: Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration
         arguments:
             - "@netgen_block_manager.configuration.container"
         calls:
