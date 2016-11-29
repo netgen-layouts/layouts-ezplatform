@@ -20,7 +20,7 @@ abstract class ConfigurationTest extends TestCase
      *
      * @var array
      */
-    protected $defaultConfig = array(
+    const DEFAULT_CONFIG = array(
         'block_definitions' => array(),
         'block_types' => array(),
         'layout_types' => array(),
@@ -39,7 +39,7 @@ abstract class ConfigurationTest extends TestCase
      *
      * @var array
      */
-    protected $defaultSystemConfig = array(
+    const DEFAULT_SYSTEM_CONFIG = array(
         'view' => array(),
     );
 
@@ -98,8 +98,8 @@ abstract class ConfigurationTest extends TestCase
      */
     protected function getExtendedExpectedConfig(array $expectedConfig)
     {
-        return $expectedConfig + $this->defaultConfig +
-            array('system' => array('default' => $expectedConfig + $this->defaultSystemConfig));
+        return $expectedConfig + self::DEFAULT_CONFIG +
+            array('system' => array('default' => $expectedConfig + self::DEFAULT_SYSTEM_CONFIG));
     }
 
     /**
