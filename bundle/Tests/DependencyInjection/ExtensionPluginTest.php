@@ -31,9 +31,8 @@ class ExtensionPluginTest extends AbstractExtensionTestCase
 
         $extension->prepend($this->container);
 
-        $config = call_user_func_array(
-            'array_merge',
-            $this->container->getExtensionConfig('netgen_block_manager')
+        $config = array_merge(
+            ...$this->container->getExtensionConfig('netgen_block_manager')
         );
 
         $this->assertInternalType('array', $config);
