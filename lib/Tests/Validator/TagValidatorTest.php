@@ -7,6 +7,7 @@ use Netgen\TagsBundle\Core\Repository\TagsService;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Netgen\BlockManager\Ez\Validator\TagValidator;
 use Netgen\BlockManager\Ez\Validator\Constraint\Tag;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class TagValidatorTest extends ValidatorTestCase
 {
@@ -64,6 +65,25 @@ class TagValidatorTest extends ValidatorTestCase
         }
 
         $this->assertValid($isValid, $tagId);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::validate
+     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     */
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint()
+    {
+        $this->constraint = new NotBlank();
+        $this->assertValid(true, 'value');
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::validate
+     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     */
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue()
+    {
+        $this->assertValid(true, array());
     }
 
     public function validateDataProvider()

@@ -4,8 +4,10 @@ namespace Netgen\BlockManager\Ez\Validator;
 
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
+use Netgen\BlockManager\Ez\Validator\Constraint\Location;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 class LocationValidator extends ConstraintValidator
 {
@@ -34,6 +36,14 @@ class LocationValidator extends ConstraintValidator
     {
         if ($value === null) {
             return;
+        }
+
+        if (!$constraint instanceof Location) {
+            throw new UnexpectedTypeException($constraint, Location::class);
+        }
+
+        if (!is_scalar($value)) {
+            throw new UnexpectedTypeException($value, 'scalar');
         }
 
         try {

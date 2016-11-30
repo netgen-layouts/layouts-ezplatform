@@ -7,7 +7,8 @@ use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Netgen\BlockManager\Ez\Validator\ContentTypeValidator;
-use Netgen\BlockManager\Ez\Validator\Constraint\Content;
+use Netgen\BlockManager\Ez\Validator\Constraint\ContentType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ContentTypeValidatorTest extends ValidatorTestCase
 {
@@ -25,7 +26,7 @@ class ContentTypeValidatorTest extends ValidatorTestCase
     {
         parent::setUp();
 
-        $this->constraint = new Content();
+        $this->constraint = new ContentType();
     }
 
     /**
@@ -81,12 +82,30 @@ class ContentTypeValidatorTest extends ValidatorTestCase
         $this->assertValid($isValid, $identifier);
     }
 
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::validate
+     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     */
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint()
+    {
+        $this->constraint = new NotBlank();
+        $this->assertValid(true, 'value');
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::validate
+     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     */
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue()
+    {
+        $this->assertValid(true, 42);
+    }
+
     public function validateDataProvider()
     {
         return array(
             array('article', true),
             array('video', false),
-            array(5, false),
             array(null, true),
         );
     }

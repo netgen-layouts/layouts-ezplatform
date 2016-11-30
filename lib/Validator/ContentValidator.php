@@ -4,8 +4,10 @@ namespace Netgen\BlockManager\Ez\Validator;
 
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
+use Netgen\BlockManager\Ez\Validator\Constraint\Content;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 class ContentValidator extends ConstraintValidator
 {
@@ -34,6 +36,14 @@ class ContentValidator extends ConstraintValidator
     {
         if ($value === null) {
             return;
+        }
+
+        if (!$constraint instanceof Content) {
+            throw new UnexpectedTypeException($constraint, Content::class);
+        }
+
+        if (!is_scalar($value)) {
+            throw new UnexpectedTypeException($value, 'scalar');
         }
 
         try {

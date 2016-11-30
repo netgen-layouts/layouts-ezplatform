@@ -8,6 +8,7 @@ use eZ\Publish\Core\Repository\Repository;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Netgen\BlockManager\Ez\Validator\ContentValidator;
 use Netgen\BlockManager\Ez\Validator\Constraint\Content;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ContentValidatorTest extends ValidatorTestCase
 {
@@ -79,6 +80,25 @@ class ContentValidatorTest extends ValidatorTestCase
         }
 
         $this->assertValid($isValid, $contentId);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::validate
+     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     */
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint()
+    {
+        $this->constraint = new NotBlank();
+        $this->assertValid(true, 'value');
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::validate
+     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     */
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue()
+    {
+        $this->assertValid(true, array());
     }
 
     public function validateDataProvider()

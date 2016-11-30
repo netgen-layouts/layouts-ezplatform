@@ -5,6 +5,7 @@ namespace Netgen\BlockManager\Ez\Tests\Validator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Netgen\BlockManager\Ez\Validator\SiteAccessValidator;
 use Netgen\BlockManager\Ez\Validator\Constraint\SiteAccess;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class SiteAccessValidatorTest extends ValidatorTestCase
 {
@@ -36,12 +37,30 @@ class SiteAccessValidatorTest extends ValidatorTestCase
         $this->assertValid($isValid, $identifier);
     }
 
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\SiteAccessValidator::validate
+     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     */
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint()
+    {
+        $this->constraint = new NotBlank();
+        $this->assertValid(true, 'value');
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\SiteAccessValidator::validate
+     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     */
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue()
+    {
+        $this->assertValid(true, 42);
+    }
+
     public function validateDataProvider()
     {
         return array(
             array('eng', true),
             array('fre', false),
-            array(5, false),
             array(null, true),
         );
     }

@@ -3,9 +3,11 @@
 namespace Netgen\BlockManager\Ez\Validator;
 
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
+use Netgen\BlockManager\Ez\Validator\Constraint\Tag;
 use Netgen\TagsBundle\API\Repository\TagsService;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 class TagValidator extends ConstraintValidator
 {
@@ -34,6 +36,14 @@ class TagValidator extends ConstraintValidator
     {
         if ($value === null) {
             return;
+        }
+
+        if (!$constraint instanceof Tag) {
+            throw new UnexpectedTypeException($constraint, Tag::class);
+        }
+
+        if (!is_scalar($value)) {
+            throw new UnexpectedTypeException($value, 'scalar');
         }
 
         try {
