@@ -26,10 +26,13 @@
         "psr-4": {
             "Netgen\\BlockManager\\Ez\\": "lib/",
             "Netgen\\Bundle\\EzPublishBlockManagerBundle\\": "bundle/"
-        },
-        "exclude-from-classmap": [
-            "**/Tests/"
-        ]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Netgen\\BlockManager\\Ez\\Tests\\": "tests/lib/",
+            "Netgen\\Bundle\\EzPublishBlockManagerBundle\\Tests\\": "tests/bundle/"
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
