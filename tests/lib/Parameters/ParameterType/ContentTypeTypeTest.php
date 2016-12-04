@@ -155,7 +155,7 @@ class ContentTypeTypeTest extends TestCase
         $options = array();
         if ($value !== null) {
             $options = array('multiple' => is_array($value));
-            foreach ((array)$value as $index => $identifier) {
+            foreach ((array) $value as $index => $identifier) {
                 $this->contentTypeServiceMock
                     ->expects($this->at($index))
                     ->method('loadContentTypeByIdentifier')

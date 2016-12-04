@@ -69,7 +69,7 @@ class Ez5RequestContentProvider implements ContentProviderInterface
         }
 
         try {
-            return $this->contentService->loadContent((int)$contentId);
+            return $this->contentService->loadContent((int) $contentId);
         } catch (NotFoundException $e) {
             // Do nothing
         }
@@ -103,7 +103,7 @@ class Ez5RequestContentProvider implements ContentProviderInterface
         }
 
         try {
-            return $this->locationService->loadLocation((int)$locationId);
+            return $this->locationService->loadLocation((int) $locationId);
         } catch (NotFoundException $e) {
             // Do nothing
         }

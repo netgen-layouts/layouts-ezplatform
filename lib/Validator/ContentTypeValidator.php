@@ -53,7 +53,7 @@ class ContentTypeValidator extends ConstraintValidator
                 }
             );
         } catch (NotFoundException $e) {
-            /** @var \Netgen\BlockManager\Ez\Validator\Constraint\ContentType $constraint */
+            /* @var \Netgen\BlockManager\Ez\Validator\Constraint\ContentType $constraint */
             $this->context->buildViolation($constraint->message)
                 ->setParameter('%identifier%', $value)
                 ->addViolation();

@@ -53,7 +53,7 @@ class TagValidator extends ConstraintValidator
                 }
             );
         } catch (NotFoundException $e) {
-            /** @var \Netgen\BlockManager\Ez\Validator\Constraint\Tag $constraint */
+            /* @var \Netgen\BlockManager\Ez\Validator\Constraint\Tag $constraint */
             $this->context->buildViolation($constraint->message)
                 ->setParameter('%tagId%', $value)
                 ->addViolation();
