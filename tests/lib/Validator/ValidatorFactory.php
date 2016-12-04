@@ -3,8 +3,8 @@
 namespace Netgen\BlockManager\Ez\Tests\Validator;
 
 use Netgen\BlockManager\Ez\Validator\SiteAccessValidator;
-use Symfony\Component\Validator\ConstraintValidatorFactory;
 use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\ConstraintValidatorFactory;
 
 class ValidatorFactory extends ConstraintValidatorFactory
 {

@@ -2,9 +2,9 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Validator;
 
-use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
-use Netgen\BlockManager\Ez\Validator\SiteAccessValidator;
 use Netgen\BlockManager\Ez\Validator\Constraint\SiteAccess;
+use Netgen\BlockManager\Ez\Validator\SiteAccessValidator;
+use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class SiteAccessValidatorTest extends ValidatorTestCase

@@ -2,18 +2,18 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\ConditionType;
 
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use eZ\Publish\Core\Repository\Repository;
-use Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType;
-use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Validation;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
+use eZ\Publish\Core\Base\Exceptions\NotFoundException;
+use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentType as EzContentType;
+use Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType;
+use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Validator\Validation;
 
 class ContentTypeTest extends TestCase
 {
@@ -105,7 +105,7 @@ class ContentTypeTest extends TestCase
                     ->will(
                         $this->returnCallback(
                             function () use ($valueItem) {
-                                if (!is_string($valueItem) || !in_array($valueItem, array('article', 'news'))) {
+                                if (!is_string($valueItem) || !in_array($valueItem, array('article', 'news'), true)) {
                                     throw new NotFoundException('content type', $valueItem);
                                 }
                             }
@@ -119,7 +119,7 @@ class ContentTypeTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $this->conditionType->getConstraints());
-        $this->assertEquals($isValid, $errors->count() == 0);
+        $this->assertEquals($isValid, $errors->count() === 0);
     }
 
     /**

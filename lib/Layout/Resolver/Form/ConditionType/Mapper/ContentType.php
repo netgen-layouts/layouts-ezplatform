@@ -2,9 +2,9 @@
 
 namespace Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper;
 
+use Netgen\BlockManager\Ez\Form\ContentTypeType;
 use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
 use Netgen\BlockManager\Layout\Resolver\Form\ConditionType\Mapper;
-use Netgen\BlockManager\Ez\Form\ContentTypeType;
 
 class ContentType extends Mapper
 {

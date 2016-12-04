@@ -2,13 +2,13 @@
 
 namespace Netgen\BlockManager\Ez\Layout\Resolver\ConditionType;
 
+use eZ\Publish\API\Repository\ContentService;
+use eZ\Publish\API\Repository\ContentTypeService;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
-use Symfony\Component\Validator\Constraints;
 use Symfony\Component\HttpFoundation\Request;
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\API\Repository\ContentService;
+use Symfony\Component\Validator\Constraints;
 
 class ContentType implements ConditionTypeInterface
 {
@@ -97,6 +97,6 @@ class ContentType implements ConditionTypeInterface
             $contentInfo->contentTypeId
         );
 
-        return in_array($contentType->identifier, $value);
+        return in_array($contentType->identifier, $value, true);
     }
 }

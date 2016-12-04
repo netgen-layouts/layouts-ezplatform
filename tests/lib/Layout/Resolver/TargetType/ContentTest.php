@@ -3,10 +3,10 @@
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\TargetType;
 
 use eZ\Publish\API\Repository\ContentService;
+use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\Content\Content as EzContent;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
 use Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content;
@@ -97,7 +97,7 @@ class ContentTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $this->targetType->getConstraints());
-        $this->assertEquals($isValid, $errors->count() == 0);
+        $this->assertEquals($isValid, $errors->count() === 0);
     }
 
     /**

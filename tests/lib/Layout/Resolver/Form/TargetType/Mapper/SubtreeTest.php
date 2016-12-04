@@ -2,8 +2,8 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\Form\TargetType\Mapper;
 
-use Netgen\BlockManager\Layout\Resolver\TargetTypeInterface;
 use Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Subtree;
+use Netgen\BlockManager\Layout\Resolver\TargetTypeInterface;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 use PHPUnit\Framework\TestCase;
 

@@ -2,23 +2,12 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\DependencyInjection;
 
+use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Netgen\Bundle\BlockManagerBundle\DependencyInjection\NetgenBlockManagerExtension;
 use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension;
-use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 
 class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
 {
-    /**
-     * Return an array of container extensions that need to be registered for
-     * each test (usually just the container extension you are testing).
-     *
-     * @return \Symfony\Component\DependencyInjection\Extension\ExtensionInterface[]
-     */
-    protected function getContainerExtensions()
-    {
-        return array(new NetgenEzPublishBlockManagerExtension());
-    }
-
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::load
      */
@@ -128,5 +117,16 @@ class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
         $this->assertArrayHasKey('rule_target_view', $config['view']);
         $this->assertArrayHasKey('admin', $config['view']['rule_target_view']);
         $this->assertArrayHasKey('ezchildren', $config['view']['rule_target_view']['admin']);
+    }
+
+    /**
+     * Return an array of container extensions that need to be registered for
+     * each test (usually just the container extension you are testing).
+     *
+     * @return \Symfony\Component\DependencyInjection\Extension\ExtensionInterface[]
+     */
+    protected function getContainerExtensions()
+    {
+        return array(new NetgenEzPublishBlockManagerExtension());
     }
 }

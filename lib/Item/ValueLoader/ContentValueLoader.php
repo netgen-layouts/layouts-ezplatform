@@ -2,10 +2,10 @@
 
 namespace Netgen\BlockManager\Ez\Item\ValueLoader;
 
+use Exception;
+use eZ\Publish\API\Repository\ContentService;
 use Netgen\BlockManager\Exception\InvalidItemException;
 use Netgen\BlockManager\Item\ValueLoaderInterface;
-use eZ\Publish\API\Repository\ContentService;
-use Exception;
 
 class ContentValueLoader implements ValueLoaderInterface
 {

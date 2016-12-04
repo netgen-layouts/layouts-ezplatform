@@ -2,11 +2,11 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
 
+use eZ\Publish\Core\Base\Exceptions\NotFoundException;
+use Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType;
 use Netgen\BlockManager\Ez\Tests\Validator\TagsServiceValidatorFactory;
 use Netgen\BlockManager\Tests\Parameters\Stubs\Parameter;
 use Netgen\TagsBundle\Core\Repository\TagsService;
-use Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
 
@@ -216,7 +216,7 @@ class TagsTypeTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($values, $type->getConstraints($parameter, $values));
-        $this->assertEquals($isValid, $errors->count() == 0);
+        $this->assertEquals($isValid, $errors->count() === 0);
     }
 
     /**

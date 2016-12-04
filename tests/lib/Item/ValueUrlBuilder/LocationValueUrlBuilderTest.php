@@ -4,8 +4,8 @@ namespace Netgen\BlockManager\Ez\Tests\Item\ValueUrlBuilder;
 
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\BlockManager\Ez\Item\ValueUrlBuilder\LocationValueUrlBuilder;
-use Symfony\Component\Routing\RouterInterface;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Routing\RouterInterface;
 
 class LocationValueUrlBuilderTest extends TestCase
 {

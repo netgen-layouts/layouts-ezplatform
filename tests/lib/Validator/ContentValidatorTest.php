@@ -5,9 +5,9 @@ namespace Netgen\BlockManager\Ez\Tests\Validator;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
-use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
-use Netgen\BlockManager\Ez\Validator\ContentValidator;
 use Netgen\BlockManager\Ez\Validator\Constraint\Content;
+use Netgen\BlockManager\Ez\Validator\ContentValidator;
+use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ContentValidatorTest extends ValidatorTestCase

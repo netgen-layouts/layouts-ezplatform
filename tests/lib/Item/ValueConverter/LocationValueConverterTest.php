@@ -3,8 +3,8 @@
 namespace Netgen\BlockManager\Ez\Tests\Item\ValueConverter;
 
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\Helper\TranslationHelper;
+use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter;
 use PHPUnit\Framework\TestCase;
 

@@ -2,8 +2,8 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Validator;
 
-use Netgen\TagsBundle\API\Repository\TagsService;
 use Netgen\BlockManager\Ez\Validator\TagValidator;
+use Netgen\TagsBundle\API\Repository\TagsService;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorFactory;
 

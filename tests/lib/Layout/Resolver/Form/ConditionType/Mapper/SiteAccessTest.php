@@ -2,10 +2,10 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\Form\ConditionType\Mapper;
 
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
 use Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess;
+use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class SiteAccessTest extends TestCase
 {

@@ -2,8 +2,8 @@
 
 namespace Netgen\BlockManager\Ez\Item\ValueUrlBuilder;
 
-use Netgen\BlockManager\Item\ValueUrlBuilderInterface;
 use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
+use Netgen\BlockManager\Item\ValueUrlBuilderInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 class ContentValueUrlBuilder implements ValueUrlBuilderInterface

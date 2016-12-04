@@ -2,11 +2,11 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension;
 
+use Exception;
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\Core\Helper\TranslationHelper;
-use Twig_SimpleFunction;
 use Twig_Extension;
-use Exception;
+use Twig_SimpleFunction;
 
 class EzPublishExtension extends Twig_Extension
 {

@@ -2,10 +2,10 @@
 
 namespace Netgen\BlockManager\Ez\Item\ValueLoader;
 
+use Exception;
+use eZ\Publish\API\Repository\LocationService;
 use Netgen\BlockManager\Exception\InvalidItemException;
 use Netgen\BlockManager\Item\ValueLoaderInterface;
-use eZ\Publish\API\Repository\LocationService;
-use Exception;
 
 class LocationValueLoader implements ValueLoaderInterface
 {

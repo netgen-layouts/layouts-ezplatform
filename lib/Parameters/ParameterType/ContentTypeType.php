@@ -2,11 +2,11 @@
 
 namespace Netgen\BlockManager\Ez\Parameters\ParameterType;
 
+use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Parameters\ParameterInterface;
 use Netgen\BlockManager\Parameters\ParameterType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
-use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 
 class ContentTypeType extends ParameterType
 {

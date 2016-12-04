@@ -2,9 +2,9 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Configuration;
 
+use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use Netgen\BlockManager\Configuration\ConfigurationInterface;
 use Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration;
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use PHPUnit\Framework\TestCase;
 
 class ConfigResolverConfigurationTest extends TestCase

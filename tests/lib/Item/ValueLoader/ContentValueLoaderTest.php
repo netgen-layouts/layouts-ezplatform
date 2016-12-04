@@ -4,8 +4,8 @@ namespace Netgen\BlockManager\Ez\Tests\Item\ValueLoader;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader;
 use Netgen\BlockManager\Exception\InvalidItemException;
+use Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader;
 use PHPUnit\Framework\TestCase;
 
 class ContentValueLoaderTest extends TestCase

@@ -3,10 +3,10 @@
 namespace Netgen\BlockManager\Ez\Tests\Validator;
 
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use Netgen\TagsBundle\Core\Repository\TagsService;
-use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
-use Netgen\BlockManager\Ez\Validator\TagValidator;
 use Netgen\BlockManager\Ez\Validator\Constraint\Tag;
+use Netgen\BlockManager\Ez\Validator\TagValidator;
+use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
+use Netgen\TagsBundle\Core\Repository\TagsService;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class TagValidatorTest extends ValidatorTestCase

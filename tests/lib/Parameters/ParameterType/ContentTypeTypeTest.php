@@ -3,13 +3,13 @@
 namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
 
 use eZ\Publish\API\Repository\ContentTypeService;
-use Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType;
-use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
+use Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType;
+use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\BlockManager\Tests\Parameters\Stubs\Parameter;
-use Symfony\Component\Validator\Validation;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Validator\Validation;
 
 class ContentTypeTypeTest extends TestCase
 {
@@ -163,7 +163,7 @@ class ContentTypeTypeTest extends TestCase
                     ->will(
                         $this->returnCallback(
                             function () use ($identifier) {
-                                if (!is_string($identifier) || !in_array($identifier, array('article', 'news'))) {
+                                if (!is_string($identifier) || !in_array($identifier, array('article', 'news'), true)) {
                                     throw new NotFoundException('content type', $identifier);
                                 }
                             }
@@ -179,7 +179,7 @@ class ContentTypeTypeTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $type->getConstraints($parameter, $value));
-        $this->assertEquals($isValid, $errors->count() == 0);
+        $this->assertEquals($isValid, $errors->count() === 0);
     }
 
     /**

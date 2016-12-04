@@ -2,9 +2,9 @@
 
 namespace Netgen\BlockManager\Ez\Parameters\ParameterType;
 
+use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Parameters\ParameterInterface;
 use Netgen\BlockManager\Parameters\ParameterType;
-use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Symfony\Component\Validator\Constraints;
 
 class LocationType extends ParameterType
@@ -17,6 +17,18 @@ class LocationType extends ParameterType
     public function getIdentifier()
     {
         return 'ezlocation';
+    }
+
+    /**
+     * Returns if the parameter value is empty.
+     *
+     * @param mixed $value
+     *
+     * @return bool
+     */
+    public function isValueEmpty($value)
+    {
+        return $value === null;
     }
 
     /**
@@ -34,17 +46,5 @@ class LocationType extends ParameterType
             new Constraints\GreaterThan(array('value' => 0)),
             new EzConstraints\Location(),
         );
-    }
-
-    /**
-     * Returns if the parameter value is empty.
-     *
-     * @param mixed $value
-     *
-     * @return bool
-     */
-    public function isValueEmpty($value)
-    {
-        return $value === null;
     }
 }

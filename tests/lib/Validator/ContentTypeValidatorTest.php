@@ -5,9 +5,9 @@ namespace Netgen\BlockManager\Ez\Tests\Validator;
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
-use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
-use Netgen\BlockManager\Ez\Validator\ContentTypeValidator;
 use Netgen\BlockManager\Ez\Validator\Constraint\ContentType;
+use Netgen\BlockManager\Ez\Validator\ContentTypeValidator;
+use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ContentTypeValidatorTest extends ValidatorTestCase
@@ -71,7 +71,7 @@ class ContentTypeValidatorTest extends ValidatorTestCase
                 ->will(
                     $this->returnCallback(
                         function () use ($identifier) {
-                            if (!is_string($identifier) || !in_array($identifier, array('article', 'news'))) {
+                            if (!is_string($identifier) || !in_array($identifier, array('article', 'news'), true)) {
                                 throw new NotFoundException('content type', $identifier);
                             }
                         }

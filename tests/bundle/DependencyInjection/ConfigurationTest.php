@@ -3,8 +3,8 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\DependencyInjection;
 
 use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration;
-use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
 class ConfigurationTest extends TestCase
 {

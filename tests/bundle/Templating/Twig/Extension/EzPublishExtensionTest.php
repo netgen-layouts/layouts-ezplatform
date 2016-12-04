@@ -2,20 +2,20 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Templating\Twig;
 
-use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use eZ\Publish\Core\Repository\Values\Content\Location;
-use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
-use eZ\Publish\Core\Repository\Values\Content\Content;
+use Exception;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\Core\Repository\Repository;
+use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Helper\TranslationHelper;
-use Twig_SimpleFunction;
+use eZ\Publish\Core\Repository\Repository;
+use eZ\Publish\Core\Repository\Values\Content\Content;
+use eZ\Publish\Core\Repository\Values\Content\Location;
+use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
+use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension;
 use PHPUnit\Framework\TestCase;
-use Exception;
+use Twig_SimpleFunction;
 
 class EzPublishExtensionTest extends TestCase
 {
@@ -58,6 +58,114 @@ class EzPublishExtensionTest extends TestCase
             $this->repositoryMock,
             $this->translationHelperMock
         );
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::__construct
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getName
+     */
+    public function testGetName()
+    {
+        $this->assertEquals(get_class($this->extension), $this->extension->getName());
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getFunctions
+     */
+    public function testGetFunctions()
+    {
+        $this->assertNotEmpty($this->extension->getFunctions());
+
+        foreach ($this->extension->getFunctions() as $function) {
+            $this->assertInstanceOf(Twig_SimpleFunction::class, $function);
+        }
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getContentName
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::loadContent
+     */
+    public function testGetContentName()
+    {
+        $this->mockServices();
+
+        $this->assertEquals('Content name 42', $this->extension->getContentName(42));
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getContentName
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::loadContent
+     */
+    public function testGetContentNameWithException()
+    {
+        $this->contentServiceMock
+            ->expects($this->once())
+            ->method('loadContent')
+            ->with($this->equalTo(42))
+            ->will($this->throwException(new Exception()));
+
+        $this->assertEquals('', $this->extension->getContentName(42));
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getLocationPath
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::loadLocation
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::loadContent
+     */
+    public function testGetLocationPath()
+    {
+        $this->mockServices();
+
+        $this->assertEquals(
+            array(
+                'Content name 102',
+                'Content name 142',
+                'Content name 184',
+            ),
+            $this->extension->getLocationPath(22)
+        );
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getLocationPath
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::loadLocation
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::loadContent
+     */
+    public function testGetLocationPathWithException()
+    {
+        $this->locationServiceMock
+            ->expects($this->once())
+            ->method('loadLocation')
+            ->with($this->equalTo(22))
+            ->will($this->throwException(new Exception()));
+
+        $this->assertEquals(array(), $this->extension->getLocationPath(22));
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getContentTypeName
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::loadContentType
+     */
+    public function testGetContentTypeName()
+    {
+        $this->mockServices();
+
+        $this->assertEquals('Content type some_type', $this->extension->getContentTypeName('some_type'));
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getContentTypeName
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::loadContentType
+     */
+    public function testGetContentTypeNameWithException()
+    {
+        $this->contentTypeServiceMock
+            ->expects($this->once())
+            ->method('loadContentTypeByIdentifier')
+            ->with($this->equalTo('some_type'))
+            ->will($this->throwException(new Exception()));
+
+        $this->assertEquals('', $this->extension->getContentTypeName('some_type'));
     }
 
     protected function prepareRepositoryMock()
@@ -190,113 +298,5 @@ class EzPublishExtensionTest extends TestCase
                     }
                 )
             );
-    }
-
-    /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::__construct
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getName
-     */
-    public function testGetName()
-    {
-        $this->assertEquals(get_class($this->extension), $this->extension->getName());
-    }
-
-    /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getFunctions
-     */
-    public function testGetFunctions()
-    {
-        $this->assertNotEmpty($this->extension->getFunctions());
-
-        foreach ($this->extension->getFunctions() as $function) {
-            $this->assertInstanceOf(Twig_SimpleFunction::class, $function);
-        }
-    }
-
-    /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getContentName
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::loadContent
-     */
-    public function testGetContentName()
-    {
-        $this->mockServices();
-
-        $this->assertEquals('Content name 42', $this->extension->getContentName(42));
-    }
-
-    /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getContentName
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::loadContent
-     */
-    public function testGetContentNameWithException()
-    {
-        $this->contentServiceMock
-            ->expects($this->once())
-            ->method('loadContent')
-            ->with($this->equalTo(42))
-            ->will($this->throwException(new Exception()));
-
-        $this->assertEquals('', $this->extension->getContentName(42));
-    }
-
-    /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getLocationPath
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::loadLocation
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::loadContent
-     */
-    public function testGetLocationPath()
-    {
-        $this->mockServices();
-
-        $this->assertEquals(
-            array(
-                'Content name 102',
-                'Content name 142',
-                'Content name 184',
-            ),
-            $this->extension->getLocationPath(22)
-        );
-    }
-
-    /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getLocationPath
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::loadLocation
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::loadContent
-     */
-    public function testGetLocationPathWithException()
-    {
-        $this->locationServiceMock
-            ->expects($this->once())
-            ->method('loadLocation')
-            ->with($this->equalTo(22))
-            ->will($this->throwException(new Exception()));
-
-        $this->assertEquals(array(), $this->extension->getLocationPath(22));
-    }
-
-    /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getContentTypeName
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::loadContentType
-     */
-    public function testGetContentTypeName()
-    {
-        $this->mockServices();
-
-        $this->assertEquals('Content type some_type', $this->extension->getContentTypeName('some_type'));
-    }
-
-    /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getContentTypeName
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::loadContentType
-     */
-    public function testGetContentTypeNameWithException()
-    {
-        $this->contentTypeServiceMock
-            ->expects($this->once())
-            ->method('loadContentTypeByIdentifier')
-            ->with($this->equalTo('some_type'))
-            ->will($this->throwException(new Exception()));
-
-        $this->assertEquals('', $this->extension->getContentTypeName('some_type'));
     }
 }

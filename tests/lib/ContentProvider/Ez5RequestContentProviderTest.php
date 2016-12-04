@@ -2,18 +2,18 @@
 
 namespace Netgen\BlockManager\Ez\Tests\ContentProvider;
 
-use Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentProvider;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\LocationService;
+use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
+use Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentProvider;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use PHPUnit\Framework\TestCase;
 
 class Ez5RequestContentProviderTest extends TestCase
 {

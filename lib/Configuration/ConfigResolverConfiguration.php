@@ -2,8 +2,8 @@
 
 namespace Netgen\BlockManager\Ez\Configuration;
 
-use Netgen\BlockManager\Configuration\ConfigurationInterface;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use Netgen\BlockManager\Configuration\ConfigurationInterface;
 use Netgen\BlockManager\Exception\InvalidArgumentException;
 
 class ConfigResolverConfiguration implements ConfigurationInterface

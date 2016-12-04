@@ -2,12 +2,12 @@
 
 namespace Netgen\BlockManager\Ez\Layout\Resolver\ConditionType;
 
+use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzPublishSiteAccess;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
 use Netgen\BlockManager\Traits\RequestStackAwareTrait;
-use Symfony\Component\Validator\Constraints;
 use Symfony\Component\HttpFoundation\Request;
-use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzPublishSiteAccess;
+use Symfony\Component\Validator\Constraints;
 
 class SiteAccess implements ConditionTypeInterface
 {
@@ -67,6 +67,6 @@ class SiteAccess implements ConditionTypeInterface
             return false;
         }
 
-        return in_array($siteAccess->name, $value);
+        return in_array($siteAccess->name, $value, true);
     }
 }

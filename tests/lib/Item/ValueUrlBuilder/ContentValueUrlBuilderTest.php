@@ -5,8 +5,8 @@ namespace Netgen\BlockManager\Ez\Tests\Item\ValueUrlBuilder;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use Netgen\BlockManager\Ez\Item\ValueUrlBuilder\ContentValueUrlBuilder;
-use Symfony\Component\Routing\RouterInterface;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Routing\RouterInterface;
 
 class ContentValueUrlBuilderTest extends TestCase
 {

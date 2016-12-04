@@ -3,8 +3,8 @@
 namespace Netgen\BlockManager\Ez\Validator;
 
 use Netgen\BlockManager\Ez\Validator\Constraint\SiteAccess;
-use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 class SiteAccessValidator extends ConstraintValidator
@@ -44,7 +44,7 @@ class SiteAccessValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, 'string');
         }
 
-        if (!in_array($value, $this->siteAccessList)) {
+        if (!in_array($value, $this->siteAccessList, true)) {
             /* @var \Netgen\BlockManager\Ez\Validator\Constraint\SiteAccess $constraint */
             $this->context->buildViolation($constraint->message)
                 ->setParameter('%siteAccess%', $value)

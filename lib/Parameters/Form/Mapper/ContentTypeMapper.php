@@ -2,9 +2,9 @@
 
 namespace Netgen\BlockManager\Ez\Parameters\Form\Mapper;
 
+use Netgen\BlockManager\Ez\Form\ContentTypeType;
 use Netgen\BlockManager\Parameters\Form\Mapper;
 use Netgen\BlockManager\Parameters\ParameterInterface;
-use Netgen\BlockManager\Ez\Form\ContentTypeType;
 
 class ContentTypeMapper extends Mapper
 {

@@ -2,13 +2,13 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\ConditionType;
 
-use Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccess;
 use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzPublishSiteAccess;
+use Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccess;
 use Netgen\BlockManager\Ez\Tests\Validator\ValidatorFactory;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Validation;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Validator\Validation;
 
 class SiteAccessTest extends TestCase
 {
@@ -59,7 +59,7 @@ class SiteAccessTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $this->conditionType->getConstraints());
-        $this->assertEquals($isValid, $errors->count() == 0);
+        $this->assertEquals($isValid, $errors->count() === 0);
     }
 
     /**

@@ -2,15 +2,15 @@
 
 namespace Netgen\BlockManager\Ez\Tests\ContentProvider;
 
-use Netgen\BlockManager\Ez\ContentProvider\RequestContentProvider;
+use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\MVC\Symfony\View\ContentView;
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
+use Netgen\BlockManager\Ez\ContentProvider\RequestContentProvider;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use PHPUnit\Framework\TestCase;
 
 class RequestContentProviderTest extends TestCase
 {

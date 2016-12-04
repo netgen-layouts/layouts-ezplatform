@@ -5,9 +5,9 @@ namespace Netgen\BlockManager\Ez\Tests\Validator;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
-use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
-use Netgen\BlockManager\Ez\Validator\LocationValidator;
 use Netgen\BlockManager\Ez\Validator\Constraint\Location;
+use Netgen\BlockManager\Ez\Validator\LocationValidator;
+use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class LocationValidatorTest extends ValidatorTestCase

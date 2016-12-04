@@ -4,9 +4,9 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Templating;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use PHPUnit\Framework\TestCase;
 
 class PageLayoutResolverTest extends TestCase
 {

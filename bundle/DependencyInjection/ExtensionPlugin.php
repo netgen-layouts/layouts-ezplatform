@@ -83,7 +83,7 @@ class ExtensionPlugin extends BaseExtensionPlugin
             }
 
             foreach ($config as $configName => $configValues) {
-                if (!in_array($configName, self::SITEACCESS_AWARE_SETTINGS)) {
+                if (!in_array($configName, self::SITEACCESS_AWARE_SETTINGS, true)) {
                     unset($config[$configName]);
                 }
             }
@@ -125,7 +125,7 @@ class ExtensionPlugin extends BaseExtensionPlugin
 
         $processor = new ConfigurationProcessor($this->container, 'netgen_block_manager');
         foreach ($config as $key => $value) {
-            if ($key === 'system' || !in_array($key, self::SITEACCESS_AWARE_SETTINGS)) {
+            if ($key === 'system' || !in_array($key, self::SITEACCESS_AWARE_SETTINGS, true)) {
                 continue;
             }
 
