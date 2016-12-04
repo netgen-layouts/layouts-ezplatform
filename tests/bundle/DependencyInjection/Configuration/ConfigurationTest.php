@@ -54,11 +54,6 @@ abstract class ConfigurationTest extends TestCase
     protected $plugin;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
-     */
-    protected $containerBuilderMock;
-
-    /**
      * @var \Matthias\SymfonyConfigTest\Partial\PartialProcessor
      */
     protected $partialProcessor;
@@ -68,9 +63,7 @@ abstract class ConfigurationTest extends TestCase
      */
     public function setUp()
     {
-        $this->containerBuilderMock = $this->createMock(ContainerBuilder::class);
-
-        $this->plugin = new ExtensionPlugin($this->containerBuilderMock);
+        $this->plugin = new ExtensionPlugin(new ContainerBuilder());
 
         $this->extension = new NetgenBlockManagerExtension();
         $this->extension->addPlugin($this->plugin);
@@ -87,17 +80,14 @@ abstract class ConfigurationTest extends TestCase
      */
     public function assertInjectedConfigurationEqual(array $expectedConfig, array $config)
     {
-        $containerBuilder = new ContainerBuilder();
-
         $this->assertEquals(
             $expectedConfig,
             $this->plugin->postProcessConfiguration(
                 $this->partialProcessor->processConfiguration(
                     $this->getConfiguration(),
                     null,
-                    $this->plugin->preProcessConfiguration($config, $containerBuilder)
-                ),
-                $containerBuilder
+                    $this->plugin->preProcessConfiguration($config)
+                )
             )
         );
     }

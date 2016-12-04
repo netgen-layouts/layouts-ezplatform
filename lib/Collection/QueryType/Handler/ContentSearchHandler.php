@@ -212,7 +212,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      * @param int $offset
      * @param int $limit
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Location[]
+     * @return mixed[]
      */
     public function getValues(Query $query, $offset = 0, $limit = null)
     {

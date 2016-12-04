@@ -45,7 +45,6 @@ class SiteAccessValidator extends ConstraintValidator
         }
 
         if (!in_array($value, $this->siteAccessList, true)) {
-            /* @var \Netgen\BlockManager\Ez\Validator\Constraint\SiteAccess $constraint */
             $this->context->buildViolation($constraint->message)
                 ->setParameter('%siteAccess%', $value)
                 ->addViolation();

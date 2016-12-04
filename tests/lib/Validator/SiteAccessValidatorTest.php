@@ -17,7 +17,7 @@ class SiteAccessValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @return \Symfony\Component\Validator\Validator\ValidatorInterface
+     * @return \Symfony\Component\Validator\ConstraintValidatorInterface
      */
     public function getValidator()
     {

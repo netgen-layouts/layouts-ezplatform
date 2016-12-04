@@ -53,7 +53,6 @@ class LocationValidator extends ConstraintValidator
                 }
             );
         } catch (NotFoundException $e) {
-            /* @var \Netgen\BlockManager\Ez\Validator\Constraint\Location $constraint */
             $this->context->buildViolation($constraint->message)
                 ->setParameter('%locationId%', $value)
                 ->addViolation();
