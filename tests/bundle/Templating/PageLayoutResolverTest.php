@@ -3,6 +3,7 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Templating;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use Netgen\Bundle\BlockManagerBundle\Templating\PageLayoutResolverInterface;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,6 +11,11 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class PageLayoutResolverTest extends TestCase
 {
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $innerResolverMock;
+
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
@@ -27,16 +33,17 @@ class PageLayoutResolverTest extends TestCase
 
     public function setUp()
     {
+        $this->innerResolverMock = $this->createMock(PageLayoutResolverInterface::class);
         $this->configResolverMock = $this->createMock(ConfigResolverInterface::class);
-
         $this->requestStackMock = $this->createMock(RequestStack::class);
 
         $this->resolver = new PageLayoutResolver(
+            $this->innerResolverMock,
             $this->configResolverMock,
-            $this->requestStackMock,
-            'viewbaseLayout',
-            'defaultPagelayout'
+            'viewbaseLayout'
         );
+
+        $this->resolver->setRequestStack($this->requestStackMock);
     }
 
     /**
@@ -48,7 +55,7 @@ class PageLayoutResolverTest extends TestCase
         $request = Request::create('/');
 
         $this->requestStackMock
-            ->expects($this->at(0))
+            ->expects($this->once())
             ->method('getCurrentRequest')
             ->will($this->returnValue($request));
 
@@ -73,9 +80,14 @@ class PageLayoutResolverTest extends TestCase
     public function testResolvePageLayoutWitNoRequest()
     {
         $this->requestStackMock
-            ->expects($this->at(0))
+            ->expects($this->once())
             ->method('getCurrentRequest')
             ->will($this->returnValue(null));
+
+        $this->innerResolverMock
+            ->expects($this->once())
+            ->method('resolvePageLayout')
+            ->will($this->returnValue('defaultPageLayout'));
 
         $this->configResolverMock
             ->expects($this->never())
@@ -85,7 +97,7 @@ class PageLayoutResolverTest extends TestCase
             ->expects($this->never())
             ->method('getParameter');
 
-        $this->assertEquals('defaultPagelayout', $this->resolver->resolvePageLayout());
+        $this->assertEquals('defaultPageLayout', $this->resolver->resolvePageLayout());
     }
 
     /**
@@ -97,9 +109,13 @@ class PageLayoutResolverTest extends TestCase
         $request->attributes->set('layout', false);
 
         $this->requestStackMock
-            ->expects($this->at(0))
+            ->expects($this->once())
             ->method('getCurrentRequest')
             ->will($this->returnValue($request));
+
+        $this->innerResolverMock
+            ->expects($this->never())
+            ->method('resolvePageLayout');
 
         $this->configResolverMock
             ->expects($this->never())
@@ -120,9 +136,14 @@ class PageLayoutResolverTest extends TestCase
         $request = Request::create('/');
 
         $this->requestStackMock
-            ->expects($this->at(0))
+            ->expects($this->once())
             ->method('getCurrentRequest')
             ->will($this->returnValue($request));
+
+        $this->innerResolverMock
+            ->expects($this->once())
+            ->method('resolvePageLayout')
+            ->will($this->returnValue('defaultPageLayout'));
 
         $this->configResolverMock
             ->expects($this->at(0))
@@ -134,6 +155,6 @@ class PageLayoutResolverTest extends TestCase
             ->expects($this->never())
             ->method('getParameter');
 
-        $this->assertEquals('defaultPagelayout', $this->resolver->resolvePageLayout());
+        $this->assertEquals('defaultPageLayout', $this->resolver->resolvePageLayout());
     }
 }
