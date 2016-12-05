@@ -16,8 +16,6 @@ class NetgenEzPublishBlockManagerBundle extends Bundle
      */
     public function build(ContainerBuilder $container)
     {
-        parent::build($container);
-
         /** @var \Netgen\Bundle\BlockManagerBundle\DependencyInjection\NetgenBlockManagerExtension $blockManagerExtension */
         $blockManagerExtension = $container->getExtension('netgen_block_manager');
         $blockManagerExtension->addPlugin(new ExtensionPlugin($container));
