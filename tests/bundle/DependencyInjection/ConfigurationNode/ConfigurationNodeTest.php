@@ -1,6 +1,6 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\DependencyInjection\Configuration;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\DependencyInjection\ConfigurationNode;
 
 use Matthias\SymfonyConfigTest\Partial\PartialProcessor;
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
@@ -10,7 +10,7 @@ use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugi
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-abstract class ConfigurationTest extends TestCase
+abstract class ConfigurationNodeTest extends TestCase
 {
     use ConfigurationTestCaseTrait;
 
