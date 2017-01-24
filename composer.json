@@ -17,7 +17,7 @@
         "matthiasnoback/symfony-dependency-injection-test": "^1.0",
         "matthiasnoback/symfony-config-test": "^2.0",
         "ezsystems/ezpublish-kernel": "^6.0",
-        "netgen/tagsbundle": "^2.0",
+        "netgen/tagsbundle": "^2.0|^3.0",
         "franzl/studio": "*"
     },
     "repositories": [
