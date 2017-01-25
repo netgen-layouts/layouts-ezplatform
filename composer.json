@@ -20,6 +20,10 @@
         "netgen/tagsbundle": "^2.0|^3.0",
         "franzl/studio": "*"
     },
+    "scripts": {
+        "test": "@php vendor/bin/phpunit --colors=always",
+        "coverage": "@php -dzend_extension=xdebug.so vendor/bin/phpunit --coverage-html=coverage --colors=always"
+    },
     "repositories": [
         { "type": "composer", "url": "https://packagist.netgen.biz" }
     ],
@@ -30,6 +34,9 @@
         }
     },
     "autoload-dev": {
+        "files": [
+            "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php"
+        ],
         "psr-4": {
             "Netgen\\BlockManager\\Ez\\Tests\\": "tests/lib/",
             "Netgen\\Bundle\\EzPublishBlockManagerBundle\\Tests\\": "tests/bundle/"
