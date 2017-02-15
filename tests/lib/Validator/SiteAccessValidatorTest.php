@@ -40,6 +40,7 @@ class SiteAccessValidatorTest extends ValidatorTestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\SiteAccessValidator::validate
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     * @expectedExceptionMessage Expected argument of type "Netgen\BlockManager\Ez\Validator\Constraint\SiteAccess", "Symfony\Component\Validator\Constraints\NotBlank" given
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint()
     {
@@ -50,6 +51,7 @@ class SiteAccessValidatorTest extends ValidatorTestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\SiteAccessValidator::validate
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     * @expectedExceptionMessage Expected argument of type "string", "integer" given
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue()
     {

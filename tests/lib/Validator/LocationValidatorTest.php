@@ -85,6 +85,7 @@ class LocationValidatorTest extends ValidatorTestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::validate
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     * @expectedExceptionMessage Expected argument of type "Netgen\BlockManager\Ez\Validator\Constraint\Location", "Symfony\Component\Validator\Constraints\NotBlank" given
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint()
     {
@@ -95,6 +96,7 @@ class LocationValidatorTest extends ValidatorTestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::validate
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     * @expectedExceptionMessage Expected argument of type "scalar", "array" given
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue()
     {

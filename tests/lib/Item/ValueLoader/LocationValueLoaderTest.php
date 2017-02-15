@@ -57,6 +57,7 @@ class LocationValueLoaderTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader::load
      * @expectedException \Netgen\BlockManager\Exception\InvalidItemException
+     * @expectedExceptionMessage Location with ID "52" could not be loaded.
      */
     public function testLoadThrowsInvalidItemException()
     {
@@ -72,6 +73,7 @@ class LocationValueLoaderTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader::load
      * @expectedException \Netgen\BlockManager\Exception\InvalidItemException
+     * @expectedExceptionMessage Location with ID "52" has unpublished content and cannot be loaded.
      */
     public function testLoadThrowsInvalidItemExceptionWithNonPublishedContent()
     {

@@ -53,6 +53,7 @@ class ContentValueLoaderTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader::load
      * @expectedException \Netgen\BlockManager\Exception\InvalidItemException
+     * @expectedExceptionMessage Content with ID "52" could not be loaded.
      */
     public function testLoadThrowsInvalidItemException()
     {
@@ -68,6 +69,7 @@ class ContentValueLoaderTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader::load
      * @expectedException \Netgen\BlockManager\Exception\InvalidItemException
+     * @expectedExceptionMessage Content with ID "52" is not published and cannot loaded.
      */
     public function testLoadThrowsInvalidItemExceptionWithNonPublishedContent()
     {
@@ -92,6 +94,7 @@ class ContentValueLoaderTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader::load
      * @expectedException \Netgen\BlockManager\Exception\InvalidItemException
+     * @expectedExceptionMessage Content with ID "52" does not have a main location and cannot loaded.
      */
     public function testLoadThrowsInvalidItemExceptionWithNoMainLocation()
     {

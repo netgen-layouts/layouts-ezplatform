@@ -85,6 +85,7 @@ class ContentValidatorTest extends ValidatorTestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::validate
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     * @expectedExceptionMessage Expected argument of type "Netgen\BlockManager\Ez\Validator\Constraint\Content", "Symfony\Component\Validator\Constraints\NotBlank" given
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint()
     {
@@ -95,6 +96,7 @@ class ContentValidatorTest extends ValidatorTestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::validate
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     * @expectedExceptionMessage Expected argument of type "scalar", "array" given
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue()
     {

@@ -70,6 +70,7 @@ class TagValidatorTest extends ValidatorTestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::validate
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     * @expectedExceptionMessage Expected argument of type "Netgen\BlockManager\Ez\Validator\Constraint\Tag", "Symfony\Component\Validator\Constraints\NotBlank" given
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint()
     {
@@ -80,6 +81,7 @@ class TagValidatorTest extends ValidatorTestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::validate
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     * @expectedExceptionMessage Expected argument of type "scalar", "array" given
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue()
     {
