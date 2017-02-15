@@ -47,18 +47,20 @@ class LocationValueLoader implements ValueLoaderInterface
     {
         try {
             $location = $this->locationService->loadLocation($id);
-
-            if (!$location->contentInfo->published) {
-                throw new InvalidItemException(
-                    sprintf('Value with ID "%s" could not be loaded.', $id)
-                );
-            }
-
-            return $location;
         } catch (Exception $e) {
             throw new InvalidItemException(
-                sprintf('Value with ID "%s" could not be loaded.', $id)
+                sprintf('Location with ID "%s" could not be loaded.', $id),
+                0,
+                $e
             );
         }
+
+        if (!$location->contentInfo->published) {
+            throw new InvalidItemException(
+                sprintf('Location with ID "%s" has unpublished content and cannot be loaded.', $id)
+            );
+        }
+
+        return $location;
     }
 }

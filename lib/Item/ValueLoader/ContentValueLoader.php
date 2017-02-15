@@ -47,18 +47,26 @@ class ContentValueLoader implements ValueLoaderInterface
     {
         try {
             $contentInfo = $this->contentService->loadContentInfo($id);
-
-            if (!$contentInfo->published || $contentInfo->mainLocationId === null) {
-                throw new InvalidItemException(
-                    sprintf('Value with ID "%s" could not be loaded.', $id)
-                );
-            }
-
-            return $contentInfo;
         } catch (Exception $e) {
             throw new InvalidItemException(
-                sprintf('Value with ID "%s" could not be loaded.', $id)
+                sprintf('Content with ID "%s" could not be loaded.', $id),
+                0,
+                $e
             );
         }
+
+        if (!$contentInfo->published) {
+            throw new InvalidItemException(
+                sprintf('Content with ID "%s" is not published and cannot loaded.', $id)
+            );
+        }
+
+        if ($contentInfo->mainLocationId === null) {
+            throw new InvalidItemException(
+                sprintf('Content with ID "%s" does not have a main location and cannot loaded.', $id)
+            );
+        }
+
+        return $contentInfo;
     }
 }
