@@ -36,8 +36,20 @@ class TagsMapperTest extends TestCase
         $this->assertEquals(
             array(
                 'item_type' => 'eztags',
+                'min' => 3,
+                'max' => 6,
             ),
-            $this->mapper->mapOptions(new Parameter(array('type' => new ParameterType())))
+            $this->mapper->mapOptions(
+                new Parameter(
+                    array(
+                        'type' => new ParameterType(),
+                        'options' => array(
+                            'min' => 3,
+                            'max' => 6,
+                        ),
+                    )
+                )
+            )
         );
     }
 }
