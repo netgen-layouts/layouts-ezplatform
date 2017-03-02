@@ -1,4 +1,4 @@
-netgen_block_manager.eztag.tag_not_found: 'Tag with ID %tagId% does not exist.'
+netgen_block_manager.eztags.tag_not_found: 'Tag with ID %tagId% does not exist.'
 netgen_block_manager.ezlocation.location_not_found: 'Location with ID %locationId% does not exist.'
 netgen_block_manager.ezcontent.content_not_found: 'Content with ID %contentId% does not exist.'
 netgen_block_manager.ez_site_access.site_access_not_found: 'Site access "%siteAccess%" does not exist.'

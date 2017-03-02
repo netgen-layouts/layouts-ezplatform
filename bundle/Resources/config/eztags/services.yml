@@ -9,9 +9,9 @@ services:
         tags:
             - { name: netgen_block_manager.parameters.form.mapper, type: eztags }
 
-    netgen_block_manager.validator.eztag:
+    netgen_block_manager.validator.eztags:
         class: Netgen\BlockManager\Ez\Validator\TagValidator
         arguments:
             - "@ezpublish.api.service.tags"
         tags:
-            - { name: validator.constraint_validator, alias: ngbm_eztag }
+            - { name: validator.constraint_validator, alias: ngbm_eztags }

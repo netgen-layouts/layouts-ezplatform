@@ -13,6 +13,6 @@ class TagTest extends TestCase
     public function testValidatedBy()
     {
         $constraint = new Tag();
-        $this->assertEquals('ngbm_eztag', $constraint->validatedBy());
+        $this->assertEquals('ngbm_eztags', $constraint->validatedBy());
     }
 }

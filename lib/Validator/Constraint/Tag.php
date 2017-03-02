@@ -9,7 +9,7 @@ class Tag extends Constraint
     /**
      * @var string
      */
-    public $message = 'netgen_block_manager.eztag.tag_not_found';
+    public $message = 'netgen_block_manager.eztags.tag_not_found';
 
     /**
      * Returns the name of the class that validates this constraint.
@@ -18,6 +18,6 @@ class Tag extends Constraint
      */
     public function validatedBy()
     {
-        return 'ngbm_eztag';
+        return 'ngbm_eztags';
     }
 }

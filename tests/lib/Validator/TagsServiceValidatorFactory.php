@@ -33,7 +33,7 @@ class TagsServiceValidatorFactory extends ConstraintValidatorFactory
     {
         $name = $constraint->validatedBy();
 
-        if ($name === 'ngbm_eztag') {
+        if ($name === 'ngbm_eztags') {
             return new TagValidator($this->tagsService);
         }
 
