@@ -4,7 +4,7 @@ namespace Netgen\BlockManager\Tests\Block\BlockDefinition\Handler;
 
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
-use Netgen\BlockManager\Core\Values\Page\Block;
+use Netgen\BlockManager\Core\Values\Block\Block;
 use Netgen\BlockManager\Ez\Block\BlockDefinition\Handler\ContentFieldHandler;
 use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
 use PHPUnit\Framework\TestCase;
