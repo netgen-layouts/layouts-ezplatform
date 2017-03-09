@@ -1,7 +1,4 @@
 block.ezcontent_field.field_identifier: 'Field identifier'
-block.ezcontent_field.css_class: 'CSS class'
-block.ezcontent_field.css_id: 'CSS ID'
-block.ezcontent_field.set_container: 'Wrap in container'
 
 query.ezcontent_search.use_current_location: 'Use current location as parent'
 query.ezcontent_search.parent_location_id: 'Parent location'
