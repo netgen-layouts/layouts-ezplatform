@@ -1,7 +1,12 @@
 {% extends 'NetgenBlockManagerBundle:block:block.html.twig' %}
 
+{% set field_identifier = block.parameter('field_identifier').value %}
+
+{% if field_identifier is not empty %}
+    {% set css_class = 'field-' ~ field_identifier ~ ' ' ~ block.parameter('css_class').value %}
+{% endif %}
+
 {% block content %}
-    {% set field_identifier = block.parameter('field_identifier').value %}
     {% set content = block.dynamicParameter('content') %}
 
     {% if field_identifier is not empty and content.fields[field_identifier] is defined %}
