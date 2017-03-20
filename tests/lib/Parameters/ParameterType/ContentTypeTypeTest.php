@@ -62,7 +62,15 @@ class ContentTypeTypeTest extends TestCase
      */
     public function getParameter(array $options = array(), $required = false, $defaultValue = null)
     {
-        return new Parameter('name', new ContentTypeType(), $options, $required, $defaultValue);
+        return new Parameter(
+            array(
+                'name' => 'name',
+                'type' => new ContentTypeType(),
+                'options' => $options,
+                'isRequired' => $required,
+                'defaultValue' => $defaultValue,
+            )
+        );
     }
 
     /**
