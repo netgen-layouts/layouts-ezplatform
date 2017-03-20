@@ -360,9 +360,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         if (!$buildCountQuery) {
             $offset = $query->getParameter('offset')->getValue();
             $locationQuery->offset = is_int($offset) && $offset >= 0 ? $offset : 0;
-
-            $limit = $query->getParameter('limit')->getValue();
-            $locationQuery->limit = is_int($limit) && $limit >= 0 ? $limit : self::DEFAULT_LIMIT;
+            $locationQuery->limit = $this->getInternalLimit($query);
         }
 
         $sortType = $query->getParameter('sort_type')->getValue() ?: 'default';
