@@ -180,6 +180,14 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         );
 
         $builder->add(
+            'only_main_locations',
+            ParameterType\BooleanType::class,
+            array(
+                'default_value' => true,
+            )
+        );
+
+        $builder->add(
             'filter_by_content_type',
             ParameterType\Compound\BooleanType::class
         );
@@ -318,9 +326,14 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         $criteria = array(
             new Criterion\Subtree($parentLocation->pathString),
             new Criterion\Visibility(Criterion\Visibility::VISIBLE),
-            new Criterion\Location\IsMainLocation(Criterion\Location\IsMainLocation::MAIN),
             new Criterion\LogicalNot(new Criterion\LocationId($parentLocation->id)),
         );
+
+        if ($query->getParameter('only_main_locations')->getValue()) {
+            $criteria[] = new Criterion\Location\IsMainLocation(
+                Criterion\Location\IsMainLocation::MAIN
+            );
+        }
 
         if ($query->getParameter('query_type')->getValue() === 'list') {
             $criteria[] = new Criterion\Location\Depth(
