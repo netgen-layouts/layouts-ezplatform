@@ -20,25 +20,6 @@ abstract class ConfigurationNodeTest extends TestCase
      *
      * @var array
      */
-    const DEFAULT_CONFIG = array(
-        'block_definitions' => array(),
-        'block_types' => array(),
-        'layout_types' => array(),
-        'block_type_groups' => array(),
-        'view' => array(),
-        'sources' => array(),
-        'query_types' => array(),
-        'pagelayout' => 'NetgenBlockManagerBundle::empty_pagelayout.html.twig',
-        'google_maps_api_key' => '',
-        'default_view_templates' => array(),
-    );
-
-    /**
-     * Default config here is used because config test library can't test against
-     * two or more config tree parts.
-     *
-     * @var array
-     */
     const DEFAULT_SYSTEM_CONFIG = array(
         'view' => array(),
     );
@@ -80,16 +61,21 @@ abstract class ConfigurationNodeTest extends TestCase
      */
     public function assertInjectedConfigurationEqual(array $expectedConfig, array $config)
     {
-        $this->assertEquals(
-            $expectedConfig,
-            $this->plugin->postProcessConfiguration(
-                $this->partialProcessor->processConfiguration(
-                    $this->getConfiguration(),
-                    null,
-                    $this->plugin->preProcessConfiguration($config)
-                )
+        $actualConfig = $this->plugin->postProcessConfiguration(
+            $this->partialProcessor->processConfiguration(
+                $this->getConfiguration(),
+                null,
+                $this->plugin->preProcessConfiguration($config)
             )
         );
+
+        foreach ($actualConfig as $key => $value) {
+            if ($key !== 'system' && !array_key_exists($key, self::DEFAULT_SYSTEM_CONFIG)) {
+                unset($actualConfig[$key]);
+            }
+        }
+
+        $this->assertEquals($expectedConfig, $actualConfig);
     }
 
     /**
@@ -112,7 +98,10 @@ abstract class ConfigurationNodeTest extends TestCase
      */
     protected function getExtendedExpectedConfig(array $expectedConfig)
     {
-        return $expectedConfig + self::DEFAULT_CONFIG +
-            array('system' => array('default' => $expectedConfig + self::DEFAULT_SYSTEM_CONFIG));
+        return $expectedConfig + self::DEFAULT_SYSTEM_CONFIG + array(
+            'system' => array(
+                'default' => $expectedConfig + self::DEFAULT_SYSTEM_CONFIG,
+            ),
+        );
     }
 }
