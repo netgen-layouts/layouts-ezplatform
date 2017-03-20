@@ -1,10 +1,10 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Tests\Block\BlockDefinition;
+namespace Netgen\BlockManager\Ez\Tests\Block\BlockDefinition\Integration;
 
 use Netgen\BlockManager\Ez\Block\BlockDefinition\Handler\ContentFieldHandler;
 use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
-use Netgen\BlockManager\Tests\Block\BlockDefinition\BlockTest;
+use Netgen\BlockManager\Tests\Block\BlockDefinition\Integration\BlockTest;
 
 abstract class ContentFieldTest extends BlockTest
 {

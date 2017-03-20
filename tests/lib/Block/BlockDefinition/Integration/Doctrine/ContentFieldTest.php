@@ -1,8 +1,8 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Tests\Block\BlockDefinition\Doctrine;
+namespace Netgen\BlockManager\Ez\Tests\Block\BlockDefinition\Doctrine\Integration;
 
-use Netgen\BlockManager\Ez\Tests\Block\BlockDefinition\ContentFieldTest as BaseContentFieldTest;
+use Netgen\BlockManager\Ez\Tests\Block\BlockDefinition\Integration\ContentFieldTest as BaseContentFieldTest;
 use Netgen\BlockManager\Tests\Persistence\Doctrine\TestCaseTrait;
 
 /**
