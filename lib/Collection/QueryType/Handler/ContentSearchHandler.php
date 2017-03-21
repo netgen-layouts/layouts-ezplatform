@@ -125,18 +125,6 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         );
 
         $builder->add(
-            'sort_direction',
-            ParameterType\ChoiceType::class,
-            array(
-                'required' => true,
-                'options' => array(
-                    'Descending' => LocationQuery::SORT_DESC,
-                    'Ascending' => LocationQuery::SORT_ASC,
-                ),
-            )
-        );
-
-        $builder->add(
             'sort_type',
             ParameterType\ChoiceType::class,
             array(
@@ -147,6 +135,18 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
                     'Alphabetical' => 'content_name',
                     'Priority' => 'location_priority',
                     'Defined by parent' => 'defined_by_parent',
+                ),
+            )
+        );
+
+        $builder->add(
+            'sort_direction',
+            ParameterType\ChoiceType::class,
+            array(
+                'required' => true,
+                'options' => array(
+                    'Descending' => LocationQuery::SORT_DESC,
+                    'Ascending' => LocationQuery::SORT_ASC,
                 ),
             )
         );
@@ -164,6 +164,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
             ParameterType\IntegerType::class,
             array(
                 'min' => 0,
+                'groups' => array(self::GROUP_ADVANCED),
             )
         );
 
@@ -176,6 +177,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
                     'List' => 'list',
                     'Tree' => 'tree',
                 ),
+                'groups' => array(self::GROUP_ADVANCED),
             )
         );
 
@@ -184,12 +186,16 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
             ParameterType\BooleanType::class,
             array(
                 'default_value' => true,
+                'groups' => array(self::GROUP_ADVANCED),
             )
         );
 
         $builder->add(
             'filter_by_content_type',
-            ParameterType\Compound\BooleanType::class
+            ParameterType\Compound\BooleanType::class,
+            array(
+                'groups' => array(self::GROUP_ADVANCED),
+            )
         );
 
         $builder->get('filter_by_content_type')->add(
@@ -197,6 +203,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
             EzParameterType\ContentTypeType::class,
             array(
                 'multiple' => true,
+                'groups' => array(self::GROUP_ADVANCED),
             )
         );
 
@@ -209,6 +216,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
                     'Include content types' => 'include',
                     'Exclude content types' => 'exclude',
                 ),
+                'groups' => array(self::GROUP_ADVANCED),
             )
         );
     }

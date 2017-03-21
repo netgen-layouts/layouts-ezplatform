@@ -106,10 +106,6 @@ class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
         $this->assertArrayHasKey('default', $config['view']['item_view']);
         $this->assertArrayHasKey('ezcontent', $config['view']['item_view']['default']);
 
-        $this->assertArrayHasKey('form_view', $config['view']);
-        $this->assertArrayHasKey('api', $config['view']['form_view']);
-        $this->assertArrayHasKey('query\full_edit\ezcontent_search', $config['view']['form_view']['api']);
-
         $this->assertArrayHasKey('rule_condition_view', $config['view']);
         $this->assertArrayHasKey('admin', $config['view']['rule_condition_view']);
         $this->assertArrayHasKey('ez_site_access', $config['view']['rule_condition_view']['admin']);
