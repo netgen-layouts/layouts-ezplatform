@@ -1,10 +1,10 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Tests\Configuration;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Configuration;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use Netgen\BlockManager\Configuration\ConfigurationInterface;
-use Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration;
+use Netgen\Bundle\BlockManagerBundle\Configuration\ConfigurationInterface;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration;
 use PHPUnit\Framework\TestCase;
 
 class ConfigResolverConfigurationTest extends TestCase
@@ -20,7 +20,7 @@ class ConfigResolverConfigurationTest extends TestCase
     protected $fallbackConfigurationMock;
 
     /**
-     * @var \Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration
      */
     protected $configuration;
 
@@ -41,9 +41,9 @@ class ConfigResolverConfigurationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration::__construct
-     * @covers \Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration::setConfigResolver
-     * @covers \Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration::hasParameter
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::__construct
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::setConfigResolver
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::hasParameter
      */
     public function testHasParameter()
     {
@@ -61,8 +61,8 @@ class ConfigResolverConfigurationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration::setConfigResolver
-     * @covers \Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration::hasParameter
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::setConfigResolver
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::hasParameter
      */
     public function testHasParameterWithNoParameter()
     {
@@ -82,8 +82,8 @@ class ConfigResolverConfigurationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration::setConfigResolver
-     * @covers \Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration::hasParameter
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::setConfigResolver
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::hasParameter
      */
     public function testHasParameterWithNoFallbackParameter()
     {
@@ -103,8 +103,8 @@ class ConfigResolverConfigurationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration::setConfigResolver
-     * @covers \Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration::getParameter
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::setConfigResolver
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::getParameter
      */
     public function testGetParameter()
     {
@@ -128,8 +128,8 @@ class ConfigResolverConfigurationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration::setConfigResolver
-     * @covers \Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration::getParameter
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::setConfigResolver
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::getParameter
      */
     public function testGetFallbackParameter()
     {
@@ -159,8 +159,8 @@ class ConfigResolverConfigurationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration::setConfigResolver
-     * @covers \Netgen\BlockManager\Ez\Configuration\ConfigResolverConfiguration::getParameter
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::setConfigResolver
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::getParameter
      * @expectedException \Netgen\BlockManager\Exception\InvalidArgumentException
      * @expectedExceptionMessage Parameter "some_param" does not exist in configuration.
      */

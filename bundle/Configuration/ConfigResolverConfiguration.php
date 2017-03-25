@@ -1,15 +1,15 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Configuration;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Configuration;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use Netgen\BlockManager\Configuration\ConfigurationInterface;
 use Netgen\BlockManager\Exception\InvalidArgumentException;
+use Netgen\Bundle\BlockManagerBundle\Configuration\ConfigurationInterface;
 
 class ConfigResolverConfiguration implements ConfigurationInterface
 {
     /**
-     * @var \Netgen\BlockManager\Configuration\ConfigurationInterface
+     * @var \Netgen\Bundle\BlockManagerBundle\Configuration\ConfigurationInterface
      */
     protected $fallbackConfiguration;
 
@@ -21,7 +21,7 @@ class ConfigResolverConfiguration implements ConfigurationInterface
     /**
      * Constructor.
      *
-     * @param \Netgen\BlockManager\Configuration\ConfigurationInterface $fallbackConfiguration
+     * @param \Netgen\Bundle\BlockManagerBundle\Configuration\ConfigurationInterface $fallbackConfiguration
      */
     public function __construct(ConfigurationInterface $fallbackConfiguration)
     {
