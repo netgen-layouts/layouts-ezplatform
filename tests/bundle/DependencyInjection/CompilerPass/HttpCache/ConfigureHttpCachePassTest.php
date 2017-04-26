@@ -86,7 +86,9 @@ class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
     {
         $this->assertThat(
             $this->container,
-            new \PHPUnit_Framework_Constraint_Not(new ContainerBuilderHasAliasConstraint($aliasId, null))
+            $this->logicalNot(
+                new ContainerBuilderHasAliasConstraint($aliasId)
+            )
         );
     }
 }
