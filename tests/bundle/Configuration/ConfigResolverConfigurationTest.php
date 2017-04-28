@@ -159,10 +159,10 @@ class ConfigResolverConfigurationTest extends TestCase
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::setConfigResolver
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::getParameter
-     * @expectedException \Netgen\BlockManager\Exception\InvalidArgumentException
+     * @expectedException \Netgen\Bundle\BlockManagerBundle\Exception\ConfigurationException
      * @expectedExceptionMessage Parameter "some_param" does not exist in configuration.
      */
-    public function testGetParameterThrowsInvalidArgumentException()
+    public function testGetParameterThrowsConfigurationException()
     {
         $this->configResolverMock
             ->expects($this->once())
