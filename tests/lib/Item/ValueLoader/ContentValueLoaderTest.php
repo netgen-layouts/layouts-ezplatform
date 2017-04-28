@@ -4,7 +4,7 @@ namespace Netgen\BlockManager\Ez\Tests\Item\ValueLoader;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use Netgen\BlockManager\Exception\InvalidItemException;
+use Netgen\BlockManager\Exception\Item\ItemException;
 use Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader;
 use PHPUnit\Framework\TestCase;
 
@@ -52,26 +52,26 @@ class ContentValueLoaderTest extends TestCase
 
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader::load
-     * @expectedException \Netgen\BlockManager\Exception\InvalidItemException
+     * @expectedException \Netgen\BlockManager\Exception\Item\ItemException
      * @expectedExceptionMessage Content with ID "52" could not be loaded.
      */
-    public function testLoadThrowsInvalidItemException()
+    public function testLoadThrowsItemException()
     {
         $this->contentServiceMock
             ->expects($this->any())
             ->method('loadContentInfo')
             ->with($this->isType('int'))
-            ->will($this->throwException(new InvalidItemException()));
+            ->will($this->throwException(new ItemException()));
 
         $this->valueLoader->load(52);
     }
 
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader::load
-     * @expectedException \Netgen\BlockManager\Exception\InvalidItemException
+     * @expectedException \Netgen\BlockManager\Exception\Item\ItemException
      * @expectedExceptionMessage Content with ID "52" is not published and cannot loaded.
      */
-    public function testLoadThrowsInvalidItemExceptionWithNonPublishedContent()
+    public function testLoadThrowsItemExceptionWithNonPublishedContent()
     {
         $this->contentServiceMock
             ->expects($this->any())
@@ -93,10 +93,10 @@ class ContentValueLoaderTest extends TestCase
 
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader::load
-     * @expectedException \Netgen\BlockManager\Exception\InvalidItemException
+     * @expectedException \Netgen\BlockManager\Exception\Item\ItemException
      * @expectedExceptionMessage Content with ID "52" does not have a main location and cannot loaded.
      */
-    public function testLoadThrowsInvalidItemExceptionWithNoMainLocation()
+    public function testLoadThrowsItemExceptionWithNoMainLocation()
     {
         $this->contentServiceMock
             ->expects($this->any())

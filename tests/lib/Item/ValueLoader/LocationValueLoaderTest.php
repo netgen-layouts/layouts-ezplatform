@@ -5,7 +5,7 @@ namespace Netgen\BlockManager\Ez\Tests\Item\ValueLoader;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Repository\Values\Content\Location;
-use Netgen\BlockManager\Exception\InvalidItemException;
+use Netgen\BlockManager\Exception\Item\ItemException;
 use Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader;
 use PHPUnit\Framework\TestCase;
 
@@ -56,26 +56,26 @@ class LocationValueLoaderTest extends TestCase
 
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader::load
-     * @expectedException \Netgen\BlockManager\Exception\InvalidItemException
+     * @expectedException \Netgen\BlockManager\Exception\Item\ItemException
      * @expectedExceptionMessage Location with ID "52" could not be loaded.
      */
-    public function testLoadThrowsInvalidItemException()
+    public function testLoadThrowsItemException()
     {
         $this->locationServiceMock
             ->expects($this->any())
             ->method('loadLocation')
             ->with($this->isType('int'))
-            ->will($this->throwException(new InvalidItemException()));
+            ->will($this->throwException(new ItemException()));
 
         $this->valueLoader->load(52);
     }
 
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader::load
-     * @expectedException \Netgen\BlockManager\Exception\InvalidItemException
+     * @expectedException \Netgen\BlockManager\Exception\Item\ItemException
      * @expectedExceptionMessage Location with ID "52" has unpublished content and cannot be loaded.
      */
-    public function testLoadThrowsInvalidItemExceptionWithNonPublishedContent()
+    public function testLoadThrowsItemExceptionWithNonPublishedContent()
     {
         $this->locationServiceMock
             ->expects($this->any())

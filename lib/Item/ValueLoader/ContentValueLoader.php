@@ -4,7 +4,7 @@ namespace Netgen\BlockManager\Ez\Item\ValueLoader;
 
 use Exception;
 use eZ\Publish\API\Repository\ContentService;
-use Netgen\BlockManager\Exception\InvalidItemException;
+use Netgen\BlockManager\Exception\Item\ItemException;
 use Netgen\BlockManager\Item\ValueLoaderInterface;
 
 class ContentValueLoader implements ValueLoaderInterface
@@ -29,7 +29,7 @@ class ContentValueLoader implements ValueLoaderInterface
      *
      * @param int|string $id
      *
-     * @throws \Netgen\BlockManager\Exception\InvalidItemException If value cannot be loaded
+     * @throws \Netgen\BlockManager\Exception\Item\ItemException If value cannot be loaded
      *
      * @return mixed
      */
@@ -38,7 +38,7 @@ class ContentValueLoader implements ValueLoaderInterface
         try {
             $contentInfo = $this->contentService->loadContentInfo($id);
         } catch (Exception $e) {
-            throw new InvalidItemException(
+            throw new ItemException(
                 sprintf('Content with ID "%s" could not be loaded.', $id),
                 0,
                 $e
@@ -46,13 +46,13 @@ class ContentValueLoader implements ValueLoaderInterface
         }
 
         if (!$contentInfo->published) {
-            throw new InvalidItemException(
+            throw new ItemException(
                 sprintf('Content with ID "%s" is not published and cannot loaded.', $id)
             );
         }
 
         if ($contentInfo->mainLocationId === null) {
-            throw new InvalidItemException(
+            throw new ItemException(
                 sprintf('Content with ID "%s" does not have a main location and cannot loaded.', $id)
             );
         }

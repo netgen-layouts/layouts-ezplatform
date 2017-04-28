@@ -4,7 +4,7 @@ namespace Netgen\BlockManager\Ez\Item\ValueLoader;
 
 use Exception;
 use eZ\Publish\API\Repository\LocationService;
-use Netgen\BlockManager\Exception\InvalidItemException;
+use Netgen\BlockManager\Exception\Item\ItemException;
 use Netgen\BlockManager\Item\ValueLoaderInterface;
 
 class LocationValueLoader implements ValueLoaderInterface
@@ -29,7 +29,7 @@ class LocationValueLoader implements ValueLoaderInterface
      *
      * @param int|string $id
      *
-     * @throws \Netgen\BlockManager\Exception\InvalidItemException If value cannot be loaded
+     * @throws \Netgen\BlockManager\Exception\Item\ItemException If value cannot be loaded
      *
      * @return mixed
      */
@@ -38,7 +38,7 @@ class LocationValueLoader implements ValueLoaderInterface
         try {
             $location = $this->locationService->loadLocation($id);
         } catch (Exception $e) {
-            throw new InvalidItemException(
+            throw new ItemException(
                 sprintf('Location with ID "%s" could not be loaded.', $id),
                 0,
                 $e
@@ -46,7 +46,7 @@ class LocationValueLoader implements ValueLoaderInterface
         }
 
         if (!$location->contentInfo->published) {
-            throw new InvalidItemException(
+            throw new ItemException(
                 sprintf('Location with ID "%s" has unpublished content and cannot be loaded.', $id)
             );
         }
