@@ -4,6 +4,7 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle;
 
 use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass;
 use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Security\PolicyProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -23,5 +24,9 @@ class NetgenEzPublishBlockManagerBundle extends Bundle
         $container->addCompilerPass(new CompilerPass\View\DefaultViewTemplatesPass());
         $container->addCompilerPass(new CompilerPass\DefaultAppPreviewPass());
         $container->addCompilerPass(new CompilerPass\HttpCache\ConfigureHttpCachePass());
+
+        /** @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\EzPublishCoreExtension $ezCoreExtension */
+        $ezCoreExtension = $container->getExtension('ezpublish');
+        $ezCoreExtension->addPolicyProvider(new PolicyProvider());
     }
 }
