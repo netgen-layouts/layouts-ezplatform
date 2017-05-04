@@ -1,6 +1,6 @@
 <?php
 
-namespace Netgen\BlockManager\Tests\Block\BlockDefinition\Handler;
+namespace Netgen\BlockManager\Ez\Tests\Block\BlockDefinition\Handler;
 
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;

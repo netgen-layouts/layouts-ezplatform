@@ -1,6 +1,6 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Templating\Twig;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Templating\Twig\Extension;
 
 use Exception;
 use eZ\Publish\API\Repository\ContentService;
