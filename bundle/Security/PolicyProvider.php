@@ -11,7 +11,7 @@ class PolicyProvider implements PolicyProviderInterface
     {
         $configBuilder->addConfig(
             [
-                'ngblockmanager' => [
+                'nglayouts' => [
                     'admin' => null,
                     'editor' => null,
                 ],

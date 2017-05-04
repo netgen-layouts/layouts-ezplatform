@@ -1,7 +1,7 @@
 <?php
 
 $Module = array(
-    'name' => 'ngblockmanager',
+    'name' => 'nglayouts',
     'variable_params' => false,
     'ui_component_match' => 'module',
 );

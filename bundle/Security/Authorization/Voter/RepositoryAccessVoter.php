@@ -13,7 +13,7 @@ class RepositoryAccessVoter extends Voter
      *
      * @var string
      */
-    private static $module = 'ngblockmanager';
+    private static $module = 'nglayouts';
 
     /**
      * Map of supported attributes to corresponding functions in the Legacy Stack module.
