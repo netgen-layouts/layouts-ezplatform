@@ -10,12 +10,12 @@ class PolicyProvider implements PolicyProviderInterface
     public function addPolicies(ConfigBuilderInterface $configBuilder)
     {
         $configBuilder->addConfig(
-            [
-                'nglayouts' => [
+            array(
+                'nglayouts' => array(
                     'admin' => null,
                     'editor' => null,
-                ],
-            ]
+                ),
+            )
         );
     }
 }
