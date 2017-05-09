@@ -24,6 +24,18 @@ $bundles[] = new Netgen\Bundle\EzPublishBlockManagerBundle\NetgenEzPublishBlockM
 return $bundles;
 ```
 
+Activating legacy eZ Publish extension
+--------------------------------------
+
+If you use eZ Publish Legacy admin interface in your eZ Platform installation, you might want to activate `nglayouts` legacy extension to be able to add `nglayouts/admin` and `nglayouts/editor` policies to your roles.
+
+Add the following to your legacy `site.ini.append.php` to activate the extension:
+
+```
+[ExtensionSettings]
+ActiveExtensions[]=nglayouts
+```
+
 Configuring your main pagelayout template
 -----------------------------------------
 
