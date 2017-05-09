@@ -55,11 +55,6 @@ class RepositoryAccessVoter extends Voter
         $this->repository = $repository;
     }
 
-    protected function supports($attribute, $subject)
-    {
-        return is_string($attribute) && isset(self::$attributeToPolicyMap[$attribute]);
-    }
-
     public function vote(TokenInterface $token, $object, array $attributes)
     {
         // abstain vote by default in case none of the attributes are supported
@@ -84,6 +79,11 @@ class RepositoryAccessVoter extends Voter
         return $vote;
     }
 
+    protected function supports($attribute, $subject)
+    {
+        return is_string($attribute) && isset(self::$attributeToPolicyMap[$attribute]);
+    }
+
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
         $function = self::$attributeToPolicyMap[$attribute];
@@ -100,7 +100,7 @@ class RepositoryAccessVoter extends Voter
      */
     private function getReachableAttributes($attribute)
     {
-        $attributes = [$attribute];
+        $attributes = array($attribute);
 
         if (isset(self::$attributeHierarchy[$attribute])) {
             $attributes = array_merge($attributes, self::$attributeHierarchy[$attribute]);
