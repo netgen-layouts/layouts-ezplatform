@@ -27,6 +27,11 @@ class NetgenEzPublishBlockManagerBundle extends Bundle
 
         /** @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\EzPublishCoreExtension $ezCoreExtension */
         $ezCoreExtension = $container->getExtension('ezpublish');
-        $ezCoreExtension->addPolicyProvider(new PolicyProvider());
+
+        // @deprecated Check for existence of method for compatibility with eZ Publish 5.4.x
+        // @todo Remove the check when support for 5.4.x ends
+        if (method_exists($ezCoreExtension, 'addPolicyProvider')) {
+            $ezCoreExtension->addPolicyProvider(new PolicyProvider());
+        }
     }
 }
