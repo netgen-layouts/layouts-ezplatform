@@ -4,9 +4,8 @@ services:
         arguments:
             - "@netgen_block_manager.templating.pagelayout_resolver.default"
             - "@ezpublish.config.resolver"
+            - "@request_stack"
             - "%ezpublish.content_view.viewbase_layout%"
-        calls:
-            - [setRequestStack, ["@request_stack"]]
 
     netgen_block_manager.templating.pagelayout_resolver:
         alias: netgen_block_manager.templating.pagelayout_resolver.ezpublish

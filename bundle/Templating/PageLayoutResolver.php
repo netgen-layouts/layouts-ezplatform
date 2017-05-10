@@ -3,14 +3,12 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Templating;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Netgen\Bundle\BlockManagerBundle\Templating\PageLayoutResolverInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class PageLayoutResolver implements PageLayoutResolverInterface
 {
-    use RequestStackAwareTrait;
-
     /**
      * @var \Netgen\Bundle\BlockManagerBundle\Templating\PageLayoutResolverInterface
      */
@@ -22,6 +20,11 @@ class PageLayoutResolver implements PageLayoutResolverInterface
     protected $configResolver;
 
     /**
+     * @var \Symfony\Component\HttpFoundation\RequestStack
+     */
+    protected $requestStack;
+
+    /**
      * @var string
      */
     protected $viewbaseLayout;
@@ -31,15 +34,18 @@ class PageLayoutResolver implements PageLayoutResolverInterface
      *
      * @param \Netgen\Bundle\BlockManagerBundle\Templating\PageLayoutResolverInterface $innerResolver
      * @param \eZ\Publish\Core\MVC\ConfigResolverInterface $configResolver
+     * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
      * @param string $viewbaseLayout
      */
     public function __construct(
         PageLayoutResolverInterface $innerResolver,
         ConfigResolverInterface $configResolver,
+        RequestStack $requestStack,
         $viewbaseLayout
     ) {
         $this->innerResolver = $innerResolver;
         $this->configResolver = $configResolver;
+        $this->requestStack = $requestStack;
         $this->viewbaseLayout = $viewbaseLayout;
     }
 

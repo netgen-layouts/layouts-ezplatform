@@ -40,10 +40,9 @@ class PageLayoutResolverTest extends TestCase
         $this->resolver = new PageLayoutResolver(
             $this->innerResolverMock,
             $this->configResolverMock,
+            $this->requestStackMock,
             'viewbaseLayout'
         );
-
-        $this->resolver->setRequestStack($this->requestStackMock);
     }
 
     /**
