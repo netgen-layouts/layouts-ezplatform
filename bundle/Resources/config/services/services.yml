@@ -16,7 +16,7 @@ services:
             - [setRequestStack, ["@request_stack"]]
 
     netgen_block_manager.ezpublish.security.repository_access_voter:
-        class: Netgen\Bundle\EzPublishBlockManagerBundle\Security\Authorization\Voter\RepositoryAccessVoter
+        class: Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter
         public: false
         arguments:
             - "@ezpublish.api.repository"

@@ -1,19 +1,19 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Security\Authorization\Voter;
+namespace Netgen\BlockManager\Ez\Security\Authorization\Voter;
 
 use eZ\Publish\API\Repository\Repository;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 /**
- * Votes on Netgen Layout attributes (ngbm:*) by matching corresponding access
+ * Votes on Netgen Layouts attributes (ngbm:*) by matching corresponding access
  * rights in eZ Platform Repository.
  */
 class RepositoryAccessVoter extends Voter
 {
     /**
-     * Identifier of the Legacy Stack module used for creating Block Manager permissions.
+     * Identifier of the Legacy Stack module used for creating Netgen Layouts permissions.
      *
      * @var string
      */
@@ -55,6 +55,18 @@ class RepositoryAccessVoter extends Voter
         $this->repository = $repository;
     }
 
+    /**
+     * Returns the vote for the given parameters.
+     *
+     * This method must return one of the following constants:
+     * ACCESS_GRANTED, ACCESS_DENIED, or ACCESS_ABSTAIN.
+     *
+     * @param \Symfony\Component\Security\Core\Authentication\Token\TokenInterface $token
+     * @param object|null $object
+     * @param array $attributes
+     *
+     * @return int either ACCESS_GRANTED, ACCESS_ABSTAIN, or ACCESS_DENIED
+     */
     public function vote(TokenInterface $token, $object, array $attributes)
     {
         // abstain vote by default in case none of the attributes are supported
@@ -79,11 +91,29 @@ class RepositoryAccessVoter extends Voter
         return $vote;
     }
 
+    /**
+     * Determines if the attribute and subject are supported by this voter.
+     *
+     * @param string $attribute
+     * @param mixed $subject
+     *
+     * @return bool
+     */
     protected function supports($attribute, $subject)
     {
         return is_string($attribute) && isset(self::$attributeToPolicyMap[$attribute]);
     }
 
+    /**
+     * Perform a single access check operation on a given attribute, subject and token.
+     * It is safe to assume that $attribute and $subject already passed the "supports()" method check.
+     *
+     * @param string $attribute
+     * @param mixed $subject
+     * @param \Symfony\Component\Security\Core\Authentication\Token\TokenInterface $token
+     *
+     * @return bool
+     */
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
         $function = self::$attributeToPolicyMap[$attribute];
