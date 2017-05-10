@@ -19,6 +19,7 @@ class PolicyProvider implements PolicyProviderInterface
                 'nglayouts' => array(
                     'admin' => null,
                     'editor' => null,
+                    'api' => null,
                 ),
             )
         );

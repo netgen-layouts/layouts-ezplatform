@@ -11,4 +11,5 @@ $ViewList = array();
 $FunctionList = array(
     'admin' => array(),
     'editor' => array(),
+    'api' => array(),
 );

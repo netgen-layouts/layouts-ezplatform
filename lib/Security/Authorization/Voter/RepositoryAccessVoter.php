@@ -30,6 +30,7 @@ class RepositoryAccessVoter extends Voter
     private static $attributeToPolicyMap = array(
         'ROLE_NGBM_ADMIN' => 'admin',
         'ROLE_NGBM_EDITOR' => 'editor',
+        'ROLE_NGBM_API' => 'api',
     );
 
     /**
