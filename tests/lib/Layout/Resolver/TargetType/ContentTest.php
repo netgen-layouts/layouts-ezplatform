@@ -8,10 +8,11 @@ use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\Content\Content as EzContent;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
-use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
+use Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface;
 use Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
 
 class ContentTest extends TestCase
@@ -29,7 +30,7 @@ class ContentTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $contentProviderMock;
+    protected $contentExtractorMock;
 
     /**
      * @var \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content
@@ -38,7 +39,7 @@ class ContentTest extends TestCase
 
     public function setUp()
     {
-        $this->contentProviderMock = $this->createMock(ContentProviderInterface::class);
+        $this->contentExtractorMock = $this->createMock(ContentExtractorInterface::class);
         $this->contentServiceMock = $this->createMock(ContentService::class);
         $this->repositoryMock = $this->createPartialMock(Repository::class, array('sudo', 'getContentService'));
 
@@ -55,7 +56,7 @@ class ContentTest extends TestCase
             ->method('getContentService')
             ->will($this->returnValue($this->contentServiceMock));
 
-        $this->targetType = new Content($this->contentProviderMock);
+        $this->targetType = new Content($this->contentExtractorMock);
     }
 
     /**
@@ -119,12 +120,15 @@ class ContentTest extends TestCase
             )
         );
 
-        $this->contentProviderMock
+        $request = Request::create('/');
+
+        $this->contentExtractorMock
             ->expects($this->any())
-            ->method('provideContent')
+            ->method('extractContent')
+            ->with($this->equalTo($request))
             ->will($this->returnValue($content));
 
-        $this->assertEquals(42, $this->targetType->provideValue());
+        $this->assertEquals(42, $this->targetType->provideValue($request));
     }
 
     /**
@@ -132,16 +136,19 @@ class ContentTest extends TestCase
      */
     public function testProvideValueWithNoContent()
     {
-        $this->contentProviderMock
+        $request = Request::create('/');
+
+        $this->contentExtractorMock
             ->expects($this->any())
-            ->method('provideContent')
+            ->method('extractContent')
+            ->with($this->equalTo($request))
             ->will($this->returnValue(null));
 
-        $this->assertEquals(null, $this->targetType->provideValue());
+        $this->assertEquals(null, $this->targetType->provideValue($request));
     }
 
     /**
-     * Provider for testing valid parameter values.
+     * Extractor for testing valid parameter values.
      *
      * @return array
      */

@@ -7,16 +7,10 @@ use Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccess;
 use Netgen\BlockManager\Ez\Tests\Validator\ValidatorFactory;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Validator\Validation;
 
 class SiteAccessTest extends TestCase
 {
-    /**
-     * @var \Symfony\Component\HttpFoundation\RequestStack
-     */
-    protected $requestStack;
-
     /**
      * @var \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccess
      */
@@ -27,14 +21,7 @@ class SiteAccessTest extends TestCase
      */
     public function setUp()
     {
-        $request = Request::create('/');
-        $request->attributes->set('siteaccess', new EzPublishSiteAccess('eng'));
-
-        $this->requestStack = new RequestStack();
-        $this->requestStack->push($request);
-
         $this->conditionType = new SiteAccess();
-        $this->conditionType->setRequestStack($this->requestStack);
     }
 
     /**
@@ -72,18 +59,10 @@ class SiteAccessTest extends TestCase
      */
     public function testMatches($value, $matches)
     {
-        $this->assertEquals($matches, $this->conditionType->matches($value));
-    }
+        $request = Request::create('/');
+        $request->attributes->set('siteaccess', new EzPublishSiteAccess('eng'));
 
-    /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccess::matches
-     */
-    public function testMatchesWithNoRequest()
-    {
-        // Make sure we have no request
-        $this->requestStack->pop();
-
-        $this->assertFalse($this->conditionType->matches(array('eng')));
+        $this->assertEquals($matches, $this->conditionType->matches($request, $value));
     }
 
     /**
@@ -91,10 +70,9 @@ class SiteAccessTest extends TestCase
      */
     public function testMatchesWithNoSiteAccess()
     {
-        // Make sure we have no siteaccess
-        $this->requestStack->getCurrentRequest()->attributes->remove('siteaccess');
+        $request = Request::create('/');
 
-        $this->assertFalse($this->conditionType->matches(array('eng')));
+        $this->assertFalse($this->conditionType->matches($request, array('eng')));
     }
 
     /**

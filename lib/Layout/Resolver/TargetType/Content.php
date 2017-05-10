@@ -3,26 +3,27 @@
 namespace Netgen\BlockManager\Ez\Layout\Resolver\TargetType;
 
 use eZ\Publish\API\Repository\Values\Content\Content as APIContent;
-use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
+use Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Layout\Resolver\TargetTypeInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
 
 class Content implements TargetTypeInterface
 {
     /**
-     * @var \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface
+     * @var \Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface
      */
-    protected $contentProvider;
+    protected $contentExtractor;
 
     /**
      * Constructor.
      *
-     * @param \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface $contentProvider
+     * @param \Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface $contentExtractor
      */
-    public function __construct(ContentProviderInterface $contentProvider)
+    public function __construct(ContentExtractorInterface $contentExtractor)
     {
-        $this->contentProvider = $contentProvider;
+        $this->contentExtractor = $contentExtractor;
     }
 
     /**
@@ -53,11 +54,13 @@ class Content implements TargetTypeInterface
     /**
      * Provides the value for the target to be used in matching process.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
      * @return mixed
      */
-    public function provideValue()
+    public function provideValue(Request $request)
     {
-        $content = $this->contentProvider->provideContent();
+        $content = $this->contentExtractor->extractContent($request);
 
         return $content instanceof APIContent ? $content->id : null;
     }

@@ -11,7 +11,6 @@ class SemanticPathInfoPrefixTest extends SemanticPathInfoTest
         parent::setUp();
 
         $this->targetType = new SemanticPathInfoPrefix();
-        $this->targetType->setRequestStack($this->requestStack);
     }
 
     /**

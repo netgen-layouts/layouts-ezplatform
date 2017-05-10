@@ -5,16 +5,10 @@ namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\TargetType;
 use Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfo;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Validator\Validation;
 
 class SemanticPathInfoTest extends TestCase
 {
-    /**
-     * @var \Symfony\Component\HttpFoundation\RequestStack
-     */
-    protected $requestStack;
-
     /**
      * @var \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfo
      */
@@ -22,14 +16,7 @@ class SemanticPathInfoTest extends TestCase
 
     public function setUp()
     {
-        $request = Request::create('/the/answer');
-        $request->attributes->set('semanticPathinfo', '/the/answer');
-
-        $this->requestStack = new RequestStack();
-        $this->requestStack->push($request);
-
         $this->targetType = new SemanticPathInfo();
-        $this->targetType->setRequestStack($this->requestStack);
     }
 
     /**
@@ -60,9 +47,12 @@ class SemanticPathInfoTest extends TestCase
      */
     public function testProvideValue()
     {
+        $request = Request::create('/the/answer');
+        $request->attributes->set('semanticPathinfo', '/the/answer');
+
         $this->assertEquals(
             '/the/answer',
-            $this->targetType->provideValue()
+            $this->targetType->provideValue($request)
         );
     }
 
@@ -71,23 +61,13 @@ class SemanticPathInfoTest extends TestCase
      */
     public function testProvideValueWithEmptySemanticPathInfo()
     {
-        $this->requestStack->getCurrentRequest()->attributes->set('semanticPathinfo', false);
+        $request = Request::create('/the/answer');
+        $request->attributes->set('semanticPathinfo', false);
 
         $this->assertEquals(
             '/',
-            $this->targetType->provideValue()
+            $this->targetType->provideValue($request)
         );
-    }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfo::provideValue
-     */
-    public function testProvideValueWithNoRequest()
-    {
-        // Make sure we have no request
-        $this->requestStack->pop();
-
-        $this->assertNull($this->targetType->provideValue());
     }
 
     /**
@@ -95,14 +75,13 @@ class SemanticPathInfoTest extends TestCase
      */
     public function testProvideValueWithNoSemanticPathInfo()
     {
-        // Make sure we have no semantic path info attribute
-        $this->requestStack->getCurrentRequest()->attributes->remove('semanticPathinfo');
+        $request = Request::create('/the/answer');
 
-        $this->assertNull($this->targetType->provideValue());
+        $this->assertNull($this->targetType->provideValue($request));
     }
 
     /**
-     * Provider for testing target type validation.
+     * Extractor for testing target type validation.
      *
      * @return array
      */

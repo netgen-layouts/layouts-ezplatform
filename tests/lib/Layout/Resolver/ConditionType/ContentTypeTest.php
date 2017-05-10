@@ -12,7 +12,6 @@ use Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Validator\Validation;
 
 class ContentTypeTest extends TestCase
@@ -21,11 +20,6 @@ class ContentTypeTest extends TestCase
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
     protected $repositoryMock;
-
-    /**
-     * @var \Symfony\Component\HttpFoundation\RequestStack
-     */
-    protected $requestStack;
 
     /**
      * @var \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType
@@ -47,12 +41,6 @@ class ContentTypeTest extends TestCase
      */
     public function setUp()
     {
-        $request = Request::create('/');
-        $request->attributes->set('contentId', 42);
-
-        $this->requestStack = new RequestStack();
-        $this->requestStack->push($request);
-
         $this->contentServiceMock = $this->createMock(ContentService::class);
         $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
         $this->repositoryMock = $this->createPartialMock(Repository::class, array('sudo', 'getContentTypeService'));
@@ -74,8 +62,6 @@ class ContentTypeTest extends TestCase
             $this->contentServiceMock,
             $this->contentTypeServiceMock
         );
-
-        $this->conditionType->setRequestStack($this->requestStack);
     }
 
     /**
@@ -132,6 +118,9 @@ class ContentTypeTest extends TestCase
      */
     public function testMatches($value, $matches)
     {
+        $request = Request::create('/');
+        $request->attributes->set('contentId', 42);
+
         $this->contentServiceMock
             ->expects($this->any())
             ->method('loadContentInfo')
@@ -153,18 +142,7 @@ class ContentTypeTest extends TestCase
                 )
             );
 
-        $this->assertEquals($matches, $this->conditionType->matches($value));
-    }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType::matches
-     */
-    public function testMatchesWithNoRequest()
-    {
-        // Make sure we have no request
-        $this->requestStack->pop();
-
-        $this->assertFalse($this->conditionType->matches(array('article')));
+        $this->assertEquals($matches, $this->conditionType->matches($request, $value));
     }
 
     /**
@@ -172,10 +150,9 @@ class ContentTypeTest extends TestCase
      */
     public function testMatchesWithNoContent()
     {
-        // Make sure we have no content ID
-        $this->requestStack->getCurrentRequest()->attributes->remove('contentId');
+        $request = Request::create('/');
 
-        $this->assertFalse($this->conditionType->matches(array('article')));
+        $this->assertFalse($this->conditionType->matches($request, array('article')));
     }
 
     /**

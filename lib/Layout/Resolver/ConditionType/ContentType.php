@@ -6,14 +6,11 @@ use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\ContentTypeService;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
-use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
 
 class ContentType implements ConditionTypeInterface
 {
-    use RequestStackAwareTrait;
-
     /**
      * @var \eZ\Publish\API\Repository\ContentService
      */
@@ -68,20 +65,16 @@ class ContentType implements ConditionTypeInterface
     }
 
     /**
-     * Returns if this condition matches the provided value.
+     * Returns if this request matches the provided value.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param mixed $value
      *
      * @return bool
      */
-    public function matches($value)
+    public function matches(Request $request, $value)
     {
-        $currentRequest = $this->requestStack->getCurrentRequest();
-        if (!$currentRequest instanceof Request) {
-            return false;
-        }
-
-        if (!$currentRequest->attributes->has('contentId')) {
+        if (!$request->attributes->has('contentId')) {
             return false;
         }
 
@@ -90,7 +83,7 @@ class ContentType implements ConditionTypeInterface
         }
 
         $contentInfo = $this->contentService->loadContentInfo(
-            $currentRequest->attributes->get('contentId')
+            $request->attributes->get('contentId')
         );
 
         $contentType = $this->contentTypeService->loadContentType(

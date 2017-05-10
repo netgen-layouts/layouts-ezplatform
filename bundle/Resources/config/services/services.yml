@@ -1,19 +1,21 @@
 services:
     netgen_block_manager.ezpublish.content_provider:
-        alias: netgen_block_manager.ezpublish.content_provider.request
+        class: Netgen\BlockManager\Ez\ContentProvider\ContentProvider
+        arguments:
+            - "@netgen_block_manager.ezpublish.content_extractor"
+            - "@request_stack"
 
-    netgen_block_manager.ezpublish.content_provider.request:
-        class: Netgen\BlockManager\Ez\ContentProvider\RequestContentProvider
-        calls:
-            - [setRequestStack, ["@request_stack"]]
+    netgen_block_manager.ezpublish.content_extractor:
+        alias: netgen_block_manager.ezpublish.content_extractor.request
 
-    netgen_block_manager.ezpublish.content_provider.ez5_request:
-        class: Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentProvider
+    netgen_block_manager.ezpublish.content_extractor.request:
+        class: Netgen\BlockManager\Ez\ContentProvider\RequestContentExtractor
+
+    netgen_block_manager.ezpublish.content_extractor.ez5_request:
+        class: Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentExtractor
         arguments:
             - "@ezpublish.api.service.content"
             - "@ezpublish.api.service.location"
-        calls:
-            - [setRequestStack, ["@request_stack"]]
 
     netgen_block_manager.ezpublish.security.repository_access_voter:
         class: Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter

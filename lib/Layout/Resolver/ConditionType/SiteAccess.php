@@ -5,14 +5,11 @@ namespace Netgen\BlockManager\Ez\Layout\Resolver\ConditionType;
 use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzPublishSiteAccess;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
-use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
 
 class SiteAccess implements ConditionTypeInterface
 {
-    use RequestStackAwareTrait;
-
     /**
      * Returns the condition type.
      *
@@ -45,20 +42,16 @@ class SiteAccess implements ConditionTypeInterface
     }
 
     /**
-     * Returns if this condition matches the provided value.
+     * Returns if this request matches the provided value.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param mixed $value
      *
      * @return bool
      */
-    public function matches($value)
+    public function matches(Request $request, $value)
     {
-        $currentRequest = $this->requestStack->getCurrentRequest();
-        if (!$currentRequest instanceof Request) {
-            return false;
-        }
-
-        $siteAccess = $currentRequest->attributes->get('siteaccess');
+        $siteAccess = $request->attributes->get('siteaccess');
         if (!$siteAccess instanceof EzPublishSiteAccess) {
             return false;
         }

@@ -8,17 +8,14 @@ use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
-use Netgen\BlockManager\Traits\RequestStackAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @deprecated Class used to provide content and location from current request
+ * @deprecated Class used to extract content and location from provided request
  * in eZ Publish 5
  */
-class Ez5RequestContentProvider implements ContentProviderInterface
+class Ez5RequestContentExtractor implements ContentExtractorInterface
 {
-    use RequestStackAwareTrait;
-
     /**
      * @var \eZ\Publish\API\Repository\ContentService
      */
@@ -42,18 +39,15 @@ class Ez5RequestContentProvider implements ContentProviderInterface
     }
 
     /**
-     * Provides the eZ Publish content value object.
+     * Extracts the eZ Publish content value object from the provided request.
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Content
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return \eZ\Publish\API\Repository\Values\Content\Content|void
      */
-    public function provideContent()
+    public function extractContent(Request $request)
     {
-        $currentRequest = $this->requestStack->getCurrentRequest();
-        if (!$currentRequest instanceof Request) {
-            return;
-        }
-
-        $content = $currentRequest->attributes->get('content');
+        $content = $request->attributes->get('content');
         if ($content !== null && !$content instanceof Content) {
             return;
         }
@@ -62,8 +56,8 @@ class Ez5RequestContentProvider implements ContentProviderInterface
             return $content;
         }
 
-        $contentId = $currentRequest->attributes->get('contentId');
-        $currentRoute = $currentRequest->attributes->get('_route');
+        $contentId = $request->attributes->get('contentId');
+        $currentRoute = $request->attributes->get('_route');
         if ($contentId === null || $currentRoute !== UrlAliasRouter::URL_ALIAS_ROUTE_NAME) {
             return;
         }
@@ -76,18 +70,15 @@ class Ez5RequestContentProvider implements ContentProviderInterface
     }
 
     /**
-     * Provides the eZ Publish location value object.
+     * Extracts the eZ Publish location value object from provided request.
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Location
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return \eZ\Publish\API\Repository\Values\Content\Location|void
      */
-    public function provideLocation()
+    public function extractLocation(Request $request)
     {
-        $currentRequest = $this->requestStack->getCurrentRequest();
-        if (!$currentRequest instanceof Request) {
-            return;
-        }
-
-        $location = $currentRequest->attributes->get('location');
+        $location = $request->attributes->get('location');
         if ($location !== null && !$location instanceof Location) {
             return;
         }
@@ -96,8 +87,8 @@ class Ez5RequestContentProvider implements ContentProviderInterface
             return $location;
         }
 
-        $locationId = $currentRequest->attributes->get('locationId');
-        $currentRoute = $currentRequest->attributes->get('_route');
+        $locationId = $request->attributes->get('locationId');
+        $currentRoute = $request->attributes->get('_route');
         if ($locationId === null || $currentRoute !== UrlAliasRouter::URL_ALIAS_ROUTE_NAME) {
             return;
         }

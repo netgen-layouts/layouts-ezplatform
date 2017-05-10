@@ -6,10 +6,11 @@ use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\Content\Location;
-use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
+use Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface;
 use Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Subtree;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
 
 class SubtreeTest extends TestCase
@@ -22,7 +23,7 @@ class SubtreeTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $contentProviderMock;
+    protected $contentExtractorMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
@@ -36,7 +37,7 @@ class SubtreeTest extends TestCase
 
     public function setUp()
     {
-        $this->contentProviderMock = $this->createMock(ContentProviderInterface::class);
+        $this->contentExtractorMock = $this->createMock(ContentExtractorInterface::class);
         $this->locationServiceMock = $this->createMock(LocationService::class);
         $this->repositoryMock = $this->createPartialMock(Repository::class, array('sudo', 'getLocationService'));
 
@@ -53,7 +54,7 @@ class SubtreeTest extends TestCase
             ->method('getLocationService')
             ->will($this->returnValue($this->locationServiceMock));
 
-        $this->targetType = new Subtree($this->contentProviderMock);
+        $this->targetType = new Subtree($this->contentExtractorMock);
     }
 
     /**
@@ -109,12 +110,15 @@ class SubtreeTest extends TestCase
             )
         );
 
-        $this->contentProviderMock
+        $request = Request::create('/');
+
+        $this->contentExtractorMock
             ->expects($this->any())
-            ->method('provideLocation')
+            ->method('extractLocation')
+            ->with($this->equalTo($request))
             ->will($this->returnValue($location));
 
-        $this->assertEquals(array(1, 2, 42), $this->targetType->provideValue());
+        $this->assertEquals(array(1, 2, 42), $this->targetType->provideValue($request));
     }
 
     /**
@@ -123,16 +127,19 @@ class SubtreeTest extends TestCase
      */
     public function testProvideValueWithNoLocation()
     {
-        $this->contentProviderMock
+        $request = Request::create('/');
+
+        $this->contentExtractorMock
             ->expects($this->any())
-            ->method('provideLocation')
+            ->method('extractLocation')
+            ->with($this->equalTo($request))
             ->will($this->returnValue(null));
 
-        $this->assertEquals(null, $this->targetType->provideValue());
+        $this->assertEquals(null, $this->targetType->provideValue($request));
     }
 
     /**
-     * Provider for testing valid parameter values.
+     * Extractor for testing valid parameter values.
      *
      * @return array
      */
