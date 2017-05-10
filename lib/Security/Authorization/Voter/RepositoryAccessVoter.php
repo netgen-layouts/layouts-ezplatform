@@ -6,6 +6,8 @@ use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
+use Symfony\Component\Security\Core\Role\Role;
+use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 
 /**
  * Votes on Netgen Layouts attributes (ROLE_NGBM_*) by matching corresponding access
@@ -31,17 +33,9 @@ class RepositoryAccessVoter extends Voter
     );
 
     /**
-     * Describes inverted attribute hierarchy.
-     *
-     * Only one level, explicit (no indirection is allowed).
-     *
-     * @var array
+     * @var \Symfony\Component\Security\Core\Role\RoleHierarchyInterface
      */
-    private static $attributeHierarchy = array(
-        'ROLE_NGBM_EDITOR' => array(
-            'ROLE_NGBM_ADMIN',
-        ),
-    );
+    private $roleHierarchy;
 
     /**
      * @var \Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface
@@ -49,10 +43,14 @@ class RepositoryAccessVoter extends Voter
     private $accessDecisionManager;
 
     /**
+     * @param \Symfony\Component\Security\Core\Role\RoleHierarchyInterface $roleHierarchy
      * @param \Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface $accessDecisionManager
      */
-    public function __construct(AccessDecisionManagerInterface $accessDecisionManager)
-    {
+    public function __construct(
+        RoleHierarchyInterface $roleHierarchy,
+        AccessDecisionManagerInterface $accessDecisionManager
+    ) {
+        $this->roleHierarchy = $roleHierarchy;
         $this->accessDecisionManager = $accessDecisionManager;
     }
 
@@ -102,7 +100,7 @@ class RepositoryAccessVoter extends Voter
      */
     protected function supports($attribute, $subject)
     {
-        return is_string($attribute) && isset(self::$attributeToPolicyMap[$attribute]);
+        return is_string($attribute) && strpos($attribute, 'ROLE_NGBM_') === 0;
     }
 
     /**
@@ -117,6 +115,10 @@ class RepositoryAccessVoter extends Voter
      */
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
+        if (!isset(self::$attributeToPolicyMap[$attribute])) {
+            return false;
+        }
+
         $function = self::$attributeToPolicyMap[$attribute];
 
         return $this->accessDecisionManager->decide(
@@ -135,12 +137,13 @@ class RepositoryAccessVoter extends Voter
      */
     private function getReachableAttributes($attribute)
     {
-        $attributes = array($attribute);
+        $reachableRoles = $this->roleHierarchy->getReachableRoles(array(new Role($attribute)));
 
-        if (isset(self::$attributeHierarchy[$attribute])) {
-            $attributes = array_merge($attributes, self::$attributeHierarchy[$attribute]);
+        $reachableAttributes = array();
+        foreach ($reachableRoles as $reachableRole) {
+            $reachableAttributes[] = $reachableRole->getRole();
         }
 
-        return $attributes;
+        return $reachableAttributes;
     }
 }

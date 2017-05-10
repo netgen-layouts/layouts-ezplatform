@@ -17,10 +17,17 @@ services:
             - "@ezpublish.api.service.content"
             - "@ezpublish.api.service.location"
 
+    netgen_block_manager.ezpublish.security.role_hierarchy:
+        class: Netgen\BlockManager\Ez\Security\Role\RoleHierarchy
+        public: false
+        arguments:
+            - "%security.role_hierarchy.roles%"
+
     netgen_block_manager.ezpublish.security.repository_access_voter:
         class: Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter
         public: false
         arguments:
+            - "@netgen_block_manager.ezpublish.security.role_hierarchy"
             - "@security.access.decision_manager"
         tags:
             - { name: security.voter }

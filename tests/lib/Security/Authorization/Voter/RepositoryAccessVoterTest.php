@@ -4,6 +4,7 @@ namespace Netgen\BlockManager\Ez\Tests\Security\Authorization\Voter;
 
 use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute;
 use Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter;
+use Netgen\BlockManager\Ez\Security\Role\RoleHierarchy;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
@@ -23,9 +24,20 @@ class RepositoryAccessVoterTest extends TestCase
 
     public function setUp()
     {
+        $roleHierarchy = new RoleHierarchy(
+            array(
+                'ROLE_NGBM_ADMIN' => array(
+                    'ROLE_NGBM_EDITOR',
+                ),
+            )
+        );
+
         $this->accessDecisionManagerMock = $this->createMock(AccessDecisionManagerInterface::class);
 
-        $this->voter = new RepositoryAccessVoter($this->accessDecisionManagerMock);
+        $this->voter = new RepositoryAccessVoter(
+            $roleHierarchy,
+            $this->accessDecisionManagerMock
+        );
     }
 
     /**
@@ -75,7 +87,7 @@ class RepositoryAccessVoterTest extends TestCase
             array('ROLE_NGBM_EDITOR', array('editor' => false, 'admin' => true), VoterInterface::ACCESS_GRANTED),
             array('ROLE_NGBM_EDITOR', array('editor' => false, 'admin' => false), VoterInterface::ACCESS_DENIED),
 
-            array('ROLE_NGBM_UNKNOWN', array(), VoterInterface::ACCESS_ABSTAIN),
+            array('ROLE_NGBM_UNKNOWN', array(), VoterInterface::ACCESS_DENIED),
         );
     }
 }
