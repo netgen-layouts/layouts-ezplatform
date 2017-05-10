@@ -2,10 +2,11 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Security\Authorization\Voter;
 
-use eZ\Publish\API\Repository\Repository;
+use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute;
 use Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 
 class RepositoryAccessVoterTest extends TestCase
@@ -13,7 +14,7 @@ class RepositoryAccessVoterTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $repositoryMock;
+    protected $accessDecisionManagerMock;
 
     /**
      * @var \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter
@@ -22,9 +23,9 @@ class RepositoryAccessVoterTest extends TestCase
 
     public function setUp()
     {
-        $this->repositoryMock = $this->createMock(Repository::class);
+        $this->accessDecisionManagerMock = $this->createMock(AccessDecisionManagerInterface::class);
 
-        $this->voter = new RepositoryAccessVoter($this->repositoryMock);
+        $this->voter = new RepositoryAccessVoter($this->accessDecisionManagerMock);
     }
 
     /**
@@ -42,20 +43,22 @@ class RepositoryAccessVoterTest extends TestCase
      */
     public function testVote($attribute, array $repoAccess, $voteResult)
     {
+        $token = $this->createMock(TokenInterface::class);
+
         $i = 0;
         foreach ($repoAccess as $function => $hasAccess) {
-            $this->repositoryMock
+            $this->accessDecisionManagerMock
                 ->expects($this->at($i++))
-                ->method('hasAccess')
-                ->with($this->equalTo('nglayouts'), $this->equalTo($function))
+                ->method('decide')
+                ->with(
+                    $this->equalTo($token),
+                    $this->equalTo(array(new Attribute('nglayouts', $function))),
+                    $this->isNull()
+                )
                 ->will($this->returnValue($hasAccess));
         }
 
-        $result = $this->voter->vote(
-            $this->createMock(TokenInterface::class),
-            null,
-            array($attribute)
-        );
+        $result = $this->voter->vote($token, null, array($attribute));
 
         $this->assertEquals($voteResult, $result);
     }
@@ -64,15 +67,15 @@ class RepositoryAccessVoterTest extends TestCase
     {
         return array(
             // Only matches admin eZ function
-            array('ngbm:admin', array('admin' => true), VoterInterface::ACCESS_GRANTED),
-            array('ngbm:admin', array('admin' => false), VoterInterface::ACCESS_DENIED),
+            array('ROLE_NGBM_ADMIN', array('admin' => true), VoterInterface::ACCESS_GRANTED),
+            array('ROLE_NGBM_ADMIN', array('admin' => false), VoterInterface::ACCESS_DENIED),
 
             // Matches both admin and editor eZ functions
-            array('ngbm:editor', array('editor' => true), VoterInterface::ACCESS_GRANTED),
-            array('ngbm:editor', array('editor' => false, 'admin' => true), VoterInterface::ACCESS_GRANTED),
-            array('ngbm:editor', array('editor' => false, 'admin' => false), VoterInterface::ACCESS_DENIED),
+            array('ROLE_NGBM_EDITOR', array('editor' => true), VoterInterface::ACCESS_GRANTED),
+            array('ROLE_NGBM_EDITOR', array('editor' => false, 'admin' => true), VoterInterface::ACCESS_GRANTED),
+            array('ROLE_NGBM_EDITOR', array('editor' => false, 'admin' => false), VoterInterface::ACCESS_DENIED),
 
-            array('ngbm:unknown', array(), VoterInterface::ACCESS_ABSTAIN),
+            array('ROLE_NGBM_UNKNOWN', array(), VoterInterface::ACCESS_ABSTAIN),
         );
     }
 }
