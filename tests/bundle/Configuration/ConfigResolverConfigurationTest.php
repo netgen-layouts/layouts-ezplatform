@@ -29,10 +29,6 @@ class ConfigResolverConfigurationTest extends TestCase
      */
     protected function setUp()
     {
-        if (!interface_exists('eZ\Publish\Core\MVC\ConfigResolverInterface')) {
-            $this->markTestSkipped('No eZ Publish installed, ConfigResolverConfiguration tests skipped.');
-        }
-
         $this->configResolverMock = $this->createMock(ConfigResolverInterface::class);
         $this->fallbackConfigurationMock = $this->createMock(ConfigurationInterface::class);
 
