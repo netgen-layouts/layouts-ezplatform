@@ -5,6 +5,7 @@ view:
                 template: "NetgenEzPublishBlockManagerBundle:block:ezcontent_field.html.twig"
                 match:
                     block\definition: ezcontent_field
+                    block\view_type: ezcontent_field
         api:
             ezcontent_field:
                 template: "NetgenEzPublishBlockManagerBundle:api/block:ezcontent_field.html.twig"
