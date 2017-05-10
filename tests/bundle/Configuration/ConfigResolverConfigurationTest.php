@@ -32,8 +32,10 @@ class ConfigResolverConfigurationTest extends TestCase
         $this->configResolverMock = $this->createMock(ConfigResolverInterface::class);
         $this->fallbackConfigurationMock = $this->createMock(ConfigurationInterface::class);
 
-        $this->configuration = new ConfigResolverConfiguration($this->fallbackConfigurationMock);
-        $this->configuration->setConfigResolver($this->configResolverMock);
+        $this->configuration = new ConfigResolverConfiguration(
+            $this->configResolverMock,
+            $this->fallbackConfigurationMock
+        );
     }
 
     /**

@@ -9,33 +9,27 @@ use Netgen\Bundle\BlockManagerBundle\Configuration\ConfigurationInterface;
 class ConfigResolverConfiguration implements ConfigurationInterface
 {
     /**
-     * @var \Netgen\Bundle\BlockManagerBundle\Configuration\ConfigurationInterface
-     */
-    protected $fallbackConfiguration;
-
-    /**
      * @var \eZ\Publish\Core\MVC\ConfigResolverInterface
      */
     protected $configResolver;
 
     /**
-     * Constructor.
-     *
-     * @param \Netgen\Bundle\BlockManagerBundle\Configuration\ConfigurationInterface $fallbackConfiguration
+     * @var \Netgen\Bundle\BlockManagerBundle\Configuration\ConfigurationInterface
      */
-    public function __construct(ConfigurationInterface $fallbackConfiguration)
-    {
-        $this->fallbackConfiguration = $fallbackConfiguration;
-    }
+    protected $fallbackConfiguration;
 
     /**
-     * Sets the config resolver.
+     * Constructor.
      *
      * @param \eZ\Publish\Core\MVC\ConfigResolverInterface $configResolver
+     * @param \Netgen\Bundle\BlockManagerBundle\Configuration\ConfigurationInterface $fallbackConfiguration
      */
-    public function setConfigResolver(ConfigResolverInterface $configResolver)
-    {
+    public function __construct(
+        ConfigResolverInterface $configResolver,
+        ConfigurationInterface $fallbackConfiguration
+    ) {
         $this->configResolver = $configResolver;
+        $this->fallbackConfiguration = $fallbackConfiguration;
     }
 
     /**

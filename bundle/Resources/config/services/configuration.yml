@@ -2,9 +2,8 @@ services:
     netgen_block_manager.configuration.config_resolver:
         class: Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration
         arguments:
+            - "@ezpublish.config.resolver"
             - "@netgen_block_manager.configuration.container"
-        calls:
-            - [setConfigResolver, ["@ezpublish.config.resolver"]]
         lazy: true
 
     netgen_block_manager.configuration:
