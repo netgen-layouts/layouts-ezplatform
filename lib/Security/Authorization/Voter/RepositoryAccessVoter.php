@@ -2,12 +2,13 @@
 
 namespace Netgen\BlockManager\Ez\Security\Authorization\Voter;
 
-use eZ\Publish\API\Repository\Repository;
+use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 /**
- * Votes on Netgen Layouts attributes (ngbm:*) by matching corresponding access
+ * Votes on Netgen Layouts attributes (ROLE_NGBM_*) by matching corresponding access
  * rights in eZ Platform Repository.
  */
 class RepositoryAccessVoter extends Voter
@@ -25,8 +26,8 @@ class RepositoryAccessVoter extends Voter
      * @var array
      */
     private static $attributeToPolicyMap = array(
-        'ngbm:admin' => 'admin',
-        'ngbm:editor' => 'editor',
+        'ROLE_NGBM_ADMIN' => 'admin',
+        'ROLE_NGBM_EDITOR' => 'editor',
     );
 
     /**
@@ -37,22 +38,22 @@ class RepositoryAccessVoter extends Voter
      * @var array
      */
     private static $attributeHierarchy = array(
-        'ngbm:editor' => array(
-            'ngbm:admin',
+        'ROLE_NGBM_EDITOR' => array(
+            'ROLE_NGBM_ADMIN',
         ),
     );
 
     /**
-     * @var \eZ\Publish\API\Repository\Repository
+     * @var \Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface
      */
-    private $repository;
+    private $accessDecisionManager;
 
     /**
-     * @param \eZ\Publish\API\Repository\Repository $repository
+     * @param \Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface $accessDecisionManager
      */
-    public function __construct(Repository $repository)
+    public function __construct(AccessDecisionManagerInterface $accessDecisionManager)
     {
-        $this->repository = $repository;
+        $this->accessDecisionManager = $accessDecisionManager;
     }
 
     /**
@@ -118,7 +119,11 @@ class RepositoryAccessVoter extends Voter
     {
         $function = self::$attributeToPolicyMap[$attribute];
 
-        return $this->repository->hasAccess(self::$module, $function);
+        return $this->accessDecisionManager->decide(
+            $token,
+            array(new Attribute(self::$module, $function)),
+            $subject
+        );
     }
 
     /**
