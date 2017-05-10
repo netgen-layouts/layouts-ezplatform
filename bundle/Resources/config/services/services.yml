@@ -19,6 +19,6 @@ services:
         class: Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter
         public: false
         arguments:
-            - "@ezpublish.api.repository"
+            - "@security.access.decision_manager"
         tags:
             - { name: security.voter }
