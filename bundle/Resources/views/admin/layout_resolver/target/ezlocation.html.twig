@@ -1,9 +1,0 @@
-{% set path = ngbm_ezlocation_path(target.value) %}
-
-<span class="settings-value editable-value js-setting-edit" data-setting-id="{{ target.id }}" data-setting-type="target">
-    {{ path != null ? path|join(' / ') : '(INVALID LOCATION)' }}
-</span>
-
-<a href="#" class="remove-setting js-setting-delete" data-setting-id="{{ target.id }}" data-setting-type="target">
-    <i class="material-icons">clear</i>
-</a>

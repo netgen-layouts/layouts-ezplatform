@@ -1,11 +1,11 @@
 view:
     rule_condition_view:
-        admin:
+        value:
             ez_site_access:
-                template: "NetgenEzPublishBlockManagerBundle:admin/layout_resolver/condition:ez_site_access.html.twig"
+                template: "NetgenEzPublishBlockManagerBundle:admin/layout_resolver/condition/value:ez_site_access.html.twig"
                 match:
                     rule_condition\type: ez_site_access
             ez_content_type:
-                template: "NetgenEzPublishBlockManagerBundle:admin/layout_resolver/condition:ez_content_type.html.twig"
+                template: "NetgenEzPublishBlockManagerBundle:admin/layout_resolver/condition/value:ez_content_type.html.twig"
                 match:
                     rule_condition\type: ez_content_type

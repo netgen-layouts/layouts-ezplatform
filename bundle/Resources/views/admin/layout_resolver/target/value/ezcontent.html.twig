@@ -1,0 +1,3 @@
+{% set content_name = ngbm_ezcontent_name(target.value) %}
+
+{{ content_name != null ? content_name : '(INVALID CONTENT)' }}
