@@ -292,6 +292,18 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     }
 
     /**
+     * Returns if the provided query is dependent on a context, i.e. current request.
+     *
+     * @param \Netgen\BlockManager\API\Values\Collection\Query $query
+     *
+     * @return bool
+     */
+    public function isContextual(Query $query)
+    {
+        return $query->getParameter('use_current_location')->getValue();
+    }
+
+    /**
      * Returns the parent location to use for the query.
      *
      * @param \Netgen\BlockManager\API\Values\Collection\Query $query
@@ -384,17 +396,5 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         );
 
         return $locationQuery;
-    }
-
-    /**
-     * Returns if the provided query is dependent on a context, i.e. current request.
-     *
-     * @param \Netgen\BlockManager\API\Values\Collection\Query $query
-     *
-     * @return bool
-     */
-    public function isContextual(Query $query)
-    {
-        return $query->getParameter('use_current_location')->getValue();
     }
 }
