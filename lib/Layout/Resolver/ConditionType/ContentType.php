@@ -2,8 +2,9 @@
 
 namespace Netgen\BlockManager\Ez\Layout\Resolver\ConditionType;
 
-use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\ContentTypeService;
+use eZ\Publish\API\Repository\Values\Content\Content;
+use Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,9 +13,9 @@ use Symfony\Component\Validator\Constraints;
 class ContentType implements ConditionTypeInterface
 {
     /**
-     * @var \eZ\Publish\API\Repository\ContentService
+     * @var \Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface
      */
-    protected $contentService;
+    protected $contentExtractor;
 
     /**
      * @var \eZ\Publish\API\Repository\ContentTypeService
@@ -24,12 +25,12 @@ class ContentType implements ConditionTypeInterface
     /**
      * Constructor.
      *
-     * @param \eZ\Publish\API\Repository\ContentService $contentService
+     * @param \Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface $contentExtractor
      * @param \eZ\Publish\API\Repository\ContentTypeService $contentTypeService
      */
-    public function __construct(ContentService $contentService, ContentTypeService $contentTypeService)
+    public function __construct(ContentExtractorInterface $contentExtractor, ContentTypeService $contentTypeService)
     {
-        $this->contentService = $contentService;
+        $this->contentExtractor = $contentExtractor;
         $this->contentTypeService = $contentTypeService;
     }
 
@@ -74,20 +75,17 @@ class ContentType implements ConditionTypeInterface
      */
     public function matches(Request $request, $value)
     {
-        if (!$request->attributes->has('contentId')) {
-            return false;
-        }
-
         if (!is_array($value) || empty($value)) {
             return false;
         }
 
-        $contentInfo = $this->contentService->loadContentInfo(
-            $request->attributes->get('contentId')
-        );
+        $content = $this->contentExtractor->extractContent($request);
+        if (!$content instanceof Content) {
+            return false;
+        }
 
         $contentType = $this->contentTypeService->loadContentType(
-            $contentInfo->contentTypeId
+            $content->contentInfo->contentTypeId
         );
 
         return in_array($contentType->identifier, $value, true);
