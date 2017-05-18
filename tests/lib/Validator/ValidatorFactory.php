@@ -5,9 +5,23 @@ namespace Netgen\BlockManager\Ez\Tests\Validator;
 use Netgen\BlockManager\Ez\Validator\SiteAccessValidator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorFactory;
+use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
 
-class ValidatorFactory extends ConstraintValidatorFactory
+class ValidatorFactory implements ConstraintValidatorFactoryInterface
 {
+    /**
+     * @var \Symfony\Component\Validator\ConstraintValidatorFactoryInterface
+     */
+    protected $baseValidatorFactory;
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->baseValidatorFactory = new ConstraintValidatorFactory();
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -19,6 +33,6 @@ class ValidatorFactory extends ConstraintValidatorFactory
             return new SiteAccessValidator(array('eng', 'cro'));
         }
 
-        return parent::getInstance($constraint);
+        return $this->baseValidatorFactory->getInstance($constraint);
     }
 }

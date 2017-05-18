@@ -8,13 +8,19 @@ use Netgen\BlockManager\Ez\Validator\ContentValidator;
 use Netgen\BlockManager\Ez\Validator\LocationValidator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorFactory;
+use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
 
-class RepositoryValidatorFactory extends ConstraintValidatorFactory
+class RepositoryValidatorFactory implements ConstraintValidatorFactoryInterface
 {
     /**
      * @var \eZ\Publish\API\Repository\Repository
      */
     protected $repository;
+
+    /**
+     * @var \Symfony\Component\Validator\ConstraintValidatorFactoryInterface
+     */
+    protected $baseValidatorFactory;
 
     /**
      * Constructor.
@@ -23,9 +29,8 @@ class RepositoryValidatorFactory extends ConstraintValidatorFactory
      */
     public function __construct(Repository $repository)
     {
-        parent::__construct();
-
         $this->repository = $repository;
+        $this->baseValidatorFactory = new ConstraintValidatorFactory();
     }
 
     /**
@@ -43,6 +48,6 @@ class RepositoryValidatorFactory extends ConstraintValidatorFactory
             return new ContentTypeValidator($this->repository);
         }
 
-        return parent::getInstance($constraint);
+        return $this->baseValidatorFactory->getInstance($constraint);
     }
 }

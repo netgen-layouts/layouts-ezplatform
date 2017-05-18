@@ -6,13 +6,19 @@ use Netgen\BlockManager\Ez\Validator\TagValidator;
 use Netgen\TagsBundle\API\Repository\TagsService;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorFactory;
+use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
 
-class TagsServiceValidatorFactory extends ConstraintValidatorFactory
+class TagsServiceValidatorFactory implements ConstraintValidatorFactoryInterface
 {
     /**
      * @var \Netgen\TagsBundle\API\Repository\TagsService
      */
     protected $tagsService;
+
+    /**
+     * @var \Symfony\Component\Validator\ConstraintValidatorFactoryInterface
+     */
+    protected $baseValidatorFactory;
 
     /**
      * Constructor.
@@ -21,9 +27,8 @@ class TagsServiceValidatorFactory extends ConstraintValidatorFactory
      */
     public function __construct(TagsService $tagsService)
     {
-        parent::__construct();
-
         $this->tagsService = $tagsService;
+        $this->baseValidatorFactory = new ConstraintValidatorFactory();
     }
 
     /**
@@ -37,6 +42,6 @@ class TagsServiceValidatorFactory extends ConstraintValidatorFactory
             return new TagValidator($this->tagsService);
         }
 
-        return parent::getInstance($constraint);
+        return $this->baseValidatorFactory->getInstance($constraint);
     }
 }
