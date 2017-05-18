@@ -28,15 +28,6 @@ class ContentValueUrlBuilderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Item\ValueUrlBuilder\ContentValueUrlBuilder::__construct
-     * @covers \Netgen\BlockManager\Ez\Item\ValueUrlBuilder\ContentValueUrlBuilder::getValueType
-     */
-    public function testGetValueType()
-    {
-        $this->assertEquals('ezcontent', $this->urlBuilder->getValueType());
-    }
-
-    /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueUrlBuilder\ContentValueUrlBuilder::getUrl
      */
     public function testGetUrl()

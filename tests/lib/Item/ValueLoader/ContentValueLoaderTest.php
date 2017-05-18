@@ -114,12 +114,4 @@ class ContentValueLoaderTest extends TestCase
 
         $this->valueLoader->load(52);
     }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader::getValueType
-     */
-    public function testGetValueType()
-    {
-        $this->assertEquals('ezcontent', $this->valueLoader->getValueType());
-    }
 }

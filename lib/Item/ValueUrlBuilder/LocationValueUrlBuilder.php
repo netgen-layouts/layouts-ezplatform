@@ -23,16 +23,6 @@ class LocationValueUrlBuilder implements ValueUrlBuilderInterface
     }
 
     /**
-     * Returns the value type for which this URL builder builds the URL.
-     *
-     * @return string
-     */
-    public function getValueType()
-    {
-        return 'ezlocation';
-    }
-
-    /**
      * Returns the object URL. Take note that this is not a slug,
      * but a full path, i.e. starting with /.
      *

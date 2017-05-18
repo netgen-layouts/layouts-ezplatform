@@ -97,12 +97,4 @@ class LocationValueLoaderTest extends TestCase
 
         $this->valueLoader->load(52);
     }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader::getValueType
-     */
-    public function testGetValueType()
-    {
-        $this->assertEquals('ezlocation', $this->valueLoader->getValueType());
-    }
 }

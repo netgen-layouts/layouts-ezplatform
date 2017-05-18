@@ -27,15 +27,6 @@ class LocationValueUrlBuilderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Item\ValueUrlBuilder\LocationValueUrlBuilder::__construct
-     * @covers \Netgen\BlockManager\Ez\Item\ValueUrlBuilder\LocationValueUrlBuilder::getValueType
-     */
-    public function testGetValueType()
-    {
-        $this->assertEquals('ezlocation', $this->urlBuilder->getValueType());
-    }
-
-    /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueUrlBuilder\LocationValueUrlBuilder::getUrl
      */
     public function testGetUrl()
