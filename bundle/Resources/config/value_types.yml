@@ -1,0 +1,8 @@
+items:
+    value_types:
+        ezcontent:
+            enabled: false
+            name: 'eZ content'
+        ezlocation:
+            name: 'eZ location'
+

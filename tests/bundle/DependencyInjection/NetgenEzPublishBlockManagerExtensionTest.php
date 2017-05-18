@@ -88,6 +88,12 @@ class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
         $this->assertArrayHasKey('block_definitions', $config);
         $this->assertArrayHasKey('ezcontent_field', $config['block_definitions']);
 
+        $this->assertArrayHasKey('items', $config);
+        $this->assertArrayHasKey('value_types', $config['items']);
+
+        $this->assertArrayHasKey('ezcontent', $config['items']['value_types']);
+        $this->assertArrayHasKey('ezlocation', $config['items']['value_types']);
+
         $this->assertArrayHasKey('query_types', $config);
         $this->assertArrayHasKey('ezcontent_search', $config['query_types']);
 
