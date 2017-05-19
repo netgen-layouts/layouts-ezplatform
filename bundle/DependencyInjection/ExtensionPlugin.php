@@ -129,11 +129,9 @@ class ExtensionPlugin extends BaseExtensionPlugin
                 continue;
             }
 
-            if (is_array($config[$key])) {
-                $processor->mapConfigArray($key, $config, ContextualizerInterface::MERGE_FROM_SECOND_LEVEL);
-            } else {
+            is_array($config[$key]) ?
+                $processor->mapConfigArray($key, $config, ContextualizerInterface::MERGE_FROM_SECOND_LEVEL) :
                 $processor->mapSetting($key, $config);
-            }
         }
 
         return $config;
