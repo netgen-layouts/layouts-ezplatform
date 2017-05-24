@@ -125,10 +125,21 @@ class EzPublishExtension extends Twig_Extension
         try {
             $contentType = $this->loadContentType($identifier);
 
-            return $this->translationHelper->getTranslatedByMethod(
+            $contentTypeName = $this->translationHelper->getTranslatedByMethod(
                 $contentType,
                 'getName'
             );
+
+            if ($contentTypeName !== null) {
+                return $contentTypeName;
+            }
+
+            $contentTypeNames = $contentType->getNames();
+            if (empty($contentTypeNames)) {
+                return '';
+            }
+
+            return array_values($contentTypeNames)[0];
         } catch (Exception $e) {
             return '';
         }
