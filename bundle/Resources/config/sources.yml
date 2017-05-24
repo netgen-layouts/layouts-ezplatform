@@ -1,4 +1,0 @@
-sources:
-    dynamic:
-        name: 'Dynamic source'
-        query_type: ezcontent_search
