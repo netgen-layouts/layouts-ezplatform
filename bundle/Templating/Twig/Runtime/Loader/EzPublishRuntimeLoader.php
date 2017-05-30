@@ -4,6 +4,7 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\Load
 
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\Core\Helper\TranslationHelper;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime;
 use Twig_RuntimeLoaderInterface;
 
 /**
