@@ -1,6 +1,6 @@
 <?php
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime;
+namespace Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\Loader;
 
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\Core\Helper\TranslationHelper;
