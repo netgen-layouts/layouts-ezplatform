@@ -2,36 +2,12 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension;
 
-use Exception;
-use eZ\Publish\API\Repository\Repository;
-use eZ\Publish\Core\Helper\TranslationHelper;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime;
 use Twig_Extension;
 use Twig_SimpleFunction;
 
 class EzPublishExtension extends Twig_Extension
 {
-    /**
-     * @var \eZ\Publish\API\Repository\Repository
-     */
-    protected $repository;
-
-    /**
-     * @var \eZ\Publish\Core\Helper\TranslationHelper
-     */
-    protected $translationHelper;
-
-    /**
-     * Constructor.
-     *
-     * @param \eZ\Publish\API\Repository\Repository $repository
-     * @param \eZ\Publish\Core\Helper\TranslationHelper $translationHelper
-     */
-    public function __construct(Repository $repository, TranslationHelper $translationHelper)
-    {
-        $this->repository = $repository;
-        $this->translationHelper = $translationHelper;
-    }
-
     /**
      * Returns the name of the extension.
      *
@@ -52,144 +28,16 @@ class EzPublishExtension extends Twig_Extension
         return array(
             new Twig_SimpleFunction(
                 'ngbm_ezcontent_name',
-                array($this, 'getContentName')
+                array(EzPublishRuntime::class, 'getContentName')
             ),
             new Twig_SimpleFunction(
                 'ngbm_ezlocation_path',
-                array($this, 'getLocationPath')
+                array(EzPublishRuntime::class, 'getLocationPath')
             ),
             new Twig_SimpleFunction(
                 'ngbm_ez_content_type_name',
-                array($this, 'getContentTypeName')
+                array(EzPublishRuntime::class, 'getContentTypeName')
             ),
-        );
-    }
-
-    /**
-     * Returns the content name.
-     *
-     * @param int|string $contentId
-     *
-     * @return string
-     */
-    public function getContentName($contentId)
-    {
-        try {
-            $content = $this->loadContent($contentId);
-
-            return $this->translationHelper->getTranslatedContentName($content);
-        } catch (Exception $e) {
-            return '';
-        }
-    }
-
-    /**
-     * Returns the location path.
-     *
-     * @param int|string $locationId
-     *
-     * @return string[]
-     */
-    public function getLocationPath($locationId)
-    {
-        try {
-            $location = $this->loadLocation($locationId);
-
-            $locationPath = $location->path;
-            array_shift($locationPath);
-
-            $translatedNames = array();
-
-            for ($i = 0, $pathLength = count($locationPath); $i < $pathLength; ++$i) {
-                $locationInPath = $this->loadLocation($locationPath[$i]);
-                $translatedNames[] = $this->translationHelper->getTranslatedContentName(
-                    $this->loadContent($locationInPath->contentInfo->id)
-                );
-            }
-
-            return $translatedNames;
-        } catch (Exception $e) {
-            return array();
-        }
-    }
-
-    /**
-     * Returns the content type name.
-     *
-     * @param string $identifier
-     *
-     * @return string
-     */
-    public function getContentTypeName($identifier)
-    {
-        try {
-            $contentType = $this->loadContentType($identifier);
-
-            $contentTypeName = $this->translationHelper->getTranslatedByMethod(
-                $contentType,
-                'getName'
-            );
-
-            if ($contentTypeName !== null) {
-                return $contentTypeName;
-            }
-
-            $contentTypeNames = $contentType->getNames();
-            if (empty($contentTypeNames)) {
-                return '';
-            }
-
-            return array_values($contentTypeNames)[0];
-        } catch (Exception $e) {
-            return '';
-        }
-    }
-
-    /**
-     * Loads the content for provided content ID.
-     *
-     * @param int|string $contentId
-     *
-     * @return \eZ\Publish\API\Repository\Values\Content\Content
-     */
-    protected function loadContent($contentId)
-    {
-        return $this->repository->sudo(
-            function (Repository $repository) use ($contentId) {
-                return $repository->getContentService()->loadContent($contentId);
-            }
-        );
-    }
-
-    /**
-     * Loads the location for provided location ID.
-     *
-     * @param int|string $locationId
-     *
-     * @return \eZ\Publish\API\Repository\Values\Content\Location
-     */
-    protected function loadLocation($locationId)
-    {
-        return $this->repository->sudo(
-            function (Repository $repository) use ($locationId) {
-                return $repository->getLocationService()->loadLocation($locationId);
-            }
-        );
-    }
-
-    /**
-     * Loads the content type for provided identifier.
-     *
-     * @param string $identifier
-     *
-     * @return \eZ\Publish\API\Repository\Values\ContentType\ContentType
-     */
-    protected function loadContentType($identifier)
-    {
-        return $this->repository->sudo(
-            function (Repository $repository) use ($identifier) {
-                return $repository->getContentTypeService()->loadContentTypeByIdentifier($identifier);
-            }
         );
     }
 }

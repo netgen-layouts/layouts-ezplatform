@@ -12,8 +12,22 @@ services:
 
     netgen_block_manager.templating.twig.extension.ez_publish:
         class: Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension
+        tags:
+            - { name: twig.extension }
+
+    netgen_block_manager.templating.twig.runtime.ez_publish.loader:
+        class: Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntimeLoader
+        deprecated: ~
         arguments:
             - "@ezpublish.api.repository"
             - "@ezpublish.translation_helper"
         tags:
-            - { name: twig.extension }
+            - { name: netgen_block_manager.twig.runtime_loader }
+
+    netgen_block_manager.templating.twig.runtime.ez_publish:
+        class: Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime
+        arguments:
+            - "@ezpublish.api.repository"
+            - "@ezpublish.translation_helper"
+        tags:
+            - { name: twig.runtime }
