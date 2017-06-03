@@ -40,7 +40,6 @@ class ConfigResolverConfigurationTest extends TestCase
 
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::__construct
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::setConfigResolver
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::hasParameter
      */
     public function testHasParameter()
@@ -59,7 +58,6 @@ class ConfigResolverConfigurationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::setConfigResolver
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::hasParameter
      */
     public function testHasParameterWithNoParameter()
@@ -80,7 +78,6 @@ class ConfigResolverConfigurationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::setConfigResolver
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::hasParameter
      */
     public function testHasParameterWithNoFallbackParameter()
@@ -101,7 +98,6 @@ class ConfigResolverConfigurationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::setConfigResolver
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::getParameter
      */
     public function testGetParameter()
@@ -126,7 +122,6 @@ class ConfigResolverConfigurationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::setConfigResolver
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::getParameter
      */
     public function testGetFallbackParameter()
@@ -157,7 +152,6 @@ class ConfigResolverConfigurationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::setConfigResolver
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::getParameter
      * @expectedException \Netgen\Bundle\BlockManagerBundle\Exception\ConfigurationException
      * @expectedExceptionMessage Parameter "some_param" does not exist in configuration.

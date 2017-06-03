@@ -19,7 +19,6 @@ class EzPublishExtensionTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::__construct
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getName
      */
     public function testGetName()
