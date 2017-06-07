@@ -3,6 +3,7 @@
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache;
 
 use eZ\Publish\Core\MVC\Symfony\Cache\Http\FOSPurgeClient;
+use eZ\Publish\Core\MVC\Symfony\Cache\Http\LocalPurgeClient;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -28,6 +29,28 @@ class ConfigureHttpCachePass implements CompilerPassInterface
             $purgeClientClass = $container->getParameter(
                 str_replace('%', '', $purgeClientClass)
             );
+        }
+
+        if (
+            !is_a($purgeClientClass, FOSPurgeClient::class, true) &&
+            !is_a($purgeClientClass, LocalPurgeClient::class, true)
+        ) {
+            $compiler = $container->getCompiler();
+            $formatter = $compiler->getLoggingFormatter();
+
+            $compiler->addLogMessage(
+                $formatter->format(
+                    $this,
+                    sprintf(
+                        'Cache clearing in Netgen Layouts cannot be automatically configured since eZ Publish purge client is neither an instance of "%s" nor "%s". Use Netgen Layouts "%s" config to enable or disable HTTP cache clearing.',
+                        FOSPurgeClient::class,
+                        LocalPurgeClient::class,
+                        'http_cache.invalidation.enabled'
+                    )
+                )
+            );
+
+            return;
         }
 
         if (!is_a($purgeClientClass, FOSPurgeClient::class, true)) {
