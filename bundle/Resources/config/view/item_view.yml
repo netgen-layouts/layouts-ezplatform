@@ -2,19 +2,19 @@ view:
     item_view:
         default:
             ezcontent:
-                template: "NetgenEzPublishBlockManagerBundle:item:ezcontent.html.twig"
+                template: "@NetgenEzPublishBlockManager/item/ezcontent.html.twig"
                 match:
                     item\value_type: ezcontent
             ezlocation:
-                template: "NetgenEzPublishBlockManagerBundle:item:ezlocation.html.twig"
+                template: "@NetgenEzPublishBlockManager/item/ezlocation.html.twig"
                 match:
                     item\value_type: ezlocation
         api:
             ezcontent:
-                template: "NetgenEzPublishBlockManagerBundle:api/item:ezcontent.html.twig"
+                template: "@NetgenEzPublishBlockManager/api/item/ezcontent.html.twig"
                 match:
                     item\value_type: ezcontent
             ezlocation:
-                template: "NetgenEzPublishBlockManagerBundle:api/item:ezlocation.html.twig"
+                template: "@NetgenEzPublishBlockManager/api/item/ezlocation.html.twig"
                 match:
                     item\value_type: ezlocation

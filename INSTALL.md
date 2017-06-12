@@ -44,7 +44,7 @@ somewhere in your application:
 
 ```
 netgen_block_manager:
-    pagelayout: "NetgenSiteBundle::pagelayout.html.twig"
+    pagelayout: "@NetgenSite/pagelayout.html.twig"
 ```
 
 If using eZ Platform 1.3 or later, there's no need setting the main pagelayout, since it will be

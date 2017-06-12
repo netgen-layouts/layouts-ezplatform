@@ -2,13 +2,13 @@ view:
     block_view:
         default:
             ezcontent_field:
-                template: "NetgenEzPublishBlockManagerBundle:block:ezcontent_field.html.twig"
+                template: "@NetgenEzPublishBlockManager/block/ezcontent_field.html.twig"
                 match:
                     block\definition: ezcontent_field
                     block\view_type: ezcontent_field
         api:
             ezcontent_field:
-                template: "NetgenEzPublishBlockManagerBundle:api/block:ezcontent_field.html.twig"
+                template: "@NetgenEzPublishBlockManager/api/block/ezcontent_field.html.twig"
                 match:
                     block\definition: ezcontent_field
                     api_version: 1
