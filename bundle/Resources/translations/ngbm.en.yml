@@ -20,4 +20,5 @@ layout_resolver.target.ez_semantic_path_info: 'eZ semantic path info'
 layout_resolver.target.ez_semantic_path_info_prefix: 'eZ semantic path info prefix'
 
 layout_resolver.condition.ez_site_access: 'eZ siteaccess'
+layout_resolver.condition.ez_site_access_group: 'eZ siteaccess group'
 layout_resolver.condition.ez_content_type: 'eZ content type'
