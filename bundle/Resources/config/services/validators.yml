@@ -20,7 +20,6 @@ services:
         tags:
             - { name: validator.constraint_validator, alias: ngbm_ez_site_access }
 
-
     netgen_block_manager.validator.ez_content_type:
         class: Netgen\BlockManager\Ez\Validator\ContentTypeValidator
         arguments:
