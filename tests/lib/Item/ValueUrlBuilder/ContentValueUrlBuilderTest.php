@@ -28,6 +28,7 @@ class ContentValueUrlBuilderTest extends TestCase
     }
 
     /**
+     * @covers \Netgen\BlockManager\Ez\Item\ValueUrlBuilder\ContentValueUrlBuilder::__construct
      * @covers \Netgen\BlockManager\Ez\Item\ValueUrlBuilder\ContentValueUrlBuilder::getUrl
      */
     public function testGetUrl()

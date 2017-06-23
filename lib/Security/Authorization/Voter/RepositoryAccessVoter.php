@@ -20,14 +20,14 @@ class RepositoryAccessVoter extends Voter
      *
      * @var string
      */
-    private static $module = 'nglayouts';
+    protected static $module = 'nglayouts';
 
     /**
      * Map of supported attributes to corresponding functions in the Legacy Stack module.
      *
      * @var array
      */
-    private static $attributeToPolicyMap = array(
+    protected static $attributeToPolicyMap = array(
         'ROLE_NGBM_ADMIN' => 'admin',
         'ROLE_NGBM_EDITOR' => 'editor',
         'ROLE_NGBM_API' => 'api',
@@ -36,12 +36,12 @@ class RepositoryAccessVoter extends Voter
     /**
      * @var \Symfony\Component\Security\Core\Role\RoleHierarchyInterface
      */
-    private $roleHierarchy;
+    protected $roleHierarchy;
 
     /**
      * @var \Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface
      */
-    private $accessDecisionManager;
+    protected $accessDecisionManager;
 
     /**
      * @param \Symfony\Component\Security\Core\Role\RoleHierarchyInterface $roleHierarchy
@@ -136,7 +136,7 @@ class RepositoryAccessVoter extends Voter
      *
      * @return string[]
      */
-    private function getReachableAttributes($attribute)
+    protected function getReachableAttributes($attribute)
     {
         $reachableRoles = $this->roleHierarchy->getReachableRoles(array(new Role($attribute)));
 

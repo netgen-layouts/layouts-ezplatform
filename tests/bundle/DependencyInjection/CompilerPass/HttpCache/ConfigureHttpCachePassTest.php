@@ -7,8 +7,10 @@ use eZ\Publish\Core\MVC\Symfony\Cache\Http\LocalPurgeClient;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\ContainerBuilderHasAliasConstraint;
 use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass;
+use stdClass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 
 class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
 {
@@ -44,6 +46,22 @@ class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
             );
     }
 
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
+     */
+    public function testProcessWithNoSupportedClient()
+    {
+        $this->setDefinition('netgen_block_manager.http_cache.client', new Definition());
+
+        $this->setDefinition(
+            'ezpublish.http_cache.purge_client', new Definition(stdClass::class)
+        );
+
+        $this->compile();
+
+        $this->assertContainerBuilderNotHasAlias('netgen_block_manager.http_cache.client');
+    }
+
     public function processProvider()
     {
         return array(
@@ -56,11 +74,12 @@ class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
 
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
-     * @doesNotPerformAssertions
      */
     public function testProcessWithEmptyContainer()
     {
         $this->compile();
+
+        $this->assertInstanceOf(FrozenParameterBag::class, $this->container->getParameterBag());
     }
 
     /**

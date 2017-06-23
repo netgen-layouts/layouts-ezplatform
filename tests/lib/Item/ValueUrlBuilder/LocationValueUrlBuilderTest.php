@@ -27,6 +27,7 @@ class LocationValueUrlBuilderTest extends TestCase
     }
 
     /**
+     * @covers \Netgen\BlockManager\Ez\Item\ValueUrlBuilder\LocationValueUrlBuilder::__construct
      * @covers \Netgen\BlockManager\Ez\Item\ValueUrlBuilder\LocationValueUrlBuilder::getUrl
      */
     public function testGetUrl()

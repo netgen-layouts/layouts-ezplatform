@@ -88,6 +88,8 @@ class RepositoryAccessVoterTest extends TestCase
             array('ROLE_NGBM_EDITOR', array('editor' => false, 'admin' => false), VoterInterface::ACCESS_DENIED),
 
             array('ROLE_NGBM_UNKNOWN', array(), VoterInterface::ACCESS_DENIED),
+
+            array('ROLE_UNSUPPORTED', array(), VoterInterface::ACCESS_ABSTAIN),
         );
     }
 }

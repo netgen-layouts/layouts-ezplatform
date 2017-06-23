@@ -60,6 +60,7 @@ class EzPublishRuntimeTest extends TestCase
     }
 
     /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::__construct
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getContentName
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContent
      */
@@ -128,7 +129,107 @@ class EzPublishRuntimeTest extends TestCase
     {
         $this->mockServices();
 
+        $this->contentTypeServiceMock
+            ->expects($this->any())
+            ->method('loadContentTypeByIdentifier')
+            ->will(
+                $this->returnCallback(
+                    function ($identifier) {
+                        return new ContentType(
+                            array(
+                                'identifier' => $identifier,
+                                'names' => array(
+                                    'eng-GB' => 'English content type ' . $identifier,
+                                    'cro-HR' => 'Content type ' . $identifier,
+                                ),
+                                'fieldDefinitions' => array(),
+                            )
+                        );
+                    }
+                )
+            );
+
+        $this->translationHelperMock
+            ->expects($this->any())
+            ->method('getTranslatedByMethod')
+            ->will(
+                $this->returnCallback(
+                    function ($object, $method) {
+                        return $object->$method('cro-HR');
+                    }
+                )
+            );
+
         $this->assertEquals('Content type some_type', $this->runtime->getContentTypeName('some_type'));
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getContentTypeName
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContentType
+     */
+    public function testGetContentTypeNameWithNoTranslatedName()
+    {
+        $this->mockServices();
+
+        $this->contentTypeServiceMock
+            ->expects($this->any())
+            ->method('loadContentTypeByIdentifier')
+            ->will(
+                $this->returnCallback(
+                    function ($identifier) {
+                        return new ContentType(
+                            array(
+                                'identifier' => $identifier,
+                                'names' => array(
+                                    'eng-GB' => 'English content type ' . $identifier,
+                                    'cro-HR' => 'Content type ' . $identifier,
+                                ),
+                                'fieldDefinitions' => array(),
+                            )
+                        );
+                    }
+                )
+            );
+
+        $this->translationHelperMock
+            ->expects($this->any())
+            ->method('getTranslatedByMethod')
+            ->will($this->returnValue(null));
+
+        $this->assertEquals('English content type some_type', $this->runtime->getContentTypeName('some_type'));
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getContentTypeName
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContentType
+     */
+    public function testGetContentTypeNameWithNoNames()
+    {
+        $this->mockServices();
+
+        $this->contentTypeServiceMock
+            ->expects($this->any())
+            ->method('loadContentTypeByIdentifier')
+            ->will(
+                $this->returnCallback(
+                    function ($identifier) {
+                        return new ContentType(
+                            array(
+                                'identifier' => $identifier,
+                                'names' => array(),
+                                'fieldDefinitions' => array(),
+                            )
+                        );
+                    }
+                )
+            );
+
+        $this->translationHelperMock
+            ->expects($this->any())
+            ->method('getTranslatedByMethod')
+            ->will($this->returnValue(null));
+
+        $this->assertEquals('', $this->runtime->getContentTypeName('some_type'));
     }
 
     /**
@@ -236,25 +337,6 @@ class EzPublishRuntimeTest extends TestCase
                 )
             );
 
-        $this->contentTypeServiceMock
-            ->expects($this->any())
-            ->method('loadContentTypeByIdentifier')
-            ->will(
-                $this->returnCallback(
-                    function ($identifier) {
-                        return new ContentType(
-                            array(
-                                'identifier' => $identifier,
-                                'names' => array(
-                                    'cro-HR' => 'Content type ' . $identifier,
-                                ),
-                                'fieldDefinitions' => array(),
-                            )
-                        );
-                    }
-                )
-            );
-
         $this->translationHelperMock
             ->expects($this->any())
             ->method('getTranslatedContentName')
@@ -262,17 +344,6 @@ class EzPublishRuntimeTest extends TestCase
                 $this->returnCallback(
                     function (Content $content) {
                         return $content->contentInfo->name;
-                    }
-                )
-            );
-
-        $this->translationHelperMock
-            ->expects($this->any())
-            ->method('getTranslatedByMethod')
-            ->will(
-                $this->returnCallback(
-                    function ($object, $method) {
-                        return $object->$method('cro-HR');
                     }
                 )
             );

@@ -5,6 +5,7 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\DependencyInjection\Co
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\DefaultAppPreviewPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 
 class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
 {
@@ -94,11 +95,12 @@ class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
 
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\DefaultAppPreviewPass::process
-     * @doesNotPerformAssertions
      */
     public function testProcessWithEmptyContainer()
     {
         $this->compile();
+
+        $this->assertInstanceOf(FrozenParameterBag::class, $this->container->getParameterBag());
     }
 
     /**
