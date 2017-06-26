@@ -366,4 +366,58 @@ class ViewNodeTest extends ConfigurationNodeTest
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
         $this->assertInjectedConfigurationEqual($expectedConfig, $config);
     }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::addConfiguration
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
+     */
+    public function testUnknownSettingsAreRemoved()
+    {
+        $config = array(
+            array(
+                'block_types' => array(
+                    'block' => array(
+                        'name' => 'Block type',
+                    ),
+                ),
+                'view' => array(
+                    'block_view' => array(
+                        'context' => array(
+                            'block' => array(
+                                'template' => 'block.html.twig',
+                                'match' => array(),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+
+        $expectedConfig = array(
+            'view' => array(
+                'block_view' => array(
+                    'context' => array(
+                        'block' => array(
+                            'template' => 'block.html.twig',
+                            'match' => array(),
+                            'parameters' => array(),
+                        ),
+                    ),
+                ),
+            ),
+        );
+
+        $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
+
+        $config = $this->plugin->postProcessConfiguration(
+            $this->partialProcessor->processConfiguration(
+                $this->getConfiguration(),
+                null,
+                $this->plugin->preProcessConfiguration($config)
+            )
+        );
+
+        $this->assertEquals($expectedConfig['system']['default'], $config['system']['default']);
+    }
 }
