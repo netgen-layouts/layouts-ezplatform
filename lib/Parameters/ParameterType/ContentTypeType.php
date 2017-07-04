@@ -33,6 +33,40 @@ class ContentTypeType extends ParameterType
     }
 
     /**
+     * Converts the provided parameter value to value usable by the domain.
+     *
+     * @param \Netgen\BlockManager\Parameters\ParameterInterface $parameter
+     * @param mixed $value
+     *
+     * @return mixed
+     */
+    public function fromHash(ParameterInterface $parameter, $value)
+    {
+        if ($value === null || $value === array()) {
+            return null;
+        }
+
+        if ($parameter->getOption('multiple')) {
+            return is_array($value) ? $value : array($value);
+        }
+
+        return is_array($value) ? array_values($value)[0] : $value;
+    }
+
+    /**
+     * Returns if the parameter value is empty.
+     *
+     * @param \Netgen\BlockManager\Parameters\ParameterInterface $parameter
+     * @param mixed $value
+     *
+     * @return bool
+     */
+    public function isValueEmpty(ParameterInterface $parameter, $value)
+    {
+        return $value === null || $value === array();
+    }
+
+    /**
      * Returns constraints that will be used to validate the parameter value.
      *
      * @param \Netgen\BlockManager\Parameters\ParameterInterface $parameter

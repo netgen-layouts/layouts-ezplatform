@@ -214,4 +214,109 @@ class ContentTypeTypeTest extends TestCase
             array(null, true, false),
         );
     }
+
+    /**
+     * @param mixed $value
+     * @param mixed $convertedValue
+     * @param bool $multiple
+     *
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType::fromHash
+     * @dataProvider fromHashProvider
+     */
+    public function testFromHash($value, $convertedValue, $multiple)
+    {
+        $type = new ContentTypeType();
+
+        $this->assertEquals(
+            $convertedValue,
+            $type->fromHash(
+                new Parameter(
+                    array(
+                        'type' => $type,
+                        'options' => array(
+                            'multiple' => $multiple,
+                        ),
+                    )
+                ),
+                $value
+            )
+        );
+    }
+
+    public function fromHashProvider()
+    {
+        return array(
+            array(
+                null,
+                null,
+                false,
+            ),
+            array(
+                array(),
+                null,
+                false,
+            ),
+            array(
+                42,
+                42,
+                false,
+            ),
+            array(
+                array(42, 43),
+                42,
+                false,
+            ),
+            array(
+                null,
+                null,
+                true,
+            ),
+            array(
+                array(),
+                null,
+                true,
+            ),
+            array(
+                42,
+                array(42),
+                true,
+            ),
+            array(
+                array(42, 43),
+                array(42, 43),
+                true,
+            ),
+        );
+    }
+
+    /**
+     * @param mixed $value
+     * @param bool $isEmpty
+     *
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType::isValueEmpty
+     * @dataProvider emptyProvider
+     */
+    public function testIsValueEmpty($value, $isEmpty)
+    {
+        $type = new ContentTypeType();
+        $this->assertEquals($isEmpty, $type->isValueEmpty(new Parameter(), $value));
+    }
+
+    /**
+     * Provider for testing if the value is empty.
+     *
+     * @return array
+     */
+    public function emptyProvider()
+    {
+        return array(
+            array(null, true),
+            array(array(), true),
+            array(42, false),
+            array(array(42), false),
+            array(0, false),
+            array('42', false),
+            array('', false),
+        );
+    }
 }

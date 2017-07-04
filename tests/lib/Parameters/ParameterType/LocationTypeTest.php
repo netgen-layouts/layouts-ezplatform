@@ -201,7 +201,7 @@ class LocationTypeTest extends TestCase
     public function testIsValueEmpty($value, $isEmpty)
     {
         $type = new LocationType();
-        $this->assertEquals($isEmpty, $type->isValueEmpty($value));
+        $this->assertEquals($isEmpty, $type->isValueEmpty(new Parameter(), $value));
     }
 
     /**
