@@ -51,4 +51,16 @@ class ContentFieldHandler extends BlockDefinitionHandler
             'location' => $this->contentProvider->provideLocation(),
         );
     }
+
+    /**
+     * Returns if the provided block is dependent on a context, i.e. current request.
+     *
+     * @param \Netgen\BlockManager\API\Values\Block\Block $block
+     *
+     * @return bool
+     */
+    public function isContextual(Block $block)
+    {
+        return true;
+    }
 }

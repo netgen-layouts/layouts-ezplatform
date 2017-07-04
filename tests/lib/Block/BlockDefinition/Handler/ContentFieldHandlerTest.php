@@ -29,6 +29,14 @@ class ContentFieldHandlerTest extends TestCase
     }
 
     /**
+     * @covers \Netgen\BlockManager\Ez\Block\BlockDefinition\Handler\ContentFieldHandler::isContextual
+     */
+    public function testIsContextual()
+    {
+        $this->assertTrue($this->handler->isContextual(new Block()));
+    }
+
+    /**
      * @covers \Netgen\BlockManager\Ez\Block\BlockDefinition\Handler\ContentFieldHandler::__construct
      * @covers \Netgen\BlockManager\Ez\Block\BlockDefinition\Handler\ContentFieldHandler::getDynamicParameters
      */
