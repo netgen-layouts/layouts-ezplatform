@@ -3,7 +3,6 @@
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\Form\ConditionType\Mapper;
 
 use Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccessGroup;
-use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
@@ -34,9 +33,9 @@ class SiteAccessGroupTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccessGroup::mapOptions
+     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccessGroup::getFormOptions
      */
-    public function testMapOptions()
+    public function testGetFormOptions()
     {
         $this->assertEquals(
             array(
@@ -46,9 +45,7 @@ class SiteAccessGroupTest extends TestCase
                 'multiple' => true,
                 'expanded' => true,
             ),
-            $this->mapper->mapOptions(
-                $this->createMock(ConditionTypeInterface::class)
-            )
+            $this->mapper->getFormOptions()
         );
     }
 }

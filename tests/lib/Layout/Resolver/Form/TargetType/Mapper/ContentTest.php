@@ -3,7 +3,6 @@
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\Form\TargetType\Mapper;
 
 use Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Content;
-use Netgen\BlockManager\Layout\Resolver\TargetTypeInterface;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 use PHPUnit\Framework\TestCase;
 
@@ -28,17 +27,15 @@ class ContentTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Content::mapOptions
+     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Content::getFormOptions
      */
-    public function testMapOptions()
+    public function testGetFormOptions()
     {
         $this->assertEquals(
             array(
                 'item_type' => 'ezcontent',
             ),
-            $this->mapper->mapOptions(
-                $this->createMock(TargetTypeInterface::class)
-            )
+            $this->mapper->getFormOptions()
         );
     }
 }

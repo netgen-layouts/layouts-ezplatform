@@ -2,7 +2,6 @@
 
 namespace Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper;
 
-use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
 use Netgen\BlockManager\Layout\Resolver\Form\ConditionType\Mapper;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
@@ -39,13 +38,11 @@ class SiteAccess extends Mapper
     }
 
     /**
-     * Maps the form type options from provided condition type.
-     *
-     * @param \Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface $conditionType
+     * Returns the form options.
      *
      * @return array
      */
-    public function mapOptions(ConditionTypeInterface $conditionType)
+    public function getFormOptions()
     {
         return array(
             'choices' => $this->siteAccessList,

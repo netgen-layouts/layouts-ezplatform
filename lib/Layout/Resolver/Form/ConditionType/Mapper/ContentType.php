@@ -3,7 +3,6 @@
 namespace Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper;
 
 use Netgen\BlockManager\Ez\Form\ContentTypeType;
-use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
 use Netgen\BlockManager\Layout\Resolver\Form\ConditionType\Mapper;
 
 class ContentType extends Mapper
@@ -19,13 +18,11 @@ class ContentType extends Mapper
     }
 
     /**
-     * Maps the form type options from provided condition type.
-     *
-     * @param \Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface $conditionType
+     * Returns the form options.
      *
      * @return array
      */
-    public function mapOptions(ConditionTypeInterface $conditionType)
+    public function getFormOptions()
     {
         return array(
             'multiple' => true,
