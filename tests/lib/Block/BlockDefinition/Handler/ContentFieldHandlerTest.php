@@ -4,6 +4,7 @@ namespace Netgen\BlockManager\Ez\Tests\Block\BlockDefinition\Handler;
 
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
+use Netgen\BlockManager\Block\DynamicParameters;
 use Netgen\BlockManager\Core\Values\Block\Block;
 use Netgen\BlockManager\Ez\Block\BlockDefinition\Handler\ContentFieldHandler;
 use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
@@ -52,14 +53,14 @@ class ContentFieldHandlerTest extends TestCase
             ->method('provideLocation')
             ->will($this->returnValue(new Location()));
 
-        $dynamicParameters = $this->handler->getDynamicParameters(new Block());
+        $params = new DynamicParameters();
 
-        $this->assertInternalType('array', $dynamicParameters);
+        $this->handler->getDynamicParameters($params, new Block());
 
-        $this->assertArrayHasKey('content', $dynamicParameters);
-        $this->assertArrayHasKey('location', $dynamicParameters);
+        $this->assertArrayHasKey('content', $params);
+        $this->assertArrayHasKey('location', $params);
 
-        $this->assertEquals(new Content(), $dynamicParameters['content']);
-        $this->assertEquals(new Location(), $dynamicParameters['location']);
+        $this->assertEquals(new Content(), $params['content']);
+        $this->assertEquals(new Location(), $params['location']);
     }
 }
