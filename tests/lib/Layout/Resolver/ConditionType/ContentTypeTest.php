@@ -96,6 +96,12 @@ class ContentTypeTest extends TestCase
                                 if (!is_string($valueItem) || !in_array($valueItem, array('article', 'news'), true)) {
                                     throw new NotFoundException('content type', $valueItem);
                                 }
+
+                                return new EzContentType(
+                                    array(
+                                        'identifier' => $valueItem,
+                                    )
+                                );
                             }
                         )
                     );

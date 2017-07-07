@@ -36,6 +36,7 @@ class ContentTypeMapperTest extends TestCase
         $this->assertEquals(
             array(
                 'multiple' => true,
+                'types' => array(42),
             ),
             $this->mapper->mapOptions(
                 new Parameter(
@@ -43,6 +44,7 @@ class ContentTypeMapperTest extends TestCase
                         'type' => new ParameterType(),
                         'options' => array(
                             'multiple' => true,
+                            'types' => array(42),
                         ),
                     )
                 )

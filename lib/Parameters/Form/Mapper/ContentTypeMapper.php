@@ -28,7 +28,8 @@ class ContentTypeMapper extends Mapper
     public function mapOptions(ParameterInterface $parameter)
     {
         return array(
-            'multiple' => $parameter->getOptions()['multiple'],
+            'multiple' => $parameter->getOption('multiple'),
+            'types' => $parameter->getOption('types'),
         );
     }
 }

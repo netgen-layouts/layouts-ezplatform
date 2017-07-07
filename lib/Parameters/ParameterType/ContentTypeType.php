@@ -28,8 +28,12 @@ class ContentTypeType extends ParameterType
     public function configureOptions(OptionsResolver $optionsResolver)
     {
         $optionsResolver->setDefault('multiple', false);
-        $optionsResolver->setRequired(array('multiple'));
+        $optionsResolver->setDefault('types', array());
+
+        $optionsResolver->setRequired(array('multiple', 'types'));
+
         $optionsResolver->setAllowedTypes('multiple', 'bool');
+        $optionsResolver->setAllowedTypes('types', 'array');
     }
 
     /**
@@ -80,7 +84,7 @@ class ContentTypeType extends ParameterType
 
         $contentTypeConstraints = array(
             new Constraints\Type(array('type' => 'string')),
-            new EzConstraints\ContentType(),
+            new EzConstraints\ContentType(array('allowedTypes' => $parameter->getOption('types'))),
         );
 
         if (!$options['multiple']) {

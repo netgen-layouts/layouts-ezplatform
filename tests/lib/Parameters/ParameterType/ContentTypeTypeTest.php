@@ -5,6 +5,7 @@ namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
+use eZ\Publish\Core\Repository\Values\ContentType\ContentType as EzContentType;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\BlockManager\Tests\Parameters\Stubs\Parameter;
@@ -110,6 +111,7 @@ class ContentTypeTypeTest extends TestCase
                 array(),
                 array(
                     'multiple' => false,
+                    'types' => array(),
                 ),
             ),
             array(
@@ -118,6 +120,7 @@ class ContentTypeTypeTest extends TestCase
                 ),
                 array(
                     'multiple' => false,
+                    'types' => array(),
                 ),
             ),
             array(
@@ -126,6 +129,25 @@ class ContentTypeTypeTest extends TestCase
                 ),
                 array(
                     'multiple' => true,
+                    'types' => array(),
+                ),
+            ),
+            array(
+                array(
+                    'types' => array(),
+                ),
+                array(
+                    'multiple' => false,
+                    'types' => array(),
+                ),
+            ),
+            array(
+                array(
+                    'types' => array(42),
+                ),
+                array(
+                    'multiple' => false,
+                    'types' => array(42),
                 ),
             ),
         );
@@ -174,6 +196,12 @@ class ContentTypeTypeTest extends TestCase
                                 if (!is_string($identifier) || !in_array($identifier, array('article', 'news'), true)) {
                                     throw new NotFoundException('content type', $identifier);
                                 }
+
+                                return new EzContentType(
+                                    array(
+                                        'identifier' => $identifier,
+                                    )
+                                );
                             }
                         )
                     );

@@ -5,6 +5,8 @@ namespace Netgen\BlockManager\Ez\Tests\Validator;
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
+use eZ\Publish\Core\Repository\Values\ContentType\ContentType as EzContentType;
+use eZ\Publish\Core\Repository\Values\ContentType\ContentTypeGroup;
 use Netgen\BlockManager\Ez\Validator\Constraint\ContentType;
 use Netgen\BlockManager\Ez\Validator\ContentTypeValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
@@ -54,14 +56,16 @@ class ContentTypeValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @param int $identifier
+     * @param string $identifier
+     * @param array $groups
+     * @param array $allowedTypes
      * @param bool $isValid
      *
      * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::validate
      * @dataProvider validateDataProvider
      */
-    public function testValidate($identifier, $isValid)
+    public function testValidate($identifier, $groups, $allowedTypes, $isValid)
     {
         if ($identifier !== null) {
             $this->contentTypeServiceMock
@@ -70,15 +74,32 @@ class ContentTypeValidatorTest extends ValidatorTestCase
                 ->with($this->equalTo($identifier))
                 ->will(
                     $this->returnCallback(
-                        function () use ($identifier) {
-                            if (!is_string($identifier) || !in_array($identifier, array('article', 'news'), true)) {
+                        function () use ($identifier, $groups) {
+                            if (!is_string($identifier) || $identifier === 'unknown') {
                                 throw new NotFoundException('content type', $identifier);
                             }
+
+                            return new EzContentType(
+                                array(
+                                    'identifier' => $identifier,
+                                    'contentTypeGroups' => array_map(
+                                        function ($group) {
+                                            return new ContentTypeGroup(
+                                                array(
+                                                    'identifier' => $group,
+                                                )
+                                            );
+                                        },
+                                        $groups
+                                    ),
+                                )
+                            );
                         }
                     )
                 );
         }
 
+        $this->constraint->allowedTypes = $allowedTypes;
         $this->assertValid($isValid, $identifier);
     }
 
@@ -103,12 +124,30 @@ class ContentTypeValidatorTest extends ValidatorTestCase
         $this->assertValid(true, 42);
     }
 
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::validate
+     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
+     * @expectedExceptionMessage Expected argument of type "array", "integer" given
+     */
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidAllowedTypes()
+    {
+        $this->constraint->allowedTypes = 42;
+        $this->assertValid(true, 'article');
+    }
+
     public function validateDataProvider()
     {
         return array(
-            array('article', true),
-            array('video', false),
-            array(null, true),
+            array('article', array('group1'), array(), true),
+            array('article', array('group1'), array('group2' => true), true),
+            array('article', array('group1'), array('group1' => true), true),
+            array('article', array('group1'), array('group1' => false), false),
+            array('article', array('group1'), array('group1' => array()), false),
+            array('article', array('group1'), array('group1' => array('article')), true),
+            array('article', array('group1'), array('group1' => array('news')), false),
+            array('article', array('group1'), array('group1' => array('article', 'news')), true),
+            array('unknown', array('group1'), array(), false),
+            array(null, array('group1'), array(), true),
         );
     }
 }

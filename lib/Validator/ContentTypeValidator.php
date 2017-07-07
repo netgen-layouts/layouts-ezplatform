@@ -4,6 +4,7 @@ namespace Netgen\BlockManager\Ez\Validator;
 
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Repository;
+use eZ\Publish\API\Repository\Values\ContentType\ContentTypeGroup;
 use Netgen\BlockManager\Ez\Validator\Constraint\ContentType;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -46,16 +47,54 @@ class ContentTypeValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, 'string');
         }
 
+        if (!is_array($constraint->allowedTypes)) {
+            throw new UnexpectedTypeException($constraint->allowedTypes, 'array');
+        }
+
         try {
-            $this->repository->sudo(
+            /** @var \eZ\Publish\API\Repository\Values\ContentType\ContentType $contentType */
+            $contentType = $this->repository->sudo(
                 function (Repository $repository) use ($value) {
-                    $repository->getContentTypeService()->loadContentTypeByIdentifier($value);
+                    return $repository->getContentTypeService()->loadContentTypeByIdentifier($value);
                 }
             );
         } catch (NotFoundException $e) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('%identifier%', $value)
                 ->addViolation();
+
+            return;
         }
+
+        $groupIdentifiers = array_map(
+            function (ContentTypeGroup $group) {
+                return $group->identifier;
+            },
+            $contentType->getContentTypeGroups()
+        );
+
+        if (empty($constraint->allowedTypes)) {
+            return;
+        }
+
+        foreach ($groupIdentifiers as $groupIdentifier) {
+            if (
+                !array_key_exists($groupIdentifier, $constraint->allowedTypes) ||
+                $constraint->allowedTypes[$groupIdentifier] === true
+            ) {
+                return;
+            }
+
+            if (
+                is_array($constraint->allowedTypes[$groupIdentifier]) &&
+                in_array($contentType->identifier, $constraint->allowedTypes[$groupIdentifier], true)
+            ) {
+                return;
+            }
+        }
+
+        $this->context->buildViolation($constraint->notAllowedMessage)
+            ->setParameter('%identifier%', $value)
+            ->addViolation();
     }
 }

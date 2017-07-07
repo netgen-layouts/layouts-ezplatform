@@ -4,3 +4,4 @@ netgen_block_manager.ezcontent.content_not_found: 'Content with ID %contentId% d
 netgen_block_manager.ez_site_access.site_access_not_found: 'Site access "%siteAccess%" does not exist.'
 netgen_block_manager.ez_site_access_group.site_access_group_not_found: 'Site access group "%siteAccessGroup%" does not exist.'
 netgen_block_manager.ez_content_type.content_type_not_found: 'Content type with "%identifier%" identifier does not exist.'
+netgen_block_manager.ez_content_type.content_type_not_allowed: 'Content type with "%identifier%" identifier is not allowed.'

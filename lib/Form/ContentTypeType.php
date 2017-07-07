@@ -5,6 +5,7 @@ namespace Netgen\BlockManager\Ez\Form;
 use eZ\Publish\API\Repository\ContentTypeService;
 use Netgen\BlockManager\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContentTypeType extends AbstractType
@@ -33,7 +34,17 @@ class ContentTypeType extends AbstractType
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefault('choices', $this->getContentTypes());
+        $resolver->setDefault('types', array());
+        $resolver->setRequired(array('types'));
+        $resolver->setAllowedTypes('types', 'array');
+
+        $resolver->setDefault(
+            'choices',
+            function (Options $options) {
+                return $this->getContentTypes($options);
+            }
+        );
+
         $resolver->setDefault('choices_as_values', true);
         $resolver->setDefault('choice_translation_domain', false);
     }
@@ -47,18 +58,34 @@ class ContentTypeType extends AbstractType
     }
 
     /**
-     * Returns all content types from eZ Publish.
+     * Returns the allowed content types from eZ Publish.
+     *
+     * @param \Symfony\Component\OptionsResolver\Options $options
      *
      * @return array
      */
-    protected function getContentTypes()
+    protected function getContentTypes(Options $options)
     {
         $allContentTypes = array();
 
         $groups = $this->contentTypeService->loadContentTypeGroups();
+        $configuredGroups = $options['types'];
+
         foreach ($groups as $group) {
+            $configuredGroups += array($group->identifier => true);
+            if ($configuredGroups[$group->identifier] === false) {
+                continue;
+            }
+
             $contentTypes = $this->contentTypeService->loadContentTypes($group);
             foreach ($contentTypes as $contentType) {
+                if (
+                    is_array($configuredGroups[$group->identifier]) &&
+                    !in_array($contentType->identifier, $configuredGroups[$group->identifier], true)
+                ) {
+                    continue;
+                }
+
                 $contentTypeNames = array_values($contentType->getNames());
                 $allContentTypes[$group->identifier][$contentTypeNames[0]] = $contentType->identifier;
             }
