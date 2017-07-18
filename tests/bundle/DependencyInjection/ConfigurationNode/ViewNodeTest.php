@@ -240,6 +240,167 @@ class ViewNodeTest extends ConfigurationNodeTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::fixUpViewConfig
      */
+    public function testViewSettingsRulePositionsWithSystemNodeAndTwoScopes()
+    {
+        $config = array(
+            array(
+                'system' => array(
+                    'cro' => array(
+                        'view' => array(
+                            'block_view' => array(
+                                'context' => array(
+                                    'block_three' => array(
+                                        'template' => 'block.html.twig',
+                                        'match' => array(
+                                            'block_identifier' => 42,
+                                        ),
+                                        'parameters' => array(
+                                            'param3' => 'value3',
+                                        ),
+                                    ),
+                                    'block_two' => array(
+                                        'template' => 'block2.html.twig',
+                                        'match' => array(
+                                            'block_identifier' => 42,
+                                        ),
+                                        'parameters' => array(
+                                            'param2' => 'value2',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                    'default' => array(
+                        'view' => array(
+                            'block_view' => array(
+                                'context' => array(
+                                    'block_two' => array(
+                                        'template' => 'block.html.twig',
+                                        'match' => array(
+                                            'block_identifier' => 42,
+                                        ),
+                                        'parameters' => array(
+                                            'param2' => 'value2',
+                                        ),
+                                    ),
+                                    'block_one' => array(
+                                        'template' => 'block.html.twig',
+                                        'match' => array(
+                                            'block_identifier' => 42,
+                                        ),
+                                        'parameters' => array(
+                                            'param1' => 'value1',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+
+        $processedConfig = $this->processConfig($config);
+
+        // Default scope should only have block_two and block_one
+        $this->assertEquals(
+            array('block_two', 'block_one'),
+            array_keys($processedConfig['system']['default']['view']['block_view']['context'])
+        );
+
+        // But only "cro" siteaccess aware one should have all
+        // with block_three having priority because it comes from siteaccess scope
+        $this->assertEquals(
+            array('block_three', 'block_two', 'block_one'),
+            array_keys($processedConfig['system']['cro']['view']['block_view']['context'])
+        );
+
+        // Rule in "default" scope needs to have the original value
+        $this->assertEquals(
+            'block.html.twig',
+            $processedConfig['system']['default']['view']['block_view']['context']['block_two']['template']
+        );
+
+        // Rule in "cro" scope needs to override existing rule in default scope
+        $this->assertEquals(
+            'block2.html.twig',
+            $processedConfig['system']['cro']['view']['block_view']['context']['block_two']['template']
+        );
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::addConfiguration
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::fixUpViewConfig
+     */
+    public function testViewSettingsRulePositionsWithSystemNodeAndDefaultScope()
+    {
+        $config = array(
+            array(
+                'view' => array(
+                    'block_view' => array(
+                        'context' => array(
+                            'block_two' => array(
+                                'template' => 'block.html.twig',
+                                'match' => array(
+                                    'block_identifier' => 42,
+                                ),
+                                'parameters' => array(
+                                    'param2' => 'value2',
+                                ),
+                            ),
+                            'block_one' => array(
+                                'template' => 'block.html.twig',
+                                'match' => array(
+                                    'block_identifier' => 42,
+                                ),
+                                'parameters' => array(
+                                    'param1' => 'value1',
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+                'system' => array(
+                    'default' => array(
+                        'view' => array(
+                            'block_view' => array(
+                                'context' => array(
+                                    'block_three' => array(
+                                        'template' => 'block.html.twig',
+                                        'match' => array(
+                                            'block_identifier' => 42,
+                                        ),
+                                        'parameters' => array(
+                                            'param3' => 'value3',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+
+        $processedConfig = $this->processConfig($config);
+
+        // Default scope should have all three rules,
+        // but rule from system node (block_three) should be first
+        $this->assertEquals(
+            array('block_three', 'block_two', 'block_one'),
+            array_keys($processedConfig['system']['default']['view']['block_view']['context'])
+        );
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::addConfiguration
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::fixUpViewConfig
+     */
     public function testViewSettingsWithMatchWithArrayValues()
     {
         $config = array(

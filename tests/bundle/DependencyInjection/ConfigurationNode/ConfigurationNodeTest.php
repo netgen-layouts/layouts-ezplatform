@@ -61,13 +61,7 @@ abstract class ConfigurationNodeTest extends TestCase
      */
     public function assertInjectedConfigurationEqual(array $expectedConfig, array $config)
     {
-        $actualConfig = $this->plugin->postProcessConfiguration(
-            $this->partialProcessor->processConfiguration(
-                $this->getConfiguration(),
-                null,
-                $this->plugin->preProcessConfiguration($config)
-            )
-        );
+        $actualConfig = $this->processConfig($config);
 
         foreach ($actualConfig as $key => $value) {
             if ($key !== 'system' && !array_key_exists($key, self::DEFAULT_SYSTEM_CONFIG)) {
@@ -102,6 +96,24 @@ abstract class ConfigurationNodeTest extends TestCase
             'system' => array(
                 'default' => $expectedConfig + self::DEFAULT_SYSTEM_CONFIG,
             ),
+        );
+    }
+
+    /**
+     * Processes the extension config by using pre and post processors.
+     *
+     * @param array $config
+     *
+     * @return array
+     */
+    protected function processConfig(array $config)
+    {
+        return $this->plugin->postProcessConfiguration(
+            $this->partialProcessor->processConfiguration(
+                $this->getConfiguration(),
+                null,
+                $this->plugin->preProcessConfiguration($config)
+            )
         );
     }
 }

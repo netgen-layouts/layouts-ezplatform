@@ -37,14 +37,14 @@ class ExtensionPlugin extends BaseExtensionPlugin
      * Pre-processes the configuration before it is resolved.
      *
      * The point of the preprocessor is to generate eZ Publish siteaccess aware
-     * configuration for every key that is available under 'netgen_block_manager' key.
+     * configuration for every key that is available in self::SITEACCESS_AWARE_SETTINGS.
      *
      * With this, the following:
      *
      * array(
      *     0 => array(
      *         'netgen_block_manager' => array(
-     *             'param' => 'value'
+     *             'view' => ...
      *         )
      *     )
      * )
@@ -57,14 +57,14 @@ class ExtensionPlugin extends BaseExtensionPlugin
      *             'param' => 'value',
      *             'system' => array(
      *                 'default' => array(
-     *                     'param' => 'value'
+     *                     'view' => ...
      *                 )
      *             )
      *         )
      *     )
      * )
      *
-     * If the original array already has a system key, it will be removed and appended
+     * If the original array already has a system key, it will be removed and prepended
      * to configs generated from the original parameters.
      *
      * @param array $configs
@@ -74,10 +74,10 @@ class ExtensionPlugin extends BaseExtensionPlugin
     public function preProcessConfiguration(array $configs)
     {
         $newConfigs = $configs;
-        $appendConfigs = array();
+        $prependConfigs = array();
         foreach ($configs as $index => $config) {
             if (isset($config['system'])) {
-                $appendConfigs[] = array('system' => $config['system']);
+                $prependConfigs[] = array('system' => $config['system']);
                 unset($config['system']);
                 $newConfigs[$index] = $config;
             }
@@ -91,7 +91,7 @@ class ExtensionPlugin extends BaseExtensionPlugin
             $newConfigs[] = array('system' => array('default' => $config));
         }
 
-        return array_merge($newConfigs, $appendConfigs);
+        return array_merge($prependConfigs, $newConfigs);
     }
 
     /**
@@ -184,10 +184,7 @@ class ExtensionPlugin extends BaseExtensionPlugin
                             $config['system'][$scope]['view'][$viewName][$context] = array();
                         }
 
-                        $config['system'][$scope]['view'][$viewName][$context] = array_merge(
-                            $defaultRules,
-                            $config['system'][$scope]['view'][$viewName][$context]
-                        );
+                        $config['system'][$scope]['view'][$viewName][$context] += $defaultRules;
                     }
                 }
             }
