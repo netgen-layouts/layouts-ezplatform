@@ -54,7 +54,7 @@ class ExtensionPlugin extends BaseExtensionPlugin
      * array(
      *     0 => array(
      *         'netgen_block_manager' => array(
-     *             'param' => 'value',
+     *             'view' => ...,
      *             'system' => array(
      *                 'default' => array(
      *                     'param' => 'value'
