@@ -1,6 +1,7 @@
 services:
     netgen_block_manager.layout.resolver.target_type.ezlocation:
         class: Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Location
+        public: false
         arguments:
             - "@netgen_block_manager.ezpublish.content_extractor"
         tags:
@@ -8,6 +9,7 @@ services:
 
     netgen_block_manager.layout.resolver.target_type.ezcontent:
         class: Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content
+        public: false
         arguments:
             - "@netgen_block_manager.ezpublish.content_extractor"
         tags:
@@ -15,6 +17,7 @@ services:
 
     netgen_block_manager.layout.resolver.target_type.ezchildren:
         class: Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children
+        public: false
         arguments:
             - "@netgen_block_manager.ezpublish.content_extractor"
         tags:
@@ -22,6 +25,7 @@ services:
 
     netgen_block_manager.layout.resolver.target_type.ezsubtree:
         class: Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Subtree
+        public: false
         arguments:
             - "@netgen_block_manager.ezpublish.content_extractor"
         tags:
@@ -29,10 +33,12 @@ services:
 
     netgen_block_manager.layout.resolver.target_type.ez_semantic_path_info:
         class: Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfo
+        public: false
         tags:
             - { name: netgen_block_manager.layout.resolver.target_type, priority: 100 }
 
     netgen_block_manager.layout.resolver.target_type.ez_semantic_path_info_prefix:
         class: Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix
+        public: false
         tags:
             - { name: netgen_block_manager.layout.resolver.target_type, priority: 110 }

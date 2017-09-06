@@ -1,11 +1,13 @@
 services:
     netgen_block_manager.parameters.parameter_type.eztags:
         class: Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType
+        public: false
         tags:
             - { name: netgen_block_manager.parameters.parameter_type }
 
     netgen_block_manager.parameters.form.mapper.eztags:
         class: Netgen\BlockManager\Ez\Parameters\Form\Mapper\TagsMapper
+        public: false
         tags:
             - { name: netgen_block_manager.parameters.form.mapper, type: eztags }
 

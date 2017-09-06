@@ -7,12 +7,15 @@ services:
 
     netgen_block_manager.ezpublish.content_extractor:
         alias: netgen_block_manager.ezpublish.content_extractor.request
+        public: false
 
     netgen_block_manager.ezpublish.content_extractor.request:
         class: Netgen\BlockManager\Ez\ContentProvider\RequestContentExtractor
+        public: false
 
     netgen_block_manager.ezpublish.content_extractor.ez5_request:
         class: Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentExtractor
+        public: false
         deprecated: ~
         arguments:
             - "@ezpublish.api.service.content"

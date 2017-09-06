@@ -1,36 +1,43 @@
 services:
     netgen_block_manager.layout.resolver.form.target_type.mapper.ezchildren:
         class: Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Children
+        public: false
         tags:
             - { name: netgen_block_manager.layout.resolver.form.target_type.mapper, target_type: ezchildren }
 
     netgen_block_manager.layout.resolver.form.target_type.mapper.ezsubtree:
         class: Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Subtree
+        public: false
         tags:
             - { name: netgen_block_manager.layout.resolver.form.target_type.mapper, target_type: ezsubtree }
 
     netgen_block_manager.layout.resolver.form.target_type.mapper.ezlocation:
         class: Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Location
+        public: false
         tags:
             - { name: netgen_block_manager.layout.resolver.form.target_type.mapper, target_type: ezlocation }
 
     netgen_block_manager.layout.resolver.form.target_type.mapper.ezcontent:
         class: Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Content
+        public: false
         tags:
             - { name: netgen_block_manager.layout.resolver.form.target_type.mapper, target_type: ezcontent }
 
     netgen_block_manager.layout.resolver.form.target_type.mapper.ez_semantic_path_info:
         class: Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\SemanticPathInfo
+        public: false
         tags:
             - { name: netgen_block_manager.layout.resolver.form.target_type.mapper, target_type: ez_semantic_path_info }
 
     netgen_block_manager.layout.resolver.form.target_type.mapper.ez_semantic_path_info_prefix:
         class: Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\SemanticPathInfoPrefix
+        public: false
         tags:
             - { name: netgen_block_manager.layout.resolver.form.target_type.mapper, target_type: ez_semantic_path_info_prefix }
 
     netgen_block_manager.layout.resolver.form.condition_type.mapper.ez_site_access:
         class: Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess
+        public: false
         arguments:
             - "%ezpublish.siteaccess.list%"
         tags:
@@ -38,6 +45,7 @@ services:
 
     netgen_block_manager.layout.resolver.form.condition_type.mapper.ez_site_access_group:
         class: Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccessGroup
+        public: false
         arguments:
             - "%ezpublish.siteaccess.groups%"
         tags:
@@ -45,5 +53,6 @@ services:
 
     netgen_block_manager.layout.resolver.form.condition_type.mapper.ez_content_type:
         class: Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\ContentType
+        public: false
         tags:
             - { name: netgen_block_manager.layout.resolver.form.condition_type.mapper, condition_type: ez_content_type }

@@ -1,20 +1,24 @@
 services:
     netgen_block_manager.parameters.parameter_type.ezlocation:
         class: Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType
+        public: false
         tags:
             - { name: netgen_block_manager.parameters.parameter_type }
 
     netgen_block_manager.parameters.parameter_type.ez_content_type:
         class: Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType
+        public: false
         tags:
             - { name: netgen_block_manager.parameters.parameter_type }
 
     netgen_block_manager.parameters.form.mapper.ezlocation:
         class: Netgen\BlockManager\Ez\Parameters\Form\Mapper\LocationMapper
+        public: false
         tags:
             - { name: netgen_block_manager.parameters.form.mapper, type: ezlocation }
 
     netgen_block_manager.parameters.form.mapper.ez_content_type:
         class: Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentTypeMapper
+        public: false
         tags:
             - { name: netgen_block_manager.parameters.form.mapper, type: ez_content_type }

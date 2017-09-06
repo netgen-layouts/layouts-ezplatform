@@ -1,6 +1,7 @@
 services:
     netgen_block_manager.templating.pagelayout_resolver.ezpublish:
         class: Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver
+        public: false
         arguments:
             - "@netgen_block_manager.templating.pagelayout_resolver.default"
             - "@ezpublish.config.resolver"
@@ -9,9 +10,11 @@ services:
 
     netgen_block_manager.templating.pagelayout_resolver:
         alias: netgen_block_manager.templating.pagelayout_resolver.ezpublish
+        public: false
 
     netgen_block_manager.templating.twig.extension.ez_publish:
         class: Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension
+        public: false
         tags:
             - { name: twig.extension }
 
