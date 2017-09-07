@@ -9,23 +9,6 @@ use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublis
 class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
 {
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::load
-     */
-    public function testParameters()
-    {
-        $this->container->setParameter(
-            'kernel.bundles',
-            array(
-                'NetgenTagsBundle' => 'NetgenTagsBundle',
-            )
-        );
-
-        $this->load();
-
-        $this->assertContainerBuilderHasParameter('netgen_block_manager.default.view', array());
-    }
-
-    /**
      * We test for existence of one service from each of the config files.
      *
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::load
