@@ -68,12 +68,9 @@ class LocaleProviderTest extends TestCase
             ->with($this->equalTo('cro-HR'))
             ->will($this->returnValue('hr'));
 
-        $this->assertEquals(
-            array(
-                'en' => 'English',
-                'hr' => 'Croatian',
-            ),
-            $this->localeProvider->getAvailableLocales()
-        );
+        $availableLocales = $this->localeProvider->getAvailableLocales();
+
+        $this->assertEquals(array('hr', 'en'), array_keys($availableLocales));
+        $this->assertEquals(array('Croatian', 'English'), array_values($availableLocales));
     }
 }

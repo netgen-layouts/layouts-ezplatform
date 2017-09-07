@@ -56,6 +56,8 @@ class LocaleProvider implements LocaleProviderInterface
             }
         }
 
+        asort($availableLocales);
+
         return $availableLocales;
     }
 }
