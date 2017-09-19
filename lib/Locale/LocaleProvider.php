@@ -9,6 +9,10 @@ use Netgen\BlockManager\Locale\LocaleProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Intl\Intl;
 
+/**
+ * eZ Platform specific locale provider that provides the existing locales
+ * by reading them from eZ Platform database.
+ */
 class LocaleProvider implements LocaleProviderInterface
 {
     /**
@@ -31,12 +35,6 @@ class LocaleProvider implements LocaleProviderInterface
      */
     protected $languageCodes = array();
 
-    /**
-     * Constructor.
-     *
-     * @param \eZ\Publish\API\Repository\LanguageService $languageService
-     * @param \eZ\Publish\Core\MVC\Symfony\Locale\LocaleConverterInterface
-     */
     public function __construct(LanguageService $languageService, LocaleConverterInterface $localeConverter)
     {
         $this->languageService = $languageService;
@@ -54,13 +52,6 @@ class LocaleProvider implements LocaleProviderInterface
         $this->languageCodes = !empty($languageCodes) ? $languageCodes : array();
     }
 
-    /**
-     * Returns the list of locales available in the system.
-     *
-     * Keys are locale codes and values are locale names.
-     *
-     * @return string[]
-     */
     public function getAvailableLocales()
     {
         $availableLocales = array();
@@ -84,13 +75,6 @@ class LocaleProvider implements LocaleProviderInterface
         return $availableLocales;
     }
 
-    /**
-     * Returns the list of locale codes available for the provided request.
-     *
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return string[]
-     */
     public function getRequestLocales(Request $request)
     {
         $requestLocales = array();

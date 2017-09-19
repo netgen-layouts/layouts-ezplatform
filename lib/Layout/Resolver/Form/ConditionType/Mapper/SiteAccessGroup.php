@@ -12,11 +12,6 @@ class SiteAccessGroup extends Mapper
      */
     protected $siteAccessGroupList;
 
-    /**
-     * Constructor.
-     *
-     * @param array $siteAccessGroupList
-     */
     public function __construct(array $siteAccessGroupList)
     {
         $siteAccessGroupList = array_keys($siteAccessGroupList);
@@ -29,21 +24,11 @@ class SiteAccessGroup extends Mapper
         );
     }
 
-    /**
-     * Returns the form type that will be used to edit the value of this condition type.
-     *
-     * @return string
-     */
     public function getFormType()
     {
         return ChoiceType::class;
     }
 
-    /**
-     * Returns the form options.
-     *
-     * @return array
-     */
     public function getFormOptions()
     {
         return array(

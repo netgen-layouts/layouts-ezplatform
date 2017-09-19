@@ -7,6 +7,12 @@ use Netgen\Bundle\BlockManagerBundle\Templating\PageLayoutResolverInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+/**
+ * This is the eZ Platform specific page layout resolver
+ * which provides the pagelayout by reading it from the pagelayout
+ * configuration of eZ Platform. Meaning, Netgen Layouts will
+ * automatically use the pagelayout configured inside eZ Platform.
+ */
 class PageLayoutResolver implements PageLayoutResolverInterface
 {
     /**
@@ -49,11 +55,6 @@ class PageLayoutResolver implements PageLayoutResolverInterface
         $this->viewbaseLayout = $viewbaseLayout;
     }
 
-    /**
-     * Resolves the main page layout used to render the page.
-     *
-     * @return string
-     */
     public function resolvePageLayout()
     {
         $currentRequest = $this->requestStack->getCurrentRequest();

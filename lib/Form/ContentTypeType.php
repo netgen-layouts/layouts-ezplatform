@@ -15,21 +15,11 @@ class ContentTypeType extends AbstractType
      */
     protected $contentTypeService;
 
-    /**
-     * Constructor.
-     *
-     * @param \eZ\Publish\API\Repository\ContentTypeService $contentTypeService
-     */
     public function __construct(ContentTypeService $contentTypeService)
     {
         $this->contentTypeService = $contentTypeService;
     }
 
-    /**
-     * Configures the options for this type.
-     *
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver The resolver for the options
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
         parent::configureOptions($resolver);
@@ -49,9 +39,6 @@ class ContentTypeType extends AbstractType
         $resolver->setDefault('choice_translation_domain', false);
     }
 
-    /**
-     * Returns the name of the parent type.
-     */
     public function getParent()
     {
         return ChoiceType::class;

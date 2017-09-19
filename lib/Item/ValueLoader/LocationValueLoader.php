@@ -14,25 +14,11 @@ class LocationValueLoader implements ValueLoaderInterface
      */
     protected $locationService;
 
-    /**
-     * Constructor.
-     *
-     * @param \eZ\Publish\API\Repository\LocationService $locationService
-     */
     public function __construct(LocationService $locationService)
     {
         $this->locationService = $locationService;
     }
 
-    /**
-     * Loads the value from provided ID.
-     *
-     * @param int|string $id
-     *
-     * @throws \Netgen\BlockManager\Exception\Item\ItemException If value cannot be loaded
-     *
-     * @return mixed
-     */
     public function load($id)
     {
         try {

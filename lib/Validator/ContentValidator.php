@@ -16,22 +16,11 @@ class ContentValidator extends ConstraintValidator
      */
     protected $repository;
 
-    /**
-     * Constructor.
-     *
-     * @param \eZ\Publish\API\Repository\Repository $repository
-     */
     public function __construct(Repository $repository)
     {
         $this->repository = $repository;
     }
 
-    /**
-     * Checks if the passed value is valid.
-     *
-     * @param mixed $value The value that should be validated
-     * @param \Symfony\Component\Validator\Constraint $constraint The constraint for the validation
-     */
     public function validate($value, Constraint $constraint)
     {
         if ($value === null) {

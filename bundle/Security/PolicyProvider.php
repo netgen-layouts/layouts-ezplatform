@@ -7,11 +7,6 @@ use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Security\PolicyProvider\Po
 
 class PolicyProvider implements PolicyProviderInterface
 {
-    /**
-     * Adds policies configuration hash to $configBuilder.
-     *
-     * @param \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ConfigBuilderInterface $configBuilder
-     */
     public function addPolicies(ConfigBuilderInterface $configBuilder)
     {
         $configBuilder->addConfig(

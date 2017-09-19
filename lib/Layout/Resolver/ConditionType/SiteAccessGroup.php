@@ -15,31 +15,16 @@ class SiteAccessGroup implements ConditionTypeInterface
      */
     protected $groupsBySiteAccess;
 
-    /**
-     * Constructor.
-     *
-     * @param array $groupsBySiteAccess
-     */
     public function __construct(array $groupsBySiteAccess)
     {
         $this->groupsBySiteAccess = $groupsBySiteAccess;
     }
 
-    /**
-     * Returns the condition type.
-     *
-     * @return string
-     */
     public function getType()
     {
         return 'ez_site_access_group';
     }
 
-    /**
-     * Returns the constraints that will be used to validate the condition value.
-     *
-     * @return \Symfony\Component\Validator\Constraint[]
-     */
     public function getConstraints()
     {
         return array(
@@ -56,14 +41,6 @@ class SiteAccessGroup implements ConditionTypeInterface
         );
     }
 
-    /**
-     * Returns if this request matches the provided value.
-     *
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param mixed $value
-     *
-     * @return bool
-     */
     public function matches(Request $request, $value)
     {
         $siteAccess = $request->attributes->get('siteaccess');

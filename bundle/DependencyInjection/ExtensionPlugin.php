@@ -23,11 +23,6 @@ class ExtensionPlugin extends BaseExtensionPlugin
      */
     protected $container;
 
-    /**
-     * Constructor.
-     *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     */
     public function __construct(ContainerBuilder $container)
     {
         $this->container = $container;

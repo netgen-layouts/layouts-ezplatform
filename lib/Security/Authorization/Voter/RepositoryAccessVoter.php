@@ -43,10 +43,6 @@ class RepositoryAccessVoter extends Voter
      */
     protected $accessDecisionManager;
 
-    /**
-     * @param \Symfony\Component\Security\Core\Role\RoleHierarchyInterface $roleHierarchy
-     * @param \Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface $accessDecisionManager
-     */
     public function __construct(
         RoleHierarchyInterface $roleHierarchy,
         AccessDecisionManagerInterface $accessDecisionManager
@@ -55,18 +51,6 @@ class RepositoryAccessVoter extends Voter
         $this->accessDecisionManager = $accessDecisionManager;
     }
 
-    /**
-     * Returns the vote for the given parameters.
-     *
-     * This method must return one of the following constants:
-     * ACCESS_GRANTED, ACCESS_DENIED, or ACCESS_ABSTAIN.
-     *
-     * @param \Symfony\Component\Security\Core\Authentication\Token\TokenInterface $token
-     * @param object|null $object
-     * @param array $attributes
-     *
-     * @return int either ACCESS_GRANTED, ACCESS_ABSTAIN, or ACCESS_DENIED
-     */
     public function vote(TokenInterface $token, $object, array $attributes)
     {
         // abstain vote by default in case none of the attributes are supported
@@ -91,29 +75,11 @@ class RepositoryAccessVoter extends Voter
         return $vote;
     }
 
-    /**
-     * Determines if the attribute and subject are supported by this voter.
-     *
-     * @param string $attribute
-     * @param mixed $subject
-     *
-     * @return bool
-     */
     protected function supports($attribute, $subject)
     {
         return is_string($attribute) && strpos($attribute, 'ROLE_NGBM_') === 0;
     }
 
-    /**
-     * Perform a single access check operation on a given attribute, subject and token.
-     * It is safe to assume that $attribute and $subject already passed the "supports()" method check.
-     *
-     * @param string $attribute
-     * @param mixed $subject
-     * @param \Symfony\Component\Security\Core\Authentication\Token\TokenInterface $token
-     *
-     * @return bool
-     */
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
         if (!isset(self::$attributeToPolicyMap[$attribute])) {

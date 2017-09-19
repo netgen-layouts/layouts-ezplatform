@@ -16,31 +16,16 @@ class Location implements TargetTypeInterface
      */
     protected $contentExtractor;
 
-    /**
-     * Constructor.
-     *
-     * @param \Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface $contentExtractor
-     */
     public function __construct(ContentExtractorInterface $contentExtractor)
     {
         $this->contentExtractor = $contentExtractor;
     }
 
-    /**
-     * Returns the target type.
-     *
-     * @return string
-     */
     public function getType()
     {
         return 'ezlocation';
     }
 
-    /**
-     * Returns the constraints that will be used to validate the target value.
-     *
-     * @return \Symfony\Component\Validator\Constraint[]
-     */
     public function getConstraints()
     {
         return array(
@@ -51,13 +36,6 @@ class Location implements TargetTypeInterface
         );
     }
 
-    /**
-     * Provides the value for the target to be used in matching process.
-     *
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return mixed
-     */
     public function provideValue(Request $request)
     {
         $location = $this->contentExtractor->extractLocation($request);

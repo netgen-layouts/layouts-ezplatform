@@ -21,11 +21,6 @@ class ContentType extends Constraint
      */
     public $allowedTypes = array();
 
-    /**
-     * Returns the name of the class that validates this constraint.
-     *
-     * @return string
-     */
     public function validatedBy()
     {
         return 'ngbm_ez_content_type';

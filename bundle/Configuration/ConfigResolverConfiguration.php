@@ -6,6 +6,13 @@ use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use Netgen\Bundle\BlockManagerBundle\Configuration\ConfigurationInterface;
 use Netgen\Bundle\BlockManagerBundle\Exception\ConfigurationException;
 
+/**
+ * Implementation of ConfigurationInterface that uses eZ Platform
+ * config resolver to retrieve parameters from the container.
+ *
+ * This means that the returned values will be the ones defined
+ * in the current eZ Platform scope of the request.
+ */
 class ConfigResolverConfiguration implements ConfigurationInterface
 {
     /**
@@ -18,12 +25,6 @@ class ConfigResolverConfiguration implements ConfigurationInterface
      */
     protected $fallbackConfiguration;
 
-    /**
-     * Constructor.
-     *
-     * @param \eZ\Publish\Core\MVC\ConfigResolverInterface $configResolver
-     * @param \Netgen\Bundle\BlockManagerBundle\Configuration\ConfigurationInterface $fallbackConfiguration
-     */
     public function __construct(
         ConfigResolverInterface $configResolver,
         ConfigurationInterface $fallbackConfiguration
@@ -32,13 +33,6 @@ class ConfigResolverConfiguration implements ConfigurationInterface
         $this->fallbackConfiguration = $fallbackConfiguration;
     }
 
-    /**
-     * Returns if parameter exists in configuration.
-     *
-     * @param string $parameterName
-     *
-     * @return bool
-     */
     public function hasParameter($parameterName)
     {
         $hasParam = $this->configResolver->hasParameter(
@@ -53,15 +47,6 @@ class ConfigResolverConfiguration implements ConfigurationInterface
         return $hasParam;
     }
 
-    /**
-     * Returns the parameter from configuration.
-     *
-     * @param string $parameterName
-     *
-     * @throws \Netgen\Bundle\BlockManagerBundle\Exception\ConfigurationException If parameter is undefined
-     *
-     * @return mixed
-     */
     public function getParameter($parameterName)
     {
         if (!$this->hasParameter($parameterName)) {

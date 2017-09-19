@@ -19,6 +19,10 @@ use Netgen\BlockManager\Ez\Parameters\ParameterType as EzParameterType;
 use Netgen\BlockManager\Parameters\ParameterBuilderInterface;
 use Netgen\BlockManager\Parameters\ParameterType;
 
+/**
+ * Handler for a query which retrieves the eZ locations from the repository
+ * based on parameters provided in the query.
+ */
 class ContentSearchHandler implements QueryTypeHandlerInterface
 {
     /**
@@ -79,14 +83,6 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         Location::SORT_ORDER_DESC => LocationQuery::SORT_DESC,
     );
 
-    /**
-     * Constructor.
-     *
-     * @param \eZ\Publish\API\Repository\LocationService $locationService
-     * @param \eZ\Publish\API\Repository\SearchService $searchService
-     * @param \eZ\Publish\SPI\Persistence\Content\Type\Handler $contentTypeHandler
-     * @param \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface $contentProvider
-     */
     public function __construct(
         LocationService $locationService,
         SearchService $searchService,
@@ -109,11 +105,6 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         $this->languages = is_array($languages) ? $languages : array();
     }
 
-    /**
-     * Builds the parameters by using provided parameter builder.
-     *
-     * @param \Netgen\BlockManager\Parameters\ParameterBuilderInterface $builder
-     */
     public function buildParameters(ParameterBuilderInterface $builder)
     {
         $builder->add(
@@ -226,15 +217,6 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         );
     }
 
-    /**
-     * Returns the values from the query.
-     *
-     * @param \Netgen\BlockManager\API\Values\Collection\Query $query
-     * @param int $offset
-     * @param int $limit
-     *
-     * @return mixed[]
-     */
     public function getValues(Query $query, $offset = 0, $limit = null)
     {
         $parentLocation = $this->getParentLocation($query);
@@ -256,13 +238,6 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         );
     }
 
-    /**
-     * Returns the value count from the query.
-     *
-     * @param \Netgen\BlockManager\API\Values\Collection\Query $query
-     *
-     * @return int
-     */
     public function getCount(Query $query)
     {
         $parentLocation = $this->getParentLocation($query);
@@ -279,13 +254,6 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         return $searchResult->totalCount;
     }
 
-    /**
-     * Returns the limit internal to this query.
-     *
-     * @param \Netgen\BlockManager\API\Values\Collection\Query $query
-     *
-     * @return int
-     */
     public function getInternalLimit(Query $query)
     {
         $limit = $query->getParameter('limit')->getValue();
@@ -296,13 +264,6 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         return $limit >= 0 ? $limit : self::DEFAULT_LIMIT;
     }
 
-    /**
-     * Returns if the provided query is dependent on a context, i.e. current request.
-     *
-     * @param \Netgen\BlockManager\API\Values\Collection\Query $query
-     *
-     * @return bool
-     */
     public function isContextual(Query $query)
     {
         return $query->getParameter('use_current_location')->getValue() === true;

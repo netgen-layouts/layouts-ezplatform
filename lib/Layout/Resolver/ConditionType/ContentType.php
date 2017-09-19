@@ -22,33 +22,17 @@ class ContentType implements ConditionTypeInterface
      */
     protected $contentTypeService;
 
-    /**
-     * Constructor.
-     *
-     * @param \Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface $contentExtractor
-     * @param \eZ\Publish\API\Repository\ContentTypeService $contentTypeService
-     */
     public function __construct(ContentExtractorInterface $contentExtractor, ContentTypeService $contentTypeService)
     {
         $this->contentExtractor = $contentExtractor;
         $this->contentTypeService = $contentTypeService;
     }
 
-    /**
-     * Returns the condition type.
-     *
-     * @return string
-     */
     public function getType()
     {
         return 'ez_content_type';
     }
 
-    /**
-     * Returns the constraints that will be used to validate the condition value.
-     *
-     * @return \Symfony\Component\Validator\Constraint[]
-     */
     public function getConstraints()
     {
         return array(
@@ -65,14 +49,6 @@ class ContentType implements ConditionTypeInterface
         );
     }
 
-    /**
-     * Returns if this request matches the provided value.
-     *
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param mixed $value
-     *
-     * @return bool
-     */
     public function matches(Request $request, $value)
     {
         if (!is_array($value) || empty($value)) {

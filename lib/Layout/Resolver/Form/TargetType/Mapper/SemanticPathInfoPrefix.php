@@ -7,11 +7,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class SemanticPathInfoPrefix extends Mapper
 {
-    /**
-     * Returns the form type that will be used to edit the value of this condition type.
-     *
-     * @return string
-     */
     public function getFormType()
     {
         return TextType::class;

@@ -5,6 +5,10 @@ namespace Netgen\BlockManager\Ez\ContentProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+/**
+ * Provides the eZ Platform content and location objects from the
+ * current request.
+ */
 class ContentProvider implements ContentProviderInterface
 {
     /**
@@ -17,23 +21,12 @@ class ContentProvider implements ContentProviderInterface
      */
     protected $requestStack;
 
-    /**
-     * Constructor.
-     *
-     * @param \Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface $contentExtractor
-     * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
-     */
     public function __construct(ContentExtractorInterface $contentExtractor, RequestStack $requestStack)
     {
         $this->contentExtractor = $contentExtractor;
         $this->requestStack = $requestStack;
     }
 
-    /**
-     * Provides the eZ Publish content value object.
-     *
-     * @return \eZ\Publish\API\Repository\Values\Content\Content|void
-     */
     public function provideContent()
     {
         $currentRequest = $this->requestStack->getCurrentRequest();
@@ -44,11 +37,6 @@ class ContentProvider implements ContentProviderInterface
         return $this->contentExtractor->extractContent($currentRequest);
     }
 
-    /**
-     * Provides the eZ Publish location value object.
-     *
-     * @return \eZ\Publish\API\Repository\Values\Content\Location|void
-     */
     public function provideLocation()
     {
         $currentRequest = $this->requestStack->getCurrentRequest();

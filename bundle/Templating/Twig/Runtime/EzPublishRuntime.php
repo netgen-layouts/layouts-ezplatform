@@ -18,12 +18,6 @@ class EzPublishRuntime
      */
     protected $translationHelper;
 
-    /**
-     * Constructor.
-     *
-     * @param \eZ\Publish\API\Repository\Repository $repository
-     * @param \eZ\Publish\Core\Helper\TranslationHelper $translationHelper
-     */
     public function __construct(Repository $repository, TranslationHelper $translationHelper)
     {
         $this->repository = $repository;

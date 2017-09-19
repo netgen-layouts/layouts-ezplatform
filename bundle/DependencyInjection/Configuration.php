@@ -7,11 +7,6 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
 class Configuration extends SiteAccessConfiguration
 {
-    /**
-     * Generates the configuration tree builder.
-     *
-     * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder
-     */
     public function getConfigTreeBuilder()
     {
         return new TreeBuilder();

@@ -2,6 +2,10 @@
 
 namespace Netgen\BlockManager\Ez\ContentProvider;
 
+/**
+ * A generic interface used to provide eZ Platform content and location
+ * based on current conditions (e.g. current request).
+ */
 interface ContentProviderInterface
 {
     /**

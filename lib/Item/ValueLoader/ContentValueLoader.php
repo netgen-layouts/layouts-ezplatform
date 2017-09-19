@@ -14,25 +14,11 @@ class ContentValueLoader implements ValueLoaderInterface
      */
     protected $contentService;
 
-    /**
-     * Constructor.
-     *
-     * @param \eZ\Publish\API\Repository\ContentService $contentService
-     */
     public function __construct(ContentService $contentService)
     {
         $this->contentService = $contentService;
     }
 
-    /**
-     * Loads the value from provided ID.
-     *
-     * @param int|string $id
-     *
-     * @throws \Netgen\BlockManager\Exception\Item\ItemException If value cannot be loaded
-     *
-     * @return mixed
-     */
     public function load($id)
     {
         try {

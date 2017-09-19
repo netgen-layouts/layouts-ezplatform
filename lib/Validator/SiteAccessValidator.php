@@ -14,22 +14,11 @@ class SiteAccessValidator extends ConstraintValidator
      */
     protected $siteAccessList;
 
-    /**
-     * Constructor.
-     *
-     * @param array $siteAccessList
-     */
     public function __construct(array $siteAccessList)
     {
         $this->siteAccessList = $siteAccessList;
     }
 
-    /**
-     * Checks if the passed value is valid.
-     *
-     * @param mixed $value The value that should be validated
-     * @param \Symfony\Component\Validator\Constraint $constraint The constraint for the validation
-     */
     public function validate($value, Constraint $constraint)
     {
         if ($value === null) {

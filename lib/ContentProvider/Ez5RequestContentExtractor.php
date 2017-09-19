@@ -26,25 +26,12 @@ class Ez5RequestContentExtractor implements ContentExtractorInterface
      */
     protected $locationService;
 
-    /**
-     * Constructor.
-     *
-     * @param \eZ\Publish\API\Repository\ContentService $contentService
-     * @param \eZ\Publish\API\Repository\LocationService $locationService
-     */
     public function __construct(ContentService $contentService, LocationService $locationService)
     {
         $this->contentService = $contentService;
         $this->locationService = $locationService;
     }
 
-    /**
-     * Extracts the eZ Publish content value object from the provided request.
-     *
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \eZ\Publish\API\Repository\Values\Content\Content|void
-     */
     public function extractContent(Request $request)
     {
         $content = $request->attributes->get('content');
@@ -69,13 +56,6 @@ class Ez5RequestContentExtractor implements ContentExtractorInterface
         }
     }
 
-    /**
-     * Extracts the eZ Publish location value object from provided request.
-     *
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \eZ\Publish\API\Repository\Values\Content\Location|void
-     */
     public function extractLocation(Request $request)
     {
         $location = $request->attributes->get('location');

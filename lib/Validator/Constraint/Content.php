@@ -11,11 +11,6 @@ class Content extends Constraint
      */
     public $message = 'netgen_block_manager.ezcontent.content_not_found';
 
-    /**
-     * Returns the name of the class that validates this constraint.
-     *
-     * @return string
-     */
     public function validatedBy()
     {
         return 'ngbm_ezcontent';

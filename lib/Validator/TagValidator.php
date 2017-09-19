@@ -16,22 +16,11 @@ class TagValidator extends ConstraintValidator
      */
     protected $tagsService;
 
-    /**
-     * Constructor.
-     *
-     * @param \Netgen\TagsBundle\API\Repository\TagsService $tagsService
-     */
     public function __construct(TagsService $tagsService)
     {
         $this->tagsService = $tagsService;
     }
 
-    /**
-     * Checks if the passed value is valid.
-     *
-     * @param mixed $value The value that should be validated
-     * @param \Symfony\Component\Validator\Constraint $constraint The constraint for the validation
-     */
     public function validate($value, Constraint $constraint)
     {
         if ($value === null) {
