@@ -9,6 +9,9 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
 
+/**
+ * Parameter type used to store and validate an ID of a tag in Netgen Tags.
+ */
 class TagsType extends ParameterType
 {
     public function getIdentifier()

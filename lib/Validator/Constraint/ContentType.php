@@ -17,6 +17,9 @@ class ContentType extends Constraint
     public $notAllowedMessage = 'netgen_block_manager.ez_content_type.content_type_not_allowed';
 
     /**
+     * If not empty, the constraint will validate only if content type identifier
+     * is in the list of provided content type identifiers.
+     *
      * @var array
      */
     public $allowedTypes = array();

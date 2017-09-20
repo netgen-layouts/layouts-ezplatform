@@ -10,6 +10,9 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
+/**
+ * Validates if the provided value is an identifier of a valid content type in eZ Platform.
+ */
 class ContentTypeValidator extends ConstraintValidator
 {
     /**

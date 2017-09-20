@@ -8,6 +8,9 @@ use Netgen\BlockManager\Parameters\ParameterType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
 
+/**
+ * Parameter type used to store and validate an identifier of a content type in eZ Platform.
+ */
 class ContentTypeType extends ParameterType
 {
     public function getIdentifier()

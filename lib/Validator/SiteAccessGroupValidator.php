@@ -7,6 +7,9 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
+/**
+ * Validates if the provided value is a valid eZ Platform siteaccess group.
+ */
 class SiteAccessGroupValidator extends ConstraintValidator
 {
     /**
