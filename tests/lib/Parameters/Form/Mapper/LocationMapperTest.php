@@ -13,7 +13,7 @@ class LocationMapperTest extends TestCase
     /**
      * @var \Netgen\BlockManager\Ez\Parameters\Form\Mapper\LocationMapper
      */
-    protected $mapper;
+    private $mapper;
 
     public function setUp()
     {

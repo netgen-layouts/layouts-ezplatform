@@ -33,32 +33,32 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     /**
      * @var \eZ\Publish\API\Repository\LocationService
      */
-    protected $locationService;
+    private $locationService;
 
     /**
      * @var \eZ\Publish\API\Repository\SearchService
      */
-    protected $searchService;
+    private $searchService;
 
     /**
      * @var \eZ\Publish\SPI\Persistence\Content\Type\Handler
      */
-    protected $contentTypeHandler;
+    private $contentTypeHandler;
 
     /**
      * @var \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface
      */
-    protected $contentProvider;
+    private $contentProvider;
 
     /**
      * @var array
      */
-    protected $languages = array();
+    private $languages = array();
 
     /**
      * @var array
      */
-    protected $sortClauses = array(
+    private $sortClauses = array(
         'default' => SortClause\DatePublished::class,
         'date_published' => SortClause\DatePublished::class,
         'date_modified' => SortClause\DateModified::class,
@@ -78,7 +78,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     /**
      * @var array
      */
-    protected $sortDirections = array(
+    private $sortDirections = array(
         Location::SORT_ORDER_ASC => LocationQuery::SORT_ASC,
         Location::SORT_ORDER_DESC => LocationQuery::SORT_DESC,
     );
@@ -276,7 +276,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Location|null
      */
-    protected function getParentLocation(Query $query)
+    private function getParentLocation(Query $query)
     {
         if ($query->getParameter('use_current_location')->getValue()) {
             return $this->contentProvider->provideLocation();
@@ -305,7 +305,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      *
      * @return \eZ\Publish\API\Repository\Values\Content\LocationQuery
      */
-    protected function buildQuery(Location $parentLocation, Query $query, $buildCountQuery = false)
+    private function buildQuery(Location $parentLocation, Query $query, $buildCountQuery = false)
     {
         $locationQuery = new LocationQuery();
 
@@ -373,7 +373,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      *
      * @return array
      */
-    protected function getContentTypeIds(array $contentTypeIdentifiers)
+    private function getContentTypeIds(array $contentTypeIdentifiers)
     {
         $idList = array();
 

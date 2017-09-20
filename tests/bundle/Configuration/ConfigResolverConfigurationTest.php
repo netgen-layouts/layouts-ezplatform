@@ -12,17 +12,17 @@ class ConfigResolverConfigurationTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $configResolverMock;
+    private $configResolverMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $fallbackConfigurationMock;
+    private $fallbackConfigurationMock;
 
     /**
      * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration
      */
-    protected $configuration;
+    private $configuration;
 
     /**
      * Sets up the tests.

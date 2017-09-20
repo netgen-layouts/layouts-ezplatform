@@ -12,7 +12,7 @@ class SemanticPathInfoTest extends TestCase
     /**
      * @var \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfo
      */
-    protected $targetType;
+    private $targetType;
 
     public function setUp()
     {

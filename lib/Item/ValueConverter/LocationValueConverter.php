@@ -11,7 +11,7 @@ class LocationValueConverter implements ValueConverterInterface
     /**
      * @var \eZ\Publish\Core\Helper\TranslationHelper
      */
-    protected $translationHelper;
+    private $translationHelper;
 
     public function __construct(TranslationHelper $translationHelper)
     {

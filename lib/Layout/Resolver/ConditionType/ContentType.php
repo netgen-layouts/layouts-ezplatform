@@ -15,12 +15,12 @@ class ContentType implements ConditionTypeInterface
     /**
      * @var \Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface
      */
-    protected $contentExtractor;
+    private $contentExtractor;
 
     /**
      * @var \eZ\Publish\API\Repository\ContentTypeService
      */
-    protected $contentTypeService;
+    private $contentTypeService;
 
     public function __construct(ContentExtractorInterface $contentExtractor, ContentTypeService $contentTypeService)
     {

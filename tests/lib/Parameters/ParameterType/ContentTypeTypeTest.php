@@ -17,12 +17,12 @@ class ContentTypeTypeTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $repositoryMock;
+    private $repositoryMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $contentTypeServiceMock;
+    private $contentTypeServiceMock;
 
     public function setUp()
     {

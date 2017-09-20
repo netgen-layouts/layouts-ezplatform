@@ -18,22 +18,22 @@ class LocaleProvider implements LocaleProviderInterface
     /**
      * @var \eZ\Publish\API\Repository\LanguageService
      */
-    protected $languageService;
+    private $languageService;
 
     /**
      * @var \eZ\Publish\Core\MVC\Symfony\Locale\LocaleConverterInterface
      */
-    protected $localeConverter;
+    private $localeConverter;
 
     /**
      * @var \Symfony\Component\Intl\ResourceBundle\LocaleBundleInterface
      */
-    protected $localeBundle;
+    private $localeBundle;
 
     /**
      * @var string[]
      */
-    protected $languageCodes = array();
+    private $languageCodes = array();
 
     public function __construct(LanguageService $languageService, LocaleConverterInterface $localeConverter)
     {

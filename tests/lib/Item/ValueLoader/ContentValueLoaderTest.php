@@ -13,12 +13,12 @@ class ContentValueLoaderTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $contentServiceMock;
+    private $contentServiceMock;
 
     /**
      * @var \Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader
      */
-    protected $valueLoader;
+    private $valueLoader;
 
     public function setUp()
     {

@@ -14,7 +14,7 @@ class Content implements TargetTypeInterface
     /**
      * @var \Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface
      */
-    protected $contentExtractor;
+    private $contentExtractor;
 
     public function __construct(ContentExtractorInterface $contentExtractor)
     {

@@ -14,7 +14,7 @@ class SiteAccessGroupTest extends TestCase
     /**
      * @var \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccessGroup
      */
-    protected $conditionType;
+    private $conditionType;
 
     /**
      * Sets up the route target tests.

@@ -10,7 +10,7 @@ class SiteAccess extends Mapper
     /**
      * @var array
      */
-    protected $siteAccessList;
+    private $siteAccessList;
 
     public function __construct(array $siteAccessList)
     {

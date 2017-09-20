@@ -18,7 +18,7 @@ class ContentFieldHandler extends BlockDefinitionHandler
     /**
      * @var \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface
      */
-    protected $contentProvider;
+    private $contentProvider;
 
     public function __construct(ContentProviderInterface $contentProvider)
     {

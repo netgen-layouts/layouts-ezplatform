@@ -15,7 +15,7 @@ class TagsTypeTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $tagsServiceMock;
+    private $tagsServiceMock;
 
     public function setUp()
     {

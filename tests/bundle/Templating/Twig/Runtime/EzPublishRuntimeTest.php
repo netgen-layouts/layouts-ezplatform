@@ -21,32 +21,32 @@ class EzPublishRuntimeTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $repositoryMock;
+    private $repositoryMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $contentServiceMock;
+    private $contentServiceMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $locationServiceMock;
+    private $locationServiceMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $contentTypeServiceMock;
+    private $contentTypeServiceMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $translationHelperMock;
+    private $translationHelperMock;
 
     /**
      * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime
      */
-    protected $runtime;
+    private $runtime;
 
     public function setUp()
     {
@@ -247,7 +247,7 @@ class EzPublishRuntimeTest extends TestCase
         $this->assertEquals('', $this->runtime->getContentTypeName('some_type'));
     }
 
-    protected function prepareRepositoryMock()
+    private function prepareRepositoryMock()
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
         $this->contentServiceMock = $this->createMock(ContentService::class);
@@ -291,7 +291,7 @@ class EzPublishRuntimeTest extends TestCase
             ->will($this->returnValue($this->contentTypeServiceMock));
     }
 
-    protected function mockServices()
+    private function mockServices()
     {
         $this->locationServiceMock
             ->expects($this->any())

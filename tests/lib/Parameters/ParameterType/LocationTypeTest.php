@@ -17,12 +17,12 @@ class LocationTypeTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $repositoryMock;
+    private $repositoryMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $locationServiceMock;
+    private $locationServiceMock;
 
     public function setUp()
     {

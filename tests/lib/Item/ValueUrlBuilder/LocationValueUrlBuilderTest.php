@@ -12,12 +12,12 @@ class LocationValueUrlBuilderTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $router;
+    private $router;
 
     /**
      * @var \Netgen\BlockManager\Ez\Item\ValueUrlBuilder\LocationValueUrlBuilder
      */
-    protected $urlBuilder;
+    private $urlBuilder;
 
     public function setUp()
     {

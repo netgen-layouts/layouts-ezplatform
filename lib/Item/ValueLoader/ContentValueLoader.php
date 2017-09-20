@@ -12,7 +12,7 @@ class ContentValueLoader implements ValueLoaderInterface
     /**
      * @var \eZ\Publish\API\Repository\ContentService
      */
-    protected $contentService;
+    private $contentService;
 
     public function __construct(ContentService $contentService)
     {

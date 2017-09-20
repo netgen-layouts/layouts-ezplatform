@@ -19,12 +19,12 @@ class Ez5RequestContentExtractor implements ContentExtractorInterface
     /**
      * @var \eZ\Publish\API\Repository\ContentService
      */
-    protected $contentService;
+    private $contentService;
 
     /**
      * @var \eZ\Publish\API\Repository\LocationService
      */
-    protected $locationService;
+    private $locationService;
 
     public function __construct(ContentService $contentService, LocationService $locationService)
     {

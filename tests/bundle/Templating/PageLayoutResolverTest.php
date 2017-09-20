@@ -14,22 +14,22 @@ class PageLayoutResolverTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $innerResolverMock;
+    private $innerResolverMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $configResolverMock;
+    private $configResolverMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $requestStackMock;
+    private $requestStackMock;
 
     /**
      * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver
      */
-    protected $resolver;
+    private $resolver;
 
     public function setUp()
     {

@@ -13,12 +13,12 @@ class TagsServiceValidatorFactory implements ConstraintValidatorFactoryInterface
     /**
      * @var \Netgen\TagsBundle\API\Repository\TagsService
      */
-    protected $tagsService;
+    private $tagsService;
 
     /**
      * @var \Symfony\Component\Validator\ConstraintValidatorFactoryInterface
      */
-    protected $baseValidatorFactory;
+    private $baseValidatorFactory;
 
     /**
      * Constructor.

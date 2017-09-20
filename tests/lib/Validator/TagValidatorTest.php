@@ -14,12 +14,12 @@ class TagValidatorTest extends ValidatorTestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $repositoryMock;
+    private $repositoryMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $tagsServiceMock;
+    private $tagsServiceMock;
 
     public function setUp()
     {

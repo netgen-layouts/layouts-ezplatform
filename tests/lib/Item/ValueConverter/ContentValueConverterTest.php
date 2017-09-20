@@ -14,17 +14,17 @@ class ContentValueConverterTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $locationServiceMock;
+    private $locationServiceMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $translationHelperMock;
+    private $translationHelperMock;
 
     /**
      * @var \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter
      */
-    protected $valueConverter;
+    private $valueConverter;
 
     public function setUp()
     {

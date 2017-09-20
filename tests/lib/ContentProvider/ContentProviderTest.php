@@ -15,17 +15,17 @@ class ContentProviderTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $contentExtractorMock;
+    private $contentExtractorMock;
 
     /**
      * @var \Symfony\Component\HttpFoundation\RequestStack
      */
-    protected $requestStack;
+    private $requestStack;
 
     /**
      * @var \Netgen\BlockManager\Ez\ContentProvider\ContentProvider
      */
-    protected $contentProvider;
+    private $contentProvider;
 
     public function setUp()
     {

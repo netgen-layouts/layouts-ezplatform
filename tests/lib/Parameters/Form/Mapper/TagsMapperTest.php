@@ -13,7 +13,7 @@ class TagsMapperTest extends TestCase
     /**
      * @var \Netgen\BlockManager\Ez\Parameters\Form\Mapper\TagsMapper
      */
-    protected $mapper;
+    private $mapper;
 
     public function setUp()
     {

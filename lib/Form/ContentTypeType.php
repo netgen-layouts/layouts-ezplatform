@@ -13,7 +13,7 @@ class ContentTypeType extends AbstractType
     /**
      * @var \eZ\Publish\API\Repository\ContentTypeService
      */
-    protected $contentTypeService;
+    private $contentTypeService;
 
     public function __construct(ContentTypeService $contentTypeService)
     {
@@ -51,7 +51,7 @@ class ContentTypeType extends AbstractType
      *
      * @return array
      */
-    protected function getContentTypes(Options $options)
+    private function getContentTypes(Options $options)
     {
         $allContentTypes = array();
 

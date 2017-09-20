@@ -19,17 +19,17 @@ class Ez5RequestContentExtractorTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $contentServiceMock;
+    private $contentServiceMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $locationServiceMock;
+    private $locationServiceMock;
 
     /**
      * @var \Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentExtractor
      */
-    protected $contentProvider;
+    private $contentProvider;
 
     public function setUp()
     {

@@ -11,7 +11,7 @@ class EzPublishExtensionTest extends TestCase
     /**
      * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension
      */
-    protected $extension;
+    private $extension;
 
     public function setUp()
     {

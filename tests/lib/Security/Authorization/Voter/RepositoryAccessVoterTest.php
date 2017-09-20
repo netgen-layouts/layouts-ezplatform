@@ -15,12 +15,12 @@ class RepositoryAccessVoterTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $accessDecisionManagerMock;
+    private $accessDecisionManagerMock;
 
     /**
      * @var \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter
      */
-    protected $voter;
+    private $voter;
 
     public function setUp()
     {

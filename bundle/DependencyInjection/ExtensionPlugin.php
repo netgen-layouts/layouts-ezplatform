@@ -21,7 +21,7 @@ class ExtensionPlugin extends BaseExtensionPlugin
     /**
      * @var \Symfony\Component\DependencyInjection\ContainerBuilder
      */
-    protected $container;
+    private $container;
 
     public function __construct(ContainerBuilder $container)
     {
@@ -165,7 +165,7 @@ class ExtensionPlugin extends BaseExtensionPlugin
      *
      * @return array
      */
-    protected function fixUpViewConfig(array $config)
+    private function fixUpViewConfig(array $config)
     {
         foreach ($config['system'] as $scope => $scopeConfig) {
             if ($scope === 'default') {

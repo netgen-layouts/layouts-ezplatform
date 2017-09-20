@@ -14,12 +14,12 @@ class ContentProvider implements ContentProviderInterface
     /**
      * @var \Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface
      */
-    protected $contentExtractor;
+    private $contentExtractor;
 
     /**
      * @var \Symfony\Component\HttpFoundation\RequestStack
      */
-    protected $requestStack;
+    private $requestStack;
 
     public function __construct(ContentExtractorInterface $contentExtractor, RequestStack $requestStack)
     {

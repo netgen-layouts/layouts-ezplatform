@@ -12,7 +12,7 @@ class LocationValueLoader implements ValueLoaderInterface
     /**
      * @var \eZ\Publish\API\Repository\LocationService
      */
-    protected $locationService;
+    private $locationService;
 
     public function __construct(LocationService $locationService)
     {

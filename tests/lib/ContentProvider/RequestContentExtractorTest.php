@@ -16,7 +16,7 @@ class RequestContentExtractorTest extends TestCase
     /**
      * @var \Netgen\BlockManager\Ez\ContentProvider\RequestContentExtractor
      */
-    protected $contentExtractor;
+    private $contentExtractor;
 
     public function setUp()
     {

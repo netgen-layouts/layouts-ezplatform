@@ -11,7 +11,7 @@ class ConfigurationTest extends TestCase
     /**
      * @var \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration
      */
-    protected $configuration;
+    private $configuration;
 
     public function setUp()
     {

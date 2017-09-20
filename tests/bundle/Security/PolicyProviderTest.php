@@ -11,12 +11,12 @@ class PolicyProviderTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $configBuilderMock;
+    private $configBuilderMock;
 
     /**
      * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Security\PolicyProvider
      */
-    protected $policyProvider;
+    private $policyProvider;
 
     public function setUp()
     {

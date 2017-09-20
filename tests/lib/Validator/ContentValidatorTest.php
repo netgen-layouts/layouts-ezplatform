@@ -15,12 +15,12 @@ class ContentValidatorTest extends ValidatorTestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $repositoryMock;
+    private $repositoryMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $contentServiceMock;
+    private $contentServiceMock;
 
     public function setUp()
     {

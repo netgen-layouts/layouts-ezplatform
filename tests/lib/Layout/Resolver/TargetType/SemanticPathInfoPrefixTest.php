@@ -3,13 +3,19 @@
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\TargetType;
 
 use Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Validation;
 
-class SemanticPathInfoPrefixTest extends SemanticPathInfoTest
+class SemanticPathInfoPrefixTest extends TestCase
 {
+    /**
+     * @var \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix
+     */
+    private $targetType;
+
     public function setUp()
     {
-        parent::setUp();
-
         $this->targetType = new SemanticPathInfoPrefix();
     }
 
@@ -19,5 +25,73 @@ class SemanticPathInfoPrefixTest extends SemanticPathInfoTest
     public function testGetType()
     {
         $this->assertEquals('ez_semantic_path_info_prefix', $this->targetType->getType());
+    }
+
+    /**
+     * @param mixed $value
+     * @param bool $isValid
+     *
+     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::getConstraints
+     * @dataProvider validationProvider
+     */
+    public function testValidation($value, $isValid)
+    {
+        $validator = Validation::createValidator();
+
+        $errors = $validator->validate($value, $this->targetType->getConstraints());
+        $this->assertEquals($isValid, $errors->count() === 0);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::provideValue
+     */
+    public function testProvideValue()
+    {
+        $request = Request::create('/the/answer');
+        $request->attributes->set('semanticPathinfo', '/the/answer');
+
+        $this->assertEquals(
+            '/the/answer',
+            $this->targetType->provideValue($request)
+        );
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::provideValue
+     */
+    public function testProvideValueWithEmptySemanticPathInfo()
+    {
+        $request = Request::create('/the/answer');
+        $request->attributes->set('semanticPathinfo', false);
+
+        $this->assertEquals(
+            '/',
+            $this->targetType->provideValue($request)
+        );
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::provideValue
+     */
+    public function testProvideValueWithNoSemanticPathInfo()
+    {
+        $request = Request::create('/the/answer');
+
+        $this->assertNull($this->targetType->provideValue($request));
+    }
+
+    /**
+     * Extractor for testing target type validation.
+     *
+     * @return array
+     */
+    public function validationProvider()
+    {
+        return array(
+            array('/some/route', true),
+            array('/', true),
+            array('', false),
+            array(null, false),
+        );
     }
 }

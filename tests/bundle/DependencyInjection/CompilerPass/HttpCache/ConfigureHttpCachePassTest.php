@@ -97,7 +97,7 @@ class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
      *
      * @param string $aliasId
      */
-    protected function assertContainerBuilderNotHasAlias($aliasId)
+    private function assertContainerBuilderNotHasAlias($aliasId)
     {
         $this->assertThat(
             $this->container,

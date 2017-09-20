@@ -13,7 +13,7 @@ class ContentTypeMapperTest extends TestCase
     /**
      * @var \Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentTypeMapper
      */
-    protected $mapper;
+    private $mapper;
 
     public function setUp()
     {

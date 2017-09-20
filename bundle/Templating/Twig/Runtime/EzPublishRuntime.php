@@ -11,12 +11,12 @@ class EzPublishRuntime
     /**
      * @var \eZ\Publish\API\Repository\Repository
      */
-    protected $repository;
+    private $repository;
 
     /**
      * @var \eZ\Publish\Core\Helper\TranslationHelper
      */
-    protected $translationHelper;
+    private $translationHelper;
 
     public function __construct(Repository $repository, TranslationHelper $translationHelper)
     {
@@ -111,7 +111,7 @@ class EzPublishRuntime
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Content
      */
-    protected function loadContent($contentId)
+    private function loadContent($contentId)
     {
         return $this->repository->sudo(
             function (Repository $repository) use ($contentId) {
@@ -127,7 +127,7 @@ class EzPublishRuntime
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Location
      */
-    protected function loadLocation($locationId)
+    private function loadLocation($locationId)
     {
         return $this->repository->sudo(
             function (Repository $repository) use ($locationId) {
@@ -143,7 +143,7 @@ class EzPublishRuntime
      *
      * @return \eZ\Publish\API\Repository\Values\ContentType\ContentType
      */
-    protected function loadContentType($identifier)
+    private function loadContentType($identifier)
     {
         return $this->repository->sudo(
             function (Repository $repository) use ($identifier) {

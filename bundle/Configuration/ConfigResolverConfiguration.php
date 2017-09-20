@@ -18,12 +18,12 @@ class ConfigResolverConfiguration implements ConfigurationInterface
     /**
      * @var \eZ\Publish\Core\MVC\ConfigResolverInterface
      */
-    protected $configResolver;
+    private $configResolver;
 
     /**
      * @var \Netgen\Bundle\BlockManagerBundle\Configuration\ConfigurationInterface
      */
-    protected $fallbackConfiguration;
+    private $fallbackConfiguration;
 
     public function __construct(
         ConfigResolverInterface $configResolver,

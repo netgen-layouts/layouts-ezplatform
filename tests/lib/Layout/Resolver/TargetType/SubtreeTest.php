@@ -18,22 +18,22 @@ class SubtreeTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $repositoryMock;
+    private $repositoryMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $contentExtractorMock;
+    private $contentExtractorMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $locationServiceMock;
+    private $locationServiceMock;
 
     /**
      * @var \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Subtree
      */
-    protected $targetType;
+    private $targetType;
 
     public function setUp()
     {

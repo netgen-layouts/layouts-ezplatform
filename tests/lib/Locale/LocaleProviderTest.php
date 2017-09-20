@@ -15,17 +15,17 @@ class LocaleProviderTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $languageServiceMock;
+    private $languageServiceMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $localeConverterMock;
+    private $localeConverterMock;
 
     /**
      * @var \Netgen\BlockManager\Ez\Locale\LocaleProvider
      */
-    protected $localeProvider;
+    private $localeProvider;
 
     public function setUp()
     {

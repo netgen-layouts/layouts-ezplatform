@@ -12,12 +12,12 @@ class ContentValueConverter implements ValueConverterInterface
     /**
      * @var \eZ\Publish\API\Repository\LocationService
      */
-    protected $locationService;
+    private $locationService;
 
     /**
      * @var \eZ\Publish\Core\Helper\TranslationHelper
      */
-    protected $translationHelper;
+    private $translationHelper;
 
     public function __construct(LocationService $locationService, TranslationHelper $translationHelper)
     {

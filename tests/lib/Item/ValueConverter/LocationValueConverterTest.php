@@ -13,12 +13,12 @@ class LocationValueConverterTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $translationHelperMock;
+    private $translationHelperMock;
 
     /**
      * @var \Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter
      */
-    protected $valueConverter;
+    private $valueConverter;
 
     public function setUp()
     {

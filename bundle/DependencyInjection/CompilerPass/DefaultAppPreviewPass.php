@@ -53,7 +53,7 @@ class DefaultAppPreviewPass implements CompilerPassInterface
      *
      * @return array
      */
-    protected function addDefaultPreviewRule($scopeRules, $defaultRule)
+    private function addDefaultPreviewRule($scopeRules, $defaultRule)
     {
         $scopeRules = is_array($scopeRules) ? $scopeRules : array();
 

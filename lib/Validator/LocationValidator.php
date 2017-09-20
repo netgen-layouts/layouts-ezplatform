@@ -14,7 +14,7 @@ class LocationValidator extends ConstraintValidator
     /**
      * @var \eZ\Publish\API\Repository\Repository
      */
-    protected $repository;
+    private $repository;
 
     public function __construct(Repository $repository)
     {

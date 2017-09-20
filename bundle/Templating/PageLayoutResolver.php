@@ -18,22 +18,22 @@ class PageLayoutResolver implements PageLayoutResolverInterface
     /**
      * @var \Netgen\Bundle\BlockManagerBundle\Templating\PageLayoutResolverInterface
      */
-    protected $innerResolver;
+    private $innerResolver;
 
     /**
      * @var \eZ\Publish\Core\MVC\ConfigResolverInterface
      */
-    protected $configResolver;
+    private $configResolver;
 
     /**
      * @var \Symfony\Component\HttpFoundation\RequestStack
      */
-    protected $requestStack;
+    private $requestStack;
 
     /**
      * @var string
      */
-    protected $viewbaseLayout;
+    private $viewbaseLayout;
 
     /**
      * Constructor.

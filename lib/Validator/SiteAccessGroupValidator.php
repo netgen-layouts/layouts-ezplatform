@@ -12,7 +12,7 @@ class SiteAccessGroupValidator extends ConstraintValidator
     /**
      * @var array
      */
-    protected $siteAccessGroupList;
+    private $siteAccessGroupList;
 
     public function __construct(array $siteAccessGroupList)
     {

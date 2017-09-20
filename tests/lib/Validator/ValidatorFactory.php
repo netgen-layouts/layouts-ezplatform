@@ -13,7 +13,7 @@ class ValidatorFactory implements ConstraintValidatorFactoryInterface
     /**
      * @var \Symfony\Component\Validator\ConstraintValidatorFactoryInterface
      */
-    protected $baseValidatorFactory;
+    private $baseValidatorFactory;
 
     /**
      * Constructor.

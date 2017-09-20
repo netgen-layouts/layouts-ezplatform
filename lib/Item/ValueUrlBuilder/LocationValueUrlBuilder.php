@@ -10,7 +10,7 @@ class LocationValueUrlBuilder implements ValueUrlBuilderInterface
     /**
      * @var \Symfony\Component\Routing\RouterInterface
      */
-    protected $router;
+    private $router;
 
     public function __construct(RouterInterface $router)
     {

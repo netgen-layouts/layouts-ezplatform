@@ -15,12 +15,12 @@ class ContentFieldHandlerTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $contentProviderMock;
+    private $contentProviderMock;
 
     /**
      * @var \Netgen\BlockManager\Ez\Block\BlockDefinition\Handler\ContentFieldHandler
      */
-    protected $handler;
+    private $handler;
 
     public function setUp()
     {

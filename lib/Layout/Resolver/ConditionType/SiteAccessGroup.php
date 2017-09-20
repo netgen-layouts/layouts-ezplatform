@@ -13,7 +13,7 @@ class SiteAccessGroup implements ConditionTypeInterface
     /**
      * @var array
      */
-    protected $groupsBySiteAccess;
+    private $groupsBySiteAccess;
 
     public function __construct(array $groupsBySiteAccess)
     {

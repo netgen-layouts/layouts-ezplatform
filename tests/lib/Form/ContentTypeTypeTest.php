@@ -15,7 +15,7 @@ class ContentTypeTypeTest extends FormTestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $contentTypeServiceMock;
+    private $contentTypeServiceMock;
 
     /**
      * @return \Symfony\Component\Form\FormTypeInterface
@@ -101,7 +101,7 @@ class ContentTypeTypeTest extends FormTestCase
         );
     }
 
-    protected function configureContentTypeService()
+    private function configureContentTypeService()
     {
         $contentTypeGroup1 = new ContentTypeGroup(array('identifier' => 'Group1'));
         $contentTypeGroup2 = new ContentTypeGroup(array('identifier' => 'Group2'));

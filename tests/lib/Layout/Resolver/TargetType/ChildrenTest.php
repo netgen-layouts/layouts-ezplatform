@@ -18,22 +18,22 @@ class ChildrenTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $repositoryMock;
+    private $repositoryMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $contentExtractorMock;
+    private $contentExtractorMock;
 
     /**
      * @var \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children
      */
-    protected $targetType;
+    private $targetType;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $locationServiceMock;
+    private $locationServiceMock;
 
     public function setUp()
     {

@@ -20,22 +20,22 @@ class ContentTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $repositoryMock;
+    private $repositoryMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $contentServiceMock;
+    private $contentServiceMock;
 
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $contentExtractorMock;
+    private $contentExtractorMock;
 
     /**
      * @var \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content
      */
-    protected $targetType;
+    private $targetType;
 
     public function setUp()
     {

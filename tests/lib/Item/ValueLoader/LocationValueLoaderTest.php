@@ -14,12 +14,12 @@ class LocationValueLoaderTest extends TestCase
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    protected $locationServiceMock;
+    private $locationServiceMock;
 
     /**
      * @var \Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader
      */
-    protected $valueLoader;
+    private $valueLoader;
 
     public function setUp()
     {
