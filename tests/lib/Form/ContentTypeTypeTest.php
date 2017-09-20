@@ -32,6 +32,8 @@ class ContentTypeTypeTest extends FormTestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::__construct
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getContentTypes
+     *
+     * @group legacy
      */
     public function testSubmitValidData()
     {
