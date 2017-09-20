@@ -1,6 +1,6 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Tests\ContentExtractor;
+namespace Netgen\BlockManager\Ez\Tests\ContentProvider;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\LocationService;

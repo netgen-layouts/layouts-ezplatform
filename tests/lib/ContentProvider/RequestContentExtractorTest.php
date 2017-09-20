@@ -1,6 +1,6 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Tests\ContentExtractor;
+namespace Netgen\BlockManager\Ez\Tests\ContentProvider;
 
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\MVC\Symfony\View\ContentView;
