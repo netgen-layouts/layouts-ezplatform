@@ -3,7 +3,7 @@ services:
         class: Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccess
         public: false
         tags:
-            - { name: netgen_block_manager.layout.resolver.condition_type, priority: 22 }
+            - { name: netgen_block_manager.layout.resolver.condition_type }
 
     netgen_block_manager.layout.resolver.condition_type.ez_site_access_group:
         class: Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccessGroup
@@ -11,7 +11,7 @@ services:
         arguments:
             - "%ezpublish.siteaccess.groups_by_siteaccess%"
         tags:
-            - { name: netgen_block_manager.layout.resolver.condition_type, priority: 21 }
+            - { name: netgen_block_manager.layout.resolver.condition_type }
 
     netgen_block_manager.layout.resolver.condition_type.ez_content_type:
         class: Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType
@@ -20,4 +20,4 @@ services:
             - "@netgen_block_manager.ezpublish.content_extractor"
             - "@ezpublish.api.service.content_type"
         tags:
-            - { name: netgen_block_manager.layout.resolver.condition_type, priority: 20 }
+            - { name: netgen_block_manager.layout.resolver.condition_type }
