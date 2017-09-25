@@ -4,7 +4,7 @@ namespace Netgen\BlockManager\Ez\Validator\Constraint;
 
 use Symfony\Component\Validator\Constraint;
 
-class Location extends Constraint
+final class Location extends Constraint
 {
     /**
      * @var string

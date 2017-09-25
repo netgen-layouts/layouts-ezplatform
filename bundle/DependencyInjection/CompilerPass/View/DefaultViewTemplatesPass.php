@@ -5,7 +5,7 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Compiler
 use Netgen\Bundle\BlockManagerBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass as BasePass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class DefaultViewTemplatesPass extends BasePass
+final class DefaultViewTemplatesPass extends BasePass
 {
     public function process(ContainerBuilder $container)
     {

@@ -8,7 +8,7 @@ use Netgen\Bundle\EzPublishBlockManagerBundle\Security\PolicyProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class NetgenEzPublishBlockManagerBundle extends Bundle
+final class NetgenEzPublishBlockManagerBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {

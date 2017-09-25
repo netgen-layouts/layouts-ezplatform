@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
  * Votes on Netgen Layouts attributes (ROLE_NGBM_*) by matching corresponding access
  * rights in eZ Platform Repository.
  */
-class RepositoryAccessVoter extends Voter
+final class RepositoryAccessVoter extends Voter
 {
     /**
      * Identifier of the Legacy Stack module used for creating Netgen Layouts permissions.

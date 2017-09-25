@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
  * configuration of eZ Platform. Meaning, Netgen Layouts will
  * automatically use the pagelayout configured inside eZ Platform.
  */
-class PageLayoutResolver implements PageLayoutResolverInterface
+final class PageLayoutResolver implements PageLayoutResolverInterface
 {
     /**
      * @var \Netgen\Bundle\BlockManagerBundle\Templating\PageLayoutResolverInterface

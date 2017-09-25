@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 /**
  * Validates if the provided value is a valid eZ Platform siteaccess.
  */
-class SiteAccessValidator extends ConstraintValidator
+final class SiteAccessValidator extends ConstraintValidator
 {
     /**
      * @var array

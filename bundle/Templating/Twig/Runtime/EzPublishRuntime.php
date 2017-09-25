@@ -6,7 +6,7 @@ use Exception;
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\Core\Helper\TranslationHelper;
 
-class EzPublishRuntime
+final class EzPublishRuntime
 {
     /**
      * @var \eZ\Publish\API\Repository\Repository

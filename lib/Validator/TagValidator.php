@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 /**
  * Validates if the provided value is an ID of a valid tag in Netgen Tags.
  */
-class TagValidator extends ConstraintValidator
+final class TagValidator extends ConstraintValidator
 {
     /**
      * @var \Netgen\TagsBundle\API\Repository\TagsService

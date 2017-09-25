@@ -12,6 +12,8 @@ use Symfony\Component\Intl\Intl;
 /**
  * eZ Platform specific locale provider that provides the existing locales
  * by reading them from eZ Platform database.
+ *
+ * @final
  */
 class LocaleProvider implements LocaleProviderInterface
 {

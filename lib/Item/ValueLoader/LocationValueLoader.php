@@ -7,7 +7,7 @@ use eZ\Publish\API\Repository\LocationService;
 use Netgen\BlockManager\Exception\Item\ItemException;
 use Netgen\BlockManager\Item\ValueLoaderInterface;
 
-class LocationValueLoader implements ValueLoaderInterface
+final class LocationValueLoader implements ValueLoaderInterface
 {
     /**
      * @var \eZ\Publish\API\Repository\LocationService

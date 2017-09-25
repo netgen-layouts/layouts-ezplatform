@@ -7,7 +7,7 @@ use eZ\Publish\API\Repository\ContentService;
 use Netgen\BlockManager\Exception\Item\ItemException;
 use Netgen\BlockManager\Item\ValueLoaderInterface;
 
-class ContentValueLoader implements ValueLoaderInterface
+final class ContentValueLoader implements ValueLoaderInterface
 {
     /**
      * @var \eZ\Publish\API\Repository\ContentService

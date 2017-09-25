@@ -6,7 +6,7 @@ use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use Netgen\BlockManager\Item\ValueUrlBuilderInterface;
 use Symfony\Component\Routing\RouterInterface;
 
-class ContentValueUrlBuilder implements ValueUrlBuilderInterface
+final class ContentValueUrlBuilder implements ValueUrlBuilderInterface
 {
     /**
      * @var \Symfony\Component\Routing\RouterInterface

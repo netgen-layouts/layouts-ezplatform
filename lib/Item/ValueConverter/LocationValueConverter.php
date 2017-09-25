@@ -6,7 +6,7 @@ use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\Core\Helper\TranslationHelper;
 use Netgen\BlockManager\Item\ValueConverterInterface;
 
-class LocationValueConverter implements ValueConverterInterface
+final class LocationValueConverter implements ValueConverterInterface
 {
     /**
      * @var \eZ\Publish\Core\Helper\TranslationHelper

@@ -12,6 +12,8 @@ use Netgen\Bundle\BlockManagerBundle\Exception\ConfigurationException;
  *
  * This means that the returned values will be the ones defined
  * in the current eZ Platform scope of the request.
+ *
+ * @final
  */
 class ConfigResolverConfiguration implements ConfigurationInterface
 {

@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @deprecated Class used to extract content and location from provided request
  * in eZ Publish 5
  */
-class Ez5RequestContentExtractor implements ContentExtractorInterface
+final class Ez5RequestContentExtractor implements ContentExtractorInterface
 {
     /**
      * @var \eZ\Publish\API\Repository\ContentService

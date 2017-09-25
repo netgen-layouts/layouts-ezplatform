@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 /**
  * Validates if the provided value is an identifier of a valid content type in eZ Platform.
  */
-class ContentTypeValidator extends ConstraintValidator
+final class ContentTypeValidator extends ConstraintValidator
 {
     /**
      * @var \eZ\Publish\API\Repository\Repository

@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 /**
  * Validates if the provided value is an ID of a valid location in eZ Platform.
  */
-class LocationValidator extends ConstraintValidator
+final class LocationValidator extends ConstraintValidator
 {
     /**
      * @var \eZ\Publish\API\Repository\Repository

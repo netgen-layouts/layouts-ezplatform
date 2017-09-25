@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Role\RoleHierarchy as BaseRoleHierarchy;
  * API role, this class will make sure that when checking if user has access
  * to API role, both editor and admin roles will pass validation.
  */
-class RoleHierarchy extends BaseRoleHierarchy
+final class RoleHierarchy extends BaseRoleHierarchy
 {
     public function __construct(array $hierarchy)
     {

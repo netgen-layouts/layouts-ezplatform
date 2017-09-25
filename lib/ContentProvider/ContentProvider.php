@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
  * Provides the eZ Platform content and location objects from the
  * current request.
  */
-class ContentProvider implements ContentProviderInterface
+final class ContentProvider implements ContentProviderInterface
 {
     /**
      * @var \Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface

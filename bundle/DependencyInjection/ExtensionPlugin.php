@@ -9,7 +9,7 @@ use Netgen\Bundle\BlockManagerBundle\DependencyInjection\ExtensionPlugin as Base
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class ExtensionPlugin extends BaseExtensionPlugin
+final class ExtensionPlugin extends BaseExtensionPlugin
 {
     /**
      * @var array

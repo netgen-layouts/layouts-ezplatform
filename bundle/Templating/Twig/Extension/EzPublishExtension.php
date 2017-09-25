@@ -6,7 +6,7 @@ use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishR
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-class EzPublishExtension extends AbstractExtension
+final class EzPublishExtension extends AbstractExtension
 {
     public function getName()
     {
