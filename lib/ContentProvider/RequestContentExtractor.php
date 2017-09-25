@@ -15,7 +15,7 @@ class RequestContentExtractor implements ContentExtractorInterface
     {
         $view = $request->attributes->get('view');
         if (!$view instanceof ContentValueView) {
-            return;
+            return null;
         }
 
         return $view->getContent();
@@ -25,7 +25,7 @@ class RequestContentExtractor implements ContentExtractorInterface
     {
         $view = $request->attributes->get('view');
         if (!$view instanceof LocationValueView) {
-            return;
+            return null;
         }
 
         return $view->getLocation();

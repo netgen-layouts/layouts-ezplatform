@@ -31,7 +31,7 @@ class ContentProvider implements ContentProviderInterface
     {
         $currentRequest = $this->requestStack->getCurrentRequest();
         if (!$currentRequest instanceof Request) {
-            return;
+            return null;
         }
 
         return $this->contentExtractor->extractContent($currentRequest);
@@ -41,7 +41,7 @@ class ContentProvider implements ContentProviderInterface
     {
         $currentRequest = $this->requestStack->getCurrentRequest();
         if (!$currentRequest instanceof Request) {
-            return;
+            return null;
         }
 
         return $this->contentExtractor->extractLocation($currentRequest);

@@ -11,14 +11,14 @@ interface ContentProviderInterface
     /**
      * Provides the eZ Publish content value object.
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Content|void
+     * @return \eZ\Publish\API\Repository\Values\Content\Content|null
      */
     public function provideContent();
 
     /**
      * Provides the eZ Publish location value object.
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Location|void
+     * @return \eZ\Publish\API\Repository\Values\Content\Location|null
      */
     public function provideLocation();
 }

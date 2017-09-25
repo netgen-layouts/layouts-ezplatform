@@ -11,7 +11,7 @@ interface ContentExtractorInterface
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Content|void
+     * @return \eZ\Publish\API\Repository\Values\Content\Content|null
      */
     public function extractContent(Request $request);
 
@@ -20,7 +20,7 @@ interface ContentExtractorInterface
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Location|void
+     * @return \eZ\Publish\API\Repository\Values\Content\Location|null
      */
     public function extractLocation(Request $request);
 }
