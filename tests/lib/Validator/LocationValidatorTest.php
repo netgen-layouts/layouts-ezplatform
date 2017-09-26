@@ -54,7 +54,7 @@ class LocationValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @param int $locationId
+     * @param int|null $locationId
      * @param bool $isValid
      *
      * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::__construct

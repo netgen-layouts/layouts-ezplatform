@@ -54,7 +54,7 @@ class ContentValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @param int $contentId
+     * @param int|null $contentId
      * @param bool $isValid
      *
      * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::__construct

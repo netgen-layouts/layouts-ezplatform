@@ -39,7 +39,7 @@ class TagValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @param int $tagId
+     * @param int|null $tagId
      * @param bool $isValid
      *
      * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::__construct

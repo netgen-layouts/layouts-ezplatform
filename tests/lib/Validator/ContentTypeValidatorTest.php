@@ -56,7 +56,7 @@ class ContentTypeValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @param string $identifier
+     * @param string|null $identifier
      * @param array $groups
      * @param array $allowedTypes
      * @param bool $isValid
