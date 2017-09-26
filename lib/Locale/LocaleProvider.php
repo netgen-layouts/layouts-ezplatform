@@ -65,6 +65,10 @@ class LocaleProvider implements LocaleProviderInterface
             }
 
             $posixLocale = $this->localeConverter->convertToPOSIX($language->languageCode);
+            if ($posixLocale === null) {
+                continue;
+            }
+
             $localeName = $this->localeBundle->getLocaleName($posixLocale);
 
             if ($localeName !== null) {
@@ -93,6 +97,10 @@ class LocaleProvider implements LocaleProviderInterface
             }
 
             $posixLocale = $this->localeConverter->convertToPOSIX($language->languageCode);
+            if ($posixLocale === null) {
+                continue;
+            }
+
             $localeName = $this->localeBundle->getLocaleName($posixLocale);
 
             if ($localeName !== null) {

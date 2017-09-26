@@ -77,6 +77,34 @@ class LocaleProviderTest extends TestCase
     }
 
     /**
+     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::__construct
+     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getAvailableLocales
+     */
+    public function testGetAvailableLocalesWithInvalidPosixLocale()
+    {
+        $this->languageServiceMock
+            ->expects($this->any())
+            ->method('loadLanguages')
+            ->will(
+                $this->returnValue(
+                    array(
+                        new Language(array('languageCode' => 'unknown', 'enabled' => true)),
+                    )
+                )
+            );
+
+        $this->localeConverterMock
+            ->expects($this->at(0))
+            ->method('convertToPOSIX')
+            ->with($this->equalTo('unknown'))
+            ->will($this->returnValue(null));
+
+        $availableLocales = $this->localeProvider->getAvailableLocales();
+
+        $this->assertEquals(array(), $availableLocales);
+    }
+
+    /**
      * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::setLanguages
      * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getRequestLocales
      */
@@ -139,5 +167,34 @@ class LocaleProviderTest extends TestCase
         $requestLocales = $this->localeProvider->getRequestLocales(Request::create(''));
 
         $this->assertEquals(array('en', 'hr'), $requestLocales);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::setLanguages
+     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getRequestLocales
+     */
+    public function testGetRequestLocalesWithInvalidPosixLocale()
+    {
+        $this->localeProvider->setLanguages(array('eng-GB'));
+
+        $this->languageServiceMock
+            ->expects($this->at(0))
+            ->method('loadLanguage')
+            ->with($this->equalTo('eng-GB'))
+            ->will(
+                $this->returnValue(
+                    new Language(array('languageCode' => 'eng-GB', 'enabled' => true))
+                )
+            );
+
+        $this->localeConverterMock
+            ->expects($this->at(0))
+            ->method('convertToPOSIX')
+            ->with($this->equalTo('eng-GB'))
+            ->will($this->returnValue(null));
+
+        $requestLocales = $this->localeProvider->getRequestLocales(Request::create(''));
+
+        $this->assertEquals(array(), $requestLocales);
     }
 }
