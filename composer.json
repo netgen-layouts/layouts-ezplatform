@@ -1,10 +1,10 @@
 {
     "name": "netgen/block-manager-ezpublish",
-    "description": "Netgen Block Manager & eZ Publish integration",
+    "description": "Netgen Block Manager & eZ Platform integration",
     "authors": [
         {
             "name": "Netgen",
-            "homepage": "http://www.netgenlabs.com"
+            "homepage": "https://www.netgenlabs.com"
         }
     ],
     "require": {
