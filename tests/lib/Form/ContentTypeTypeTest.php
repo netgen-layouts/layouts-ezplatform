@@ -8,6 +8,7 @@ use eZ\Publish\Core\Repository\Values\ContentType\ContentTypeGroup;
 use Netgen\BlockManager\Ez\Form\ContentTypeType;
 use Netgen\BlockManager\Tests\TestCase\FormTestCase;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContentTypeTypeTest extends FormTestCase
@@ -32,8 +33,6 @@ class ContentTypeTypeTest extends FormTestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::__construct
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getContentTypes
-     *
-     * @group legacy
      */
     public function testSubmitValidData()
     {
@@ -88,7 +87,6 @@ class ContentTypeTypeTest extends FormTestCase
             )
         );
 
-        $this->assertTrue($options['choices_as_values']);
         $this->assertFalse($options['choice_translation_domain']);
         $this->assertEquals(
             array(
@@ -101,6 +99,11 @@ class ContentTypeTypeTest extends FormTestCase
             ),
             $options['choices']
         );
+
+        if (Kernel::VERSION_ID < 30100) {
+            // @deprecated Remove when support for Symfony 2.8 ends
+            $this->assertTrue($options['choices_as_values']);
+        }
     }
 
     private function configureContentTypeService()

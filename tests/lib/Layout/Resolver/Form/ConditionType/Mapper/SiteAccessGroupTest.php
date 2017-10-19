@@ -3,11 +3,14 @@
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\Form\ConditionType\Mapper;
 
 use Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccessGroup;
+use Netgen\BlockManager\Form\ChoicesAsValuesTrait;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class SiteAccessGroupTest extends TestCase
 {
+    use ChoicesAsValuesTrait;
+
     /**
      * @var \Netgen\BlockManager\Layout\Resolver\Form\ConditionType\MapperInterface
      */
@@ -41,10 +44,9 @@ class SiteAccessGroupTest extends TestCase
             array(
                 'choices' => array('frontend' => 'frontend', 'backend' => 'backend'),
                 'choice_translation_domain' => false,
-                'choices_as_values' => true,
                 'multiple' => true,
                 'expanded' => true,
-            ),
+            ) + $this->getChoicesAsValuesOption(),
             $this->mapper->getFormOptions()
         );
     }

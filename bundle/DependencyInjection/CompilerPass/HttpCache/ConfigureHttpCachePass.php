@@ -6,6 +6,7 @@ use eZ\Publish\Core\MVC\Symfony\Cache\Http\FOSPurgeClient;
 use eZ\Publish\Core\MVC\Symfony\Cache\Http\LocalPurgeClient;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Kernel;
 
 final class ConfigureHttpCachePass implements CompilerPassInterface
 {
@@ -27,21 +28,16 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
         }
 
         if (
-            !is_a($purgeClientClass, FOSPurgeClient::class, true) &&
-            !is_a($purgeClientClass, LocalPurgeClient::class, true)
+            !is_a($purgeClientClass, FOSPurgeClient::class, true)
+            && !is_a($purgeClientClass, LocalPurgeClient::class, true)
         ) {
-            $compiler = $container->getCompiler();
-            $formatter = $compiler->getLoggingFormatter();
-
-            $compiler->addLogMessage(
-                $formatter->format(
-                    $this,
-                    sprintf(
-                        'Cache clearing in Netgen Layouts cannot be automatically configured since eZ Publish purge client is neither an instance of "%s" nor "%s". Use Netgen Layouts "%s" config to enable or disable HTTP cache clearing.',
-                        FOSPurgeClient::class,
-                        LocalPurgeClient::class,
-                        'http_cache.invalidation.enabled'
-                    )
+            $this->log(
+                $container,
+                sprintf(
+                    'Cache clearing in Netgen Layouts cannot be automatically configured since eZ Publish purge client is neither an instance of "%s" nor "%s". Use Netgen Layouts "%s" config to enable or disable HTTP cache clearing.',
+                    FOSPurgeClient::class,
+                    LocalPurgeClient::class,
+                    'http_cache.invalidation.enabled'
                 )
             );
 
@@ -54,5 +50,25 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
                 'netgen_block_manager.http_cache.client.null'
             );
         }
+    }
+
+    /**
+     * @deprecated
+     *
+     * Logs a message into the log. Acts as a BC layer to support Symfony 2.8.
+     *
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param string $message
+     */
+    private function log(ContainerBuilder $container, $message)
+    {
+        if (Kernel::VERSION_ID < 30300) {
+            $compiler = $container->getCompiler();
+            $compiler->addLogMessage($compiler->getLoggingFormatter()->format($this, $message));
+
+            return;
+        }
+
+        $container->log($this, $message);
     }
 }
