@@ -29,6 +29,7 @@ final class NetgenEzPublishBlockManagerExtension extends Extension implements Pr
         $loader->load('services/forms.yml');
         $loader->load('services/services.yml');
         $loader->load('services/locale.yml');
+        $loader->load('services/context.yml');
         $loader->load('services/layout_resolver/condition_types.yml');
         $loader->load('services/layout_resolver/target_types.yml');
         $loader->load('services/layout_resolver/target_handlers.yml');
