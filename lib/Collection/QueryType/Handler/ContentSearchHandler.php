@@ -26,11 +26,6 @@ use Netgen\BlockManager\Parameters\ParameterType;
 class ContentSearchHandler implements QueryTypeHandlerInterface
 {
     /**
-     * @const int
-     */
-    const DEFAULT_LIMIT = 25;
-
-    /**
      * @var \eZ\Publish\API\Repository\LocationService
      */
     private $locationService;
@@ -148,23 +143,6 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         );
 
         $builder->add(
-            'limit',
-            ParameterType\IntegerType::class,
-            array(
-                'min' => 0,
-            )
-        );
-
-        $builder->add(
-            'offset',
-            ParameterType\IntegerType::class,
-            array(
-                'min' => 0,
-                'groups' => array(self::GROUP_ADVANCED),
-            )
-        );
-
-        $builder->add(
             'query_type',
             ParameterType\ChoiceType::class,
             array(
@@ -226,7 +204,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         }
 
         $searchResult = $this->searchService->findLocations(
-            $this->buildQuery($parentLocation, $query),
+            $this->buildQuery($parentLocation, $query, false, $offset, $limit),
             array('languages' => $this->languages)
         );
 
@@ -256,12 +234,6 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
 
     public function getInternalLimit(Query $query)
     {
-        $limit = $query->getParameter('limit')->getValue();
-        if (!is_int($limit)) {
-            return self::DEFAULT_LIMIT;
-        }
-
-        return $limit >= 0 ? $limit : self::DEFAULT_LIMIT;
     }
 
     public function isContextual(Query $query)
@@ -302,11 +274,18 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      * @param \eZ\Publish\API\Repository\Values\Content\Location $parentLocation
      * @param \Netgen\BlockManager\API\Values\Collection\Query $query
      * @param bool $buildCountQuery
+     * @param int $offset
+     * @param int $limit
      *
      * @return \eZ\Publish\API\Repository\Values\Content\LocationQuery
      */
-    private function buildQuery(Location $parentLocation, Query $query, $buildCountQuery = false)
-    {
+    private function buildQuery(
+        Location $parentLocation,
+        Query $query,
+        $buildCountQuery = false,
+        $offset = 0,
+        $limit = null
+    ) {
         $locationQuery = new LocationQuery();
 
         $criteria = array(
@@ -346,9 +325,8 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
 
         $locationQuery->limit = 0;
         if (!$buildCountQuery) {
-            $offset = $query->getParameter('offset')->getValue();
-            $locationQuery->offset = is_int($offset) && $offset >= 0 ? $offset : 0;
-            $locationQuery->limit = $this->getInternalLimit($query);
+            $locationQuery->offset = $offset;
+            $locationQuery->limit = $limit;
         }
 
         $sortType = $query->getParameter('sort_type')->getValue() ?: 'default';
