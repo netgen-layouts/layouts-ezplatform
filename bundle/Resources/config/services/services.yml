@@ -3,8 +3,9 @@ services:
         class: Netgen\BlockManager\Ez\ContentProvider\ContentProvider
         public: true
         arguments:
-            - "@netgen_block_manager.ezpublish.content_extractor"
-            - "@request_stack"
+            - "@ezpublish.api.service.location"
+            - "@ezpublish.api.service.content"
+            - "@netgen_block_manager.context"
 
     netgen_block_manager.ezpublish.content_extractor:
         alias: netgen_block_manager.ezpublish.content_extractor.request

@@ -2,25 +2,31 @@
 
 namespace Netgen\BlockManager\Ez\Tests\ContentProvider;
 
+use eZ\Publish\API\Repository\ContentService;
+use eZ\Publish\API\Repository\LocationService;
+use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
-use Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface;
+use Netgen\BlockManager\Context\Context;
 use Netgen\BlockManager\Ez\ContentProvider\ContentProvider;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 class ContentProviderTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    private $contentExtractorMock;
+    private $locationServiceMock;
 
     /**
-     * @var \Symfony\Component\HttpFoundation\RequestStack
+     * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    private $requestStack;
+    private $contentServiceMock;
+
+    /**
+     * @var \Netgen\BlockManager\Context\ContextInterface
+     */
+    private $context;
 
     /**
      * @var \Netgen\BlockManager\Ez\ContentProvider\ContentProvider
@@ -29,12 +35,14 @@ class ContentProviderTest extends TestCase
 
     public function setUp()
     {
-        $this->contentExtractorMock = $this->createMock(ContentExtractorInterface::class);
-        $this->requestStack = new RequestStack();
+        $this->locationServiceMock = $this->createMock(LocationService::class);
+        $this->contentServiceMock = $this->createMock(ContentService::class);
+        $this->context = new Context();
 
         $this->contentProvider = new ContentProvider(
-            $this->contentExtractorMock,
-            $this->requestStack
+            $this->locationServiceMock,
+            $this->contentServiceMock,
+            $this->context
         );
     }
 
@@ -45,14 +53,28 @@ class ContentProviderTest extends TestCase
     public function testProvideContent()
     {
         $content = new Content();
+        $location = new Location(
+            array(
+                'contentInfo' => new ContentInfo(
+                    array(
+                        'id' => 24,
+                    )
+                ),
+            )
+        );
 
-        $request = Request::create('/');
-        $this->requestStack->push($request);
+        $this->context->set('ez_location_id', 42);
 
-        $this->contentExtractorMock
-            ->expects($this->any())
-            ->method('extractContent')
-            ->with($this->equalTo($request))
+        $this->locationServiceMock
+            ->expects($this->once())
+            ->method('loadLocation')
+            ->with($this->equalTo(42))
+            ->will($this->returnValue($location));
+
+        $this->contentServiceMock
+            ->expects($this->once())
+            ->method('loadContent')
+            ->with($this->equalTo(24))
             ->will($this->returnValue($content));
 
         $this->assertEquals($content, $this->contentProvider->provideContent());
@@ -63,26 +85,13 @@ class ContentProviderTest extends TestCase
      */
     public function testProvideContentWithoutContent()
     {
-        $request = Request::create('/');
-        $this->requestStack->push($request);
-
-        $this->contentExtractorMock
-            ->expects($this->any())
-            ->method('extractContent')
-            ->with($this->equalTo($request))
-            ->will($this->returnValue(null));
-
-        $this->assertNull($this->contentProvider->provideContent());
-    }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::provideContent
-     */
-    public function testProvideContentWithoutRequest()
-    {
-        $this->contentExtractorMock
+        $this->locationServiceMock
             ->expects($this->never())
-            ->method('extractContent');
+            ->method('loadLocation');
+
+        $this->contentServiceMock
+            ->expects($this->never())
+            ->method('loadContent');
 
         $this->assertNull($this->contentProvider->provideContent());
     }
@@ -94,13 +103,12 @@ class ContentProviderTest extends TestCase
     {
         $location = new Location();
 
-        $request = Request::create('/');
-        $this->requestStack->push($request);
+        $this->context->set('ez_location_id', 42);
 
-        $this->contentExtractorMock
-            ->expects($this->any())
-            ->method('extractLocation')
-            ->with($this->equalTo($request))
+        $this->locationServiceMock
+            ->expects($this->once())
+            ->method('loadLocation')
+            ->with($this->equalTo(42))
             ->will($this->returnValue($location));
 
         $this->assertEquals($location, $this->contentProvider->provideLocation());
@@ -111,26 +119,9 @@ class ContentProviderTest extends TestCase
      */
     public function testProvideLocationWithoutLocation()
     {
-        $request = Request::create('/');
-        $this->requestStack->push($request);
-
-        $this->contentExtractorMock
-            ->expects($this->any())
-            ->method('extractLocation')
-            ->with($this->equalTo($request))
-            ->will($this->returnValue(null));
-
-        $this->assertNull($this->contentProvider->provideLocation());
-    }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::provideLocation
-     */
-    public function testProvideLocationWithoutRequest()
-    {
-        $this->contentExtractorMock
+        $this->locationServiceMock
             ->expects($this->never())
-            ->method('extractLocation');
+            ->method('loadLocation');
 
         $this->assertNull($this->contentProvider->provideLocation());
     }

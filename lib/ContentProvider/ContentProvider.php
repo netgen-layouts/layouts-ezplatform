@@ -2,48 +2,73 @@
 
 namespace Netgen\BlockManager\Ez\ContentProvider;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
+use eZ\Publish\API\Repository\ContentService;
+use eZ\Publish\API\Repository\LocationService;
+use eZ\Publish\API\Repository\Values\Content\Location;
+use Netgen\BlockManager\Context\ContextInterface;
 
 /**
  * Provides the eZ Platform content and location objects from the
- * current request.
+ * current context.
  */
 final class ContentProvider implements ContentProviderInterface
 {
     /**
-     * @var \Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface
+     * @var \eZ\Publish\API\Repository\LocationService
      */
-    private $contentExtractor;
+    private $locationService;
 
     /**
-     * @var \Symfony\Component\HttpFoundation\RequestStack
+     * @var \eZ\Publish\API\Repository\ContentService
      */
-    private $requestStack;
+    private $contentService;
 
-    public function __construct(ContentExtractorInterface $contentExtractor, RequestStack $requestStack)
-    {
-        $this->contentExtractor = $contentExtractor;
-        $this->requestStack = $requestStack;
+    /**
+     * @var \Netgen\BlockManager\Context\ContextInterface
+     */
+    private $context;
+
+    public function __construct(
+        LocationService $locationService,
+        ContentService $contentService,
+        ContextInterface $context
+    ) {
+        $this->locationService = $locationService;
+        $this->contentService = $contentService;
+        $this->context = $context;
     }
 
     public function provideContent()
     {
-        $currentRequest = $this->requestStack->getCurrentRequest();
-        if (!$currentRequest instanceof Request) {
-            return null;
+        $location = $this->loadLocation();
+        if (!$location instanceof Location) {
+            return;
         }
 
-        return $this->contentExtractor->extractContent($currentRequest);
+        return $this->contentService->loadContent($location->contentId);
     }
 
     public function provideLocation()
     {
-        $currentRequest = $this->requestStack->getCurrentRequest();
-        if (!$currentRequest instanceof Request) {
-            return null;
+        return $this->loadLocation();
+    }
+
+    /**
+     * Loads the location from the eZ Platform API by using the location ID
+     * stored in the context.
+     *
+     * @return \eZ\Publish\API\Repository\Values\Content\Location
+     */
+    private function loadLocation()
+    {
+        if (!$this->context->has('ez_location_id')) {
+            return;
         }
 
-        return $this->contentExtractor->extractLocation($currentRequest);
+        $location = $this->locationService->loadLocation(
+            (int) $this->context->get('ez_location_id')
+        );
+
+        return $location;
     }
 }
