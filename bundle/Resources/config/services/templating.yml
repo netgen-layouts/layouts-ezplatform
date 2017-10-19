@@ -20,6 +20,7 @@ services:
 
     netgen_block_manager.templating.twig.runtime.ez_publish:
         class: Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime
+        # public: false
         arguments:
             - "@ezpublish.api.repository"
             - "@ezpublish.translation_helper"

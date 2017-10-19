@@ -1,6 +1,7 @@
 services:
     netgen_block_manager.ezpublish.content_provider:
         class: Netgen\BlockManager\Ez\ContentProvider\ContentProvider
+        public: true
         arguments:
             - "@netgen_block_manager.ezpublish.content_extractor"
             - "@request_stack"
