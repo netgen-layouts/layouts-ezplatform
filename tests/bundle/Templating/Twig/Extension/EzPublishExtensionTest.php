@@ -19,14 +19,6 @@ class EzPublishExtensionTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getName
-     */
-    public function testGetName()
-    {
-        $this->assertEquals(get_class($this->extension), $this->extension->getName());
-    }
-
-    /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getFunctions
      */
     public function testGetFunctions()
