@@ -4,23 +4,23 @@ namespace Netgen\BlockManager\Ez\Item\ValueUrlBuilder;
 
 use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use Netgen\BlockManager\Item\ValueUrlBuilderInterface;
-use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class ContentValueUrlBuilder implements ValueUrlBuilderInterface
 {
     /**
-     * @var \Symfony\Component\Routing\RouterInterface
+     * @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface
      */
-    private $router;
+    private $urlGenerator;
 
-    public function __construct(RouterInterface $router)
+    public function __construct(UrlGeneratorInterface $urlGenerator)
     {
-        $this->router = $router;
+        $this->urlGenerator = $urlGenerator;
     }
 
     public function getUrl($object)
     {
-        return $this->router->generate(
+        return $this->urlGenerator->generate(
             UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
             array(
                 'contentId' => $object->id,

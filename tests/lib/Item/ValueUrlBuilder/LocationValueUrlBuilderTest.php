@@ -5,14 +5,14 @@ namespace Netgen\BlockManager\Ez\Tests\Item\ValueUrlBuilder;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\BlockManager\Ez\Item\ValueUrlBuilder\LocationValueUrlBuilder;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class LocationValueUrlBuilderTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    private $router;
+    private $urlGenerator;
 
     /**
      * @var \Netgen\BlockManager\Ez\Item\ValueUrlBuilder\LocationValueUrlBuilder
@@ -21,9 +21,9 @@ class LocationValueUrlBuilderTest extends TestCase
 
     public function setUp()
     {
-        $this->router = $this->createMock(RouterInterface::class);
+        $this->urlGenerator = $this->createMock(UrlGeneratorInterface::class);
 
-        $this->urlBuilder = new LocationValueUrlBuilder($this->router);
+        $this->urlBuilder = new LocationValueUrlBuilder($this->urlGenerator);
     }
 
     /**
@@ -32,7 +32,7 @@ class LocationValueUrlBuilderTest extends TestCase
      */
     public function testGetUrl()
     {
-        $this->router
+        $this->urlGenerator
             ->expects($this->once())
             ->method('generate')
             ->with($this->equalTo(new Location()))

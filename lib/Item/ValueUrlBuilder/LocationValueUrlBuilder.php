@@ -3,22 +3,22 @@
 namespace Netgen\BlockManager\Ez\Item\ValueUrlBuilder;
 
 use Netgen\BlockManager\Item\ValueUrlBuilderInterface;
-use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class LocationValueUrlBuilder implements ValueUrlBuilderInterface
 {
     /**
-     * @var \Symfony\Component\Routing\RouterInterface
+     * @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface
      */
-    private $router;
+    private $urlGenerator;
 
-    public function __construct(RouterInterface $router)
+    public function __construct(UrlGeneratorInterface $urlGenerator)
     {
-        $this->router = $router;
+        $this->urlGenerator = $urlGenerator;
     }
 
     public function getUrl($object)
     {
-        return $this->router->generate($object);
+        return $this->urlGenerator->generate($object);
     }
 }

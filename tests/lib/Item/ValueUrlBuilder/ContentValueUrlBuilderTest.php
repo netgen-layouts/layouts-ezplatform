@@ -6,14 +6,14 @@ use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use Netgen\BlockManager\Ez\Item\ValueUrlBuilder\ContentValueUrlBuilder;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class ContentValueUrlBuilderTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject
      */
-    private $router;
+    private $urlGenerator;
 
     /**
      * @var \Netgen\BlockManager\Ez\Item\ValueUrlBuilder\ContentValueUrlBuilder
@@ -22,9 +22,9 @@ class ContentValueUrlBuilderTest extends TestCase
 
     public function setUp()
     {
-        $this->router = $this->createMock(RouterInterface::class);
+        $this->urlGenerator = $this->createMock(UrlGeneratorInterface::class);
 
-        $this->urlBuilder = new ContentValueUrlBuilder($this->router);
+        $this->urlBuilder = new ContentValueUrlBuilder($this->urlGenerator);
     }
 
     /**
@@ -33,7 +33,7 @@ class ContentValueUrlBuilderTest extends TestCase
      */
     public function testGetUrl()
     {
-        $this->router
+        $this->urlGenerator
             ->expects($this->once())
             ->method('generate')
             ->with(
