@@ -10,7 +10,7 @@ use Netgen\BlockManager\Context\ContextProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-final class EzPublishContextProvider implements ContextProviderInterface
+final class ContextProvider implements ContextProviderInterface
 {
     /**
      * @var \Symfony\Component\HttpFoundation\RequestStack

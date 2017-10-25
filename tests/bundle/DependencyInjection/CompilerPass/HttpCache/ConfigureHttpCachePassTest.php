@@ -48,6 +48,7 @@ class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
 
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::log
      */
     public function testProcessWithNoSupportedClient()
     {
