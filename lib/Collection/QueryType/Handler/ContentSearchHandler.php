@@ -232,10 +232,6 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         return $searchResult->totalCount;
     }
 
-    public function getInternalLimit(Query $query)
-    {
-    }
-
     public function isContextual(Query $query)
     {
         return $query->getParameter('use_current_location')->getValue() === true;
