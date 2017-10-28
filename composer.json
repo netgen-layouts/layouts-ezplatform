@@ -33,13 +33,14 @@
         }
     },
     "autoload-dev": {
-        "files": [
-            "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php"
-        ],
         "psr-4": {
+            "Netgen\\BlockManager\\Tests\\": "vendor/netgen/block-manager/tests/lib/",
             "Netgen\\BlockManager\\Ez\\Tests\\": "tests/lib/",
             "Netgen\\Bundle\\EzPublishBlockManagerBundle\\Tests\\": "tests/bundle/"
-        }
+        },
+        "files": [
+            "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php"
+        ]
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
