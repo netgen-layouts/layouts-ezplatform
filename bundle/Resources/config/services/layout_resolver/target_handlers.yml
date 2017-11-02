@@ -6,13 +6,13 @@ services:
             - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, target_type: ezlocation }
 
     netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezcontent:
-        class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Content
+        class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Location
         public: false
         tags:
             - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, target_type: ezcontent }
 
     netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ezchildren:
-        class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Children
+        class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Location
         public: false
         tags:
             - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, target_type: ezchildren }
@@ -24,13 +24,13 @@ services:
             - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, target_type: ezsubtree }
 
     netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ez_semantic_path_info:
-        class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\SemanticPathInfo
+        class: Netgen\BlockManager\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Route
         public: false
         tags:
             - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, target_type: ez_semantic_path_info }
 
     netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler.ez_semantic_path_info_prefix:
-        class: Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\SemanticPathInfoPrefix
+        class: Netgen\BlockManager\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\RoutePrefix
         public: false
         tags:
             - { name: netgen_block_manager.persistence.doctrine.layout_resolver.query_handler.target_handler, target_type: ez_semantic_path_info_prefix }

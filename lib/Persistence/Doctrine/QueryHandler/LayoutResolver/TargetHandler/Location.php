@@ -6,7 +6,7 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Types\Type;
 use Netgen\BlockManager\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler;
 
-class Location implements TargetHandler
+final class Location implements TargetHandler
 {
     public function handleQuery(QueryBuilder $query, $value)
     {

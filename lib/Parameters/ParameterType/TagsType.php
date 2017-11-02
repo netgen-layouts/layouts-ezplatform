@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints;
 /**
  * Parameter type used to store and validate an ID of a tag in Netgen Tags.
  */
-class TagsType extends ParameterType
+final class TagsType extends ParameterType
 {
     public function getIdentifier()
     {

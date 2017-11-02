@@ -22,6 +22,8 @@ use Netgen\BlockManager\Parameters\ParameterType;
 /**
  * Handler for a query which retrieves the eZ locations from the repository
  * based on parameters provided in the query.
+ *
+ * @final
  */
 class ContentSearchHandler implements QueryTypeHandlerInterface
 {

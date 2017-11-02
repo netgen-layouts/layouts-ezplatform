@@ -5,7 +5,7 @@ namespace Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper;
 use Netgen\BlockManager\Layout\Resolver\Form\TargetType\Mapper;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 
-class Children extends Mapper
+final class Children extends Mapper
 {
     public function getFormType()
     {

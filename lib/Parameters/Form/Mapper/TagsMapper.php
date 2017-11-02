@@ -6,7 +6,7 @@ use Netgen\BlockManager\Parameters\Form\Mapper;
 use Netgen\BlockManager\Parameters\ParameterInterface;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserMultipleType;
 
-class TagsMapper extends Mapper
+final class TagsMapper extends Mapper
 {
     public function getFormType()
     {

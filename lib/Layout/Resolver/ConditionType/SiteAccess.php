@@ -8,7 +8,7 @@ use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
 
-class SiteAccess implements ConditionTypeInterface
+final class SiteAccess implements ConditionTypeInterface
 {
     public function getType()
     {

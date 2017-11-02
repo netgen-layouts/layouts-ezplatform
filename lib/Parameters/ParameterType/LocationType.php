@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints;
 /**
  * Parameter type used to store and validate an ID of a location in eZ Platform.
  */
-class LocationType extends ParameterType
+final class LocationType extends ParameterType
 {
     public function getIdentifier()
     {

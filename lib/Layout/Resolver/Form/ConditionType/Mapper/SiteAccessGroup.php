@@ -6,7 +6,7 @@ use Netgen\BlockManager\Form\ChoicesAsValuesTrait;
 use Netgen\BlockManager\Layout\Resolver\Form\ConditionType\Mapper;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class SiteAccessGroup extends Mapper
+final class SiteAccessGroup extends Mapper
 {
     use ChoicesAsValuesTrait;
 

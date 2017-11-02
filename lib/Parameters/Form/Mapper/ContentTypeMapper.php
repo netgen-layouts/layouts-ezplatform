@@ -6,7 +6,7 @@ use Netgen\BlockManager\Ez\Form\ContentTypeType;
 use Netgen\BlockManager\Parameters\Form\Mapper;
 use Netgen\BlockManager\Parameters\ParameterInterface;
 
-class ContentTypeMapper extends Mapper
+final class ContentTypeMapper extends Mapper
 {
     public function getFormType()
     {

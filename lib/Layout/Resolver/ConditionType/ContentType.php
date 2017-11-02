@@ -10,7 +10,7 @@ use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
 
-class ContentType implements ConditionTypeInterface
+final class ContentType implements ConditionTypeInterface
 {
     /**
      * @var \Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface

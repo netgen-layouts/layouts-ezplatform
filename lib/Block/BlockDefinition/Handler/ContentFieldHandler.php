@@ -13,7 +13,7 @@ use Netgen\BlockManager\Parameters\ParameterType;
  * Block definition handler for a block which renders a field specified by the parameter
  * from currently rendered eZ Platform content.
  */
-class ContentFieldHandler extends BlockDefinitionHandler
+final class ContentFieldHandler extends BlockDefinitionHandler
 {
     /**
      * @var \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface

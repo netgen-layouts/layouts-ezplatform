@@ -9,7 +9,7 @@ use Netgen\BlockManager\Layout\Resolver\TargetTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
 
-class Content implements TargetTypeInterface
+final class Content implements TargetTypeInterface
 {
     /**
      * @var \Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface

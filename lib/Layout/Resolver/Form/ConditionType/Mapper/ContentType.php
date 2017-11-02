@@ -5,7 +5,7 @@ namespace Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper;
 use Netgen\BlockManager\Ez\Form\ContentTypeType;
 use Netgen\BlockManager\Layout\Resolver\Form\ConditionType\Mapper;
 
-class ContentType extends Mapper
+final class ContentType extends Mapper
 {
     public function getFormType()
     {

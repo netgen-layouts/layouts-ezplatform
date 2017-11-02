@@ -6,7 +6,7 @@ use Netgen\BlockManager\Parameters\Form\Mapper;
 use Netgen\BlockManager\Parameters\ParameterInterface;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 
-class LocationMapper extends Mapper
+final class LocationMapper extends Mapper
 {
     public function getFormType()
     {

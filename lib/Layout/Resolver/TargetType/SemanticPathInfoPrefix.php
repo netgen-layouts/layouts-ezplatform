@@ -2,7 +2,7 @@
 
 namespace Netgen\BlockManager\Ez\Layout\Resolver\TargetType;
 
-class SemanticPathInfoPrefix extends SemanticPathInfo
+final class SemanticPathInfoPrefix extends SemanticPathInfo
 {
     public function getType()
     {

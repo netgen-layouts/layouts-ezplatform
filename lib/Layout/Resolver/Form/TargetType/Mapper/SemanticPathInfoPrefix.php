@@ -5,7 +5,7 @@ namespace Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper;
 use Netgen\BlockManager\Layout\Resolver\Form\TargetType\Mapper;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class SemanticPathInfoPrefix extends Mapper
+final class SemanticPathInfoPrefix extends Mapper
 {
     public function getFormType()
     {
