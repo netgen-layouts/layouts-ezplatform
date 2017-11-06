@@ -22,6 +22,7 @@ abstract class ConfigurationNodeTest extends TestCase
      */
     const DEFAULT_SYSTEM_CONFIG = array(
         'view' => array(),
+        'design' => 'standard',
     );
 
     /**

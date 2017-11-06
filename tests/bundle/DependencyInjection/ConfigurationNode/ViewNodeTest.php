@@ -58,6 +58,27 @@ class ViewNodeTest extends ConfigurationNodeTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::addConfiguration
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
+     */
+    public function testDesignSettings()
+    {
+        $config = array(
+            array(
+                'design' => 'standard',
+            ),
+        );
+
+        $expectedConfig = array(
+            'design' => 'standard',
+        );
+
+        $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
+        $this->assertInjectedConfigurationEqual($expectedConfig, $config);
+    }
+
+    /**
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::addConfiguration
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::fixUpViewConfig
      */
     public function testViewSettingsWithSystemNodeAndDefaultScope()
@@ -206,6 +227,7 @@ class ViewNodeTest extends ConfigurationNodeTest
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
 
         // But only "cro" siteaccess aware one should have "other_context"
+        $expectedConfig['system']['cro']['design'] = 'standard';
         $expectedConfig['system']['cro']['view']['block_view'] = array(
             'some_context' => array(
                 'block' => array(

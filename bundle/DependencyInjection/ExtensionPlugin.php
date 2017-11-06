@@ -4,9 +4,11 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection;
 
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ConfigurationProcessor;
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ContextualizerInterface;
+use Netgen\Bundle\BlockManagerBundle\DependencyInjection\ConfigurationNode\DesignNode;
 use Netgen\Bundle\BlockManagerBundle\DependencyInjection\ConfigurationNode\ViewNode;
 use Netgen\Bundle\BlockManagerBundle\DependencyInjection\ExtensionPlugin as BaseExtensionPlugin;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class ExtensionPlugin extends BaseExtensionPlugin
@@ -16,6 +18,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
      */
     const SITEACCESS_AWARE_SETTINGS = array(
         'view',
+        'design',
     );
 
     /**
@@ -99,8 +102,14 @@ final class ExtensionPlugin extends BaseExtensionPlugin
         $configuration = new Configuration();
         $systemNode = $configuration->generateScopeBaseNode($rootNode);
 
-        $viewNode = new ViewNode();
-        $systemNode->append($viewNode->getConfigurationNode());
+        $nodes = array(
+            new ViewNode(),
+            new DesignNode(),
+        );
+
+        foreach ($nodes as $node) {
+            $systemNode->append($node->getConfigurationNode());
+        }
     }
 
     /**
@@ -127,6 +136,11 @@ final class ExtensionPlugin extends BaseExtensionPlugin
             is_array($config[$key]) ?
                 $processor->mapConfigArray($key, $config, ContextualizerInterface::MERGE_FROM_SECOND_LEVEL) :
                 $processor->mapSetting($key, $config);
+        }
+
+        $designList = array_keys($config['design_list']);
+        foreach ($config['system'] as $scope => $scopeConfig) {
+            $this->validateCurrentDesign($scopeConfig['design'], $designList);
         }
 
         return $config;
@@ -186,5 +200,24 @@ final class ExtensionPlugin extends BaseExtensionPlugin
         }
 
         return $config;
+    }
+
+    /**
+     * Validates that the design specified in configuration exists in the system.
+     *
+     * @param string $currentDesign
+     * @param array $designList
+     */
+    private function validateCurrentDesign($currentDesign, array $designList)
+    {
+        if ($currentDesign !== 'standard' && !in_array($currentDesign, $designList, true)) {
+            throw new InvalidConfigurationException(
+                sprintf(
+                    'Design "%s" does not exist. Available designs are: %s',
+                    $currentDesign,
+                    implode(', ', $designList)
+                )
+            );
+        }
     }
 }
