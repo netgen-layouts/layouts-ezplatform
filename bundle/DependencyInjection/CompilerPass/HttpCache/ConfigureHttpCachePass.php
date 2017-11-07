@@ -19,13 +19,7 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
         }
 
         $purgeClient = $container->findDefinition('ezpublish.http_cache.purge_client');
-
-        $purgeClientClass = $purgeClient->getClass();
-        if (strpos($purgeClientClass, '%') === 0) {
-            $purgeClientClass = $container->getParameter(
-                str_replace('%', '', $purgeClientClass)
-            );
-        }
+        $purgeClientClass = $container->getParameterBag()->resolveValue($purgeClient->getClass());
 
         if (
             !is_a($purgeClientClass, FOSPurgeClient::class, true)
