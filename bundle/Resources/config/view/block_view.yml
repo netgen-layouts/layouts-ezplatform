@@ -2,7 +2,7 @@ view:
     block_view:
         default:
             ezcontent_field:
-                template: "@NetgenEzPublishBlockManager/block/ezcontent_field.html.twig"
+                template: "@ngbm/block/ezcontent_field.html.twig"
                 match:
                     block\definition: ezcontent_field
                     block\view_type: ezcontent_field

@@ -2,11 +2,11 @@ view:
     item_view:
         default:
             ezcontent:
-                template: "@NetgenEzPublishBlockManager/item/ezcontent.html.twig"
+                template: "@ngbm/item/ezcontent.html.twig"
                 match:
                     item\value_type: ezcontent
             ezlocation:
-                template: "@NetgenEzPublishBlockManager/item/ezlocation.html.twig"
+                template: "@ngbm/item/ezlocation.html.twig"
                 match:
                     item\value_type: ezlocation
         api:

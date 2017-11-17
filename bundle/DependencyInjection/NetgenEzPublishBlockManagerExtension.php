@@ -62,5 +62,17 @@ final class NetgenEzPublishBlockManagerExtension extends Extension implements Pr
             $container->prependExtensionConfig($prependConfig, $config);
             $container->addResource(new FileResource($configFile));
         }
+
+        // Register templates from the bundle under @NetgenEzPublishBlockManager namespace
+        // to keep external references to templates working after they were
+        // moved to theme based paths
+        $container->prependExtensionConfig(
+            'twig',
+            array(
+                'paths' => array(
+                    __DIR__ . '/../Resources/views/ngbm/themes/standard' => 'NetgenEzPublishBlockManager',
+                ),
+            )
+        );
     }
 }
