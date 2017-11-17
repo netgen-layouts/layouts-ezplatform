@@ -9,6 +9,15 @@ view:
                 template: "@ngbm/item/ezlocation.html.twig"
                 match:
                     item\value_type: ezlocation
+        ajax:
+            ezcontent:
+                template: "@ngbm/item/ezcontent.html.twig"
+                match:
+                    item\value_type: ezcontent
+            ezlocation:
+                template: "@ngbm/item/ezlocation.html.twig"
+                match:
+                    item\value_type: ezlocation
         api:
             ezcontent:
                 template: "@NetgenEzPublishBlockManager/api/item/ezcontent.html.twig"
