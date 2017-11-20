@@ -144,7 +144,7 @@ class ContentTest extends TestCase
             ->with($this->equalTo($request))
             ->will($this->returnValue(null));
 
-        $this->assertEquals(null, $this->targetType->provideValue($request));
+        $this->assertNull($this->targetType->provideValue($request));
     }
 
     /**
