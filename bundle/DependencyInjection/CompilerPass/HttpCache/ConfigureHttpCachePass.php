@@ -14,7 +14,7 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
 
     public function process(ContainerBuilder $container)
     {
-        if (!$container->has(self::SERVICE_NAME)) {
+        if (!$container->has(self::SERVICE_NAME) || !$container->has('ezpublish.http_cache.purge_client')) {
             return;
         }
 
