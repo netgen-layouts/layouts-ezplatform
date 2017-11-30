@@ -32,8 +32,6 @@ class ExtensionPluginTest extends AbstractExtensionTestCase
         $this->assertEquals(
             array(
                 'block_types' => array(
-                    'twig_block',
-                    'full_view',
                     'ezcontent_field',
                 ),
             ),
