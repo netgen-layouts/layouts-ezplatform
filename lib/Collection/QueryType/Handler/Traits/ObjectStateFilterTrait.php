@@ -62,7 +62,7 @@ trait ObjectStateFilterTrait
      */
     private function getObjectStateFilterCriteria(Query $query)
     {
-        if ($query->getParameter('filter_by_object_state')->getValue() !== null) {
+        if ($query->getParameter('filter_by_object_state')->getValue() !== true) {
             return null;
         }
 
