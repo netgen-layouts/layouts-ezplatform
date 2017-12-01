@@ -11,6 +11,7 @@ use eZ\Publish\API\Repository\Values\Content\LocationQuery;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
 use eZ\Publish\API\Repository\Values\Content\Search\SearchHit;
+use eZ\Publish\SPI\Persistence\Content\ObjectState\Handler as ObjectStateHandler;
 use eZ\Publish\SPI\Persistence\Content\Section\Handler as SectionHandler;
 use eZ\Publish\SPI\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Netgen\BlockManager\API\Values\Collection\Query;
@@ -47,6 +48,11 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      * @var \eZ\Publish\SPI\Persistence\Content\Section\Handler
      */
     private $sectionHandler;
+
+    /**
+     * @var \eZ\Publish\SPI\Persistence\Content\ObjectState\Handler
+     */
+    private $objectStateHandler;
 
     /**
      * @var \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface
@@ -91,12 +97,14 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         SearchService $searchService,
         ContentTypeHandler $contentTypeHandler,
         SectionHandler $sectionHandler,
+        ObjectStateHandler $objectStateHandler,
         ContentProviderInterface $contentProvider
     ) {
         $this->locationService = $locationService;
         $this->searchService = $searchService;
         $this->contentTypeHandler = $contentTypeHandler;
         $this->sectionHandler = $sectionHandler;
+        $this->objectStateHandler = $objectStateHandler;
         $this->contentProvider = $contentProvider;
     }
 
@@ -226,6 +234,23 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
 
                     return $sections;
                 },
+                'groups' => array(self::GROUP_ADVANCED),
+            )
+        );
+
+        $builder->add(
+            'filter_by_object_state',
+            ParameterType\Compound\BooleanType::class,
+            array(
+                'groups' => array(self::GROUP_ADVANCED),
+            )
+        );
+
+        $builder->get('filter_by_object_state')->add(
+            'object_states',
+            EzParameterType\ObjectStateType::class,
+            array(
+                'multiple' => true,
                 'groups' => array(self::GROUP_ADVANCED),
             )
         );
@@ -364,6 +389,17 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
             }
         }
 
+        if ($query->getParameter('filter_by_object_state')->getValue()) {
+            $objectStates = $query->getParameter('object_states')->getValue();
+            if (!empty($objectStates)) {
+                $objectStatesFilter = new Criterion\ObjectStateId(
+                    $this->getObjectStateIds($objectStates)
+                );
+
+                $criteria[] = $objectStatesFilter;
+            }
+        }
+
         $locationQuery->filter = new Criterion\LogicalAnd($criteria);
 
         $locationQuery->limit = 0;
@@ -425,6 +461,37 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
             try {
                 $section = $this->sectionHandler->loadByIdentifier($identifier);
                 $idList[] = $section->id;
+            } catch (NotFoundException $e) {
+                continue;
+            }
+        }
+
+        return $idList;
+    }
+
+    /**
+     * Returns object state IDs for all provided object state identifiers.
+     *
+     * State identifiers are in format "<group_identifier>|<state_identifier>"
+     *
+     * @param array $stateIdentifiers
+     *
+     * @return array
+     */
+    private function getObjectStateIds(array $stateIdentifiers)
+    {
+        $idList = array();
+
+        foreach ($stateIdentifiers as $identifier) {
+            $identifier = explode('|', $identifier);
+            if (!is_array($identifier) || count($identifier) !== 2) {
+                continue;
+            }
+
+            try {
+                $stateGroup = $this->objectStateHandler->loadGroupByIdentifier($identifier[0]);
+                $objectState = $this->objectStateHandler->loadByIdentifier($identifier[1], $stateGroup->id);
+                $idList[] = $objectState->id;
             } catch (NotFoundException $e) {
                 continue;
             }
