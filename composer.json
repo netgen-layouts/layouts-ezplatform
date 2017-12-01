@@ -12,10 +12,10 @@
         "ezsystems/ezpublish-kernel": "^5.4|^6.0|^7.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.7|^6.4",
+        "phpunit/phpunit": "^5.7|^6.5",
         "symfony/phpunit-bridge": "^4.0",
-        "matthiasnoback/symfony-dependency-injection-test": "^1.0|^2.0",
-        "matthiasnoback/symfony-config-test": "^2.0|^3.0",
+        "matthiasnoback/symfony-dependency-injection-test": "^1.2|^2.3",
+        "matthiasnoback/symfony-config-test": "^2.2|^3.1",
         "netgen/tagsbundle": "^2.0|^3.0",
         "franzl/studio": "*"
     },
