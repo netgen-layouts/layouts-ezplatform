@@ -11,7 +11,8 @@ use eZ\Publish\API\Repository\Values\Content\LocationQuery;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
 use eZ\Publish\API\Repository\Values\Content\Search\SearchHit;
-use eZ\Publish\SPI\Persistence\Content\Type\Handler;
+use eZ\Publish\SPI\Persistence\Content\Section\Handler as SectionHandler;
+use eZ\Publish\SPI\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Netgen\BlockManager\API\Values\Collection\Query;
 use Netgen\BlockManager\Collection\QueryType\QueryTypeHandlerInterface;
 use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
@@ -41,6 +42,11 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      * @var \eZ\Publish\SPI\Persistence\Content\Type\Handler
      */
     private $contentTypeHandler;
+
+    /**
+     * @var \eZ\Publish\SPI\Persistence\Content\Section\Handler
+     */
+    private $sectionHandler;
 
     /**
      * @var \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface
@@ -83,12 +89,14 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     public function __construct(
         LocationService $locationService,
         SearchService $searchService,
-        Handler $contentTypeHandler,
+        ContentTypeHandler $contentTypeHandler,
+        SectionHandler $sectionHandler,
         ContentProviderInterface $contentProvider
     ) {
         $this->locationService = $locationService;
         $this->searchService = $searchService;
         $this->contentTypeHandler = $contentTypeHandler;
+        $this->sectionHandler = $sectionHandler;
         $this->contentProvider = $contentProvider;
     }
 
@@ -192,6 +200,32 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
                     'Include content types' => 'include',
                     'Exclude content types' => 'exclude',
                 ),
+                'groups' => array(self::GROUP_ADVANCED),
+            )
+        );
+
+        $builder->add(
+            'filter_by_section',
+            ParameterType\Compound\BooleanType::class,
+            array(
+                'groups' => array(self::GROUP_ADVANCED),
+            )
+        );
+
+        $builder->get('filter_by_section')->add(
+            'sections',
+            ParameterType\ChoiceType::class,
+            array(
+                'multiple' => true,
+                'options' => function () {
+                    $sections = array();
+
+                    foreach ($this->sectionHandler->loadAll() as $section) {
+                        $sections[$section->name] = $section->identifier;
+                    }
+
+                    return $sections;
+                },
                 'groups' => array(self::GROUP_ADVANCED),
             )
         );
@@ -319,6 +353,17 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
             }
         }
 
+        if ($query->getParameter('filter_by_section')->getValue()) {
+            $sections = $query->getParameter('sections')->getValue();
+            if (!empty($sections)) {
+                $sectionsFilter = new Criterion\SectionId(
+                    $this->getSectionIds($sections)
+                );
+
+                $criteria[] = $sectionsFilter;
+            }
+        }
+
         $locationQuery->filter = new Criterion\LogicalAnd($criteria);
 
         $locationQuery->limit = 0;
@@ -343,7 +388,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     }
 
     /**
-     * Returns content type IDs for all existing content types.
+     * Returns content type IDs for all provided content type identifiers.
      *
      * @param array $contentTypeIdentifiers
      *
@@ -357,6 +402,29 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
             try {
                 $contentType = $this->contentTypeHandler->loadByIdentifier($identifier);
                 $idList[] = $contentType->id;
+            } catch (NotFoundException $e) {
+                continue;
+            }
+        }
+
+        return $idList;
+    }
+
+    /**
+     * Returns section IDs for all provided section identifiers.
+     *
+     * @param array $sectionIdentifiers
+     *
+     * @return array
+     */
+    private function getSectionIds(array $sectionIdentifiers)
+    {
+        $idList = array();
+
+        foreach ($sectionIdentifiers as $identifier) {
+            try {
+                $section = $this->sectionHandler->loadByIdentifier($identifier);
+                $idList[] = $section->id;
             } catch (NotFoundException $e) {
                 continue;
             }

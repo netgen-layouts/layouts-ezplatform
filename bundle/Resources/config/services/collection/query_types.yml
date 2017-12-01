@@ -8,6 +8,7 @@ services:
             - "@ezpublish.api.service.location"
             - "@ezpublish.api.service.search"
             - "@ezpublish.spi.persistence.content_type_handler"
+            - "@ezpublish.spi.persistence.section_handler"
             - "@netgen_block_manager.ezpublish.content_provider"
         calls:
             - [setLanguages, ["$languages$"]]
