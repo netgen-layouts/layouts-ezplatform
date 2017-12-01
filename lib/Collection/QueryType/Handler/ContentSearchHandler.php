@@ -13,13 +13,7 @@ use eZ\Publish\SPI\Persistence\Content\Section\Handler as SectionHandler;
 use eZ\Publish\SPI\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Netgen\BlockManager\API\Values\Collection\Query;
 use Netgen\BlockManager\Collection\QueryType\QueryTypeHandlerInterface;
-use Netgen\BlockManager\Ez\Collection\QueryType\Handler\Traits\ContentTypeFilterTrait;
-use Netgen\BlockManager\Ez\Collection\QueryType\Handler\Traits\MainLocationFilterTrait;
-use Netgen\BlockManager\Ez\Collection\QueryType\Handler\Traits\ObjectStateFilterTrait;
-use Netgen\BlockManager\Ez\Collection\QueryType\Handler\Traits\ParentLocationTrait;
-use Netgen\BlockManager\Ez\Collection\QueryType\Handler\Traits\QueryTypeFilterTrait;
-use Netgen\BlockManager\Ez\Collection\QueryType\Handler\Traits\SectionFilterTrait;
-use Netgen\BlockManager\Ez\Collection\QueryType\Handler\Traits\SortTrait;
+use Netgen\BlockManager\Ez\Collection\QueryType\Handler\Traits;
 use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
 use Netgen\BlockManager\Parameters\ParameterBuilderInterface;
 
@@ -31,13 +25,13 @@ use Netgen\BlockManager\Parameters\ParameterBuilderInterface;
  */
 class ContentSearchHandler implements QueryTypeHandlerInterface
 {
-    use ParentLocationTrait;
-    use SortTrait;
-    use QueryTypeFilterTrait;
-    use MainLocationFilterTrait;
-    use ContentTypeFilterTrait;
-    use SectionFilterTrait;
-    use ObjectStateFilterTrait;
+    use Traits\ParentLocationTrait;
+    use Traits\SortTrait;
+    use Traits\QueryTypeFilterTrait;
+    use Traits\MainLocationFilterTrait;
+    use Traits\ContentTypeFilterTrait;
+    use Traits\SectionFilterTrait;
+    use Traits\ObjectStateFilterTrait;
 
     /**
      * @var \eZ\Publish\API\Repository\SearchService
