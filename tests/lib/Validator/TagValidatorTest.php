@@ -12,12 +12,12 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class TagValidatorTest extends ValidatorTestCase
 {
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     private $repositoryMock;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     private $tagsServiceMock;
 

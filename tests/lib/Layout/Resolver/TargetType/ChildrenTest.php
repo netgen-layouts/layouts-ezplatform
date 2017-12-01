@@ -16,12 +16,12 @@ use Symfony\Component\Validator\Validation;
 class ChildrenTest extends TestCase
 {
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     private $repositoryMock;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     private $contentExtractorMock;
 
@@ -31,7 +31,7 @@ class ChildrenTest extends TestCase
     private $targetType;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     private $locationServiceMock;
 

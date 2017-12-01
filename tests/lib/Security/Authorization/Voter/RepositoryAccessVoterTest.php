@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 class RepositoryAccessVoterTest extends TestCase
 {
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject
      */
     private $accessDecisionManagerMock;
 
