@@ -72,13 +72,15 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
 
     public function buildParameters(ParameterBuilderInterface $builder)
     {
+        $advancedGroup = array(self::GROUP_ADVANCED);
+
         $this->buildParentLocationParameters($builder);
         $this->buildSortParameters($builder);
-        $this->buildQueryTypeParameters($builder);
-        $this->buildMainLocationParameters($builder);
-        $this->buildContentTypeFilterParameters($builder, array(self::GROUP_ADVANCED));
-        $this->buildSectionFilterParameters($builder, array(self::GROUP_ADVANCED));
-        $this->buildObjectStateFilterParameters($builder, array(self::GROUP_ADVANCED));
+        $this->buildQueryTypeParameters($builder, $advancedGroup);
+        $this->buildMainLocationParameters($builder, $advancedGroup);
+        $this->buildContentTypeFilterParameters($builder, $advancedGroup);
+        $this->buildSectionFilterParameters($builder, $advancedGroup);
+        $this->buildObjectStateFilterParameters($builder, $advancedGroup);
     }
 
     public function getValues(Query $query, $offset = 0, $limit = null)
