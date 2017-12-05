@@ -23,11 +23,13 @@ final class TagsType extends ParameterType
     {
         $optionsResolver->setDefault('min', null);
         $optionsResolver->setDefault('max', null);
+        $optionsResolver->setDefault('allow_invalid', false);
 
-        $optionsResolver->setRequired(array('min', 'max'));
+        $optionsResolver->setRequired(array('min', 'max', 'allow_invalid'));
 
         $optionsResolver->setAllowedTypes('min', array('int', 'null'));
         $optionsResolver->setAllowedTypes('max', array('int', 'null'));
+        $optionsResolver->setAllowedTypes('allow_invalid', array('bool'));
 
         $optionsResolver->setAllowedValues('min', function ($value) {
             return $value === null || $value > 0;
@@ -65,7 +67,7 @@ final class TagsType extends ParameterType
                         new Constraints\NotBlank(),
                         new Constraints\Type(array('type' => 'numeric')),
                         new Constraints\GreaterThan(array('value' => 0)),
-                        new EzConstraints\Tag(),
+                        new EzConstraints\Tag(array('allowNonExisting' => $options['allow_invalid'])),
                     ),
                 )
             ),

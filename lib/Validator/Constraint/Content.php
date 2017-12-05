@@ -11,6 +11,13 @@ final class Content extends Constraint
      */
     public $message = 'netgen_block_manager.ezcontent.content_not_found';
 
+    /**
+     * If set to true, the constraint will accept values for non existing content.
+     *
+     * @var bool
+     */
+    public $allowNonExisting = false;
+
     public function validatedBy()
     {
         return 'ngbm_ezcontent';

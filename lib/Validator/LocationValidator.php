@@ -38,16 +38,18 @@ final class LocationValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, 'scalar');
         }
 
-        try {
-            $this->repository->sudo(
-                function (Repository $repository) use ($value) {
-                    $repository->getLocationService()->loadLocation($value);
-                }
-            );
-        } catch (NotFoundException $e) {
-            $this->context->buildViolation($constraint->message)
-                ->setParameter('%locationId%', $value)
-                ->addViolation();
+        if (!$constraint->allowNonExisting) {
+            try {
+                $this->repository->sudo(
+                    function (Repository $repository) use ($value) {
+                        $repository->getLocationService()->loadLocation($value);
+                    }
+                );
+            } catch (NotFoundException $e) {
+                $this->context->buildViolation($constraint->message)
+                    ->setParameter('%locationId%', $value)
+                    ->addViolation();
+            }
         }
     }
 }

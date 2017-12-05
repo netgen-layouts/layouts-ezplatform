@@ -38,16 +38,18 @@ final class ContentValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, 'scalar');
         }
 
-        try {
-            $this->repository->sudo(
-                function (Repository $repository) use ($value) {
-                    $repository->getContentService()->loadContentInfo($value);
-                }
-            );
-        } catch (NotFoundException $e) {
-            $this->context->buildViolation($constraint->message)
-                ->setParameter('%contentId%', $value)
-                ->addViolation();
+        if (!$constraint->allowNonExisting) {
+            try {
+                $this->repository->sudo(
+                    function (Repository $repository) use ($value) {
+                        $repository->getContentService()->loadContentInfo($value);
+                    }
+                );
+            } catch (NotFoundException $e) {
+                $this->context->buildViolation($constraint->message)
+                    ->setParameter('%contentId%', $value)
+                    ->addViolation();
+            }
         }
     }
 }

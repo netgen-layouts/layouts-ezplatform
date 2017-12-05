@@ -109,7 +109,25 @@ class ContentTypeTest extends TestCase
         return array(
             array(
                 array(),
-                array(),
+                array(
+                    'allow_invalid' => false,
+                ),
+            ),
+            array(
+                array(
+                    'allow_invalid' => false,
+                ),
+                array(
+                    'allow_invalid' => false,
+                ),
+            ),
+            array(
+                array(
+                    'allow_invalid' => true,
+                ),
+                array(
+                    'allow_invalid' => true,
+                ),
             ),
         );
     }
@@ -123,6 +141,18 @@ class ContentTypeTest extends TestCase
     {
         return array(
             array(
+                array(
+                    'allow_invalid' => 'false',
+                ),
+                array(
+                    'allow_invalid' => 'true',
+                ),
+                array(
+                    'allow_invalid' => 0,
+                ),
+                array(
+                    'allow_invalid' => 1,
+                ),
                 array(
                     'undefined_value' => 'Value',
                 ),

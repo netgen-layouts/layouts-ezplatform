@@ -11,6 +11,13 @@ final class Location extends Constraint
      */
     public $message = 'netgen_block_manager.ezlocation.location_not_found';
 
+    /**
+     * If set to true, the constraint will accept values for non existing locations.
+     *
+     * @var bool
+     */
+    public $allowNonExisting = false;
+
     public function validatedBy()
     {
         return 'ngbm_ezlocation';

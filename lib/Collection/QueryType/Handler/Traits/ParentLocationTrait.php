@@ -63,6 +63,7 @@ trait ParentLocationTrait
             'parent_location_id',
             EzParameterType\LocationType::class,
             array(
+                'allow_invalid' => true,
                 'groups' => $groups,
             )
         );

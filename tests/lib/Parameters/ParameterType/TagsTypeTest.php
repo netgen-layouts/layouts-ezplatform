@@ -92,6 +92,7 @@ class TagsTypeTest extends TestCase
                 array(
                     'max' => null,
                     'min' => null,
+                    'allow_invalid' => false,
                 ),
             ),
             array(
@@ -101,6 +102,7 @@ class TagsTypeTest extends TestCase
                 array(
                     'max' => 5,
                     'min' => null,
+                    'allow_invalid' => false,
                 ),
             ),
             array(
@@ -110,6 +112,7 @@ class TagsTypeTest extends TestCase
                 array(
                     'max' => null,
                     'min' => null,
+                    'allow_invalid' => false,
                 ),
             ),
             array(
@@ -119,6 +122,7 @@ class TagsTypeTest extends TestCase
                 array(
                     'min' => 5,
                     'max' => null,
+                    'allow_invalid' => false,
                 ),
             ),
             array(
@@ -128,16 +132,19 @@ class TagsTypeTest extends TestCase
                 array(
                     'max' => null,
                     'min' => null,
+                    'allow_invalid' => false,
                 ),
             ),
             array(
                 array(
                     'min' => 5,
                     'max' => 10,
+                    'allow_invalid' => false,
                 ),
                 array(
                     'min' => 5,
                     'max' => 10,
+                    'allow_invalid' => false,
                 ),
             ),
             array(
@@ -148,6 +155,27 @@ class TagsTypeTest extends TestCase
                 array(
                     'min' => 5,
                     'max' => 5,
+                    'allow_invalid' => false,
+                ),
+            ),
+            array(
+                array(
+                    'allow_invalid' => false,
+                ),
+                array(
+                    'min' => null,
+                    'max' => null,
+                    'allow_invalid' => false,
+                ),
+            ),
+            array(
+                array(
+                    'allow_invalid' => true,
+                ),
+                array(
+                    'min' => null,
+                    'max' => null,
+                    'allow_invalid' => true,
                 ),
             ),
         );
@@ -179,6 +207,18 @@ class TagsTypeTest extends TestCase
                 ),
                 array(
                     'max' => 0,
+                ),
+                array(
+                    'allow_invalid' => 'false',
+                ),
+                array(
+                    'allow_invalid' => 'true',
+                ),
+                array(
+                    'allow_invalid' => 0,
+                ),
+                array(
+                    'allow_invalid' => 1,
                 ),
                 array(
                     'undefined_value' => 'Value',

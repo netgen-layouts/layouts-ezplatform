@@ -38,16 +38,18 @@ final class TagValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, 'scalar');
         }
 
-        try {
-            $this->tagsService->sudo(
-                function (TagsService $tagsService) use ($value) {
-                    $tagsService->loadTag($value);
-                }
-            );
-        } catch (NotFoundException $e) {
-            $this->context->buildViolation($constraint->message)
-                ->setParameter('%tagId%', $value)
-                ->addViolation();
+        if (!$constraint->allowNonExisting) {
+            try {
+                $this->tagsService->sudo(
+                    function (TagsService $tagsService) use ($value) {
+                        $tagsService->loadTag($value);
+                    }
+                );
+            } catch (NotFoundException $e) {
+                $this->context->buildViolation($constraint->message)
+                    ->setParameter('%tagId%', $value)
+                    ->addViolation();
+            }
         }
     }
 }
