@@ -24,6 +24,11 @@ class ContentTypeTest extends TestCase
      */
     private $contentServiceMock;
 
+    /**
+     * @var \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType
+     */
+    private $type;
+
     public function setUp()
     {
         $this->contentServiceMock = $this->createMock(ContentService::class);
@@ -41,6 +46,8 @@ class ContentTypeTest extends TestCase
             ->expects($this->any())
             ->method('getContentService')
             ->will($this->returnValue($this->contentServiceMock));
+
+        $this->type = new ContentType($this->repositoryMock);
     }
 
     /**
@@ -48,8 +55,7 @@ class ContentTypeTest extends TestCase
      */
     public function testGetIdentifier()
     {
-        $type = new ContentType();
-        $this->assertEquals('ezcontent', $type->getIdentifier());
+        $this->assertEquals('ezcontent', $this->type->getIdentifier());
     }
 
     /**
@@ -91,7 +97,7 @@ class ContentTypeTest extends TestCase
         return new Parameter(
             array(
                 'name' => 'name',
-                'type' => new ContentType(),
+                'type' => $this->type,
                 'options' => $options,
                 'isRequired' => $required,
                 'defaultValue' => $defaultValue,
@@ -186,13 +192,12 @@ class ContentTypeTest extends TestCase
                 );
         }
 
-        $type = new ContentType();
         $parameter = $this->getParameter(array(), $required);
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
 
-        $errors = $validator->validate($value, $type->getConstraints($parameter, $value));
+        $errors = $validator->validate($value, $this->type->getConstraints($parameter, $value));
         $this->assertEquals($isValid, $errors->count() === 0);
     }
 
@@ -230,8 +235,7 @@ class ContentTypeTest extends TestCase
      */
     public function testIsValueEmpty($value, $isEmpty)
     {
-        $type = new ContentType();
-        $this->assertEquals($isEmpty, $type->isValueEmpty(new Parameter(), $value));
+        $this->assertEquals($isEmpty, $this->type->isValueEmpty(new Parameter(), $value));
     }
 
     /**

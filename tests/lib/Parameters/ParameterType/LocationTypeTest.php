@@ -24,6 +24,11 @@ class LocationTypeTest extends TestCase
      */
     private $locationServiceMock;
 
+    /**
+     * @var \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType
+     */
+    private $type;
+
     public function setUp()
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
@@ -41,6 +46,8 @@ class LocationTypeTest extends TestCase
             ->expects($this->any())
             ->method('getLocationService')
             ->will($this->returnValue($this->locationServiceMock));
+
+        $this->type = new LocationType($this->repositoryMock);
     }
 
     /**
@@ -48,8 +55,7 @@ class LocationTypeTest extends TestCase
      */
     public function testGetIdentifier()
     {
-        $type = new LocationType();
-        $this->assertEquals('ezlocation', $type->getIdentifier());
+        $this->assertEquals('ezlocation', $this->type->getIdentifier());
     }
 
     /**
@@ -91,7 +97,7 @@ class LocationTypeTest extends TestCase
         return new Parameter(
             array(
                 'name' => 'name',
-                'type' => new LocationType(),
+                'type' => $this->type,
                 'options' => $options,
                 'isRequired' => $required,
                 'defaultValue' => $defaultValue,
@@ -186,13 +192,12 @@ class LocationTypeTest extends TestCase
                 );
         }
 
-        $type = new LocationType();
         $parameter = $this->getParameter(array(), $required);
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
 
-        $errors = $validator->validate($value, $type->getConstraints($parameter, $value));
+        $errors = $validator->validate($value, $this->type->getConstraints($parameter, $value));
         $this->assertEquals($isValid, $errors->count() === 0);
     }
 
@@ -230,8 +235,7 @@ class LocationTypeTest extends TestCase
      */
     public function testIsValueEmpty($value, $isEmpty)
     {
-        $type = new LocationType();
-        $this->assertEquals($isEmpty, $type->isValueEmpty(new Parameter(), $value));
+        $this->assertEquals($isEmpty, $this->type->isValueEmpty(new Parameter(), $value));
     }
 
     /**

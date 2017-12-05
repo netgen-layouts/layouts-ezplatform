@@ -17,9 +17,16 @@ class TagsTypeTest extends TestCase
      */
     private $tagsServiceMock;
 
+    /**
+     * @var \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType
+     */
+    private $type;
+
     public function setUp()
     {
         $this->tagsServiceMock = $this->createPartialMock(TagsService::class, array('loadTag'));
+
+        $this->type = new TagsType($this->tagsServiceMock);
     }
 
     /**
@@ -27,8 +34,7 @@ class TagsTypeTest extends TestCase
      */
     public function testGetIdentifier()
     {
-        $type = new TagsType();
-        $this->assertEquals('eztags', $type->getIdentifier());
+        $this->assertEquals('eztags', $this->type->getIdentifier());
     }
 
     /**
@@ -70,7 +76,7 @@ class TagsTypeTest extends TestCase
         return new Parameter(
             array(
                 'name' => 'name',
-                'type' => new TagsType(),
+                'type' => $this->type,
                 'options' => $options,
                 'isRequired' => $required,
                 'defaultValue' => $defaultValue,
@@ -257,13 +263,12 @@ class TagsTypeTest extends TestCase
             }
         }
 
-        $type = new TagsType();
         $parameter = $this->getParameter(array('min' => 1, 'max' => 3), $required);
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new TagsServiceValidatorFactory($this->tagsServiceMock))
             ->getValidator();
 
-        $errors = $validator->validate($values, $type->getConstraints($parameter, $values));
+        $errors = $validator->validate($values, $this->type->getConstraints($parameter, $values));
         $this->assertEquals($isValid, $errors->count() === 0);
     }
 

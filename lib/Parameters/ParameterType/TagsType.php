@@ -2,9 +2,11 @@
 
 namespace Netgen\BlockManager\Ez\Parameters\ParameterType;
 
+use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Parameters\ParameterInterface;
 use Netgen\BlockManager\Parameters\ParameterType;
+use Netgen\TagsBundle\API\Repository\TagsService;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
@@ -14,6 +16,16 @@ use Symfony\Component\Validator\Constraints;
  */
 final class TagsType extends ParameterType
 {
+    /**
+     * @var \Netgen\TagsBundle\API\Repository\TagsService
+     */
+    private $tagsService;
+
+    public function __construct(TagsService $tagsService)
+    {
+        $this->tagsService = $tagsService;
+    }
+
     public function getIdentifier()
     {
         return 'eztags';
@@ -53,6 +65,38 @@ final class TagsType extends ParameterType
                 return $value;
             }
         );
+    }
+
+    public function export(ParameterInterface $parameter, $value)
+    {
+        try {
+            /** @var \Netgen\TagsBundle\API\Repository\Values\Tags\Tag $tag */
+            $tag = $this->tagsService->sudo(
+                function (TagsService $tagsService) use ($value) {
+                    return $tagsService->loadTag($value);
+                }
+            );
+
+            return $tag->remoteId;
+        } catch (NotFoundException $e) {
+            // Do nothing
+        }
+    }
+
+    public function import(ParameterInterface $parameter, $value)
+    {
+        try {
+            /** @var \Netgen\TagsBundle\API\Repository\Values\Tags\Tag $tag */
+            $tag = $this->tagsService->sudo(
+                function (TagsService $tagsService) use ($value) {
+                    return $tagsService->loadTagByRemoteId($value);
+                }
+            );
+
+            return $tag->id;
+        } catch (NotFoundException $e) {
+            // Do nothing
+        }
     }
 
     protected function getValueConstraints(ParameterInterface $parameter, $value)

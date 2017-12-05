@@ -2,6 +2,8 @@ services:
     netgen_block_manager.parameters.parameter_type.eztags:
         class: Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType
         public: false
+        arguments:
+            - "@ezpublish.api.service.tags"
         tags:
             - { name: netgen_block_manager.parameters.parameter_type }
 

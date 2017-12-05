@@ -6,6 +6,7 @@ use Netgen\BlockManager\Ez\Parameters\Form\Mapper\TagsMapper;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType as ParameterType;
 use Netgen\BlockManager\Parameters\Parameter;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserMultipleType;
+use Netgen\TagsBundle\API\Repository\TagsService;
 use PHPUnit\Framework\TestCase;
 
 class TagsMapperTest extends TestCase
@@ -42,7 +43,7 @@ class TagsMapperTest extends TestCase
             $this->mapper->mapOptions(
                 new Parameter(
                     array(
-                        'type' => new ParameterType(),
+                        'type' => new ParameterType($this->createMock(TagsService::class)),
                         'options' => array(
                             'min' => 3,
                             'max' => 6,

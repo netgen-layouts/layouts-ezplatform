@@ -2,6 +2,8 @@
 
 namespace Netgen\BlockManager\Ez\Parameters\ParameterType;
 
+use eZ\Publish\API\Repository\Exceptions\NotFoundException;
+use eZ\Publish\API\Repository\Repository;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Parameters\ParameterInterface;
 use Netgen\BlockManager\Parameters\ParameterType;
@@ -13,6 +15,16 @@ use Symfony\Component\Validator\Constraints;
  */
 final class ContentType extends ParameterType
 {
+    /**
+     * @var \eZ\Publish\API\Repository\Repository
+     */
+    private $repository;
+
+    public function __construct(Repository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     public function getIdentifier()
     {
         return 'ezcontent';
@@ -23,6 +35,38 @@ final class ContentType extends ParameterType
         $optionsResolver->setDefault('allow_invalid', false);
         $optionsResolver->setRequired(array('allow_invalid'));
         $optionsResolver->setAllowedTypes('allow_invalid', array('bool'));
+    }
+
+    public function export(ParameterInterface $parameter, $value)
+    {
+        try {
+            /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
+            $contentInfo = $this->repository->sudo(
+                function (Repository $repository) use ($value) {
+                    return $repository->getContentService()->loadContentInfo($value);
+                }
+            );
+
+            return $contentInfo->remoteId;
+        } catch (NotFoundException $e) {
+            // Do nothing
+        }
+    }
+
+    public function import(ParameterInterface $parameter, $value)
+    {
+        try {
+            /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
+            $contentInfo = $this->repository->sudo(
+                function (Repository $repository) use ($value) {
+                    return $repository->getContentService()->loadContentInfoByRemoteId($value);
+                }
+            );
+
+            return $contentInfo->id;
+        } catch (NotFoundException $e) {
+            // Do nothing
+        }
     }
 
     public function isValueEmpty(ParameterInterface $parameter, $value)

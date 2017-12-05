@@ -2,12 +2,16 @@ services:
     netgen_block_manager.parameters.parameter_type.ezlocation:
         class: Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType
         public: false
+        arguments:
+            - "@ezpublish.api.repository"
         tags:
             - { name: netgen_block_manager.parameters.parameter_type }
 
     netgen_block_manager.parameters.parameter_type.ezcontent:
         class: Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType
         public: false
+        arguments:
+            - "@ezpublish.api.repository"
         tags:
             - { name: netgen_block_manager.parameters.parameter_type }
 

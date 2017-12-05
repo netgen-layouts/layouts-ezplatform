@@ -2,6 +2,7 @@
 
 namespace Netgen\BlockManager\Ez\Tests\Parameters\Form\Mapper;
 
+use eZ\Publish\API\Repository\Repository;
 use Netgen\BlockManager\Ez\Parameters\Form\Mapper\LocationMapper;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType as ParameterType;
 use Netgen\BlockManager\Parameters\Parameter;
@@ -37,7 +38,7 @@ class LocationMapperTest extends TestCase
             array(
                 'item_type' => 'ezlocation',
             ),
-            $this->mapper->mapOptions(new Parameter(array('type' => new ParameterType())))
+            $this->mapper->mapOptions(new Parameter(array('type' => new ParameterType($this->createMock(Repository::class)))))
         );
     }
 }
