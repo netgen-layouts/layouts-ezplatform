@@ -91,6 +91,19 @@ class ContentValueConverterTest extends TestCase
     }
 
     /**
+     * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::getRemoteId
+     */
+    public function testGetRemoteId()
+    {
+        $this->assertEquals(
+            'abc',
+            $this->valueConverter->getRemoteId(
+                new ContentInfo(array('remoteId' => 'abc'))
+            )
+        );
+    }
+
+    /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::getName
      */
     public function testGetName()

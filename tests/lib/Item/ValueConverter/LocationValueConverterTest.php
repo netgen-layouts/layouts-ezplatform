@@ -72,6 +72,19 @@ class LocationValueConverterTest extends TestCase
     }
 
     /**
+     * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter::getRemoteId
+     */
+    public function testGetRemoteId()
+    {
+        $this->assertEquals(
+            'abc',
+            $this->valueConverter->getRemoteId(
+                new Location(array('remoteId' => 'abc'))
+            )
+        );
+    }
+
+    /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter::getName
      */
     public function testGetName()

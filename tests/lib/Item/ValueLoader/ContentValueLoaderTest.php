@@ -114,4 +114,91 @@ class ContentValueLoaderTest extends TestCase
 
         $this->valueLoader->load(52);
     }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader::loadByRemoteId
+     */
+    public function testLoadByRemoteId()
+    {
+        $contentInfo = new ContentInfo(
+            array(
+                'remoteId' => 'abc',
+                'published' => true,
+                'mainLocationId' => 42,
+            )
+        );
+
+        $this->contentServiceMock
+            ->expects($this->any())
+            ->method('loadContentInfoByRemoteId')
+            ->with($this->isType('string'))
+            ->will($this->returnValue($contentInfo));
+
+        $this->assertEquals($contentInfo, $this->valueLoader->loadByRemoteId('abc'));
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader::loadByRemoteId
+     * @expectedException \Netgen\BlockManager\Exception\Item\ItemException
+     * @expectedExceptionMessage Content with remote ID "abc" could not be loaded.
+     */
+    public function testLoadByRemoteIdThrowsItemException()
+    {
+        $this->contentServiceMock
+            ->expects($this->any())
+            ->method('loadContentInfoByRemoteId')
+            ->with($this->isType('string'))
+            ->will($this->throwException(new ItemException()));
+
+        $this->valueLoader->loadByRemoteId('abc');
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader::loadByRemoteId
+     * @expectedException \Netgen\BlockManager\Exception\Item\ItemException
+     * @expectedExceptionMessage Content with remote ID "abc" is not published and cannot loaded.
+     */
+    public function testLoadByRemoteIdThrowsItemExceptionWithNonPublishedContent()
+    {
+        $this->contentServiceMock
+            ->expects($this->any())
+            ->method('loadContentInfoByRemoteId')
+            ->with($this->isType('string'))
+            ->will(
+                $this->returnValue(
+                    new ContentInfo(
+                        array(
+                            'published' => false,
+                            'mainLocationId' => 42,
+                        )
+                    )
+                )
+            );
+
+        $this->valueLoader->loadByRemoteId('abc');
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader::loadByRemoteId
+     * @expectedException \Netgen\BlockManager\Exception\Item\ItemException
+     * @expectedExceptionMessage Content with remote ID "abc" does not have a main location and cannot loaded.
+     */
+    public function testLoadByRemoteIdThrowsItemExceptionWithNoMainLocation()
+    {
+        $this->contentServiceMock
+            ->expects($this->any())
+            ->method('loadContentInfoByRemoteId')
+            ->with($this->isType('string'))
+            ->will(
+                $this->returnValue(
+                    new ContentInfo(
+                        array(
+                            'published' => true,
+                        )
+                    )
+                )
+            );
+
+        $this->valueLoader->loadByRemoteId('abc');
+    }
 }

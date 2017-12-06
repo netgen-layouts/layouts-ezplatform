@@ -33,6 +33,11 @@ final class LocationValueConverter implements ValueConverterInterface
         return $object->id;
     }
 
+    public function getRemoteId($object)
+    {
+        return $object->remoteId;
+    }
+
     public function getName($object)
     {
         return $this->translationHelper->getTranslatedContentNameByContentInfo(
