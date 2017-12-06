@@ -38,7 +38,7 @@ final class LocationValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, 'scalar');
         }
 
-        if (!$constraint->allowNonExisting) {
+        if (!$constraint->allowInvalid) {
             try {
                 $this->repository->sudo(
                     function (Repository $repository) use ($value) {

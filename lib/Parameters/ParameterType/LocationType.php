@@ -81,7 +81,7 @@ final class LocationType extends ParameterType
         return array(
             new Constraints\Type(array('type' => 'numeric')),
             new Constraints\GreaterThan(array('value' => 0)),
-            new EzConstraints\Location(array('allowNonExisting' => $options['allow_invalid'])),
+            new EzConstraints\Location(array('allowInvalid' => $options['allow_invalid'])),
         );
     }
 }

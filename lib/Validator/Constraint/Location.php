@@ -16,7 +16,7 @@ final class Location extends Constraint
      *
      * @var bool
      */
-    public $allowNonExisting = false;
+    public $allowInvalid = false;
 
     public function validatedBy()
     {

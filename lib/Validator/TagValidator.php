@@ -38,7 +38,7 @@ final class TagValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, 'scalar');
         }
 
-        if (!$constraint->allowNonExisting) {
+        if (!$constraint->allowInvalid) {
             try {
                 $this->tagsService->sudo(
                     function (TagsService $tagsService) use ($value) {

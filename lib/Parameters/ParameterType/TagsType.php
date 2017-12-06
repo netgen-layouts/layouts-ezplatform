@@ -111,7 +111,7 @@ final class TagsType extends ParameterType
                         new Constraints\NotBlank(),
                         new Constraints\Type(array('type' => 'numeric')),
                         new Constraints\GreaterThan(array('value' => 0)),
-                        new EzConstraints\Tag(array('allowNonExisting' => $options['allow_invalid'])),
+                        new EzConstraints\Tag(array('allowInvalid' => $options['allow_invalid'])),
                     ),
                 )
             ),

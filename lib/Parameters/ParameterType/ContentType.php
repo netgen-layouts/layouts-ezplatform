@@ -81,7 +81,7 @@ final class ContentType extends ParameterType
         return array(
             new Constraints\Type(array('type' => 'numeric')),
             new Constraints\GreaterThan(array('value' => 0)),
-            new EzConstraints\Content(array('allowNonExisting' => $options['allow_invalid'])),
+            new EzConstraints\Content(array('allowInvalid' => $options['allow_invalid'])),
         );
     }
 }
