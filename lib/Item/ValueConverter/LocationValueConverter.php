@@ -49,4 +49,9 @@ final class LocationValueConverter implements ValueConverterInterface
     {
         return !$object->invisible;
     }
+
+    public function getObject($object)
+    {
+        return $object;
+    }
 }

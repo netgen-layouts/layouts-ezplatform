@@ -127,4 +127,14 @@ class ContentValueConverterTest extends TestCase
             )
         );
     }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::getObject
+     */
+    public function testGetObject()
+    {
+        $object = new ContentInfo(array('id' => 42));
+
+        $this->assertEquals($object, $this->valueConverter->getObject($object));
+    }
 }

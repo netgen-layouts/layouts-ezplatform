@@ -108,4 +108,14 @@ class LocationValueConverterTest extends TestCase
             )
         );
     }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter::getObject
+     */
+    public function testGetObject()
+    {
+        $object = new Location(array('id' => 42));
+
+        $this->assertEquals($object, $this->valueConverter->getObject($object));
+    }
 }

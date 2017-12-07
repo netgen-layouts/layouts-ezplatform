@@ -56,4 +56,9 @@ final class ContentValueConverter implements ValueConverterInterface
 
         return !$mainLocation->invisible;
     }
+
+    public function getObject($object)
+    {
+        return $object;
+    }
 }
