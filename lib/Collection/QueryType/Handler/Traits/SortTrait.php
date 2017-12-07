@@ -44,21 +44,28 @@ trait SortTrait
      *
      * @param \Netgen\BlockManager\Parameters\ParameterBuilderInterface $builder
      * @param array $groups
+     * @param array $allowedSortTypes
      */
-    private function buildSortParameters(ParameterBuilderInterface $builder, array $groups = array())
+    private function buildSortParameters(ParameterBuilderInterface $builder, array $groups = array(), array $allowedSortTypes = null)
     {
+        $sortTypes = array(
+            'Published' => 'date_published',
+            'Modified' => 'date_modified',
+            'Alphabetical' => 'content_name',
+            'Priority' => 'location_priority',
+            'Defined by parent' => 'defined_by_parent',
+        );
+
+        if (is_array($allowedSortTypes)) {
+            $sortTypes = array_intersect($sortTypes, $allowedSortTypes);
+        }
+
         $builder->add(
             'sort_type',
             ParameterType\ChoiceType::class,
             array(
                 'required' => true,
-                'options' => array(
-                    'Published' => 'date_published',
-                    'Modified' => 'date_modified',
-                    'Alphabetical' => 'content_name',
-                    'Priority' => 'location_priority',
-                    'Defined by parent' => 'defined_by_parent',
-                ),
+                'options' => $sortTypes,
                 'groups' => $groups,
             )
         );
