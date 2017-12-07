@@ -1,4 +1,10 @@
 services:
+    # Alias to eZ Publish search service, allowing for replacement
+    # of search service with other implementations system wide
+
+    netgen_block_manager.ezpublish.search_service:
+        alias: ezpublish.api.service.search
+
     netgen_block_manager.ezpublish.content_provider:
         class: Netgen\BlockManager\Ez\ContentProvider\ContentProvider
         public: true
