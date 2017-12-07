@@ -4,6 +4,7 @@ services:
 
     netgen_block_manager.ezpublish.search_service:
         alias: ezpublish.api.service.search
+        public: false
 
     netgen_block_manager.ezpublish.content_provider:
         class: Netgen\BlockManager\Ez\ContentProvider\ContentProvider
