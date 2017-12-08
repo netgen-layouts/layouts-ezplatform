@@ -1,16 +1,16 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Tests\Persistence\Doctrine\Handler\LayoutResolver\TargetHandler;
+namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\TargetHandler\Doctrine;
 
-use Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Subtree;
-use Netgen\BlockManager\Tests\Persistence\Doctrine\Handler\LayoutResolver\TargetHandler\AbstractTargetHandlerTest;
+use Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine\Subtree;
+use Netgen\BlockManager\Tests\Layout\Resolver\TargetHandler\Doctrine\AbstractTargetHandlerTest;
 
 class SubtreeTest extends AbstractTargetHandlerTest
 {
     /**
      * @covers \Netgen\BlockManager\Persistence\Doctrine\Handler\LayoutResolverHandler::matchRules
      * @covers \Netgen\BlockManager\Persistence\Doctrine\QueryHandler\LayoutResolverQueryHandler::matchRules
-     * @covers \Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler\Subtree::handleQuery
+     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine\Subtree::handleQuery
      */
     public function testMatchRules()
     {

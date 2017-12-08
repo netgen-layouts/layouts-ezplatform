@@ -1,12 +1,12 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler;
+namespace Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine;
 
 use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Types\Type;
-use Netgen\BlockManager\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler;
+use Netgen\BlockManager\Layout\Resolver\TargetHandler\Doctrine\TargetHandlerInterface;
 
-final class Location implements TargetHandler
+final class Location implements TargetHandlerInterface
 {
     public function handleQuery(QueryBuilder $query, $value)
     {

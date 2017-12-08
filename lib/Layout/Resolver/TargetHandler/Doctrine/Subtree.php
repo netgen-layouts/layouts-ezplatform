@@ -1,12 +1,12 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler;
+namespace Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Query\QueryBuilder;
-use Netgen\BlockManager\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler;
+use Netgen\BlockManager\Layout\Resolver\TargetHandler\Doctrine\TargetHandlerInterface;
 
-final class Subtree implements TargetHandler
+final class Subtree implements TargetHandlerInterface
 {
     public function handleQuery(QueryBuilder $query, $value)
     {
