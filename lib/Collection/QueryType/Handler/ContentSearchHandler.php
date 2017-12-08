@@ -90,7 +90,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
             return array();
         }
 
-        $locationQuery = $this->buildQuery($query, $parentLocation);
+        $locationQuery = $this->buildLocationQuery($query, $parentLocation);
         $locationQuery->offset = $offset;
         $locationQuery->limit = $limit;
 
@@ -115,7 +115,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
             return 0;
         }
 
-        $locationQuery = $this->buildQuery($query, $parentLocation);
+        $locationQuery = $this->buildLocationQuery($query, $parentLocation);
         $locationQuery->limit = 0;
 
         $searchResult = $this->searchService->findLocations(
@@ -139,7 +139,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      *
      * @return \eZ\Publish\API\Repository\Values\Content\LocationQuery
      */
-    private function buildQuery(Query $query, Location $parentLocation)
+    private function buildLocationQuery(Query $query, Location $parentLocation)
     {
         $locationQuery = new LocationQuery();
 
