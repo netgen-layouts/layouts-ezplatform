@@ -8,7 +8,7 @@
         }
     ],
     "require": {
-        "netgen/block-manager": "~0.10.0",
+        "netgen/block-manager": "~0.11.0",
         "ezsystems/ezpublish-kernel": "^5.4|^6.0|^7.0"
     },
     "require-dev": {
@@ -46,7 +46,7 @@
     "prefer-stable": true,
     "extra": {
         "branch-alias": {
-            "dev-master": "0.10.x-dev"
+            "dev-master": "0.11.x-dev"
         }
     }
 }
