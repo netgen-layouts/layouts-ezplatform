@@ -71,7 +71,12 @@ trait ObjectStateFilterTrait
             return null;
         }
 
-        return new Criterion\ObjectStateId($this->getObjectStateIds($objectStates));
+        $criteria = array();
+        foreach ($this->getObjectStateIds($objectStates) as $groupId => $stateIds) {
+            $criteria[] = new Criterion\ObjectStateId($stateIds);
+        }
+
+        return new Criterion\LogicalAnd($criteria);
     }
 
     /**
@@ -96,7 +101,7 @@ trait ObjectStateFilterTrait
             try {
                 $stateGroup = $this->objectStateHandler->loadGroupByIdentifier($identifier[0]);
                 $objectState = $this->objectStateHandler->loadByIdentifier($identifier[1], $stateGroup->id);
-                $idList[] = $objectState->id;
+                $idList[$stateGroup->id][] = $objectState->id;
             } catch (NotFoundException $e) {
                 continue;
             }
