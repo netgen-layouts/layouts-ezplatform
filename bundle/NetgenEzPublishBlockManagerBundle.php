@@ -18,6 +18,7 @@ final class NetgenEzPublishBlockManagerBundle extends Bundle
 
         $container->addCompilerPass(new CompilerPass\View\DefaultViewTemplatesPass());
         $container->addCompilerPass(new CompilerPass\DefaultAppPreviewPass());
+        $container->addCompilerPass(new CompilerPass\HttpCache\ConfigureLegacyHttpCachePass());
         $container->addCompilerPass(new CompilerPass\HttpCache\ConfigureHttpCachePass());
 
         /** @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\EzPublishCoreExtension $ezCoreExtension */

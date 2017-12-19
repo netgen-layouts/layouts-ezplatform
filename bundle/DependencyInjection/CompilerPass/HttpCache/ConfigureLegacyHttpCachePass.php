@@ -2,34 +2,34 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache;
 
-use EzSystems\PlatformHttpCacheBundle\PurgeClient\LocalPurgeClient;
-use EzSystems\PlatformHttpCacheBundle\PurgeClient\VarnishPurgeClient;
+use eZ\Publish\Core\MVC\Symfony\Cache\Http\FOSPurgeClient;
+use eZ\Publish\Core\MVC\Symfony\Cache\Http\LocalPurgeClient;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 
-final class ConfigureHttpCachePass implements CompilerPassInterface
+final class ConfigureLegacyHttpCachePass implements CompilerPassInterface
 {
     const SERVICE_NAME = 'netgen_block_manager.http_cache.client';
 
     public function process(ContainerBuilder $container)
     {
-        if (!$container->has(self::SERVICE_NAME) || !$container->has('ezplatform.http_cache.purge_client')) {
+        if (!$container->has(self::SERVICE_NAME) || !$container->has('ezpublish.http_cache.purge_client')) {
             return;
         }
 
-        $purgeClient = $container->findDefinition('ezplatform.http_cache.purge_client');
+        $purgeClient = $container->findDefinition('ezpublish.http_cache.purge_client');
         $purgeClientClass = $container->getParameterBag()->resolveValue($purgeClient->getClass());
 
         if (
-            !is_a($purgeClientClass, VarnishPurgeClient::class, true)
+            !is_a($purgeClientClass, FOSPurgeClient::class, true)
             && !is_a($purgeClientClass, LocalPurgeClient::class, true)
         ) {
             $this->log(
                 $container,
                 sprintf(
-                    'Cache clearing in Netgen Layouts cannot be automatically configured since eZ Platform purge client is neither an instance of "%s" nor "%s". Use Netgen Layouts "%s" config to enable or disable HTTP cache clearing.',
-                    VarnishPurgeClient::class,
+                    'Cache clearing in Netgen Layouts cannot be automatically configured since eZ Publish purge client is neither an instance of "%s" nor "%s". Use Netgen Layouts "%s" config to enable or disable HTTP cache clearing.',
+                    FOSPurgeClient::class,
                     LocalPurgeClient::class,
                     'http_cache.invalidation.enabled'
                 )
@@ -38,7 +38,7 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
             return;
         }
 
-        if (!is_a($purgeClientClass, VarnishPurgeClient::class, true)) {
+        if (!is_a($purgeClientClass, FOSPurgeClient::class, true)) {
             $container->setAlias(
                 self::SERVICE_NAME,
                 'netgen_block_manager.http_cache.client.null'
