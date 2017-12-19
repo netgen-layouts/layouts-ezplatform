@@ -2,20 +2,20 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\DependencyInjection\CompilerPass\HttpCache;
 
-use EzSystems\PlatformHttpCacheBundle\PurgeClient\LocalPurgeClient;
-use EzSystems\PlatformHttpCacheBundle\PurgeClient\VarnishPurgeClient;
+use eZ\Publish\Core\MVC\Symfony\Cache\Http\FOSPurgeClient;
+use eZ\Publish\Core\MVC\Symfony\Cache\Http\LocalPurgeClient;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\ContainerBuilderHasAliasConstraint;
-use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass;
+use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureLegacyHttpCachePass;
 use stdClass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 
-class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
+class ConfigureLegacyHttpCachePassTest extends AbstractCompilerPassTestCase
 {
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureLegacyHttpCachePass::process
      *
      * @param string $definitionClass
      * @param bool $clientEnabled
@@ -25,7 +25,7 @@ class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
     public function testProcess($definitionClass, $clientEnabled)
     {
         $this->setDefinition('netgen_block_manager.http_cache.client', new Definition());
-        $this->setDefinition('ezplatform.http_cache.purge_client', new Definition($definitionClass));
+        $this->setDefinition('ezpublish.http_cache.purge_client', new Definition($definitionClass));
 
         $this->compile();
 
@@ -38,13 +38,13 @@ class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::log
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureLegacyHttpCachePass::process
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureLegacyHttpCachePass::log
      */
     public function testProcessWithNoSupportedClient()
     {
         $this->setDefinition('netgen_block_manager.http_cache.client', new Definition());
-        $this->setDefinition('ezplatform.http_cache.purge_client', new Definition(stdClass::class));
+        $this->setDefinition('ezpublish.http_cache.purge_client', new Definition(stdClass::class));
 
         $this->compile();
 
@@ -54,13 +54,13 @@ class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
     public function processProvider()
     {
         return array(
-            array(VarnishPurgeClient::class, true),
+            array(FOSPurgeClient::class, true),
             array(LocalPurgeClient::class, false),
         );
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureLegacyHttpCachePass::process
      */
     public function testProcessWithEmptyContainer()
     {
@@ -76,7 +76,7 @@ class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
      */
     protected function registerCompilerPass(ContainerBuilder $container)
     {
-        $container->addCompilerPass(new ConfigureHttpCachePass());
+        $container->addCompilerPass(new ConfigureLegacyHttpCachePass());
     }
 
     /**
