@@ -6,7 +6,7 @@ use Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Subtree;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 use PHPUnit\Framework\TestCase;
 
-class SubtreeTest extends TestCase
+final class SubtreeTest extends TestCase
 {
     /**
      * @var \Netgen\BlockManager\Layout\Resolver\Form\TargetType\MapperInterface

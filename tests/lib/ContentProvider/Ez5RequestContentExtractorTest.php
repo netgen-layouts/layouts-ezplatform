@@ -14,7 +14,7 @@ use Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentExtractor;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
-class Ez5RequestContentExtractorTest extends TestCase
+final class Ez5RequestContentExtractorTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

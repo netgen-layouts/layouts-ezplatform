@@ -7,7 +7,7 @@ use Netgen\BlockManager\Ez\Item\ValueUrlBuilder\LocationValueUrlBuilder;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class LocationValueUrlBuilderTest extends TestCase
+final class LocationValueUrlBuilderTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

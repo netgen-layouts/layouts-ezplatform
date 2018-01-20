@@ -9,7 +9,7 @@ use Netgen\BlockManager\Exception\Item\ItemException;
 use Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader;
 use PHPUnit\Framework\TestCase;
 
-class LocationValueLoaderTest extends TestCase
+final class LocationValueLoaderTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

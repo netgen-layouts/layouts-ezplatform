@@ -8,7 +8,7 @@ use Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType as Parameter
 use Netgen\BlockManager\Parameters\Parameter;
 use PHPUnit\Framework\TestCase;
 
-class ContentTypeMapperTest extends TestCase
+final class ContentTypeMapperTest extends TestCase
 {
     /**
      * @var \Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentTypeMapper

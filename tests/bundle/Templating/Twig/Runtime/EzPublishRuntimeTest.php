@@ -16,7 +16,7 @@ use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime;
 use PHPUnit\Framework\TestCase;
 
-class EzPublishRuntimeTest extends TestCase
+final class EzPublishRuntimeTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

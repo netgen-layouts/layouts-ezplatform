@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 
-class RepositoryAccessVoterTest extends TestCase
+final class RepositoryAccessVoterTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

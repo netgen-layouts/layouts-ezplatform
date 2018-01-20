@@ -5,7 +5,7 @@ namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\TargetHandler\Doctrine;
 use Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine\Subtree;
 use Netgen\BlockManager\Tests\Layout\Resolver\TargetHandler\Doctrine\AbstractTargetHandlerTest;
 
-class SubtreeTest extends AbstractTargetHandlerTest
+final class SubtreeTest extends AbstractTargetHandlerTest
 {
     /**
      * @covers \Netgen\BlockManager\Persistence\Doctrine\Handler\LayoutResolverHandler::matchRules
@@ -33,7 +33,7 @@ class SubtreeTest extends AbstractTargetHandlerTest
     /**
      * Creates the handler under test.
      *
-     * @return \Netgen\BlockManager\Persistence\Doctrine\QueryHandler\LayoutResolver\TargetHandler
+     * @return \Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine\Subtree
      */
     protected function getTargetHandler()
     {

@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorFactory;
 use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
 
-class TagsServiceValidatorFactory implements ConstraintValidatorFactoryInterface
+final class TagsServiceValidatorFactory implements ConstraintValidatorFactoryInterface
 {
     /**
      * @var \Netgen\TagsBundle\API\Repository\TagsService

@@ -12,7 +12,7 @@ use stdClass;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class ContextProviderTest extends TestCase
+final class ContextProviderTest extends TestCase
 {
     /**
      * @var \Symfony\Component\HttpFoundation\RequestStack

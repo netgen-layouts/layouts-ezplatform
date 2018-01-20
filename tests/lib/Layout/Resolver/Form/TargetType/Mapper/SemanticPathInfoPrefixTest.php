@@ -6,7 +6,7 @@ use Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\SemanticPathIn
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class SemanticPathInfoPrefixTest extends TestCase
+final class SemanticPathInfoPrefixTest extends TestCase
 {
     /**
      * @var \Netgen\BlockManager\Layout\Resolver\Form\TargetType\MapperInterface

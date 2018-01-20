@@ -6,7 +6,7 @@ use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Netgen\Bundle\BlockManagerBundle\DependencyInjection\NetgenBlockManagerExtension;
 use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension;
 
-class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
+final class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTestCase
 {
     /**
      * We test for existence of one service from each of the config files.

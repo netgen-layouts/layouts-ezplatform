@@ -8,7 +8,7 @@ use Netgen\BlockManager\Ez\Item\ValueUrlBuilder\ContentValueUrlBuilder;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class ContentValueUrlBuilderTest extends TestCase
+final class ContentValueUrlBuilderTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

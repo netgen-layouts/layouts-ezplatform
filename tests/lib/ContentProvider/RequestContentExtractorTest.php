@@ -11,7 +11,7 @@ use Netgen\BlockManager\Ez\ContentProvider\RequestContentExtractor;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
-class RequestContentExtractorTest extends TestCase
+final class RequestContentExtractorTest extends TestCase
 {
     /**
      * @var \Netgen\BlockManager\Ez\ContentProvider\RequestContentExtractor

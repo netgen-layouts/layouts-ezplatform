@@ -10,7 +10,7 @@ use Netgen\TagsBundle\Core\Repository\TagsService;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
 
-class TagsTypeTest extends TestCase
+final class TagsTypeTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

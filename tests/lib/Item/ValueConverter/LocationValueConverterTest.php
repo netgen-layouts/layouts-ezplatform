@@ -8,7 +8,7 @@ use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter;
 use PHPUnit\Framework\TestCase;
 
-class LocationValueConverterTest extends TestCase
+final class LocationValueConverterTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

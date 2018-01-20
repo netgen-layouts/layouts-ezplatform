@@ -7,7 +7,7 @@ use Netgen\BlockManager\Ez\Validator\SiteAccessGroupValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class SiteAccessGroupValidatorTest extends ValidatorTestCase
+final class SiteAccessGroupValidatorTest extends ValidatorTestCase
 {
     public function setUp()
     {

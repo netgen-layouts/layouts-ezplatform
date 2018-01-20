@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class PageLayoutResolverTest extends TestCase
+final class PageLayoutResolverTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

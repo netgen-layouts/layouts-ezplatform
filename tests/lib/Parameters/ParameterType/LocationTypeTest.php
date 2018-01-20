@@ -12,7 +12,7 @@ use Netgen\BlockManager\Tests\Parameters\Stubs\Parameter;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
 
-class LocationTypeTest extends TestCase
+final class LocationTypeTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

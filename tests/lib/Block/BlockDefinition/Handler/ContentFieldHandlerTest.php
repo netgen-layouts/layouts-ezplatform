@@ -10,7 +10,7 @@ use Netgen\BlockManager\Ez\Block\BlockDefinition\Handler\ContentFieldHandler;
 use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
 use PHPUnit\Framework\TestCase;
 
-class ContentFieldHandlerTest extends TestCase
+final class ContentFieldHandlerTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

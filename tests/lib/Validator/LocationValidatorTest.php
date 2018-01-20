@@ -10,7 +10,7 @@ use Netgen\BlockManager\Ez\Validator\LocationValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class LocationValidatorTest extends ValidatorTestCase
+final class LocationValidatorTest extends ValidatorTestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

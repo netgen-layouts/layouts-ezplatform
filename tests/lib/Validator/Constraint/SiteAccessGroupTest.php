@@ -5,7 +5,7 @@ namespace Netgen\BlockManager\Ez\Tests\Validator\Constraint;
 use Netgen\BlockManager\Ez\Validator\Constraint\SiteAccessGroup;
 use PHPUnit\Framework\TestCase;
 
-class SiteAccessGroupTest extends TestCase
+final class SiteAccessGroupTest extends TestCase
 {
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\Constraint\SiteAccessGroup::validatedBy

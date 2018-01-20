@@ -9,7 +9,7 @@ use Netgen\ContentBrowser\Form\Type\ContentBrowserMultipleType;
 use Netgen\TagsBundle\API\Repository\TagsService;
 use PHPUnit\Framework\TestCase;
 
-class TagsMapperTest extends TestCase
+final class TagsMapperTest extends TestCase
 {
     /**
      * @var \Netgen\BlockManager\Ez\Parameters\Form\Mapper\TagsMapper

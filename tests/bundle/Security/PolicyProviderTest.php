@@ -6,7 +6,7 @@ use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ConfigBuilde
 use Netgen\Bundle\EzPublishBlockManagerBundle\Security\PolicyProvider;
 use PHPUnit\Framework\TestCase;
 
-class PolicyProviderTest extends TestCase
+final class PolicyProviderTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

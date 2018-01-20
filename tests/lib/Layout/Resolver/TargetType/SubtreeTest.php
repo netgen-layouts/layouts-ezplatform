@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
 
-class SubtreeTest extends TestCase
+final class SubtreeTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

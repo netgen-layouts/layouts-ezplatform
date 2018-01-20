@@ -12,7 +12,7 @@ use Netgen\BlockManager\Ez\Validator\ContentTypeValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class ContentTypeValidatorTest extends ValidatorTestCase
+final class ContentTypeValidatorTest extends ValidatorTestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

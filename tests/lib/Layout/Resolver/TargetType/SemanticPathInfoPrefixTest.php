@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
 
-class SemanticPathInfoPrefixTest extends TestCase
+final class SemanticPathInfoPrefixTest extends TestCase
 {
     /**
      * @var \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix

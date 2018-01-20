@@ -10,7 +10,7 @@ use Netgen\BlockManager\Ez\Locale\LocaleProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
-class LocaleProviderTest extends TestCase
+final class LocaleProviderTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

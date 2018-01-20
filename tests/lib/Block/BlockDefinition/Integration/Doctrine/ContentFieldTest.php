@@ -8,7 +8,7 @@ use Netgen\BlockManager\Tests\Persistence\Doctrine\TestCaseTrait;
 /**
  * @covers \Netgen\BlockManager\Ez\Block\BlockDefinition\Handler\ContentFieldHandler::buildParameters
  */
-class ContentFieldTest extends BaseContentFieldTest
+final class ContentFieldTest extends BaseContentFieldTest
 {
     use TestCaseTrait;
 

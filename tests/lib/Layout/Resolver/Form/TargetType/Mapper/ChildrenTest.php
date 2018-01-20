@@ -6,7 +6,7 @@ use Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Children;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 use PHPUnit\Framework\TestCase;
 
-class ChildrenTest extends TestCase
+final class ChildrenTest extends TestCase
 {
     /**
      * @var \Netgen\BlockManager\Layout\Resolver\Form\TargetType\MapperInterface

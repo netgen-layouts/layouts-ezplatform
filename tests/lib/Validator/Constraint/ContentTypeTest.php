@@ -5,7 +5,7 @@ namespace Netgen\BlockManager\Ez\Tests\Validator\Constraint;
 use Netgen\BlockManager\Ez\Validator\Constraint\ContentType;
 use PHPUnit\Framework\TestCase;
 
-class ContentTypeTest extends TestCase
+final class ContentTypeTest extends TestCase
 {
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\Constraint\ContentType::validatedBy

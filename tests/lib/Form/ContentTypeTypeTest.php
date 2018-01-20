@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContentTypeTypeTest extends FormTestCase
+final class ContentTypeTypeTest extends FormTestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

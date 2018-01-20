@@ -9,7 +9,7 @@ use Netgen\BlockManager\Parameters\Parameter;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 use PHPUnit\Framework\TestCase;
 
-class LocationMapperTest extends TestCase
+final class LocationMapperTest extends TestCase
 {
     /**
      * @var \Netgen\BlockManager\Ez\Parameters\Form\Mapper\LocationMapper

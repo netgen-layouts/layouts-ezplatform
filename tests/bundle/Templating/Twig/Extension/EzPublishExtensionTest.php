@@ -6,7 +6,7 @@ use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublis
 use PHPUnit\Framework\TestCase;
 use Twig\TwigFunction;
 
-class EzPublishExtensionTest extends TestCase
+final class EzPublishExtensionTest extends TestCase
 {
     /**
      * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension

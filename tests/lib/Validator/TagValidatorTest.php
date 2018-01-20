@@ -9,7 +9,7 @@ use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Netgen\TagsBundle\Core\Repository\TagsService;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class TagValidatorTest extends ValidatorTestCase
+final class TagValidatorTest extends ValidatorTestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

@@ -7,7 +7,7 @@ use Netgen\Bundle\BlockManagerBundle\Configuration\ConfigurationInterface;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration;
 use PHPUnit\Framework\TestCase;
 
-class ConfigResolverConfigurationTest extends TestCase
+final class ConfigResolverConfigurationTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

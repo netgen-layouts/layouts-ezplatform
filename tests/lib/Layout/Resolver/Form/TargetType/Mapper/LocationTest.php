@@ -6,7 +6,7 @@ use Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Location;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 use PHPUnit\Framework\TestCase;
 
-class LocationTest extends TestCase
+final class LocationTest extends TestCase
 {
     /**
      * @var \Netgen\BlockManager\Layout\Resolver\Form\TargetType\MapperInterface

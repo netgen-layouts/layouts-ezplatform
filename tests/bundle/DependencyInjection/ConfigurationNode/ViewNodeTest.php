@@ -2,7 +2,7 @@
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\DependencyInjection\ConfigurationNode;
 
-class ViewNodeTest extends ConfigurationNodeTest
+final class ViewNodeTest extends ConfigurationNodeTest
 {
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::addConfiguration

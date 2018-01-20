@@ -6,7 +6,7 @@ use Netgen\BlockManager\Ez\Security\Role\RoleHierarchy;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Security\Core\Role\Role;
 
-class RoleHierarchyTest extends TestCase
+final class RoleHierarchyTest extends TestCase
 {
     /**
      * @covers \Netgen\BlockManager\Ez\Security\Role\RoleHierarchy::__construct

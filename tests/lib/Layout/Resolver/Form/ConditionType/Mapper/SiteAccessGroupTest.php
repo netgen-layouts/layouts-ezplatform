@@ -7,7 +7,7 @@ use Netgen\BlockManager\Form\ChoicesAsValuesTrait;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class SiteAccessGroupTest extends TestCase
+final class SiteAccessGroupTest extends TestCase
 {
     use ChoicesAsValuesTrait;
 

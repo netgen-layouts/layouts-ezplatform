@@ -9,7 +9,7 @@ use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter;
 use PHPUnit\Framework\TestCase;
 
-class ContentValueConverterTest extends TestCase
+final class ContentValueConverterTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

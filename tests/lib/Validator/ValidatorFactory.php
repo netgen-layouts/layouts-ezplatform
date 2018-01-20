@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorFactory;
 use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
 
-class ValidatorFactory implements ConstraintValidatorFactoryInterface
+final class ValidatorFactory implements ConstraintValidatorFactoryInterface
 {
     /**
      * @var \Symfony\Component\Validator\ConstraintValidatorFactoryInterface

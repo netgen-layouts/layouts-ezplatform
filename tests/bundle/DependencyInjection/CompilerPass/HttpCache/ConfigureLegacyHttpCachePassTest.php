@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 
-class ConfigureLegacyHttpCachePassTest extends AbstractCompilerPassTestCase
+final class ConfigureLegacyHttpCachePassTest extends AbstractCompilerPassTestCase
 {
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureLegacyHttpCachePass::process

@@ -11,7 +11,7 @@ use Netgen\BlockManager\Context\Context;
 use Netgen\BlockManager\Ez\ContentProvider\ContentProvider;
 use PHPUnit\Framework\TestCase;
 
-class ContentProviderTest extends TestCase
+final class ContentProviderTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

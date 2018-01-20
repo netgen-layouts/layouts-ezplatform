@@ -6,7 +6,7 @@ use Netgen\BlockManager\Ez\Form\ContentTypeType;
 use Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\ContentType;
 use PHPUnit\Framework\TestCase;
 
-class ContentTypeTest extends TestCase
+final class ContentTypeTest extends TestCase
 {
     /**
      * @var \Netgen\BlockManager\Layout\Resolver\Form\ConditionType\MapperInterface

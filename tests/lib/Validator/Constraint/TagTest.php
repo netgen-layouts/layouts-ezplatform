@@ -5,7 +5,7 @@ namespace Netgen\BlockManager\Ez\Tests\Validator\Constraint;
 use Netgen\BlockManager\Ez\Validator\Constraint\Tag;
 use PHPUnit\Framework\TestCase;
 
-class TagTest extends TestCase
+final class TagTest extends TestCase
 {
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\Constraint\Tag::validatedBy

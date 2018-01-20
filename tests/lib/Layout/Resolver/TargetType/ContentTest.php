@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
 
-class ContentTest extends TestCase
+final class ContentTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject

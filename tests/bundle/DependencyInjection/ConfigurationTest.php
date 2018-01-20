@@ -6,7 +6,7 @@ use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
-class ConfigurationTest extends TestCase
+final class ConfigurationTest extends TestCase
 {
     /**
      * @var \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration

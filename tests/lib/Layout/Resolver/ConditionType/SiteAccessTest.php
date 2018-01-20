@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
 
-class SiteAccessTest extends TestCase
+final class SiteAccessTest extends TestCase
 {
     /**
      * @var \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccess

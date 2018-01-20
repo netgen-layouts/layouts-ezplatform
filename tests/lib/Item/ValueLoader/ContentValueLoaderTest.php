@@ -8,7 +8,7 @@ use Netgen\BlockManager\Exception\Item\ItemException;
 use Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader;
 use PHPUnit\Framework\TestCase;
 
-class ContentValueLoaderTest extends TestCase
+final class ContentValueLoaderTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
