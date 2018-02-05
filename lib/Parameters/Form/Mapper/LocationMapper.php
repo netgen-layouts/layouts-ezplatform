@@ -3,7 +3,7 @@
 namespace Netgen\BlockManager\Ez\Parameters\Form\Mapper;
 
 use Netgen\BlockManager\Parameters\Form\Mapper;
-use Netgen\BlockManager\Parameters\ParameterInterface;
+use Netgen\BlockManager\Parameters\ParameterDefinitionInterface;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 
 final class LocationMapper extends Mapper
@@ -13,7 +13,7 @@ final class LocationMapper extends Mapper
         return ContentBrowserType::class;
     }
 
-    public function mapOptions(ParameterInterface $parameter)
+    public function mapOptions(ParameterDefinitionInterface $parameterDefinition)
     {
         return array(
             'item_type' => 'ezlocation',

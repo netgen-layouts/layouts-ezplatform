@@ -5,7 +5,7 @@ namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType;
 use Netgen\BlockManager\Ez\Tests\Validator\TagsServiceValidatorFactory;
-use Netgen\BlockManager\Tests\Parameters\Stubs\Parameter;
+use Netgen\BlockManager\Tests\Parameters\Stubs\ParameterDefinition;
 use Netgen\TagsBundle\Core\Repository\TagsService;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
@@ -69,11 +69,11 @@ final class TagsTypeTest extends TestCase
      * @param bool $required
      * @param mixed $defaultValue
      *
-     * @return \Netgen\BlockManager\Parameters\ParameterInterface
+     * @return \Netgen\BlockManager\Parameters\ParameterDefinitionInterface
      */
     public function getParameter(array $options = array(), $required = false, $defaultValue = null)
     {
-        return new Parameter(
+        return new ParameterDefinition(
             array(
                 'name' => 'name',
                 'type' => $this->type,

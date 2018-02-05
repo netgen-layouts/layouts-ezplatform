@@ -4,7 +4,7 @@ namespace Netgen\BlockManager\Ez\Parameters\ParameterType;
 
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
-use Netgen\BlockManager\Parameters\ParameterInterface;
+use Netgen\BlockManager\Parameters\ParameterDefinitionInterface;
 use Netgen\BlockManager\Parameters\ParameterType;
 use Netgen\TagsBundle\API\Repository\TagsService;
 use Symfony\Component\OptionsResolver\Options;
@@ -67,7 +67,7 @@ final class TagsType extends ParameterType
         );
     }
 
-    public function export(ParameterInterface $parameter, $value)
+    public function export(ParameterDefinitionInterface $parameterDefinition, $value)
     {
         try {
             /** @var \Netgen\TagsBundle\API\Repository\Values\Tags\Tag $tag */
@@ -83,7 +83,7 @@ final class TagsType extends ParameterType
         }
     }
 
-    public function import(ParameterInterface $parameter, $value)
+    public function import(ParameterDefinitionInterface $parameterDefinition, $value)
     {
         try {
             /** @var \Netgen\TagsBundle\API\Repository\Values\Tags\Tag $tag */
@@ -99,9 +99,9 @@ final class TagsType extends ParameterType
         }
     }
 
-    protected function getValueConstraints(ParameterInterface $parameter, $value)
+    protected function getValueConstraints(ParameterDefinitionInterface $parameterDefinition, $value)
     {
-        $options = $parameter->getOptions();
+        $options = $parameterDefinition->getOptions();
 
         $constraints = array(
             new Constraints\Type(array('type' => 'array')),

@@ -8,7 +8,7 @@ use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentType as EzContentType;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
-use Netgen\BlockManager\Tests\Parameters\Stubs\Parameter;
+use Netgen\BlockManager\Tests\Parameters\Stubs\ParameterDefinition;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
 
@@ -59,11 +59,11 @@ final class ContentTypeTypeTest extends TestCase
      * @param bool $required
      * @param mixed $defaultValue
      *
-     * @return \Netgen\BlockManager\Parameters\ParameterInterface
+     * @return \Netgen\BlockManager\Parameters\ParameterDefinitionInterface
      */
     public function getParameter(array $options = array(), $required = false, $defaultValue = null)
     {
-        return new Parameter(
+        return new ParameterDefinition(
             array(
                 'name' => 'name',
                 'type' => new ContentTypeType(),
@@ -258,7 +258,7 @@ final class ContentTypeTypeTest extends TestCase
         $this->assertEquals(
             $convertedValue,
             $type->fromHash(
-                new Parameter(
+                new ParameterDefinition(
                     array(
                         'type' => $type,
                         'options' => array(
@@ -327,7 +327,7 @@ final class ContentTypeTypeTest extends TestCase
     public function testIsValueEmpty($value, $isEmpty)
     {
         $type = new ContentTypeType();
-        $this->assertEquals($isEmpty, $type->isValueEmpty(new Parameter(), $value));
+        $this->assertEquals($isEmpty, $type->isValueEmpty(new ParameterDefinition(), $value));
     }
 
     /**

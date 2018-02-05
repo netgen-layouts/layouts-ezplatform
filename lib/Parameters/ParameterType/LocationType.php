@@ -5,7 +5,7 @@ namespace Netgen\BlockManager\Ez\Parameters\ParameterType;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Repository;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
-use Netgen\BlockManager\Parameters\ParameterInterface;
+use Netgen\BlockManager\Parameters\ParameterDefinitionInterface;
 use Netgen\BlockManager\Parameters\ParameterType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
@@ -37,7 +37,7 @@ final class LocationType extends ParameterType
         $optionsResolver->setAllowedTypes('allow_invalid', array('bool'));
     }
 
-    public function export(ParameterInterface $parameter, $value)
+    public function export(ParameterDefinitionInterface $parameterDefinition, $value)
     {
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
@@ -53,7 +53,7 @@ final class LocationType extends ParameterType
         }
     }
 
-    public function import(ParameterInterface $parameter, $value)
+    public function import(ParameterDefinitionInterface $parameterDefinition, $value)
     {
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
@@ -69,14 +69,14 @@ final class LocationType extends ParameterType
         }
     }
 
-    public function isValueEmpty(ParameterInterface $parameter, $value)
+    public function isValueEmpty(ParameterDefinitionInterface $parameterDefinition, $value)
     {
         return $value === null;
     }
 
-    protected function getValueConstraints(ParameterInterface $parameter, $value)
+    protected function getValueConstraints(ParameterDefinitionInterface $parameterDefinition, $value)
     {
-        $options = $parameter->getOptions();
+        $options = $parameterDefinition->getOptions();
 
         return array(
             new Constraints\Type(array('type' => 'numeric')),

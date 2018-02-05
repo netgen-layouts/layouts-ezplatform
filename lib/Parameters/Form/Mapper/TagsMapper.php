@@ -3,7 +3,7 @@
 namespace Netgen\BlockManager\Ez\Parameters\Form\Mapper;
 
 use Netgen\BlockManager\Parameters\Form\Mapper;
-use Netgen\BlockManager\Parameters\ParameterInterface;
+use Netgen\BlockManager\Parameters\ParameterDefinitionInterface;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserMultipleType;
 
 final class TagsMapper extends Mapper
@@ -13,9 +13,9 @@ final class TagsMapper extends Mapper
         return ContentBrowserMultipleType::class;
     }
 
-    public function mapOptions(ParameterInterface $parameter)
+    public function mapOptions(ParameterDefinitionInterface $parameterDefinition)
     {
-        $options = $parameter->getOptions();
+        $options = $parameterDefinition->getOptions();
 
         return array(
             'item_type' => 'eztags',

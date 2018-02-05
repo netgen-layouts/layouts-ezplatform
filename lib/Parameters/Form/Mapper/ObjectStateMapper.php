@@ -4,7 +4,7 @@ namespace Netgen\BlockManager\Ez\Parameters\Form\Mapper;
 
 use Netgen\BlockManager\Ez\Form\ObjectStateType;
 use Netgen\BlockManager\Parameters\Form\Mapper;
-use Netgen\BlockManager\Parameters\ParameterInterface;
+use Netgen\BlockManager\Parameters\ParameterDefinitionInterface;
 
 final class ObjectStateMapper extends Mapper
 {
@@ -13,11 +13,11 @@ final class ObjectStateMapper extends Mapper
         return ObjectStateType::class;
     }
 
-    public function mapOptions(ParameterInterface $parameter)
+    public function mapOptions(ParameterDefinitionInterface $parameterDefinition)
     {
         return array(
-            'multiple' => $parameter->getOption('multiple'),
-            'states' => $parameter->getOption('states'),
+            'multiple' => $parameterDefinition->getOption('multiple'),
+            'states' => $parameterDefinition->getOption('states'),
         );
     }
 }

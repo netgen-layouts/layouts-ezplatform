@@ -4,7 +4,7 @@ namespace Netgen\BlockManager\Ez\Parameters\Form\Mapper;
 
 use Netgen\BlockManager\Ez\Form\ContentTypeType;
 use Netgen\BlockManager\Parameters\Form\Mapper;
-use Netgen\BlockManager\Parameters\ParameterInterface;
+use Netgen\BlockManager\Parameters\ParameterDefinitionInterface;
 
 final class ContentTypeMapper extends Mapper
 {
@@ -13,11 +13,11 @@ final class ContentTypeMapper extends Mapper
         return ContentTypeType::class;
     }
 
-    public function mapOptions(ParameterInterface $parameter)
+    public function mapOptions(ParameterDefinitionInterface $parameterDefinition)
     {
         return array(
-            'multiple' => $parameter->getOption('multiple'),
-            'types' => $parameter->getOption('types'),
+            'multiple' => $parameterDefinition->getOption('multiple'),
+            'types' => $parameterDefinition->getOption('types'),
         );
     }
 }

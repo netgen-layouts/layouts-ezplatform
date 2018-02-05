@@ -8,7 +8,7 @@ use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
-use Netgen\BlockManager\Tests\Parameters\Stubs\Parameter;
+use Netgen\BlockManager\Tests\Parameters\Stubs\ParameterDefinition;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
 
@@ -90,11 +90,11 @@ final class ContentTypeTest extends TestCase
      * @param bool $required
      * @param mixed $defaultValue
      *
-     * @return \Netgen\BlockManager\Parameters\ParameterInterface
+     * @return \Netgen\BlockManager\Parameters\ParameterDefinitionInterface
      */
     public function getParameter(array $options = array(), $required = false, $defaultValue = null)
     {
-        return new Parameter(
+        return new ParameterDefinition(
             array(
                 'name' => 'name',
                 'type' => $this->type,
@@ -235,7 +235,7 @@ final class ContentTypeTest extends TestCase
      */
     public function testIsValueEmpty($value, $isEmpty)
     {
-        $this->assertEquals($isEmpty, $this->type->isValueEmpty(new Parameter(), $value));
+        $this->assertEquals($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
     }
 
     /**
