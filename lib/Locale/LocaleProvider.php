@@ -4,6 +4,7 @@ namespace Netgen\BlockManager\Ez\Locale;
 
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\LanguageService;
+use eZ\Publish\API\Repository\Values\Content\Language;
 use eZ\Publish\Core\MVC\Symfony\Locale\LocaleConverterInterface;
 use Netgen\BlockManager\Locale\LocaleProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,19 +61,10 @@ class LocaleProvider implements LocaleProviderInterface
         $languages = $this->languageService->loadLanguages();
 
         foreach ($languages as $language) {
-            if (!$language->enabled) {
-                continue;
-            }
+            $locale = $this->getPosixLocale($language);
 
-            $posixLocale = $this->localeConverter->convertToPOSIX($language->languageCode);
-            if ($posixLocale === null) {
-                continue;
-            }
-
-            $localeName = $this->localeBundle->getLocaleName($posixLocale);
-
-            if ($localeName !== null) {
-                $availableLocales[$posixLocale] = $localeName;
+            if (is_array($locale)) {
+                $availableLocales[$locale[0]] = $locale[1];
             }
         }
 
@@ -92,22 +84,42 @@ class LocaleProvider implements LocaleProviderInterface
                 continue;
             }
 
-            if (!$language->enabled) {
-                continue;
-            }
+            $locale = $this->getPosixLocale($language);
 
-            $posixLocale = $this->localeConverter->convertToPOSIX($language->languageCode);
-            if ($posixLocale === null) {
-                continue;
-            }
-
-            $localeName = $this->localeBundle->getLocaleName($posixLocale);
-
-            if ($localeName !== null) {
-                $requestLocales[] = $posixLocale;
+            if (is_array($locale)) {
+                $requestLocales[] = $locale[0];
             }
         }
 
         return $requestLocales;
+    }
+
+    /**
+     * Returns the array with POSIX locale code and name for provided eZ Publish language.
+     *
+     * If POSIX locale does not exist or if language is not enabled, null will be returned.
+     *
+     * @param \eZ\Publish\API\Repository\Values\Content\Language $language
+     *
+     * @return array|null
+     */
+    private function getPosixLocale(Language $language)
+    {
+        if (!$language->enabled) {
+            return null;
+        }
+
+        $posixLocale = $this->localeConverter->convertToPOSIX($language->languageCode);
+        if ($posixLocale === null) {
+            return null;
+        }
+
+        $localeName = $this->localeBundle->getLocaleName($posixLocale);
+
+        if ($localeName === null) {
+            return null;
+        }
+
+        return array($posixLocale, $localeName);
     }
 }
