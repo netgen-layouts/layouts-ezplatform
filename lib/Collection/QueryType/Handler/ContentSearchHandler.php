@@ -91,6 +91,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         }
 
         $locationQuery = $this->buildLocationQuery($query, $parentLocation);
+        $locationQuery->performCount = false;
         $locationQuery->offset = $offset;
         $locationQuery->limit = $limit;
 
