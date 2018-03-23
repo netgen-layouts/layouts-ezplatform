@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 interface ContentExtractorInterface
 {
     /**
-     * Extracts the eZ Publish content value object from provided request.
+     * Extracts the eZ Publish content object from provided request.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
@@ -16,7 +16,7 @@ interface ContentExtractorInterface
     public function extractContent(Request $request);
 
     /**
-     * Extracts the eZ Publish location value object from provided request.
+     * Extracts the eZ Publish location object from provided request.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      *

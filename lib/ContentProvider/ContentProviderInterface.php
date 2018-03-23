@@ -9,14 +9,14 @@ namespace Netgen\BlockManager\Ez\ContentProvider;
 interface ContentProviderInterface
 {
     /**
-     * Provides the eZ Publish content value object.
+     * Provides the eZ Publish content object.
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Content|null
      */
     public function provideContent();
 
     /**
-     * Provides the eZ Publish location value object.
+     * Provides the eZ Publish location object.
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Location|null
      */
