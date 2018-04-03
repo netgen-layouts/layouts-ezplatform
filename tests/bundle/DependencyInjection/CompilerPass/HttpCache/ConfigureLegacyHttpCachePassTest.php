@@ -14,6 +14,15 @@ use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 
 final class ConfigureLegacyHttpCachePassTest extends AbstractCompilerPassTestCase
 {
+    public function setUp()
+    {
+        if (!class_exists(FOSPurgeClient::class)) {
+            require_once __DIR__ . '/Stubs/LegacyClasses.php';
+        }
+
+        parent::setUp();
+    }
+
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureLegacyHttpCachePass::process
      *
