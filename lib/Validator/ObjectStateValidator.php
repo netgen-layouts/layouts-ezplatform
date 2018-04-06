@@ -38,13 +38,18 @@ final class ObjectStateValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, ObjectState::class);
         }
 
+        if ($constraint->allowedStates !== null && !is_array($constraint->allowedStates)) {
+            throw new UnexpectedTypeException($constraint->allowedStates, 'array');
+        }
+
         if (!is_string($value)) {
             throw new UnexpectedTypeException($value, 'string');
         }
 
+        $originalValue = $value;
         $value = explode('|', $value);
         if (!is_array($value) || count($value) !== 2) {
-            throw new UnexpectedTypeException($value, 'string with "|" delimiter');
+            throw new UnexpectedTypeException($originalValue, 'string with "|" delimiter');
         }
 
         $stateIdentifiers = $this->loadStateIdentifiers();
@@ -69,20 +74,18 @@ final class ObjectStateValidator extends ConstraintValidator
             return;
         }
 
-        foreach (array_keys($stateIdentifiers) as $groupIdentifier) {
-            if (
-                !array_key_exists($groupIdentifier, $constraint->allowedStates) ||
-                $constraint->allowedStates[$groupIdentifier] === true
-            ) {
-                return;
-            }
+        if (
+            !array_key_exists($value[0], $constraint->allowedStates) ||
+            $constraint->allowedStates[$value[0]] === true
+        ) {
+            return;
+        }
 
-            if (
-                is_array($constraint->allowedStates[$groupIdentifier]) &&
-                in_array($value[1], $constraint->allowedStates[$groupIdentifier], true)
-            ) {
-                return;
-            }
+        if (
+            is_array($constraint->allowedStates[$value[0]]) &&
+            in_array($value[1], $constraint->allowedStates[$value[0]], true)
+        ) {
+            return;
         }
 
         $this->context->buildViolation($constraint->notAllowedMessage)
@@ -98,26 +101,26 @@ final class ObjectStateValidator extends ConstraintValidator
      */
     private function loadStateIdentifiers()
     {
-        if ($this->stateIdentifiers !== null) {
-            return $this->stateIdentifiers;
+        if ($this->stateIdentifiers === null) {
+            $this->stateIdentifiers = $this->repository->sudo(
+                function (Repository $repository) {
+                    $stateIdentifiers = array();
+
+                    $stateGroups = $repository->getObjectStateService()->loadObjectStateGroups();
+                    foreach ($stateGroups as $stateGroup) {
+                        $stateIdentifiers[$stateGroup->identifier] = array();
+
+                        $states = $repository->getObjectStateService()->loadObjectStates($stateGroup);
+                        foreach ($states as $state) {
+                            $stateIdentifiers[$stateGroup->identifier][] = $state->identifier;
+                        }
+                    }
+
+                    return $stateIdentifiers;
+                }
+            );
         }
 
-        return $this->stateIdentifiers = $this->repository->sudo(
-            function (Repository $repository) {
-                $stateIdentifiers = array();
-
-                $stateGroups = $repository->getObjectStateService()->loadObjectStateGroups();
-                foreach ($stateGroups as $stateGroup) {
-                    $stateIdentifiers[$stateGroup->identifier] = array();
-
-                    $states = $repository->getObjectStateService()->loadObjectStates($stateGroup);
-                    foreach ($states as $state) {
-                        $stateIdentifiers[$stateGroup->identifier][] = $state->identifier;
-                    }
-                }
-
-                return $stateIdentifiers;
-            }
-        );
+        return $this->stateIdentifiers;
     }
 }
