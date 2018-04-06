@@ -9,15 +9,15 @@
     ],
     "require": {
         "netgen/block-manager": "~0.11.0",
-        "ezsystems/ezpublish-kernel": "^5.4|^6.0|^7.0"
+        "ezsystems/ezpublish-kernel": "^5.4 || ^6.0 || ^7.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.7|^7.0",
+        "phpunit/phpunit": "^5.7 || ^7.0",
         "symfony/phpunit-bridge": "^4.0",
         "ezsystems/ezplatform-http-cache": "*",
-        "matthiasnoback/symfony-dependency-injection-test": "^1.2|^3.0",
-        "matthiasnoback/symfony-config-test": "^2.2|^4.0",
-        "netgen/tagsbundle": "^2.0|^3.0",
+        "matthiasnoback/symfony-dependency-injection-test": "^1.2 || ^3.0",
+        "matthiasnoback/symfony-config-test": "^2.2 || ^4.0",
+        "netgen/tagsbundle": "^2.0 || ^3.0",
         "franzl/studio": "*"
     },
     "scripts": {
