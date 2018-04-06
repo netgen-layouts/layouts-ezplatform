@@ -49,7 +49,7 @@ final class ContentType extends ParameterType
 
             return $contentInfo->remoteId;
         } catch (NotFoundException $e) {
-            // Do nothing
+            return null;
         }
     }
 
@@ -65,7 +65,7 @@ final class ContentType extends ParameterType
 
             return $contentInfo->id;
         } catch (NotFoundException $e) {
-            // Do nothing
+            return null;
         }
     }
 
