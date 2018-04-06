@@ -63,9 +63,11 @@ class LocaleProvider implements LocaleProviderInterface
         foreach ($languages as $language) {
             $locale = $this->getPosixLocale($language);
 
-            if (is_array($locale)) {
-                $availableLocales[$locale[0]] = $locale[1];
+            if (!is_array($locale)) {
+                continue;
             }
+
+            $availableLocales[$locale[0]] = $locale[1];
         }
 
         asort($availableLocales);
@@ -86,9 +88,11 @@ class LocaleProvider implements LocaleProviderInterface
 
             $locale = $this->getPosixLocale($language);
 
-            if (is_array($locale)) {
-                $requestLocales[] = $locale[0];
+            if (!is_array($locale)) {
+                continue;
             }
+
+            $requestLocales[] = $locale[0];
         }
 
         return $requestLocales;
