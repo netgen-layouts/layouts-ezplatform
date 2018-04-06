@@ -3,9 +3,9 @@
 namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
 
 use eZ\Publish\API\Repository\ContentService;
+use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
-use eZ\Publish\Core\Repository\Values\Content\Content;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\BlockManager\Tests\Parameters\Stubs\ParameterDefinition;
@@ -51,6 +51,7 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::__construct
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::getIdentifier
      */
     public function testGetIdentifier()
@@ -167,6 +168,62 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::export
+     */
+    public function testExport()
+    {
+        $this->contentServiceMock
+            ->expects($this->once())
+            ->method('loadContentInfo')
+            ->with($this->equalTo(42))
+            ->will($this->returnValue(new ContentInfo(array('remoteId' => 'abc'))));
+
+        $this->assertEquals('abc', $this->type->export($this->getParameter(), 42));
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::export
+     */
+    public function testExportWithNonExistingContent()
+    {
+        $this->contentServiceMock
+            ->expects($this->once())
+            ->method('loadContentInfo')
+            ->with($this->equalTo(42))
+            ->will($this->throwException(new NotFoundException('contentInfo', 42)));
+
+        $this->assertNull($this->type->export($this->getParameter(), 42));
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::import
+     */
+    public function testImport()
+    {
+        $this->contentServiceMock
+            ->expects($this->once())
+            ->method('loadContentInfoByRemoteId')
+            ->with($this->equalTo('abc'))
+            ->will($this->returnValue(new ContentInfo(array('id' => 42))));
+
+        $this->assertEquals(42, $this->type->import($this->getParameter(), 'abc'));
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::import
+     */
+    public function testImportWithNonExistingContent()
+    {
+        $this->contentServiceMock
+            ->expects($this->once())
+            ->method('loadContentInfoByRemoteId')
+            ->with($this->equalTo('abc'))
+            ->will($this->throwException(new NotFoundException('contentInfo', 'abc')));
+
+        $this->assertNull($this->type->import($this->getParameter(), 'abc'));
+    }
+
+    /**
      * @param mixed $value
      * @param bool $required
      * @param bool $isValid
@@ -247,7 +304,7 @@ final class ContentTypeTest extends TestCase
     {
         return array(
             array(null, true),
-            array(new Content(), false),
+            array(new ContentInfo(), false),
         );
     }
 }

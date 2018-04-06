@@ -11,35 +11,30 @@ use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
 final class TagsServiceValidatorFactory implements ConstraintValidatorFactoryInterface
 {
     /**
-     * @var \Netgen\TagsBundle\API\Repository\TagsService
-     */
-    private $tagsService;
-
-    /**
      * @var \Symfony\Component\Validator\ConstraintValidatorFactoryInterface
      */
     private $baseValidatorFactory;
 
     /**
-     * Constructor.
-     *
-     * @param \Netgen\TagsBundle\API\Repository\TagsService $tagsService
+     * @var \Symfony\Component\Validator\Validator\ValidatorInterface[]
      */
+    private $validators = array();
+
     public function __construct(TagsService $tagsService)
     {
-        $this->tagsService = $tagsService;
         $this->baseValidatorFactory = new ConstraintValidatorFactory();
+
+        $this->validators = array(
+            'ngbm_eztags' => new TagValidator($tagsService),
+        );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getInstance(Constraint $constraint)
     {
         $name = $constraint->validatedBy();
 
-        if ($name === 'ngbm_eztags') {
-            return new TagValidator($this->tagsService);
+        if (isset($this->validators[$name])) {
+            return $this->validators[$name];
         }
 
         return $this->baseValidatorFactory->getInstance($constraint);

@@ -51,6 +51,7 @@ final class LocationTypeTest extends TestCase
     }
 
     /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::__construct
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::getIdentifier
      */
     public function testGetIdentifier()
@@ -164,6 +165,62 @@ final class LocationTypeTest extends TestCase
                 ),
             ),
         );
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::export
+     */
+    public function testExport()
+    {
+        $this->locationServiceMock
+            ->expects($this->once())
+            ->method('loadLocation')
+            ->with($this->equalTo(42))
+            ->will($this->returnValue(new Location(array('remoteId' => 'abc'))));
+
+        $this->assertEquals('abc', $this->type->export($this->getParameter(), 42));
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::export
+     */
+    public function testExportWithNonExistingLocation()
+    {
+        $this->locationServiceMock
+            ->expects($this->once())
+            ->method('loadLocation')
+            ->with($this->equalTo(42))
+            ->will($this->throwException(new NotFoundException('location', 42)));
+
+        $this->assertNull($this->type->export($this->getParameter(), 42));
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::import
+     */
+    public function testImport()
+    {
+        $this->locationServiceMock
+            ->expects($this->once())
+            ->method('loadLocationByRemoteId')
+            ->with($this->equalTo('abc'))
+            ->will($this->returnValue(new Location(array('id' => 42))));
+
+        $this->assertEquals(42, $this->type->import($this->getParameter(), 'abc'));
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::import
+     */
+    public function testImportWithNonExistingLocation()
+    {
+        $this->locationServiceMock
+            ->expects($this->once())
+            ->method('loadLocationByRemoteId')
+            ->with($this->equalTo('abc'))
+            ->will($this->throwException(new NotFoundException('location', 'abc')));
+
+        $this->assertNull($this->type->import($this->getParameter(), 'abc'));
     }
 
     /**

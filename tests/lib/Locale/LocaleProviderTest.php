@@ -201,4 +201,34 @@ final class LocaleProviderTest extends TestCase
 
         $this->assertEquals(array(), $requestLocales);
     }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::setLanguages
+     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getRequestLocales
+     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getPosixLocale
+     */
+    public function testGetRequestLocalesWithNonExistingPosixLocale()
+    {
+        $this->localeProvider->setLanguages(array('eng-GB'));
+
+        $this->languageServiceMock
+            ->expects($this->at(0))
+            ->method('loadLanguage')
+            ->with($this->equalTo('eng-GB'))
+            ->will(
+                $this->returnValue(
+                    new Language(array('languageCode' => 'eng-GB', 'enabled' => true))
+                )
+            );
+
+        $this->localeConverterMock
+            ->expects($this->at(0))
+            ->method('convertToPOSIX')
+            ->with($this->equalTo('eng-GB'))
+            ->will($this->returnValue('unknown'));
+
+        $requestLocales = $this->localeProvider->getRequestLocales(Request::create(''));
+
+        $this->assertEquals(array(), $requestLocales);
+    }
 }

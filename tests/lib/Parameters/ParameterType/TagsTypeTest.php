@@ -6,6 +6,7 @@ use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType;
 use Netgen\BlockManager\Ez\Tests\Validator\TagsServiceValidatorFactory;
 use Netgen\BlockManager\Tests\Parameters\Stubs\ParameterDefinition;
+use Netgen\TagsBundle\API\Repository\Values\Tags\Tag;
 use Netgen\TagsBundle\Core\Repository\TagsService;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
@@ -24,12 +25,13 @@ final class TagsTypeTest extends TestCase
 
     public function setUp()
     {
-        $this->tagsServiceMock = $this->createPartialMock(TagsService::class, array('loadTag'));
+        $this->tagsServiceMock = $this->createPartialMock(TagsService::class, array('loadTag', 'loadTagByRemoteId'));
 
         $this->type = new TagsType($this->tagsServiceMock);
     }
 
     /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::__construct
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::getIdentifier
      */
     public function testGetIdentifier()
@@ -231,6 +233,62 @@ final class TagsTypeTest extends TestCase
                 ),
             ),
         );
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::export
+     */
+    public function testExport()
+    {
+        $this->tagsServiceMock
+            ->expects($this->once())
+            ->method('loadTag')
+            ->with($this->equalTo(42))
+            ->will($this->returnValue(new Tag(array('remoteId' => 'abc'))));
+
+        $this->assertEquals('abc', $this->type->export($this->getParameter(), 42));
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::export
+     */
+    public function testExportWithNonExistingTag()
+    {
+        $this->tagsServiceMock
+            ->expects($this->once())
+            ->method('loadTag')
+            ->with($this->equalTo(42))
+            ->will($this->throwException(new NotFoundException('tag', 42)));
+
+        $this->assertNull($this->type->export($this->getParameter(), 42));
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::import
+     */
+    public function testImport()
+    {
+        $this->tagsServiceMock
+            ->expects($this->once())
+            ->method('loadTagByRemoteId')
+            ->with($this->equalTo('abc'))
+            ->will($this->returnValue(new Tag(array('id' => 42))));
+
+        $this->assertEquals(42, $this->type->import($this->getParameter(), 'abc'));
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::import
+     */
+    public function testImportWithNonExistingTag()
+    {
+        $this->tagsServiceMock
+            ->expects($this->once())
+            ->method('loadTagByRemoteId')
+            ->with($this->equalTo('abc'))
+            ->will($this->throwException(new NotFoundException('tag', 'abc')));
+
+        $this->assertNull($this->type->import($this->getParameter(), 'abc'));
     }
 
     /**
