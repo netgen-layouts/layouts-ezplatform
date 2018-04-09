@@ -3,7 +3,7 @@
 
     {% if image_alias %}
         <div class="image">
-            <img src="{{ image_alias.uri }}" />
+            <img src="{{ asset(image_alias.uri) }}" />
         </div>
     {% endif %}
 {% endif %}
