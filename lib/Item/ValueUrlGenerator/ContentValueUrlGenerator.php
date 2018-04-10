@@ -1,12 +1,12 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Item\ValueUrlBuilder;
+namespace Netgen\BlockManager\Ez\Item\ValueUrlGenerator;
 
 use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
-use Netgen\BlockManager\Item\ValueUrlBuilderInterface;
+use Netgen\BlockManager\Item\ValueUrlGeneratorInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-final class ContentValueUrlBuilder implements ValueUrlBuilderInterface
+final class ContentValueUrlGenerator implements ValueUrlGeneratorInterface
 {
     /**
      * @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface
@@ -18,7 +18,7 @@ final class ContentValueUrlBuilder implements ValueUrlBuilderInterface
         $this->urlGenerator = $urlGenerator;
     }
 
-    public function getUrl($object)
+    public function generate($object)
     {
         return $this->urlGenerator->generate(
             UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
