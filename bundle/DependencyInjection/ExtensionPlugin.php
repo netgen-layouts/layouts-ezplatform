@@ -16,7 +16,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
     /**
      * @var array
      */
-    const SITEACCESS_AWARE_SETTINGS = array(
+    private static $siteAccessAwareSettings = array(
         'view',
         'design',
     );
@@ -35,7 +35,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
      * Pre-processes the configuration before it is resolved.
      *
      * The point of the preprocessor is to generate eZ Publish siteaccess aware
-     * configuration for every key that is available in self::SITEACCESS_AWARE_SETTINGS.
+     * configuration for every key that is available in self::$siteAccessAwareSettings.
      *
      * With this, the following:
      *
@@ -81,7 +81,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
             }
 
             foreach ($config as $configName => $configValues) {
-                if (!in_array($configName, self::SITEACCESS_AWARE_SETTINGS, true)) {
+                if (!in_array($configName, self::$siteAccessAwareSettings, true)) {
                     unset($config[$configName]);
                 }
             }
@@ -129,7 +129,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
 
         $processor = new ConfigurationProcessor($this->container, 'netgen_block_manager');
         foreach ($config as $key => $value) {
-            if ($key === 'system' || !in_array($key, self::SITEACCESS_AWARE_SETTINGS, true)) {
+            if ($key === 'system' || !in_array($key, self::$siteAccessAwareSettings, true)) {
                 continue;
             }
 
