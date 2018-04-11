@@ -16,9 +16,6 @@ final class SiteAccessGroupTest extends TestCase
      */
     private $conditionType;
 
-    /**
-     * Sets up the route target tests.
-     */
     public function setUp()
     {
         $this->conditionType = new SiteAccessGroup(

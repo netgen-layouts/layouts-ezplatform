@@ -40,9 +40,6 @@ abstract class ConfigurationNodeTest extends TestCase
      */
     protected $partialProcessor;
 
-    /**
-     * Sets up the test.
-     */
     public function setUp()
     {
         $this->plugin = new ExtensionPlugin(new ContainerBuilder());

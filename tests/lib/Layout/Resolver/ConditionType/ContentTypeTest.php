@@ -38,9 +38,6 @@ final class ContentTypeTest extends TestCase
      */
     private $contentTypeServiceMock;
 
-    /**
-     * Sets up the route target tests.
-     */
     public function setUp()
     {
         $this->contentExtractorMock = $this->createMock(ContentExtractorInterface::class);
