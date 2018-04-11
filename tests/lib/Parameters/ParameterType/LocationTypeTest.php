@@ -8,12 +8,15 @@ use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
-use Netgen\BlockManager\Tests\Parameters\Stubs\ParameterDefinition;
+use Netgen\BlockManager\Parameters\ParameterDefinition;
+use Netgen\BlockManager\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
 
 final class LocationTypeTest extends TestCase
 {
+    use ParameterTypeTestTrait;
+
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
@@ -23,11 +26,6 @@ final class LocationTypeTest extends TestCase
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
     private $locationServiceMock;
-
-    /**
-     * @var \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType
-     */
-    private $type;
 
     public function setUp()
     {
@@ -68,7 +66,7 @@ final class LocationTypeTest extends TestCase
      */
     public function testValidOptions($options, $resolvedOptions)
     {
-        $parameter = $this->getParameter($options);
+        $parameter = $this->getParameterDefinition($options);
         $this->assertEquals($resolvedOptions, $parameter->getOptions());
     }
 
@@ -81,29 +79,7 @@ final class LocationTypeTest extends TestCase
      */
     public function testInvalidOptions($options)
     {
-        $this->getParameter($options);
-    }
-
-    /**
-     * Returns the parameter under test.
-     *
-     * @param array $options
-     * @param bool $required
-     * @param mixed $defaultValue
-     *
-     * @return \Netgen\BlockManager\Parameters\ParameterDefinitionInterface
-     */
-    public function getParameter(array $options = array(), $required = false, $defaultValue = null)
-    {
-        return new ParameterDefinition(
-            array(
-                'name' => 'name',
-                'type' => $this->type,
-                'options' => $options,
-                'isRequired' => $required,
-                'defaultValue' => $defaultValue,
-            )
-        );
+        $this->getParameterDefinition($options);
     }
 
     /**
@@ -178,7 +154,7 @@ final class LocationTypeTest extends TestCase
             ->with($this->equalTo(42))
             ->will($this->returnValue(new Location(array('remoteId' => 'abc'))));
 
-        $this->assertEquals('abc', $this->type->export($this->getParameter(), 42));
+        $this->assertEquals('abc', $this->type->export($this->getParameterDefinition(), 42));
     }
 
     /**
@@ -192,7 +168,7 @@ final class LocationTypeTest extends TestCase
             ->with($this->equalTo(42))
             ->will($this->throwException(new NotFoundException('location', 42)));
 
-        $this->assertNull($this->type->export($this->getParameter(), 42));
+        $this->assertNull($this->type->export($this->getParameterDefinition(), 42));
     }
 
     /**
@@ -206,7 +182,7 @@ final class LocationTypeTest extends TestCase
             ->with($this->equalTo('abc'))
             ->will($this->returnValue(new Location(array('id' => 42))));
 
-        $this->assertEquals(42, $this->type->import($this->getParameter(), 'abc'));
+        $this->assertEquals(42, $this->type->import($this->getParameterDefinition(), 'abc'));
     }
 
     /**
@@ -220,7 +196,7 @@ final class LocationTypeTest extends TestCase
             ->with($this->equalTo('abc'))
             ->will($this->throwException(new NotFoundException('location', 'abc')));
 
-        $this->assertNull($this->type->import($this->getParameter(), 'abc'));
+        $this->assertNull($this->type->import($this->getParameterDefinition(), 'abc'));
     }
 
     /**
@@ -249,7 +225,7 @@ final class LocationTypeTest extends TestCase
                 );
         }
 
-        $parameter = $this->getParameter(array(), $required);
+        $parameter = $this->getParameterDefinition(array(), $required);
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();

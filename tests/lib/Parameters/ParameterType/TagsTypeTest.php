@@ -5,7 +5,7 @@ namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType;
 use Netgen\BlockManager\Ez\Tests\Validator\TagsServiceValidatorFactory;
-use Netgen\BlockManager\Tests\Parameters\Stubs\ParameterDefinition;
+use Netgen\BlockManager\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use Netgen\TagsBundle\API\Repository\Values\Tags\Tag;
 use Netgen\TagsBundle\Core\Repository\TagsService;
 use PHPUnit\Framework\TestCase;
@@ -13,15 +13,12 @@ use Symfony\Component\Validator\Validation;
 
 final class TagsTypeTest extends TestCase
 {
+    use ParameterTypeTestTrait;
+
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
     private $tagsServiceMock;
-
-    /**
-     * @var \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType
-     */
-    private $type;
 
     public function setUp()
     {
@@ -48,7 +45,7 @@ final class TagsTypeTest extends TestCase
      */
     public function testValidOptions($options, $resolvedOptions)
     {
-        $parameter = $this->getParameter($options);
+        $parameter = $this->getParameterDefinition($options);
         $this->assertEquals($resolvedOptions, $parameter->getOptions());
     }
 
@@ -61,29 +58,7 @@ final class TagsTypeTest extends TestCase
      */
     public function testInvalidOptions($options)
     {
-        $this->getParameter($options);
-    }
-
-    /**
-     * Returns the parameter under test.
-     *
-     * @param array $options
-     * @param bool $required
-     * @param mixed $defaultValue
-     *
-     * @return \Netgen\BlockManager\Parameters\ParameterDefinitionInterface
-     */
-    public function getParameter(array $options = array(), $required = false, $defaultValue = null)
-    {
-        return new ParameterDefinition(
-            array(
-                'name' => 'name',
-                'type' => $this->type,
-                'options' => $options,
-                'isRequired' => $required,
-                'defaultValue' => $defaultValue,
-            )
-        );
+        $this->getParameterDefinition($options);
     }
 
     /**
@@ -246,7 +221,7 @@ final class TagsTypeTest extends TestCase
             ->with($this->equalTo(42))
             ->will($this->returnValue(new Tag(array('remoteId' => 'abc'))));
 
-        $this->assertEquals('abc', $this->type->export($this->getParameter(), 42));
+        $this->assertEquals('abc', $this->type->export($this->getParameterDefinition(), 42));
     }
 
     /**
@@ -260,7 +235,7 @@ final class TagsTypeTest extends TestCase
             ->with($this->equalTo(42))
             ->will($this->throwException(new NotFoundException('tag', 42)));
 
-        $this->assertNull($this->type->export($this->getParameter(), 42));
+        $this->assertNull($this->type->export($this->getParameterDefinition(), 42));
     }
 
     /**
@@ -274,7 +249,7 @@ final class TagsTypeTest extends TestCase
             ->with($this->equalTo('abc'))
             ->will($this->returnValue(new Tag(array('id' => 42))));
 
-        $this->assertEquals(42, $this->type->import($this->getParameter(), 'abc'));
+        $this->assertEquals(42, $this->type->import($this->getParameterDefinition(), 'abc'));
     }
 
     /**
@@ -288,7 +263,7 @@ final class TagsTypeTest extends TestCase
             ->with($this->equalTo('abc'))
             ->will($this->throwException(new NotFoundException('tag', 'abc')));
 
-        $this->assertNull($this->type->import($this->getParameter(), 'abc'));
+        $this->assertNull($this->type->import($this->getParameterDefinition(), 'abc'));
     }
 
     /**
@@ -321,7 +296,7 @@ final class TagsTypeTest extends TestCase
             }
         }
 
-        $parameter = $this->getParameter(array('min' => 1, 'max' => 3), $required);
+        $parameter = $this->getParameterDefinition(array('min' => 1, 'max' => 3), $required);
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new TagsServiceValidatorFactory($this->tagsServiceMock))
             ->getValidator();

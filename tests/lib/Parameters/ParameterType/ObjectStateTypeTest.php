@@ -8,12 +8,15 @@ use eZ\Publish\Core\Repository\Values\ObjectState\ObjectState as EzObjectState;
 use eZ\Publish\Core\Repository\Values\ObjectState\ObjectStateGroup;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\ObjectStateType;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
-use Netgen\BlockManager\Tests\Parameters\Stubs\ParameterDefinition;
+use Netgen\BlockManager\Parameters\ParameterDefinition;
+use Netgen\BlockManager\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
 
 final class ObjectStateTypeTest extends TestCase
 {
+    use ParameterTypeTestTrait;
+
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
@@ -41,6 +44,8 @@ final class ObjectStateTypeTest extends TestCase
             ->expects($this->any())
             ->method('getObjectStateService')
             ->will($this->returnValue($this->objectStateServiceMock));
+
+        $this->type = new ObjectStateType();
     }
 
     /**
@@ -48,30 +53,7 @@ final class ObjectStateTypeTest extends TestCase
      */
     public function testGetIdentifier()
     {
-        $type = new ObjectStateType();
-        $this->assertEquals('ez_object_state', $type->getIdentifier());
-    }
-
-    /**
-     * Returns the parameter under test.
-     *
-     * @param array $options
-     * @param bool $required
-     * @param mixed $defaultValue
-     *
-     * @return \Netgen\BlockManager\Parameters\ParameterDefinitionInterface
-     */
-    public function getParameter(array $options = array(), $required = false, $defaultValue = null)
-    {
-        return new ParameterDefinition(
-            array(
-                'name' => 'name',
-                'type' => new ObjectStateType(),
-                'options' => $options,
-                'isRequired' => $required,
-                'defaultValue' => $defaultValue,
-            )
-        );
+        $this->assertEquals('ez_object_state', $this->type->getIdentifier());
     }
 
     /**
@@ -83,7 +65,7 @@ final class ObjectStateTypeTest extends TestCase
      */
     public function testValidOptions($options, $resolvedOptions)
     {
-        $parameter = $this->getParameter($options);
+        $parameter = $this->getParameterDefinition($options);
         $this->assertEquals($resolvedOptions, $parameter->getOptions());
     }
 
@@ -96,7 +78,7 @@ final class ObjectStateTypeTest extends TestCase
      */
     public function testInvalidOptions($options)
     {
-        $this->getParameter($options);
+        $this->getParameterDefinition($options);
     }
 
     /**
@@ -223,15 +205,13 @@ final class ObjectStateTypeTest extends TestCase
                 ->will($this->returnValue(array()));
         }
 
-        $type = new ObjectStateType();
-
         $options = $value !== null ? array('multiple' => is_array($value)) : array();
-        $parameter = $this->getParameter($options, $required);
+        $parameter = $this->getParameterDefinition($options, $required);
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
 
-        $errors = $validator->validate($value, $type->getConstraints($parameter, $value));
+        $errors = $validator->validate($value, $this->type->getConstraints($parameter, $value));
         $this->assertEquals($isValid, $errors->count() === 0);
     }
 
@@ -274,17 +254,12 @@ final class ObjectStateTypeTest extends TestCase
      */
     public function testFromHash($value, $convertedValue, $multiple)
     {
-        $type = new ObjectStateType();
-
         $this->assertEquals(
             $convertedValue,
-            $type->fromHash(
-                new ParameterDefinition(
+            $this->type->fromHash(
+                $this->getParameterDefinition(
                     array(
-                        'type' => $type,
-                        'options' => array(
-                            'multiple' => $multiple,
-                        ),
+                        'multiple' => $multiple,
                     )
                 ),
                 $value
@@ -347,8 +322,7 @@ final class ObjectStateTypeTest extends TestCase
      */
     public function testIsValueEmpty($value, $isEmpty)
     {
-        $type = new ObjectStateType();
-        $this->assertEquals($isEmpty, $type->isValueEmpty(new ParameterDefinition(), $value));
+        $this->assertEquals($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
     }
 
     /**
