@@ -49,7 +49,7 @@ final class LocationType extends ParameterType
 
             return $location->remoteId;
         } catch (NotFoundException $e) {
-            return null;
+            return;
         }
     }
 
@@ -65,7 +65,7 @@ final class LocationType extends ParameterType
 
             return $location->id;
         } catch (NotFoundException $e) {
-            return null;
+            return;
         }
     }
 

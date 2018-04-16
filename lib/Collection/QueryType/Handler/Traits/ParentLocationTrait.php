@@ -84,7 +84,7 @@ trait ParentLocationTrait
 
         $parentLocationId = $query->getParameter('parent_location_id')->getValue();
         if (empty($parentLocationId)) {
-            return null;
+            return;
         }
 
         try {
@@ -92,7 +92,7 @@ trait ParentLocationTrait
 
             return $parentLocation->invisible ? null : $parentLocation;
         } catch (Exception $e) {
-            return null;
+            return;
         }
     }
 }

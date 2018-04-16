@@ -110,18 +110,18 @@ class LocaleProvider implements LocaleProviderInterface
     private function getPosixLocale(Language $language)
     {
         if (!$language->enabled) {
-            return null;
+            return;
         }
 
         $posixLocale = $this->localeConverter->convertToPOSIX($language->languageCode);
         if ($posixLocale === null) {
-            return null;
+            return;
         }
 
         $localeName = $this->localeBundle->getLocaleName($posixLocale);
 
         if ($localeName === null) {
-            return null;
+            return;
         }
 
         return array($posixLocale, $localeName);

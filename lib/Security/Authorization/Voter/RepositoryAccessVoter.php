@@ -77,7 +77,7 @@ final class RepositoryAccessVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        return is_string($attribute) && strpos($attribute, 'ROLE_NGBM_') === 0;
+        return is_string($attribute) && mb_strpos($attribute, 'ROLE_NGBM_') === 0;
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
