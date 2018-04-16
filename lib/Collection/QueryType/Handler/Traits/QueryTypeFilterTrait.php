@@ -47,7 +47,8 @@ trait QueryTypeFilterTrait
         }
 
         return new Criterion\Location\Depth(
-            Criterion\Operator::EQ, $parentLocation->depth + 1
+            Criterion\Operator::EQ,
+            $parentLocation->depth + 1
         );
     }
 }

@@ -10,8 +10,8 @@ use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 final class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
 {
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\DefaultAppPreviewPass::process
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\DefaultAppPreviewPass::addDefaultPreviewRule
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\DefaultAppPreviewPass::process
      */
     public function testProcess()
     {

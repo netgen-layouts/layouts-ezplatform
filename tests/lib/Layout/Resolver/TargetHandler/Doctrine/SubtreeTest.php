@@ -8,9 +8,9 @@ use Netgen\BlockManager\Tests\Layout\Resolver\TargetHandler\Doctrine\AbstractTar
 final class SubtreeTest extends AbstractTargetHandlerTest
 {
     /**
+     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine\Subtree::handleQuery
      * @covers \Netgen\BlockManager\Persistence\Doctrine\Handler\LayoutResolverHandler::matchRules
      * @covers \Netgen\BlockManager\Persistence\Doctrine\QueryHandler\LayoutResolverQueryHandler::matchRules
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine\Subtree::handleQuery
      */
     public function testMatchRules()
     {

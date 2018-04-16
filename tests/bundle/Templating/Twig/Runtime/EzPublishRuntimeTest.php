@@ -88,8 +88,8 @@ final class EzPublishRuntimeTest extends TestCase
 
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getLocationPath
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadLocation
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContent
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadLocation
      */
     public function testGetLocationPath()
     {
@@ -107,8 +107,8 @@ final class EzPublishRuntimeTest extends TestCase
 
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getLocationPath
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadLocation
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContent
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadLocation
      */
     public function testGetLocationPathWithException()
     {
@@ -155,7 +155,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->will(
                 $this->returnCallback(
                     function ($object, $method) {
-                        return $object->$method('cro-HR');
+                        return $object->{$method}('cro-HR');
                     }
                 )
             );

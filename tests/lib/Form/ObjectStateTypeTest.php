@@ -67,8 +67,8 @@ final class ObjectStateTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getObjectStates
      * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::configureOptions
+     * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getObjectStates
      */
     public function testConfigureOptions()
     {

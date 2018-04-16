@@ -34,10 +34,12 @@ final class ContentValueConverterTest extends TestCase
             ->expects($this->any())
             ->method('loadLocation')
             ->with($this->isType('int'))
-            ->will($this->returnCallback(
-                function ($id) {
-                    return new Location(array('id' => $id, 'invisible' => false));
-                })
+            ->will(
+                $this->returnCallback(
+                    function ($id) {
+                        return new Location(array('id' => $id, 'invisible' => false));
+                    }
+                )
             );
 
         $this->translationHelperMock = $this->createMock(TranslationHelper::class);

@@ -47,8 +47,8 @@ final class ConfigureLegacyHttpCachePassTest extends AbstractCompilerPassTestCas
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureLegacyHttpCachePass::process
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureLegacyHttpCachePass::log
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureLegacyHttpCachePass::process
      */
     public function testProcessWithNoSupportedClient()
     {

@@ -67,8 +67,8 @@ final class ContentTypeTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getContentTypes
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::configureOptions
+     * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getContentTypes
      */
     public function testConfigureOptions()
     {

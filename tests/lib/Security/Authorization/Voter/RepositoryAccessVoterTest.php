@@ -46,10 +46,10 @@ final class RepositoryAccessVoterTest extends TestCase
      * @param int $voteResult
      *
      * @covers \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter::__construct
-     * @covers \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter::vote
-     * @covers \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter::supports
-     * @covers \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter::voteOnAttribute
      * @covers \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter::getReachableAttributes
+     * @covers \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter::supports
+     * @covers \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter::vote
+     * @covers \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter::voteOnAttribute
      *
      * @dataProvider voteDataProvider
      */

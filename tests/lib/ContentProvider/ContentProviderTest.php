@@ -48,8 +48,8 @@ final class ContentProviderTest extends TestCase
 
     /**
      * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::__construct
-     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::provideContent
      * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::loadLocation
+     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::provideContent
      */
     public function testProvideContent()
     {
@@ -82,8 +82,8 @@ final class ContentProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::provideContent
      * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::loadLocation
+     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::provideContent
      */
     public function testProvideContentWithoutContent()
     {
@@ -99,8 +99,8 @@ final class ContentProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::provideLocation
      * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::loadLocation
+     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::provideLocation
      */
     public function testProvideLocation()
     {
@@ -118,8 +118,8 @@ final class ContentProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::provideLocation
      * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::loadLocation
+     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::provideLocation
      */
     public function testProvideLocationWithoutLocation()
     {
