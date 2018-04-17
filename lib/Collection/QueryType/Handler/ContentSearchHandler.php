@@ -40,7 +40,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     /**
      * @var array
      */
-    private $languages = array();
+    private $languages = [];
 
     public function __construct(
         LocationService $locationService,
@@ -66,12 +66,12 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      */
     public function setLanguages(array $languages = null)
     {
-        $this->languages = is_array($languages) ? $languages : array();
+        $this->languages = is_array($languages) ? $languages : [];
     }
 
     public function buildParameters(ParameterBuilderInterface $builder)
     {
-        $advancedGroup = array(self::GROUP_ADVANCED);
+        $advancedGroup = [self::GROUP_ADVANCED];
 
         $this->buildParentLocationParameters($builder);
         $this->buildSortParameters($builder);
@@ -87,7 +87,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         $parentLocation = $this->getParentLocation($query);
 
         if (!$parentLocation instanceof Location) {
-            return array();
+            return [];
         }
 
         $locationQuery = $this->buildLocationQuery($query, $parentLocation);
@@ -100,7 +100,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
 
         $searchResult = $this->searchService->findLocations(
             $locationQuery,
-            array('languages' => $this->languages)
+            ['languages' => $this->languages]
         );
 
         return array_map(
@@ -124,7 +124,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
 
         $searchResult = $this->searchService->findLocations(
             $locationQuery,
-            array('languages' => $this->languages)
+            ['languages' => $this->languages]
         );
 
         return $searchResult->totalCount;
@@ -147,7 +147,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     {
         $locationQuery = new LocationQuery();
 
-        $criteria = array(
+        $criteria = [
             new Criterion\Subtree($parentLocation->pathString),
             new Criterion\Visibility(Criterion\Visibility::VISIBLE),
             new Criterion\LogicalNot(new Criterion\LocationId($parentLocation->id)),
@@ -156,7 +156,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
             $this->getContentTypeFilterCriteria($query),
             $this->getSectionFilterCriteria($query),
             $this->getObjectStateFilterCriteria($query),
-        );
+        ];
 
         $locationQuery->filter = new Criterion\LogicalAnd(array_filter($criteria));
         $locationQuery->sortClauses = $this->getSortClauses($query, $parentLocation);

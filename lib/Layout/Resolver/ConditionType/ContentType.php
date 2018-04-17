@@ -35,18 +35,18 @@ final class ContentType implements ConditionTypeInterface
 
     public function getConstraints()
     {
-        return array(
+        return [
             new Constraints\NotBlank(),
-            new Constraints\Type(array('type' => 'array')),
+            new Constraints\Type(['type' => 'array']),
             new Constraints\All(
-                array(
-                    'constraints' => array(
-                        new Constraints\Type(array('type' => 'string')),
+                [
+                    'constraints' => [
+                        new Constraints\Type(['type' => 'string']),
                         new EzConstraints\ContentType(),
-                    ),
-                )
+                    ],
+                ]
             ),
-        );
+        ];
     }
 
     public function matches(Request $request, $value)

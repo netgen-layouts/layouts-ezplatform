@@ -47,7 +47,7 @@ final class ContextProviderTest extends TestCase
         $this->requestStack->push($request);
 
         $view = new ContentView();
-        $view->setLocation(new Location(array('id' => 42)));
+        $view->setLocation(new Location(['id' => 42]));
 
         $request->attributes->set('view', $view);
 
@@ -82,7 +82,7 @@ final class ContextProviderTest extends TestCase
         $request = Request::create('/');
         $this->requestStack->push($request);
 
-        $request->attributes->set('location', new Location(array('id' => 42)));
+        $request->attributes->set('location', new Location(['id' => 42]));
 
         $this->contextProvider->provideContext($this->context);
 

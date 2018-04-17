@@ -15,9 +15,9 @@ final class ObjectStateMapper extends Mapper
 
     public function mapOptions(ParameterDefinitionInterface $parameterDefinition)
     {
-        return array(
+        return [
             'multiple' => $parameterDefinition->getOption('multiple'),
             'states' => $parameterDefinition->getOption('states'),
-        );
+        ];
     }
 }

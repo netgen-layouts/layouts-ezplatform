@@ -25,11 +25,11 @@ final class RepositoryAccessVoterTest extends TestCase
     public function setUp()
     {
         $roleHierarchy = new RoleHierarchy(
-            array(
-                'ROLE_NGBM_ADMIN' => array(
+            [
+                'ROLE_NGBM_ADMIN' => [
                     'ROLE_NGBM_EDITOR',
-                ),
-            )
+                ],
+            ]
         );
 
         $this->accessDecisionManagerMock = $this->createMock(AccessDecisionManagerInterface::class);
@@ -64,32 +64,32 @@ final class RepositoryAccessVoterTest extends TestCase
                 ->method('decide')
                 ->with(
                     $this->equalTo($token),
-                    $this->equalTo(array(new Attribute('nglayouts', $function))),
+                    $this->equalTo([new Attribute('nglayouts', $function)]),
                     $this->isNull()
                 )
                 ->will($this->returnValue($hasAccess));
         }
 
-        $result = $this->voter->vote($token, null, array($attribute));
+        $result = $this->voter->vote($token, null, [$attribute]);
 
         $this->assertEquals($voteResult, $result);
     }
 
     public function voteDataProvider()
     {
-        return array(
+        return [
             // Only matches admin eZ function
-            array('ROLE_NGBM_ADMIN', array('admin' => true), VoterInterface::ACCESS_GRANTED),
-            array('ROLE_NGBM_ADMIN', array('admin' => false), VoterInterface::ACCESS_DENIED),
+            ['ROLE_NGBM_ADMIN', ['admin' => true], VoterInterface::ACCESS_GRANTED],
+            ['ROLE_NGBM_ADMIN', ['admin' => false], VoterInterface::ACCESS_DENIED],
 
             // Matches both admin and editor eZ functions
-            array('ROLE_NGBM_EDITOR', array('editor' => true), VoterInterface::ACCESS_GRANTED),
-            array('ROLE_NGBM_EDITOR', array('editor' => false, 'admin' => true), VoterInterface::ACCESS_GRANTED),
-            array('ROLE_NGBM_EDITOR', array('editor' => false, 'admin' => false), VoterInterface::ACCESS_DENIED),
+            ['ROLE_NGBM_EDITOR', ['editor' => true], VoterInterface::ACCESS_GRANTED],
+            ['ROLE_NGBM_EDITOR', ['editor' => false, 'admin' => true], VoterInterface::ACCESS_GRANTED],
+            ['ROLE_NGBM_EDITOR', ['editor' => false, 'admin' => false], VoterInterface::ACCESS_DENIED],
 
-            array('ROLE_NGBM_UNKNOWN', array(), VoterInterface::ACCESS_DENIED),
+            ['ROLE_NGBM_UNKNOWN', [], VoterInterface::ACCESS_DENIED],
 
-            array('ROLE_UNSUPPORTED', array(), VoterInterface::ACCESS_ABSTAIN),
-        );
+            ['ROLE_UNSUPPORTED', [], VoterInterface::ACCESS_ABSTAIN],
+        ];
     }
 }

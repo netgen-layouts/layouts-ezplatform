@@ -27,8 +27,8 @@ final class ContentTypeType extends AbstractType
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefault('types', array());
-        $resolver->setRequired(array('types'));
+        $resolver->setDefault('types', []);
+        $resolver->setRequired(['types']);
         $resolver->setAllowedTypes('types', 'array');
 
         $resolver->setDefault(
@@ -59,13 +59,13 @@ final class ContentTypeType extends AbstractType
      */
     private function getContentTypes(Options $options)
     {
-        $allContentTypes = array();
+        $allContentTypes = [];
 
         $groups = $this->contentTypeService->loadContentTypeGroups();
         $configuredGroups = $options['types'];
 
         foreach ($groups as $group) {
-            $configuredGroups += array($group->identifier => true);
+            $configuredGroups += [$group->identifier => true];
             if ($configuredGroups[$group->identifier] === false) {
                 continue;
             }

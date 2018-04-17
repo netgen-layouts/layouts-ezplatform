@@ -27,8 +27,8 @@ final class ObjectStateType extends AbstractType
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefault('states', array());
-        $resolver->setRequired(array('states'));
+        $resolver->setDefault('states', []);
+        $resolver->setRequired(['states']);
         $resolver->setAllowedTypes('states', 'array');
 
         $resolver->setDefault(
@@ -59,13 +59,13 @@ final class ObjectStateType extends AbstractType
      */
     private function getObjectStates(Options $options)
     {
-        $allObjectStates = array();
+        $allObjectStates = [];
 
         $groups = $this->objectStateService->loadObjectStateGroups();
         $configuredGroups = $options['states'];
 
         foreach ($groups as $group) {
-            $configuredGroups += array($group->identifier => true);
+            $configuredGroups += [$group->identifier => true];
             if ($configuredGroups[$group->identifier] === false) {
                 continue;
             }

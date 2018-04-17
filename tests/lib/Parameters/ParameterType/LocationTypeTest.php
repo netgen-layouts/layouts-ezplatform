@@ -30,7 +30,7 @@ final class LocationTypeTest extends TestCase
     public function setUp()
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, array('sudo', 'getLocationService'));
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService']);
 
         $this->repositoryMock
             ->expects($this->any())
@@ -89,30 +89,30 @@ final class LocationTypeTest extends TestCase
      */
     public function validOptionsProvider()
     {
-        return array(
-            array(
-                array(),
-                array(
+        return [
+            [
+                [],
+                [
                     'allow_invalid' => false,
-                ),
-            ),
-            array(
-                array(
+                ],
+            ],
+            [
+                [
                     'allow_invalid' => false,
-                ),
-                array(
+                ],
+                [
                     'allow_invalid' => false,
-                ),
-            ),
-            array(
-                array(
+                ],
+            ],
+            [
+                [
                     'allow_invalid' => true,
-                ),
-                array(
+                ],
+                [
                     'allow_invalid' => true,
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
     /**
@@ -122,25 +122,25 @@ final class LocationTypeTest extends TestCase
      */
     public function invalidOptionsProvider()
     {
-        return array(
-            array(
-                array(
+        return [
+            [
+                [
                     'allow_invalid' => 'false',
-                ),
-                array(
+                ],
+                [
                     'allow_invalid' => 'true',
-                ),
-                array(
+                ],
+                [
                     'allow_invalid' => 0,
-                ),
-                array(
+                ],
+                [
                     'allow_invalid' => 1,
-                ),
-                array(
+                ],
+                [
                     'undefined_value' => 'Value',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
     /**
@@ -152,7 +152,7 @@ final class LocationTypeTest extends TestCase
             ->expects($this->once())
             ->method('loadLocation')
             ->with($this->equalTo(42))
-            ->will($this->returnValue(new Location(array('remoteId' => 'abc'))));
+            ->will($this->returnValue(new Location(['remoteId' => 'abc'])));
 
         $this->assertEquals('abc', $this->type->export($this->getParameterDefinition(), 42));
     }
@@ -180,7 +180,7 @@ final class LocationTypeTest extends TestCase
             ->expects($this->once())
             ->method('loadLocationByRemoteId')
             ->with($this->equalTo('abc'))
-            ->will($this->returnValue(new Location(array('id' => 42))));
+            ->will($this->returnValue(new Location(['id' => 42])));
 
         $this->assertEquals(42, $this->type->import($this->getParameterDefinition(), 'abc'));
     }
@@ -225,7 +225,7 @@ final class LocationTypeTest extends TestCase
                 );
         }
 
-        $parameter = $this->getParameterDefinition(array(), $required);
+        $parameter = $this->getParameterDefinition([], $required);
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
@@ -241,22 +241,22 @@ final class LocationTypeTest extends TestCase
      */
     public function validationProvider()
     {
-        return array(
-            array(12, false, true),
-            array(24, false, false),
-            array(-12, false, false),
-            array(0, false, false),
-            array('12', false, false),
-            array('', false, false),
-            array(null, false, true),
-            array(12, true, true),
-            array(24, true, false),
-            array(-12, true, false),
-            array(0, true, false),
-            array('12', true, false),
-            array('', true, false),
-            array(null, true, false),
-        );
+        return [
+            [12, false, true],
+            [24, false, false],
+            [-12, false, false],
+            [0, false, false],
+            ['12', false, false],
+            ['', false, false],
+            [null, false, true],
+            [12, true, true],
+            [24, true, false],
+            [-12, true, false],
+            [0, true, false],
+            ['12', true, false],
+            ['', true, false],
+            [null, true, false],
+        ];
     }
 
     /**
@@ -278,9 +278,9 @@ final class LocationTypeTest extends TestCase
      */
     public function emptyProvider()
     {
-        return array(
-            array(null, true),
-            array(new Location(), false),
-        );
+        return [
+            [null, true],
+            [new Location(), false],
+        ];
     }
 }

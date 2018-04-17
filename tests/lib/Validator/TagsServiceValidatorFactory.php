@@ -18,15 +18,15 @@ final class TagsServiceValidatorFactory implements ConstraintValidatorFactoryInt
     /**
      * @var \Symfony\Component\Validator\Validator\ValidatorInterface[]
      */
-    private $validators = array();
+    private $validators = [];
 
     public function __construct(TagsService $tagsService)
     {
         $this->baseValidatorFactory = new ConstraintValidatorFactory();
 
-        $this->validators = array(
+        $this->validators = [
             'ngbm_eztags' => new TagValidator($tagsService),
-        );
+        ];
     }
 
     public function getInstance(Constraint $constraint)

@@ -21,9 +21,9 @@ final class ContentTypeType extends ParameterType
     public function configureOptions(OptionsResolver $optionsResolver)
     {
         $optionsResolver->setDefault('multiple', false);
-        $optionsResolver->setDefault('types', array());
+        $optionsResolver->setDefault('types', []);
 
-        $optionsResolver->setRequired(array('multiple', 'types'));
+        $optionsResolver->setRequired(['multiple', 'types']);
 
         $optionsResolver->setAllowedTypes('multiple', 'bool');
         $optionsResolver->setAllowedTypes('types', 'array');
@@ -31,12 +31,12 @@ final class ContentTypeType extends ParameterType
 
     public function fromHash(ParameterDefinitionInterface $parameterDefinition, $value)
     {
-        if ($value === null || $value === array()) {
+        if ($value === null || $value === []) {
             return;
         }
 
         if ($parameterDefinition->getOption('multiple')) {
-            return is_array($value) ? $value : array($value);
+            return is_array($value) ? $value : [$value];
         }
 
         return is_array($value) ? array_values($value)[0] : $value;
@@ -44,29 +44,29 @@ final class ContentTypeType extends ParameterType
 
     public function isValueEmpty(ParameterDefinitionInterface $parameterDefinition, $value)
     {
-        return $value === null || $value === array();
+        return $value === null || $value === [];
     }
 
     protected function getValueConstraints(ParameterDefinitionInterface $parameterDefinition, $value)
     {
         $options = $parameterDefinition->getOptions();
 
-        $contentTypeConstraints = array(
-            new Constraints\Type(array('type' => 'string')),
-            new EzConstraints\ContentType(array('allowedTypes' => $parameterDefinition->getOption('types'))),
-        );
+        $contentTypeConstraints = [
+            new Constraints\Type(['type' => 'string']),
+            new EzConstraints\ContentType(['allowedTypes' => $parameterDefinition->getOption('types')]),
+        ];
 
         if (!$options['multiple']) {
             return $contentTypeConstraints;
         }
 
-        return array(
-            new Constraints\Type(array('type' => 'array')),
+        return [
+            new Constraints\Type(['type' => 'array']),
             new Constraints\All(
-                array(
+                [
                     'constraints' => $contentTypeConstraints,
-                )
+                ]
             ),
-        );
+        ];
     }
 }

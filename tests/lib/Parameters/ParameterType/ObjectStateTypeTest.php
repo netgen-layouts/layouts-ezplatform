@@ -30,7 +30,7 @@ final class ObjectStateTypeTest extends TestCase
     public function setUp()
     {
         $this->objectStateServiceMock = $this->createMock(ObjectStateService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, array('sudo', 'getObjectStateService'));
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getObjectStateService']);
 
         $this->repositoryMock
             ->expects($this->any())
@@ -88,51 +88,51 @@ final class ObjectStateTypeTest extends TestCase
      */
     public function validOptionsProvider()
     {
-        return array(
-            array(
-                array(),
-                array(
+        return [
+            [
+                [],
+                [
                     'multiple' => false,
-                    'states' => array(),
-                ),
-            ),
-            array(
-                array(
+                    'states' => [],
+                ],
+            ],
+            [
+                [
                     'multiple' => false,
-                ),
-                array(
+                ],
+                [
                     'multiple' => false,
-                    'states' => array(),
-                ),
-            ),
-            array(
-                array(
+                    'states' => [],
+                ],
+            ],
+            [
+                [
                     'multiple' => true,
-                ),
-                array(
+                ],
+                [
                     'multiple' => true,
-                    'states' => array(),
-                ),
-            ),
-            array(
-                array(
-                    'states' => array(),
-                ),
-                array(
+                    'states' => [],
+                ],
+            ],
+            [
+                [
+                    'states' => [],
+                ],
+                [
                     'multiple' => false,
-                    'states' => array(),
-                ),
-            ),
-            array(
-                array(
-                    'states' => array(42),
-                ),
-                array(
+                    'states' => [],
+                ],
+            ],
+            [
+                [
+                    'states' => [42],
+                ],
+                [
                     'multiple' => false,
-                    'states' => array(42),
-                ),
-            ),
-        );
+                    'states' => [42],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -142,16 +142,16 @@ final class ObjectStateTypeTest extends TestCase
      */
     public function invalidOptionsProvider()
     {
-        return array(
-            array(
-                array(
+        return [
+            [
+                [
                     'multiple' => 'true',
-                ),
-                array(
+                ],
+                [
                     'undefined_value' => 'Value',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
     /**
@@ -170,42 +170,42 @@ final class ObjectStateTypeTest extends TestCase
                 ->method('loadObjectStateGroups')
                 ->will(
                     $this->returnValue(
-                        array(
-                            new ObjectStateGroup(array('identifier' => 'group1')),
-                            new ObjectStateGroup(array('identifier' => 'group2')),
-                        )
+                        [
+                            new ObjectStateGroup(['identifier' => 'group1']),
+                            new ObjectStateGroup(['identifier' => 'group2']),
+                        ]
                     )
                 );
 
             $this->objectStateServiceMock
                 ->expects($this->at(1))
                 ->method('loadObjectStates')
-                ->with($this->equalTo(new ObjectStateGroup(array('identifier' => 'group1'))))
+                ->with($this->equalTo(new ObjectStateGroup(['identifier' => 'group1'])))
                 ->will(
                     $this->returnValue(
-                        array(
+                        [
                             new EzObjectState(
-                                array(
+                                [
                                     'identifier' => 'state1',
-                                )
+                                ]
                             ),
                             new EzObjectState(
-                                array(
+                                [
                                     'identifier' => 'state2',
-                                )
+                                ]
                             ),
-                        )
+                        ]
                     )
                 );
 
             $this->objectStateServiceMock
                 ->expects($this->at(2))
                 ->method('loadObjectStates')
-                ->with($this->equalTo(new ObjectStateGroup(array('identifier' => 'group2'))))
-                ->will($this->returnValue(array()));
+                ->with($this->equalTo(new ObjectStateGroup(['identifier' => 'group2'])))
+                ->will($this->returnValue([]));
         }
 
-        $options = $value !== null ? array('multiple' => is_array($value)) : array();
+        $options = $value !== null ? ['multiple' => is_array($value)] : [];
         $parameter = $this->getParameterDefinition($options, $required);
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
@@ -222,26 +222,26 @@ final class ObjectStateTypeTest extends TestCase
      */
     public function validationProvider()
     {
-        return array(
-            array('group1|state2', false, true),
-            array(array(), false, true),
-            array(array('group1|state2'), false, true),
-            array(array('group1|state1', 'group1|state2'), false, true),
-            array(array('group1|state1', 'group2|state1'), false, false),
-            array(array('group2|state1'), false, false),
-            array(null, false, true),
-            array(array('unknown|state1'), false, false),
-            array(array('group1|unknown'), false, false),
-            array('group1|state2', true, true),
-            array(array(), true, false),
-            array(array('group1|state2'), true, true),
-            array(array('group1|state1', 'group1|state2'), true, true),
-            array(array('group1|state1', 'group2|state1'), true, false),
-            array(array('group2|state1'), true, false),
-            array(array('unknown|state1'), true, false),
-            array(array('group1|unknown'), true, false),
-            array(null, true, false),
-        );
+        return [
+            ['group1|state2', false, true],
+            [[], false, true],
+            [['group1|state2'], false, true],
+            [['group1|state1', 'group1|state2'], false, true],
+            [['group1|state1', 'group2|state1'], false, false],
+            [['group2|state1'], false, false],
+            [null, false, true],
+            [['unknown|state1'], false, false],
+            [['group1|unknown'], false, false],
+            ['group1|state2', true, true],
+            [[], true, false],
+            [['group1|state2'], true, true],
+            [['group1|state1', 'group1|state2'], true, true],
+            [['group1|state1', 'group2|state1'], true, false],
+            [['group2|state1'], true, false],
+            [['unknown|state1'], true, false],
+            [['group1|unknown'], true, false],
+            [null, true, false],
+        ];
     }
 
     /**
@@ -258,9 +258,9 @@ final class ObjectStateTypeTest extends TestCase
             $convertedValue,
             $this->type->fromHash(
                 $this->getParameterDefinition(
-                    array(
+                    [
                         'multiple' => $multiple,
-                    )
+                    ]
                 ),
                 $value
             )
@@ -269,48 +269,48 @@ final class ObjectStateTypeTest extends TestCase
 
     public function fromHashProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 null,
                 null,
                 false,
-            ),
-            array(
-                array(),
+            ],
+            [
+                [],
                 null,
                 false,
-            ),
-            array(
+            ],
+            [
                 42,
                 42,
                 false,
-            ),
-            array(
-                array(42, 43),
+            ],
+            [
+                [42, 43],
                 42,
                 false,
-            ),
-            array(
+            ],
+            [
                 null,
                 null,
                 true,
-            ),
-            array(
-                array(),
+            ],
+            [
+                [],
                 null,
                 true,
-            ),
-            array(
+            ],
+            [
                 42,
-                array(42),
+                [42],
                 true,
-            ),
-            array(
-                array(42, 43),
-                array(42, 43),
+            ],
+            [
+                [42, 43],
+                [42, 43],
                 true,
-            ),
-        );
+            ],
+        ];
     }
 
     /**
@@ -332,14 +332,14 @@ final class ObjectStateTypeTest extends TestCase
      */
     public function emptyProvider()
     {
-        return array(
-            array(null, true),
-            array(array(), true),
-            array(42, false),
-            array(array(42), false),
-            array(0, false),
-            array('42', false),
-            array('', false),
-        );
+        return [
+            [null, true],
+            [[], true],
+            [42, false],
+            [[42], false],
+            [0, false],
+            ['42', false],
+            ['', false],
+        ];
     }
 }

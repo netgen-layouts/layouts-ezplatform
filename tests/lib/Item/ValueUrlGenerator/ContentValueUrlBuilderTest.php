@@ -38,12 +38,12 @@ final class ContentValueUrlBuilderTest extends TestCase
             ->method('generate')
             ->with(
                 $this->equalTo(UrlAliasRouter::URL_ALIAS_ROUTE_NAME),
-                array(
+                [
                     'contentId' => 42,
-                )
+                ]
             )
             ->will($this->returnValue('/content/path'));
 
-        $this->assertEquals('/content/path', $this->urlGenerator->generate(new ContentInfo(array('id' => 42))));
+        $this->assertEquals('/content/path', $this->urlGenerator->generate(new ContentInfo(['id' => 42])));
     }
 }

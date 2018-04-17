@@ -45,7 +45,7 @@ final class NetgenEzPublishBlockManagerExtension extends Extension implements Pr
 
     public function prepend(ContainerBuilder $container)
     {
-        $prependConfigs = array(
+        $prependConfigs = [
             'block_definitions.yml' => 'netgen_block_manager',
             'query_types.yml' => 'netgen_block_manager',
             'value_types.yml' => 'netgen_block_manager',
@@ -54,7 +54,7 @@ final class NetgenEzPublishBlockManagerExtension extends Extension implements Pr
             'view/rule_condition_view.yml' => 'netgen_block_manager',
             'view/rule_target_view.yml' => 'netgen_block_manager',
             'ezplatform/image.yml' => 'ezpublish',
-        );
+        ];
 
         foreach ($prependConfigs as $configFile => $prependConfig) {
             $configFile = __DIR__ . '/../Resources/config/' . $configFile;
@@ -68,11 +68,11 @@ final class NetgenEzPublishBlockManagerExtension extends Extension implements Pr
         // moved to theme based paths
         $container->prependExtensionConfig(
             'twig',
-            array(
-                'paths' => array(
+            [
+                'paths' => [
                     __DIR__ . '/../Resources/views/ngbm/themes/standard' => 'NetgenEzPublishBlockManager',
-                ),
-            )
+                ],
+            ]
         );
     }
 }

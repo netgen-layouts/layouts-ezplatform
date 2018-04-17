@@ -14,7 +14,7 @@ final class DefaultViewTemplatesPass extends BasePass
         }
 
         $scopes = array_merge(
-            array('default'),
+            ['default'],
             $container->getParameter('ezpublish.siteaccess.list')
         );
 

@@ -36,7 +36,7 @@ class LocaleProvider implements LocaleProviderInterface
     /**
      * @var string[]
      */
-    private $languageCodes = array();
+    private $languageCodes = [];
 
     public function __construct(LanguageService $languageService, LocaleConverterInterface $localeConverter)
     {
@@ -52,12 +52,12 @@ class LocaleProvider implements LocaleProviderInterface
      */
     public function setLanguages(array $languageCodes = null)
     {
-        $this->languageCodes = !empty($languageCodes) ? $languageCodes : array();
+        $this->languageCodes = !empty($languageCodes) ? $languageCodes : [];
     }
 
     public function getAvailableLocales()
     {
-        $availableLocales = array();
+        $availableLocales = [];
         $languages = $this->languageService->loadLanguages();
 
         foreach ($languages as $language) {
@@ -77,7 +77,7 @@ class LocaleProvider implements LocaleProviderInterface
 
     public function getRequestLocales(Request $request)
     {
-        $requestLocales = array();
+        $requestLocales = [];
 
         foreach ($this->languageCodes as $languageCode) {
             try {
@@ -124,6 +124,6 @@ class LocaleProvider implements LocaleProviderInterface
             return;
         }
 
-        return array($posixLocale, $localeName);
+        return [$posixLocale, $localeName];
     }
 }

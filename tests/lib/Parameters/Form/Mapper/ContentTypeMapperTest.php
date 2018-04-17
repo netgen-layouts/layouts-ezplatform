@@ -34,19 +34,19 @@ final class ContentTypeMapperTest extends TestCase
     public function testMapOptions()
     {
         $this->assertEquals(
-            array(
+            [
                 'multiple' => true,
-                'types' => array(42),
-            ),
+                'types' => [42],
+            ],
             $this->mapper->mapOptions(
                 new ParameterDefinition(
-                    array(
+                    [
                         'type' => new ParameterType(),
-                        'options' => array(
+                        'options' => [
                             'multiple' => true,
-                            'types' => array(42),
-                        ),
-                    )
+                            'types' => [42],
+                        ],
+                    ]
                 )
             )
         );

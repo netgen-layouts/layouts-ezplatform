@@ -34,11 +34,11 @@ final class SiteAccessGroup extends Mapper
 
     public function getFormOptions()
     {
-        return array(
+        return [
             'choices' => $this->siteAccessGroupList,
             'choice_translation_domain' => false,
             'multiple' => true,
             'expanded' => true,
-        ) + $this->getChoicesAsValuesOption();
+        ] + $this->getChoicesAsValuesOption();
     }
 }

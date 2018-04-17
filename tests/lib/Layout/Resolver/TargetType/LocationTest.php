@@ -39,7 +39,7 @@ final class LocationTest extends TestCase
     {
         $this->contentExtractorMock = $this->createMock(ContentExtractorInterface::class);
         $this->locationServiceMock = $this->createMock(LocationService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, array('sudo', 'getLocationService'));
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService']);
 
         $this->repositoryMock
             ->expects($this->any())
@@ -105,9 +105,9 @@ final class LocationTest extends TestCase
     public function testProvideValue()
     {
         $location = new EzLocation(
-            array(
+            [
                 'id' => 42,
-            )
+            ]
         );
 
         $request = Request::create('/');
@@ -145,14 +145,14 @@ final class LocationTest extends TestCase
      */
     public function validationProvider()
     {
-        return array(
-            array(12, true),
-            array(24, false),
-            array(-12, false),
-            array(0, false),
-            array('12', false),
-            array('', false),
-            array(null, false),
-        );
+        return [
+            [12, true],
+            [24, false],
+            [-12, false],
+            [0, false],
+            ['12', false],
+            ['', false],
+            [null, false],
+        ];
     }
 }

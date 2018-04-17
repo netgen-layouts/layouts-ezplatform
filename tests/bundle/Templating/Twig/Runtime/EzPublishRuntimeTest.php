@@ -96,11 +96,11 @@ final class EzPublishRuntimeTest extends TestCase
         $this->mockServices();
 
         $this->assertEquals(
-            array(
+            [
                 'Content name 102',
                 'Content name 142',
                 'Content name 184',
-            ),
+            ],
             $this->runtime->getLocationPath(22)
         );
     }
@@ -118,7 +118,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->with($this->equalTo(22))
             ->will($this->throwException(new Exception()));
 
-        $this->assertEquals(array(), $this->runtime->getLocationPath(22));
+        $this->assertEquals([], $this->runtime->getLocationPath(22));
     }
 
     /**
@@ -136,14 +136,14 @@ final class EzPublishRuntimeTest extends TestCase
                 $this->returnCallback(
                     function ($identifier) {
                         return new ContentType(
-                            array(
+                            [
                                 'identifier' => $identifier,
-                                'names' => array(
+                                'names' => [
                                     'eng-GB' => 'English content type ' . $identifier,
                                     'cro-HR' => 'Content type ' . $identifier,
-                                ),
-                                'fieldDefinitions' => array(),
-                            )
+                                ],
+                                'fieldDefinitions' => [],
+                            ]
                         );
                     }
                 )
@@ -178,14 +178,14 @@ final class EzPublishRuntimeTest extends TestCase
                 $this->returnCallback(
                     function ($identifier) {
                         return new ContentType(
-                            array(
+                            [
                                 'identifier' => $identifier,
-                                'names' => array(
+                                'names' => [
                                     'eng-GB' => 'English content type ' . $identifier,
                                     'cro-HR' => 'Content type ' . $identifier,
-                                ),
-                                'fieldDefinitions' => array(),
-                            )
+                                ],
+                                'fieldDefinitions' => [],
+                            ]
                         );
                     }
                 )
@@ -214,11 +214,11 @@ final class EzPublishRuntimeTest extends TestCase
                 $this->returnCallback(
                     function ($identifier) {
                         return new ContentType(
-                            array(
+                            [
                                 'identifier' => $identifier,
-                                'names' => array(),
-                                'fieldDefinitions' => array(),
-                            )
+                                'names' => [],
+                                'fieldDefinitions' => [],
+                            ]
                         );
                     }
                 )
@@ -255,12 +255,12 @@ final class EzPublishRuntimeTest extends TestCase
 
         $this->repositoryMock = $this->createPartialMock(
             Repository::class,
-            array(
+            [
                 'sudo',
                 'getContentService',
                 'getLocationService',
                 'getContentTypeService',
-            )
+            ]
         );
 
         $this->repositoryMock
@@ -300,14 +300,14 @@ final class EzPublishRuntimeTest extends TestCase
                 $this->returnCallback(
                     function ($locationId) {
                         return new Location(
-                            array(
-                                'path' => array(1, 2, 42, 84),
+                            [
+                                'path' => [1, 2, 42, 84],
                                 'contentInfo' => new ContentInfo(
-                                    array(
+                                    [
                                         'id' => $locationId + 100,
-                                    )
+                                    ]
                                 ),
-                            )
+                            ]
                         );
                     }
                 )
@@ -320,18 +320,18 @@ final class EzPublishRuntimeTest extends TestCase
                 $this->returnCallback(
                     function ($contentId) {
                         return new Content(
-                            array(
+                            [
                                 'versionInfo' => new VersionInfo(
-                                    array(
+                                    [
                                         'contentInfo' => new ContentInfo(
-                                            array(
+                                            [
                                                 'id' => $contentId,
                                                 'name' => 'Content name ' . $contentId,
-                                            )
+                                            ]
                                         ),
-                                    )
+                                    ]
                                 ),
-                            )
+                            ]
                         );
                     }
                 )

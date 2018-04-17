@@ -14,8 +14,8 @@ final class ContentType extends Mapper
 
     public function getFormOptions()
     {
-        return array(
+        return [
             'multiple' => true,
-        );
+        ];
     }
 }

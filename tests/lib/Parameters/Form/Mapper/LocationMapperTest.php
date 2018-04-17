@@ -35,10 +35,10 @@ final class LocationMapperTest extends TestCase
     public function testMapOptions()
     {
         $this->assertEquals(
-            array(
+            [
                 'item_type' => 'ezlocation',
-            ),
-            $this->mapper->mapOptions(new ParameterDefinition(array('type' => new ParameterType($this->createMock(Repository::class)))))
+            ],
+            $this->mapper->mapOptions(new ParameterDefinition(['type' => new ParameterType($this->createMock(Repository::class))]))
         );
     }
 }

@@ -69,7 +69,7 @@ final class SiteAccessTest extends TestCase
     {
         $request = Request::create('/');
 
-        $this->assertFalse($this->conditionType->matches($request, array('eng')));
+        $this->assertFalse($this->conditionType->matches($request, ['eng']));
     }
 
     /**
@@ -79,14 +79,14 @@ final class SiteAccessTest extends TestCase
      */
     public function validationProvider()
     {
-        return array(
-            array(array('cro'), true),
-            array(array('cro', 'eng'), true),
-            array(array('cro', 'unknown'), false),
-            array(array('unknown'), false),
-            array(array(), false),
-            array(null, false),
-        );
+        return [
+            [['cro'], true],
+            [['cro', 'eng'], true],
+            [['cro', 'unknown'], false],
+            [['unknown'], false],
+            [[], false],
+            [null, false],
+        ];
     }
 
     /**
@@ -96,14 +96,14 @@ final class SiteAccessTest extends TestCase
      */
     public function matchesProvider()
     {
-        return array(
-            array('not_array', false),
-            array(array(), false),
-            array(array('eng'), true),
-            array(array('cro'), false),
-            array(array('eng', 'cro'), true),
-            array(array('cro', 'eng'), true),
-            array(array('cro', 'fre'), false),
-        );
+        return [
+            ['not_array', false],
+            [[], false],
+            [['eng'], true],
+            [['cro'], false],
+            [['eng', 'cro'], true],
+            [['cro', 'eng'], true],
+            [['cro', 'fre'], false],
+        ];
     }
 }

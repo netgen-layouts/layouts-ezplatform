@@ -37,11 +37,11 @@ final class TagsType extends ParameterType
         $optionsResolver->setDefault('max', null);
         $optionsResolver->setDefault('allow_invalid', false);
 
-        $optionsResolver->setRequired(array('min', 'max', 'allow_invalid'));
+        $optionsResolver->setRequired(['min', 'max', 'allow_invalid']);
 
-        $optionsResolver->setAllowedTypes('min', array('int', 'null'));
-        $optionsResolver->setAllowedTypes('max', array('int', 'null'));
-        $optionsResolver->setAllowedTypes('allow_invalid', array('bool'));
+        $optionsResolver->setAllowedTypes('min', ['int', 'null']);
+        $optionsResolver->setAllowedTypes('max', ['int', 'null']);
+        $optionsResolver->setAllowedTypes('allow_invalid', ['bool']);
 
         $optionsResolver->setAllowedValues('min', function ($value) {
             return $value === null || $value > 0;
@@ -103,26 +103,26 @@ final class TagsType extends ParameterType
     {
         $options = $parameterDefinition->getOptions();
 
-        $constraints = array(
-            new Constraints\Type(array('type' => 'array')),
+        $constraints = [
+            new Constraints\Type(['type' => 'array']),
             new Constraints\All(
-                array(
-                    'constraints' => array(
+                [
+                    'constraints' => [
                         new Constraints\NotBlank(),
-                        new Constraints\Type(array('type' => 'numeric')),
-                        new Constraints\GreaterThan(array('value' => 0)),
-                        new EzConstraints\Tag(array('allowInvalid' => $options['allow_invalid'])),
-                    ),
-                )
+                        new Constraints\Type(['type' => 'numeric']),
+                        new Constraints\GreaterThan(['value' => 0]),
+                        new EzConstraints\Tag(['allowInvalid' => $options['allow_invalid']]),
+                    ],
+                ]
             ),
-        );
+        ];
 
         if ($options['min'] !== null || $options['max'] !== null) {
             $constraints[] = new Constraints\Count(
-                array(
+                [
                     'min' => $options['min'] !== null ? $options['min'] : null,
                     'max' => $options['max'] !== null ? $options['max'] : null,
-                )
+                ]
             );
         }
 

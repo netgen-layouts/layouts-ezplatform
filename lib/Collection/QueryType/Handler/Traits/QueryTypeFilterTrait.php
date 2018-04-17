@@ -16,19 +16,19 @@ trait QueryTypeFilterTrait
      * @param \Netgen\BlockManager\Parameters\ParameterBuilderInterface $builder
      * @param array $groups
      */
-    private function buildQueryTypeParameters(ParameterBuilderInterface $builder, $groups = array())
+    private function buildQueryTypeParameters(ParameterBuilderInterface $builder, $groups = [])
     {
         $builder->add(
             'query_type',
             ParameterType\ChoiceType::class,
-            array(
+            [
                 'required' => true,
-                'options' => array(
+                'options' => [
                     'List' => 'list',
                     'Tree' => 'tree',
-                ),
+                ],
                 'groups' => $groups,
-            )
+            ]
         );
     }
 

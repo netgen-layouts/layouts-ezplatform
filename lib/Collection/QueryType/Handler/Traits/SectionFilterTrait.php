@@ -32,23 +32,23 @@ trait SectionFilterTrait
      * @param \Netgen\BlockManager\Parameters\ParameterBuilderInterface $builder
      * @param array $groups
      */
-    private function buildSectionFilterParameters(ParameterBuilderInterface $builder, $groups = array())
+    private function buildSectionFilterParameters(ParameterBuilderInterface $builder, $groups = [])
     {
         $builder->add(
             'filter_by_section',
             ParameterType\Compound\BooleanType::class,
-            array(
+            [
                 'groups' => $groups,
-            )
+            ]
         );
 
         $builder->get('filter_by_section')->add(
             'sections',
             ParameterType\ChoiceType::class,
-            array(
+            [
                 'multiple' => true,
                 'options' => function () {
-                    $sections = array();
+                    $sections = [];
 
                     foreach ($this->sectionHandler->loadAll() as $section) {
                         $sections[$section->name] = $section->identifier;
@@ -57,7 +57,7 @@ trait SectionFilterTrait
                     return $sections;
                 },
                 'groups' => $groups,
-            )
+            ]
         );
     }
 
@@ -91,7 +91,7 @@ trait SectionFilterTrait
      */
     private function getSectionIds(array $sectionIdentifiers)
     {
-        $idList = array();
+        $idList = [];
 
         foreach ($sectionIdentifiers as $identifier) {
             try {

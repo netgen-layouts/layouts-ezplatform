@@ -57,7 +57,7 @@ final class EzPublishRuntime
             $locationPath = $location->path;
             array_shift($locationPath);
 
-            $translatedNames = array();
+            $translatedNames = [];
 
             for ($i = 0, $pathLength = count($locationPath); $i < $pathLength; ++$i) {
                 $locationInPath = $this->loadLocation($locationPath[$i]);
@@ -68,7 +68,7 @@ final class EzPublishRuntime
 
             return $translatedNames;
         } catch (Exception $e) {
-            return array();
+            return [];
         }
     }
 

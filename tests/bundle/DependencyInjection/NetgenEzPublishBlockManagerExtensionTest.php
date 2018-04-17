@@ -17,9 +17,9 @@ final class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTe
     {
         $this->container->setParameter(
             'kernel.bundles',
-            array(
+            [
                 'NetgenTagsBundle' => 'NetgenTagsBundle',
-            )
+            ]
         );
 
         $this->load();
@@ -62,7 +62,7 @@ final class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTe
      */
     public function testPrepend()
     {
-        $this->container->setParameter('kernel.bundles', array('NetgenBlockManagerBundle' => true));
+        $this->container->setParameter('kernel.bundles', ['NetgenBlockManagerBundle' => true]);
         $this->container->registerExtension(new NetgenBlockManagerExtension());
 
         $extension = $this->container->getExtension('netgen_ez_publish_block_manager');
@@ -111,6 +111,6 @@ final class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTe
      */
     protected function getContainerExtensions()
     {
-        return array(new NetgenEzPublishBlockManagerExtension());
+        return [new NetgenEzPublishBlockManagerExtension()];
     }
 }

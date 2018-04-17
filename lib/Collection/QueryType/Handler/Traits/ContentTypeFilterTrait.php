@@ -33,36 +33,36 @@ trait ContentTypeFilterTrait
      * @param \Netgen\BlockManager\Parameters\ParameterBuilderInterface $builder
      * @param array $groups
      */
-    private function buildContentTypeFilterParameters(ParameterBuilderInterface $builder, array $groups = array())
+    private function buildContentTypeFilterParameters(ParameterBuilderInterface $builder, array $groups = [])
     {
         $builder->add(
             'filter_by_content_type',
             ParameterType\Compound\BooleanType::class,
-            array(
+            [
                 'groups' => $groups,
-            )
+            ]
         );
 
         $builder->get('filter_by_content_type')->add(
             'content_types',
             EzParameterType\ContentTypeType::class,
-            array(
+            [
                 'multiple' => true,
                 'groups' => $groups,
-            )
+            ]
         );
 
         $builder->get('filter_by_content_type')->add(
             'content_types_filter',
             ParameterType\ChoiceType::class,
-            array(
+            [
                 'required' => true,
-                'options' => array(
+                'options' => [
                     'Include content types' => 'include',
                     'Exclude content types' => 'exclude',
-                ),
+                ],
                 'groups' => $groups,
-            )
+            ]
         );
     }
 
@@ -104,7 +104,7 @@ trait ContentTypeFilterTrait
      */
     private function getContentTypeIds(array $contentTypeIdentifiers)
     {
-        $idList = array();
+        $idList = [];
 
         foreach ($contentTypeIdentifiers as $identifier) {
             try {

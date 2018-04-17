@@ -33,8 +33,8 @@ final class ContentType extends ParameterType
     public function configureOptions(OptionsResolver $optionsResolver)
     {
         $optionsResolver->setDefault('allow_invalid', false);
-        $optionsResolver->setRequired(array('allow_invalid'));
-        $optionsResolver->setAllowedTypes('allow_invalid', array('bool'));
+        $optionsResolver->setRequired(['allow_invalid']);
+        $optionsResolver->setAllowedTypes('allow_invalid', ['bool']);
     }
 
     public function export(ParameterDefinitionInterface $parameterDefinition, $value)
@@ -78,10 +78,10 @@ final class ContentType extends ParameterType
     {
         $options = $parameterDefinition->getOptions();
 
-        return array(
-            new Constraints\Type(array('type' => 'numeric')),
-            new Constraints\GreaterThan(array('value' => 0)),
-            new EzConstraints\Content(array('allowInvalid' => $options['allow_invalid'])),
-        );
+        return [
+            new Constraints\Type(['type' => 'numeric']),
+            new Constraints\GreaterThan(['value' => 0]),
+            new EzConstraints\Content(['allowInvalid' => $options['allow_invalid']]),
+        ];
     }
 }

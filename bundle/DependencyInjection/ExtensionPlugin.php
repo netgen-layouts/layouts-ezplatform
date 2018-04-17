@@ -16,10 +16,10 @@ final class ExtensionPlugin extends BaseExtensionPlugin
     /**
      * @var array
      */
-    private static $siteAccessAwareSettings = array(
+    private static $siteAccessAwareSettings = [
         'view',
         'design',
-    );
+    ];
 
     /**
      * @var \Symfony\Component\DependencyInjection\ContainerBuilder
@@ -72,10 +72,10 @@ final class ExtensionPlugin extends BaseExtensionPlugin
     public function preProcessConfiguration(array $configs)
     {
         $newConfigs = $configs;
-        $prependConfigs = array();
+        $prependConfigs = [];
         foreach ($configs as $index => $config) {
             if (isset($config['system'])) {
-                $prependConfigs[] = array('system' => $config['system']);
+                $prependConfigs[] = ['system' => $config['system']];
                 unset($config['system']);
                 $newConfigs[$index] = $config;
             }
@@ -86,7 +86,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
                 }
             }
 
-            $newConfigs[] = array('system' => array('default' => $config));
+            $newConfigs[] = ['system' => ['default' => $config]];
         }
 
         return array_merge($prependConfigs, $newConfigs);
@@ -102,10 +102,10 @@ final class ExtensionPlugin extends BaseExtensionPlugin
         $configuration = new Configuration();
         $systemNode = $configuration->generateScopeBaseNode($rootNode);
 
-        $nodes = array(
+        $nodes = [
             new ViewNode(),
             new DesignNode(),
-        );
+        ];
 
         foreach ($nodes as $node) {
             $systemNode->append($node->getConfigurationNode());
@@ -153,9 +153,9 @@ final class ExtensionPlugin extends BaseExtensionPlugin
      */
     public function appendConfigurationFiles()
     {
-        return array(
+        return [
             __DIR__ . '/../Resources/config/block_type_groups.yml',
-        );
+        ];
     }
 
     /**
@@ -190,7 +190,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
                 if (isset($config['system']['default']['view'][$viewName])) {
                     foreach ($config['system']['default']['view'][$viewName] as $context => $defaultRules) {
                         if (!isset($config['system'][$scope]['view'][$viewName][$context])) {
-                            $config['system'][$scope]['view'][$viewName][$context] = array();
+                            $config['system'][$scope]['view'][$viewName][$context] = [];
                         }
 
                         $config['system'][$scope]['view'][$viewName][$context] += $defaultRules;

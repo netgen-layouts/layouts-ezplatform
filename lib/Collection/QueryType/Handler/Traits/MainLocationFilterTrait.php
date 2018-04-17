@@ -15,15 +15,15 @@ trait MainLocationFilterTrait
      * @param \Netgen\BlockManager\Parameters\ParameterBuilderInterface $builder
      * @param array $groups
      */
-    private function buildMainLocationParameters(ParameterBuilderInterface $builder, $groups = array())
+    private function buildMainLocationParameters(ParameterBuilderInterface $builder, $groups = [])
     {
         $builder->add(
             'only_main_locations',
             ParameterType\BooleanType::class,
-            array(
+            [
                 'default_value' => true,
                 'groups' => $groups,
-            )
+            ]
         );
     }
 

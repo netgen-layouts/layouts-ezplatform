@@ -22,7 +22,7 @@ final class ContentType extends Constraint
      *
      * @var array
      */
-    public $allowedTypes = array();
+    public $allowedTypes = [];
 
     public function validatedBy()
     {

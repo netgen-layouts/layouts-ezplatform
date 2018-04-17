@@ -21,18 +21,18 @@ final class RepositoryValidatorFactory implements ConstraintValidatorFactoryInte
     /**
      * @var \Symfony\Component\Validator\Validator\ValidatorInterface[]
      */
-    private $validators = array();
+    private $validators = [];
 
     public function __construct(Repository $repository)
     {
         $this->baseValidatorFactory = new ConstraintValidatorFactory();
 
-        $this->validators = array(
+        $this->validators = [
             'ngbm_ezlocation' => new LocationValidator($repository),
             'ngbm_ezcontent' => new ContentValidator($repository),
             'ngbm_ez_content_type' => new ContentTypeValidator($repository),
             'ngbm_ez_object_state' => new ObjectStateValidator($repository),
-        );
+        ];
     }
 
     public function getInstance(Constraint $constraint)

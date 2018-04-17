@@ -32,9 +32,9 @@ final class ChildrenTest extends TestCase
     public function testGetFormOptions()
     {
         $this->assertEquals(
-            array(
+            [
                 'item_type' => 'ezlocation',
-            ),
+            ],
             $this->mapper->getFormOptions()
         );
     }

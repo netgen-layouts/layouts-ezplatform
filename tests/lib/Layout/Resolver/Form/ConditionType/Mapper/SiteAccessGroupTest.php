@@ -19,10 +19,10 @@ final class SiteAccessGroupTest extends TestCase
     public function setUp()
     {
         $this->mapper = new SiteAccessGroup(
-            array(
-                'frontend' => array('eng'),
-                'backend' => array('admin'),
-            )
+            [
+                'frontend' => ['eng'],
+                'backend' => ['admin'],
+            ]
         );
     }
 
@@ -41,12 +41,12 @@ final class SiteAccessGroupTest extends TestCase
     public function testGetFormOptions()
     {
         $this->assertEquals(
-            array(
-                'choices' => array('frontend' => 'frontend', 'backend' => 'backend'),
+            [
+                'choices' => ['frontend' => 'frontend', 'backend' => 'backend'],
                 'choice_translation_domain' => false,
                 'multiple' => true,
                 'expanded' => true,
-            ) + $this->getChoicesAsValuesOption(),
+            ] + $this->getChoicesAsValuesOption(),
             $this->mapper->getFormOptions()
         );
     }

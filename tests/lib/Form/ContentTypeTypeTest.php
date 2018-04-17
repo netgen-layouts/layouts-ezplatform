@@ -38,18 +38,18 @@ final class ContentTypeTypeTest extends FormTestCase
     {
         $this->configureContentTypeService();
 
-        $submittedData = array('article');
+        $submittedData = ['article'];
 
         $form = $this->factory->create(
             ContentTypeType::class,
             null,
-            array(
+            [
                 'multiple' => true,
-                'types' => array(
-                    'Group1' => array('article'),
+                'types' => [
+                    'Group1' => ['article'],
                     'Group3' => false,
-                ),
-            )
+                ],
+            ]
         );
 
         $form->submit($submittedData);
@@ -79,24 +79,24 @@ final class ContentTypeTypeTest extends FormTestCase
         $this->formType->configureOptions($optionsResolver);
 
         $options = $optionsResolver->resolve(
-            array(
-                'types' => array(
-                    'Group1' => array('article'),
+            [
+                'types' => [
+                    'Group1' => ['article'],
                     'Group3' => false,
-                ),
-            )
+                ],
+            ]
         );
 
         $this->assertFalse($options['choice_translation_domain']);
         $this->assertEquals(
-            array(
-                'Group1' => array(
+            [
+                'Group1' => [
                     'Article' => 'article',
-                ),
-                'Group2' => array(
+                ],
+                'Group2' => [
                     'Image' => 'image',
-                ),
-            ),
+                ],
+            ],
             $options['choices']
         );
 
@@ -108,14 +108,14 @@ final class ContentTypeTypeTest extends FormTestCase
 
     private function configureContentTypeService()
     {
-        $contentTypeGroup1 = new ContentTypeGroup(array('identifier' => 'Group1'));
-        $contentTypeGroup2 = new ContentTypeGroup(array('identifier' => 'Group2'));
-        $contentTypeGroup3 = new ContentTypeGroup(array('identifier' => 'Group3'));
+        $contentTypeGroup1 = new ContentTypeGroup(['identifier' => 'Group1']);
+        $contentTypeGroup2 = new ContentTypeGroup(['identifier' => 'Group2']);
+        $contentTypeGroup3 = new ContentTypeGroup(['identifier' => 'Group3']);
 
         $this->contentTypeServiceMock
             ->expects($this->at(0))
             ->method('loadContentTypeGroups')
-            ->will($this->returnValue(array($contentTypeGroup1, $contentTypeGroup2, $contentTypeGroup3)));
+            ->will($this->returnValue([$contentTypeGroup1, $contentTypeGroup2, $contentTypeGroup3]));
 
         $this->contentTypeServiceMock
             ->expects($this->at(1))
@@ -123,26 +123,26 @@ final class ContentTypeTypeTest extends FormTestCase
             ->with($this->equalTo($contentTypeGroup1))
             ->will(
                 $this->returnValue(
-                    array(
+                    [
                         new ContentType(
-                            array(
+                            [
                                 'identifier' => 'article',
-                                'names' => array(
+                                'names' => [
                                     'eng-GB' => 'Article',
-                                ),
-                                'fieldDefinitions' => array(),
-                            )
+                                ],
+                                'fieldDefinitions' => [],
+                            ]
                         ),
                         new ContentType(
-                            array(
+                            [
                                 'identifier' => 'news',
-                                'names' => array(
+                                'names' => [
                                     'eng-GB' => 'News',
-                                ),
-                                'fieldDefinitions' => array(),
-                            )
+                                ],
+                                'fieldDefinitions' => [],
+                            ]
                         ),
-                    )
+                    ]
                 )
             );
 
@@ -152,17 +152,17 @@ final class ContentTypeTypeTest extends FormTestCase
             ->with($this->equalTo($contentTypeGroup2))
             ->will(
                 $this->returnValue(
-                    array(
+                    [
                         new ContentType(
-                            array(
+                            [
                                 'identifier' => 'image',
-                                'names' => array(
+                                'names' => [
                                     'eng-GB' => 'Image',
-                                ),
-                                'fieldDefinitions' => array(),
-                            )
+                                ],
+                                'fieldDefinitions' => [],
+                            ]
                         ),
-                    )
+                    ]
                 )
             );
     }

@@ -53,10 +53,10 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
 
     public function processProvider()
     {
-        return array(
-            array(VarnishPurgeClient::class, true),
-            array(LocalPurgeClient::class, false),
-        );
+        return [
+            [VarnishPurgeClient::class, true],
+            [LocalPurgeClient::class, false],
+        ];
     }
 
     /**

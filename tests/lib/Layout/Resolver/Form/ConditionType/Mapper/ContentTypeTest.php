@@ -32,9 +32,9 @@ final class ContentTypeTest extends TestCase
     public function testGetFormOptions()
     {
         $this->assertEquals(
-            array(
+            [
                 'multiple' => true,
-            ),
+            ],
             $this->mapper->getFormOptions()
         );
     }

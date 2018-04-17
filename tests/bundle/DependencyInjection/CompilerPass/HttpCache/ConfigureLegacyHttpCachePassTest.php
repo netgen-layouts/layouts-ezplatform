@@ -62,10 +62,10 @@ final class ConfigureLegacyHttpCachePassTest extends AbstractCompilerPassTestCas
 
     public function processProvider()
     {
-        return array(
-            array(FOSPurgeClient::class, true),
-            array(LocalPurgeClient::class, false),
-        );
+        return [
+            [FOSPurgeClient::class, true],
+            [LocalPurgeClient::class, false],
+        ];
     }
 
     /**

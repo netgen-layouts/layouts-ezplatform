@@ -34,11 +34,11 @@ final class ContentValueLoaderTest extends TestCase
     public function testLoad()
     {
         $contentInfo = new ContentInfo(
-            array(
+            [
                 'id' => 52,
                 'published' => true,
                 'mainLocationId' => 42,
-            )
+            ]
         );
 
         $this->contentServiceMock
@@ -80,10 +80,10 @@ final class ContentValueLoaderTest extends TestCase
             ->will(
                 $this->returnValue(
                     new ContentInfo(
-                        array(
+                        [
                             'published' => false,
                             'mainLocationId' => 42,
-                        )
+                        ]
                     )
                 )
             );
@@ -105,9 +105,9 @@ final class ContentValueLoaderTest extends TestCase
             ->will(
                 $this->returnValue(
                     new ContentInfo(
-                        array(
+                        [
                             'published' => true,
-                        )
+                        ]
                     )
                 )
             );
@@ -121,11 +121,11 @@ final class ContentValueLoaderTest extends TestCase
     public function testLoadByRemoteId()
     {
         $contentInfo = new ContentInfo(
-            array(
+            [
                 'remoteId' => 'abc',
                 'published' => true,
                 'mainLocationId' => 42,
-            )
+            ]
         );
 
         $this->contentServiceMock
@@ -167,10 +167,10 @@ final class ContentValueLoaderTest extends TestCase
             ->will(
                 $this->returnValue(
                     new ContentInfo(
-                        array(
+                        [
                             'published' => false,
                             'mainLocationId' => 42,
-                        )
+                        ]
                     )
                 )
             );
@@ -192,9 +192,9 @@ final class ContentValueLoaderTest extends TestCase
             ->will(
                 $this->returnValue(
                     new ContentInfo(
-                        array(
+                        [
                             'published' => true,
-                        )
+                        ]
                     )
                 )
             );

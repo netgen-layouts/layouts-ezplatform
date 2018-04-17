@@ -10,13 +10,13 @@ final class PolicyProvider implements PolicyProviderInterface
     public function addPolicies(ConfigBuilderInterface $configBuilder)
     {
         $configBuilder->addConfig(
-            array(
-                'nglayouts' => array(
+            [
+                'nglayouts' => [
                     'admin' => null,
                     'editor' => null,
                     'api' => null,
-                ),
-            )
+                ],
+            ]
         );
     }
 }

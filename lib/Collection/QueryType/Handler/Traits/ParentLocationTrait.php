@@ -48,24 +48,24 @@ trait ParentLocationTrait
      * @param \Netgen\BlockManager\Parameters\ParameterBuilderInterface $builder
      * @param array $groups
      */
-    private function buildParentLocationParameters(ParameterBuilderInterface $builder, array $groups = array())
+    private function buildParentLocationParameters(ParameterBuilderInterface $builder, array $groups = [])
     {
         $builder->add(
             'use_current_location',
             ParameterType\Compound\BooleanType::class,
-            array(
+            [
                 'reverse' => true,
                 'groups' => $groups,
-            )
+            ]
         );
 
         $builder->get('use_current_location')->add(
             'parent_location_id',
             EzParameterType\LocationType::class,
-            array(
+            [
                 'allow_invalid' => true,
                 'groups' => $groups,
-            )
+            ]
         );
     }
 

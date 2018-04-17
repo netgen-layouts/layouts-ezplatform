@@ -14,7 +14,7 @@ trait SortTrait
     /**
      * @var array
      */
-    private $sortClauses = array(
+    private $sortClauses = [
         'default' => SortClause\DatePublished::class,
         'date_published' => SortClause\DatePublished::class,
         'date_modified' => SortClause\DateModified::class,
@@ -29,15 +29,15 @@ trait SortTrait
         Location::SORT_FIELD_NAME => SortClause\ContentName::class,
         Location::SORT_FIELD_NODE_ID => SortClause\Location\Id::class,
         Location::SORT_FIELD_CONTENTOBJECT_ID => SortClause\ContentId::class,
-    );
+    ];
 
     /**
      * @var array
      */
-    private $sortDirections = array(
+    private $sortDirections = [
         Location::SORT_ORDER_ASC => LocationQuery::SORT_ASC,
         Location::SORT_ORDER_DESC => LocationQuery::SORT_DESC,
-    );
+    ];
 
     /**
      * Builds the parameters for sorting eZ content.
@@ -46,15 +46,15 @@ trait SortTrait
      * @param array $groups
      * @param array $allowedSortTypes
      */
-    private function buildSortParameters(ParameterBuilderInterface $builder, array $groups = array(), array $allowedSortTypes = null)
+    private function buildSortParameters(ParameterBuilderInterface $builder, array $groups = [], array $allowedSortTypes = null)
     {
-        $sortTypes = array(
+        $sortTypes = [
             'Published' => 'date_published',
             'Modified' => 'date_modified',
             'Alphabetical' => 'content_name',
             'Priority' => 'location_priority',
             'Defined by parent' => 'defined_by_parent',
-        );
+        ];
 
         if (is_array($allowedSortTypes)) {
             $sortTypes = array_intersect($sortTypes, $allowedSortTypes);
@@ -63,24 +63,24 @@ trait SortTrait
         $builder->add(
             'sort_type',
             ParameterType\ChoiceType::class,
-            array(
+            [
                 'required' => true,
                 'options' => $sortTypes,
                 'groups' => $groups,
-            )
+            ]
         );
 
         $builder->add(
             'sort_direction',
             ParameterType\ChoiceType::class,
-            array(
+            [
                 'required' => true,
-                'options' => array(
+                'options' => [
                     'Descending' => LocationQuery::SORT_DESC,
                     'Ascending' => LocationQuery::SORT_ASC,
-                ),
+                ],
                 'groups' => $groups,
-            )
+            ]
         );
     }
 
@@ -102,8 +102,8 @@ trait SortTrait
             $sortDirection = $this->sortDirections[$parentLocation->sortOrder];
         }
 
-        return array(
+        return [
             new $this->sortClauses[$sortType]($sortDirection),
-        );
+        ];
     }
 }

@@ -39,7 +39,7 @@ final class SubtreeTest extends TestCase
     {
         $this->contentExtractorMock = $this->createMock(ContentExtractorInterface::class);
         $this->locationServiceMock = $this->createMock(LocationService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, array('sudo', 'getLocationService'));
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService']);
 
         $this->repositoryMock
             ->expects($this->any())
@@ -105,9 +105,9 @@ final class SubtreeTest extends TestCase
     public function testProvideValue()
     {
         $location = new Location(
-            array(
-                'path' => array(1, 2, 42),
-            )
+            [
+                'path' => [1, 2, 42],
+            ]
         );
 
         $request = Request::create('/');
@@ -118,7 +118,7 @@ final class SubtreeTest extends TestCase
             ->with($this->equalTo($request))
             ->will($this->returnValue($location));
 
-        $this->assertEquals(array(1, 2, 42), $this->targetType->provideValue($request));
+        $this->assertEquals([1, 2, 42], $this->targetType->provideValue($request));
     }
 
     /**
@@ -145,14 +145,14 @@ final class SubtreeTest extends TestCase
      */
     public function validationProvider()
     {
-        return array(
-            array(12, true),
-            array(24, false),
-            array(-12, false),
-            array(0, false),
-            array('12', false),
-            array('', false),
-            array(null, false),
-        );
+        return [
+            [12, true],
+            [24, false],
+            [-12, false],
+            [0, false],
+            ['12', false],
+            ['', false],
+            [null, false],
+        ];
     }
 }

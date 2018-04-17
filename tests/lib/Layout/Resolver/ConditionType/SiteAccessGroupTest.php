@@ -19,14 +19,14 @@ final class SiteAccessGroupTest extends TestCase
     public function setUp()
     {
         $this->conditionType = new SiteAccessGroup(
-            array(
-                'eng' => array(
+            [
+                'eng' => [
                     'frontend',
-                ),
-                'admin' => array(
+                ],
+                'admin' => [
                     'backend',
-                ),
-            )
+                ],
+            ]
         );
     }
 
@@ -80,7 +80,7 @@ final class SiteAccessGroupTest extends TestCase
         $request = Request::create('/');
         $request->attributes->set('siteaccess', new EzPublishSiteAccess('cro'));
 
-        $this->assertFalse($this->conditionType->matches($request, array('frontend')));
+        $this->assertFalse($this->conditionType->matches($request, ['frontend']));
     }
 
     /**
@@ -90,7 +90,7 @@ final class SiteAccessGroupTest extends TestCase
     {
         $request = Request::create('/');
 
-        $this->assertFalse($this->conditionType->matches($request, array('frontend')));
+        $this->assertFalse($this->conditionType->matches($request, ['frontend']));
     }
 
     /**
@@ -100,14 +100,14 @@ final class SiteAccessGroupTest extends TestCase
      */
     public function validationProvider()
     {
-        return array(
-            array(array('frontend'), true),
-            array(array('backend', 'frontend'), true),
-            array(array('frontend', 'unknown'), false),
-            array(array('unknown'), false),
-            array(array(), false),
-            array(null, false),
-        );
+        return [
+            [['frontend'], true],
+            [['backend', 'frontend'], true],
+            [['frontend', 'unknown'], false],
+            [['unknown'], false],
+            [[], false],
+            [null, false],
+        ];
     }
 
     /**
@@ -117,14 +117,14 @@ final class SiteAccessGroupTest extends TestCase
      */
     public function matchesProvider()
     {
-        return array(
-            array('not_array', false),
-            array(array(), false),
-            array(array('frontend'), true),
-            array(array('backend'), false),
-            array(array('frontend', 'backend'), true),
-            array(array('frontend', 'other'), true),
-            array(array('backend', 'other'), false),
-        );
+        return [
+            ['not_array', false],
+            [[], false],
+            [['frontend'], true],
+            [['backend'], false],
+            [['frontend', 'backend'], true],
+            [['frontend', 'other'], true],
+            [['backend', 'other'], false],
+        ];
     }
 }

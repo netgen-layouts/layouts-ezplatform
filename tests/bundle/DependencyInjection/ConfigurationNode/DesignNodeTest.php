@@ -11,15 +11,15 @@ final class DesignNodeTest extends ConfigurationNodeTest
      */
     public function testDesignSettings()
     {
-        $config = array(
-            array(
+        $config = [
+            [
                 'design' => 'standard',
-            ),
-        );
+            ],
+        ];
 
-        $expectedConfig = array(
+        $expectedConfig = [
             'design' => 'standard',
-        );
+        ];
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
         $this->assertInjectedConfigurationEqual($expectedConfig, $config);
@@ -33,16 +33,16 @@ final class DesignNodeTest extends ConfigurationNodeTest
      */
     public function testValidDesign()
     {
-        $config = array(
-            array(
-                'design_list' => array('test1' => array('theme1'), 'test2' => array('theme2')),
-                'system' => array(
-                    'default' => array(
+        $config = [
+            [
+                'design_list' => ['test1' => ['theme1'], 'test2' => ['theme2']],
+                'system' => [
+                    'default' => [
                         'design' => 'test1',
-                    ),
-                ),
-            ),
-        );
+                    ],
+                ],
+            ],
+        ];
 
         $config = $this->plugin->postProcessConfiguration(
             $this->partialProcessor->processConfiguration(
@@ -63,16 +63,16 @@ final class DesignNodeTest extends ConfigurationNodeTest
      */
     public function testStandardDesign()
     {
-        $config = array(
-            array(
-                'design_list' => array('test1' => array('theme1'), 'test2' => array('theme2')),
-                'system' => array(
-                    'default' => array(
+        $config = [
+            [
+                'design_list' => ['test1' => ['theme1'], 'test2' => ['theme2']],
+                'system' => [
+                    'default' => [
                         'design' => 'standard',
-                    ),
-                ),
-            ),
-        );
+                    ],
+                ],
+            ],
+        ];
 
         $config = $this->plugin->postProcessConfiguration(
             $this->partialProcessor->processConfiguration(
@@ -95,16 +95,16 @@ final class DesignNodeTest extends ConfigurationNodeTest
      */
     public function testInvalidDesignThrowsInvalidConfigurationException()
     {
-        $config = array(
-            array(
-                'design_list' => array('test1' => array('theme1'), 'test2' => array('theme2')),
-                'system' => array(
-                    'default' => array(
+        $config = [
+            [
+                'design_list' => ['test1' => ['theme1'], 'test2' => ['theme2']],
+                'system' => [
+                    'default' => [
                         'design' => 'unknown',
-                    ),
-                ),
-            ),
-        );
+                    ],
+                ],
+            ],
+        ];
 
         $this->plugin->postProcessConfiguration(
             $this->partialProcessor->processConfiguration(

@@ -13,24 +13,24 @@ final class DefaultAppPreviewPass implements CompilerPassInterface
             return;
         }
 
-        $defaultRule = array(
+        $defaultRule = [
             'template' => $container->getParameter(
                 'netgen_block_manager.app.ezpublish.item_preview_template'
             ),
-            'match' => array(),
-            'params' => array(),
-        );
+            'match' => [],
+            'params' => [],
+        ];
 
         $scopes = array_merge(
-            array('default'),
+            ['default'],
             $container->getParameter('ezpublish.siteaccess.list')
         );
 
         foreach ($scopes as $scope) {
-            $scopeParams = array(
+            $scopeParams = [
                 "ezsettings.{$scope}.content_view",
                 "ezsettings.{$scope}.location_view",
-            );
+            ];
 
             foreach ($scopeParams as $scopeParam) {
                 if (!$container->hasParameter($scopeParam)) {
@@ -55,15 +55,15 @@ final class DefaultAppPreviewPass implements CompilerPassInterface
      */
     private function addDefaultPreviewRule($scopeRules, $defaultRule)
     {
-        $scopeRules = is_array($scopeRules) ? $scopeRules : array();
+        $scopeRules = is_array($scopeRules) ? $scopeRules : [];
 
         $blockManagerRules = isset($scopeRules['ngbm_app_preview']) ?
             $scopeRules['ngbm_app_preview'] :
-            array();
+            [];
 
-        $blockManagerRules += array(
+        $blockManagerRules += [
             '___ngbm_app_preview_default___' => $defaultRule,
-        );
+        ];
 
         $scopeRules['ngbm_app_preview'] = $blockManagerRules;
 

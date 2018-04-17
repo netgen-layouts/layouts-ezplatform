@@ -49,17 +49,17 @@ final class Ez5RequestContentExtractorTest extends TestCase
     public function testProvideContent()
     {
         $content = new Content(
-            array(
+            [
                 'versionInfo' => new VersionInfo(
-                    array(
+                    [
                         'contentInfo' => new ContentInfo(
-                            array(
+                            [
                                 'id' => 42,
-                            )
+                            ]
                         ),
-                    )
+                    ]
                 ),
-            )
+            ]
         );
 
         $request = Request::create('/');
@@ -78,17 +78,17 @@ final class Ez5RequestContentExtractorTest extends TestCase
     public function testProvideContentWithContentId()
     {
         $content = new Content(
-            array(
+            [
                 'versionInfo' => new VersionInfo(
-                    array(
+                    [
                         'contentInfo' => new ContentInfo(
-                            array(
+                            [
                                 'id' => 42,
-                            )
+                            ]
                         ),
-                    )
+                    ]
                 ),
-            )
+            ]
         );
 
         $request = Request::create('/');
@@ -150,7 +150,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
      */
     public function testProvideLocation()
     {
-        $location = new Location(array('id' => 42));
+        $location = new Location(['id' => 42]);
 
         $request = Request::create('/');
         $request->attributes->set('location', $location);
@@ -167,7 +167,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
      */
     public function testProvideLocationWithLocationId()
     {
-        $location = new Location(array('id' => 42));
+        $location = new Location(['id' => 42]);
 
         $request = Request::create('/');
         $request->attributes->set('locationId', 42);

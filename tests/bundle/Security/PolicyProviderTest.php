@@ -35,13 +35,13 @@ final class PolicyProviderTest extends TestCase
             ->method('addConfig')
             ->with(
                 $this->equalTo(
-                    array(
-                        'nglayouts' => array(
+                    [
+                        'nglayouts' => [
                             'admin' => null,
                             'editor' => null,
                             'api' => null,
-                        ),
-                    )
+                        ],
+                    ]
                 )
             );
 

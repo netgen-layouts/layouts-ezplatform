@@ -35,7 +35,7 @@ final class LocationValidatorTest extends ValidatorTestCase
     public function getValidator()
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, array('sudo', 'getLocationService'));
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService']);
 
         $this->repositoryMock
             ->expects($this->any())
@@ -100,18 +100,18 @@ final class LocationValidatorTest extends ValidatorTestCase
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue()
     {
-        $this->assertValid(true, array());
+        $this->assertValid(true, []);
     }
 
     public function validateDataProvider()
     {
-        return array(
-            array(12, true),
-            array(25, false),
-            array(-12, false),
-            array(0, false),
-            array('12', false),
-            array(null, true),
-        );
+        return [
+            [12, true],
+            [25, false],
+            [-12, false],
+            [0, false],
+            ['12', false],
+            [null, true],
+        ];
     }
 }

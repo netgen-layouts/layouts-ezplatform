@@ -37,7 +37,7 @@ final class ContentValueConverterTest extends TestCase
             ->will(
                 $this->returnCallback(
                     function ($id) {
-                        return new Location(array('id' => $id, 'invisible' => false));
+                        return new Location(['id' => $id, 'invisible' => false]);
                     }
                 )
             );
@@ -87,7 +87,7 @@ final class ContentValueConverterTest extends TestCase
         $this->assertEquals(
             24,
             $this->valueConverter->getId(
-                new ContentInfo(array('id' => 24, 'mainLocationId' => 42))
+                new ContentInfo(['id' => 24, 'mainLocationId' => 42])
             )
         );
     }
@@ -100,7 +100,7 @@ final class ContentValueConverterTest extends TestCase
         $this->assertEquals(
             'abc',
             $this->valueConverter->getRemoteId(
-                new ContentInfo(array('remoteId' => 'abc'))
+                new ContentInfo(['remoteId' => 'abc'])
             )
         );
     }
@@ -113,7 +113,7 @@ final class ContentValueConverterTest extends TestCase
         $this->assertEquals(
             'Cool name',
             $this->valueConverter->getName(
-                new ContentInfo(array('mainLocationId' => 42))
+                new ContentInfo(['mainLocationId' => 42])
             )
         );
     }
@@ -125,7 +125,7 @@ final class ContentValueConverterTest extends TestCase
     {
         $this->assertTrue(
             $this->valueConverter->getIsVisible(
-                new ContentInfo(array('mainLocationId' => 42))
+                new ContentInfo(['mainLocationId' => 42])
             )
         );
     }
@@ -135,7 +135,7 @@ final class ContentValueConverterTest extends TestCase
      */
     public function testGetObject()
     {
-        $object = new ContentInfo(array('id' => 42));
+        $object = new ContentInfo(['id' => 42]);
 
         $this->assertEquals($object, $this->valueConverter->getObject($object));
     }

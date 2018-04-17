@@ -30,7 +30,7 @@ final class ContentTypeTypeTest extends TestCase
     public function setUp()
     {
         $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, array('sudo', 'getContentTypeService'));
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentTypeService']);
 
         $this->repositoryMock
             ->expects($this->any())
@@ -88,51 +88,51 @@ final class ContentTypeTypeTest extends TestCase
      */
     public function validOptionsProvider()
     {
-        return array(
-            array(
-                array(),
-                array(
+        return [
+            [
+                [],
+                [
                     'multiple' => false,
-                    'types' => array(),
-                ),
-            ),
-            array(
-                array(
+                    'types' => [],
+                ],
+            ],
+            [
+                [
                     'multiple' => false,
-                ),
-                array(
+                ],
+                [
                     'multiple' => false,
-                    'types' => array(),
-                ),
-            ),
-            array(
-                array(
+                    'types' => [],
+                ],
+            ],
+            [
+                [
                     'multiple' => true,
-                ),
-                array(
+                ],
+                [
                     'multiple' => true,
-                    'types' => array(),
-                ),
-            ),
-            array(
-                array(
-                    'types' => array(),
-                ),
-                array(
+                    'types' => [],
+                ],
+            ],
+            [
+                [
+                    'types' => [],
+                ],
+                [
                     'multiple' => false,
-                    'types' => array(),
-                ),
-            ),
-            array(
-                array(
-                    'types' => array(42),
-                ),
-                array(
+                    'types' => [],
+                ],
+            ],
+            [
+                [
+                    'types' => [42],
+                ],
+                [
                     'multiple' => false,
-                    'types' => array(42),
-                ),
-            ),
-        );
+                    'types' => [42],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -142,16 +142,16 @@ final class ContentTypeTypeTest extends TestCase
      */
     public function invalidOptionsProvider()
     {
-        return array(
-            array(
-                array(
+        return [
+            [
+                [
                     'multiple' => 'true',
-                ),
-                array(
+                ],
+                [
                     'undefined_value' => 'Value',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
     /**
@@ -164,9 +164,9 @@ final class ContentTypeTypeTest extends TestCase
      */
     public function testValidation($value, $required, $isValid)
     {
-        $options = array();
+        $options = [];
         if ($value !== null) {
-            $options = array('multiple' => is_array($value));
+            $options = ['multiple' => is_array($value)];
             foreach ((array) $value as $index => $identifier) {
                 $this->contentTypeServiceMock
                     ->expects($this->at($index))
@@ -175,14 +175,14 @@ final class ContentTypeTypeTest extends TestCase
                     ->will(
                         $this->returnCallback(
                             function () use ($identifier) {
-                                if (!is_string($identifier) || !in_array($identifier, array('article', 'news'), true)) {
+                                if (!is_string($identifier) || !in_array($identifier, ['article', 'news'], true)) {
                                     throw new NotFoundException('content type', $identifier);
                                 }
 
                                 return new EzContentType(
-                                    array(
+                                    [
                                         'identifier' => $identifier,
-                                    )
+                                    ]
                                 );
                             }
                         )
@@ -206,22 +206,22 @@ final class ContentTypeTypeTest extends TestCase
      */
     public function validationProvider()
     {
-        return array(
-            array('news', false, true),
-            array(array(), false, true),
-            array(array('news'), false, true),
-            array(array('article', 'news'), false, true),
-            array(array('article', 'other'), false, false),
-            array(array('other'), false, false),
-            array(null, false, true),
-            array('news', true, true),
-            array(array(), true, false),
-            array(array('news'), true, true),
-            array(array('article', 'news'), true, true),
-            array(array('article', 'other'), true, false),
-            array(array('other'), true, false),
-            array(null, true, false),
-        );
+        return [
+            ['news', false, true],
+            [[], false, true],
+            [['news'], false, true],
+            [['article', 'news'], false, true],
+            [['article', 'other'], false, false],
+            [['other'], false, false],
+            [null, false, true],
+            ['news', true, true],
+            [[], true, false],
+            [['news'], true, true],
+            [['article', 'news'], true, true],
+            [['article', 'other'], true, false],
+            [['other'], true, false],
+            [null, true, false],
+        ];
     }
 
     /**
@@ -238,9 +238,9 @@ final class ContentTypeTypeTest extends TestCase
             $convertedValue,
             $this->type->fromHash(
                 $this->getParameterDefinition(
-                    array(
+                    [
                         'multiple' => $multiple,
-                    )
+                    ]
                 ),
                 $value
             )
@@ -249,48 +249,48 @@ final class ContentTypeTypeTest extends TestCase
 
     public function fromHashProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 null,
                 null,
                 false,
-            ),
-            array(
-                array(),
+            ],
+            [
+                [],
                 null,
                 false,
-            ),
-            array(
+            ],
+            [
                 42,
                 42,
                 false,
-            ),
-            array(
-                array(42, 43),
+            ],
+            [
+                [42, 43],
                 42,
                 false,
-            ),
-            array(
+            ],
+            [
                 null,
                 null,
                 true,
-            ),
-            array(
-                array(),
+            ],
+            [
+                [],
                 null,
                 true,
-            ),
-            array(
+            ],
+            [
                 42,
-                array(42),
+                [42],
                 true,
-            ),
-            array(
-                array(42, 43),
-                array(42, 43),
+            ],
+            [
+                [42, 43],
+                [42, 43],
                 true,
-            ),
-        );
+            ],
+        ];
     }
 
     /**
@@ -312,14 +312,14 @@ final class ContentTypeTypeTest extends TestCase
      */
     public function emptyProvider()
     {
-        return array(
-            array(null, true),
-            array(array(), true),
-            array(42, false),
-            array(array(42), false),
-            array(0, false),
-            array('42', false),
-            array('', false),
-        );
+        return [
+            [null, true],
+            [[], true],
+            [42, false],
+            [[42], false],
+            [0, false],
+            ['42', false],
+            ['', false],
+        ];
     }
 }

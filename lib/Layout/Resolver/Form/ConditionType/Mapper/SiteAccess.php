@@ -32,11 +32,11 @@ final class SiteAccess extends Mapper
 
     public function getFormOptions()
     {
-        return array(
+        return [
             'choices' => $this->siteAccessList,
             'choice_translation_domain' => false,
             'multiple' => true,
             'expanded' => true,
-        ) + $this->getChoicesAsValuesOption();
+        ] + $this->getChoicesAsValuesOption();
     }
 }

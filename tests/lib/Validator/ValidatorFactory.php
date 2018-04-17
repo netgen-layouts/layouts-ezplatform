@@ -18,21 +18,21 @@ final class ValidatorFactory implements ConstraintValidatorFactoryInterface
     /**
      * @var \Symfony\Component\Validator\Validator\ValidatorInterface[]
      */
-    private $validators = array();
+    private $validators = [];
 
     public function __construct()
     {
         $this->baseValidatorFactory = new ConstraintValidatorFactory();
 
-        $this->validators = array(
-            'ngbm_ez_site_access' => new SiteAccessValidator(array('eng', 'cro')),
+        $this->validators = [
+            'ngbm_ez_site_access' => new SiteAccessValidator(['eng', 'cro']),
             'ngbm_ez_site_access_group' => new SiteAccessGroupValidator(
-                array(
-                    'frontend' => array('eng'),
-                    'backend' => array('admin'),
-                )
+                [
+                    'frontend' => ['eng'],
+                    'backend' => ['admin'],
+                ]
             ),
-        );
+        ];
     }
 
     public function getInstance(Constraint $constraint)

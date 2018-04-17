@@ -21,7 +21,7 @@ final class SiteAccessValidatorTest extends ValidatorTestCase
      */
     public function getValidator()
     {
-        return new SiteAccessValidator(array('eng', 'cro'));
+        return new SiteAccessValidator(['eng', 'cro']);
     }
 
     /**
@@ -60,10 +60,10 @@ final class SiteAccessValidatorTest extends ValidatorTestCase
 
     public function validateDataProvider()
     {
-        return array(
-            array('eng', true),
-            array('fre', false),
-            array(null, true),
-        );
+        return [
+            ['eng', true],
+            ['fre', false],
+            [null, true],
+        ];
     }
 }

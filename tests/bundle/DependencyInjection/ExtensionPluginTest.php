@@ -30,11 +30,11 @@ final class ExtensionPluginTest extends AbstractExtensionTestCase
         $this->assertArrayHasKey('placeholders', $config['block_type_groups']);
 
         $this->assertEquals(
-            array(
-                'block_types' => array(
+            [
+                'block_types' => [
                     'ezcontent_field',
-                ),
-            ),
+                ],
+            ],
             $config['block_type_groups']['placeholders']
         );
     }
@@ -47,6 +47,6 @@ final class ExtensionPluginTest extends AbstractExtensionTestCase
      */
     protected function getContainerExtensions()
     {
-        return array(new NetgenEzPublishBlockManagerExtension());
+        return [new NetgenEzPublishBlockManagerExtension()];
     }
 }

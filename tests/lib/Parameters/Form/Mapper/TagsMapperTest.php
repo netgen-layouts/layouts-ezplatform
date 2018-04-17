@@ -35,20 +35,20 @@ final class TagsMapperTest extends TestCase
     public function testMapOptions()
     {
         $this->assertEquals(
-            array(
+            [
                 'item_type' => 'eztags',
                 'min' => 3,
                 'max' => 6,
-            ),
+            ],
             $this->mapper->mapOptions(
                 new ParameterDefinition(
-                    array(
+                    [
                         'type' => new ParameterType($this->createMock(TagsService::class)),
-                        'options' => array(
+                        'options' => [
                             'min' => 3,
                             'max' => 6,
-                        ),
-                    )
+                        ],
+                    ]
                 )
             )
         );

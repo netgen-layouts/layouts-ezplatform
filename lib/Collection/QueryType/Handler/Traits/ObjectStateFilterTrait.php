@@ -33,23 +33,23 @@ trait ObjectStateFilterTrait
      * @param \Netgen\BlockManager\Parameters\ParameterBuilderInterface $builder
      * @param array $groups
      */
-    private function buildObjectStateFilterParameters(ParameterBuilderInterface $builder, $groups = array())
+    private function buildObjectStateFilterParameters(ParameterBuilderInterface $builder, $groups = [])
     {
         $builder->add(
             'filter_by_object_state',
             ParameterType\Compound\BooleanType::class,
-            array(
+            [
                 'groups' => $groups,
-            )
+            ]
         );
 
         $builder->get('filter_by_object_state')->add(
             'object_states',
             EzParameterType\ObjectStateType::class,
-            array(
+            [
                 'multiple' => true,
                 'groups' => $groups,
-            )
+            ]
         );
     }
 
@@ -71,7 +71,7 @@ trait ObjectStateFilterTrait
             return;
         }
 
-        $criteria = array();
+        $criteria = [];
         foreach ($this->getObjectStateIds($objectStates) as $groupId => $stateIds) {
             $criteria[] = new Criterion\ObjectStateId($stateIds);
         }
@@ -90,7 +90,7 @@ trait ObjectStateFilterTrait
      */
     private function getObjectStateIds(array $stateIdentifiers)
     {
-        $idList = array();
+        $idList = [];
 
         foreach ($stateIdentifiers as $identifier) {
             $identifier = explode('|', $identifier);

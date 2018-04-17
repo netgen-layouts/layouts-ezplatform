@@ -29,17 +29,17 @@ final class RequestContentExtractorTest extends TestCase
     public function testProvideContent()
     {
         $content = new Content(
-            array(
+            [
                 'versionInfo' => new VersionInfo(
-                    array(
+                    [
                         'contentInfo' => new ContentInfo(
-                            array(
+                            [
                                 'id' => 42,
-                            )
+                            ]
                         ),
-                    )
+                    ]
                 ),
-            )
+            ]
         );
 
         $contentView = new ContentView();
@@ -67,7 +67,7 @@ final class RequestContentExtractorTest extends TestCase
      */
     public function testProvideLocation()
     {
-        $location = new Location(array('id' => 42));
+        $location = new Location(['id' => 42]);
         $contentView = new ContentView();
         $contentView->setLocation($location);
 

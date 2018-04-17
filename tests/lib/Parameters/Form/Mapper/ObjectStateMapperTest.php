@@ -34,19 +34,19 @@ final class ObjectStateMapperTest extends TestCase
     public function testMapOptions()
     {
         $this->assertEquals(
-            array(
+            [
                 'multiple' => true,
-                'states' => array(42),
-            ),
+                'states' => [42],
+            ],
             $this->mapper->mapOptions(
                 new ParameterDefinition(
-                    array(
+                    [
                         'type' => new ParameterType(),
-                        'options' => array(
+                        'options' => [
                             'multiple' => true,
-                            'states' => array(42),
-                        ),
-                    )
+                            'states' => [42],
+                        ],
+                    ]
                 )
             )
         );

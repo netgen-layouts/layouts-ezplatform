@@ -21,44 +21,44 @@ abstract class ContentFieldTest extends BlockTest
      */
     public function parametersDataProvider()
     {
-        return array(
-            array(
-                array(),
-                array(
+        return [
+            [
+                [],
+                [
                     'field_identifier' => null,
-                ),
-            ),
-            array(
-                array(
+                ],
+            ],
+            [
+                [
                     'field_identifier' => null,
-                ),
-                array(
+                ],
+                [
                     'field_identifier' => null,
-                ),
-            ),
-            array(
-                array(
+                ],
+            ],
+            [
+                [
                     'field_identifier' => '',
-                ),
-                array(
+                ],
+                [
                     'field_identifier' => '',
-                ),
-            ),
-            array(
-                array(
+                ],
+            ],
+            [
+                [
                     'field_identifier' => 'title',
-                ),
-                array(
+                ],
+                [
                     'field_identifier' => 'title',
-                ),
-            ),
-            array(
-                array(
+                ],
+            ],
+            [
+                [
                     'unknown' => 'unknown',
-                ),
-                array(),
-            ),
-        );
+                ],
+                [],
+            ],
+        ];
     }
 
     /**
@@ -66,12 +66,12 @@ abstract class ContentFieldTest extends BlockTest
      */
     public function invalidParametersDataProvider()
     {
-        return array(
-            array(
-                array(
+        return [
+            [
+                [
                     'field_identifier' => 42,
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 }

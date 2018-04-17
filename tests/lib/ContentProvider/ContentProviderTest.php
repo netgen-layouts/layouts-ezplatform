@@ -55,13 +55,13 @@ final class ContentProviderTest extends TestCase
     {
         $content = new Content();
         $location = new Location(
-            array(
+            [
                 'contentInfo' => new ContentInfo(
-                    array(
+                    [
                         'id' => 24,
-                    )
+                    ]
                 ),
-            )
+            ]
         );
 
         $this->context->set('ez_location_id', 42);

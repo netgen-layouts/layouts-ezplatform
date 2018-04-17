@@ -51,11 +51,11 @@ final class LocaleProviderTest extends TestCase
             ->method('loadLanguages')
             ->will(
                 $this->returnValue(
-                    array(
-                        new Language(array('languageCode' => 'eng-GB', 'enabled' => true)),
-                        new Language(array('languageCode' => 'ger-DE', 'enabled' => false)),
-                        new Language(array('languageCode' => 'cro-HR', 'enabled' => true)),
-                    )
+                    [
+                        new Language(['languageCode' => 'eng-GB', 'enabled' => true]),
+                        new Language(['languageCode' => 'ger-DE', 'enabled' => false]),
+                        new Language(['languageCode' => 'cro-HR', 'enabled' => true]),
+                    ]
                 )
             );
 
@@ -73,8 +73,8 @@ final class LocaleProviderTest extends TestCase
 
         $availableLocales = $this->localeProvider->getAvailableLocales();
 
-        $this->assertEquals(array('hr', 'en'), array_keys($availableLocales));
-        $this->assertEquals(array('Croatian', 'English'), array_values($availableLocales));
+        $this->assertEquals(['hr', 'en'], array_keys($availableLocales));
+        $this->assertEquals(['Croatian', 'English'], array_values($availableLocales));
     }
 
     /**
@@ -89,9 +89,9 @@ final class LocaleProviderTest extends TestCase
             ->method('loadLanguages')
             ->will(
                 $this->returnValue(
-                    array(
-                        new Language(array('languageCode' => 'unknown', 'enabled' => true)),
-                    )
+                    [
+                        new Language(['languageCode' => 'unknown', 'enabled' => true]),
+                    ]
                 )
             );
 
@@ -103,7 +103,7 @@ final class LocaleProviderTest extends TestCase
 
         $availableLocales = $this->localeProvider->getAvailableLocales();
 
-        $this->assertEquals(array(), $availableLocales);
+        $this->assertEquals([], $availableLocales);
     }
 
     /**
@@ -113,7 +113,7 @@ final class LocaleProviderTest extends TestCase
      */
     public function testGetRequestLocales()
     {
-        $this->localeProvider->setLanguages(array('eng-GB', 'ger-DE', 'unknown', 'cro-HR'));
+        $this->localeProvider->setLanguages(['eng-GB', 'ger-DE', 'unknown', 'cro-HR']);
 
         $this->languageServiceMock
             ->expects($this->at(0))
@@ -121,7 +121,7 @@ final class LocaleProviderTest extends TestCase
             ->with($this->equalTo('eng-GB'))
             ->will(
                 $this->returnValue(
-                    new Language(array('languageCode' => 'eng-GB', 'enabled' => true))
+                    new Language(['languageCode' => 'eng-GB', 'enabled' => true])
                 )
             );
 
@@ -131,7 +131,7 @@ final class LocaleProviderTest extends TestCase
             ->with($this->equalTo('ger-DE'))
             ->will(
                 $this->returnValue(
-                    new Language(array('languageCode' => 'ger-DE', 'enabled' => false))
+                    new Language(['languageCode' => 'ger-DE', 'enabled' => false])
                 )
             );
 
@@ -151,7 +151,7 @@ final class LocaleProviderTest extends TestCase
             ->with($this->equalTo('cro-HR'))
             ->will(
                 $this->returnValue(
-                    new Language(array('languageCode' => 'cro-HR', 'enabled' => true))
+                    new Language(['languageCode' => 'cro-HR', 'enabled' => true])
                 )
             );
 
@@ -169,7 +169,7 @@ final class LocaleProviderTest extends TestCase
 
         $requestLocales = $this->localeProvider->getRequestLocales(Request::create(''));
 
-        $this->assertEquals(array('en', 'hr'), $requestLocales);
+        $this->assertEquals(['en', 'hr'], $requestLocales);
     }
 
     /**
@@ -179,7 +179,7 @@ final class LocaleProviderTest extends TestCase
      */
     public function testGetRequestLocalesWithInvalidPosixLocale()
     {
-        $this->localeProvider->setLanguages(array('eng-GB'));
+        $this->localeProvider->setLanguages(['eng-GB']);
 
         $this->languageServiceMock
             ->expects($this->at(0))
@@ -187,7 +187,7 @@ final class LocaleProviderTest extends TestCase
             ->with($this->equalTo('eng-GB'))
             ->will(
                 $this->returnValue(
-                    new Language(array('languageCode' => 'eng-GB', 'enabled' => true))
+                    new Language(['languageCode' => 'eng-GB', 'enabled' => true])
                 )
             );
 
@@ -199,7 +199,7 @@ final class LocaleProviderTest extends TestCase
 
         $requestLocales = $this->localeProvider->getRequestLocales(Request::create(''));
 
-        $this->assertEquals(array(), $requestLocales);
+        $this->assertEquals([], $requestLocales);
     }
 
     /**
@@ -209,7 +209,7 @@ final class LocaleProviderTest extends TestCase
      */
     public function testGetRequestLocalesWithNonExistingPosixLocale()
     {
-        $this->localeProvider->setLanguages(array('eng-GB'));
+        $this->localeProvider->setLanguages(['eng-GB']);
 
         $this->languageServiceMock
             ->expects($this->at(0))
@@ -217,7 +217,7 @@ final class LocaleProviderTest extends TestCase
             ->with($this->equalTo('eng-GB'))
             ->will(
                 $this->returnValue(
-                    new Language(array('languageCode' => 'eng-GB', 'enabled' => true))
+                    new Language(['languageCode' => 'eng-GB', 'enabled' => true])
                 )
             );
 
@@ -229,6 +229,6 @@ final class LocaleProviderTest extends TestCase
 
         $requestLocales = $this->localeProvider->getRequestLocales(Request::create(''));
 
-        $this->assertEquals(array(), $requestLocales);
+        $this->assertEquals([], $requestLocales);
     }
 }

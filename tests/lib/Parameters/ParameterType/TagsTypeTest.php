@@ -22,7 +22,7 @@ final class TagsTypeTest extends TestCase
 
     public function setUp()
     {
-        $this->tagsServiceMock = $this->createPartialMock(TagsService::class, array('loadTag', 'loadTagByRemoteId'));
+        $this->tagsServiceMock = $this->createPartialMock(TagsService::class, ['loadTag', 'loadTagByRemoteId']);
 
         $this->type = new TagsType($this->tagsServiceMock);
     }
@@ -68,100 +68,100 @@ final class TagsTypeTest extends TestCase
      */
     public function validOptionsProvider()
     {
-        return array(
-            array(
-                array(
-                ),
-                array(
+        return [
+            [
+                [
+                ],
+                [
                     'max' => null,
                     'min' => null,
                     'allow_invalid' => false,
-                ),
-            ),
-            array(
-                array(
+                ],
+            ],
+            [
+                [
                     'max' => 5,
-                ),
-                array(
+                ],
+                [
                     'max' => 5,
                     'min' => null,
                     'allow_invalid' => false,
-                ),
-            ),
-            array(
-                array(
+                ],
+            ],
+            [
+                [
                     'max' => null,
-                ),
-                array(
+                ],
+                [
                     'max' => null,
                     'min' => null,
                     'allow_invalid' => false,
-                ),
-            ),
-            array(
-                array(
+                ],
+            ],
+            [
+                [
                     'min' => 5,
-                ),
-                array(
+                ],
+                [
                     'min' => 5,
                     'max' => null,
                     'allow_invalid' => false,
-                ),
-            ),
-            array(
-                array(
+                ],
+            ],
+            [
+                [
                     'min' => null,
-                ),
-                array(
+                ],
+                [
                     'max' => null,
                     'min' => null,
                     'allow_invalid' => false,
-                ),
-            ),
-            array(
-                array(
+                ],
+            ],
+            [
+                [
                     'min' => 5,
                     'max' => 10,
                     'allow_invalid' => false,
-                ),
-                array(
+                ],
+                [
                     'min' => 5,
                     'max' => 10,
                     'allow_invalid' => false,
-                ),
-            ),
-            array(
-                array(
+                ],
+            ],
+            [
+                [
                     'min' => 5,
                     'max' => 3,
-                ),
-                array(
+                ],
+                [
                     'min' => 5,
                     'max' => 5,
                     'allow_invalid' => false,
-                ),
-            ),
-            array(
-                array(
+                ],
+            ],
+            [
+                [
                     'allow_invalid' => false,
-                ),
-                array(
+                ],
+                [
                     'min' => null,
                     'max' => null,
                     'allow_invalid' => false,
-                ),
-            ),
-            array(
-                array(
+                ],
+            ],
+            [
+                [
                     'allow_invalid' => true,
-                ),
-                array(
+                ],
+                [
                     'min' => null,
                     'max' => null,
                     'allow_invalid' => true,
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
     /**
@@ -171,43 +171,43 @@ final class TagsTypeTest extends TestCase
      */
     public function invalidOptionsProvider()
     {
-        return array(
-            array(
-                array(
+        return [
+            [
+                [
                     'min' => '0',
-                ),
-                array(
+                ],
+                [
                     'min' => -5,
-                ),
-                array(
+                ],
+                [
                     'min' => 0,
-                ),
-                array(
+                ],
+                [
                     'max' => '0',
-                ),
-                array(
+                ],
+                [
                     'max' => -5,
-                ),
-                array(
+                ],
+                [
                     'max' => 0,
-                ),
-                array(
+                ],
+                [
                     'allow_invalid' => 'false',
-                ),
-                array(
+                ],
+                [
                     'allow_invalid' => 'true',
-                ),
-                array(
+                ],
+                [
                     'allow_invalid' => 0,
-                ),
-                array(
+                ],
+                [
                     'allow_invalid' => 1,
-                ),
-                array(
+                ],
+                [
                     'undefined_value' => 'Value',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
     /**
@@ -219,7 +219,7 @@ final class TagsTypeTest extends TestCase
             ->expects($this->once())
             ->method('loadTag')
             ->with($this->equalTo(42))
-            ->will($this->returnValue(new Tag(array('remoteId' => 'abc'))));
+            ->will($this->returnValue(new Tag(['remoteId' => 'abc'])));
 
         $this->assertEquals('abc', $this->type->export($this->getParameterDefinition(), 42));
     }
@@ -247,7 +247,7 @@ final class TagsTypeTest extends TestCase
             ->expects($this->once())
             ->method('loadTagByRemoteId')
             ->with($this->equalTo('abc'))
-            ->will($this->returnValue(new Tag(array('id' => 42))));
+            ->will($this->returnValue(new Tag(['id' => 42])));
 
         $this->assertEquals(42, $this->type->import($this->getParameterDefinition(), 'abc'));
     }
@@ -296,7 +296,7 @@ final class TagsTypeTest extends TestCase
             }
         }
 
-        $parameter = $this->getParameterDefinition(array('min' => 1, 'max' => 3), $required);
+        $parameter = $this->getParameterDefinition(['min' => 1, 'max' => 3], $required);
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new TagsServiceValidatorFactory($this->tagsServiceMock))
             ->getValidator();
@@ -312,27 +312,27 @@ final class TagsTypeTest extends TestCase
      */
     public function validationProvider()
     {
-        return array(
-            array(array(12), false, true),
-            array(array(12, 13, 14, 15), false, false),
-            array(array(24), false, false),
-            array(array(-12), false, false),
-            array(array(0), false, false),
-            array(array('12'), false, false),
-            array(array(''), false, false),
-            array(array(null), false, false),
-            array(array(), false, false),
-            array(null, false, true),
-            array(array(12), true, true),
-            array(array(12, 13, 14, 15), true, false),
-            array(array(24), true, false),
-            array(array(-12), true, false),
-            array(array(0), true, false),
-            array(array('12'), true, false),
-            array(array(''), true, false),
-            array(array(null), true, false),
-            array(array(), true, false),
-            array(null, true, false),
-        );
+        return [
+            [[12], false, true],
+            [[12, 13, 14, 15], false, false],
+            [[24], false, false],
+            [[-12], false, false],
+            [[0], false, false],
+            [['12'], false, false],
+            [[''], false, false],
+            [[null], false, false],
+            [[], false, false],
+            [null, false, true],
+            [[12], true, true],
+            [[12, 13, 14, 15], true, false],
+            [[24], true, false],
+            [[-12], true, false],
+            [[0], true, false],
+            [['12'], true, false],
+            [[''], true, false],
+            [[null], true, false],
+            [[], true, false],
+            [null, true, false],
+        ];
     }
 }

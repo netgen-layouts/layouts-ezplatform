@@ -35,14 +35,14 @@ final class LocationValueLoaderTest extends TestCase
     public function testLoad()
     {
         $location = new Location(
-            array(
+            [
                 'id' => 52,
                 'contentInfo' => new ContentInfo(
-                    array(
+                    [
                         'published' => true,
-                    )
+                    ]
                 ),
-            )
+            ]
         );
 
         $this->locationServiceMock
@@ -84,13 +84,13 @@ final class LocationValueLoaderTest extends TestCase
             ->will(
                 $this->returnValue(
                     new Location(
-                        array(
+                        [
                             'contentInfo' => new ContentInfo(
-                                array(
+                                [
                                     'published' => false,
-                                )
+                                ]
                             ),
-                        )
+                        ]
                     )
                 )
             );
@@ -104,14 +104,14 @@ final class LocationValueLoaderTest extends TestCase
     public function testLoadByRemoteId()
     {
         $location = new Location(
-            array(
+            [
                 'remoteId' => 'abc',
                 'contentInfo' => new ContentInfo(
-                    array(
+                    [
                         'published' => true,
-                    )
+                    ]
                 ),
-            )
+            ]
         );
 
         $this->locationServiceMock
@@ -153,13 +153,13 @@ final class LocationValueLoaderTest extends TestCase
             ->will(
                 $this->returnValue(
                     new Location(
-                        array(
+                        [
                             'contentInfo' => new ContentInfo(
-                                array(
+                                [
                                     'published' => false,
-                                )
+                                ]
                             ),
-                        )
+                        ]
                     )
                 )
             );

@@ -22,10 +22,10 @@ final class SiteAccessGroupValidatorTest extends ValidatorTestCase
     public function getValidator()
     {
         return new SiteAccessGroupValidator(
-            array(
-                'frontend' => array('eng'),
-                'backend' => array('admin'),
-            )
+            [
+                'frontend' => ['eng'],
+                'backend' => ['admin'],
+            ]
         );
     }
 
@@ -65,10 +65,10 @@ final class SiteAccessGroupValidatorTest extends ValidatorTestCase
 
     public function validateDataProvider()
     {
-        return array(
-            array('frontend', true),
-            array('other', false),
-            array(null, true),
-        );
+        return [
+            ['frontend', true],
+            ['other', false],
+            [null, true],
+        ];
     }
 }

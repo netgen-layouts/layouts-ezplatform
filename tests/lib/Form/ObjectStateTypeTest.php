@@ -38,18 +38,18 @@ final class ObjectStateTypeTest extends FormTestCase
     {
         $this->configureObjectStateService();
 
-        $submittedData = array('ez_lock|locked');
+        $submittedData = ['ez_lock|locked'];
 
         $form = $this->factory->create(
             ObjectStateType::class,
             null,
-            array(
+            [
                 'multiple' => true,
-                'states' => array(
-                    'ez_lock' => array('locked'),
+                'states' => [
+                    'ez_lock' => ['locked'],
                     'third' => false,
-                ),
-            )
+                ],
+            ]
         );
 
         $form->submit($submittedData);
@@ -79,24 +79,24 @@ final class ObjectStateTypeTest extends FormTestCase
         $this->formType->configureOptions($optionsResolver);
 
         $options = $optionsResolver->resolve(
-            array(
-                'states' => array(
-                    'ez_lock' => array('locked'),
+            [
+                'states' => [
+                    'ez_lock' => ['locked'],
                     'third' => false,
-                ),
-            )
+                ],
+            ]
         );
 
         $this->assertFalse($options['choice_translation_domain']);
         $this->assertEquals(
-            array(
-                'Lock' => array(
+            [
+                'Lock' => [
                     'Locked' => 'ez_lock|locked',
-                ),
-                'Other' => array(
+                ],
+                'Other' => [
                     'Other' => 'other|other',
-                ),
-            ),
+                ],
+            ],
             $options['choices']
         );
 
@@ -108,14 +108,14 @@ final class ObjectStateTypeTest extends FormTestCase
 
     private function configureObjectStateService()
     {
-        $objectStateGroup1 = new ObjectStateGroup(array('identifier' => 'ez_lock', 'names' => array('eng-GB' => 'Lock')));
-        $objectStateGroup2 = new ObjectStateGroup(array('identifier' => 'other', 'names' => array('eng-GB' => 'Other')));
-        $objectStateGroup3 = new ObjectStateGroup(array('identifier' => 'third', 'names' => array('eng-GB' => 'Third')));
+        $objectStateGroup1 = new ObjectStateGroup(['identifier' => 'ez_lock', 'names' => ['eng-GB' => 'Lock']]);
+        $objectStateGroup2 = new ObjectStateGroup(['identifier' => 'other', 'names' => ['eng-GB' => 'Other']]);
+        $objectStateGroup3 = new ObjectStateGroup(['identifier' => 'third', 'names' => ['eng-GB' => 'Third']]);
 
         $this->objectStateServiceMock
             ->expects($this->at(0))
             ->method('loadObjectStateGroups')
-            ->will($this->returnValue(array($objectStateGroup1, $objectStateGroup2, $objectStateGroup3)));
+            ->will($this->returnValue([$objectStateGroup1, $objectStateGroup2, $objectStateGroup3]));
 
         $this->objectStateServiceMock
             ->expects($this->at(1))
@@ -123,24 +123,24 @@ final class ObjectStateTypeTest extends FormTestCase
             ->with($this->equalTo($objectStateGroup1))
             ->will(
                 $this->returnValue(
-                    array(
+                    [
                         new ObjectState(
-                            array(
+                            [
                                 'identifier' => 'locked',
-                                'names' => array(
+                                'names' => [
                                     'eng-GB' => 'Locked',
-                                ),
-                            )
+                                ],
+                            ]
                         ),
                         new ObjectState(
-                            array(
+                            [
                                 'identifier' => 'unlocked',
-                                'names' => array(
+                                'names' => [
                                     'eng-GB' => 'Unlocked',
-                                ),
-                            )
+                                ],
+                            ]
                         ),
-                    )
+                    ]
                 )
             );
 
@@ -150,16 +150,16 @@ final class ObjectStateTypeTest extends FormTestCase
             ->with($this->equalTo($objectStateGroup2))
             ->will(
                 $this->returnValue(
-                    array(
+                    [
                         new ObjectState(
-                            array(
+                            [
                                 'identifier' => 'other',
-                                'names' => array(
+                                'names' => [
                                     'eng-GB' => 'Other',
-                                ),
-                            )
+                                ],
+                            ]
                         ),
-                    )
+                    ]
                 )
             );
     }

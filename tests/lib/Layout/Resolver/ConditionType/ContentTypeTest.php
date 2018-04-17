@@ -42,7 +42,7 @@ final class ContentTypeTest extends TestCase
     {
         $this->contentExtractorMock = $this->createMock(ContentExtractorInterface::class);
         $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, array('sudo', 'getContentTypeService'));
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentTypeService']);
 
         $this->repositoryMock
             ->expects($this->any())
@@ -90,14 +90,14 @@ final class ContentTypeTest extends TestCase
                     ->will(
                         $this->returnCallback(
                             function () use ($valueItem) {
-                                if (!is_string($valueItem) || !in_array($valueItem, array('article', 'news'), true)) {
+                                if (!is_string($valueItem) || !in_array($valueItem, ['article', 'news'], true)) {
                                     throw new NotFoundException('content type', $valueItem);
                                 }
 
                                 return new EzContentType(
-                                    array(
+                                    [
                                         'identifier' => $valueItem,
-                                    )
+                                    ]
                                 );
                             }
                         )
@@ -126,17 +126,17 @@ final class ContentTypeTest extends TestCase
         $request = Request::create('/');
 
         $content = new Content(
-            array(
+            [
                 'versionInfo' => new VersionInfo(
-                    array(
+                    [
                         'contentInfo' => new ContentInfo(
-                            array(
+                            [
                                 'contentTypeId' => 24,
-                            )
+                            ]
                         ),
-                    )
+                    ]
                 ),
-            )
+            ]
         );
 
         $this->contentExtractorMock
@@ -152,10 +152,10 @@ final class ContentTypeTest extends TestCase
             ->will(
                 $this->returnValue(
                     new EzContentType(
-                        array(
+                        [
                             'identifier' => 'article',
-                            'fieldDefinitions' => array(),
-                        )
+                            'fieldDefinitions' => [],
+                        ]
                     )
                 )
             );
@@ -176,7 +176,7 @@ final class ContentTypeTest extends TestCase
             ->with($this->equalTo($request))
             ->will($this->returnValue(false));
 
-        $this->assertFalse($this->conditionType->matches($request, array('article')));
+        $this->assertFalse($this->conditionType->matches($request, ['article']));
     }
 
     /**
@@ -186,14 +186,14 @@ final class ContentTypeTest extends TestCase
      */
     public function validationProvider()
     {
-        return array(
-            array(array('article'), true),
-            array(array('article', 'news'), true),
-            array(array('article', 'unknown'), false),
-            array(array('unknown'), false),
-            array(array(), false),
-            array(null, false),
-        );
+        return [
+            [['article'], true],
+            [['article', 'news'], true],
+            [['article', 'unknown'], false],
+            [['unknown'], false],
+            [[], false],
+            [null, false],
+        ];
     }
 
     /**
@@ -203,14 +203,14 @@ final class ContentTypeTest extends TestCase
      */
     public function matchesProvider()
     {
-        return array(
-            array('not_array', false),
-            array(array(), false),
-            array(array('article'), true),
-            array(array('news'), false),
-            array(array('article', 'news'), true),
-            array(array('news', 'article'), true),
-            array(array('news', 'video'), false),
-        );
+        return [
+            ['not_array', false],
+            [[], false],
+            [['article'], true],
+            [['news'], false],
+            [['article', 'news'], true],
+            [['news', 'article'], true],
+            [['news', 'video'], false],
+        ];
     }
 }

@@ -36,7 +36,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
     public function getValidator()
     {
         $this->objectStateServiceMock = $this->createMock(ObjectStateService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, array('sudo', 'getObjectStateService'));
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getObjectStateService']);
 
         $this->repositoryMock
             ->expects($this->any())
@@ -72,52 +72,52 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
                 ->method('loadObjectStateGroups')
                 ->will(
                     $this->returnValue(
-                        array(
-                            new ObjectStateGroup(array('identifier' => 'group1')),
-                            new ObjectStateGroup(array('identifier' => 'group2')),
-                        )
+                        [
+                            new ObjectStateGroup(['identifier' => 'group1']),
+                            new ObjectStateGroup(['identifier' => 'group2']),
+                        ]
                     )
                 );
 
             $this->objectStateServiceMock
                 ->expects($this->at(1))
                 ->method('loadObjectStates')
-                ->with($this->equalTo(new ObjectStateGroup(array('identifier' => 'group1'))))
+                ->with($this->equalTo(new ObjectStateGroup(['identifier' => 'group1'])))
                 ->will(
                     $this->returnValue(
-                        array(
+                        [
                             new EzObjectState(
-                                array(
+                                [
                                     'identifier' => 'state1',
-                                )
+                                ]
                             ),
                             new EzObjectState(
-                                array(
+                                [
                                     'identifier' => 'state2',
-                                )
+                                ]
                             ),
-                        )
+                        ]
                     )
                 );
 
             $this->objectStateServiceMock
                 ->expects($this->at(2))
                 ->method('loadObjectStates')
-                ->with($this->equalTo(new ObjectStateGroup(array('identifier' => 'group2'))))
+                ->with($this->equalTo(new ObjectStateGroup(['identifier' => 'group2'])))
                 ->will(
                     $this->returnValue(
-                        array(
+                        [
                             new EzObjectState(
-                                array(
+                                [
                                     'identifier' => 'state1',
-                                )
+                                ]
                             ),
                             new EzObjectState(
-                                array(
+                                [
                                     'identifier' => 'state2',
-                                )
+                                ]
                             ),
-                        )
+                        ]
                     )
                 );
         }
@@ -170,26 +170,26 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
 
     public function validateDataProvider()
     {
-        return array(
-            array('group1|state1', array(), true),
-            array('group1|state1', array('group2' => true), true),
-            array('group1|state1', array('group1' => true), true),
-            array('group1|state1', array('group1' => false), false),
-            array('group1|state1', array('group1' => array()), false),
-            array('group1|state1', array('group1' => array('state1')), true),
-            array('group1|state1', array('group1' => array('state2')), false),
-            array('group1|state1', array('group1' => array('state1', 'state2')), true),
-            array('group2|state1', array(), true),
-            array('group2|state1', array('group2' => true), true),
-            array('group2|state1', array('group1' => true), true),
-            array('group2|state1', array('group1' => false), true),
-            array('group2|state1', array('group1' => array()), true),
-            array('group2|state1', array('group1' => array('state1')), true),
-            array('group2|state1', array('group1' => array('state2')), true),
-            array('group2|state1', array('group1' => array('state1', 'state2')), true),
-            array('unknown|state1', array(), false),
-            array('group1|unknown', array(), false),
-            array(null, array(), true),
-        );
+        return [
+            ['group1|state1', [], true],
+            ['group1|state1', ['group2' => true], true],
+            ['group1|state1', ['group1' => true], true],
+            ['group1|state1', ['group1' => false], false],
+            ['group1|state1', ['group1' => []], false],
+            ['group1|state1', ['group1' => ['state1']], true],
+            ['group1|state1', ['group1' => ['state2']], false],
+            ['group1|state1', ['group1' => ['state1', 'state2']], true],
+            ['group2|state1', [], true],
+            ['group2|state1', ['group2' => true], true],
+            ['group2|state1', ['group1' => true], true],
+            ['group2|state1', ['group1' => false], true],
+            ['group2|state1', ['group1' => []], true],
+            ['group2|state1', ['group1' => ['state1']], true],
+            ['group2|state1', ['group1' => ['state2']], true],
+            ['group2|state1', ['group1' => ['state1', 'state2']], true],
+            ['unknown|state1', [], false],
+            ['group1|unknown', [], false],
+            [null, [], true],
+        ];
     }
 }

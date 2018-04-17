@@ -12,43 +12,43 @@ final class ViewNodeTest extends ConfigurationNodeTest
      */
     public function testViewSettings()
     {
-        $config = array(
-            array(
-                'view' => array(
-                    'block_view' => array(
-                        'some_context' => array(
-                            'block' => array(
+        $config = [
+            [
+                'view' => [
+                    'block_view' => [
+                        'some_context' => [
+                            'block' => [
                                 'template' => 'block.html.twig',
-                                'match' => array(
+                                'match' => [
                                     'block_identifier' => 42,
-                                ),
-                                'parameters' => array(
+                                ],
+                                'parameters' => [
                                     'param' => 'value',
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        );
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
-        $expectedConfig = array(
-            'view' => array(
-                'block_view' => array(
-                    'some_context' => array(
-                        'block' => array(
+        $expectedConfig = [
+            'view' => [
+                'block_view' => [
+                    'some_context' => [
+                        'block' => [
                             'template' => 'block.html.twig',
-                            'match' => array(
+                            'match' => [
                                 'block_identifier' => 42,
-                            ),
-                            'parameters' => array(
+                            ],
+                            'parameters' => [
                                 'param' => 'value',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        );
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
         $this->assertInjectedConfigurationEqual($expectedConfig, $config);
@@ -62,73 +62,73 @@ final class ViewNodeTest extends ConfigurationNodeTest
      */
     public function testViewSettingsWithSystemNodeAndDefaultScope()
     {
-        $config = array(
-            array(
-                'view' => array(
-                    'block_view' => array(
-                        'some_context' => array(
-                            'block' => array(
+        $config = [
+            [
+                'view' => [
+                    'block_view' => [
+                        'some_context' => [
+                            'block' => [
                                 'template' => 'block.html.twig',
-                                'match' => array(
+                                'match' => [
                                     'block_identifier' => 42,
-                                ),
-                                'parameters' => array(
+                                ],
+                                'parameters' => [
                                     'param' => 'value',
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-                'system' => array(
-                    'default' => array(
-                        'view' => array(
-                            'block_view' => array(
-                                'other_context' => array(
-                                    'block' => array(
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                'system' => [
+                    'default' => [
+                        'view' => [
+                            'block_view' => [
+                                'other_context' => [
+                                    'block' => [
                                         'template' => 'block.html.twig',
-                                        'match' => array(
+                                        'match' => [
                                             'block_identifier' => 42,
-                                        ),
-                                        'parameters' => array(
+                                        ],
+                                        'parameters' => [
                                             'param2' => 'value2',
-                                        ),
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        );
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
-        $expectedConfig = array(
-            'view' => array(
-                'block_view' => array(
-                    'some_context' => array(
-                        'block' => array(
+        $expectedConfig = [
+            'view' => [
+                'block_view' => [
+                    'some_context' => [
+                        'block' => [
                             'template' => 'block.html.twig',
-                            'match' => array(
+                            'match' => [
                                 'block_identifier' => 42,
-                            ),
-                            'parameters' => array(
+                            ],
+                            'parameters' => [
                                 'param' => 'value',
-                            ),
-                        ),
-                    ),
-                    'other_context' => array(
-                        'block' => array(
+                            ],
+                        ],
+                    ],
+                    'other_context' => [
+                        'block' => [
                             'template' => 'block.html.twig',
-                            'match' => array(
+                            'match' => [
                                 'block_identifier' => 42,
-                            ),
-                            'parameters' => array(
+                            ],
+                            'parameters' => [
                                 'param2' => 'value2',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        );
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
         // other_context context should not appear in original config, but only in siteaccess aware one
@@ -145,92 +145,92 @@ final class ViewNodeTest extends ConfigurationNodeTest
      */
     public function testViewSettingsWithSystemNodeAndNonDefaultScope()
     {
-        $config = array(
-            array(
-                'view' => array(
-                    'block_view' => array(
-                        'some_context' => array(
-                            'block' => array(
+        $config = [
+            [
+                'view' => [
+                    'block_view' => [
+                        'some_context' => [
+                            'block' => [
                                 'template' => 'block.html.twig',
-                                'match' => array(
+                                'match' => [
                                     'block_identifier' => 42,
-                                ),
-                                'parameters' => array(
+                                ],
+                                'parameters' => [
                                     'param' => 'value',
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-                'system' => array(
-                    'cro' => array(
-                        'view' => array(
-                            'block_view' => array(
-                                'other_context' => array(
-                                    'block' => array(
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                'system' => [
+                    'cro' => [
+                        'view' => [
+                            'block_view' => [
+                                'other_context' => [
+                                    'block' => [
                                         'template' => 'block.html.twig',
-                                        'match' => array(
+                                        'match' => [
                                             'block_identifier' => 42,
-                                        ),
-                                        'parameters' => array(
+                                        ],
+                                        'parameters' => [
                                             'param2' => 'value2',
-                                        ),
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        );
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
-        $expectedConfig = array(
-            'view' => array(
-                'block_view' => array(
-                    'some_context' => array(
-                        'block' => array(
+        $expectedConfig = [
+            'view' => [
+                'block_view' => [
+                    'some_context' => [
+                        'block' => [
                             'template' => 'block.html.twig',
-                            'match' => array(
+                            'match' => [
                                 'block_identifier' => 42,
-                            ),
-                            'parameters' => array(
+                            ],
+                            'parameters' => [
                                 'param' => 'value',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        );
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
         // All configs should have "some_context"
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
 
         // But only "cro" siteaccess aware one should have "other_context"
         $expectedConfig['system']['cro']['design'] = 'standard';
-        $expectedConfig['system']['cro']['view']['block_view'] = array(
-            'some_context' => array(
-                'block' => array(
+        $expectedConfig['system']['cro']['view']['block_view'] = [
+            'some_context' => [
+                'block' => [
                     'template' => 'block.html.twig',
-                    'match' => array(
+                    'match' => [
                         'block_identifier' => 42,
-                    ),
-                    'parameters' => array(
+                    ],
+                    'parameters' => [
                         'param' => 'value',
-                    ),
-                ),
-            ),
-            'other_context' => array(
-                'block' => array(
+                    ],
+                ],
+            ],
+            'other_context' => [
+                'block' => [
                     'template' => 'block.html.twig',
-                    'match' => array(
+                    'match' => [
                         'block_identifier' => 42,
-                    ),
-                    'parameters' => array(
+                    ],
+                    'parameters' => [
                         'param2' => 'value2',
-                    ),
-                ),
-            ),
-        );
+                    ],
+                ],
+            ],
+        ];
 
         $this->assertInjectedConfigurationEqual($expectedConfig, $config);
     }
@@ -243,77 +243,77 @@ final class ViewNodeTest extends ConfigurationNodeTest
      */
     public function testViewSettingsRulePositionsWithSystemNodeAndTwoScopes()
     {
-        $config = array(
-            array(
-                'system' => array(
-                    'cro' => array(
-                        'view' => array(
-                            'block_view' => array(
-                                'context' => array(
-                                    'block_three' => array(
+        $config = [
+            [
+                'system' => [
+                    'cro' => [
+                        'view' => [
+                            'block_view' => [
+                                'context' => [
+                                    'block_three' => [
                                         'template' => 'block.html.twig',
-                                        'match' => array(
+                                        'match' => [
                                             'block_identifier' => 42,
-                                        ),
-                                        'parameters' => array(
+                                        ],
+                                        'parameters' => [
                                             'param3' => 'value3',
-                                        ),
-                                    ),
-                                    'block_two' => array(
+                                        ],
+                                    ],
+                                    'block_two' => [
                                         'template' => 'block2.html.twig',
-                                        'match' => array(
+                                        'match' => [
                                             'block_identifier' => 42,
-                                        ),
-                                        'parameters' => array(
+                                        ],
+                                        'parameters' => [
                                             'param2' => 'value2',
-                                        ),
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                    'default' => array(
-                        'view' => array(
-                            'block_view' => array(
-                                'context' => array(
-                                    'block_two' => array(
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    'default' => [
+                        'view' => [
+                            'block_view' => [
+                                'context' => [
+                                    'block_two' => [
                                         'template' => 'block.html.twig',
-                                        'match' => array(
+                                        'match' => [
                                             'block_identifier' => 42,
-                                        ),
-                                        'parameters' => array(
+                                        ],
+                                        'parameters' => [
                                             'param2' => 'value2',
-                                        ),
-                                    ),
-                                    'block_one' => array(
+                                        ],
+                                    ],
+                                    'block_one' => [
                                         'template' => 'block.html.twig',
-                                        'match' => array(
+                                        'match' => [
                                             'block_identifier' => 42,
-                                        ),
-                                        'parameters' => array(
+                                        ],
+                                        'parameters' => [
                                             'param1' => 'value1',
-                                        ),
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        );
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
         $processedConfig = $this->processConfig($config);
 
         // Default scope should only have block_two and block_one
         $this->assertEquals(
-            array('block_two', 'block_one'),
+            ['block_two', 'block_one'],
             array_keys($processedConfig['system']['default']['view']['block_view']['context'])
         );
 
         // But only "cro" siteaccess aware one should have all
         // with block_three having priority because it comes from siteaccess scope
         $this->assertEquals(
-            array('block_three', 'block_two', 'block_one'),
+            ['block_three', 'block_two', 'block_one'],
             array_keys($processedConfig['system']['cro']['view']['block_view']['context'])
         );
 
@@ -338,60 +338,60 @@ final class ViewNodeTest extends ConfigurationNodeTest
      */
     public function testViewSettingsRulePositionsWithSystemNodeAndDefaultScope()
     {
-        $config = array(
-            array(
-                'view' => array(
-                    'block_view' => array(
-                        'context' => array(
-                            'block_two' => array(
+        $config = [
+            [
+                'view' => [
+                    'block_view' => [
+                        'context' => [
+                            'block_two' => [
                                 'template' => 'block.html.twig',
-                                'match' => array(
+                                'match' => [
                                     'block_identifier' => 42,
-                                ),
-                                'parameters' => array(
+                                ],
+                                'parameters' => [
                                     'param2' => 'value2',
-                                ),
-                            ),
-                            'block_one' => array(
+                                ],
+                            ],
+                            'block_one' => [
                                 'template' => 'block.html.twig',
-                                'match' => array(
+                                'match' => [
                                     'block_identifier' => 42,
-                                ),
-                                'parameters' => array(
+                                ],
+                                'parameters' => [
                                     'param1' => 'value1',
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-                'system' => array(
-                    'default' => array(
-                        'view' => array(
-                            'block_view' => array(
-                                'context' => array(
-                                    'block_three' => array(
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                'system' => [
+                    'default' => [
+                        'view' => [
+                            'block_view' => [
+                                'context' => [
+                                    'block_three' => [
                                         'template' => 'block.html.twig',
-                                        'match' => array(
+                                        'match' => [
                                             'block_identifier' => 42,
-                                        ),
-                                        'parameters' => array(
+                                        ],
+                                        'parameters' => [
                                             'param3' => 'value3',
-                                        ),
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        );
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
         $processedConfig = $this->processConfig($config);
 
         // Default scope should have all three rules,
         // but rule from system node (block_three) should be first
         $this->assertEquals(
-            array('block_three', 'block_two', 'block_one'),
+            ['block_three', 'block_two', 'block_one'],
             array_keys($processedConfig['system']['default']['view']['block_view']['context'])
         );
     }
@@ -404,39 +404,39 @@ final class ViewNodeTest extends ConfigurationNodeTest
      */
     public function testViewSettingsWithMatchWithArrayValues()
     {
-        $config = array(
-            array(
-                'view' => array(
-                    'block_view' => array(
-                        'some_context' => array(
-                            'block' => array(
+        $config = [
+            [
+                'view' => [
+                    'block_view' => [
+                        'some_context' => [
+                            'block' => [
                                 'template' => 'block.html.twig',
-                                'match' => array(24, 42),
-                                'parameters' => array(
+                                'match' => [24, 42],
+                                'parameters' => [
                                     'param' => 'value',
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        );
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
-        $expectedConfig = array(
-            'view' => array(
-                'block_view' => array(
-                    'some_context' => array(
-                        'block' => array(
+        $expectedConfig = [
+            'view' => [
+                'block_view' => [
+                    'some_context' => [
+                        'block' => [
                             'template' => 'block.html.twig',
-                            'match' => array(24, 42),
-                            'parameters' => array(
+                            'match' => [24, 42],
+                            'parameters' => [
                                 'param' => 'value',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        );
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
         $this->assertInjectedConfigurationEqual($expectedConfig, $config);
@@ -450,39 +450,39 @@ final class ViewNodeTest extends ConfigurationNodeTest
      */
     public function testViewSettingsWithEmptyMatch()
     {
-        $config = array(
-            array(
-                'view' => array(
-                    'block_view' => array(
-                        'some_context' => array(
-                            'block' => array(
+        $config = [
+            [
+                'view' => [
+                    'block_view' => [
+                        'some_context' => [
+                            'block' => [
                                 'template' => 'block.html.twig',
                                 'match' => null,
-                                'parameters' => array(
+                                'parameters' => [
                                     'param' => 'value',
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        );
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
-        $expectedConfig = array(
-            'view' => array(
-                'block_view' => array(
-                    'some_context' => array(
-                        'block' => array(
+        $expectedConfig = [
+            'view' => [
+                'block_view' => [
+                    'some_context' => [
+                        'block' => [
                             'template' => 'block.html.twig',
-                            'match' => array(),
-                            'parameters' => array(
+                            'match' => [],
+                            'parameters' => [
                                 'param' => 'value',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        );
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
         $this->assertInjectedConfigurationEqual($expectedConfig, $config);
@@ -496,34 +496,34 @@ final class ViewNodeTest extends ConfigurationNodeTest
      */
     public function testViewSettingsWithNoParameters()
     {
-        $config = array(
-            array(
-                'view' => array(
-                    'block_view' => array(
-                        'some_context' => array(
-                            'block' => array(
+        $config = [
+            [
+                'view' => [
+                    'block_view' => [
+                        'some_context' => [
+                            'block' => [
                                 'template' => 'block.html.twig',
-                                'match' => array(24, 42),
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        );
+                                'match' => [24, 42],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
-        $expectedConfig = array(
-            'view' => array(
-                'block_view' => array(
-                    'some_context' => array(
-                        'block' => array(
+        $expectedConfig = [
+            'view' => [
+                'block_view' => [
+                    'some_context' => [
+                        'block' => [
                             'template' => 'block.html.twig',
-                            'match' => array(24, 42),
-                            'parameters' => array(),
-                        ),
-                    ),
-                ),
-            ),
-        );
+                            'match' => [24, 42],
+                            'parameters' => [],
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
         $this->assertInjectedConfigurationEqual($expectedConfig, $config);
@@ -536,39 +536,39 @@ final class ViewNodeTest extends ConfigurationNodeTest
      */
     public function testUnknownSettingsAreRemoved()
     {
-        $config = array(
-            array(
-                'block_types' => array(
-                    'block' => array(
+        $config = [
+            [
+                'block_types' => [
+                    'block' => [
                         'name' => 'Block type',
-                    ),
-                ),
-                'view' => array(
-                    'block_view' => array(
-                        'context' => array(
-                            'block' => array(
+                    ],
+                ],
+                'view' => [
+                    'block_view' => [
+                        'context' => [
+                            'block' => [
                                 'template' => 'block.html.twig',
-                                'match' => array(),
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        );
+                                'match' => [],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
-        $expectedConfig = array(
-            'view' => array(
-                'block_view' => array(
-                    'context' => array(
-                        'block' => array(
+        $expectedConfig = [
+            'view' => [
+                'block_view' => [
+                    'context' => [
+                        'block' => [
                             'template' => 'block.html.twig',
-                            'match' => array(),
-                            'parameters' => array(),
-                        ),
-                    ),
-                ),
-            ),
-        );
+                            'match' => [],
+                            'parameters' => [],
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
 

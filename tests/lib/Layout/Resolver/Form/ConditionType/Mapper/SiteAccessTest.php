@@ -18,7 +18,7 @@ final class SiteAccessTest extends TestCase
 
     public function setUp()
     {
-        $this->mapper = new SiteAccess(array('cro', 'eng'));
+        $this->mapper = new SiteAccess(['cro', 'eng']);
     }
 
     /**
@@ -36,12 +36,12 @@ final class SiteAccessTest extends TestCase
     public function testGetFormOptions()
     {
         $this->assertEquals(
-            array(
-                'choices' => array('cro' => 'cro', 'eng' => 'eng'),
+            [
+                'choices' => ['cro' => 'cro', 'eng' => 'eng'],
                 'choice_translation_domain' => false,
                 'multiple' => true,
                 'expanded' => true,
-            ) + $this->getChoicesAsValuesOption(),
+            ] + $this->getChoicesAsValuesOption(),
             $this->mapper->getFormOptions()
         );
     }

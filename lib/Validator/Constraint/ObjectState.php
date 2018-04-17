@@ -27,7 +27,7 @@ final class ObjectState extends Constraint
      *
      * @var array
      */
-    public $allowedStates = array();
+    public $allowedStates = [];
 
     public function validatedBy()
     {

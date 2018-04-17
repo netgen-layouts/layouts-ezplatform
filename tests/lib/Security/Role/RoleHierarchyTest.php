@@ -19,14 +19,14 @@ final class RoleHierarchyTest extends TestCase
     public function testGetReachableRoles(array $startingRoles, array $reachableRoles)
     {
         $role = new RoleHierarchy(
-            array(
-                'ROLE_NGBM_ADMIN' => array(
+            [
+                'ROLE_NGBM_ADMIN' => [
                     'ROLE_NGBM_EDITOR',
-                ),
-                'ROLE_NGBM_EDITOR' => array(
+                ],
+                'ROLE_NGBM_EDITOR' => [
                     'ROLE_NGBM_API',
-                ),
-            )
+                ],
+            ]
         );
 
         $this->assertEquals($reachableRoles, $role->getReachableRoles($startingRoles));
@@ -34,19 +34,19 @@ final class RoleHierarchyTest extends TestCase
 
     public function getReachableRolesProvider()
     {
-        return array(
-            array(
-                array(new Role('ROLE_NGBM_ADMIN')),
-                array(new Role('ROLE_NGBM_ADMIN')),
-            ),
-            array(
-                array(new Role('ROLE_NGBM_EDITOR')),
-                array(new Role('ROLE_NGBM_EDITOR'), new Role('ROLE_NGBM_ADMIN')),
-            ),
-            array(
-                array(new Role('ROLE_NGBM_API')),
-                array(new Role('ROLE_NGBM_API'), new Role('ROLE_NGBM_EDITOR'), new Role('ROLE_NGBM_ADMIN')),
-            ),
-        );
+        return [
+            [
+                [new Role('ROLE_NGBM_ADMIN')],
+                [new Role('ROLE_NGBM_ADMIN')],
+            ],
+            [
+                [new Role('ROLE_NGBM_EDITOR')],
+                [new Role('ROLE_NGBM_EDITOR'), new Role('ROLE_NGBM_ADMIN')],
+            ],
+            [
+                [new Role('ROLE_NGBM_API')],
+                [new Role('ROLE_NGBM_API'), new Role('ROLE_NGBM_EDITOR'), new Role('ROLE_NGBM_ADMIN')],
+            ],
+        ];
     }
 }

@@ -35,10 +35,10 @@ abstract class ConfigurationNodeTest extends TestCase
      *
      * @var array
      */
-    private static $defaultSystemConfig = array(
-        'view' => array(),
+    private static $defaultSystemConfig = [
+        'view' => [],
         'design' => 'standard',
-    );
+    ];
 
     public function setUp()
     {
@@ -90,11 +90,11 @@ abstract class ConfigurationNodeTest extends TestCase
      */
     protected function getExtendedExpectedConfig(array $expectedConfig)
     {
-        return $expectedConfig + self::$defaultSystemConfig + array(
-            'system' => array(
+        return $expectedConfig + self::$defaultSystemConfig + [
+            'system' => [
                 'default' => $expectedConfig + self::$defaultSystemConfig,
-            ),
-        );
+            ],
+        ];
     }
 
     /**

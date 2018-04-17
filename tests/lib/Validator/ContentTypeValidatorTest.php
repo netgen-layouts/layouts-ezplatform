@@ -37,7 +37,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
     public function getValidator()
     {
         $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, array('sudo', 'getContentTypeService'));
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentTypeService']);
 
         $this->repositoryMock
             ->expects($this->any())
@@ -80,19 +80,19 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
                             }
 
                             return new EzContentType(
-                                array(
+                                [
                                     'identifier' => $identifier,
                                     'contentTypeGroups' => array_map(
                                         function ($group) {
                                             return new ContentTypeGroup(
-                                                array(
+                                                [
                                                     'identifier' => $group,
-                                                )
+                                                ]
                                             );
                                         },
                                         $groups
                                     ),
-                                )
+                                ]
                             );
                         }
                     )
@@ -137,17 +137,17 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
 
     public function validateDataProvider()
     {
-        return array(
-            array('article', array('group1'), array(), true),
-            array('article', array('group1'), array('group2' => true), true),
-            array('article', array('group1'), array('group1' => true), true),
-            array('article', array('group1'), array('group1' => false), false),
-            array('article', array('group1'), array('group1' => array()), false),
-            array('article', array('group1'), array('group1' => array('article')), true),
-            array('article', array('group1'), array('group1' => array('news')), false),
-            array('article', array('group1'), array('group1' => array('article', 'news')), true),
-            array('unknown', array('group1'), array(), false),
-            array(null, array('group1'), array(), true),
-        );
+        return [
+            ['article', ['group1'], [], true],
+            ['article', ['group1'], ['group2' => true], true],
+            ['article', ['group1'], ['group1' => true], true],
+            ['article', ['group1'], ['group1' => false], false],
+            ['article', ['group1'], ['group1' => []], false],
+            ['article', ['group1'], ['group1' => ['article']], true],
+            ['article', ['group1'], ['group1' => ['news']], false],
+            ['article', ['group1'], ['group1' => ['article', 'news']], true],
+            ['unknown', ['group1'], [], false],
+            [null, ['group1'], [], true],
+        ];
     }
 }

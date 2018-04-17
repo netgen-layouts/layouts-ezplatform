@@ -16,7 +16,7 @@ final class RoleHierarchy extends BaseRoleHierarchy
 {
     public function __construct(array $hierarchy)
     {
-        $reversedHierarchy = array();
+        $reversedHierarchy = [];
         foreach ($hierarchy as $main => $roles) {
             foreach ($roles as $role) {
                 $reversedHierarchy[$role][] = $main;

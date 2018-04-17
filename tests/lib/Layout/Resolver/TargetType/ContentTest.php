@@ -41,7 +41,7 @@ final class ContentTest extends TestCase
     {
         $this->contentExtractorMock = $this->createMock(ContentExtractorInterface::class);
         $this->contentServiceMock = $this->createMock(ContentService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, array('sudo', 'getContentService'));
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentService']);
 
         $this->repositoryMock
             ->expects($this->any())
@@ -107,17 +107,17 @@ final class ContentTest extends TestCase
     public function testProvideValue()
     {
         $content = new EzContent(
-            array(
+            [
                 'versionInfo' => new VersionInfo(
-                    array(
+                    [
                         'contentInfo' => new ContentInfo(
-                            array(
+                            [
                                 'id' => 42,
-                            )
+                            ]
                         ),
-                    )
+                    ]
                 ),
-            )
+            ]
         );
 
         $request = Request::create('/');
@@ -154,14 +154,14 @@ final class ContentTest extends TestCase
      */
     public function validationProvider()
     {
-        return array(
-            array(12, true),
-            array(24, false),
-            array(-12, false),
-            array(0, false),
-            array('12', false),
-            array('', false),
-            array(null, false),
-        );
+        return [
+            [12, true],
+            [24, false],
+            [-12, false],
+            [0, false],
+            ['12', false],
+            ['', false],
+            [null, false],
+        ];
     }
 }

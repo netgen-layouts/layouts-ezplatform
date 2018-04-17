@@ -15,7 +15,7 @@ final class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
      */
     public function testProcess()
     {
-        $this->container->setParameter('ezpublish.siteaccess.list', array('cro'));
+        $this->container->setParameter('ezpublish.siteaccess.list', ['cro']);
         $this->container->setParameter(
             'netgen_block_manager.app.ezpublish.item_preview_template',
             'default.html.twig'
@@ -23,70 +23,70 @@ final class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
 
         $this->container->setParameter(
             'ezsettings.default.content_view',
-            array(
-                'full' => array(
-                    'article' => array(
+            [
+                'full' => [
+                    'article' => [
                         'template' => 'article.html.twig',
-                    ),
-                ),
-            )
+                    ],
+                ],
+            ]
         );
 
         $this->container->setParameter(
             'ezsettings.cro.location_view',
-            array(
-                'full' => array(
-                    'article' => array(
+            [
+                'full' => [
+                    'article' => [
                         'template' => 'article.html.twig',
-                    ),
-                ),
-                'ngbm_app_preview' => array(
-                    'article' => array(
+                    ],
+                ],
+                'ngbm_app_preview' => [
+                    'article' => [
                         'template' => 'ngbm_article.html.twig',
-                    ),
-                ),
-            )
+                    ],
+                ],
+            ]
         );
 
         $this->compile();
 
         $this->assertContainerBuilderHasParameter(
             'ezsettings.default.content_view',
-            array(
-                'full' => array(
-                    'article' => array(
+            [
+                'full' => [
+                    'article' => [
                         'template' => 'article.html.twig',
-                    ),
-                ),
-                'ngbm_app_preview' => array(
-                    '___ngbm_app_preview_default___' => array(
+                    ],
+                ],
+                'ngbm_app_preview' => [
+                    '___ngbm_app_preview_default___' => [
                         'template' => 'default.html.twig',
-                        'match' => array(),
-                        'params' => array(),
-                    ),
-                ),
-            )
+                        'match' => [],
+                        'params' => [],
+                    ],
+                ],
+            ]
         );
 
         $this->assertContainerBuilderHasParameter(
             'ezsettings.cro.location_view',
-            array(
-                'full' => array(
-                    'article' => array(
+            [
+                'full' => [
+                    'article' => [
                         'template' => 'article.html.twig',
-                    ),
-                ),
-                'ngbm_app_preview' => array(
-                    'article' => array(
+                    ],
+                ],
+                'ngbm_app_preview' => [
+                    'article' => [
                         'template' => 'ngbm_article.html.twig',
-                    ),
-                    '___ngbm_app_preview_default___' => array(
+                    ],
+                    '___ngbm_app_preview_default___' => [
                         'template' => 'default.html.twig',
-                        'match' => array(),
-                        'params' => array(),
-                    ),
-                ),
-            )
+                        'match' => [],
+                        'params' => [],
+                    ],
+                ],
+            ]
         );
 
         $this->assertFalse($this->container->hasParameter('netgen_block_manager.default.location_view'));

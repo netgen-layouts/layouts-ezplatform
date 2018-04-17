@@ -15,8 +15,8 @@ final class LocationMapper extends Mapper
 
     public function mapOptions(ParameterDefinitionInterface $parameterDefinition)
     {
-        return array(
+        return [
             'item_type' => 'ezlocation',
-        );
+        ];
     }
 }

@@ -27,11 +27,11 @@ final class RepositoryAccessVoter extends Voter
      *
      * @var array
      */
-    private static $attributeToPolicyMap = array(
+    private static $attributeToPolicyMap = [
         'ROLE_NGBM_ADMIN' => 'admin',
         'ROLE_NGBM_EDITOR' => 'editor',
         'ROLE_NGBM_API' => 'api',
-    );
+    ];
 
     /**
      * @var \Symfony\Component\Security\Core\Role\RoleHierarchyInterface
@@ -90,7 +90,7 @@ final class RepositoryAccessVoter extends Voter
 
         return $this->accessDecisionManager->decide(
             $token,
-            array(new Attribute(self::$module, $function)),
+            [new Attribute(self::$module, $function)],
             $subject
         );
     }
@@ -104,9 +104,9 @@ final class RepositoryAccessVoter extends Voter
      */
     private function getReachableAttributes($attribute)
     {
-        $reachableRoles = $this->roleHierarchy->getReachableRoles(array(new Role($attribute)));
+        $reachableRoles = $this->roleHierarchy->getReachableRoles([new Role($attribute)]);
 
-        $reachableAttributes = array();
+        $reachableAttributes = [];
         foreach ($reachableRoles as $reachableRole) {
             $reachableAttributes[] = $reachableRole->getRole();
         }

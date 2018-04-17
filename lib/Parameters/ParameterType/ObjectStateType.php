@@ -21,9 +21,9 @@ final class ObjectStateType extends ParameterType
     public function configureOptions(OptionsResolver $optionsResolver)
     {
         $optionsResolver->setDefault('multiple', false);
-        $optionsResolver->setDefault('states', array());
+        $optionsResolver->setDefault('states', []);
 
-        $optionsResolver->setRequired(array('multiple', 'states'));
+        $optionsResolver->setRequired(['multiple', 'states']);
 
         $optionsResolver->setAllowedTypes('multiple', 'bool');
         $optionsResolver->setAllowedTypes('states', 'array');
@@ -31,12 +31,12 @@ final class ObjectStateType extends ParameterType
 
     public function fromHash(ParameterDefinitionInterface $parameterDefinition, $value)
     {
-        if ($value === null || $value === array()) {
+        if ($value === null || $value === []) {
             return;
         }
 
         if ($parameterDefinition->getOption('multiple')) {
-            return is_array($value) ? $value : array($value);
+            return is_array($value) ? $value : [$value];
         }
 
         return is_array($value) ? array_values($value)[0] : $value;
@@ -44,29 +44,29 @@ final class ObjectStateType extends ParameterType
 
     public function isValueEmpty(ParameterDefinitionInterface $parameterDefinition, $value)
     {
-        return $value === null || $value === array();
+        return $value === null || $value === [];
     }
 
     protected function getValueConstraints(ParameterDefinitionInterface $parameterDefinition, $value)
     {
         $options = $parameterDefinition->getOptions();
 
-        $objectStateConstraints = array(
-            new Constraints\Type(array('type' => 'string')),
-            new EzConstraints\ObjectState(array('allowedStates' => $parameterDefinition->getOption('states'))),
-        );
+        $objectStateConstraints = [
+            new Constraints\Type(['type' => 'string']),
+            new EzConstraints\ObjectState(['allowedStates' => $parameterDefinition->getOption('states')]),
+        ];
 
         if (!$options['multiple']) {
             return $objectStateConstraints;
         }
 
-        return array(
-            new Constraints\Type(array('type' => 'array')),
+        return [
+            new Constraints\Type(['type' => 'array']),
             new Constraints\All(
-                array(
+                [
                     'constraints' => $objectStateConstraints,
-                )
+                ]
             ),
-        );
+        ];
     }
 }

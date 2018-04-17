@@ -22,9 +22,9 @@ final class ContentValueUrlGenerator implements ValueUrlGeneratorInterface
     {
         return $this->urlGenerator->generate(
             UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
-            array(
+            [
                 'contentId' => $object->id,
-            )
+            ]
         );
     }
 }
