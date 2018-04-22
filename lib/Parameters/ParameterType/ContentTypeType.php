@@ -3,7 +3,7 @@
 namespace Netgen\BlockManager\Ez\Parameters\ParameterType;
 
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
-use Netgen\BlockManager\Parameters\ParameterDefinitionInterface;
+use Netgen\BlockManager\Parameters\ParameterDefinition;
 use Netgen\BlockManager\Parameters\ParameterType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
@@ -29,7 +29,7 @@ final class ContentTypeType extends ParameterType
         $optionsResolver->setAllowedTypes('types', 'array');
     }
 
-    public function fromHash(ParameterDefinitionInterface $parameterDefinition, $value)
+    public function fromHash(ParameterDefinition $parameterDefinition, $value)
     {
         if ($value === null || $value === []) {
             return;
@@ -42,12 +42,12 @@ final class ContentTypeType extends ParameterType
         return is_array($value) ? array_values($value)[0] : $value;
     }
 
-    public function isValueEmpty(ParameterDefinitionInterface $parameterDefinition, $value)
+    public function isValueEmpty(ParameterDefinition $parameterDefinition, $value)
     {
         return $value === null || $value === [];
     }
 
-    protected function getValueConstraints(ParameterDefinitionInterface $parameterDefinition, $value)
+    protected function getValueConstraints(ParameterDefinition $parameterDefinition, $value)
     {
         $options = $parameterDefinition->getOptions();
 
