@@ -39,28 +39,28 @@ final class ExtensionPlugin extends BaseExtensionPlugin
      *
      * With this, the following:
      *
-     * array(
-     *     0 => array(
-     *         'netgen_block_manager' => array(
+     * [
+     *     0 => [
+     *         'netgen_block_manager' => [
      *             'view' => ...
-     *         )
-     *     )
-     * )
+     *         ]
+     *     ]
+     * ]
      *
      * becomes:
      *
-     * array(
-     *     0 => array(
-     *         'netgen_block_manager' => array(
+     * [
+     *     0 => [
+     *         'netgen_block_manager' => [
      *             'view' => ...,
-     *             'system' => array(
-     *                 'default' => array(
+     *             'system' => [
+     *                 'default' => [
      *                     'view' => ...
-     *                 )
-     *             )
-     *         )
-     *     )
-     * )
+     *                 ]
+     *             ]
+     *         ]
+     *     ]
+     * ]
      *
      * If the original array already has a system key, it will be removed and prepended
      * to configs generated from the original parameters.

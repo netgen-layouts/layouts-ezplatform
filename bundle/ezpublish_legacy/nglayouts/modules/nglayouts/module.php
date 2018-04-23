@@ -1,15 +1,15 @@
 <?php
 
-$Module = array(
+$Module = [
     'name' => 'nglayouts',
     'variable_params' => false,
     'ui_component_match' => 'module',
-);
+];
 
-$ViewList = array();
+$ViewList = [];
 
-$FunctionList = array(
-    'admin' => array(),
-    'editor' => array(),
-    'api' => array(),
-);
+$FunctionList = [
+    'admin' => [],
+    'editor' => [],
+    'api' => [],
+];
