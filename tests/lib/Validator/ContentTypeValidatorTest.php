@@ -43,7 +43,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
             ->expects($this->any())
             ->method('sudo')
             ->with($this->anything())
-            ->will($this->returnCallback(function ($callback) {
+            ->will($this->returnCallback(function (callable $callback) {
                 return $callback($this->repositoryMock);
             }));
 
