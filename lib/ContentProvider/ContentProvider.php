@@ -42,7 +42,7 @@ final class ContentProvider implements ContentProviderInterface
     {
         $location = $this->loadLocation();
         if (!$location instanceof Location) {
-            return;
+            return null;
         }
 
         return $this->contentService->loadContent($location->contentId);
@@ -57,12 +57,12 @@ final class ContentProvider implements ContentProviderInterface
      * Loads the location from the eZ Platform API by using the location ID
      * stored in the context.
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Location
+     * @return \eZ\Publish\API\Repository\Values\Content\Location|null
      */
     private function loadLocation()
     {
         if (!$this->context->has('ez_location_id')) {
-            return;
+            return null;
         }
 
         $location = $this->locationService->loadLocation(

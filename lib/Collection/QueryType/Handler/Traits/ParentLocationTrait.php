@@ -35,7 +35,7 @@ trait ParentLocationTrait
     /**
      * Sets the location service used by the trait.
      *
-     * @param \eZ\Publish\API\Repository\LocationService
+     * @param \eZ\Publish\API\Repository\LocationService $locationService
      */
     private function setLocationService(LocationService $locationService)
     {

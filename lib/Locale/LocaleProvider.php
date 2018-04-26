@@ -52,7 +52,7 @@ class LocaleProvider implements LocaleProviderInterface
      */
     public function setLanguages(array $languageCodes = null)
     {
-        $this->languageCodes = !empty($languageCodes) ? $languageCodes : [];
+        $this->languageCodes = $languageCodes !== null ? $languageCodes : [];
     }
 
     public function getAvailableLocales()
@@ -110,18 +110,18 @@ class LocaleProvider implements LocaleProviderInterface
     private function getPosixLocale(Language $language)
     {
         if (!$language->enabled) {
-            return;
+            return null;
         }
 
         $posixLocale = $this->localeConverter->convertToPOSIX($language->languageCode);
         if ($posixLocale === null) {
-            return;
+            return null;
         }
 
         $localeName = $this->localeBundle->getLocaleName($posixLocale);
 
         if ($localeName === null) {
-            return;
+            return null;
         }
 
         return [$posixLocale, $localeName];

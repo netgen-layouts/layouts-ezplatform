@@ -92,11 +92,6 @@ final class ExtensionPlugin extends BaseExtensionPlugin
         return array_merge($prependConfigs, $newConfigs);
     }
 
-    /**
-     * Processes the configuration for the bundle.
-     *
-     * @param \Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition
-     */
     public function addConfiguration(ArrayNodeDefinition $rootNode)
     {
         $configuration = new Configuration();
@@ -146,11 +141,6 @@ final class ExtensionPlugin extends BaseExtensionPlugin
         return $config;
     }
 
-    /**
-     * Returns the array of files to be appended to main bundle configuration.
-     *
-     * @return array
-     */
     public function appendConfigurationFiles()
     {
         return [
