@@ -1,0 +1,7 @@
+parameters:
+    ignoreErrors:
+        # eZ Publish
+        - '#Class eZ\\Publish\\Core\\MVC\\Symfony\\Cache\\Http\\FOSPurgeClient not found#'
+        - '#Class eZ\\Publish\\Core\\MVC\\Symfony\\Cache\\Http\\LocalPurgeClient not found#'
+        - '#Call to an undefined method eZ\\Publish\\API\\Repository\\Repository::sudo\(\)#'
+        - '#Call to an undefined method Netgen\\TagsBundle\\API\\Repository\\TagsService::sudo\(\)#'
