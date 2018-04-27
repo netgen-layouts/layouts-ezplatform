@@ -63,16 +63,16 @@ trait ObjectStateFilterTrait
     private function getObjectStateFilterCriteria(Query $query)
     {
         if ($query->getParameter('filter_by_object_state')->getValue() !== true) {
-            return;
+            return null;
         }
 
         $objectStates = $query->getParameter('object_states')->getValue();
         if (empty($objectStates)) {
-            return;
+            return null;
         }
 
         $criteria = [];
-        foreach ($this->getObjectStateIds($objectStates) as $groupId => $stateIds) {
+        foreach ($this->getObjectStateIds($objectStates) as $stateIds) {
             $criteria[] = new Criterion\ObjectStateId($stateIds);
         }
 

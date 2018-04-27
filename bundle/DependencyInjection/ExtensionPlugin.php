@@ -80,7 +80,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
                 $newConfigs[$index] = $config;
             }
 
-            foreach ($config as $configName => $configValues) {
+            foreach (array_keys($config) as $configName) {
                 if (!in_array($configName, self::$siteAccessAwareSettings, true)) {
                     unset($config[$configName]);
                 }
@@ -123,7 +123,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
         $config = $this->fixUpViewConfig($config);
 
         $processor = new ConfigurationProcessor($this->container, 'netgen_block_manager');
-        foreach ($config as $key => $value) {
+        foreach (array_keys($config) as $key) {
             if ($key === 'system' || !in_array($key, self::$siteAccessAwareSettings, true)) {
                 continue;
             }
@@ -134,7 +134,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
         }
 
         $designList = array_keys($config['design_list']);
-        foreach ($config['system'] as $scope => $scopeConfig) {
+        foreach ($config['system'] as $scopeConfig) {
             $this->validateCurrentDesign($scopeConfig['design'], $designList);
         }
 
@@ -176,7 +176,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
                 continue;
             }
 
-            foreach ($scopeConfig['view'] as $viewName => $viewConfig) {
+            foreach (array_keys($scopeConfig['view']) as $viewName) {
                 if (isset($config['system']['default']['view'][$viewName])) {
                     foreach ($config['system']['default']['view'][$viewName] as $context => $defaultRules) {
                         if (!isset($config['system'][$scope]['view'][$viewName][$context])) {
