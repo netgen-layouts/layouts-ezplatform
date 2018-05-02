@@ -1,6 +1,6 @@
 <?php
 
-namespace Netgen\BlockManager\Ez\Tests\ContextProvider;
+namespace Netgen\BlockManager\Ez\Tests\Context;
 
 use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use eZ\Publish\Core\MVC\Symfony\View\ContentView;

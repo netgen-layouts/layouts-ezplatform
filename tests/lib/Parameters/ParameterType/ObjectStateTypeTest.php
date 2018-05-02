@@ -18,7 +18,7 @@ final class ObjectStateTypeTest extends TestCase
     use ParameterTypeTestTrait;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
+     * @var \eZ\Publish\API\Repository\Repository&\PHPUnit\Framework\MockObject\MockObject
      */
     private $repositoryMock;
 

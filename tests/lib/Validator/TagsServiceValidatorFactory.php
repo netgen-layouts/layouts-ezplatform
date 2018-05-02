@@ -16,7 +16,7 @@ final class TagsServiceValidatorFactory implements ConstraintValidatorFactoryInt
     private $baseValidatorFactory;
 
     /**
-     * @var \Symfony\Component\Validator\Validator\ValidatorInterface[]
+     * @var array
      */
     private $validators = [];
 

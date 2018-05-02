@@ -65,6 +65,7 @@ final class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTe
         $this->container->setParameter('kernel.bundles', ['NetgenBlockManagerBundle' => true]);
         $this->container->registerExtension(new NetgenBlockManagerExtension());
 
+        /** @var \Netgen\Bundle\BlockManagerBundle\DependencyInjection\NetgenBlockManagerExtension $extension */
         $extension = $this->container->getExtension('netgen_ez_publish_block_manager');
         $extension->prepend($this->container);
 

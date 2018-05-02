@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Validation;
 final class ChildrenTest extends TestCase
 {
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
+     * @var \eZ\Publish\API\Repository\Repository&\PHPUnit\Framework\MockObject\MockObject
      */
     private $repositoryMock;
 

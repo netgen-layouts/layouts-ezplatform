@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 final class PolicyProviderTest extends TestCase
 {
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
+     * @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ConfigBuilderInterface&\PHPUnit\Framework\MockObject\MockObject
      */
     private $configBuilderMock;
 
