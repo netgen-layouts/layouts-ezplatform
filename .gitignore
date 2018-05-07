@@ -1,8 +1,8 @@
 .idea/
 coverage/
 vendor/
-composer.phar
+.php_cs.cache
 composer.lock
+composer.phar
 phpunit.phar
 studio.json
-.php_cs.cache
