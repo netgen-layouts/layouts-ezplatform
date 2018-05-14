@@ -17,26 +17,21 @@ final class LocationTest extends AbstractTargetHandlerTest
         $rules = $this->handler->matchRules($this->getTargetIdentifier(), 72);
 
         $this->assertCount(1, $rules);
-        $this->assertEquals(11, $rules[0]->id);
+        $this->assertEquals(1, $rules[0]->id);
     }
 
-    /**
-     * Returns the target identifier under test.
-     *
-     * @return string
-     */
     protected function getTargetIdentifier()
     {
         return 'ezlocation';
     }
 
-    /**
-     * Creates the handler under test.
-     *
-     * @return \Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine\Location
-     */
     protected function getTargetHandler()
     {
         return new Location();
+    }
+
+    protected function insertDatabaseFixtures($fixturesPath)
+    {
+        parent::insertDatabaseFixtures(__DIR__ . '/../../../../../_fixtures');
     }
 }

@@ -17,26 +17,21 @@ final class SubtreeTest extends AbstractTargetHandlerTest
         $rules = $this->handler->matchRules($this->getTargetIdentifier(), [1, 2, 42]);
 
         $this->assertCount(1, $rules);
-        $this->assertEquals(18, $rules[0]->id);
+        $this->assertEquals(8, $rules[0]->id);
     }
 
-    /**
-     * Returns the target identifier under test.
-     *
-     * @return string
-     */
     protected function getTargetIdentifier()
     {
         return 'ezsubtree';
     }
 
-    /**
-     * Creates the handler under test.
-     *
-     * @return \Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine\Subtree
-     */
     protected function getTargetHandler()
     {
         return new Subtree();
+    }
+
+    protected function insertDatabaseFixtures($fixturesPath)
+    {
+        parent::insertDatabaseFixtures(__DIR__ . '/../../../../../_fixtures');
     }
 }
