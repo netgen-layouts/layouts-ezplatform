@@ -43,7 +43,7 @@ trait QueryTypeFilterTrait
     private function getQueryTypeFilterCriteria(Query $query, Location $parentLocation)
     {
         if ($query->getParameter('query_type')->getValue() !== 'list') {
-            return;
+            return null;
         }
 
         return new Criterion\Location\Depth(

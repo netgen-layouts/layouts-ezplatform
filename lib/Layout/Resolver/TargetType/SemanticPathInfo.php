@@ -24,7 +24,7 @@ class SemanticPathInfo implements TargetTypeInterface
     public function provideValue(Request $request)
     {
         if (!$request->attributes->has('semanticPathinfo')) {
-            return;
+            return null;
         }
 
         // Semantic path info can in some cases be false (for example, on homepage

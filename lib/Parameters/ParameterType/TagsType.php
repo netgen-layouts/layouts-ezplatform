@@ -79,7 +79,7 @@ final class TagsType extends ParameterType
 
             return $tag->remoteId;
         } catch (NotFoundException $e) {
-            return;
+            return null;
         }
     }
 
@@ -95,7 +95,7 @@ final class TagsType extends ParameterType
 
             return $tag->id;
         } catch (NotFoundException $e) {
-            return;
+            return null;
         }
     }
 

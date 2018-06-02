@@ -71,12 +71,12 @@ trait SectionFilterTrait
     private function getSectionFilterCriteria(Query $query)
     {
         if ($query->getParameter('filter_by_section')->getValue() !== true) {
-            return;
+            return null;
         }
 
         $sections = $query->getParameter('sections')->getValue();
         if (empty($sections)) {
-            return;
+            return null;
         }
 
         return new Criterion\SectionId($this->getSectionIds($sections));

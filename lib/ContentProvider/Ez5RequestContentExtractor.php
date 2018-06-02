@@ -36,7 +36,7 @@ final class Ez5RequestContentExtractor implements ContentExtractorInterface
     {
         $content = $request->attributes->get('content');
         if ($content !== null && !$content instanceof Content) {
-            return;
+            return null;
         }
 
         if ($content instanceof Content) {
@@ -46,7 +46,7 @@ final class Ez5RequestContentExtractor implements ContentExtractorInterface
         $contentId = $request->attributes->get('contentId');
         $currentRoute = $request->attributes->get('_route');
         if ($contentId === null || $currentRoute !== UrlAliasRouter::URL_ALIAS_ROUTE_NAME) {
-            return;
+            return null;
         }
 
         try {
@@ -60,7 +60,7 @@ final class Ez5RequestContentExtractor implements ContentExtractorInterface
     {
         $location = $request->attributes->get('location');
         if ($location !== null && !$location instanceof Location) {
-            return;
+            return null;
         }
 
         if ($location instanceof Location) {
@@ -70,7 +70,7 @@ final class Ez5RequestContentExtractor implements ContentExtractorInterface
         $locationId = $request->attributes->get('locationId');
         $currentRoute = $request->attributes->get('_route');
         if ($locationId === null || $currentRoute !== UrlAliasRouter::URL_ALIAS_ROUTE_NAME) {
-            return;
+            return null;
         }
 
         try {

@@ -76,12 +76,12 @@ trait ContentTypeFilterTrait
     private function getContentTypeFilterCriteria(Query $query)
     {
         if ($query->getParameter('filter_by_content_type')->getValue() !== true) {
-            return;
+            return null;
         }
 
         $contentTypes = $query->getParameter('content_types')->getValue();
         if (empty($contentTypes)) {
-            return;
+            return null;
         }
 
         $contentTypeFilter = new Criterion\ContentTypeId(

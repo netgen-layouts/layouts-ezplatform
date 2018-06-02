@@ -32,7 +32,7 @@ final class ObjectStateType extends ParameterType
     public function fromHash(ParameterDefinition $parameterDefinition, $value)
     {
         if ($value === null || $value === []) {
-            return;
+            return null;
         }
 
         if ($parameterDefinition->getOption('multiple')) {

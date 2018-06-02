@@ -37,7 +37,7 @@ trait MainLocationFilterTrait
     private function getMainLocationFilterCriteria(Query $query)
     {
         if ($query->getParameter('only_main_locations')->getValue() !== true) {
-            return;
+            return null;
         }
 
         return new Criterion\Location\IsMainLocation(
