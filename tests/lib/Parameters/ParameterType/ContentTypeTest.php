@@ -212,7 +212,7 @@ final class ContentTypeTest extends TestCase
             $this->contentServiceMock
                 ->expects($this->once())
                 ->method('loadContentInfo')
-                ->with($this->equalTo($value))
+                ->with($this->equalTo((int) $value))
                 ->will(
                     $this->returnCallback(
                         function () use ($value) {

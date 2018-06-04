@@ -47,7 +47,7 @@ final class LocationValidator extends ConstraintValidator
                 );
             } catch (NotFoundException $e) {
                 $this->context->buildViolation($constraint->message)
-                    ->setParameter('%locationId%', $value)
+                    ->setParameter('%locationId%', (string) $value)
                     ->addViolation();
             }
         }

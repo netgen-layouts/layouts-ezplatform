@@ -47,7 +47,7 @@ final class TagValidator extends ConstraintValidator
                 );
             } catch (NotFoundException $e) {
                 $this->context->buildViolation($constraint->message)
-                    ->setParameter('%tagId%', $value)
+                    ->setParameter('%tagId%', (string) $value)
                     ->addViolation();
             }
         }

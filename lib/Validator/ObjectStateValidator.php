@@ -38,7 +38,7 @@ final class ObjectStateValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, ObjectState::class);
         }
 
-        if ($constraint->allowedStates !== null && !is_array($constraint->allowedStates)) {
+        if (!is_array($constraint->allowedStates)) {
             throw new UnexpectedTypeException($constraint->allowedStates, 'array');
         }
 

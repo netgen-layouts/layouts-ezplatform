@@ -158,7 +158,14 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
             $this->getObjectStateFilterCriteria($query),
         ];
 
-        $locationQuery->filter = new Criterion\LogicalAnd(array_filter($criteria));
+        $criteria = array_filter(
+            $criteria,
+            function ($criterion) {
+                return $criterion instanceof Criterion;
+            }
+        );
+
+        $locationQuery->filter = new Criterion\LogicalAnd($criteria);
         $locationQuery->sortClauses = $this->getSortClauses($query, $parentLocation);
 
         return $locationQuery;

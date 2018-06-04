@@ -42,12 +42,12 @@ final class ContentValidator extends ConstraintValidator
             try {
                 $this->repository->sudo(
                     function (Repository $repository) use ($value) {
-                        $repository->getContentService()->loadContentInfo($value);
+                        $repository->getContentService()->loadContentInfo((int) $value);
                     }
                 );
             } catch (NotFoundException $e) {
                 $this->context->buildViolation($constraint->message)
-                    ->setParameter('%contentId%', $value)
+                    ->setParameter('%contentId%', (string) $value)
                     ->addViolation();
             }
         }
