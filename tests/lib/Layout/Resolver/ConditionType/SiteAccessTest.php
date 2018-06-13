@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\ConditionType;
 
 use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzPublishSiteAccess;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\BlockManager\Ez\Security\Authorization\Voter;
 
 use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute;

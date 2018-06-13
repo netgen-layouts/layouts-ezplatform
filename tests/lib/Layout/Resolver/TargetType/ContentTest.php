@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\TargetType;
 
 use eZ\Publish\API\Repository\ContentService;

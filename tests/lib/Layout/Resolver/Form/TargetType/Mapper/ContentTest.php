@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\Form\TargetType\Mapper;
 
 use Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Content;

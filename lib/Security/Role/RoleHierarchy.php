@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\BlockManager\Ez\Security\Role;
 
 use Symfony\Component\Security\Core\Role\RoleHierarchy as BaseRoleHierarchy;

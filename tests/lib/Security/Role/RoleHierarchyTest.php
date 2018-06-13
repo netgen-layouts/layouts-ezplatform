@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\BlockManager\Ez\Tests\Security\Role;
 
 use Netgen\BlockManager\Ez\Security\Role\RoleHierarchy;

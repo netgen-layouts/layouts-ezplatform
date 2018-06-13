@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\BlockManager\Ez\Parameters\Form\Mapper;
 
 use Netgen\BlockManager\Ez\Form\ObjectStateType;

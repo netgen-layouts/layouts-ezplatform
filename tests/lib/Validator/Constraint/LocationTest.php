@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\BlockManager\Ez\Tests\Validator\Constraint;
 
 use Netgen\BlockManager\Ez\Validator\Constraint\Location;

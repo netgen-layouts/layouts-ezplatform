@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\BlockManager\Ez\Layout\Resolver\TargetType;
 
 use eZ\Publish\API\Repository\Values\Content\Content as APIContent;

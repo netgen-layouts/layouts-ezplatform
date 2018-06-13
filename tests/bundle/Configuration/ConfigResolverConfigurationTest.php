@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Configuration;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;

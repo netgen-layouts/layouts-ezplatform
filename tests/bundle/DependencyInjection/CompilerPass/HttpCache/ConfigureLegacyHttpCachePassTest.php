@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\DependencyInjection\CompilerPass\HttpCache;
 
 use eZ\Publish\Core\MVC\Symfony\Cache\Http\FOSPurgeClient;

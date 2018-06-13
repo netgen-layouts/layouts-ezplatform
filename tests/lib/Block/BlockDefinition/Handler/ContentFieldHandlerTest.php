@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\BlockManager\Ez\Tests\Block\BlockDefinition\Handler;
 
 use eZ\Publish\Core\Repository\Values\Content\Content;

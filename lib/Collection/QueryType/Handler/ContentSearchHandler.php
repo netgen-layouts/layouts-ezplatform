@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\BlockManager\Ez\Collection\QueryType\Handler;
 
 use eZ\Publish\API\Repository\LocationService;

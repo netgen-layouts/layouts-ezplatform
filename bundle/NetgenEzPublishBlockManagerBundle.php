@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\Bundle\EzPublishBlockManagerBundle;
 
 use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass;

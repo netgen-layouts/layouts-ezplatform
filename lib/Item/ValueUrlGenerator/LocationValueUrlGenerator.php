@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\BlockManager\Ez\Item\ValueUrlGenerator;
 
 use Netgen\BlockManager\Item\ValueUrlGeneratorInterface;

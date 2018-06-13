@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\BlockManager\Ez\Layout\Resolver\TargetType;
 
 final class SemanticPathInfoPrefix extends SemanticPathInfo

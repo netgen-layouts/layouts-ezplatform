@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\BlockManager\Ez\Tests\Block\BlockDefinition\Integration\Doctrine;
 
 use Netgen\BlockManager\Ez\Tests\Block\BlockDefinition\Integration\ContentFieldTest as BaseContentFieldTest;

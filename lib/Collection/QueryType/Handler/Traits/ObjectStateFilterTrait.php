@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\BlockManager\Ez\Collection\QueryType\Handler\Traits;
 
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;

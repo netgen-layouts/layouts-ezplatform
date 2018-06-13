@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\BlockManager\Ez\Tests\Parameters\Form\Mapper;
 
 use eZ\Publish\API\Repository\Repository;

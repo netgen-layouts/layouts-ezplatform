@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\TargetHandler\Doctrine;
 
 use Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine\Subtree;
