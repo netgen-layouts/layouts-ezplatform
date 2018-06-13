@@ -41,10 +41,6 @@ final class ValidatorFactory implements ConstraintValidatorFactoryInterface
     {
         $name = $constraint->validatedBy();
 
-        if (isset($this->validators[$name])) {
-            return $this->validators[$name];
-        }
-
-        return $this->baseValidatorFactory->getInstance($constraint);
+        return $this->validators[$name] ?? $this->baseValidatorFactory->getInstance($constraint);
     }
 }

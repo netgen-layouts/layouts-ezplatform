@@ -59,9 +59,7 @@ final class DefaultAppPreviewPass implements CompilerPassInterface
     {
         $scopeRules = is_array($scopeRules) ? $scopeRules : [];
 
-        $blockManagerRules = isset($scopeRules['ngbm_app_preview']) ?
-            $scopeRules['ngbm_app_preview'] :
-            [];
+        $blockManagerRules = $scopeRules['ngbm_app_preview'] ?? [];
 
         $blockManagerRules += [
             '___ngbm_app_preview_default___' => $defaultRule,

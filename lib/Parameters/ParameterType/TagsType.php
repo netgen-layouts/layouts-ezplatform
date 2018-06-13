@@ -122,8 +122,8 @@ final class TagsType extends ParameterType
         if ($options['min'] !== null || $options['max'] !== null) {
             $constraints[] = new Constraints\Count(
                 [
-                    'min' => $options['min'] !== null ? $options['min'] : null,
-                    'max' => $options['max'] !== null ? $options['max'] : null,
+                    'min' => $options['min'],
+                    'max' => $options['max'],
                 ]
             );
         }
