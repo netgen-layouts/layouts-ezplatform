@@ -129,7 +129,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
             ['languages' => $this->languages]
         );
 
-        return $searchResult->totalCount;
+        return $searchResult->totalCount ?? 0;
     }
 
     public function isContextual(Query $query): bool
