@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Netgen\BlockManager\Ez\ContentProvider;
 
+use eZ\Publish\API\Repository\Values\Content\Content;
+use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\Core\MVC\Symfony\View\ContentValueView;
 use eZ\Publish\Core\MVC\Symfony\View\LocationValueView;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 final class RequestContentExtractor implements ContentExtractorInterface
 {
-    public function extractContent(Request $request)
+    public function extractContent(Request $request): ?Content
     {
         $view = $request->attributes->get('view');
         if (!$view instanceof ContentValueView) {
@@ -23,7 +25,7 @@ final class RequestContentExtractor implements ContentExtractorInterface
         return $view->getContent();
     }
 
-    public function extractLocation(Request $request)
+    public function extractLocation(Request $request): ?Location
     {
         $view = $request->attributes->get('view');
         if (!$view instanceof LocationValueView) {

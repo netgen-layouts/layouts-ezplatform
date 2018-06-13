@@ -9,6 +9,7 @@ use Netgen\TagsBundle\API\Repository\TagsService;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorFactory;
 use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
+use Symfony\Component\Validator\ConstraintValidatorInterface;
 
 final class TagsServiceValidatorFactory implements ConstraintValidatorFactoryInterface
 {
@@ -31,7 +32,7 @@ final class TagsServiceValidatorFactory implements ConstraintValidatorFactoryInt
         ];
     }
 
-    public function getInstance(Constraint $constraint)
+    public function getInstance(Constraint $constraint): ConstraintValidatorInterface
     {
         $name = $constraint->validatedBy();
 

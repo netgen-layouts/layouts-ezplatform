@@ -18,7 +18,7 @@ final class SiteAccessGroupTest extends TestCase
      */
     private $mapper;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->mapper = new SiteAccessGroup(
             [
@@ -32,7 +32,7 @@ final class SiteAccessGroupTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccessGroup::__construct
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccessGroup::getFormType
      */
-    public function testGetFormType()
+    public function testGetFormType(): void
     {
         $this->assertEquals(ChoiceType::class, $this->mapper->getFormType());
     }
@@ -40,7 +40,7 @@ final class SiteAccessGroupTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccessGroup::getFormOptions
      */
-    public function testGetFormOptions()
+    public function testGetFormOptions(): void
     {
         $this->assertEquals(
             [

@@ -53,7 +53,7 @@ final class RepositoryAccessVoter extends Voter
         $this->accessDecisionManager = $accessDecisionManager;
     }
 
-    public function vote(TokenInterface $token, $object, array $attributes)
+    public function vote(TokenInterface $token, $object, array $attributes): int
     {
         // abstain vote by default in case none of the attributes are supported
         $vote = self::ACCESS_ABSTAIN;
@@ -77,12 +77,12 @@ final class RepositoryAccessVoter extends Voter
         return $vote;
     }
 
-    protected function supports($attribute, $subject)
+    protected function supports($attribute, $subject): bool
     {
         return is_string($attribute) && mb_strpos($attribute, 'ROLE_NGBM_') === 0;
     }
 
-    protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
+    protected function voteOnAttribute($attribute, $subject, TokenInterface $token): bool
     {
         if (!isset(self::$attributeToPolicyMap[$attribute])) {
             return false;
@@ -104,7 +104,7 @@ final class RepositoryAccessVoter extends Voter
      *
      * @return string[]
      */
-    private function getReachableAttributes($attribute)
+    private function getReachableAttributes($attribute): array
     {
         return array_map(
             function (Role $role) {

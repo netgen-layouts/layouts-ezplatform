@@ -18,7 +18,7 @@ final class SiteAccessGroupTest extends TestCase
      */
     private $conditionType;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->conditionType = new SiteAccessGroup(
             [
@@ -36,7 +36,7 @@ final class SiteAccessGroupTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::__construct
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::getType
      */
-    public function testGetType()
+    public function testGetType(): void
     {
         $this->assertEquals('ez_site_access_group', $this->conditionType->getType());
     }
@@ -48,7 +48,7 @@ final class SiteAccessGroupTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::getConstraints
      * @dataProvider validationProvider
      */
-    public function testValidation($value, $isValid)
+    public function testValidation($value, bool $isValid): void
     {
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new ValidatorFactory())
@@ -66,7 +66,7 @@ final class SiteAccessGroupTest extends TestCase
      *
      * @dataProvider matchesProvider
      */
-    public function testMatches($value, $matches)
+    public function testMatches($value, bool $matches): void
     {
         $request = Request::create('/');
         $request->attributes->set('siteaccess', new EzPublishSiteAccess('eng'));
@@ -77,7 +77,7 @@ final class SiteAccessGroupTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::matches
      */
-    public function testMatchesWithSiteAccessWithNoGroups()
+    public function testMatchesWithSiteAccessWithNoGroups(): void
     {
         $request = Request::create('/');
         $request->attributes->set('siteaccess', new EzPublishSiteAccess('cro'));
@@ -88,7 +88,7 @@ final class SiteAccessGroupTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::matches
      */
-    public function testMatchesWithNoSiteAccess()
+    public function testMatchesWithNoSiteAccess(): void
     {
         $request = Request::create('/');
 
@@ -97,10 +97,8 @@ final class SiteAccessGroupTest extends TestCase
 
     /**
      * Provider for testing condition type validation.
-     *
-     * @return array
      */
-    public function validationProvider()
+    public function validationProvider(): array
     {
         return [
             [['frontend'], true],
@@ -112,12 +110,7 @@ final class SiteAccessGroupTest extends TestCase
         ];
     }
 
-    /**
-     * Provider for {@link self::testMatches}.
-     *
-     * @return array
-     */
-    public function matchesProvider()
+    public function matchesProvider(): array
     {
         return [
             ['not_array', false],

@@ -10,6 +10,7 @@ use eZ\Publish\Core\Repository\Values\ContentType\ContentTypeGroup;
 use Netgen\BlockManager\Ez\Form\ContentTypeType;
 use Netgen\BlockManager\Tests\TestCase\FormTestCase;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,10 +21,7 @@ final class ContentTypeTypeTest extends FormTestCase
      */
     private $contentTypeServiceMock;
 
-    /**
-     * @return \Symfony\Component\Form\FormTypeInterface
-     */
-    public function getMainType()
+    public function getMainType(): FormTypeInterface
     {
         $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
 
@@ -36,7 +34,7 @@ final class ContentTypeTypeTest extends FormTestCase
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::__construct
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getContentTypes
      */
-    public function testSubmitValidData()
+    public function testSubmitValidData(): void
     {
         $this->configureContentTypeService();
 
@@ -63,7 +61,7 @@ final class ContentTypeTypeTest extends FormTestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getParent
      */
-    public function testGetParent()
+    public function testGetParent(): void
     {
         $this->assertEquals(ChoiceType::class, $this->formType->getParent());
     }
@@ -72,7 +70,7 @@ final class ContentTypeTypeTest extends FormTestCase
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::configureOptions
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getContentTypes
      */
-    public function testConfigureOptions()
+    public function testConfigureOptions(): void
     {
         $this->configureContentTypeService();
 
@@ -108,7 +106,7 @@ final class ContentTypeTypeTest extends FormTestCase
         }
     }
 
-    private function configureContentTypeService()
+    private function configureContentTypeService(): void
     {
         $contentTypeGroup1 = new ContentTypeGroup(['identifier' => 'Group1']);
         $contentTypeGroup2 = new ContentTypeGroup(['identifier' => 'Group2']);

@@ -12,7 +12,7 @@ final class ContentTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\Constraint\Content::validatedBy
      */
-    public function testValidatedBy()
+    public function testValidatedBy(): void
     {
         $constraint = new Content();
         $this->assertEquals('ngbm_ezcontent', $constraint->validatedBy());

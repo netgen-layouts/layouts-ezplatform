@@ -6,6 +6,7 @@ namespace Netgen\BlockManager\Ez\Collection\QueryType\Handler\Traits;
 
 use Exception;
 use eZ\Publish\API\Repository\LocationService;
+use eZ\Publish\API\Repository\Values\Content\Location;
 use Netgen\BlockManager\API\Values\Collection\Query;
 use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
 use Netgen\BlockManager\Ez\Parameters\ParameterType as EzParameterType;
@@ -29,7 +30,7 @@ trait ParentLocationTrait
      *
      * @param \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface $contentProvider
      */
-    private function setContentProvider(ContentProviderInterface $contentProvider)
+    private function setContentProvider(ContentProviderInterface $contentProvider): void
     {
         $this->contentProvider = $contentProvider;
     }
@@ -39,7 +40,7 @@ trait ParentLocationTrait
      *
      * @param \eZ\Publish\API\Repository\LocationService $locationService
      */
-    private function setLocationService(LocationService $locationService)
+    private function setLocationService(LocationService $locationService): void
     {
         $this->locationService = $locationService;
     }
@@ -50,7 +51,7 @@ trait ParentLocationTrait
      * @param \Netgen\BlockManager\Parameters\ParameterBuilderInterface $builder
      * @param array $groups
      */
-    private function buildParentLocationParameters(ParameterBuilderInterface $builder, array $groups = [])
+    private function buildParentLocationParameters(ParameterBuilderInterface $builder, array $groups = []): void
     {
         $builder->add(
             'use_current_location',
@@ -73,12 +74,8 @@ trait ParentLocationTrait
 
     /**
      * Returns the parent location to use for the query.
-     *
-     * @param \Netgen\BlockManager\API\Values\Collection\Query $query
-     *
-     * @return \eZ\Publish\API\Repository\Values\Content\Location|null
      */
-    private function getParentLocation(Query $query)
+    private function getParentLocation(Query $query): ?Location
     {
         if ($query->getParameter('use_current_location')->getValue()) {
             return $this->contentProvider->provideLocation();

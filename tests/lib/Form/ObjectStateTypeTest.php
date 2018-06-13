@@ -10,6 +10,7 @@ use eZ\Publish\Core\Repository\Values\ObjectState\ObjectStateGroup;
 use Netgen\BlockManager\Ez\Form\ObjectStateType;
 use Netgen\BlockManager\Tests\TestCase\FormTestCase;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,10 +21,7 @@ final class ObjectStateTypeTest extends FormTestCase
      */
     private $objectStateServiceMock;
 
-    /**
-     * @return \Symfony\Component\Form\FormTypeInterface
-     */
-    public function getMainType()
+    public function getMainType(): FormTypeInterface
     {
         $this->objectStateServiceMock = $this->createMock(ObjectStateService::class);
 
@@ -36,7 +34,7 @@ final class ObjectStateTypeTest extends FormTestCase
      * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::__construct
      * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getObjectStates
      */
-    public function testSubmitValidData()
+    public function testSubmitValidData(): void
     {
         $this->configureObjectStateService();
 
@@ -63,7 +61,7 @@ final class ObjectStateTypeTest extends FormTestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getParent
      */
-    public function testGetParent()
+    public function testGetParent(): void
     {
         $this->assertEquals(ChoiceType::class, $this->formType->getParent());
     }
@@ -72,7 +70,7 @@ final class ObjectStateTypeTest extends FormTestCase
      * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::configureOptions
      * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getObjectStates
      */
-    public function testConfigureOptions()
+    public function testConfigureOptions(): void
     {
         $this->configureObjectStateService();
 
@@ -108,7 +106,7 @@ final class ObjectStateTypeTest extends FormTestCase
         }
     }
 
-    private function configureObjectStateService()
+    private function configureObjectStateService(): void
     {
         $objectStateGroup1 = new ObjectStateGroup(['identifier' => 'ez_lock', 'names' => ['eng-GB' => 'Lock']]);
         $objectStateGroup2 = new ObjectStateGroup(['identifier' => 'other', 'names' => ['eng-GB' => 'Other']]);

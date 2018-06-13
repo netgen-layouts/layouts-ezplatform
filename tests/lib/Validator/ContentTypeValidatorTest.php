@@ -13,6 +13,7 @@ use Netgen\BlockManager\Ez\Validator\Constraint\ContentType;
 use Netgen\BlockManager\Ez\Validator\ContentTypeValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\ConstraintValidatorInterface;
 
 final class ContentTypeValidatorTest extends ValidatorTestCase
 {
@@ -26,17 +27,14 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
      */
     private $contentTypeServiceMock;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
         $this->constraint = new ContentType();
     }
 
-    /**
-     * @return \Symfony\Component\Validator\ConstraintValidatorInterface
-     */
-    public function getValidator()
+    public function getValidator(): ConstraintValidatorInterface
     {
         $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentTypeService']);
@@ -58,16 +56,11 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @param string|null $identifier
-     * @param array $groups
-     * @param array $allowedTypes
-     * @param bool $isValid
-     *
      * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::validate
      * @dataProvider validateDataProvider
      */
-    public function testValidate($identifier, $groups, $allowedTypes, $isValid)
+    public function testValidate(?string $identifier, array $groups, array $allowedTypes, bool $isValid): void
     {
         if ($identifier !== null) {
             $this->contentTypeServiceMock
@@ -76,7 +69,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
                 ->with($this->equalTo($identifier))
                 ->will(
                     $this->returnCallback(
-                        function () use ($identifier, $groups) {
+                        function () use ($identifier, $groups): EzContentType {
                             if (!is_string($identifier) || $identifier === 'unknown') {
                                 throw new NotFoundException('content type', $identifier);
                             }
@@ -85,7 +78,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
                                 [
                                     'identifier' => $identifier,
                                     'contentTypeGroups' => array_map(
-                                        function ($group) {
+                                        function (string $group): ContentTypeGroup {
                                             return new ContentTypeGroup(
                                                 [
                                                     'identifier' => $group,
@@ -110,7 +103,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      * @expectedExceptionMessage Expected argument of type "Netgen\BlockManager\Ez\Validator\Constraint\ContentType", "Symfony\Component\Validator\Constraints\NotBlank" given
      */
-    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint()
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->constraint = new NotBlank();
         $this->assertValid(true, 'value');
@@ -121,7 +114,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      * @expectedExceptionMessage Expected argument of type "string", "integer" given
      */
-    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue()
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
         $this->assertValid(true, 42);
     }
@@ -131,13 +124,13 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      * @expectedExceptionMessage Expected argument of type "array", "integer" given
      */
-    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidAllowedTypes()
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidAllowedTypes(): void
     {
         $this->constraint->allowedTypes = 42;
         $this->assertValid(true, 'article');
     }
 
-    public function validateDataProvider()
+    public function validateDataProvider(): array
     {
         return [
             ['article', ['group1'], [], true],

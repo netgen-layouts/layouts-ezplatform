@@ -15,7 +15,7 @@ final class LocationTest extends TestCase
      */
     private $mapper;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->mapper = new Location();
     }
@@ -23,7 +23,7 @@ final class LocationTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Location::getFormType
      */
-    public function testGetFormType()
+    public function testGetFormType(): void
     {
         $this->assertEquals(ContentBrowserType::class, $this->mapper->getFormType());
     }
@@ -31,7 +31,7 @@ final class LocationTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Location::getFormOptions
      */
-    public function testGetFormOptions()
+    public function testGetFormOptions(): void
     {
         $this->assertEquals(
             [

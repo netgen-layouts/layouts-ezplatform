@@ -10,12 +10,12 @@ use Netgen\BlockManager\Parameters\ParameterDefinition;
 
 final class ContentTypeMapper extends Mapper
 {
-    public function getFormType()
+    public function getFormType(): string
     {
         return ContentTypeType::class;
     }
 
-    public function mapOptions(ParameterDefinition $parameterDefinition)
+    public function mapOptions(ParameterDefinition $parameterDefinition): array
     {
         return [
             'multiple' => $parameterDefinition->getOption('multiple'),

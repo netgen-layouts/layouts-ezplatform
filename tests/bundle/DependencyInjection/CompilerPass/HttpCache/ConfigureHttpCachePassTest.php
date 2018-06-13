@@ -24,7 +24,7 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
      *
      * @dataProvider processProvider
      */
-    public function testProcess($definitionClass, $clientEnabled)
+    public function testProcess(string $definitionClass, bool $clientEnabled): void
     {
         $this->setDefinition('netgen_block_manager.http_cache.client', new Definition());
         $this->setDefinition('ezplatform.http_cache.purge_client', new Definition($definitionClass));
@@ -43,7 +43,7 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::log
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
      */
-    public function testProcessWithNoSupportedClient()
+    public function testProcessWithNoSupportedClient(): void
     {
         $this->setDefinition('netgen_block_manager.http_cache.client', new Definition());
         $this->setDefinition('ezplatform.http_cache.purge_client', new Definition(stdClass::class));
@@ -53,7 +53,7 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
         $this->assertContainerBuilderNotHasAlias('netgen_block_manager.http_cache.client');
     }
 
-    public function processProvider()
+    public function processProvider(): array
     {
         return [
             [VarnishPurgeClient::class, true],
@@ -64,7 +64,7 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
      */
-    public function testProcessWithEmptyContainer()
+    public function testProcessWithEmptyContainer(): void
     {
         $this->compile();
 
@@ -73,20 +73,16 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
 
     /**
      * Register the compiler pass under test.
-     *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      */
-    protected function registerCompilerPass(ContainerBuilder $container)
+    protected function registerCompilerPass(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new ConfigureHttpCachePass());
     }
 
     /**
      * Assert that the ContainerBuilder for this test does not have an alias with the given id.
-     *
-     * @param string $aliasId
      */
-    private function assertContainerBuilderNotHasAlias($aliasId)
+    private function assertContainerBuilderNotHasAlias(string $aliasId): void
     {
         $this->assertThat(
             $this->container,

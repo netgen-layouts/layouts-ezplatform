@@ -21,7 +21,7 @@ final class LocationValueUrlGeneratorTest extends TestCase
      */
     private $urlGenerator;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->urlGeneratorMock = $this->createMock(UrlGeneratorInterface::class);
 
@@ -32,7 +32,7 @@ final class LocationValueUrlGeneratorTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Item\ValueUrlGenerator\LocationValueUrlGenerator::__construct
      * @covers \Netgen\BlockManager\Ez\Item\ValueUrlGenerator\LocationValueUrlGenerator::generate
      */
-    public function testGenerate()
+    public function testGenerate(): void
     {
         $this->urlGeneratorMock
             ->expects($this->once())

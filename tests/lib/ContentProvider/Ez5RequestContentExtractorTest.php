@@ -33,7 +33,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
      */
     private $contentProvider;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->contentServiceMock = $this->createMock(ContentService::class);
         $this->locationServiceMock = $this->createMock(LocationService::class);
@@ -48,7 +48,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentExtractor::__construct
      * @covers \Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentExtractor::extractContent
      */
-    public function testProvideContent()
+    public function testProvideContent(): void
     {
         $content = new Content(
             [
@@ -77,7 +77,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentExtractor::extractContent
      */
-    public function testProvideContentWithContentId()
+    public function testProvideContentWithContentId(): void
     {
         $content = new Content(
             [
@@ -109,7 +109,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentExtractor::extractContent
      */
-    public function testProvideContentWithInvalidContent()
+    public function testProvideContentWithInvalidContent(): void
     {
         $request = Request::create('/');
         $request->attributes->set('content', 42);
@@ -120,7 +120,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentExtractor::extractContent
      */
-    public function testProvideContentWithInvalidRoute()
+    public function testProvideContentWithInvalidRoute(): void
     {
         $request = Request::create('/');
         $request->attributes->set('contentId', 42);
@@ -132,7 +132,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentExtractor::extractContent
      */
-    public function testProvideContentWithNonExistentContent()
+    public function testProvideContentWithNonExistentContent(): void
     {
         $request = Request::create('/');
         $request->attributes->set('contentId', 42);
@@ -150,7 +150,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentExtractor::extractLocation
      */
-    public function testProvideLocation()
+    public function testProvideLocation(): void
     {
         $location = new Location(['id' => 42]);
 
@@ -167,7 +167,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentExtractor::extractLocation
      */
-    public function testProvideLocationWithLocationId()
+    public function testProvideLocationWithLocationId(): void
     {
         $location = new Location(['id' => 42]);
 
@@ -187,7 +187,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentExtractor::extractLocation
      */
-    public function testProvideLocationWithInvalidLocation()
+    public function testProvideLocationWithInvalidLocation(): void
     {
         $request = Request::create('/');
         $request->attributes->set('location', 42);
@@ -198,7 +198,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentExtractor::extractLocation
      */
-    public function testProvideLocationWithInvalidRoute()
+    public function testProvideLocationWithInvalidRoute(): void
     {
         $request = Request::create('/');
         $request->attributes->set('locationId', 42);
@@ -210,7 +210,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentExtractor::extractLocation
      */
-    public function testProvideLocationWithNonExistentLocation()
+    public function testProvideLocationWithNonExistentLocation(): void
     {
         $request = Request::create('/');
         $request->attributes->set('locationId', 42);

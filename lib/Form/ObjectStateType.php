@@ -25,7 +25,7 @@ final class ObjectStateType extends AbstractType
         $this->objectStateService = $objectStateService;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
 
@@ -35,7 +35,7 @@ final class ObjectStateType extends AbstractType
 
         $resolver->setDefault(
             'choices',
-            function (Options $options) {
+            function (Options $options): array {
                 return $this->getObjectStates($options);
             }
         );
@@ -47,19 +47,15 @@ final class ObjectStateType extends AbstractType
         );
     }
 
-    public function getParent()
+    public function getParent(): string
     {
         return ChoiceType::class;
     }
 
     /**
      * Returns the allowed content states from eZ Publish.
-     *
-     * @param \Symfony\Component\OptionsResolver\Options $options
-     *
-     * @return array
      */
-    private function getObjectStates(Options $options)
+    private function getObjectStates(Options $options): array
     {
         $allObjectStates = [];
 

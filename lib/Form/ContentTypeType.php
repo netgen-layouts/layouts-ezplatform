@@ -25,7 +25,7 @@ final class ContentTypeType extends AbstractType
         $this->contentTypeService = $contentTypeService;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
 
@@ -35,7 +35,7 @@ final class ContentTypeType extends AbstractType
 
         $resolver->setDefault(
             'choices',
-            function (Options $options) {
+            function (Options $options): array {
                 return $this->getContentTypes($options);
             }
         );
@@ -47,19 +47,15 @@ final class ContentTypeType extends AbstractType
         );
     }
 
-    public function getParent()
+    public function getParent(): string
     {
         return ChoiceType::class;
     }
 
     /**
      * Returns the allowed content types from eZ Publish.
-     *
-     * @param \Symfony\Component\OptionsResolver\Options $options
-     *
-     * @return array
      */
-    private function getContentTypes(Options $options)
+    private function getContentTypes(Options $options): array
     {
         $allContentTypes = [];
 

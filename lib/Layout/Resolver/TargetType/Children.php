@@ -23,12 +23,12 @@ final class Children implements TargetTypeInterface
         $this->contentExtractor = $contentExtractor;
     }
 
-    public function getType()
+    public function getType(): string
     {
         return 'ezchildren';
     }
 
-    public function getConstraints()
+    public function getConstraints(): array
     {
         return [
             new Constraints\NotBlank(),

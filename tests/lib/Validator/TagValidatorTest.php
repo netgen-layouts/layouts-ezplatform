@@ -10,30 +10,23 @@ use Netgen\BlockManager\Ez\Validator\TagValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Netgen\TagsBundle\Core\Repository\TagsService;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\ConstraintValidatorInterface;
 
 final class TagValidatorTest extends ValidatorTestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    private $repositoryMock;
-
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
     private $tagsServiceMock;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
         $this->constraint = new Tag();
     }
 
-    /**
-     * @return \Symfony\Component\Validator\ConstraintValidatorInterface
-     */
-    public function getValidator()
+    public function getValidator(): ConstraintValidatorInterface
     {
         $this->tagsServiceMock = $this->createPartialMock(TagsService::class, ['loadTag']);
 
@@ -41,14 +34,14 @@ final class TagValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @param int|null $tagId
+     * @param int|string|null $tagId
      * @param bool $isValid
      *
      * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::validate
      * @dataProvider validateDataProvider
      */
-    public function testValidate($tagId, $isValid)
+    public function testValidate($tagId, bool $isValid): void
     {
         if ($tagId !== null) {
             $this->tagsServiceMock
@@ -57,7 +50,7 @@ final class TagValidatorTest extends ValidatorTestCase
                 ->with($this->equalTo($tagId))
                 ->will(
                     $this->returnCallback(
-                        function () use ($tagId) {
+                        function () use ($tagId): void {
                             if (!is_int($tagId) || $tagId <= 0 || $tagId > 20) {
                                 throw new NotFoundException('tag', $tagId);
                             }
@@ -74,7 +67,7 @@ final class TagValidatorTest extends ValidatorTestCase
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      * @expectedExceptionMessage Expected argument of type "Netgen\BlockManager\Ez\Validator\Constraint\Tag", "Symfony\Component\Validator\Constraints\NotBlank" given
      */
-    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint()
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->constraint = new NotBlank();
         $this->assertValid(true, 'value');
@@ -85,12 +78,12 @@ final class TagValidatorTest extends ValidatorTestCase
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      * @expectedExceptionMessage Expected argument of type "scalar", "array" given
      */
-    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue()
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
         $this->assertValid(true, []);
     }
 
-    public function validateDataProvider()
+    public function validateDataProvider(): array
     {
         return [
             [12, true],

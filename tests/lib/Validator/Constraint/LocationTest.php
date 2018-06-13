@@ -12,7 +12,7 @@ final class LocationTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\Constraint\Location::validatedBy
      */
-    public function testValidatedBy()
+    public function testValidatedBy(): void
     {
         $constraint = new Location();
         $this->assertEquals('ngbm_ezlocation', $constraint->validatedBy());

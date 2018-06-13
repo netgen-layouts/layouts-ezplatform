@@ -31,7 +31,7 @@ final class ObjectState extends Constraint
      */
     public $allowedStates = [];
 
-    public function validatedBy()
+    public function validatedBy(): string
     {
         return 'ngbm_ez_object_state';
     }

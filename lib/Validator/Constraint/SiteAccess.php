@@ -13,7 +13,7 @@ final class SiteAccess extends Constraint
      */
     public $message = 'netgen_block_manager.ez_site_access.site_access_not_found';
 
-    public function validatedBy()
+    public function validatedBy(): string
     {
         return 'ngbm_ez_site_access';
     }

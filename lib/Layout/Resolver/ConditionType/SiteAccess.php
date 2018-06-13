@@ -12,12 +12,12 @@ use Symfony\Component\Validator\Constraints;
 
 final class SiteAccess implements ConditionTypeInterface
 {
-    public function getType()
+    public function getType(): string
     {
         return 'ez_site_access';
     }
 
-    public function getConstraints()
+    public function getConstraints(): array
     {
         return [
             new Constraints\NotBlank(),
@@ -33,7 +33,7 @@ final class SiteAccess implements ConditionTypeInterface
         ];
     }
 
-    public function matches(Request $request, $value)
+    public function matches(Request $request, $value): bool
     {
         $siteAccess = $request->attributes->get('siteaccess');
         if (!$siteAccess instanceof EzPublishSiteAccess) {

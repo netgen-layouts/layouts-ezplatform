@@ -11,7 +11,7 @@ final class DesignNodeTest extends ConfigurationNodeTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
      */
-    public function testDesignSettings()
+    public function testDesignSettings(): void
     {
         $config = [
             [
@@ -33,7 +33,7 @@ final class DesignNodeTest extends ConfigurationNodeTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::validateCurrentDesign
      */
-    public function testValidDesign()
+    public function testValidDesign(): void
     {
         $config = [
             [
@@ -63,7 +63,7 @@ final class DesignNodeTest extends ConfigurationNodeTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::validateCurrentDesign
      */
-    public function testStandardDesign()
+    public function testStandardDesign(): void
     {
         $config = [
             [
@@ -95,7 +95,7 @@ final class DesignNodeTest extends ConfigurationNodeTest
      * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
      * @expectedExceptionMessage Design "unknown" does not exist. Available designs are: test1, test2
      */
-    public function testInvalidDesignThrowsInvalidConfigurationException()
+    public function testInvalidDesignThrowsInvalidConfigurationException(): void
     {
         $config = [
             [

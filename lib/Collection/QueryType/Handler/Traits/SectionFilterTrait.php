@@ -23,7 +23,7 @@ trait SectionFilterTrait
      *
      * @param \eZ\Publish\SPI\Persistence\Content\Section\Handler $handler
      */
-    private function setSectionHandler(Handler $handler)
+    private function setSectionHandler(Handler $handler): void
     {
         $this->sectionHandler = $handler;
     }
@@ -34,7 +34,7 @@ trait SectionFilterTrait
      * @param \Netgen\BlockManager\Parameters\ParameterBuilderInterface $builder
      * @param array $groups
      */
-    private function buildSectionFilterParameters(ParameterBuilderInterface $builder, $groups = [])
+    private function buildSectionFilterParameters(ParameterBuilderInterface $builder, array $groups = []): void
     {
         $builder->add(
             'filter_by_section',
@@ -49,7 +49,7 @@ trait SectionFilterTrait
             ParameterType\ChoiceType::class,
             [
                 'multiple' => true,
-                'options' => function () {
+                'options' => function (): array {
                     $sections = [];
 
                     foreach ($this->sectionHandler->loadAll() as $section) {
@@ -65,12 +65,8 @@ trait SectionFilterTrait
 
     /**
      * Returns the criteria used to filter content by section.
-     *
-     * @param \Netgen\BlockManager\API\Values\Collection\Query $query
-     *
-     * @return \eZ\Publish\API\Repository\Values\Content\Query\Criterion|null
      */
-    private function getSectionFilterCriteria(Query $query)
+    private function getSectionFilterCriteria(Query $query): ?Criterion
     {
         if ($query->getParameter('filter_by_section')->getValue() !== true) {
             return null;
@@ -86,12 +82,8 @@ trait SectionFilterTrait
 
     /**
      * Returns section IDs for all provided section identifiers.
-     *
-     * @param array $sectionIdentifiers
-     *
-     * @return array
      */
-    private function getSectionIds(array $sectionIdentifiers)
+    private function getSectionIds(array $sectionIdentifiers): array
     {
         $idList = [];
 

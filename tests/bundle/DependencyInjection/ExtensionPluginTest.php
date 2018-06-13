@@ -15,7 +15,7 @@ final class ExtensionPluginTest extends AbstractExtensionTestCase
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::__construct
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::appendConfigurationFiles
      */
-    public function testAppendFromPlugin()
+    public function testAppendFromPlugin(): void
     {
         $extension = new NetgenBlockManagerExtension();
         $extension->addPlugin(new ExtensionPlugin($this->container));
@@ -41,13 +41,7 @@ final class ExtensionPluginTest extends AbstractExtensionTestCase
         );
     }
 
-    /**
-     * Return an array of container extensions that need to be registered for
-     * each test (usually just the container extension you are testing).
-     *
-     * @return \Symfony\Component\DependencyInjection\Extension\ExtensionInterface[]
-     */
-    protected function getContainerExtensions()
+    protected function getContainerExtensions(): array
     {
         return [new NetgenEzPublishBlockManagerExtension()];
     }

@@ -39,7 +39,7 @@ final class ContentTest extends TestCase
      */
     private $targetType;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->contentExtractorMock = $this->createMock(ContentExtractorInterface::class);
         $this->contentServiceMock = $this->createMock(ContentService::class);
@@ -65,7 +65,7 @@ final class ContentTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content::__construct
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content::getType
      */
-    public function testGetType()
+    public function testGetType(): void
     {
         $this->assertEquals('ezcontent', $this->targetType->getType());
     }
@@ -77,7 +77,7 @@ final class ContentTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content::getConstraints
      * @dataProvider validationProvider
      */
-    public function testValidation($value, $isValid)
+    public function testValidation($value, bool $isValid): void
     {
         if ($value !== null) {
             $this->contentServiceMock
@@ -86,7 +86,7 @@ final class ContentTest extends TestCase
                 ->with($this->equalTo((int) $value))
                 ->will(
                     $this->returnCallback(
-                        function () use ($value) {
+                        function () use ($value): void {
                             if (!is_int($value) || $value > 20) {
                                 throw new NotFoundException('location', $value);
                             }
@@ -106,7 +106,7 @@ final class ContentTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content::provideValue
      */
-    public function testProvideValue()
+    public function testProvideValue(): void
     {
         $content = new EzContent(
             [
@@ -136,7 +136,7 @@ final class ContentTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content::provideValue
      */
-    public function testProvideValueWithNoContent()
+    public function testProvideValueWithNoContent(): void
     {
         $request = Request::create('/');
 
@@ -151,10 +151,8 @@ final class ContentTest extends TestCase
 
     /**
      * Extractor for testing valid parameter values.
-     *
-     * @return array
      */
-    public function validationProvider()
+    public function validationProvider(): array
     {
         return [
             [12, true],

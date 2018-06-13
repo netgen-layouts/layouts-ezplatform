@@ -37,7 +37,7 @@ final class SubtreeTest extends TestCase
      */
     private $targetType;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->contentExtractorMock = $this->createMock(ContentExtractorInterface::class);
         $this->locationServiceMock = $this->createMock(LocationService::class);
@@ -62,7 +62,7 @@ final class SubtreeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Subtree::getType
      */
-    public function testGetType()
+    public function testGetType(): void
     {
         $this->assertEquals('ezsubtree', $this->targetType->getType());
     }
@@ -74,7 +74,7 @@ final class SubtreeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Subtree::getConstraints
      * @dataProvider validationProvider
      */
-    public function testValidation($value, $isValid)
+    public function testValidation($value, bool $isValid): void
     {
         if ($value !== null) {
             $this->locationServiceMock
@@ -83,7 +83,7 @@ final class SubtreeTest extends TestCase
                 ->with($this->equalTo($value))
                 ->will(
                     $this->returnCallback(
-                        function () use ($value) {
+                        function () use ($value): void {
                             if (!is_int($value) || $value > 20) {
                                 throw new NotFoundException('location', $value);
                             }
@@ -104,7 +104,7 @@ final class SubtreeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Subtree::__construct
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Subtree::provideValue
      */
-    public function testProvideValue()
+    public function testProvideValue(): void
     {
         $location = new Location(
             [
@@ -127,7 +127,7 @@ final class SubtreeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Subtree::__construct
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Subtree::provideValue
      */
-    public function testProvideValueWithNoLocation()
+    public function testProvideValueWithNoLocation(): void
     {
         $request = Request::create('/');
 
@@ -142,10 +142,8 @@ final class SubtreeTest extends TestCase
 
     /**
      * Extractor for testing valid parameter values.
-     *
-     * @return array
      */
-    public function validationProvider()
+    public function validationProvider(): array
     {
         return [
             [12, true],

@@ -40,7 +40,7 @@ final class ContentTypeTest extends TestCase
      */
     private $contentTypeServiceMock;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->contentExtractorMock = $this->createMock(ContentExtractorInterface::class);
         $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
@@ -69,7 +69,7 @@ final class ContentTypeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType::__construct
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType::getType
      */
-    public function testGetType()
+    public function testGetType(): void
     {
         $this->assertEquals('ez_content_type', $this->conditionType->getType());
     }
@@ -81,7 +81,7 @@ final class ContentTypeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType::getConstraints
      * @dataProvider validationProvider
      */
-    public function testValidation($value, $isValid)
+    public function testValidation($value, bool $isValid): void
     {
         if ($value !== null) {
             foreach ($value as $index => $valueItem) {
@@ -91,7 +91,7 @@ final class ContentTypeTest extends TestCase
                     ->with($this->equalTo($valueItem))
                     ->will(
                         $this->returnCallback(
-                            function () use ($valueItem) {
+                            function () use ($valueItem): EzContentType {
                                 if (!is_string($valueItem) || !in_array($valueItem, ['article', 'news'], true)) {
                                     throw new NotFoundException('content type', $valueItem);
                                 }
@@ -123,7 +123,7 @@ final class ContentTypeTest extends TestCase
      *
      * @dataProvider matchesProvider
      */
-    public function testMatches($value, $matches)
+    public function testMatches($value, bool $matches): void
     {
         $request = Request::create('/');
 
@@ -168,7 +168,7 @@ final class ContentTypeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType::matches
      */
-    public function testMatchesWithNoContent()
+    public function testMatchesWithNoContent(): void
     {
         $request = Request::create('/');
 
@@ -183,10 +183,8 @@ final class ContentTypeTest extends TestCase
 
     /**
      * Provider for testing condition type validation.
-     *
-     * @return array
      */
-    public function validationProvider()
+    public function validationProvider(): array
     {
         return [
             [['article'], true],
@@ -198,12 +196,7 @@ final class ContentTypeTest extends TestCase
         ];
     }
 
-    /**
-     * Provider for {@link self::testMatches}.
-     *
-     * @return array
-     */
-    public function matchesProvider()
+    public function matchesProvider(): array
     {
         return [
             ['not_array', false],

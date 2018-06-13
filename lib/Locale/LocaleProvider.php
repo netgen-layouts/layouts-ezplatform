@@ -52,12 +52,12 @@ class LocaleProvider implements LocaleProviderInterface
      *
      * @param string[] $languageCodes
      */
-    public function setLanguages(array $languageCodes = null)
+    public function setLanguages(array $languageCodes = null): void
     {
         $this->languageCodes = $languageCodes ?? [];
     }
 
-    public function getAvailableLocales()
+    public function getAvailableLocales(): array
     {
         $availableLocales = [];
         $languages = $this->languageService->loadLanguages();
@@ -77,7 +77,7 @@ class LocaleProvider implements LocaleProviderInterface
         return $availableLocales;
     }
 
-    public function getRequestLocales(Request $request)
+    public function getRequestLocales(Request $request): array
     {
         $requestLocales = [];
 
@@ -104,12 +104,8 @@ class LocaleProvider implements LocaleProviderInterface
      * Returns the array with POSIX locale code and name for provided eZ Publish language.
      *
      * If POSIX locale does not exist or if language is not enabled, null will be returned.
-     *
-     * @param \eZ\Publish\API\Repository\Values\Content\Language $language
-     *
-     * @return array|null
      */
-    private function getPosixLocale(Language $language)
+    private function getPosixLocale(Language $language): ?array
     {
         if (!$language->enabled) {
             return null;

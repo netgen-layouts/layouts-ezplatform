@@ -37,7 +37,7 @@ class ConfigResolverConfiguration implements ConfigurationInterface
         $this->fallbackConfiguration = $fallbackConfiguration;
     }
 
-    public function hasParameter($parameterName)
+    public function hasParameter($parameterName): bool
     {
         $hasParam = $this->configResolver->hasParameter(
             $parameterName,

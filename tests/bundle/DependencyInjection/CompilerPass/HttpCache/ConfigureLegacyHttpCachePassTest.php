@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 
 final class ConfigureLegacyHttpCachePassTest extends AbstractCompilerPassTestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         if (!class_exists(FOSPurgeClient::class)) {
             require_once __DIR__ . '/Stubs/LegacyClasses.php';
@@ -28,12 +28,9 @@ final class ConfigureLegacyHttpCachePassTest extends AbstractCompilerPassTestCas
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureLegacyHttpCachePass::process
      *
-     * @param string $definitionClass
-     * @param bool $clientEnabled
-     *
      * @dataProvider processProvider
      */
-    public function testProcess($definitionClass, $clientEnabled)
+    public function testProcess(string $definitionClass, bool $clientEnabled): void
     {
         $this->setDefinition('netgen_block_manager.http_cache.client', new Definition());
         $this->setDefinition('ezpublish.http_cache.purge_client', new Definition($definitionClass));
@@ -52,7 +49,7 @@ final class ConfigureLegacyHttpCachePassTest extends AbstractCompilerPassTestCas
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureLegacyHttpCachePass::log
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureLegacyHttpCachePass::process
      */
-    public function testProcessWithNoSupportedClient()
+    public function testProcessWithNoSupportedClient(): void
     {
         $this->setDefinition('netgen_block_manager.http_cache.client', new Definition());
         $this->setDefinition('ezpublish.http_cache.purge_client', new Definition(stdClass::class));
@@ -62,7 +59,7 @@ final class ConfigureLegacyHttpCachePassTest extends AbstractCompilerPassTestCas
         $this->assertContainerBuilderNotHasAlias('netgen_block_manager.http_cache.client');
     }
 
-    public function processProvider()
+    public function processProvider(): array
     {
         return [
             [FOSPurgeClient::class, true],
@@ -73,7 +70,7 @@ final class ConfigureLegacyHttpCachePassTest extends AbstractCompilerPassTestCas
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureLegacyHttpCachePass::process
      */
-    public function testProcessWithEmptyContainer()
+    public function testProcessWithEmptyContainer(): void
     {
         $this->compile();
 
@@ -82,20 +79,16 @@ final class ConfigureLegacyHttpCachePassTest extends AbstractCompilerPassTestCas
 
     /**
      * Register the compiler pass under test.
-     *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      */
-    protected function registerCompilerPass(ContainerBuilder $container)
+    protected function registerCompilerPass(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new ConfigureLegacyHttpCachePass());
     }
 
     /**
      * Assert that the ContainerBuilder for this test does not have an alias with the given id.
-     *
-     * @param string $aliasId
      */
-    private function assertContainerBuilderNotHasAlias($aliasId)
+    private function assertContainerBuilderNotHasAlias(string $aliasId): void
     {
         $this->assertThat(
             $this->container,

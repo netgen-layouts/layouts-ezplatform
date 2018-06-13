@@ -6,6 +6,7 @@ namespace Netgen\BlockManager\Ez\ContentProvider;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\LocationService;
+use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\Location;
 use Netgen\BlockManager\Context\ContextInterface;
 
@@ -40,7 +41,7 @@ final class ContentProvider implements ContentProviderInterface
         $this->context = $context;
     }
 
-    public function provideContent()
+    public function provideContent(): ?Content
     {
         $location = $this->loadLocation();
         if (!$location instanceof Location) {
@@ -50,7 +51,7 @@ final class ContentProvider implements ContentProviderInterface
         return $this->contentService->loadContent($location->contentId);
     }
 
-    public function provideLocation()
+    public function provideLocation(): ?Location
     {
         return $this->loadLocation();
     }
@@ -58,10 +59,8 @@ final class ContentProvider implements ContentProviderInterface
     /**
      * Loads the location from the eZ Platform API by using the location ID
      * stored in the context.
-     *
-     * @return \eZ\Publish\API\Repository\Values\Content\Location|null
      */
-    private function loadLocation()
+    private function loadLocation(): ?Location
     {
         if (!$this->context->has('ez_location_id')) {
             return null;

@@ -33,7 +33,7 @@ final class PageLayoutResolverTest extends TestCase
      */
     private $resolver;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->innerResolverMock = $this->createMock(PageLayoutResolverInterface::class);
         $this->configResolverMock = $this->createMock(ConfigResolverInterface::class);
@@ -51,7 +51,7 @@ final class PageLayoutResolverTest extends TestCase
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver::__construct
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver::resolvePageLayout
      */
-    public function testResolvePageLayout()
+    public function testResolvePageLayout(): void
     {
         $request = Request::create('/');
 
@@ -78,7 +78,7 @@ final class PageLayoutResolverTest extends TestCase
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver::resolvePageLayout
      */
-    public function testResolvePageLayoutWitNoRequest()
+    public function testResolvePageLayoutWitNoRequest(): void
     {
         $this->requestStackMock
             ->expects($this->once())
@@ -104,7 +104,7 @@ final class PageLayoutResolverTest extends TestCase
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver::resolvePageLayout
      */
-    public function testResolvePageLayoutWithDisabledLayout()
+    public function testResolvePageLayoutWithDisabledLayout(): void
     {
         $request = Request::create('/');
         $request->attributes->set('layout', false);
@@ -132,7 +132,7 @@ final class PageLayoutResolverTest extends TestCase
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver::resolvePageLayout
      */
-    public function testResolvePageLayoutNoPageLayoutParam()
+    public function testResolvePageLayoutNoPageLayoutParam(): void
     {
         $request = Request::create('/');
 

@@ -50,7 +50,7 @@ final class EzPublishRuntimeTest extends TestCase
      */
     private $runtime;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->prepareRepositoryMock();
         $this->translationHelperMock = $this->createMock(TranslationHelper::class);
@@ -66,7 +66,7 @@ final class EzPublishRuntimeTest extends TestCase
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getContentName
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContent
      */
-    public function testGetContentName()
+    public function testGetContentName(): void
     {
         $this->mockServices();
 
@@ -77,7 +77,7 @@ final class EzPublishRuntimeTest extends TestCase
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getContentName
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContent
      */
-    public function testGetContentNameWithException()
+    public function testGetContentNameWithException(): void
     {
         $this->contentServiceMock
             ->expects($this->once())
@@ -93,7 +93,7 @@ final class EzPublishRuntimeTest extends TestCase
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContent
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadLocation
      */
-    public function testGetLocationPath()
+    public function testGetLocationPath(): void
     {
         $this->mockServices();
 
@@ -112,7 +112,7 @@ final class EzPublishRuntimeTest extends TestCase
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContent
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadLocation
      */
-    public function testGetLocationPathWithException()
+    public function testGetLocationPathWithException(): void
     {
         $this->locationServiceMock
             ->expects($this->once())
@@ -127,7 +127,7 @@ final class EzPublishRuntimeTest extends TestCase
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getContentTypeName
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContentType
      */
-    public function testGetContentTypeName()
+    public function testGetContentTypeName(): void
     {
         $this->mockServices();
 
@@ -136,7 +136,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->method('loadContentTypeByIdentifier')
             ->will(
                 $this->returnCallback(
-                    function ($identifier) {
+                    function (string $identifier): ContentType {
                         return new ContentType(
                             [
                                 'identifier' => $identifier,
@@ -156,7 +156,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->method('getTranslatedByMethod')
             ->will(
                 $this->returnCallback(
-                    function ($object, $method) {
+                    function ($object, string $method): string {
                         return $object->{$method}('cro-HR');
                     }
                 )
@@ -169,7 +169,7 @@ final class EzPublishRuntimeTest extends TestCase
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getContentTypeName
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContentType
      */
-    public function testGetContentTypeNameWithNoTranslatedName()
+    public function testGetContentTypeNameWithNoTranslatedName(): void
     {
         $this->mockServices();
 
@@ -178,7 +178,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->method('loadContentTypeByIdentifier')
             ->will(
                 $this->returnCallback(
-                    function ($identifier) {
+                    function (string $identifier): ContentType {
                         return new ContentType(
                             [
                                 'identifier' => $identifier,
@@ -205,7 +205,7 @@ final class EzPublishRuntimeTest extends TestCase
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getContentTypeName
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContentType
      */
-    public function testGetContentTypeNameWithNoNames()
+    public function testGetContentTypeNameWithNoNames(): void
     {
         $this->mockServices();
 
@@ -214,7 +214,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->method('loadContentTypeByIdentifier')
             ->will(
                 $this->returnCallback(
-                    function ($identifier) {
+                    function (string $identifier): ContentType {
                         return new ContentType(
                             [
                                 'identifier' => $identifier,
@@ -238,7 +238,7 @@ final class EzPublishRuntimeTest extends TestCase
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getContentTypeName
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContentType
      */
-    public function testGetContentTypeNameWithException()
+    public function testGetContentTypeNameWithException(): void
     {
         $this->contentTypeServiceMock
             ->expects($this->once())
@@ -249,7 +249,7 @@ final class EzPublishRuntimeTest extends TestCase
         $this->assertEquals('', $this->runtime->getContentTypeName('some_type'));
     }
 
-    private function prepareRepositoryMock()
+    private function prepareRepositoryMock(): void
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
         $this->contentServiceMock = $this->createMock(ContentService::class);
@@ -293,14 +293,14 @@ final class EzPublishRuntimeTest extends TestCase
             ->will($this->returnValue($this->contentTypeServiceMock));
     }
 
-    private function mockServices()
+    private function mockServices(): void
     {
         $this->locationServiceMock
             ->expects($this->any())
             ->method('loadLocation')
             ->will(
                 $this->returnCallback(
-                    function ($locationId) {
+                    function ($locationId): Location {
                         return new Location(
                             [
                                 'path' => [1, 2, 42, 84],
@@ -320,7 +320,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->method('loadContent')
             ->will(
                 $this->returnCallback(
-                    function ($contentId) {
+                    function ($contentId): Content {
                         return new Content(
                             [
                                 'versionInfo' => new VersionInfo(
@@ -344,7 +344,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->method('getTranslatedContentName')
             ->will(
                 $this->returnCallback(
-                    function (Content $content) {
+                    function (Content $content): string {
                         return $content->contentInfo->name;
                     }
                 )

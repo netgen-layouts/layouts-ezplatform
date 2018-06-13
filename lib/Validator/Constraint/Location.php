@@ -20,7 +20,7 @@ final class Location extends Constraint
      */
     public $allowInvalid = false;
 
-    public function validatedBy()
+    public function validatedBy(): string
     {
         return 'ngbm_ezlocation';
     }

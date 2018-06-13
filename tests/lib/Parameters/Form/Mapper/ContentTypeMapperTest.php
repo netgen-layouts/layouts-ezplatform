@@ -17,7 +17,7 @@ final class ContentTypeMapperTest extends TestCase
      */
     private $mapper;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->mapper = new ContentTypeMapper();
     }
@@ -25,7 +25,7 @@ final class ContentTypeMapperTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentTypeMapper::getFormType
      */
-    public function testGetFormType()
+    public function testGetFormType(): void
     {
         $this->assertEquals(ContentTypeType::class, $this->mapper->getFormType());
     }
@@ -33,7 +33,7 @@ final class ContentTypeMapperTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentTypeMapper::mapOptions
      */
-    public function testMapOptions()
+    public function testMapOptions(): void
     {
         $this->assertEquals(
             [

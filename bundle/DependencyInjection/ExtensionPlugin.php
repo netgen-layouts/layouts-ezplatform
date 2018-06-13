@@ -66,12 +66,8 @@ final class ExtensionPlugin extends BaseExtensionPlugin
      *
      * If the original array already has a system key, it will be removed and prepended
      * to configs generated from the original parameters.
-     *
-     * @param array $configs
-     *
-     * @return array
      */
-    public function preProcessConfiguration(array $configs)
+    public function preProcessConfiguration(array $configs): array
     {
         $newConfigs = $configs;
         $prependConfigs = [];
@@ -94,7 +90,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
         return array_merge($prependConfigs, $newConfigs);
     }
 
-    public function addConfiguration(ArrayNodeDefinition $rootNode)
+    public function addConfiguration(ArrayNodeDefinition $rootNode): void
     {
         $configuration = new Configuration();
         $systemNode = $configuration->generateScopeBaseNode($rootNode);
@@ -115,12 +111,8 @@ final class ExtensionPlugin extends BaseExtensionPlugin
      * The postprocessor calls eZ Publish mapConfigArray and mapSettings methods from siteaccess aware
      * configuration processor as per documentation, to make the configuration correctly apply to all
      * siteaccesses.
-     *
-     * @param array $config
-     *
-     * @return array
      */
-    public function postProcessConfiguration(array $config)
+    public function postProcessConfiguration(array $config): array
     {
         $config = $this->fixUpViewConfig($config);
 
@@ -143,7 +135,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
         return $config;
     }
 
-    public function appendConfigurationFiles()
+    public function appendConfigurationFiles(): array
     {
         return [
             __DIR__ . '/../Resources/config/block_type_groups.yml',
@@ -166,12 +158,8 @@ final class ExtensionPlugin extends BaseExtensionPlugin
      * This iterates over all default view configs for each view and context, and merges
      * them in any found siteaccess or siteaccess group config, to make sure they're not lost
      * after contextualizer does it's thing.
-     *
-     * @param array $config
-     *
-     * @return array
      */
-    private function fixUpViewConfig(array $config)
+    private function fixUpViewConfig(array $config): array
     {
         foreach ($config['system'] as $scope => $scopeConfig) {
             if ($scope === 'default') {
@@ -196,11 +184,8 @@ final class ExtensionPlugin extends BaseExtensionPlugin
 
     /**
      * Validates that the design specified in configuration exists in the system.
-     *
-     * @param string $currentDesign
-     * @param array $designList
      */
-    private function validateCurrentDesign($currentDesign, array $designList)
+    private function validateCurrentDesign(string $currentDesign, array $designList): void
     {
         if ($currentDesign !== 'standard' && !in_array($currentDesign, $designList, true)) {
             throw new InvalidConfigurationException(

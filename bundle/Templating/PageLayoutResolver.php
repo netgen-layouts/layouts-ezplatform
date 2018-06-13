@@ -55,7 +55,7 @@ final class PageLayoutResolver implements PageLayoutResolverInterface
         $this->viewbaseLayout = $viewbaseLayout;
     }
 
-    public function resolvePageLayout()
+    public function resolvePageLayout(): string
     {
         $currentRequest = $this->requestStack->getCurrentRequest();
         if (!$currentRequest instanceof Request) {

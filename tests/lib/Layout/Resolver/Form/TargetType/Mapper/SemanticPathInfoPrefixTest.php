@@ -15,7 +15,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
      */
     private $mapper;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->mapper = new SemanticPathInfoPrefix();
     }
@@ -23,7 +23,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\SemanticPathInfoPrefix::getFormType
      */
-    public function testGetFormType()
+    public function testGetFormType(): void
     {
         $this->assertEquals(TextType::class, $this->mapper->getFormType());
     }

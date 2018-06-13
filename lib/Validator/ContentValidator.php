@@ -26,7 +26,7 @@ final class ContentValidator extends ConstraintValidator
         $this->repository = $repository;
     }
 
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         if ($value === null) {
             return;
@@ -43,7 +43,7 @@ final class ContentValidator extends ConstraintValidator
         if (!$constraint->allowInvalid) {
             try {
                 $this->repository->sudo(
-                    function (Repository $repository) use ($value) {
+                    function (Repository $repository) use ($value): void {
                         $repository->getContentService()->loadContentInfo((int) $value);
                     }
                 );

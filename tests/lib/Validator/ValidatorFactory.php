@@ -9,6 +9,7 @@ use Netgen\BlockManager\Ez\Validator\SiteAccessValidator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorFactory;
 use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
+use Symfony\Component\Validator\ConstraintValidatorInterface;
 
 final class ValidatorFactory implements ConstraintValidatorFactoryInterface
 {
@@ -37,7 +38,7 @@ final class ValidatorFactory implements ConstraintValidatorFactoryInterface
         ];
     }
 
-    public function getInstance(Constraint $constraint)
+    public function getInstance(Constraint $constraint): ConstraintValidatorInterface
     {
         $name = $constraint->validatedBy();
 

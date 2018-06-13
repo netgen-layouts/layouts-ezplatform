@@ -15,7 +15,7 @@ final class EzPublishExtensionTest extends TestCase
      */
     private $extension;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->extension = new EzPublishExtension();
     }
@@ -23,7 +23,7 @@ final class EzPublishExtensionTest extends TestCase
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getFunctions
      */
-    public function testGetFunctions()
+    public function testGetFunctions(): void
     {
         $this->assertNotEmpty($this->extension->getFunctions());
 

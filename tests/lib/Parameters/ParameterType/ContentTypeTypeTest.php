@@ -29,7 +29,7 @@ final class ContentTypeTypeTest extends TestCase
      */
     private $contentTypeServiceMock;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentTypeService']);
@@ -53,7 +53,7 @@ final class ContentTypeTypeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType::getIdentifier
      */
-    public function testGetIdentifier()
+    public function testGetIdentifier(): void
     {
         $this->assertEquals('ez_content_type', $this->type->getIdentifier());
     }
@@ -61,11 +61,8 @@ final class ContentTypeTypeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType::configureOptions
      * @dataProvider validOptionsProvider
-     *
-     * @param array $options
-     * @param array $resolvedOptions
      */
-    public function testValidOptions($options, $resolvedOptions)
+    public function testValidOptions(array $options, array $resolvedOptions): void
     {
         $parameter = $this->getParameterDefinition($options);
         $this->assertEquals($resolvedOptions, $parameter->getOptions());
@@ -75,20 +72,16 @@ final class ContentTypeTypeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType::configureOptions
      * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidArgumentException
      * @dataProvider invalidOptionsProvider
-     *
-     * @param array $options
      */
-    public function testInvalidOptions($options)
+    public function testInvalidOptions(array $options): void
     {
         $this->getParameterDefinition($options);
     }
 
     /**
      * Provider for testing valid parameter attributes.
-     *
-     * @return array
      */
-    public function validOptionsProvider()
+    public function validOptionsProvider(): array
     {
         return [
             [
@@ -139,10 +132,8 @@ final class ContentTypeTypeTest extends TestCase
 
     /**
      * Provider for testing invalid parameter attributes.
-     *
-     * @return array
      */
-    public function invalidOptionsProvider()
+    public function invalidOptionsProvider(): array
     {
         return [
             [
@@ -164,7 +155,7 @@ final class ContentTypeTypeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType::getValueConstraints
      * @dataProvider validationProvider
      */
-    public function testValidation($value, $required, $isValid)
+    public function testValidation($value, bool $required, bool $isValid): void
     {
         $options = [];
         if ($value !== null) {
@@ -176,7 +167,7 @@ final class ContentTypeTypeTest extends TestCase
                     ->with($this->equalTo($identifier))
                     ->will(
                         $this->returnCallback(
-                            function () use ($identifier) {
+                            function () use ($identifier): EzContentType {
                                 if (!is_string($identifier) || !in_array($identifier, ['article', 'news'], true)) {
                                     throw new NotFoundException('content type', $identifier);
                                 }
@@ -203,10 +194,8 @@ final class ContentTypeTypeTest extends TestCase
 
     /**
      * Provider for testing valid parameter values.
-     *
-     * @return array
      */
-    public function validationProvider()
+    public function validationProvider(): array
     {
         return [
             ['news', false, true],
@@ -234,7 +223,7 @@ final class ContentTypeTypeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType::fromHash
      * @dataProvider fromHashProvider
      */
-    public function testFromHash($value, $convertedValue, $multiple)
+    public function testFromHash($value, $convertedValue, bool $multiple): void
     {
         $this->assertEquals(
             $convertedValue,
@@ -249,7 +238,7 @@ final class ContentTypeTypeTest extends TestCase
         );
     }
 
-    public function fromHashProvider()
+    public function fromHashProvider(): array
     {
         return [
             [
@@ -302,17 +291,15 @@ final class ContentTypeTypeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType::isValueEmpty
      * @dataProvider emptyProvider
      */
-    public function testIsValueEmpty($value, $isEmpty)
+    public function testIsValueEmpty($value, bool $isEmpty): void
     {
         $this->assertEquals($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
     }
 
     /**
      * Provider for testing if the value is empty.
-     *
-     * @return array
      */
-    public function emptyProvider()
+    public function emptyProvider(): array
     {
         return [
             [null, true],

@@ -10,12 +10,12 @@ use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 
 final class LocationMapper extends Mapper
 {
-    public function getFormType()
+    public function getFormType(): string
     {
         return ContentBrowserType::class;
     }
 
-    public function mapOptions(ParameterDefinition $parameterDefinition)
+    public function mapOptions(ParameterDefinition $parameterDefinition): array
     {
         return [
             'item_type' => 'ezlocation',

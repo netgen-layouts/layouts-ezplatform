@@ -9,12 +9,12 @@ use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 
 final class Content extends Mapper
 {
-    public function getFormType()
+    public function getFormType(): string
     {
         return ContentBrowserType::class;
     }
 
-    public function getFormOptions()
+    public function getFormOptions(): array
     {
         return [
             'item_type' => 'ezcontent',

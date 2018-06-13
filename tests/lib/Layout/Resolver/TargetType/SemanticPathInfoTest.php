@@ -16,7 +16,7 @@ final class SemanticPathInfoTest extends TestCase
      */
     private $targetType;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->targetType = new SemanticPathInfo();
     }
@@ -24,7 +24,7 @@ final class SemanticPathInfoTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfo::getType
      */
-    public function testGetType()
+    public function testGetType(): void
     {
         $this->assertEquals('ez_semantic_path_info', $this->targetType->getType());
     }
@@ -36,7 +36,7 @@ final class SemanticPathInfoTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfo::getConstraints
      * @dataProvider validationProvider
      */
-    public function testValidation($value, $isValid)
+    public function testValidation($value, bool $isValid): void
     {
         $validator = Validation::createValidator();
 
@@ -47,7 +47,7 @@ final class SemanticPathInfoTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfo::provideValue
      */
-    public function testProvideValue()
+    public function testProvideValue(): void
     {
         $request = Request::create('/the/answer');
         $request->attributes->set('semanticPathinfo', '/the/answer');
@@ -61,7 +61,7 @@ final class SemanticPathInfoTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfo::provideValue
      */
-    public function testProvideValueWithEmptySemanticPathInfo()
+    public function testProvideValueWithEmptySemanticPathInfo(): void
     {
         $request = Request::create('/the/answer');
         $request->attributes->set('semanticPathinfo', false);
@@ -75,7 +75,7 @@ final class SemanticPathInfoTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfo::provideValue
      */
-    public function testProvideValueWithNoSemanticPathInfo()
+    public function testProvideValueWithNoSemanticPathInfo(): void
     {
         $request = Request::create('/the/answer');
 
@@ -84,10 +84,8 @@ final class SemanticPathInfoTest extends TestCase
 
     /**
      * Extractor for testing target type validation.
-     *
-     * @return array
      */
-    public function validationProvider()
+    public function validationProvider(): array
     {
         return [
             ['/some/route', true],

@@ -12,7 +12,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
      */
-    public function testViewSettings()
+    public function testViewSettings(): void
     {
         $config = [
             [
@@ -62,7 +62,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
      */
-    public function testViewSettingsWithSystemNodeAndDefaultScope()
+    public function testViewSettingsWithSystemNodeAndDefaultScope(): void
     {
         $config = [
             [
@@ -145,7 +145,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
      */
-    public function testViewSettingsWithSystemNodeAndNonDefaultScope()
+    public function testViewSettingsWithSystemNodeAndNonDefaultScope(): void
     {
         $config = [
             [
@@ -243,7 +243,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
      */
-    public function testViewSettingsRulePositionsWithSystemNodeAndTwoScopes()
+    public function testViewSettingsRulePositionsWithSystemNodeAndTwoScopes(): void
     {
         $config = [
             [
@@ -338,7 +338,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
      */
-    public function testViewSettingsRulePositionsWithSystemNodeAndDefaultScope()
+    public function testViewSettingsRulePositionsWithSystemNodeAndDefaultScope(): void
     {
         $config = [
             [
@@ -404,7 +404,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
      */
-    public function testViewSettingsWithMatchWithArrayValues()
+    public function testViewSettingsWithMatchWithArrayValues(): void
     {
         $config = [
             [
@@ -450,7 +450,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
      */
-    public function testViewSettingsWithEmptyMatch()
+    public function testViewSettingsWithEmptyMatch(): void
     {
         $config = [
             [
@@ -496,7 +496,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
      */
-    public function testViewSettingsWithNoParameters()
+    public function testViewSettingsWithNoParameters(): void
     {
         $config = [
             [
@@ -536,7 +536,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
      */
-    public function testUnknownSettingsAreRemoved()
+    public function testUnknownSettingsAreRemoved(): void
     {
         $config = [
             [

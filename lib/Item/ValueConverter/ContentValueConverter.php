@@ -27,12 +27,12 @@ final class ContentValueConverter implements ValueConverterInterface
         $this->translationHelper = $translationHelper;
     }
 
-    public function supports($object)
+    public function supports($object): bool
     {
         return $object instanceof ContentInfo;
     }
 
-    public function getValueType($object)
+    public function getValueType($object): string
     {
         return 'ezcontent';
     }
@@ -47,12 +47,12 @@ final class ContentValueConverter implements ValueConverterInterface
         return $object->remoteId;
     }
 
-    public function getName($object)
+    public function getName($object): string
     {
         return $this->translationHelper->getTranslatedContentNameByContentInfo($object);
     }
 
-    public function getIsVisible($object)
+    public function getIsVisible($object): bool
     {
         $mainLocation = $this->locationService->loadLocation($object->mainLocationId);
 

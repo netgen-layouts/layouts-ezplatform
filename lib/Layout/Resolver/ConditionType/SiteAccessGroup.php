@@ -22,12 +22,12 @@ final class SiteAccessGroup implements ConditionTypeInterface
         $this->groupsBySiteAccess = $groupsBySiteAccess;
     }
 
-    public function getType()
+    public function getType(): string
     {
         return 'ez_site_access_group';
     }
 
-    public function getConstraints()
+    public function getConstraints(): array
     {
         return [
             new Constraints\NotBlank(),
@@ -43,7 +43,7 @@ final class SiteAccessGroup implements ConditionTypeInterface
         ];
     }
 
-    public function matches(Request $request, $value)
+    public function matches(Request $request, $value): bool
     {
         $siteAccess = $request->attributes->get('siteaccess');
         if (!$siteAccess instanceof EzPublishSiteAccess) {

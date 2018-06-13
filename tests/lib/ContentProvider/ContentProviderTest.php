@@ -35,7 +35,7 @@ final class ContentProviderTest extends TestCase
      */
     private $contentProvider;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
         $this->contentServiceMock = $this->createMock(ContentService::class);
@@ -53,7 +53,7 @@ final class ContentProviderTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::loadLocation
      * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::provideContent
      */
-    public function testProvideContent()
+    public function testProvideContent(): void
     {
         $content = new Content();
         $location = new Location(
@@ -87,7 +87,7 @@ final class ContentProviderTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::loadLocation
      * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::provideContent
      */
-    public function testProvideContentWithoutContent()
+    public function testProvideContentWithoutContent(): void
     {
         $this->locationServiceMock
             ->expects($this->never())
@@ -104,7 +104,7 @@ final class ContentProviderTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::loadLocation
      * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::provideLocation
      */
-    public function testProvideLocation()
+    public function testProvideLocation(): void
     {
         $location = new Location();
 
@@ -123,7 +123,7 @@ final class ContentProviderTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::loadLocation
      * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::provideLocation
      */
-    public function testProvideLocationWithoutLocation()
+    public function testProvideLocationWithoutLocation(): void
     {
         $this->locationServiceMock
             ->expects($this->never())

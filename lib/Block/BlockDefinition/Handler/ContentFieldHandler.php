@@ -27,18 +27,18 @@ final class ContentFieldHandler extends BlockDefinitionHandler
         $this->contentProvider = $contentProvider;
     }
 
-    public function buildParameters(ParameterBuilderInterface $builder)
+    public function buildParameters(ParameterBuilderInterface $builder): void
     {
         $builder->add('field_identifier', ParameterType\IdentifierType::class);
     }
 
-    public function getDynamicParameters(DynamicParameters $params, Block $block)
+    public function getDynamicParameters(DynamicParameters $params, Block $block): void
     {
         $params['content'] = $this->contentProvider->provideContent();
         $params['location'] = $this->contentProvider->provideLocation();
     }
 
-    public function isContextual(Block $block)
+    public function isContextual(Block $block): bool
     {
         return true;
     }

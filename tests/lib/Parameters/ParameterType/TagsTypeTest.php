@@ -22,7 +22,7 @@ final class TagsTypeTest extends TestCase
      */
     private $tagsServiceMock;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->tagsServiceMock = $this->createPartialMock(TagsService::class, ['loadTag', 'loadTagByRemoteId']);
 
@@ -33,7 +33,7 @@ final class TagsTypeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::__construct
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::getIdentifier
      */
-    public function testGetIdentifier()
+    public function testGetIdentifier(): void
     {
         $this->assertEquals('eztags', $this->type->getIdentifier());
     }
@@ -41,11 +41,8 @@ final class TagsTypeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::configureOptions
      * @dataProvider validOptionsProvider
-     *
-     * @param array $options
-     * @param array $resolvedOptions
      */
-    public function testValidOptions($options, $resolvedOptions)
+    public function testValidOptions(array $options, array $resolvedOptions): void
     {
         $parameter = $this->getParameterDefinition($options);
         $this->assertEquals($resolvedOptions, $parameter->getOptions());
@@ -55,20 +52,16 @@ final class TagsTypeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::configureOptions
      * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidArgumentException
      * @dataProvider invalidOptionsProvider
-     *
-     * @param array $options
      */
-    public function testInvalidOptions($options)
+    public function testInvalidOptions(array $options): void
     {
         $this->getParameterDefinition($options);
     }
 
     /**
      * Provider for testing valid parameter attributes.
-     *
-     * @return array
      */
-    public function validOptionsProvider()
+    public function validOptionsProvider(): array
     {
         return [
             [
@@ -168,10 +161,8 @@ final class TagsTypeTest extends TestCase
 
     /**
      * Provider for testing invalid parameter attributes.
-     *
-     * @return array
      */
-    public function invalidOptionsProvider()
+    public function invalidOptionsProvider(): array
     {
         return [
             [
@@ -215,7 +206,7 @@ final class TagsTypeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::export
      */
-    public function testExport()
+    public function testExport(): void
     {
         $this->tagsServiceMock
             ->expects($this->once())
@@ -229,7 +220,7 @@ final class TagsTypeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::export
      */
-    public function testExportWithNonExistingTag()
+    public function testExportWithNonExistingTag(): void
     {
         $this->tagsServiceMock
             ->expects($this->once())
@@ -243,7 +234,7 @@ final class TagsTypeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::import
      */
-    public function testImport()
+    public function testImport(): void
     {
         $this->tagsServiceMock
             ->expects($this->once())
@@ -257,7 +248,7 @@ final class TagsTypeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::import
      */
-    public function testImportWithNonExistingTag()
+    public function testImportWithNonExistingTag(): void
     {
         $this->tagsServiceMock
             ->expects($this->once())
@@ -276,7 +267,7 @@ final class TagsTypeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::getValueConstraints
      * @dataProvider validationProvider
      */
-    public function testValidation($values, $required, $isValid)
+    public function testValidation($values, bool $required, bool $isValid): void
     {
         if ($values !== null) {
             foreach ($values as $i => $value) {
@@ -287,7 +278,7 @@ final class TagsTypeTest extends TestCase
                         ->with($this->equalTo($value))
                         ->will(
                             $this->returnCallback(
-                                function () use ($value) {
+                                function () use ($value): void {
                                     if (!is_int($value) || $value > 20) {
                                         throw new NotFoundException('tag', $value);
                                     }
@@ -312,7 +303,7 @@ final class TagsTypeTest extends TestCase
      *
      * @return array
      */
-    public function validationProvider()
+    public function validationProvider(): array
     {
         return [
             [[12], false, true],

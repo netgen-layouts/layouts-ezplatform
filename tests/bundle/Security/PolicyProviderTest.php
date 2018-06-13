@@ -20,7 +20,7 @@ final class PolicyProviderTest extends TestCase
      */
     private $policyProvider;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->configBuilderMock = $this->createMock(ConfigBuilderInterface::class);
 
@@ -30,7 +30,7 @@ final class PolicyProviderTest extends TestCase
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Security\PolicyProvider::addPolicies
      */
-    public function testAddPolicies()
+    public function testAddPolicies(): void
     {
         $this->configBuilderMock
             ->expects($this->once())

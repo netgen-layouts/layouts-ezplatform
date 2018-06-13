@@ -11,6 +11,7 @@ use Netgen\BlockManager\Ez\Validator\Constraint\Content;
 use Netgen\BlockManager\Ez\Validator\ContentValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\ConstraintValidatorInterface;
 
 final class ContentValidatorTest extends ValidatorTestCase
 {
@@ -24,17 +25,14 @@ final class ContentValidatorTest extends ValidatorTestCase
      */
     private $contentServiceMock;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
         $this->constraint = new Content();
     }
 
-    /**
-     * @return \Symfony\Component\Validator\ConstraintValidatorInterface
-     */
-    public function getValidator()
+    public function getValidator(): ConstraintValidatorInterface
     {
         $this->contentServiceMock = $this->createMock(ContentService::class);
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentService']);
@@ -56,14 +54,14 @@ final class ContentValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @param int|null $contentId
+     * @param int|string|null $contentId
      * @param bool $isValid
      *
      * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::validate
      * @dataProvider validateDataProvider
      */
-    public function testValidate($contentId, $isValid)
+    public function testValidate($contentId, bool $isValid): void
     {
         if ($contentId !== null) {
             $this->contentServiceMock
@@ -72,7 +70,7 @@ final class ContentValidatorTest extends ValidatorTestCase
                 ->with($this->equalTo($contentId))
                 ->will(
                     $this->returnCallback(
-                        function () use ($contentId) {
+                        function () use ($contentId): void {
                             if (!is_int($contentId) || $contentId <= 0 || $contentId > 20) {
                                 throw new NotFoundException('content', $contentId);
                             }
@@ -89,7 +87,7 @@ final class ContentValidatorTest extends ValidatorTestCase
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      * @expectedExceptionMessage Expected argument of type "Netgen\BlockManager\Ez\Validator\Constraint\Content", "Symfony\Component\Validator\Constraints\NotBlank" given
      */
-    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint()
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->constraint = new NotBlank();
         $this->assertValid(true, 'value');
@@ -100,12 +98,12 @@ final class ContentValidatorTest extends ValidatorTestCase
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      * @expectedExceptionMessage Expected argument of type "scalar", "array" given
      */
-    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue()
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
         $this->assertValid(true, []);
     }
 
-    public function validateDataProvider()
+    public function validateDataProvider(): array
     {
         return [
             [12, true],

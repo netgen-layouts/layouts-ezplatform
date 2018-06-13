@@ -18,7 +18,7 @@ final class RoleHierarchyTest extends TestCase
      *
      * @dataProvider getReachableRolesProvider
      */
-    public function testGetReachableRoles(array $startingRoles, array $reachableRoles)
+    public function testGetReachableRoles(array $startingRoles, array $reachableRoles): void
     {
         $role = new RoleHierarchy(
             [
@@ -34,7 +34,7 @@ final class RoleHierarchyTest extends TestCase
         $this->assertEquals($reachableRoles, $role->getReachableRoles($startingRoles));
     }
 
-    public function getReachableRolesProvider()
+    public function getReachableRolesProvider(): array
     {
         return [
             [

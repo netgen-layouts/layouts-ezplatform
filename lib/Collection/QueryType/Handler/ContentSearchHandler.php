@@ -66,12 +66,12 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
      *
      * @param array $languages
      */
-    public function setLanguages(array $languages = null)
+    public function setLanguages(array $languages = null): void
     {
         $this->languages = is_array($languages) ? $languages : [];
     }
 
-    public function buildParameters(ParameterBuilderInterface $builder)
+    public function buildParameters(ParameterBuilderInterface $builder): void
     {
         $advancedGroup = [self::GROUP_ADVANCED];
 
@@ -113,7 +113,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         );
     }
 
-    public function getCount(Query $query)
+    public function getCount(Query $query): int
     {
         $parentLocation = $this->getParentLocation($query);
 
@@ -132,20 +132,15 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         return $searchResult->totalCount;
     }
 
-    public function isContextual(Query $query)
+    public function isContextual(Query $query): bool
     {
         return $query->getParameter('use_current_location')->getValue() === true;
     }
 
     /**
      * Builds the query from current parameters.
-     *
-     * @param \Netgen\BlockManager\API\Values\Collection\Query $query
-     * @param \eZ\Publish\API\Repository\Values\Content\Location $parentLocation
-     *
-     * @return \eZ\Publish\API\Repository\Values\Content\LocationQuery
      */
-    private function buildLocationQuery(Query $query, Location $parentLocation)
+    private function buildLocationQuery(Query $query, Location $parentLocation): LocationQuery
     {
         $locationQuery = new LocationQuery();
 
@@ -162,7 +157,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
 
         $criteria = array_filter(
             $criteria,
-            function ($criterion) {
+            function ($criterion): bool {
                 return $criterion instanceof Criterion;
             }
         );

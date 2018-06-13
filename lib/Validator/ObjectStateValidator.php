@@ -30,7 +30,7 @@ final class ObjectStateValidator extends ConstraintValidator
         $this->repository = $repository;
     }
 
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         if ($value === null) {
             return;
@@ -101,11 +101,11 @@ final class ObjectStateValidator extends ConstraintValidator
      *
      * @return string[][]
      */
-    private function loadStateIdentifiers()
+    private function loadStateIdentifiers(): array
     {
         if ($this->stateIdentifiers === null) {
             $this->stateIdentifiers = $this->repository->sudo(
-                function (Repository $repository) {
+                function (Repository $repository): array {
                     $stateIdentifiers = [];
 
                     $stateGroups = $repository->getObjectStateService()->loadObjectStateGroups();

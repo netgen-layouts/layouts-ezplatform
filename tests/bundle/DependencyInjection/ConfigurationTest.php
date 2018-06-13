@@ -15,7 +15,7 @@ final class ConfigurationTest extends TestCase
      */
     private $configuration;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->configuration = new Configuration();
     }
@@ -23,7 +23,7 @@ final class ConfigurationTest extends TestCase
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\Configuration::getConfigTreeBuilder
      */
-    public function testGetConfigTreeBuilder()
+    public function testGetConfigTreeBuilder(): void
     {
         $this->assertEquals(new TreeBuilder(), $this->configuration->getConfigTreeBuilder());
     }

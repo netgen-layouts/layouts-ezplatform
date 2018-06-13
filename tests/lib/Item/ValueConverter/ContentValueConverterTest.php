@@ -28,7 +28,7 @@ final class ContentValueConverterTest extends TestCase
      */
     private $valueConverter;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
 
@@ -38,7 +38,7 @@ final class ContentValueConverterTest extends TestCase
             ->with($this->isType('int'))
             ->will(
                 $this->returnCallback(
-                    function ($id) {
+                    function ($id): Location {
                         return new Location(['id' => $id, 'invisible' => false]);
                     }
                 )
@@ -62,7 +62,7 @@ final class ContentValueConverterTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::__construct
      * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::supports
      */
-    public function testSupports()
+    public function testSupports(): void
     {
         $this->assertTrue($this->valueConverter->supports(new ContentInfo()));
         $this->assertFalse($this->valueConverter->supports(new Location()));
@@ -71,7 +71,7 @@ final class ContentValueConverterTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::getValueType
      */
-    public function testGetValueType()
+    public function testGetValueType(): void
     {
         $this->assertEquals(
             'ezcontent',
@@ -84,7 +84,7 @@ final class ContentValueConverterTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::getId
      */
-    public function testGetId()
+    public function testGetId(): void
     {
         $this->assertEquals(
             24,
@@ -97,7 +97,7 @@ final class ContentValueConverterTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::getRemoteId
      */
-    public function testGetRemoteId()
+    public function testGetRemoteId(): void
     {
         $this->assertEquals(
             'abc',
@@ -110,7 +110,7 @@ final class ContentValueConverterTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::getName
      */
-    public function testGetName()
+    public function testGetName(): void
     {
         $this->assertEquals(
             'Cool name',
@@ -123,7 +123,7 @@ final class ContentValueConverterTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::getIsVisible
      */
-    public function testGetIsVisible()
+    public function testGetIsVisible(): void
     {
         $this->assertTrue(
             $this->valueConverter->getIsVisible(
@@ -135,7 +135,7 @@ final class ContentValueConverterTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::getObject
      */
-    public function testGetObject()
+    public function testGetObject(): void
     {
         $object = new ContentInfo(['id' => 42]);
 

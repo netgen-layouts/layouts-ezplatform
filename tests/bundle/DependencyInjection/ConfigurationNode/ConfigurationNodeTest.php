@@ -10,6 +10,7 @@ use Netgen\Bundle\BlockManagerBundle\DependencyInjection\Configuration;
 use Netgen\Bundle\BlockManagerBundle\DependencyInjection\NetgenBlockManagerExtension;
 use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 abstract class ConfigurationNodeTest extends TestCase
@@ -42,7 +43,7 @@ abstract class ConfigurationNodeTest extends TestCase
         'design' => 'standard',
     ];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->plugin = new ExtensionPlugin(new ContainerBuilder());
 
@@ -55,11 +56,8 @@ abstract class ConfigurationNodeTest extends TestCase
     /**
      * Asserts that processed $config is equal to $expectedConfig, after being
      * processed by preprocessors and postprocessors.
-     *
-     * @param array $expectedConfig
-     * @param array $config
      */
-    public function assertInjectedConfigurationEqual(array $expectedConfig, array $config)
+    public function assertInjectedConfigurationEqual(array $expectedConfig, array $config): void
     {
         $actualConfig = $this->processConfig($config);
 
@@ -75,22 +73,16 @@ abstract class ConfigurationNodeTest extends TestCase
     /**
      * Return the instance of ConfigurationInterface that should be used by the
      * Configuration-specific assertions in this test-case.
-     *
-     * @return \Symfony\Component\Config\Definition\ConfigurationInterface
      */
-    protected function getConfiguration()
+    protected function getConfiguration(): ConfigurationInterface
     {
         return new Configuration($this->extension);
     }
 
     /**
      * Returns the expected config, extended with 'system' node.
-     *
-     * @param array $expectedConfig
-     *
-     * @return array
      */
-    protected function getExtendedExpectedConfig(array $expectedConfig)
+    protected function getExtendedExpectedConfig(array $expectedConfig): array
     {
         return $expectedConfig + self::$defaultSystemConfig + [
             'system' => [
@@ -101,12 +93,8 @@ abstract class ConfigurationNodeTest extends TestCase
 
     /**
      * Processes the extension config by using pre and post processors.
-     *
-     * @param array $config
-     *
-     * @return array
      */
-    protected function processConfig(array $config)
+    protected function processConfig(array $config): array
     {
         return $this->plugin->postProcessConfiguration(
             $this->partialProcessor->processConfiguration(

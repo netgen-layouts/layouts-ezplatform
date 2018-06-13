@@ -24,7 +24,7 @@ final class SiteAccessGroupValidator extends ConstraintValidator
         $this->siteAccessGroupList = array_keys($siteAccessGroupList);
     }
 
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         if ($value === null) {
             return;

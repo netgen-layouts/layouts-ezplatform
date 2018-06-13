@@ -15,7 +15,7 @@ final class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\DefaultAppPreviewPass::addDefaultPreviewRule
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\DefaultAppPreviewPass::process
      */
-    public function testProcess()
+    public function testProcess(): void
     {
         $this->container->setParameter('ezpublish.siteaccess.list', ['cro']);
         $this->container->setParameter(
@@ -98,7 +98,7 @@ final class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\DefaultAppPreviewPass::process
      */
-    public function testProcessWithEmptyContainer()
+    public function testProcessWithEmptyContainer(): void
     {
         $this->compile();
 
@@ -107,10 +107,8 @@ final class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
 
     /**
      * Register the compiler pass under test.
-     *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      */
-    protected function registerCompilerPass(ContainerBuilder $container)
+    protected function registerCompilerPass(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new DefaultAppPreviewPass());
     }

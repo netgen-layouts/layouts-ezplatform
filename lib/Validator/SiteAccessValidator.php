@@ -24,7 +24,7 @@ final class SiteAccessValidator extends ConstraintValidator
         $this->siteAccessList = $siteAccessList;
     }
 
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         if ($value === null) {
             return;

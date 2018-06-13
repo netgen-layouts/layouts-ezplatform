@@ -12,7 +12,7 @@ final class SiteAccessGroupTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\Constraint\SiteAccessGroup::validatedBy
      */
-    public function testValidatedBy()
+    public function testValidatedBy(): void
     {
         $constraint = new SiteAccessGroup();
         $this->assertEquals('ngbm_ez_site_access_group', $constraint->validatedBy());

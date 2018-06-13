@@ -12,7 +12,7 @@ final class ObjectStateTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\Constraint\ObjectState::validatedBy
      */
-    public function testValidatedBy()
+    public function testValidatedBy(): void
     {
         $constraint = new ObjectState();
         $this->assertEquals('ngbm_ez_object_state', $constraint->validatedBy());

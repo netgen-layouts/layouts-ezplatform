@@ -15,12 +15,12 @@ use Symfony\Component\Validator\Constraints;
  */
 final class ObjectStateType extends ParameterType
 {
-    public function getIdentifier()
+    public function getIdentifier(): string
     {
         return 'ez_object_state';
     }
 
-    public function configureOptions(OptionsResolver $optionsResolver)
+    public function configureOptions(OptionsResolver $optionsResolver): void
     {
         $optionsResolver->setDefault('multiple', false);
         $optionsResolver->setDefault('states', []);
@@ -44,12 +44,12 @@ final class ObjectStateType extends ParameterType
         return is_array($value) ? array_values($value)[0] : $value;
     }
 
-    public function isValueEmpty(ParameterDefinition $parameterDefinition, $value)
+    public function isValueEmpty(ParameterDefinition $parameterDefinition, $value): bool
     {
         return $value === null || $value === [];
     }
 
-    protected function getValueConstraints(ParameterDefinition $parameterDefinition, $value)
+    protected function getValueConstraints(ParameterDefinition $parameterDefinition, $value): array
     {
         $options = $parameterDefinition->getOptions();
 

@@ -34,7 +34,7 @@ final class Ez5RequestContentExtractor implements ContentExtractorInterface
         $this->locationService = $locationService;
     }
 
-    public function extractContent(Request $request)
+    public function extractContent(Request $request): ?Content
     {
         $content = $request->attributes->get('content');
         if ($content !== null && !$content instanceof Content) {
@@ -56,9 +56,11 @@ final class Ez5RequestContentExtractor implements ContentExtractorInterface
         } catch (NotFoundException $e) {
             // Do nothing
         }
+
+        return null;
     }
 
-    public function extractLocation(Request $request)
+    public function extractLocation(Request $request): ?Location
     {
         $location = $request->attributes->get('location');
         if ($location !== null && !$location instanceof Location) {
@@ -80,5 +82,7 @@ final class Ez5RequestContentExtractor implements ContentExtractorInterface
         } catch (NotFoundException $e) {
             // Do nothing
         }
+
+        return null;
     }
 }

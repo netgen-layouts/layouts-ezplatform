@@ -18,7 +18,7 @@ final class TagsMapperTest extends TestCase
      */
     private $mapper;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->mapper = new TagsMapper();
     }
@@ -26,7 +26,7 @@ final class TagsMapperTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\Form\Mapper\TagsMapper::getFormType
      */
-    public function testGetFormType()
+    public function testGetFormType(): void
     {
         $this->assertEquals(ContentBrowserMultipleType::class, $this->mapper->getFormType());
     }
@@ -34,7 +34,7 @@ final class TagsMapperTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\Form\Mapper\TagsMapper::mapOptions
      */
-    public function testMapOptions()
+    public function testMapOptions(): void
     {
         $this->assertEquals(
             [

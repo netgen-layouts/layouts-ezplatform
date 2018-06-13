@@ -29,7 +29,7 @@ final class LocationTypeTest extends TestCase
      */
     private $locationServiceMock;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService']);
@@ -54,7 +54,7 @@ final class LocationTypeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::__construct
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::getIdentifier
      */
-    public function testGetIdentifier()
+    public function testGetIdentifier(): void
     {
         $this->assertEquals('ezlocation', $this->type->getIdentifier());
     }
@@ -62,11 +62,8 @@ final class LocationTypeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::configureOptions
      * @dataProvider validOptionsProvider
-     *
-     * @param array $options
-     * @param array $resolvedOptions
      */
-    public function testValidOptions($options, $resolvedOptions)
+    public function testValidOptions(array $options, array $resolvedOptions): void
     {
         $parameter = $this->getParameterDefinition($options);
         $this->assertEquals($resolvedOptions, $parameter->getOptions());
@@ -76,20 +73,16 @@ final class LocationTypeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::configureOptions
      * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidArgumentException
      * @dataProvider invalidOptionsProvider
-     *
-     * @param array $options
      */
-    public function testInvalidOptions($options)
+    public function testInvalidOptions(array $options): void
     {
         $this->getParameterDefinition($options);
     }
 
     /**
      * Provider for testing valid parameter attributes.
-     *
-     * @return array
      */
-    public function validOptionsProvider()
+    public function validOptionsProvider(): array
     {
         return [
             [
@@ -119,10 +112,8 @@ final class LocationTypeTest extends TestCase
 
     /**
      * Provider for testing invalid parameter attributes.
-     *
-     * @return array
      */
-    public function invalidOptionsProvider()
+    public function invalidOptionsProvider(): array
     {
         return [
             [
@@ -148,7 +139,7 @@ final class LocationTypeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::export
      */
-    public function testExport()
+    public function testExport(): void
     {
         $this->locationServiceMock
             ->expects($this->once())
@@ -162,7 +153,7 @@ final class LocationTypeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::export
      */
-    public function testExportWithNonExistingLocation()
+    public function testExportWithNonExistingLocation(): void
     {
         $this->locationServiceMock
             ->expects($this->once())
@@ -176,7 +167,7 @@ final class LocationTypeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::import
      */
-    public function testImport()
+    public function testImport(): void
     {
         $this->locationServiceMock
             ->expects($this->once())
@@ -190,7 +181,7 @@ final class LocationTypeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::import
      */
-    public function testImportWithNonExistingLocation()
+    public function testImportWithNonExistingLocation(): void
     {
         $this->locationServiceMock
             ->expects($this->once())
@@ -209,7 +200,7 @@ final class LocationTypeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::getValueConstraints
      * @dataProvider validationProvider
      */
-    public function testValidation($value, $required, $isValid)
+    public function testValidation($value, bool $required, bool $isValid): void
     {
         if ($value !== null) {
             $this->locationServiceMock
@@ -218,7 +209,7 @@ final class LocationTypeTest extends TestCase
                 ->with($this->equalTo($value))
                 ->will(
                     $this->returnCallback(
-                        function () use ($value) {
+                        function () use ($value): void {
                             if (!is_int($value) || $value > 20) {
                                 throw new NotFoundException('location', $value);
                             }
@@ -238,10 +229,8 @@ final class LocationTypeTest extends TestCase
 
     /**
      * Provider for testing valid parameter values.
-     *
-     * @return array
      */
-    public function validationProvider()
+    public function validationProvider(): array
     {
         return [
             [12, false, true],
@@ -268,17 +257,15 @@ final class LocationTypeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::isValueEmpty
      * @dataProvider emptyProvider
      */
-    public function testIsValueEmpty($value, $isEmpty)
+    public function testIsValueEmpty($value, bool $isEmpty): void
     {
         $this->assertEquals($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
     }
 
     /**
      * Provider for testing if the value is empty.
-     *
-     * @return array
      */
-    public function emptyProvider()
+    public function emptyProvider(): array
     {
         return [
             [null, true],

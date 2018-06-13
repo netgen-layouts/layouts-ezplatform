@@ -22,7 +22,7 @@ final class LocationValueConverterTest extends TestCase
      */
     private $valueConverter;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->translationHelperMock = $this->createMock(TranslationHelper::class);
 
@@ -41,7 +41,7 @@ final class LocationValueConverterTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter::__construct
      * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter::supports
      */
-    public function testSupports()
+    public function testSupports(): void
     {
         $this->assertTrue($this->valueConverter->supports(new Location()));
         $this->assertFalse($this->valueConverter->supports(new ContentInfo()));
@@ -50,7 +50,7 @@ final class LocationValueConverterTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter::getValueType
      */
-    public function testGetValueType()
+    public function testGetValueType(): void
     {
         $this->assertEquals(
             'ezlocation',
@@ -63,7 +63,7 @@ final class LocationValueConverterTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter::getId
      */
-    public function testGetId()
+    public function testGetId(): void
     {
         $this->assertEquals(
             24,
@@ -76,7 +76,7 @@ final class LocationValueConverterTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter::getRemoteId
      */
-    public function testGetRemoteId()
+    public function testGetRemoteId(): void
     {
         $this->assertEquals(
             'abc',
@@ -89,7 +89,7 @@ final class LocationValueConverterTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter::getName
      */
-    public function testGetName()
+    public function testGetName(): void
     {
         $this->assertEquals(
             'Cool name',
@@ -102,7 +102,7 @@ final class LocationValueConverterTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter::getIsVisible
      */
-    public function testGetIsVisible()
+    public function testGetIsVisible(): void
     {
         $this->assertTrue(
             $this->valueConverter->getIsVisible(
@@ -114,7 +114,7 @@ final class LocationValueConverterTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter::getObject
      */
-    public function testGetObject()
+    public function testGetObject(): void
     {
         $object = new Location(['id' => 42]);
 

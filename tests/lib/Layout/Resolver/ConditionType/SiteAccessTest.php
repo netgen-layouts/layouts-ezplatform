@@ -18,7 +18,7 @@ final class SiteAccessTest extends TestCase
      */
     private $conditionType;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->conditionType = new SiteAccess();
     }
@@ -26,7 +26,7 @@ final class SiteAccessTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccess::getType
      */
-    public function testGetType()
+    public function testGetType(): void
     {
         $this->assertEquals('ez_site_access', $this->conditionType->getType());
     }
@@ -38,7 +38,7 @@ final class SiteAccessTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccess::getConstraints
      * @dataProvider validationProvider
      */
-    public function testValidation($value, $isValid)
+    public function testValidation($value, bool $isValid): void
     {
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new ValidatorFactory())
@@ -56,7 +56,7 @@ final class SiteAccessTest extends TestCase
      *
      * @dataProvider matchesProvider
      */
-    public function testMatches($value, $matches)
+    public function testMatches($value, bool $matches): void
     {
         $request = Request::create('/');
         $request->attributes->set('siteaccess', new EzPublishSiteAccess('eng'));
@@ -67,7 +67,7 @@ final class SiteAccessTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccess::matches
      */
-    public function testMatchesWithNoSiteAccess()
+    public function testMatchesWithNoSiteAccess(): void
     {
         $request = Request::create('/');
 
@@ -76,10 +76,8 @@ final class SiteAccessTest extends TestCase
 
     /**
      * Provider for testing condition type validation.
-     *
-     * @return array
      */
-    public function validationProvider()
+    public function validationProvider(): array
     {
         return [
             [['cro'], true],
@@ -91,12 +89,7 @@ final class SiteAccessTest extends TestCase
         ];
     }
 
-    /**
-     * Provider for {@link self::testMatches}.
-     *
-     * @return array
-     */
-    public function matchesProvider()
+    public function matchesProvider(): array
     {
         return [
             ['not_array', false],

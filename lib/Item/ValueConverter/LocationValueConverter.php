@@ -20,12 +20,12 @@ final class LocationValueConverter implements ValueConverterInterface
         $this->translationHelper = $translationHelper;
     }
 
-    public function supports($object)
+    public function supports($object): bool
     {
         return $object instanceof Location;
     }
 
-    public function getValueType($object)
+    public function getValueType($object): string
     {
         return 'ezlocation';
     }
@@ -40,14 +40,14 @@ final class LocationValueConverter implements ValueConverterInterface
         return $object->remoteId;
     }
 
-    public function getName($object)
+    public function getName($object): string
     {
         return $this->translationHelper->getTranslatedContentNameByContentInfo(
             $object->getContentInfo()
         );
     }
 
-    public function getIsVisible($object)
+    public function getIsVisible($object): bool
     {
         return !$object->invisible;
     }

@@ -6,6 +6,7 @@ namespace Netgen\BlockManager\Ez\Parameters\ParameterType;
 
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Repository;
+use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Parameters\ParameterDefinition;
 use Netgen\BlockManager\Parameters\ParameterType;
@@ -27,12 +28,12 @@ final class ContentType extends ParameterType
         $this->repository = $repository;
     }
 
-    public function getIdentifier()
+    public function getIdentifier(): string
     {
         return 'ezcontent';
     }
 
-    public function configureOptions(OptionsResolver $optionsResolver)
+    public function configureOptions(OptionsResolver $optionsResolver): void
     {
         $optionsResolver->setDefault('allow_invalid', false);
         $optionsResolver->setRequired(['allow_invalid']);
@@ -44,7 +45,7 @@ final class ContentType extends ParameterType
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
-                function (Repository $repository) use ($value) {
+                function (Repository $repository) use ($value): ContentInfo {
                     return $repository->getContentService()->loadContentInfo($value);
                 }
             );
@@ -60,7 +61,7 @@ final class ContentType extends ParameterType
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
-                function (Repository $repository) use ($value) {
+                function (Repository $repository) use ($value): ContentInfo {
                     return $repository->getContentService()->loadContentInfoByRemoteId($value);
                 }
             );
@@ -71,12 +72,12 @@ final class ContentType extends ParameterType
         }
     }
 
-    public function isValueEmpty(ParameterDefinition $parameterDefinition, $value)
+    public function isValueEmpty(ParameterDefinition $parameterDefinition, $value): bool
     {
         return $value === null;
     }
 
-    protected function getValueConstraints(ParameterDefinition $parameterDefinition, $value)
+    protected function getValueConstraints(ParameterDefinition $parameterDefinition, $value): array
     {
         $options = $parameterDefinition->getOptions();
 

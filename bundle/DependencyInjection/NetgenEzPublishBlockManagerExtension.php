@@ -14,7 +14,7 @@ use Symfony\Component\Yaml\Yaml;
 
 final class NetgenEzPublishBlockManagerExtension extends Extension implements PrependExtensionInterface
 {
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new YamlFileLoader(
             $container,
@@ -45,7 +45,7 @@ final class NetgenEzPublishBlockManagerExtension extends Extension implements Pr
         }
     }
 
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container): void
     {
         $prependConfigs = [
             'block_definitions.yml' => 'netgen_block_manager',

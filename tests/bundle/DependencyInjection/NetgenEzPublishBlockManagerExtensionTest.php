@@ -15,7 +15,7 @@ final class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTe
      *
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::load
      */
-    public function testServices()
+    public function testServices(): void
     {
         $this->container->setParameter(
             'kernel.bundles',
@@ -62,7 +62,7 @@ final class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTe
      *
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension::prepend
      */
-    public function testPrepend()
+    public function testPrepend(): void
     {
         $this->container->setParameter('kernel.bundles', ['NetgenBlockManagerBundle' => true]);
         $this->container->registerExtension(new NetgenBlockManagerExtension());
@@ -106,13 +106,7 @@ final class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTe
         $this->assertArrayHasKey('ezchildren', $config['view']['rule_target_view']['value']);
     }
 
-    /**
-     * Return an array of container extensions that need to be registered for
-     * each test (usually just the container extension you are testing).
-     *
-     * @return \Symfony\Component\DependencyInjection\Extension\ExtensionInterface[]
-     */
-    protected function getContainerExtensions()
+    protected function getContainerExtensions(): array
     {
         return [new NetgenEzPublishBlockManagerExtension()];
     }

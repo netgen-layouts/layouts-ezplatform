@@ -10,12 +10,12 @@ use Netgen\ContentBrowser\Form\Type\ContentBrowserMultipleType;
 
 final class TagsMapper extends Mapper
 {
-    public function getFormType()
+    public function getFormType(): string
     {
         return ContentBrowserMultipleType::class;
     }
 
-    public function mapOptions(ParameterDefinition $parameterDefinition)
+    public function mapOptions(ParameterDefinition $parameterDefinition): array
     {
         $options = $parameterDefinition->getOptions();
 

@@ -29,7 +29,7 @@ final class LocaleProviderTest extends TestCase
      */
     private $localeProvider;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->languageServiceMock = $this->createMock(LanguageService::class);
 
@@ -46,7 +46,7 @@ final class LocaleProviderTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getAvailableLocales
      * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getPosixLocale
      */
-    public function testGetAvailableLocales()
+    public function testGetAvailableLocales(): void
     {
         $this->languageServiceMock
             ->expects($this->any())
@@ -84,7 +84,7 @@ final class LocaleProviderTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getAvailableLocales
      * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getPosixLocale
      */
-    public function testGetAvailableLocalesWithInvalidPosixLocale()
+    public function testGetAvailableLocalesWithInvalidPosixLocale(): void
     {
         $this->languageServiceMock
             ->expects($this->any())
@@ -113,7 +113,7 @@ final class LocaleProviderTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getRequestLocales
      * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::setLanguages
      */
-    public function testGetRequestLocales()
+    public function testGetRequestLocales(): void
     {
         $this->localeProvider->setLanguages(['eng-GB', 'ger-DE', 'unknown', 'cro-HR']);
 
@@ -179,7 +179,7 @@ final class LocaleProviderTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getRequestLocales
      * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::setLanguages
      */
-    public function testGetRequestLocalesWithInvalidPosixLocale()
+    public function testGetRequestLocalesWithInvalidPosixLocale(): void
     {
         $this->localeProvider->setLanguages(['eng-GB']);
 
@@ -209,7 +209,7 @@ final class LocaleProviderTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getRequestLocales
      * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::setLanguages
      */
-    public function testGetRequestLocalesWithNonExistingPosixLocale()
+    public function testGetRequestLocalesWithNonExistingPosixLocale(): void
     {
         $this->localeProvider->setLanguages(['eng-GB']);
 

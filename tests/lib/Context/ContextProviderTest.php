@@ -31,7 +31,7 @@ final class ContextProviderTest extends TestCase
      */
     private $contextProvider;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->requestStack = new RequestStack();
         $this->context = new Context();
@@ -43,7 +43,7 @@ final class ContextProviderTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::__construct
      * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::provideContext
      */
-    public function testProvideContext()
+    public function testProvideContext(): void
     {
         $request = Request::create('/');
         $this->requestStack->push($request);
@@ -63,7 +63,7 @@ final class ContextProviderTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::__construct
      * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::provideContext
      */
-    public function testProvideContextWithInvalidView()
+    public function testProvideContextWithInvalidView(): void
     {
         $request = Request::create('/');
         $this->requestStack->push($request);
@@ -79,7 +79,7 @@ final class ContextProviderTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::__construct
      * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::provideContext
      */
-    public function testProvideContextWithLocation()
+    public function testProvideContextWithLocation(): void
     {
         $request = Request::create('/');
         $this->requestStack->push($request);
@@ -96,7 +96,7 @@ final class ContextProviderTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::__construct
      * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::provideContext
      */
-    public function testProvideContextWithInvalidLocation()
+    public function testProvideContextWithInvalidLocation(): void
     {
         $request = Request::create('/');
         $this->requestStack->push($request);
@@ -112,7 +112,7 @@ final class ContextProviderTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::__construct
      * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::provideContext
      */
-    public function testProvideContextWithLocationId()
+    public function testProvideContextWithLocationId(): void
     {
         $request = Request::create('/');
         $this->requestStack->push($request);
@@ -130,7 +130,7 @@ final class ContextProviderTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::__construct
      * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::provideContext
      */
-    public function testProvideContextWithInvalidRoute()
+    public function testProvideContextWithInvalidRoute(): void
     {
         $request = Request::create('/');
         $this->requestStack->push($request);
@@ -146,7 +146,7 @@ final class ContextProviderTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::provideContext
      */
-    public function testProvideContextWithNoRequest()
+    public function testProvideContextWithNoRequest(): void
     {
         $this->contextProvider->provideContext($this->context);
 

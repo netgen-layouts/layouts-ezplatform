@@ -24,7 +24,7 @@ final class ContextProvider implements ContextProviderInterface
         $this->requestStack = $requestStack;
     }
 
-    public function provideContext(ContextInterface $context)
+    public function provideContext(ContextInterface $context): void
     {
         $currentRequest = $this->requestStack->getCurrentRequest();
         if (!$currentRequest instanceof Request) {

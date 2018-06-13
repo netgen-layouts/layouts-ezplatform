@@ -23,12 +23,12 @@ final class Content implements TargetTypeInterface
         $this->contentExtractor = $contentExtractor;
     }
 
-    public function getType()
+    public function getType(): string
     {
         return 'ezcontent';
     }
 
-    public function getConstraints()
+    public function getConstraints(): array
     {
         return [
             new Constraints\NotBlank(),

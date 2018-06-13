@@ -14,7 +14,7 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
 {
     private static $serviceName = 'netgen_block_manager.http_cache.client';
 
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         if (!$container->has(self::$serviceName) || !$container->has('ezplatform.http_cache.purge_client')) {
             return;
@@ -56,7 +56,7 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
      * @param string $message
      */
-    private function log(ContainerBuilder $container, $message)
+    private function log(ContainerBuilder $container, string $message): void
     {
         if (Kernel::VERSION_ID < 30300) {
             $compiler = $container->getCompiler();

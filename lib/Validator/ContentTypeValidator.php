@@ -6,6 +6,7 @@ namespace Netgen\BlockManager\Ez\Validator;
 
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Repository;
+use eZ\Publish\API\Repository\Values\ContentType\ContentType as APIContentType;
 use eZ\Publish\API\Repository\Values\ContentType\ContentTypeGroup;
 use Netgen\BlockManager\Ez\Validator\Constraint\ContentType;
 use Symfony\Component\Validator\Constraint;
@@ -27,7 +28,7 @@ final class ContentTypeValidator extends ConstraintValidator
         $this->repository = $repository;
     }
 
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         if ($value === null) {
             return;
@@ -48,7 +49,7 @@ final class ContentTypeValidator extends ConstraintValidator
         try {
             /** @var \eZ\Publish\API\Repository\Values\ContentType\ContentType $contentType */
             $contentType = $this->repository->sudo(
-                function (Repository $repository) use ($value) {
+                function (Repository $repository) use ($value): APIContentType {
                     return $repository->getContentTypeService()->loadContentTypeByIdentifier($value);
                 }
             );
@@ -61,7 +62,7 @@ final class ContentTypeValidator extends ConstraintValidator
         }
 
         $groupIdentifiers = array_map(
-            function (ContentTypeGroup $group) {
+            function (ContentTypeGroup $group): string {
                 return $group->identifier;
             },
             $contentType->getContentTypeGroups()

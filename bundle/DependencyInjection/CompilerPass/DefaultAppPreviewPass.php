@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class DefaultAppPreviewPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         if (!$container->hasParameter('ezpublish.siteaccess.list')) {
             return;
@@ -49,13 +49,8 @@ final class DefaultAppPreviewPass implements CompilerPassInterface
     /**
      * Adds the default eZ content preview template to default scope as a fallback
      * when no preview rules are defined.
-     *
-     * @param array $scopeRules
-     * @param array $defaultRule
-     *
-     * @return array
      */
-    private function addDefaultPreviewRule($scopeRules, $defaultRule)
+    private function addDefaultPreviewRule(?array $scopeRules, array $defaultRule): array
     {
         $scopeRules = is_array($scopeRules) ? $scopeRules : [];
 

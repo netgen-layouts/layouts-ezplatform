@@ -6,6 +6,9 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime;
 
 use Exception;
 use eZ\Publish\API\Repository\Repository;
+use eZ\Publish\API\Repository\Values\Content\Content;
+use eZ\Publish\API\Repository\Values\Content\Location;
+use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use eZ\Publish\Core\Helper\TranslationHelper;
 
 final class EzPublishRuntime
@@ -33,7 +36,7 @@ final class EzPublishRuntime
      *
      * @return string
      */
-    public function getContentName($contentId)
+    public function getContentName($contentId): string
     {
         try {
             $content = $this->loadContent($contentId);
@@ -51,7 +54,7 @@ final class EzPublishRuntime
      *
      * @return string[]
      */
-    public function getLocationPath($locationId)
+    public function getLocationPath($locationId): array
     {
         try {
             $location = $this->loadLocation($locationId);
@@ -76,12 +79,8 @@ final class EzPublishRuntime
 
     /**
      * Returns the content type name.
-     *
-     * @param string $identifier
-     *
-     * @return string
      */
-    public function getContentTypeName($identifier)
+    public function getContentTypeName(string $identifier): string
     {
         try {
             $contentType = $this->loadContentType($identifier);
@@ -113,10 +112,10 @@ final class EzPublishRuntime
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Content
      */
-    private function loadContent($contentId)
+    private function loadContent($contentId): Content
     {
         return $this->repository->sudo(
-            function (Repository $repository) use ($contentId) {
+            function (Repository $repository) use ($contentId): Content {
                 return $repository->getContentService()->loadContent($contentId);
             }
         );
@@ -129,10 +128,10 @@ final class EzPublishRuntime
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Location
      */
-    private function loadLocation($locationId)
+    private function loadLocation($locationId): Location
     {
         return $this->repository->sudo(
-            function (Repository $repository) use ($locationId) {
+            function (Repository $repository) use ($locationId): Location {
                 return $repository->getLocationService()->loadLocation($locationId);
             }
         );
@@ -140,15 +139,11 @@ final class EzPublishRuntime
 
     /**
      * Loads the content type for provided identifier.
-     *
-     * @param string $identifier
-     *
-     * @return \eZ\Publish\API\Repository\Values\ContentType\ContentType
      */
-    private function loadContentType($identifier)
+    private function loadContentType(string $identifier): ContentType
     {
         return $this->repository->sudo(
-            function (Repository $repository) use ($identifier) {
+            function (Repository $repository) use ($identifier): ContentType {
                 return $repository->getContentTypeService()->loadContentTypeByIdentifier($identifier);
             }
         );

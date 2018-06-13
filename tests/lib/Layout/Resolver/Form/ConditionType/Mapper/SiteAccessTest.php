@@ -18,7 +18,7 @@ final class SiteAccessTest extends TestCase
      */
     private $mapper;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->mapper = new SiteAccess(['cro', 'eng']);
     }
@@ -27,7 +27,7 @@ final class SiteAccessTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess::__construct
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess::getFormType
      */
-    public function testGetFormType()
+    public function testGetFormType(): void
     {
         $this->assertEquals(ChoiceType::class, $this->mapper->getFormType());
     }
@@ -35,7 +35,7 @@ final class SiteAccessTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess::getFormOptions
      */
-    public function testGetFormOptions()
+    public function testGetFormOptions(): void
     {
         $this->assertEquals(
             [

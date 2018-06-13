@@ -26,7 +26,7 @@ final class ConfigResolverConfigurationTest extends TestCase
      */
     private $configuration;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->configResolverMock = $this->createMock(ConfigResolverInterface::class);
         $this->fallbackConfigurationMock = $this->createMock(ConfigurationInterface::class);
@@ -41,7 +41,7 @@ final class ConfigResolverConfigurationTest extends TestCase
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::__construct
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::hasParameter
      */
-    public function testHasParameter()
+    public function testHasParameter(): void
     {
         $this->configResolverMock
             ->expects($this->once())
@@ -59,7 +59,7 @@ final class ConfigResolverConfigurationTest extends TestCase
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::hasParameter
      */
-    public function testHasParameterWithNoParameter()
+    public function testHasParameterWithNoParameter(): void
     {
         $this->configResolverMock
             ->expects($this->once())
@@ -79,7 +79,7 @@ final class ConfigResolverConfigurationTest extends TestCase
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::hasParameter
      */
-    public function testHasParameterWithNoFallbackParameter()
+    public function testHasParameterWithNoFallbackParameter(): void
     {
         $this->configResolverMock
             ->expects($this->once())
@@ -99,7 +99,7 @@ final class ConfigResolverConfigurationTest extends TestCase
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::getParameter
      */
-    public function testGetParameter()
+    public function testGetParameter(): void
     {
         $this->configResolverMock
             ->expects($this->any())
@@ -123,7 +123,7 @@ final class ConfigResolverConfigurationTest extends TestCase
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::getParameter
      */
-    public function testGetFallbackParameter()
+    public function testGetFallbackParameter(): void
     {
         $this->configResolverMock
             ->expects($this->any())
@@ -155,12 +155,18 @@ final class ConfigResolverConfigurationTest extends TestCase
      * @expectedException \Netgen\Bundle\BlockManagerBundle\Exception\ConfigurationException
      * @expectedExceptionMessage Parameter "some_param" does not exist in configuration.
      */
-    public function testGetParameterThrowsConfigurationException()
+    public function testGetParameterThrowsConfigurationException(): void
     {
         $this->configResolverMock
             ->expects($this->once())
             ->method('hasParameter')
             ->with($this->equalTo('some_param'), $this->equalTo('netgen_block_manager'))
+            ->will($this->returnValue(false));
+
+        $this->fallbackConfigurationMock
+            ->expects($this->once())
+            ->method('hasParameter')
+            ->with($this->equalTo('some_param'))
             ->will($this->returnValue(false));
 
         $this->configuration->getParameter('some_param');

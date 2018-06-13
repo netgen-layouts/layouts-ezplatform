@@ -23,12 +23,12 @@ final class Location implements TargetTypeInterface
         $this->contentExtractor = $contentExtractor;
     }
 
-    public function getType()
+    public function getType(): string
     {
         return 'ezlocation';
     }
 
-    public function getConstraints()
+    public function getConstraints(): array
     {
         return [
             new Constraints\NotBlank(),

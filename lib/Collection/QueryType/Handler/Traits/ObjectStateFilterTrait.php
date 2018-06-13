@@ -24,7 +24,7 @@ trait ObjectStateFilterTrait
      *
      * @param \eZ\Publish\SPI\Persistence\Content\ObjectState\Handler $handler
      */
-    private function setObjectStateHandler(Handler $handler)
+    private function setObjectStateHandler(Handler $handler): void
     {
         $this->objectStateHandler = $handler;
     }
@@ -35,7 +35,7 @@ trait ObjectStateFilterTrait
      * @param \Netgen\BlockManager\Parameters\ParameterBuilderInterface $builder
      * @param array $groups
      */
-    private function buildObjectStateFilterParameters(ParameterBuilderInterface $builder, $groups = [])
+    private function buildObjectStateFilterParameters(ParameterBuilderInterface $builder, array $groups = []): void
     {
         $builder->add(
             'filter_by_object_state',
@@ -62,7 +62,7 @@ trait ObjectStateFilterTrait
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Query\Criterion|null
      */
-    private function getObjectStateFilterCriteria(Query $query)
+    private function getObjectStateFilterCriteria(Query $query): ?Criterion
     {
         if ($query->getParameter('filter_by_object_state')->getValue() !== true) {
             return null;
@@ -85,12 +85,8 @@ trait ObjectStateFilterTrait
      * Returns object state IDs for all provided object state identifiers.
      *
      * State identifiers are in format "<group_identifier>|<state_identifier>"
-     *
-     * @param array $stateIdentifiers
-     *
-     * @return array
      */
-    private function getObjectStateIds(array $stateIdentifiers)
+    private function getObjectStateIds(array $stateIdentifiers): array
     {
         $idList = [];
 

@@ -24,7 +24,7 @@ final class ContentFieldHandlerTest extends TestCase
      */
     private $handler;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->contentProviderMock = $this->createMock(ContentProviderInterface::class);
 
@@ -34,7 +34,7 @@ final class ContentFieldHandlerTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Block\BlockDefinition\Handler\ContentFieldHandler::isContextual
      */
-    public function testIsContextual()
+    public function testIsContextual(): void
     {
         $this->assertTrue($this->handler->isContextual(new Block()));
     }
@@ -43,7 +43,7 @@ final class ContentFieldHandlerTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Block\BlockDefinition\Handler\ContentFieldHandler::__construct
      * @covers \Netgen\BlockManager\Ez\Block\BlockDefinition\Handler\ContentFieldHandler::getDynamicParameters
      */
-    public function testGetDynamicParameters()
+    public function testGetDynamicParameters(): void
     {
         $this->contentProviderMock
             ->expects($this->once())

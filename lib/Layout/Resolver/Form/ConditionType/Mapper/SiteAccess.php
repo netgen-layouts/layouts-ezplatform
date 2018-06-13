@@ -27,12 +27,12 @@ final class SiteAccess extends Mapper
         );
     }
 
-    public function getFormType()
+    public function getFormType(): string
     {
         return ChoiceType::class;
     }
 
-    public function getFormOptions()
+    public function getFormOptions(): array
     {
         return [
             'choices' => $this->siteAccessList,

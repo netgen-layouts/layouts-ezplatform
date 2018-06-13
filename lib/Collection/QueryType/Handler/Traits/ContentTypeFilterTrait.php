@@ -24,7 +24,7 @@ trait ContentTypeFilterTrait
      *
      * @param \eZ\Publish\SPI\Persistence\Content\Type\Handler $handler
      */
-    private function setContentTypeHandler(Handler $handler)
+    private function setContentTypeHandler(Handler $handler): void
     {
         $this->contentTypeHandler = $handler;
     }
@@ -35,7 +35,7 @@ trait ContentTypeFilterTrait
      * @param \Netgen\BlockManager\Parameters\ParameterBuilderInterface $builder
      * @param array $groups
      */
-    private function buildContentTypeFilterParameters(ParameterBuilderInterface $builder, array $groups = [])
+    private function buildContentTypeFilterParameters(ParameterBuilderInterface $builder, array $groups = []): void
     {
         $builder->add(
             'filter_by_content_type',
@@ -70,12 +70,8 @@ trait ContentTypeFilterTrait
 
     /**
      * Returns the criteria used to filter content by content type.
-     *
-     * @param \Netgen\BlockManager\API\Values\Collection\Query $query
-     *
-     * @return \eZ\Publish\API\Repository\Values\Content\Query\Criterion|null
      */
-    private function getContentTypeFilterCriteria(Query $query)
+    private function getContentTypeFilterCriteria(Query $query): ?Criterion
     {
         if ($query->getParameter('filter_by_content_type')->getValue() !== true) {
             return null;
@@ -99,12 +95,8 @@ trait ContentTypeFilterTrait
 
     /**
      * Returns content type IDs for all provided content type identifiers.
-     *
-     * @param array $contentTypeIdentifiers
-     *
-     * @return array
      */
-    private function getContentTypeIds(array $contentTypeIdentifiers)
+    private function getContentTypeIds(array $contentTypeIdentifiers): array
     {
         $idList = [];
 

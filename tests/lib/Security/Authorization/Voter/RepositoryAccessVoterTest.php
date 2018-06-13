@@ -24,7 +24,7 @@ final class RepositoryAccessVoterTest extends TestCase
      */
     private $voter;
 
-    public function setUp()
+    public function setUp(): void
     {
         $roleHierarchy = new RoleHierarchy(
             [
@@ -43,10 +43,6 @@ final class RepositoryAccessVoterTest extends TestCase
     }
 
     /**
-     * @param string $attribute
-     * @param array $repoAccess
-     * @param int $voteResult
-     *
      * @covers \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter::__construct
      * @covers \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter::getReachableAttributes
      * @covers \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter::supports
@@ -55,7 +51,7 @@ final class RepositoryAccessVoterTest extends TestCase
      *
      * @dataProvider voteDataProvider
      */
-    public function testVote($attribute, array $repoAccess, $voteResult)
+    public function testVote(string $attribute, array $repoAccess, int $voteResult): void
     {
         $token = $this->createMock(TokenInterface::class);
 
@@ -77,7 +73,7 @@ final class RepositoryAccessVoterTest extends TestCase
         $this->assertEquals($voteResult, $result);
     }
 
-    public function voteDataProvider()
+    public function voteDataProvider(): array
     {
         return [
             // Only matches admin eZ function

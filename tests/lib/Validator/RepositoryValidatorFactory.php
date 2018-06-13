@@ -12,6 +12,7 @@ use Netgen\BlockManager\Ez\Validator\ObjectStateValidator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorFactory;
 use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
+use Symfony\Component\Validator\ConstraintValidatorInterface;
 
 final class RepositoryValidatorFactory implements ConstraintValidatorFactoryInterface
 {
@@ -37,7 +38,7 @@ final class RepositoryValidatorFactory implements ConstraintValidatorFactoryInte
         ];
     }
 
-    public function getInstance(Constraint $constraint)
+    public function getInstance(Constraint $constraint): ConstraintValidatorInterface
     {
         $name = $constraint->validatedBy();
 

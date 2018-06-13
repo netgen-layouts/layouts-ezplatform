@@ -28,7 +28,7 @@ final class ContentTypeTest extends TestCase
      */
     private $contentServiceMock;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->contentServiceMock = $this->createMock(ContentService::class);
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentService']);
@@ -53,7 +53,7 @@ final class ContentTypeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::__construct
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::getIdentifier
      */
-    public function testGetIdentifier()
+    public function testGetIdentifier(): void
     {
         $this->assertEquals('ezcontent', $this->type->getIdentifier());
     }
@@ -61,11 +61,8 @@ final class ContentTypeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::configureOptions
      * @dataProvider validOptionsProvider
-     *
-     * @param array $options
-     * @param array $resolvedOptions
      */
-    public function testValidOptions($options, $resolvedOptions)
+    public function testValidOptions(array $options, array $resolvedOptions): void
     {
         $parameter = $this->getParameterDefinition($options);
         $this->assertEquals($resolvedOptions, $parameter->getOptions());
@@ -75,20 +72,16 @@ final class ContentTypeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::configureOptions
      * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidArgumentException
      * @dataProvider invalidOptionsProvider
-     *
-     * @param array $options
      */
-    public function testInvalidOptions($options)
+    public function testInvalidOptions(array $options): void
     {
         $this->getParameterDefinition($options);
     }
 
     /**
      * Provider for testing valid parameter attributes.
-     *
-     * @return array
      */
-    public function validOptionsProvider()
+    public function validOptionsProvider(): array
     {
         return [
             [
@@ -118,10 +111,8 @@ final class ContentTypeTest extends TestCase
 
     /**
      * Provider for testing invalid parameter attributes.
-     *
-     * @return array
      */
-    public function invalidOptionsProvider()
+    public function invalidOptionsProvider(): array
     {
         return [
             [
@@ -147,7 +138,7 @@ final class ContentTypeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::export
      */
-    public function testExport()
+    public function testExport(): void
     {
         $this->contentServiceMock
             ->expects($this->once())
@@ -161,7 +152,7 @@ final class ContentTypeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::export
      */
-    public function testExportWithNonExistingContent()
+    public function testExportWithNonExistingContent(): void
     {
         $this->contentServiceMock
             ->expects($this->once())
@@ -175,7 +166,7 @@ final class ContentTypeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::import
      */
-    public function testImport()
+    public function testImport(): void
     {
         $this->contentServiceMock
             ->expects($this->once())
@@ -189,7 +180,7 @@ final class ContentTypeTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::import
      */
-    public function testImportWithNonExistingContent()
+    public function testImportWithNonExistingContent(): void
     {
         $this->contentServiceMock
             ->expects($this->once())
@@ -208,7 +199,7 @@ final class ContentTypeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::getValueConstraints
      * @dataProvider validationProvider
      */
-    public function testValidation($value, $required, $isValid)
+    public function testValidation($value, bool $required, bool $isValid): void
     {
         if ($value !== null) {
             $this->contentServiceMock
@@ -217,7 +208,7 @@ final class ContentTypeTest extends TestCase
                 ->with($this->equalTo((int) $value))
                 ->will(
                     $this->returnCallback(
-                        function () use ($value) {
+                        function () use ($value): void {
                             if (!is_int($value) || $value > 20) {
                                 throw new NotFoundException('content', $value);
                             }
@@ -237,10 +228,8 @@ final class ContentTypeTest extends TestCase
 
     /**
      * Provider for testing valid parameter values.
-     *
-     * @return array
      */
-    public function validationProvider()
+    public function validationProvider(): array
     {
         return [
             [12, false, true],
@@ -267,17 +256,15 @@ final class ContentTypeTest extends TestCase
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::isValueEmpty
      * @dataProvider emptyProvider
      */
-    public function testIsValueEmpty($value, $isEmpty)
+    public function testIsValueEmpty($value, bool $isEmpty): void
     {
         $this->assertEquals($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
     }
 
     /**
      * Provider for testing if the value is empty.
-     *
-     * @return array
      */
-    public function emptyProvider()
+    public function emptyProvider(): array
     {
         return [
             [null, true],

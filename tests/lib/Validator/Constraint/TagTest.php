@@ -12,7 +12,7 @@ final class TagTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\Constraint\Tag::validatedBy
      */
-    public function testValidatedBy()
+    public function testValidatedBy(): void
     {
         $constraint = new Tag();
         $this->assertEquals('ngbm_eztags', $constraint->validatedBy());

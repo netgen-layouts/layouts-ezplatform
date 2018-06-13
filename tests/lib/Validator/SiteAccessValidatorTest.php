@@ -8,33 +8,28 @@ use Netgen\BlockManager\Ez\Validator\Constraint\SiteAccess;
 use Netgen\BlockManager\Ez\Validator\SiteAccessValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\ConstraintValidatorInterface;
 
 final class SiteAccessValidatorTest extends ValidatorTestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
         $this->constraint = new SiteAccess();
     }
 
-    /**
-     * @return \Symfony\Component\Validator\ConstraintValidatorInterface
-     */
-    public function getValidator()
+    public function getValidator(): ConstraintValidatorInterface
     {
         return new SiteAccessValidator(['eng', 'cro']);
     }
 
     /**
-     * @param int $identifier
-     * @param bool $isValid
-     *
      * @covers \Netgen\BlockManager\Ez\Validator\SiteAccessValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\SiteAccessValidator::validate
      * @dataProvider validateDataProvider
      */
-    public function testValidate($identifier, $isValid)
+    public function testValidate(?string $identifier, bool $isValid): void
     {
         $this->assertValid($isValid, $identifier);
     }
@@ -44,7 +39,7 @@ final class SiteAccessValidatorTest extends ValidatorTestCase
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      * @expectedExceptionMessage Expected argument of type "Netgen\BlockManager\Ez\Validator\Constraint\SiteAccess", "Symfony\Component\Validator\Constraints\NotBlank" given
      */
-    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint()
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->constraint = new NotBlank();
         $this->assertValid(true, 'value');
@@ -55,12 +50,12 @@ final class SiteAccessValidatorTest extends ValidatorTestCase
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      * @expectedExceptionMessage Expected argument of type "string", "integer" given
      */
-    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue()
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
         $this->assertValid(true, 42);
     }
 
-    public function validateDataProvider()
+    public function validateDataProvider(): array
     {
         return [
             ['eng', true],

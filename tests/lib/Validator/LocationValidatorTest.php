@@ -11,6 +11,7 @@ use Netgen\BlockManager\Ez\Validator\Constraint\Location;
 use Netgen\BlockManager\Ez\Validator\LocationValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\ConstraintValidatorInterface;
 
 final class LocationValidatorTest extends ValidatorTestCase
 {
@@ -24,17 +25,14 @@ final class LocationValidatorTest extends ValidatorTestCase
      */
     private $locationServiceMock;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
         $this->constraint = new Location();
     }
 
-    /**
-     * @return \Symfony\Component\Validator\ConstraintValidatorInterface
-     */
-    public function getValidator()
+    public function getValidator(): ConstraintValidatorInterface
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService']);
@@ -56,14 +54,14 @@ final class LocationValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @param int|null $locationId
+     * @param int|string|null $locationId
      * @param bool $isValid
      *
      * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::validate
      * @dataProvider validateDataProvider
      */
-    public function testValidate($locationId, $isValid)
+    public function testValidate($locationId, bool $isValid): void
     {
         if ($locationId !== null) {
             $this->locationServiceMock
@@ -72,7 +70,7 @@ final class LocationValidatorTest extends ValidatorTestCase
                 ->with($this->equalTo($locationId))
                 ->will(
                     $this->returnCallback(
-                        function () use ($locationId) {
+                        function () use ($locationId): void {
                             if (!is_int($locationId) || $locationId <= 0 || $locationId > 20) {
                                 throw new NotFoundException('location', $locationId);
                             }
@@ -89,7 +87,7 @@ final class LocationValidatorTest extends ValidatorTestCase
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      * @expectedExceptionMessage Expected argument of type "Netgen\BlockManager\Ez\Validator\Constraint\Location", "Symfony\Component\Validator\Constraints\NotBlank" given
      */
-    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint()
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->constraint = new NotBlank();
         $this->assertValid(true, 'value');
@@ -100,12 +98,12 @@ final class LocationValidatorTest extends ValidatorTestCase
      * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
      * @expectedExceptionMessage Expected argument of type "scalar", "array" given
      */
-    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue()
+    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
         $this->assertValid(true, []);
     }
 
-    public function validateDataProvider()
+    public function validateDataProvider(): array
     {
         return [
             [12, true],

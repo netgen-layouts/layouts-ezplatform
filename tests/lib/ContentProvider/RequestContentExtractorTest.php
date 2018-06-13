@@ -20,7 +20,7 @@ final class RequestContentExtractorTest extends TestCase
      */
     private $contentExtractor;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->contentExtractor = new RequestContentExtractor();
     }
@@ -28,7 +28,7 @@ final class RequestContentExtractorTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\ContentProvider\RequestContentExtractor::extractContent
      */
-    public function testProvideContent()
+    public function testProvideContent(): void
     {
         $content = new Content(
             [
@@ -56,7 +56,7 @@ final class RequestContentExtractorTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\ContentProvider\RequestContentExtractor::extractContent
      */
-    public function testProvideContentWithoutContentView()
+    public function testProvideContentWithoutContentView(): void
     {
         $request = Request::create('/');
         $request->attributes->set('view', 42);
@@ -67,7 +67,7 @@ final class RequestContentExtractorTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\ContentProvider\RequestContentExtractor::extractLocation
      */
-    public function testProvideLocation()
+    public function testProvideLocation(): void
     {
         $location = new Location(['id' => 42]);
         $contentView = new ContentView();
@@ -82,7 +82,7 @@ final class RequestContentExtractorTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\ContentProvider\RequestContentExtractor::extractLocation
      */
-    public function testProvideLocationWithoutLocationView()
+    public function testProvideLocationWithoutLocationView(): void
     {
         $request = Request::create('/');
         $request->attributes->set('view', 42);
