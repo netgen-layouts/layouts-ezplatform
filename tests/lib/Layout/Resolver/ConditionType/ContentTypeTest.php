@@ -176,7 +176,7 @@ final class ContentTypeTest extends TestCase
             ->expects($this->any())
             ->method('extractContent')
             ->with($this->equalTo($request))
-            ->will($this->returnValue(false));
+            ->will($this->returnValue(null));
 
         $this->assertFalse($this->conditionType->matches($request, ['article']));
     }
