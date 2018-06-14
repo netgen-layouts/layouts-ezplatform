@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Netgen\BlockManager\Ez\Tests\Validator;
 
 use eZ\Publish\API\Repository\ContentService;
+use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
 use Netgen\BlockManager\Ez\Validator\Constraint\Content;
@@ -54,32 +55,46 @@ final class ContentValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @param int|string|null $contentId
-     * @param bool $isValid
-     *
      * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::validate
-     * @dataProvider validateDataProvider
      */
-    public function testValidate($contentId, bool $isValid): void
+    public function testValidateValid(): void
     {
-        if ($contentId !== null) {
-            $this->contentServiceMock
-                ->expects($this->once())
-                ->method('loadContentInfo')
-                ->with($this->equalTo($contentId))
-                ->will(
-                    $this->returnCallback(
-                        function () use ($contentId): void {
-                            if (!is_int($contentId) || $contentId <= 0 || $contentId > 20) {
-                                throw new NotFoundException('content', $contentId);
-                            }
-                        }
-                    )
-                );
-        }
+        $this->contentServiceMock
+            ->expects($this->once())
+            ->method('loadContentInfo')
+            ->with($this->equalTo(42))
+            ->will($this->returnValue(new ContentInfo(['id' => 42])));
 
-        $this->assertValid($isValid, $contentId);
+        $this->assertValid(true, 42);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::__construct
+     * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::validate
+     */
+    public function testValidateNull(): void
+    {
+        $this->contentServiceMock
+            ->expects($this->never())
+            ->method('loadContentInfo');
+
+        $this->assertValid(true, null);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::__construct
+     * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::validate
+     */
+    public function testValidateInvalid(): void
+    {
+        $this->contentServiceMock
+            ->expects($this->once())
+            ->method('loadContentInfo')
+            ->with($this->equalTo(42))
+            ->will($this->throwException(new NotFoundException('content', 42)));
+
+        $this->assertValid(false, 42);
     }
 
     /**
@@ -101,17 +116,5 @@ final class ContentValidatorTest extends ValidatorTestCase
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
         $this->assertValid(true, []);
-    }
-
-    public function validateDataProvider(): array
-    {
-        return [
-            [12, true],
-            [25, false],
-            [-12, false],
-            [0, false],
-            ['12', false],
-            [null, true],
-        ];
     }
 }

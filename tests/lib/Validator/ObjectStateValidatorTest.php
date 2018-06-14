@@ -60,66 +60,82 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
      * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::validate
      * @dataProvider validateDataProvider
      */
-    public function testValidate(?string $identifier, array $allowedStates, bool $isValid): void
+    public function testValidate(string $identifier, array $allowedStates, bool $isValid): void
     {
-        if ($identifier !== null) {
-            $this->objectStateServiceMock
-                ->expects($this->at(0))
-                ->method('loadObjectStateGroups')
-                ->will(
-                    $this->returnValue(
-                        [
-                            new ObjectStateGroup(['identifier' => 'group1']),
-                            new ObjectStateGroup(['identifier' => 'group2']),
-                        ]
-                    )
-                );
+        $this->objectStateServiceMock
+            ->expects($this->at(0))
+            ->method('loadObjectStateGroups')
+            ->will(
+                $this->returnValue(
+                    [
+                        new ObjectStateGroup(['identifier' => 'group1']),
+                        new ObjectStateGroup(['identifier' => 'group2']),
+                    ]
+                )
+            );
 
-            $this->objectStateServiceMock
-                ->expects($this->at(1))
-                ->method('loadObjectStates')
-                ->with($this->equalTo(new ObjectStateGroup(['identifier' => 'group1'])))
-                ->will(
-                    $this->returnValue(
-                        [
-                            new EzObjectState(
-                                [
-                                    'identifier' => 'state1',
-                                ]
-                            ),
-                            new EzObjectState(
-                                [
-                                    'identifier' => 'state2',
-                                ]
-                            ),
-                        ]
-                    )
-                );
+        $this->objectStateServiceMock
+            ->expects($this->at(1))
+            ->method('loadObjectStates')
+            ->with($this->equalTo(new ObjectStateGroup(['identifier' => 'group1'])))
+            ->will(
+                $this->returnValue(
+                    [
+                        new EzObjectState(
+                            [
+                                'identifier' => 'state1',
+                            ]
+                        ),
+                        new EzObjectState(
+                            [
+                                'identifier' => 'state2',
+                            ]
+                        ),
+                    ]
+                )
+            );
 
-            $this->objectStateServiceMock
-                ->expects($this->at(2))
-                ->method('loadObjectStates')
-                ->with($this->equalTo(new ObjectStateGroup(['identifier' => 'group2'])))
-                ->will(
-                    $this->returnValue(
-                        [
-                            new EzObjectState(
-                                [
-                                    'identifier' => 'state1',
-                                ]
-                            ),
-                            new EzObjectState(
-                                [
-                                    'identifier' => 'state2',
-                                ]
-                            ),
-                        ]
-                    )
-                );
-        }
+        $this->objectStateServiceMock
+            ->expects($this->at(2))
+            ->method('loadObjectStates')
+            ->with($this->equalTo(new ObjectStateGroup(['identifier' => 'group2'])))
+            ->will(
+                $this->returnValue(
+                    [
+                        new EzObjectState(
+                            [
+                                'identifier' => 'state1',
+                            ]
+                        ),
+                        new EzObjectState(
+                            [
+                                'identifier' => 'state2',
+                            ]
+                        ),
+                    ]
+                )
+            );
 
         $this->constraint->allowedStates = $allowedStates;
         $this->assertValid($isValid, $identifier);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::__construct
+     * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::loadStateIdentifiers
+     * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::validate
+     */
+    public function testValidateNull(): void
+    {
+        $this->objectStateServiceMock
+            ->expects($this->never())
+            ->method('loadObjectStateGroups');
+
+        $this->objectStateServiceMock
+            ->expects($this->never())
+            ->method('loadObjectStates');
+
+        $this->assertValid(true, null);
     }
 
     /**
@@ -185,7 +201,6 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
             ['group2|state1', ['group1' => ['state1', 'state2']], true],
             ['unknown|state1', [], false],
             ['group1|unknown', [], false],
-            [null, [], true],
         ];
     }
 }

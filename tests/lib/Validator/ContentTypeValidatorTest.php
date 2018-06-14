@@ -58,44 +58,68 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::validate
-     * @dataProvider validateDataProvider
+     * @dataProvider  validateDataProvider
      */
-    public function testValidate(?string $identifier, array $groups, array $allowedTypes, bool $isValid): void
+    public function testValidate(string $identifier, array $groups, array $allowedTypes, bool $isValid): void
     {
-        if ($identifier !== null) {
-            $this->contentTypeServiceMock
-                ->expects($this->once())
-                ->method('loadContentTypeByIdentifier')
-                ->with($this->equalTo($identifier))
-                ->will(
-                    $this->returnCallback(
-                        function () use ($identifier, $groups): EzContentType {
-                            if (!is_string($identifier) || $identifier === 'unknown') {
-                                throw new NotFoundException('content type', $identifier);
-                            }
-
-                            return new EzContentType(
-                                [
-                                    'identifier' => $identifier,
-                                    'contentTypeGroups' => array_map(
-                                        function (string $group): ContentTypeGroup {
-                                            return new ContentTypeGroup(
-                                                [
-                                                    'identifier' => $group,
-                                                ]
-                                            );
-                                        },
-                                        $groups
-                                    ),
-                                ]
-                            );
-                        }
+        $this->contentTypeServiceMock
+            ->expects($this->once())
+            ->method('loadContentTypeByIdentifier')
+            ->with($this->equalTo($identifier))
+            ->will(
+                $this->returnValue(
+                    new EzContentType(
+                        [
+                            'identifier' => $identifier,
+                            'contentTypeGroups' => array_map(
+                                function (string $group): ContentTypeGroup {
+                                    return new ContentTypeGroup(
+                                        [
+                                            'identifier' => $group,
+                                        ]
+                                    );
+                                },
+                                $groups
+                            ),
+                        ]
                     )
-                );
-        }
+                )
+            );
 
         $this->constraint->allowedTypes = $allowedTypes;
         $this->assertValid($isValid, $identifier);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::__construct
+     * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::validate
+     */
+    public function testValidateNull(): void
+    {
+        $this->contentTypeServiceMock
+            ->expects($this->never())
+            ->method('loadContentTypeByIdentifier');
+
+        $this->assertValid(true, null);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::__construct
+     * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::validate
+     */
+    public function testValidateInvalid(): void
+    {
+        $this->contentTypeServiceMock
+            ->expects($this->once())
+            ->method('loadContentTypeByIdentifier')
+            ->with($this->equalTo('unknown'))
+            ->will(
+                $this->throwException(
+                    new NotFoundException('content type', 'unknown')
+                )
+            );
+
+        $this->assertValid(false, 'unknown');
     }
 
     /**
@@ -141,8 +165,6 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
             ['article', ['group1'], ['group1' => ['article']], true],
             ['article', ['group1'], ['group1' => ['news']], false],
             ['article', ['group1'], ['group1' => ['article', 'news']], true],
-            ['unknown', ['group1'], [], false],
-            [null, ['group1'], [], true],
         ];
     }
 }

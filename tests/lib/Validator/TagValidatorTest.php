@@ -8,6 +8,7 @@ use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use Netgen\BlockManager\Ez\Validator\Constraint\Tag;
 use Netgen\BlockManager\Ez\Validator\TagValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
+use Netgen\TagsBundle\API\Repository\Values\Tags\Tag as APITag;
 use Netgen\TagsBundle\Core\Repository\TagsService;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
@@ -34,32 +35,46 @@ final class TagValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @param int|string|null $tagId
-     * @param bool $isValid
-     *
      * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::validate
-     * @dataProvider validateDataProvider
      */
-    public function testValidate($tagId, bool $isValid): void
+    public function testValidateValid(): void
     {
-        if ($tagId !== null) {
-            $this->tagsServiceMock
-                ->expects($this->once())
-                ->method('loadTag')
-                ->with($this->equalTo($tagId))
-                ->will(
-                    $this->returnCallback(
-                        function () use ($tagId): void {
-                            if (!is_int($tagId) || $tagId <= 0 || $tagId > 20) {
-                                throw new NotFoundException('tag', $tagId);
-                            }
-                        }
-                    )
-                );
-        }
+        $this->tagsServiceMock
+            ->expects($this->once())
+            ->method('loadTag')
+            ->with($this->equalTo(42))
+            ->will($this->returnValue(new APITag(['id' => 42])));
 
-        $this->assertValid($isValid, $tagId);
+        $this->assertValid(true, 42);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::__construct
+     * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::validate
+     */
+    public function testValidateNull(): void
+    {
+        $this->tagsServiceMock
+            ->expects($this->never())
+            ->method('loadTag');
+
+        $this->assertValid(true, null);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::__construct
+     * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::validate
+     */
+    public function testValidateInvalid(): void
+    {
+        $this->tagsServiceMock
+            ->expects($this->once())
+            ->method('loadTag')
+            ->with($this->equalTo(42))
+            ->will($this->throwException(new NotFoundException('tag', 42)));
+
+        $this->assertValid(false, 42);
     }
 
     /**
@@ -81,17 +96,5 @@ final class TagValidatorTest extends ValidatorTestCase
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
         $this->assertValid(true, []);
-    }
-
-    public function validateDataProvider(): array
-    {
-        return [
-            [12, true],
-            [25, false],
-            [-12, false],
-            [0, false],
-            ['12', false],
-            [null, true],
-        ];
     }
 }

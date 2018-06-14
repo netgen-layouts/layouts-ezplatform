@@ -7,6 +7,7 @@ namespace Netgen\BlockManager\Ez\Tests\Validator;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
+use eZ\Publish\Core\Repository\Values\Content\Location as EzLocation;
 use Netgen\BlockManager\Ez\Validator\Constraint\Location;
 use Netgen\BlockManager\Ez\Validator\LocationValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
@@ -54,32 +55,46 @@ final class LocationValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @param int|string|null $locationId
-     * @param bool $isValid
-     *
      * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::validate
-     * @dataProvider validateDataProvider
      */
-    public function testValidate($locationId, bool $isValid): void
+    public function testValidateValid(): void
     {
-        if ($locationId !== null) {
-            $this->locationServiceMock
-                ->expects($this->once())
-                ->method('loadLocation')
-                ->with($this->equalTo($locationId))
-                ->will(
-                    $this->returnCallback(
-                        function () use ($locationId): void {
-                            if (!is_int($locationId) || $locationId <= 0 || $locationId > 20) {
-                                throw new NotFoundException('location', $locationId);
-                            }
-                        }
-                    )
-                );
-        }
+        $this->locationServiceMock
+            ->expects($this->once())
+            ->method('loadLocation')
+            ->with($this->equalTo(42))
+            ->will($this->returnValue(new EzLocation(['id' => 42])));
 
-        $this->assertValid($isValid, $locationId);
+        $this->assertValid(true, 42);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::__construct
+     * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::validate
+     */
+    public function testValidateNull(): void
+    {
+        $this->locationServiceMock
+            ->expects($this->never())
+            ->method('loadLocation');
+
+        $this->assertValid(true, null);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::__construct
+     * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::validate
+     */
+    public function testValidateInvalid(): void
+    {
+        $this->locationServiceMock
+            ->expects($this->once())
+            ->method('loadLocation')
+            ->with($this->equalTo(42))
+            ->will($this->throwException(new NotFoundException('location', 42)));
+
+        $this->assertValid(false, 42);
     }
 
     /**
@@ -101,17 +116,5 @@ final class LocationValidatorTest extends ValidatorTestCase
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
         $this->assertValid(true, []);
-    }
-
-    public function validateDataProvider(): array
-    {
-        return [
-            [12, true],
-            [25, false],
-            [-12, false],
-            [0, false],
-            ['12', false],
-            [null, true],
-        ];
     }
 }
