@@ -21,8 +21,6 @@ trait ContentTypeFilterTrait
 
     /**
      * Sets the content type handler used by the trait.
-     *
-     * @param \eZ\Publish\SPI\Persistence\Content\Type\Handler $handler
      */
     private function setContentTypeHandler(Handler $handler): void
     {
@@ -31,9 +29,6 @@ trait ContentTypeFilterTrait
 
     /**
      * Builds the parameters for filtering by content types.
-     *
-     * @param \Netgen\BlockManager\Parameters\ParameterBuilderInterface $builder
-     * @param array $groups
      */
     private function buildContentTypeFilterParameters(ParameterBuilderInterface $builder, array $groups = []): void
     {

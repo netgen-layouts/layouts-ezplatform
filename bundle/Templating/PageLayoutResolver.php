@@ -37,17 +37,11 @@ final class PageLayoutResolver implements PageLayoutResolverInterface
      */
     private $viewbaseLayout;
 
-    /**
-     * @param \Netgen\Bundle\BlockManagerBundle\Templating\PageLayoutResolverInterface $innerResolver
-     * @param \eZ\Publish\Core\MVC\ConfigResolverInterface $configResolver
-     * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
-     * @param string $viewbaseLayout
-     */
     public function __construct(
         PageLayoutResolverInterface $innerResolver,
         ConfigResolverInterface $configResolver,
         RequestStack $requestStack,
-        $viewbaseLayout
+        string $viewbaseLayout
     ) {
         $this->innerResolver = $innerResolver;
         $this->configResolver = $configResolver;

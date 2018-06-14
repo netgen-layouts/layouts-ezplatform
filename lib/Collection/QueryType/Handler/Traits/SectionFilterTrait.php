@@ -20,8 +20,6 @@ trait SectionFilterTrait
 
     /**
      * Sets the section handler used by the trait.
-     *
-     * @param \eZ\Publish\SPI\Persistence\Content\Section\Handler $handler
      */
     private function setSectionHandler(Handler $handler): void
     {
@@ -30,9 +28,6 @@ trait SectionFilterTrait
 
     /**
      * Builds the parameters for filtering by sections.
-     *
-     * @param \Netgen\BlockManager\Parameters\ParameterBuilderInterface $builder
-     * @param array $groups
      */
     private function buildSectionFilterParameters(ParameterBuilderInterface $builder, array $groups = []): void
     {

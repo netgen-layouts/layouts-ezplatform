@@ -21,8 +21,6 @@ trait ObjectStateFilterTrait
 
     /**
      * Sets the objectState handler used by the trait.
-     *
-     * @param \eZ\Publish\SPI\Persistence\Content\ObjectState\Handler $handler
      */
     private function setObjectStateHandler(Handler $handler): void
     {
@@ -31,9 +29,6 @@ trait ObjectStateFilterTrait
 
     /**
      * Builds the parameters for filtering by object states.
-     *
-     * @param \Netgen\BlockManager\Parameters\ParameterBuilderInterface $builder
-     * @param array $groups
      */
     private function buildObjectStateFilterParameters(ParameterBuilderInterface $builder, array $groups = []): void
     {
@@ -57,10 +52,6 @@ trait ObjectStateFilterTrait
 
     /**
      * Returns the criteria used to filter content by object state.
-     *
-     * @param \Netgen\BlockManager\API\Values\Collection\Query $query
-     *
-     * @return \eZ\Publish\API\Repository\Values\Content\Query\Criterion|null
      */
     private function getObjectStateFilterCriteria(Query $query): ?Criterion
     {

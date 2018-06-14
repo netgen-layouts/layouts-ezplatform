@@ -27,8 +27,6 @@ trait ParentLocationTrait
 
     /**
      * Sets the content provider used by the trait.
-     *
-     * @param \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface $contentProvider
      */
     private function setContentProvider(ContentProviderInterface $contentProvider): void
     {
@@ -37,8 +35,6 @@ trait ParentLocationTrait
 
     /**
      * Sets the location service used by the trait.
-     *
-     * @param \eZ\Publish\API\Repository\LocationService $locationService
      */
     private function setLocationService(LocationService $locationService): void
     {
@@ -47,9 +43,6 @@ trait ParentLocationTrait
 
     /**
      * Builds the parameters for filtering by parent location.
-     *
-     * @param \Netgen\BlockManager\Parameters\ParameterBuilderInterface $builder
-     * @param array $groups
      */
     private function buildParentLocationParameters(ParameterBuilderInterface $builder, array $groups = []): void
     {

@@ -298,11 +298,6 @@ final class TagsTypeTest extends TestCase
         $this->assertEquals($isValid, $errors->count() === 0);
     }
 
-    /**
-     * Provider for testing valid parameter values.
-     *
-     * @return array
-     */
     public function validationProvider(): array
     {
         return [

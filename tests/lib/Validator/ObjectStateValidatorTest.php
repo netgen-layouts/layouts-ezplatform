@@ -55,10 +55,6 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @param string|null $identifier
-     * @param array $allowedStates
-     * @param bool $isValid
-     *
      * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::loadStateIdentifiers
      * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::validate

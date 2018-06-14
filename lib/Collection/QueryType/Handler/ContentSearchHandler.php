@@ -64,7 +64,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     /**
      * Sets the current siteaccess languages into the handler.
      *
-     * @param array $languages
+     * @param string[] $languages
      */
     public function setLanguages(array $languages = null): void
     {

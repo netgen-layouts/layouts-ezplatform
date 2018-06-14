@@ -52,9 +52,6 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
      * @deprecated
      *
      * Logs a message into the log. Acts as a BC layer to support Symfony 2.8.
-     *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @param string $message
      */
     private function log(ContainerBuilder $container, string $message): void
     {
