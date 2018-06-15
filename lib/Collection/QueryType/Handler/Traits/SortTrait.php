@@ -85,9 +85,6 @@ trait SortTrait
     /**
      * Returns the clauses for sorting eZ content.
      *
-     * @param \Netgen\BlockManager\API\Values\Collection\Query $query
-     * @param \eZ\Publish\API\Repository\Values\Content\Location $parentLocation
-     *
      * @return \eZ\Publish\API\Repository\Values\Content\Query\SortClause[]
      */
     private function getSortClauses(Query $query, Location $parentLocation = null): array
