@@ -37,7 +37,7 @@ final class ObjectStateType extends ParameterType
             return null;
         }
 
-        if ($parameterDefinition->getOption('multiple')) {
+        if ($parameterDefinition->getOption('multiple') === true) {
             return is_array($value) ? $value : [$value];
         }
 

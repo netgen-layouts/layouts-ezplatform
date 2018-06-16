@@ -70,7 +70,7 @@ trait ParentLocationTrait
      */
     private function getParentLocation(Query $query): ?Location
     {
-        if ($query->getParameter('use_current_location')->getValue()) {
+        if ($query->getParameter('use_current_location')->getValue() === true) {
             return $this->contentProvider->provideLocation();
         }
 
