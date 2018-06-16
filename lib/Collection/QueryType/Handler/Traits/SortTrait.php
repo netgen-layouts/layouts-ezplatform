@@ -89,8 +89,8 @@ trait SortTrait
      */
     private function getSortClauses(Query $query, Location $parentLocation = null): array
     {
-        $sortType = $query->getParameter('sort_type')->getValue() ?: 'default';
-        $sortDirection = $query->getParameter('sort_direction')->getValue() ?: LocationQuery::SORT_DESC;
+        $sortType = $query->getParameter('sort_type')->getValue() ?? 'default';
+        $sortDirection = $query->getParameter('sort_direction')->getValue() ?? LocationQuery::SORT_DESC;
 
         if ($sortType === 'defined_by_parent' && $parentLocation !== null) {
             $sortType = $parentLocation->sortField;
