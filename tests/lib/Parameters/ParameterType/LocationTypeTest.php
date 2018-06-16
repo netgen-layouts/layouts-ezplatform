@@ -210,7 +210,7 @@ final class LocationTypeTest extends TestCase
                 ->will(
                     $this->returnCallback(
                         function () use ($value): void {
-                            if (!is_int($value) || $value > 20) {
+                            if (!is_int($value) || $value <= 0) {
                                 throw new NotFoundException('location', $value);
                             }
                         }
@@ -234,14 +234,12 @@ final class LocationTypeTest extends TestCase
     {
         return [
             [12, false, true],
-            [24, false, false],
             [-12, false, false],
             [0, false, false],
             ['12', false, false],
             ['', false, false],
             [null, false, true],
             [12, true, true],
-            [24, true, false],
             [-12, true, false],
             [0, true, false],
             ['12', true, false],

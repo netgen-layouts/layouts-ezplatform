@@ -279,7 +279,7 @@ final class TagsTypeTest extends TestCase
                         ->will(
                             $this->returnCallback(
                                 function () use ($value): void {
-                                    if (!is_int($value) || $value > 20) {
+                                    if (!is_int($value) || $value <= 0) {
                                         throw new NotFoundException('tag', $value);
                                     }
                                 }
@@ -303,7 +303,6 @@ final class TagsTypeTest extends TestCase
         return [
             [[12], false, true],
             [[12, 13, 14, 15], false, false],
-            [[24], false, false],
             [[-12], false, false],
             [[0], false, false],
             [['12'], false, false],
@@ -313,7 +312,6 @@ final class TagsTypeTest extends TestCase
             [null, false, true],
             [[12], true, true],
             [[12, 13, 14, 15], true, false],
-            [[24], true, false],
             [[-12], true, false],
             [[0], true, false],
             [['12'], true, false],

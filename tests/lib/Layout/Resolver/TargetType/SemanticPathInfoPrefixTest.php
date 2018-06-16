@@ -83,7 +83,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
     }
 
     /**
-     * Extractor for testing target type validation.
+     * Provider for testing target type validation.
      */
     public function validationProvider(): array
     {

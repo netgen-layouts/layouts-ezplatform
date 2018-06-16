@@ -157,46 +157,44 @@ final class ObjectStateTypeTest extends TestCase
      */
     public function testValidation($value, bool $required, bool $isValid): void
     {
-        if (!empty($value)) {
-            $this->objectStateServiceMock
-                ->expects($this->at(0))
-                ->method('loadObjectStateGroups')
-                ->will(
-                    $this->returnValue(
-                        [
-                            new ObjectStateGroup(['identifier' => 'group1']),
-                            new ObjectStateGroup(['identifier' => 'group2']),
-                        ]
-                    )
-                );
+        $this->objectStateServiceMock
+            ->expects($this->at(0))
+            ->method('loadObjectStateGroups')
+            ->will(
+                $this->returnValue(
+                    [
+                        new ObjectStateGroup(['identifier' => 'group1']),
+                        new ObjectStateGroup(['identifier' => 'group2']),
+                    ]
+                )
+            );
 
-            $this->objectStateServiceMock
-                ->expects($this->at(1))
-                ->method('loadObjectStates')
-                ->with($this->equalTo(new ObjectStateGroup(['identifier' => 'group1'])))
-                ->will(
-                    $this->returnValue(
-                        [
-                            new EzObjectState(
-                                [
-                                    'identifier' => 'state1',
-                                ]
-                            ),
-                            new EzObjectState(
-                                [
-                                    'identifier' => 'state2',
-                                ]
-                            ),
-                        ]
-                    )
-                );
+        $this->objectStateServiceMock
+            ->expects($this->at(1))
+            ->method('loadObjectStates')
+            ->with($this->equalTo(new ObjectStateGroup(['identifier' => 'group1'])))
+            ->will(
+                $this->returnValue(
+                    [
+                        new EzObjectState(
+                            [
+                                'identifier' => 'state1',
+                            ]
+                        ),
+                        new EzObjectState(
+                            [
+                                'identifier' => 'state2',
+                            ]
+                        ),
+                    ]
+                )
+            );
 
-            $this->objectStateServiceMock
-                ->expects($this->at(2))
-                ->method('loadObjectStates')
-                ->with($this->equalTo(new ObjectStateGroup(['identifier' => 'group2'])))
-                ->will($this->returnValue([]));
-        }
+        $this->objectStateServiceMock
+            ->expects($this->at(2))
+            ->method('loadObjectStates')
+            ->with($this->equalTo(new ObjectStateGroup(['identifier' => 'group2'])))
+            ->will($this->returnValue([]));
 
         $options = $value !== null ? ['multiple' => is_array($value)] : [];
         $parameter = $this->getParameterDefinition($options, $required);
@@ -209,28 +207,59 @@ final class ObjectStateTypeTest extends TestCase
     }
 
     /**
-     * Provider for testing valid parameter values.
+     * @param mixed $value
+     * @param bool $required
+     * @param bool $isValid
+     *
+     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ObjectStateType::getValueConstraints
+     * @dataProvider validationWithEmptyValuesProvider
      */
+    public function testValidationWithEmptyValues($value, bool $required, bool $isValid): void
+    {
+        $this->objectStateServiceMock
+            ->expects($this->never())
+            ->method('loadObjectStateGroups');
+
+        $this->objectStateServiceMock
+            ->expects($this->never())
+            ->method('loadObjectStates');
+
+        $options = $value !== null ? ['multiple' => is_array($value)] : [];
+        $parameter = $this->getParameterDefinition($options, $required);
+        $validator = Validation::createValidatorBuilder()
+            ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
+            ->getValidator();
+
+        $errors = $validator->validate($value, $this->type->getConstraints($parameter, $value));
+        $this->assertEquals($isValid, $errors->count() === 0);
+    }
+
     public function validationProvider(): array
     {
         return [
             ['group1|state2', false, true],
-            [[], false, true],
             [['group1|state2'], false, true],
             [['group1|state1', 'group1|state2'], false, true],
             [['group1|state1', 'group2|state1'], false, false],
             [['group2|state1'], false, false],
-            [null, false, true],
             [['unknown|state1'], false, false],
             [['group1|unknown'], false, false],
             ['group1|state2', true, true],
-            [[], true, false],
             [['group1|state2'], true, true],
             [['group1|state1', 'group1|state2'], true, true],
             [['group1|state1', 'group2|state1'], true, false],
             [['group2|state1'], true, false],
             [['unknown|state1'], true, false],
             [['group1|unknown'], true, false],
+        ];
+    }
+
+    public function validationWithEmptyValuesProvider(): array
+    {
+        return [
+            [[], false, true],
+            [null, false, true],
+            [[], true, false],
             [null, true, false],
         ];
     }

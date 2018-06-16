@@ -71,36 +71,41 @@ final class ContentTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     * @param bool $isValid
-     *
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content::getConstraints
-     * @dataProvider validationProvider
      */
-    public function testValidation($value, bool $isValid): void
+    public function testValidation(): void
     {
-        if ($value !== null) {
-            $this->contentServiceMock
-                ->expects($this->once())
-                ->method('loadContentInfo')
-                ->with($this->equalTo((int) $value))
-                ->will(
-                    $this->returnCallback(
-                        function () use ($value): void {
-                            if (!is_int($value) || $value > 20) {
-                                throw new NotFoundException('location', $value);
-                            }
-                        }
-                    )
-                );
-        }
+        $this->contentServiceMock
+            ->expects($this->once())
+            ->method('loadContentInfo')
+            ->with($this->equalTo(42))
+            ->will($this->returnValue(new ContentInfo()));
 
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
 
-        $errors = $validator->validate($value, $this->targetType->getConstraints());
-        $this->assertEquals($isValid, $errors->count() === 0);
+        $errors = $validator->validate(42, $this->targetType->getConstraints());
+        $this->assertTrue($errors->count() === 0);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Content::getConstraints
+     */
+    public function testValidationWithInvalidValue(): void
+    {
+        $this->contentServiceMock
+            ->expects($this->once())
+            ->method('loadContentInfo')
+            ->with($this->equalTo(42))
+            ->will($this->throwException(new NotFoundException('content', 42)));
+
+        $validator = Validation::createValidatorBuilder()
+            ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
+            ->getValidator();
+
+        $errors = $validator->validate(42, $this->targetType->getConstraints());
+        $this->assertFalse($errors->count() === 0);
     }
 
     /**
@@ -147,21 +152,5 @@ final class ContentTest extends TestCase
             ->will($this->returnValue(null));
 
         $this->assertNull($this->targetType->provideValue($request));
-    }
-
-    /**
-     * Extractor for testing valid parameter values.
-     */
-    public function validationProvider(): array
-    {
-        return [
-            [12, true],
-            [24, false],
-            [-12, false],
-            [0, false],
-            ['12', false],
-            ['', false],
-            [null, false],
-        ];
     }
 }

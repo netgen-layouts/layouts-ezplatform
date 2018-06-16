@@ -75,44 +75,41 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     * @param bool $isValid
-     *
      * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType::getConstraints
-     * @dataProvider validationProvider
      */
-    public function testValidation($value, bool $isValid): void
+    public function testValidation(): void
     {
-        if ($value !== null) {
-            foreach ($value as $index => $valueItem) {
-                $this->contentTypeServiceMock
-                    ->expects($this->at($index))
-                    ->method('loadContentTypeByIdentifier')
-                    ->with($this->equalTo($valueItem))
-                    ->will(
-                        $this->returnCallback(
-                            function () use ($valueItem): EzContentType {
-                                if (!is_string($valueItem) || !in_array($valueItem, ['article', 'news'], true)) {
-                                    throw new NotFoundException('content type', $valueItem);
-                                }
-
-                                return new EzContentType(
-                                    [
-                                        'identifier' => $valueItem,
-                                    ]
-                                );
-                            }
-                        )
-                    );
-            }
-        }
+        $this->contentTypeServiceMock
+            ->expects($this->once())
+            ->method('loadContentTypeByIdentifier')
+            ->with($this->equalTo('identifier'))
+            ->will($this->returnValue(new EzContentType()));
 
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
 
-        $errors = $validator->validate($value, $this->conditionType->getConstraints());
-        $this->assertEquals($isValid, $errors->count() === 0);
+        $errors = $validator->validate(['identifier'], $this->conditionType->getConstraints());
+        $this->assertTrue($errors->count() === 0);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType::getConstraints
+     */
+    public function testValidationWithInvalidValue(): void
+    {
+        $this->contentTypeServiceMock
+            ->expects($this->once())
+            ->method('loadContentTypeByIdentifier')
+            ->with($this->equalTo('unknown'))
+            ->will($this->throwException(new NotFoundException('content type', 'unknown')));
+
+        $validator = Validation::createValidatorBuilder()
+            ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
+            ->getValidator();
+
+        $errors = $validator->validate(['unknown'], $this->conditionType->getConstraints());
+        $this->assertFalse($errors->count() === 0);
     }
 
     /**
@@ -179,21 +176,6 @@ final class ContentTypeTest extends TestCase
             ->will($this->returnValue(null));
 
         $this->assertFalse($this->conditionType->matches($request, ['article']));
-    }
-
-    /**
-     * Provider for testing condition type validation.
-     */
-    public function validationProvider(): array
-    {
-        return [
-            [['article'], true],
-            [['article', 'news'], true],
-            [['article', 'unknown'], false],
-            [['unknown'], false],
-            [[], false],
-            [null, false],
-        ];
     }
 
     public function matchesProvider(): array
