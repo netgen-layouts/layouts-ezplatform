@@ -1,6 +1,6 @@
 {
     "name": "netgen/block-manager-ezpublish",
-    "description": "Netgen Block Manager & eZ Platform integration",
+    "description": "Netgen Layouts & eZ Platform integration",
     "license": "proprietary",
     "authors": [
         {

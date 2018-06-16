@@ -1,11 +1,10 @@
-Netgen Block Manager & eZ Publish integration installation instructions
-=======================================================================
+Netgen Layouts & eZ Platform integration installation instructions
+==================================================================
 
 Use Composer to install the integration
 ---------------------------------------
 
-Run the following command to install Netgen Block Manager & eZ Publish
-integration:
+Run the following command to install Netgen Layouts & eZ Platform integration:
 
 ```
 composer require netgen/block-manager-ezpublish:^1.0
@@ -14,9 +13,9 @@ composer require netgen/block-manager-ezpublish:^1.0
 Activating integration bundle
 -----------------------------
 
-After completing standard Block Manager install instructions, you also need to
+After completing standard Netgen Layouts install instructions, you also need to
 activate `NetgenEzPublishBlockManagerBundle`. Make sure it is activated after
-all other Block Manager bundles.
+all other Netgen Layouts bundles.
 
 ```
 ...

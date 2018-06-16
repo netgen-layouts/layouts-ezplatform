@@ -1,5 +1,5 @@
-Netgen Block Manager & eZ Publish integration
-=============================================
+Netgen Layouts & eZ Platform integration
+========================================
 
 # Installation instructions
 
