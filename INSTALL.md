@@ -29,7 +29,7 @@ return $bundles;
 Activating legacy eZ Publish extension
 --------------------------------------
 
-If you use eZ Publish Legacy admin interface in your eZ Platform installation,
+If you use eZ Platform legacy admin interface in your eZ Platform installation,
 you might want to activate `nglayouts` legacy extension to be able to add
 `nglayouts/admin` and `nglayouts/editor` policies to your roles.
 

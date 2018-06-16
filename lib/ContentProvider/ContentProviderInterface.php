@@ -14,12 +14,12 @@ use eZ\Publish\API\Repository\Values\Content\Location;
 interface ContentProviderInterface
 {
     /**
-     * Provides the eZ Publish content object.
+     * Provides the eZ Platform content object.
      */
     public function provideContent(): ?Content;
 
     /**
-     * Provides the eZ Publish location object.
+     * Provides the eZ Platform location object.
      */
     public function provideLocation(): ?Location;
 }

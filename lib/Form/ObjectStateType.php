@@ -53,7 +53,7 @@ final class ObjectStateType extends AbstractType
     }
 
     /**
-     * Returns the allowed content states from eZ Publish.
+     * Returns the allowed content states from eZ Platform.
      */
     private function getObjectStates(Options $options): array
     {

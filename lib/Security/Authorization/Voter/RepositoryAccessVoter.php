@@ -18,14 +18,14 @@ use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 final class RepositoryAccessVoter extends Voter
 {
     /**
-     * Identifier of the eZ Publish module used for creating Netgen Layouts permissions.
+     * Identifier of the eZ Platform module used for creating Netgen Layouts permissions.
      *
      * @var string
      */
     private static $module = 'nglayouts';
 
     /**
-     * Map of supported attributes to corresponding functions in the eZ Publish module.
+     * Map of supported attributes to corresponding functions in the eZ Platform module.
      *
      * @var array
      */

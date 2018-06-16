@@ -1,5 +1,5 @@
 services:
-    # Alias to eZ Publish search service, allowing for replacement
+    # Alias to eZ Platform search service, allowing for replacement
     # of search service with other implementations system wide
 
     netgen_block_manager.ezpublish.search_service:

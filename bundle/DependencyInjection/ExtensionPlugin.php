@@ -36,7 +36,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
     /**
      * Pre-processes the configuration before it is resolved.
      *
-     * The point of the preprocessor is to generate eZ Publish siteaccess aware
+     * The point of the preprocessor is to generate eZ Platform siteaccess aware
      * configuration for every key that is available in self::$siteAccessAwareSettings.
      *
      * With this, the following:
@@ -108,7 +108,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
     /**
      * Post-processes the resolved configuration.
      *
-     * The postprocessor calls eZ Publish mapConfigArray and mapSettings methods from siteaccess aware
+     * The postprocessor calls eZ Platform mapConfigArray and mapSettings methods from siteaccess aware
      * configuration processor as per documentation, to make the configuration correctly apply to all
      * siteaccesses.
      */

@@ -101,7 +101,7 @@ class LocaleProvider implements LocaleProviderInterface
     }
 
     /**
-     * Returns the array with POSIX locale code and name for provided eZ Publish language.
+     * Returns the array with POSIX locale code and name for provided eZ Platform language.
      *
      * If POSIX locale does not exist or if language is not enabled, null will be returned.
      */

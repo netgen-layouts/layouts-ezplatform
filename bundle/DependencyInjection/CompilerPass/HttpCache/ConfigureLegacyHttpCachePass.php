@@ -30,7 +30,7 @@ final class ConfigureLegacyHttpCachePass implements CompilerPassInterface
             $this->log(
                 $container,
                 sprintf(
-                    'Cache clearing in Netgen Layouts cannot be automatically configured since eZ Publish purge client is neither an instance of "%s" nor "%s". Use Netgen Layouts "%s" config to enable or disable HTTP cache clearing.',
+                    'Cache clearing in Netgen Layouts cannot be automatically configured since eZ Platform purge client is neither an instance of "%s" nor "%s". Use Netgen Layouts "%s" config to enable or disable HTTP cache clearing.',
                     FOSPurgeClient::class,
                     LocalPurgeClient::class,
                     'http_cache.invalidation.enabled'

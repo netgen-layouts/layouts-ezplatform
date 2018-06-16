@@ -3,6 +3,6 @@ parameters:
         - tests/bundle/DependencyInjection/CompilerPass/HttpCache/Stubs/LegacyClasses.php
 
     ignoreErrors:
-        # eZ Publish
+        # eZ Platform
         - '#Call to an undefined method eZ\\Publish\\API\\Repository\\Repository::sudo\(\)#'
         - '#Call to an undefined method Netgen\\TagsBundle\\API\\Repository\\TagsService::sudo\(\)#'

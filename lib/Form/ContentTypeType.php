@@ -53,7 +53,7 @@ final class ContentTypeType extends AbstractType
     }
 
     /**
-     * Returns the allowed content types from eZ Publish.
+     * Returns the allowed content types from eZ Platform.
      */
     private function getContentTypes(Options $options): array
     {

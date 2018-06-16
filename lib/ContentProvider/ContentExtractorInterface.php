@@ -11,12 +11,12 @@ use Symfony\Component\HttpFoundation\Request;
 interface ContentExtractorInterface
 {
     /**
-     * Extracts the eZ Publish content object from provided request.
+     * Extracts the eZ Platform content object from provided request.
      */
     public function extractContent(Request $request): ?Content;
 
     /**
-     * Extracts the eZ Publish location object from provided request.
+     * Extracts the eZ Platform location object from provided request.
      */
     public function extractLocation(Request $request): ?Location;
 }
