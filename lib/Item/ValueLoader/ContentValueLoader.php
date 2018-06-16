@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Netgen\BlockManager\Ez\Item\ValueLoader;
 
-use Exception;
 use eZ\Publish\API\Repository\ContentService;
 use Netgen\BlockManager\Exception\Item\ItemException;
 use Netgen\BlockManager\Item\ValueLoaderInterface;
+use Throwable;
 
 final class ContentValueLoader implements ValueLoaderInterface
 {
@@ -25,11 +25,11 @@ final class ContentValueLoader implements ValueLoaderInterface
     {
         try {
             $contentInfo = $this->contentService->loadContentInfo((int) $id);
-        } catch (Exception $e) {
+        } catch (Throwable $t) {
             throw new ItemException(
                 sprintf('Content with ID "%s" could not be loaded.', $id),
                 0,
-                $e
+                $t
             );
         }
 
@@ -52,11 +52,11 @@ final class ContentValueLoader implements ValueLoaderInterface
     {
         try {
             $contentInfo = $this->contentService->loadContentInfoByRemoteId((string) $remoteId);
-        } catch (Exception $e) {
+        } catch (Throwable $t) {
             throw new ItemException(
                 sprintf('Content with remote ID "%s" could not be loaded.', $remoteId),
                 0,
-                $e
+                $t
             );
         }
 

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Netgen\BlockManager\Ez\Collection\QueryType\Handler\Traits;
 
-use Exception;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\Location;
 use Netgen\BlockManager\API\Values\Collection\Query;
@@ -12,6 +11,7 @@ use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
 use Netgen\BlockManager\Ez\Parameters\ParameterType as EzParameterType;
 use Netgen\BlockManager\Parameters\ParameterBuilderInterface;
 use Netgen\BlockManager\Parameters\ParameterType;
+use Throwable;
 
 trait ParentLocationTrait
 {
@@ -83,7 +83,7 @@ trait ParentLocationTrait
             $parentLocation = $this->locationService->loadLocation($parentLocationId);
 
             return $parentLocation->invisible ? null : $parentLocation;
-        } catch (Exception $e) {
+        } catch (Throwable $t) {
             return null;
         }
     }

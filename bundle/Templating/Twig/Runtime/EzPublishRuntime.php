@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime;
 
-use Exception;
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use eZ\Publish\Core\Helper\TranslationHelper;
+use Throwable;
 
 final class EzPublishRuntime
 {
@@ -42,7 +42,7 @@ final class EzPublishRuntime
             $content = $this->loadContent($contentId);
 
             return $this->translationHelper->getTranslatedContentName($content);
-        } catch (Exception $e) {
+        } catch (Throwable $t) {
             return '';
         }
     }
@@ -72,7 +72,7 @@ final class EzPublishRuntime
             }
 
             return $translatedNames;
-        } catch (Exception $e) {
+        } catch (Throwable $t) {
             return [];
         }
     }
@@ -100,7 +100,7 @@ final class EzPublishRuntime
             }
 
             return array_values($contentTypeNames)[0];
-        } catch (Exception $e) {
+        } catch (Throwable $t) {
             return '';
         }
     }
