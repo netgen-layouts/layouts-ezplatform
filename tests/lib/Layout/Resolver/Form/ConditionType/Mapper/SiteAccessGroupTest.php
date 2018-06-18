@@ -34,7 +34,7 @@ final class SiteAccessGroupTest extends TestCase
      */
     public function testGetFormType(): void
     {
-        $this->assertEquals(ChoiceType::class, $this->mapper->getFormType());
+        $this->assertSame(ChoiceType::class, $this->mapper->getFormType());
     }
 
     /**
@@ -42,7 +42,7 @@ final class SiteAccessGroupTest extends TestCase
      */
     public function testGetFormOptions(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             [
                 'choices' => ['frontend' => 'frontend', 'backend' => 'backend'],
                 'choice_translation_domain' => false,

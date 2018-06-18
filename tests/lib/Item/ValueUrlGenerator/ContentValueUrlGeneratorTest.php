@@ -46,6 +46,6 @@ final class ContentValueUrlGeneratorTest extends TestCase
             )
             ->will($this->returnValue('/content/path'));
 
-        $this->assertEquals('/content/path', $this->urlGenerator->generate(new ContentInfo(['id' => 42])));
+        $this->assertSame('/content/path', $this->urlGenerator->generate(new ContentInfo(['id' => 42])));
     }
 }

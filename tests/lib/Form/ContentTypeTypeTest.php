@@ -55,7 +55,7 @@ final class ContentTypeTypeTest extends FormTestCase
         $form->submit($submittedData);
 
         $this->assertTrue($form->isSynchronized());
-        $this->assertEquals($submittedData, $form->getData());
+        $this->assertSame($submittedData, $form->getData());
     }
 
     /**
@@ -63,7 +63,7 @@ final class ContentTypeTypeTest extends FormTestCase
      */
     public function testGetParent(): void
     {
-        $this->assertEquals(ChoiceType::class, $this->formType->getParent());
+        $this->assertSame(ChoiceType::class, $this->formType->getParent());
     }
 
     /**
@@ -88,7 +88,7 @@ final class ContentTypeTypeTest extends FormTestCase
         );
 
         $this->assertFalse($options['choice_translation_domain']);
-        $this->assertEquals(
+        $this->assertSame(
             [
                 'Group1' => [
                     'Article' => 'article',

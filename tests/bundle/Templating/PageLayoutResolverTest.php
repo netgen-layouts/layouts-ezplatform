@@ -72,7 +72,7 @@ final class PageLayoutResolverTest extends TestCase
             ->with($this->equalTo('pagelayout'))
             ->will($this->returnValue('resolvedPagelayout'));
 
-        $this->assertEquals('resolvedPagelayout', $this->resolver->resolvePageLayout());
+        $this->assertSame('resolvedPagelayout', $this->resolver->resolvePageLayout());
     }
 
     /**
@@ -98,7 +98,7 @@ final class PageLayoutResolverTest extends TestCase
             ->expects($this->never())
             ->method('getParameter');
 
-        $this->assertEquals('defaultPageLayout', $this->resolver->resolvePageLayout());
+        $this->assertSame('defaultPageLayout', $this->resolver->resolvePageLayout());
     }
 
     /**
@@ -126,7 +126,7 @@ final class PageLayoutResolverTest extends TestCase
             ->expects($this->never())
             ->method('getParameter');
 
-        $this->assertEquals('viewbaseLayout', $this->resolver->resolvePageLayout());
+        $this->assertSame('viewbaseLayout', $this->resolver->resolvePageLayout());
     }
 
     /**
@@ -156,6 +156,6 @@ final class PageLayoutResolverTest extends TestCase
             ->expects($this->never())
             ->method('getParameter');
 
-        $this->assertEquals('defaultPageLayout', $this->resolver->resolvePageLayout());
+        $this->assertSame('defaultPageLayout', $this->resolver->resolvePageLayout());
     }
 }

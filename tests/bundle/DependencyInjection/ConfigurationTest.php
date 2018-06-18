@@ -25,6 +25,6 @@ final class ConfigurationTest extends TestCase
      */
     public function testGetConfigTreeBuilder(): void
     {
-        $this->assertEquals(new TreeBuilder(), $this->configuration->getConfigTreeBuilder());
+        $this->assertInstanceOf(TreeBuilder::class, $this->configuration->getConfigTreeBuilder());
     }
 }

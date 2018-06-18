@@ -70,7 +70,7 @@ final class RepositoryAccessVoterTest extends TestCase
 
         $result = $this->voter->vote($token, null, [$attribute]);
 
-        $this->assertEquals($voteResult, $result);
+        $this->assertSame($voteResult, $result);
     }
 
     public function voteDataProvider(): array

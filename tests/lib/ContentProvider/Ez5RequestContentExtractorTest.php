@@ -71,7 +71,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
             ->expects($this->never())
             ->method('loadContent');
 
-        $this->assertEquals($content, $this->contentProvider->extractContent($request));
+        $this->assertSame($content, $this->contentProvider->extractContent($request));
     }
 
     /**
@@ -103,7 +103,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
             ->with($this->equalTo(42))
             ->will($this->returnValue($content));
 
-        $this->assertEquals($content, $this->contentProvider->extractContent($request));
+        $this->assertSame($content, $this->contentProvider->extractContent($request));
     }
 
     /**
@@ -161,7 +161,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
             ->expects($this->never())
             ->method('loadLocation');
 
-        $this->assertEquals($location, $this->contentProvider->extractLocation($request));
+        $this->assertSame($location, $this->contentProvider->extractLocation($request));
     }
 
     /**
@@ -181,7 +181,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
             ->with($this->equalTo(42))
             ->will($this->returnValue($location));
 
-        $this->assertEquals($location, $this->contentProvider->extractLocation($request));
+        $this->assertSame($location, $this->contentProvider->extractLocation($request));
     }
 
     /**

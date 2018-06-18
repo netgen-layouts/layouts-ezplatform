@@ -28,7 +28,7 @@ final class ContentMapperTest extends TestCase
      */
     public function testGetFormType(): void
     {
-        $this->assertEquals(ContentBrowserType::class, $this->mapper->getFormType());
+        $this->assertSame(ContentBrowserType::class, $this->mapper->getFormType());
     }
 
     /**
@@ -36,7 +36,7 @@ final class ContentMapperTest extends TestCase
      */
     public function testMapOptions(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             [
                 'item_type' => 'ezcontent',
             ],

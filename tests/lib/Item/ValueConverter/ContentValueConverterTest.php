@@ -73,7 +73,7 @@ final class ContentValueConverterTest extends TestCase
      */
     public function testGetValueType(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'ezcontent',
             $this->valueConverter->getValueType(
                 new ContentInfo()
@@ -86,7 +86,7 @@ final class ContentValueConverterTest extends TestCase
      */
     public function testGetId(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             24,
             $this->valueConverter->getId(
                 new ContentInfo(['id' => 24, 'mainLocationId' => 42])
@@ -99,7 +99,7 @@ final class ContentValueConverterTest extends TestCase
      */
     public function testGetRemoteId(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'abc',
             $this->valueConverter->getRemoteId(
                 new ContentInfo(['remoteId' => 'abc'])
@@ -112,7 +112,7 @@ final class ContentValueConverterTest extends TestCase
      */
     public function testGetName(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'Cool name',
             $this->valueConverter->getName(
                 new ContentInfo(['mainLocationId' => 42])
@@ -139,6 +139,6 @@ final class ContentValueConverterTest extends TestCase
     {
         $object = new ContentInfo(['id' => 42]);
 
-        $this->assertEquals($object, $this->valueConverter->getObject($object));
+        $this->assertSame($object, $this->valueConverter->getObject($object));
     }
 }

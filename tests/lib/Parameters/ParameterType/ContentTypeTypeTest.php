@@ -55,7 +55,7 @@ final class ContentTypeTypeTest extends TestCase
      */
     public function testGetIdentifier(): void
     {
-        $this->assertEquals('ez_content_type', $this->type->getIdentifier());
+        $this->assertSame('ez_content_type', $this->type->getIdentifier());
     }
 
     /**
@@ -65,7 +65,7 @@ final class ContentTypeTypeTest extends TestCase
     public function testValidOptions(array $options, array $resolvedOptions): void
     {
         $parameter = $this->getParameterDefinition($options);
-        $this->assertEquals($resolvedOptions, $parameter->getOptions());
+        $this->assertSame($resolvedOptions, $parameter->getOptions());
     }
 
     /**
@@ -189,7 +189,7 @@ final class ContentTypeTypeTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $this->type->getConstraints($parameter, $value));
-        $this->assertEquals($isValid, $errors->count() === 0);
+        $this->assertSame($isValid, $errors->count() === 0);
     }
 
     /**
@@ -225,7 +225,7 @@ final class ContentTypeTypeTest extends TestCase
      */
     public function testFromHash($value, $convertedValue, bool $multiple): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             $convertedValue,
             $this->type->fromHash(
                 $this->getParameterDefinition(
@@ -293,7 +293,7 @@ final class ContentTypeTypeTest extends TestCase
      */
     public function testIsValueEmpty($value, bool $isEmpty): void
     {
-        $this->assertEquals($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
+        $this->assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
     }
 
     /**

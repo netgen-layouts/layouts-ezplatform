@@ -45,15 +45,18 @@ final class ContentFieldHandlerTest extends TestCase
      */
     public function testGetDynamicParameters(): void
     {
+        $content = new Content();
+        $location = new Location();
+
         $this->contentProviderMock
             ->expects($this->once())
             ->method('provideContent')
-            ->will($this->returnValue(new Content()));
+            ->will($this->returnValue($content));
 
         $this->contentProviderMock
             ->expects($this->once())
             ->method('provideLocation')
-            ->will($this->returnValue(new Location()));
+            ->will($this->returnValue($location));
 
         $params = new DynamicParameters();
 
@@ -62,7 +65,7 @@ final class ContentFieldHandlerTest extends TestCase
         $this->assertArrayHasKey('content', $params);
         $this->assertArrayHasKey('location', $params);
 
-        $this->assertEquals(new Content(), $params['content']);
-        $this->assertEquals(new Location(), $params['location']);
+        $this->assertSame($content, $params['content']);
+        $this->assertSame($location, $params['location']);
     }
 }

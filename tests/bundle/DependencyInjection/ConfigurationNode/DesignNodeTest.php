@@ -54,7 +54,7 @@ final class DesignNodeTest extends ConfigurationNodeTest
             )
         );
 
-        $this->assertEquals('test1', $config['system']['default']['design']);
+        $this->assertSame('test1', $config['system']['default']['design']);
     }
 
     /**
@@ -84,7 +84,7 @@ final class DesignNodeTest extends ConfigurationNodeTest
             )
         );
 
-        $this->assertEquals('standard', $config['system']['default']['design']);
+        $this->assertSame('standard', $config['system']['default']['design']);
     }
 
     /**

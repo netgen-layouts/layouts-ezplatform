@@ -55,7 +55,7 @@ final class ObjectStateTypeTest extends FormTestCase
         $form->submit($submittedData);
 
         $this->assertTrue($form->isSynchronized());
-        $this->assertEquals($submittedData, $form->getData());
+        $this->assertSame($submittedData, $form->getData());
     }
 
     /**
@@ -63,7 +63,7 @@ final class ObjectStateTypeTest extends FormTestCase
      */
     public function testGetParent(): void
     {
-        $this->assertEquals(ChoiceType::class, $this->formType->getParent());
+        $this->assertSame(ChoiceType::class, $this->formType->getParent());
     }
 
     /**
@@ -88,7 +88,7 @@ final class ObjectStateTypeTest extends FormTestCase
         );
 
         $this->assertFalse($options['choice_translation_domain']);
-        $this->assertEquals(
+        $this->assertSame(
             [
                 'Lock' => [
                     'Locked' => 'ez_lock|locked',

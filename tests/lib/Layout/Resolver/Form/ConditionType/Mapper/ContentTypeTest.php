@@ -25,7 +25,7 @@ final class ContentTypeTest extends TestCase
      */
     public function testGetFormType(): void
     {
-        $this->assertEquals(ContentTypeType::class, $this->mapper->getFormType());
+        $this->assertSame(ContentTypeType::class, $this->mapper->getFormType());
     }
 
     /**
@@ -33,7 +33,7 @@ final class ContentTypeTest extends TestCase
      */
     public function testGetFormOptions(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             [
                 'multiple' => true,
             ],

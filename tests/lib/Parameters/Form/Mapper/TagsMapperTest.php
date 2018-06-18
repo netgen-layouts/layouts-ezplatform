@@ -28,7 +28,7 @@ final class TagsMapperTest extends TestCase
      */
     public function testGetFormType(): void
     {
-        $this->assertEquals(ContentBrowserMultipleType::class, $this->mapper->getFormType());
+        $this->assertSame(ContentBrowserMultipleType::class, $this->mapper->getFormType());
     }
 
     /**
@@ -36,7 +36,7 @@ final class TagsMapperTest extends TestCase
      */
     public function testMapOptions(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             [
                 'item_type' => 'eztags',
                 'min' => 3,

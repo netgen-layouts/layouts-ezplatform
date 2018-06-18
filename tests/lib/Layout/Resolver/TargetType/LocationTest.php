@@ -64,7 +64,7 @@ final class LocationTest extends TestCase
      */
     public function testGetType(): void
     {
-        $this->assertEquals('ezlocation', $this->targetType->getType());
+        $this->assertSame('ezlocation', $this->targetType->getType());
     }
 
     /**
@@ -125,7 +125,7 @@ final class LocationTest extends TestCase
             ->with($this->equalTo($request))
             ->will($this->returnValue($location));
 
-        $this->assertEquals(42, $this->targetType->provideValue($request));
+        $this->assertSame(42, $this->targetType->provideValue($request));
     }
 
     /**

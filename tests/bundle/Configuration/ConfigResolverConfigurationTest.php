@@ -117,7 +117,7 @@ final class ConfigResolverConfigurationTest extends TestCase
             ->expects($this->never())
             ->method('getParameter');
 
-        $this->assertEquals('some_param_value', $this->configuration->getParameter('some_param'));
+        $this->assertSame('some_param_value', $this->configuration->getParameter('some_param'));
     }
 
     /**
@@ -147,7 +147,7 @@ final class ConfigResolverConfigurationTest extends TestCase
             ->with($this->equalTo('some_param'))
             ->will($this->returnValue('some_param_value'));
 
-        $this->assertEquals('some_param_value', $this->configuration->getParameter('some_param'));
+        $this->assertSame('some_param_value', $this->configuration->getParameter('some_param'));
     }
 
     /**

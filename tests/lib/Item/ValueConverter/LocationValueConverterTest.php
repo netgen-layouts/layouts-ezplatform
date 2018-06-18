@@ -52,7 +52,7 @@ final class LocationValueConverterTest extends TestCase
      */
     public function testGetValueType(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'ezlocation',
             $this->valueConverter->getValueType(
                 new Location()
@@ -65,7 +65,7 @@ final class LocationValueConverterTest extends TestCase
      */
     public function testGetId(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             24,
             $this->valueConverter->getId(
                 new Location(['id' => 24])
@@ -78,7 +78,7 @@ final class LocationValueConverterTest extends TestCase
      */
     public function testGetRemoteId(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'abc',
             $this->valueConverter->getRemoteId(
                 new Location(['remoteId' => 'abc'])
@@ -91,7 +91,7 @@ final class LocationValueConverterTest extends TestCase
      */
     public function testGetName(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'Cool name',
             $this->valueConverter->getName(
                 new Location(['contentInfo' => new ContentInfo()])
@@ -118,6 +118,6 @@ final class LocationValueConverterTest extends TestCase
     {
         $object = new Location(['id' => 42]);
 
-        $this->assertEquals($object, $this->valueConverter->getObject($object));
+        $this->assertSame($object, $this->valueConverter->getObject($object));
     }
 }

@@ -26,7 +26,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
      */
     public function testGetType(): void
     {
-        $this->assertEquals('ez_semantic_path_info_prefix', $this->targetType->getType());
+        $this->assertSame('ez_semantic_path_info_prefix', $this->targetType->getType());
     }
 
     /**
@@ -41,7 +41,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
         $validator = Validation::createValidator();
 
         $errors = $validator->validate($value, $this->targetType->getConstraints());
-        $this->assertEquals($isValid, $errors->count() === 0);
+        $this->assertSame($isValid, $errors->count() === 0);
     }
 
     /**
@@ -52,7 +52,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
         $request = Request::create('/the/answer');
         $request->attributes->set('semanticPathinfo', '/the/answer');
 
-        $this->assertEquals(
+        $this->assertSame(
             '/the/answer',
             $this->targetType->provideValue($request)
         );
@@ -66,7 +66,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
         $request = Request::create('/the/answer');
         $request->attributes->set('semanticPathinfo', false);
 
-        $this->assertEquals(
+        $this->assertSame(
             '/',
             $this->targetType->provideValue($request)
         );

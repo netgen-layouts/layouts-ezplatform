@@ -56,7 +56,7 @@ final class LocationTypeTest extends TestCase
      */
     public function testGetIdentifier(): void
     {
-        $this->assertEquals('ezlocation', $this->type->getIdentifier());
+        $this->assertSame('ezlocation', $this->type->getIdentifier());
     }
 
     /**
@@ -66,7 +66,7 @@ final class LocationTypeTest extends TestCase
     public function testValidOptions(array $options, array $resolvedOptions): void
     {
         $parameter = $this->getParameterDefinition($options);
-        $this->assertEquals($resolvedOptions, $parameter->getOptions());
+        $this->assertSame($resolvedOptions, $parameter->getOptions());
     }
 
     /**
@@ -147,7 +147,7 @@ final class LocationTypeTest extends TestCase
             ->with($this->equalTo(42))
             ->will($this->returnValue(new Location(['remoteId' => 'abc'])));
 
-        $this->assertEquals('abc', $this->type->export($this->getParameterDefinition(), 42));
+        $this->assertSame('abc', $this->type->export($this->getParameterDefinition(), 42));
     }
 
     /**
@@ -175,7 +175,7 @@ final class LocationTypeTest extends TestCase
             ->with($this->equalTo('abc'))
             ->will($this->returnValue(new Location(['id' => 42])));
 
-        $this->assertEquals(42, $this->type->import($this->getParameterDefinition(), 'abc'));
+        $this->assertSame(42, $this->type->import($this->getParameterDefinition(), 'abc'));
     }
 
     /**
@@ -224,7 +224,7 @@ final class LocationTypeTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $this->type->getConstraints($parameter, $value));
-        $this->assertEquals($isValid, $errors->count() === 0);
+        $this->assertSame($isValid, $errors->count() === 0);
     }
 
     /**
@@ -257,7 +257,7 @@ final class LocationTypeTest extends TestCase
      */
     public function testIsValueEmpty($value, bool $isEmpty): void
     {
-        $this->assertEquals($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
+        $this->assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
     }
 
     /**

@@ -28,7 +28,7 @@ final class SiteAccessTest extends TestCase
      */
     public function testGetType(): void
     {
-        $this->assertEquals('ez_site_access', $this->conditionType->getType());
+        $this->assertSame('ez_site_access', $this->conditionType->getType());
     }
 
     /**
@@ -45,7 +45,7 @@ final class SiteAccessTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $this->conditionType->getConstraints());
-        $this->assertEquals($isValid, $errors->count() === 0);
+        $this->assertSame($isValid, $errors->count() === 0);
     }
 
     /**
@@ -61,7 +61,7 @@ final class SiteAccessTest extends TestCase
         $request = Request::create('/');
         $request->attributes->set('siteaccess', new EzPublishSiteAccess('eng'));
 
-        $this->assertEquals($matches, $this->conditionType->matches($request, $value));
+        $this->assertSame($matches, $this->conditionType->matches($request, $value));
     }
 
     /**

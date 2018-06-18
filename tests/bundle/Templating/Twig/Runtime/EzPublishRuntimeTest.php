@@ -70,7 +70,7 @@ final class EzPublishRuntimeTest extends TestCase
     {
         $this->mockServices();
 
-        $this->assertEquals('Content name 42', $this->runtime->getContentName(42));
+        $this->assertSame('Content name 42', $this->runtime->getContentName(42));
     }
 
     /**
@@ -85,7 +85,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->with($this->equalTo(42))
             ->will($this->throwException(new Exception()));
 
-        $this->assertEquals('', $this->runtime->getContentName(42));
+        $this->assertSame('', $this->runtime->getContentName(42));
     }
 
     /**
@@ -97,7 +97,7 @@ final class EzPublishRuntimeTest extends TestCase
     {
         $this->mockServices();
 
-        $this->assertEquals(
+        $this->assertSame(
             [
                 'Content name 102',
                 'Content name 142',
@@ -120,7 +120,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->with($this->equalTo(22))
             ->will($this->throwException(new Exception()));
 
-        $this->assertEquals([], $this->runtime->getLocationPath(22));
+        $this->assertSame([], $this->runtime->getLocationPath(22));
     }
 
     /**
@@ -162,7 +162,7 @@ final class EzPublishRuntimeTest extends TestCase
                 )
             );
 
-        $this->assertEquals('Content type some_type', $this->runtime->getContentTypeName('some_type'));
+        $this->assertSame('Content type some_type', $this->runtime->getContentTypeName('some_type'));
     }
 
     /**
@@ -198,7 +198,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->method('getTranslatedByMethod')
             ->will($this->returnValue(null));
 
-        $this->assertEquals('English content type some_type', $this->runtime->getContentTypeName('some_type'));
+        $this->assertSame('English content type some_type', $this->runtime->getContentTypeName('some_type'));
     }
 
     /**
@@ -231,7 +231,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->method('getTranslatedByMethod')
             ->will($this->returnValue(null));
 
-        $this->assertEquals('', $this->runtime->getContentTypeName('some_type'));
+        $this->assertSame('', $this->runtime->getContentTypeName('some_type'));
     }
 
     /**
@@ -246,7 +246,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->with($this->equalTo('some_type'))
             ->will($this->throwException(new Exception()));
 
-        $this->assertEquals('', $this->runtime->getContentTypeName('some_type'));
+        $this->assertSame('', $this->runtime->getContentTypeName('some_type'));
     }
 
     private function prepareRepositoryMock(): void

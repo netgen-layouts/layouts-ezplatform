@@ -106,17 +106,6 @@ final class ViewNodeTest extends ConfigurationNodeTest
         $expectedConfig = [
             'view' => [
                 'block_view' => [
-                    'some_context' => [
-                        'block' => [
-                            'template' => 'block.html.twig',
-                            'match' => [
-                                'block_identifier' => 42,
-                            ],
-                            'parameters' => [
-                                'param' => 'value',
-                            ],
-                        ],
-                    ],
                     'other_context' => [
                         'block' => [
                             'template' => 'block.html.twig',
@@ -125,6 +114,17 @@ final class ViewNodeTest extends ConfigurationNodeTest
                             ],
                             'parameters' => [
                                 'param2' => 'value2',
+                            ],
+                        ],
+                    ],
+                    'some_context' => [
+                        'block' => [
+                            'template' => 'block.html.twig',
+                            'match' => [
+                                'block_identifier' => 42,
+                            ],
+                            'parameters' => [
+                                'param' => 'value',
                             ],
                         ],
                     ],
@@ -208,19 +208,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
 
         // But only "cro" siteaccess aware one should have "other_context"
-        $expectedConfig['system']['cro']['design'] = 'standard';
         $expectedConfig['system']['cro']['view']['block_view'] = [
-            'some_context' => [
-                'block' => [
-                    'template' => 'block.html.twig',
-                    'match' => [
-                        'block_identifier' => 42,
-                    ],
-                    'parameters' => [
-                        'param' => 'value',
-                    ],
-                ],
-            ],
             'other_context' => [
                 'block' => [
                     'template' => 'block.html.twig',
@@ -232,7 +220,20 @@ final class ViewNodeTest extends ConfigurationNodeTest
                     ],
                 ],
             ],
+            'some_context' => [
+                'block' => [
+                    'template' => 'block.html.twig',
+                    'match' => [
+                        'block_identifier' => 42,
+                    ],
+                    'parameters' => [
+                        'param' => 'value',
+                    ],
+                ],
+            ],
         ];
+
+        $expectedConfig['system']['cro']['design'] = 'standard';
 
         $this->assertInjectedConfigurationEqual($expectedConfig, $config);
     }
@@ -307,26 +308,26 @@ final class ViewNodeTest extends ConfigurationNodeTest
         $processedConfig = $this->processConfig($config);
 
         // Default scope should only have block_two and block_one
-        $this->assertEquals(
+        $this->assertSame(
             ['block_two', 'block_one'],
             array_keys($processedConfig['system']['default']['view']['block_view']['context'])
         );
 
         // But only "cro" siteaccess aware one should have all
         // with block_three having priority because it comes from siteaccess scope
-        $this->assertEquals(
+        $this->assertSame(
             ['block_three', 'block_two', 'block_one'],
             array_keys($processedConfig['system']['cro']['view']['block_view']['context'])
         );
 
         // Rule in "default" scope needs to have the original value
-        $this->assertEquals(
+        $this->assertSame(
             'block.html.twig',
             $processedConfig['system']['default']['view']['block_view']['context']['block_two']['template']
         );
 
         // Rule in "cro" scope needs to override existing rule in default scope
-        $this->assertEquals(
+        $this->assertSame(
             'block2.html.twig',
             $processedConfig['system']['cro']['view']['block_view']['context']['block_two']['template']
         );
@@ -392,7 +393,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
 
         // Default scope should have all three rules,
         // but rule from system node (block_three) should be first
-        $this->assertEquals(
+        $this->assertSame(
             ['block_three', 'block_two', 'block_one'],
             array_keys($processedConfig['system']['default']['view']['block_view']['context'])
         );
@@ -582,6 +583,6 @@ final class ViewNodeTest extends ConfigurationNodeTest
             )
         );
 
-        $this->assertEquals($expectedConfig['system']['default'], $config['system']['default']);
+        $this->assertSame($expectedConfig['system']['default'], $config['system']['default']);
     }
 }

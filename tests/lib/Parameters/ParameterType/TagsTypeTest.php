@@ -35,7 +35,7 @@ final class TagsTypeTest extends TestCase
      */
     public function testGetIdentifier(): void
     {
-        $this->assertEquals('eztags', $this->type->getIdentifier());
+        $this->assertSame('eztags', $this->type->getIdentifier());
     }
 
     /**
@@ -45,7 +45,7 @@ final class TagsTypeTest extends TestCase
     public function testValidOptions(array $options, array $resolvedOptions): void
     {
         $parameter = $this->getParameterDefinition($options);
-        $this->assertEquals($resolvedOptions, $parameter->getOptions());
+        $this->assertSame($resolvedOptions, $parameter->getOptions());
     }
 
     /**
@@ -68,8 +68,8 @@ final class TagsTypeTest extends TestCase
                 [
                 ],
                 [
-                    'max' => null,
                     'min' => null,
+                    'max' => null,
                     'allow_invalid' => false,
                 ],
             ],
@@ -78,8 +78,8 @@ final class TagsTypeTest extends TestCase
                     'max' => 5,
                 ],
                 [
-                    'max' => 5,
                     'min' => null,
+                    'max' => 5,
                     'allow_invalid' => false,
                 ],
             ],
@@ -88,8 +88,8 @@ final class TagsTypeTest extends TestCase
                     'max' => null,
                 ],
                 [
-                    'max' => null,
                     'min' => null,
+                    'max' => null,
                     'allow_invalid' => false,
                 ],
             ],
@@ -108,8 +108,8 @@ final class TagsTypeTest extends TestCase
                     'min' => null,
                 ],
                 [
-                    'max' => null,
                     'min' => null,
+                    'max' => null,
                     'allow_invalid' => false,
                 ],
             ],
@@ -214,7 +214,7 @@ final class TagsTypeTest extends TestCase
             ->with($this->equalTo(42))
             ->will($this->returnValue(new Tag(['remoteId' => 'abc'])));
 
-        $this->assertEquals('abc', $this->type->export($this->getParameterDefinition(), 42));
+        $this->assertSame('abc', $this->type->export($this->getParameterDefinition(), 42));
     }
 
     /**
@@ -242,7 +242,7 @@ final class TagsTypeTest extends TestCase
             ->with($this->equalTo('abc'))
             ->will($this->returnValue(new Tag(['id' => 42])));
 
-        $this->assertEquals(42, $this->type->import($this->getParameterDefinition(), 'abc'));
+        $this->assertSame(42, $this->type->import($this->getParameterDefinition(), 'abc'));
     }
 
     /**
@@ -295,7 +295,7 @@ final class TagsTypeTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($values, $this->type->getConstraints($parameter, $values));
-        $this->assertEquals($isValid, $errors->count() === 0);
+        $this->assertSame($isValid, $errors->count() === 0);
     }
 
     public function validationProvider(): array

@@ -13,12 +13,12 @@ final class RoleHierarchyTest extends TestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Security\Role\RoleHierarchy::__construct
      *
-     * @param \Symfony\Component\Security\Core\Role\Role[] $startingRoles
-     * @param \Symfony\Component\Security\Core\Role\Role[] $reachableRoles
+     * @param string $startingRole
+     * @param string[] $expectedReachableRoles
      *
      * @dataProvider getReachableRolesProvider
      */
-    public function testGetReachableRoles(array $startingRoles, array $reachableRoles): void
+    public function testGetReachableRoles(string $startingRole, array $expectedReachableRoles): void
     {
         $role = new RoleHierarchy(
             [
@@ -31,23 +31,31 @@ final class RoleHierarchyTest extends TestCase
             ]
         );
 
-        $this->assertEquals($reachableRoles, $role->getReachableRoles($startingRoles));
+        /** @var \Symfony\Component\Security\Core\Role\Role[] $reachableRoles */
+        $reachableRoles = $role->getReachableRoles([new Role($startingRole)]);
+
+        $this->assertSame(count($expectedReachableRoles), count($reachableRoles));
+
+        foreach ($reachableRoles as $index => $reachableRole) {
+            $this->assertInstanceOf(Role::class, $reachableRole);
+            $this->assertSame($expectedReachableRoles[$index], $reachableRole->getRole());
+        }
     }
 
     public function getReachableRolesProvider(): array
     {
         return [
             [
-                [new Role('ROLE_NGBM_ADMIN')],
-                [new Role('ROLE_NGBM_ADMIN')],
+                'ROLE_NGBM_ADMIN',
+                ['ROLE_NGBM_ADMIN'],
             ],
             [
-                [new Role('ROLE_NGBM_EDITOR')],
-                [new Role('ROLE_NGBM_EDITOR'), new Role('ROLE_NGBM_ADMIN')],
+                'ROLE_NGBM_EDITOR',
+                ['ROLE_NGBM_EDITOR', 'ROLE_NGBM_ADMIN'],
             ],
             [
-                [new Role('ROLE_NGBM_API')],
-                [new Role('ROLE_NGBM_API'), new Role('ROLE_NGBM_EDITOR'), new Role('ROLE_NGBM_ADMIN')],
+                'ROLE_NGBM_API',
+                ['ROLE_NGBM_API', 'ROLE_NGBM_EDITOR', 'ROLE_NGBM_ADMIN'],
             ],
         ];
     }

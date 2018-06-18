@@ -64,7 +64,7 @@ final class ChildrenTest extends TestCase
      */
     public function testGetType(): void
     {
-        $this->assertEquals('ezchildren', $this->targetType->getType());
+        $this->assertSame('ezchildren', $this->targetType->getType());
     }
 
     /**
@@ -125,7 +125,7 @@ final class ChildrenTest extends TestCase
             ->with($this->equalTo($request))
             ->will($this->returnValue($location));
 
-        $this->assertEquals(84, $this->targetType->provideValue($request));
+        $this->assertSame(84, $this->targetType->provideValue($request));
     }
 
     /**

@@ -75,8 +75,8 @@ final class LocaleProviderTest extends TestCase
 
         $availableLocales = $this->localeProvider->getAvailableLocales();
 
-        $this->assertEquals(['hr', 'en'], array_keys($availableLocales));
-        $this->assertEquals(['Croatian', 'English'], array_values($availableLocales));
+        $this->assertSame(['hr', 'en'], array_keys($availableLocales));
+        $this->assertSame(['Croatian', 'English'], array_values($availableLocales));
     }
 
     /**
@@ -105,7 +105,7 @@ final class LocaleProviderTest extends TestCase
 
         $availableLocales = $this->localeProvider->getAvailableLocales();
 
-        $this->assertEquals([], $availableLocales);
+        $this->assertSame([], $availableLocales);
     }
 
     /**
@@ -171,7 +171,7 @@ final class LocaleProviderTest extends TestCase
 
         $requestLocales = $this->localeProvider->getRequestLocales(Request::create(''));
 
-        $this->assertEquals(['en', 'hr'], $requestLocales);
+        $this->assertSame(['en', 'hr'], $requestLocales);
     }
 
     /**
@@ -201,7 +201,7 @@ final class LocaleProviderTest extends TestCase
 
         $requestLocales = $this->localeProvider->getRequestLocales(Request::create(''));
 
-        $this->assertEquals([], $requestLocales);
+        $this->assertSame([], $requestLocales);
     }
 
     /**
@@ -231,6 +231,6 @@ final class LocaleProviderTest extends TestCase
 
         $requestLocales = $this->localeProvider->getRequestLocales(Request::create(''));
 
-        $this->assertEquals([], $requestLocales);
+        $this->assertSame([], $requestLocales);
     }
 }

@@ -55,7 +55,7 @@ final class ObjectStateTypeTest extends TestCase
      */
     public function testGetIdentifier(): void
     {
-        $this->assertEquals('ez_object_state', $this->type->getIdentifier());
+        $this->assertSame('ez_object_state', $this->type->getIdentifier());
     }
 
     /**
@@ -65,7 +65,7 @@ final class ObjectStateTypeTest extends TestCase
     public function testValidOptions(array $options, array $resolvedOptions): void
     {
         $parameter = $this->getParameterDefinition($options);
-        $this->assertEquals($resolvedOptions, $parameter->getOptions());
+        $this->assertSame($resolvedOptions, $parameter->getOptions());
     }
 
     /**
@@ -203,7 +203,7 @@ final class ObjectStateTypeTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $this->type->getConstraints($parameter, $value));
-        $this->assertEquals($isValid, $errors->count() === 0);
+        $this->assertSame($isValid, $errors->count() === 0);
     }
 
     /**
@@ -231,7 +231,7 @@ final class ObjectStateTypeTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $this->type->getConstraints($parameter, $value));
-        $this->assertEquals($isValid, $errors->count() === 0);
+        $this->assertSame($isValid, $errors->count() === 0);
     }
 
     public function validationProvider(): array
@@ -274,7 +274,7 @@ final class ObjectStateTypeTest extends TestCase
      */
     public function testFromHash($value, $convertedValue, bool $multiple): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             $convertedValue,
             $this->type->fromHash(
                 $this->getParameterDefinition(
@@ -342,7 +342,7 @@ final class ObjectStateTypeTest extends TestCase
      */
     public function testIsValueEmpty($value, bool $isEmpty): void
     {
-        $this->assertEquals($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
+        $this->assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
     }
 
     /**

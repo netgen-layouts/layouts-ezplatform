@@ -80,7 +80,7 @@ final class ContentProviderTest extends TestCase
             ->with($this->equalTo(24))
             ->will($this->returnValue($content));
 
-        $this->assertEquals($content, $this->contentProvider->provideContent());
+        $this->assertSame($content, $this->contentProvider->provideContent());
     }
 
     /**
@@ -116,7 +116,7 @@ final class ContentProviderTest extends TestCase
             ->with($this->equalTo(42))
             ->will($this->returnValue($location));
 
-        $this->assertEquals($location, $this->contentProvider->provideLocation());
+        $this->assertSame($location, $this->contentProvider->provideLocation());
     }
 
     /**

@@ -67,7 +67,13 @@ abstract class ConfigurationNodeTest extends TestCase
             }
         }
 
-        $this->assertEquals($expectedConfig, $actualConfig);
+        ksort($expectedConfig);
+        ksort($actualConfig);
+
+        ksort($expectedConfig['system']);
+        ksort($actualConfig['system']);
+
+        $this->assertSame($expectedConfig, $actualConfig);
     }
 
     /**
@@ -84,11 +90,11 @@ abstract class ConfigurationNodeTest extends TestCase
      */
     protected function getExtendedExpectedConfig(array $expectedConfig): array
     {
-        return $expectedConfig + self::$defaultSystemConfig + [
+        return $expectedConfig + [
             'system' => [
                 'default' => $expectedConfig + self::$defaultSystemConfig,
             ],
-        ];
+        ] + self::$defaultSystemConfig;
     }
 
     /**

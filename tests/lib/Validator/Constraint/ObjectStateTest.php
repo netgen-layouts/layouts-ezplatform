@@ -15,6 +15,6 @@ final class ObjectStateTest extends TestCase
     public function testValidatedBy(): void
     {
         $constraint = new ObjectState();
-        $this->assertEquals('ngbm_ez_object_state', $constraint->validatedBy());
+        $this->assertSame('ngbm_ez_object_state', $constraint->validatedBy());
     }
 }

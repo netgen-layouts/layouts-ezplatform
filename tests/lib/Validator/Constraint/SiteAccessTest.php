@@ -15,6 +15,6 @@ final class SiteAccessTest extends TestCase
     public function testValidatedBy(): void
     {
         $constraint = new SiteAccess();
-        $this->assertEquals('ngbm_ez_site_access', $constraint->validatedBy());
+        $this->assertSame('ngbm_ez_site_access', $constraint->validatedBy());
     }
 }

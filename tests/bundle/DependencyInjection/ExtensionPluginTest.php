@@ -31,7 +31,7 @@ final class ExtensionPluginTest extends AbstractExtensionTestCase
         $this->assertArrayHasKey('block_type_groups', $config);
         $this->assertArrayHasKey('placeholders', $config['block_type_groups']);
 
-        $this->assertEquals(
+        $this->assertSame(
             [
                 'block_types' => [
                     'ezcontent_field',
