@@ -23,6 +23,9 @@
         "netgen/tagsbundle": "^2.0 || ^3.0",
         "franzl/studio": "*"
     },
+    "suggest": {
+        "netgen/block-manager-site-api": "Integrate Netgen Layouts with eZ Platform Site API to boost your site-building productivity with eZ Platform"
+    },
     "scripts": {
         "test": "@php vendor/bin/phpunit --colors=always",
         "coverage": "@php -dzend_extension=xdebug.so vendor/bin/phpunit --coverage-html=coverage --colors=always",
