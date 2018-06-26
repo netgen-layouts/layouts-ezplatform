@@ -75,8 +75,6 @@ final class NetgenEzPublishBlockManagerExtensionTest extends AbstractExtensionTe
             ...$this->container->getExtensionConfig('netgen_block_manager')
         );
 
-        $this->assertInternalType('array', $config);
-
         $this->assertArrayHasKey('block_definitions', $config);
         $this->assertArrayHasKey('ezcontent_field', $config['block_definitions']);
 
