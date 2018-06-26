@@ -12,11 +12,11 @@ use Symfony\Component\HttpKernel\Kernel;
 
 final class ConfigureHttpCachePass implements CompilerPassInterface
 {
-    private static $serviceName = 'netgen_block_manager.http_cache.client';
+    private const SERVICE_NAME = 'netgen_block_manager.http_cache.client';
 
     public function process(ContainerBuilder $container): void
     {
-        if (!$container->has(self::$serviceName) || !$container->has('ezplatform.http_cache.purge_client')) {
+        if (!$container->has(self::SERVICE_NAME) || !$container->has('ezplatform.http_cache.purge_client')) {
             return;
         }
 
@@ -42,7 +42,7 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
 
         if (!is_a($purgeClientClass, VarnishPurgeClient::class, true)) {
             $container->setAlias(
-                self::$serviceName,
+                self::SERVICE_NAME,
                 'netgen_block_manager.http_cache.client.null'
             );
         }

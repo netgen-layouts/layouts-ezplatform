@@ -15,10 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class ExtensionPlugin extends BaseExtensionPlugin
 {
-    /**
-     * @var array
-     */
-    private static $siteAccessAwareSettings = [
+    private const SITEACCCESS_AWARE_SETTINGS = [
         'view',
         'design',
     ];
@@ -37,7 +34,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
      * Pre-processes the configuration before it is resolved.
      *
      * The point of the preprocessor is to generate eZ Platform siteaccess aware
-     * configuration for every key that is available in self::$siteAccessAwareSettings.
+     * configuration for every key that is available in self::SITEACCCESS_AWARE_SETTINGS.
      *
      * With this, the following:
      *
@@ -79,7 +76,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
             }
 
             foreach (array_keys($config) as $configName) {
-                if (!in_array($configName, self::$siteAccessAwareSettings, true)) {
+                if (!in_array($configName, self::SITEACCCESS_AWARE_SETTINGS, true)) {
                     unset($config[$configName]);
                 }
             }
@@ -118,7 +115,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
 
         $processor = new ConfigurationProcessor($this->container, 'netgen_block_manager');
         foreach (array_keys($config) as $key) {
-            if ($key === 'system' || !in_array($key, self::$siteAccessAwareSettings, true)) {
+            if ($key === 'system' || !in_array($key, self::SITEACCCESS_AWARE_SETTINGS, true)) {
                 continue;
             }
 

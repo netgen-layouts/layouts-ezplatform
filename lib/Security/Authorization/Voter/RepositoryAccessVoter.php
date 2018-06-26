@@ -19,17 +19,13 @@ final class RepositoryAccessVoter extends Voter
 {
     /**
      * Identifier of the eZ Platform module used for creating Netgen Layouts permissions.
-     *
-     * @var string
      */
-    private static $module = 'nglayouts';
+    private const MODULE = 'nglayouts';
 
     /**
      * Map of supported attributes to corresponding functions in the eZ Platform module.
-     *
-     * @var array
      */
-    private static $attributeToPolicyMap = [
+    private const ATTRIBUTE_TO_POLICY_MAP = [
         'ROLE_NGBM_ADMIN' => 'admin',
         'ROLE_NGBM_EDITOR' => 'editor',
         'ROLE_NGBM_API' => 'api',
@@ -84,15 +80,15 @@ final class RepositoryAccessVoter extends Voter
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token): bool
     {
-        if (!isset(self::$attributeToPolicyMap[$attribute])) {
+        if (!isset(self::ATTRIBUTE_TO_POLICY_MAP[$attribute])) {
             return false;
         }
 
-        $function = self::$attributeToPolicyMap[$attribute];
+        $function = self::ATTRIBUTE_TO_POLICY_MAP[$attribute];
 
         return $this->accessDecisionManager->decide(
             $token,
-            [new Attribute(self::$module, $function)],
+            [new Attribute(self::MODULE, $function)],
             $subject
         );
     }

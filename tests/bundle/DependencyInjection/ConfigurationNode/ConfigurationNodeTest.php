@@ -18,6 +18,15 @@ abstract class ConfigurationNodeTest extends TestCase
     use ConfigurationTestCaseTrait;
 
     /**
+     * Default config here is used because config test library can't test against
+     * two or more config tree parts.
+     */
+    private const DEFAULT_SYSTEM_CONFIG = [
+        'view' => [],
+        'design' => 'standard',
+    ];
+
+    /**
      * @var \Netgen\Bundle\BlockManagerBundle\DependencyInjection\NetgenBlockManagerExtension
      */
     protected $extension;
@@ -31,17 +40,6 @@ abstract class ConfigurationNodeTest extends TestCase
      * @var \Matthias\SymfonyConfigTest\Partial\PartialProcessor
      */
     protected $partialProcessor;
-
-    /**
-     * Default config here is used because config test library can't test against
-     * two or more config tree parts.
-     *
-     * @var array
-     */
-    private static $defaultSystemConfig = [
-        'view' => [],
-        'design' => 'standard',
-    ];
 
     public function setUp(): void
     {
@@ -62,7 +60,7 @@ abstract class ConfigurationNodeTest extends TestCase
         $actualConfig = $this->processConfig($config);
 
         foreach ($actualConfig as $key => $value) {
-            if ($key !== 'system' && !array_key_exists($key, self::$defaultSystemConfig)) {
+            if ($key !== 'system' && !array_key_exists($key, self::DEFAULT_SYSTEM_CONFIG)) {
                 unset($actualConfig[$key]);
             }
         }
@@ -92,9 +90,9 @@ abstract class ConfigurationNodeTest extends TestCase
     {
         return $expectedConfig + [
             'system' => [
-                'default' => $expectedConfig + self::$defaultSystemConfig,
+                'default' => $expectedConfig + self::DEFAULT_SYSTEM_CONFIG,
             ],
-        ] + self::$defaultSystemConfig;
+        ] + self::DEFAULT_SYSTEM_CONFIG;
     }
 
     /**
