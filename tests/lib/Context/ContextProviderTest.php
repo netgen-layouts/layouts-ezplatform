@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Netgen\BlockManager\Ez\Tests\Context;
 
-use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use eZ\Publish\Core\MVC\Symfony\View\ContentView;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\BlockManager\Context\Context;
+use Netgen\BlockManager\Ez\ContentProvider\RequestContentExtractor;
 use Netgen\BlockManager\Ez\Context\ContextProvider;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -16,6 +16,11 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class ContextProviderTest extends TestCase
 {
+    /**
+     * @var \Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface
+     */
+    private $contentExtractor;
+
     /**
      * @var \Symfony\Component\HttpFoundation\RequestStack
      */
@@ -33,10 +38,15 @@ final class ContextProviderTest extends TestCase
 
     public function setUp(): void
     {
+        $this->contentExtractor = new RequestContentExtractor();
+
         $this->requestStack = new RequestStack();
         $this->context = new Context();
 
-        $this->contextProvider = new ContextProvider($this->requestStack);
+        $this->contextProvider = new ContextProvider(
+            $this->contentExtractor,
+            $this->requestStack
+        );
     }
 
     /**
@@ -69,74 +79,6 @@ final class ContextProviderTest extends TestCase
         $this->requestStack->push($request);
 
         $request->attributes->set('view', new stdClass());
-
-        $this->contextProvider->provideContext($this->context);
-
-        $this->assertFalse($this->context->has('ez_location_id'));
-    }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::__construct
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::provideContext
-     */
-    public function testProvideContextWithLocation(): void
-    {
-        $request = Request::create('/');
-        $this->requestStack->push($request);
-
-        $request->attributes->set('location', new Location(['id' => 42]));
-
-        $this->contextProvider->provideContext($this->context);
-
-        $this->assertTrue($this->context->has('ez_location_id'));
-        $this->assertSame(42, $this->context->get('ez_location_id'));
-    }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::__construct
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::provideContext
-     */
-    public function testProvideContextWithInvalidLocation(): void
-    {
-        $request = Request::create('/');
-        $this->requestStack->push($request);
-
-        $request->attributes->set('location', new stdClass());
-
-        $this->contextProvider->provideContext($this->context);
-
-        $this->assertFalse($this->context->has('ez_location_id'));
-    }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::__construct
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::provideContext
-     */
-    public function testProvideContextWithLocationId(): void
-    {
-        $request = Request::create('/');
-        $this->requestStack->push($request);
-
-        $request->attributes->set('locationId', 42);
-        $request->attributes->set('_route', UrlAliasRouter::URL_ALIAS_ROUTE_NAME);
-
-        $this->contextProvider->provideContext($this->context);
-
-        $this->assertTrue($this->context->has('ez_location_id'));
-        $this->assertSame(42, $this->context->get('ez_location_id'));
-    }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::__construct
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::provideContext
-     */
-    public function testProvideContextWithInvalidRoute(): void
-    {
-        $request = Request::create('/');
-        $this->requestStack->push($request);
-
-        $request->attributes->set('locationId', 42);
-        $request->attributes->set('_route', 'some_route');
 
         $this->contextProvider->provideContext($this->context);
 

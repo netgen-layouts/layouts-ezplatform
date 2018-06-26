@@ -22,14 +22,6 @@ services:
         class: Netgen\BlockManager\Ez\ContentProvider\RequestContentExtractor
         public: false
 
-    netgen_block_manager.ezpublish.content_extractor.ez5_request:
-        class: Netgen\BlockManager\Ez\ContentProvider\Ez5RequestContentExtractor
-        public: false
-        deprecated: ~
-        arguments:
-            - "@ezpublish.api.service.content"
-            - "@ezpublish.api.service.location"
-
     netgen_block_manager.ezpublish.security.role_hierarchy:
         class: Netgen\BlockManager\Ez\Security\Role\RoleHierarchy
         public: false
