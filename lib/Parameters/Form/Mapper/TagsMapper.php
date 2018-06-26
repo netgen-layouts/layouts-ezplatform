@@ -17,12 +17,10 @@ final class TagsMapper extends Mapper
 
     public function mapOptions(ParameterDefinition $parameterDefinition): array
     {
-        $options = $parameterDefinition->getOptions();
-
         return [
             'item_type' => 'eztags',
-            'min' => $options['min'],
-            'max' => $options['max'],
+            'min' => $parameterDefinition->getOption('min'),
+            'max' => $parameterDefinition->getOption('max'),
         ];
     }
 }
