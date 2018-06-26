@@ -37,7 +37,7 @@ final class LocationType extends ParameterType
     {
         $optionsResolver->setDefault('allow_invalid', false);
         $optionsResolver->setRequired(['allow_invalid']);
-        $optionsResolver->setAllowedTypes('allow_invalid', ['bool']);
+        $optionsResolver->setAllowedTypes('allow_invalid', 'bool');
     }
 
     public function export(ParameterDefinition $parameterDefinition, $value)

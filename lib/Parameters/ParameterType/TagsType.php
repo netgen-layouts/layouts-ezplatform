@@ -44,7 +44,7 @@ final class TagsType extends ParameterType
 
         $optionsResolver->setAllowedTypes('min', ['int', 'null']);
         $optionsResolver->setAllowedTypes('max', ['int', 'null']);
-        $optionsResolver->setAllowedTypes('allow_invalid', ['bool']);
+        $optionsResolver->setAllowedTypes('allow_invalid', 'bool');
 
         $optionsResolver->setAllowedValues('min', function (?int $value): bool {
             return $value === null || $value > 0;
