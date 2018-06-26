@@ -50,9 +50,9 @@ class LocaleProvider implements LocaleProviderInterface
     /**
      * Sets the available language codes to the provider.
      *
-     * @param string[] $languageCodes
+     * @param string[]|null $languageCodes
      */
-    public function setLanguages(array $languageCodes = null): void
+    public function setLanguages(?array $languageCodes = null): void
     {
         $this->languageCodes = $languageCodes ?? [];
     }

@@ -44,7 +44,7 @@ trait SortTrait
     /**
      * Builds the parameters for sorting eZ content.
      */
-    private function buildSortParameters(ParameterBuilderInterface $builder, array $groups = [], array $allowedSortTypes = null): void
+    private function buildSortParameters(ParameterBuilderInterface $builder, array $groups = [], ?array $allowedSortTypes = null): void
     {
         $sortTypes = [
             'Published' => 'date_published',
@@ -87,7 +87,7 @@ trait SortTrait
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Query\SortClause[]
      */
-    private function getSortClauses(Query $query, Location $parentLocation = null): array
+    private function getSortClauses(Query $query, ?Location $parentLocation = null): array
     {
         $sortType = $query->getParameter('sort_type')->getValue() ?? 'default';
         $sortDirection = $query->getParameter('sort_direction')->getValue() ?? LocationQuery::SORT_DESC;
