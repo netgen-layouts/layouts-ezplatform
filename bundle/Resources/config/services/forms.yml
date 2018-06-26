@@ -7,6 +7,14 @@ services:
         tags:
             - { name: form.type }
 
+    netgen_block_manager.form.ez_section:
+        class: Netgen\BlockManager\Ez\Form\SectionType
+        # public: false
+        arguments:
+            - "@ezpublish.api.service.section"
+        tags:
+            - { name: form.type }
+
     netgen_block_manager.form.ez_object_state:
         class: Netgen\BlockManager\Ez\Form\ObjectStateType
         # public: false

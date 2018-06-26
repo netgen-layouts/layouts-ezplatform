@@ -39,6 +39,14 @@ services:
         tags:
             - { name: validator.constraint_validator, alias: ngbm_ez_content_type }
 
+    netgen_block_manager.validator.ez_section:
+        class: Netgen\BlockManager\Ez\Validator\SectionValidator
+        # public: false
+        arguments:
+            - "@ezpublish.api.repository"
+        tags:
+            - { name: validator.constraint_validator, alias: ngbm_ez_section }
+
     netgen_block_manager.validator.ez_object_state:
         class: Netgen\BlockManager\Ez\Validator\ObjectStateValidator
         # public: false

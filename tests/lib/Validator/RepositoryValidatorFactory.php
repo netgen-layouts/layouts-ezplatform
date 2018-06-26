@@ -9,6 +9,7 @@ use Netgen\BlockManager\Ez\Validator\ContentTypeValidator;
 use Netgen\BlockManager\Ez\Validator\ContentValidator;
 use Netgen\BlockManager\Ez\Validator\LocationValidator;
 use Netgen\BlockManager\Ez\Validator\ObjectStateValidator;
+use Netgen\BlockManager\Ez\Validator\SectionValidator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorFactory;
 use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
@@ -34,6 +35,7 @@ final class RepositoryValidatorFactory implements ConstraintValidatorFactoryInte
             'ngbm_ezlocation' => new LocationValidator($repository),
             'ngbm_ezcontent' => new ContentValidator($repository),
             'ngbm_ez_content_type' => new ContentTypeValidator($repository),
+            'ngbm_ez_section' => new SectionValidator($repository),
             'ngbm_ez_object_state' => new ObjectStateValidator($repository),
         ];
     }

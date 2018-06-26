@@ -8,6 +8,7 @@ use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use eZ\Publish\SPI\Persistence\Content\Section\Handler;
 use Netgen\BlockManager\API\Values\Collection\Query;
+use Netgen\BlockManager\Ez\Parameters\ParameterType as EzParameterType;
 use Netgen\BlockManager\Parameters\ParameterBuilderInterface;
 use Netgen\BlockManager\Parameters\ParameterType;
 
@@ -41,18 +42,9 @@ trait SectionFilterTrait
 
         $builder->get('filter_by_section')->add(
             'sections',
-            ParameterType\ChoiceType::class,
+            EzParameterType\SectionType::class,
             [
                 'multiple' => true,
-                'options' => function (): array {
-                    $sections = [];
-
-                    foreach ($this->sectionHandler->loadAll() as $section) {
-                        $sections[$section->name] = $section->identifier;
-                    }
-
-                    return $sections;
-                },
                 'groups' => $groups,
             ]
         );

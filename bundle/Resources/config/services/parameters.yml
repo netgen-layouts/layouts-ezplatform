@@ -21,6 +21,12 @@ services:
         tags:
             - { name: netgen_block_manager.parameters.parameter_type }
 
+    netgen_block_manager.parameters.parameter_type.ez_section:
+        class: Netgen\BlockManager\Ez\Parameters\ParameterType\SectionType
+        public: false
+        tags:
+            - { name: netgen_block_manager.parameters.parameter_type }
+
     netgen_block_manager.parameters.parameter_type.ez_object_state:
         class: Netgen\BlockManager\Ez\Parameters\ParameterType\ObjectStateType
         public: false
@@ -44,6 +50,12 @@ services:
         public: false
         tags:
             - { name: netgen_block_manager.parameters.form.mapper, type: ez_content_type }
+
+    netgen_block_manager.parameters.form.mapper.ez_section:
+        class: Netgen\BlockManager\Ez\Parameters\Form\Mapper\SectionMapper
+        public: false
+        tags:
+            - { name: netgen_block_manager.parameters.form.mapper, type: ez_section }
 
     netgen_block_manager.parameters.form.mapper.ez_object_state:
         class: Netgen\BlockManager\Ez\Parameters\Form\Mapper\ObjectStateMapper
