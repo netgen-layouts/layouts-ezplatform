@@ -29,6 +29,7 @@
             <directory suffix=".php">bundle</directory>
             <exclude>
                 <file>bundle/NetgenEzPublishBlockManagerBundle.php</file>
+                <file>bundle/DependencyInjection/NetgenEzPublishBlockManagerExtension.php</file>
             </exclude>
             <exclude>
                 <directory>bundle/ezpublish_legacy</directory>
