@@ -90,7 +90,7 @@ final class ContentTypeTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate(['identifier'], $this->conditionType->getConstraints());
-        $this->assertTrue($errors->count() === 0);
+        $this->assertCount(0, $errors);
     }
 
     /**
@@ -109,7 +109,7 @@ final class ContentTypeTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate(['unknown'], $this->conditionType->getConstraints());
-        $this->assertFalse($errors->count() === 0);
+        $this->assertNotCount(0, $errors);
     }
 
     /**

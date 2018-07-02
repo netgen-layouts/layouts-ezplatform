@@ -83,7 +83,7 @@ final class ChildrenTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate(42, $this->targetType->getConstraints());
-        $this->assertTrue($errors->count() === 0);
+        $this->assertCount(0, $errors);
     }
 
     /**
@@ -102,7 +102,7 @@ final class ChildrenTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate(42, $this->targetType->getConstraints());
-        $this->assertFalse($errors->count() === 0);
+        $this->assertNotCount(0, $errors);
     }
 
     /**
