@@ -61,7 +61,7 @@ final class RepositoryAccessVoterTest extends TestCase
                 ->expects($this->at($i++))
                 ->method('decide')
                 ->with(
-                    $this->equalTo($token),
+                    $this->identicalTo($token),
                     $this->equalTo([new Attribute('nglayouts', $function)]),
                     $this->isNull()
                 )

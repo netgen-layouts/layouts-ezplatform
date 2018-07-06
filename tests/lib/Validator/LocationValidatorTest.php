@@ -63,7 +63,7 @@ final class LocationValidatorTest extends ValidatorTestCase
         $this->locationServiceMock
             ->expects($this->once())
             ->method('loadLocation')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->returnValue(new EzLocation(['id' => 42])));
 
         $this->assertValid(true, 42);
@@ -91,7 +91,7 @@ final class LocationValidatorTest extends ValidatorTestCase
         $this->locationServiceMock
             ->expects($this->once())
             ->method('loadLocation')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->throwException(new NotFoundException('location', 42)));
 
         $this->assertValid(false, 42);

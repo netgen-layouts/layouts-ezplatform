@@ -71,13 +71,13 @@ final class ContentProviderTest extends TestCase
         $this->locationServiceMock
             ->expects($this->once())
             ->method('loadLocation')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->returnValue($location));
 
         $this->contentServiceMock
             ->expects($this->once())
             ->method('loadContent')
-            ->with($this->equalTo(24))
+            ->with($this->identicalTo(24))
             ->will($this->returnValue($content));
 
         $this->assertSame($content, $this->contentProvider->provideContent());
@@ -113,7 +113,7 @@ final class ContentProviderTest extends TestCase
         $this->locationServiceMock
             ->expects($this->once())
             ->method('loadLocation')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->returnValue($location));
 
         $this->assertSame($location, $this->contentProvider->provideLocation());

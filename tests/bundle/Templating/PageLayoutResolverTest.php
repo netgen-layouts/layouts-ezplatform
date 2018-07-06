@@ -63,13 +63,13 @@ final class PageLayoutResolverTest extends TestCase
         $this->configResolverMock
             ->expects($this->at(0))
             ->method('hasParameter')
-            ->with($this->equalTo('pagelayout'))
+            ->with($this->identicalTo('pagelayout'))
             ->will($this->returnValue(true));
 
         $this->configResolverMock
             ->expects($this->at(1))
             ->method('getParameter')
-            ->with($this->equalTo('pagelayout'))
+            ->with($this->identicalTo('pagelayout'))
             ->will($this->returnValue('resolvedPagelayout'));
 
         $this->assertSame('resolvedPagelayout', $this->resolver->resolvePageLayout());
@@ -149,7 +149,7 @@ final class PageLayoutResolverTest extends TestCase
         $this->configResolverMock
             ->expects($this->at(0))
             ->method('hasParameter')
-            ->with($this->equalTo('pagelayout'))
+            ->with($this->identicalTo('pagelayout'))
             ->will($this->returnValue(false));
 
         $this->configResolverMock

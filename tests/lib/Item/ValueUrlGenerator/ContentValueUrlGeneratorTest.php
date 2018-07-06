@@ -39,10 +39,8 @@ final class ContentValueUrlGeneratorTest extends TestCase
             ->expects($this->once())
             ->method('generate')
             ->with(
-                $this->equalTo(UrlAliasRouter::URL_ALIAS_ROUTE_NAME),
-                [
-                    'contentId' => 42,
-                ]
+                $this->identicalTo(UrlAliasRouter::URL_ALIAS_ROUTE_NAME),
+                $this->identicalTo(['contentId' => 42])
             )
             ->will($this->returnValue('/content/path'));
 

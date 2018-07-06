@@ -211,7 +211,7 @@ final class TagsTypeTest extends TestCase
         $this->tagsServiceMock
             ->expects($this->once())
             ->method('loadTag')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->returnValue(new Tag(['remoteId' => 'abc'])));
 
         $this->assertSame('abc', $this->type->export($this->getParameterDefinition(), 42));
@@ -225,7 +225,7 @@ final class TagsTypeTest extends TestCase
         $this->tagsServiceMock
             ->expects($this->once())
             ->method('loadTag')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->throwException(new NotFoundException('tag', 42)));
 
         $this->assertNull($this->type->export($this->getParameterDefinition(), 42));
@@ -239,7 +239,7 @@ final class TagsTypeTest extends TestCase
         $this->tagsServiceMock
             ->expects($this->once())
             ->method('loadTagByRemoteId')
-            ->with($this->equalTo('abc'))
+            ->with($this->identicalTo('abc'))
             ->will($this->returnValue(new Tag(['id' => 42])));
 
         $this->assertSame(42, $this->type->import($this->getParameterDefinition(), 'abc'));
@@ -253,7 +253,7 @@ final class TagsTypeTest extends TestCase
         $this->tagsServiceMock
             ->expects($this->once())
             ->method('loadTagByRemoteId')
-            ->with($this->equalTo('abc'))
+            ->with($this->identicalTo('abc'))
             ->will($this->throwException(new NotFoundException('tag', 'abc')));
 
         $this->assertNull($this->type->import($this->getParameterDefinition(), 'abc'));
@@ -275,7 +275,7 @@ final class TagsTypeTest extends TestCase
                     $this->tagsServiceMock
                         ->expects($this->at($i))
                         ->method('loadTag')
-                        ->with($this->equalTo($value))
+                        ->with($this->identicalTo($value))
                         ->will(
                             $this->returnCallback(
                                 function () use ($value): void {

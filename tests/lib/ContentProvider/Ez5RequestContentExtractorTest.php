@@ -100,7 +100,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
         $this->contentServiceMock
             ->expects($this->once())
             ->method('loadContent')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->returnValue($content));
 
         $this->assertSame($content, $this->contentProvider->extractContent($request));
@@ -141,7 +141,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
         $this->contentServiceMock
             ->expects($this->once())
             ->method('loadContent')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->throwException(new NotFoundException('content', 42)));
 
         $this->assertNull($this->contentProvider->extractContent($request));
@@ -178,7 +178,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
         $this->locationServiceMock
             ->expects($this->once())
             ->method('loadLocation')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->returnValue($location));
 
         $this->assertSame($location, $this->contentProvider->extractLocation($request));
@@ -219,7 +219,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
         $this->locationServiceMock
             ->expects($this->once())
             ->method('loadLocation')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->throwException(new NotFoundException('location', 42)));
 
         $this->assertNull($this->contentProvider->extractLocation($request));

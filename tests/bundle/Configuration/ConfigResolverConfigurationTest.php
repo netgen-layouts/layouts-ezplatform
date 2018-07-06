@@ -46,7 +46,7 @@ final class ConfigResolverConfigurationTest extends TestCase
         $this->configResolverMock
             ->expects($this->once())
             ->method('hasParameter')
-            ->with($this->equalTo('some_param'), $this->equalTo('netgen_block_manager'))
+            ->with($this->identicalTo('some_param'), $this->identicalTo('netgen_block_manager'))
             ->will($this->returnValue(true));
 
         $this->fallbackConfigurationMock
@@ -64,13 +64,13 @@ final class ConfigResolverConfigurationTest extends TestCase
         $this->configResolverMock
             ->expects($this->once())
             ->method('hasParameter')
-            ->with($this->equalTo('some_param'), $this->equalTo('netgen_block_manager'))
+            ->with($this->identicalTo('some_param'), $this->identicalTo('netgen_block_manager'))
             ->will($this->returnValue(false));
 
         $this->fallbackConfigurationMock
             ->expects($this->once())
             ->method('hasParameter')
-            ->with($this->equalTo('some_param'))
+            ->with($this->identicalTo('some_param'))
             ->will($this->returnValue(true));
 
         $this->assertTrue($this->configuration->hasParameter('some_param'));
@@ -84,13 +84,13 @@ final class ConfigResolverConfigurationTest extends TestCase
         $this->configResolverMock
             ->expects($this->once())
             ->method('hasParameter')
-            ->with($this->equalTo('some_param'), $this->equalTo('netgen_block_manager'))
+            ->with($this->identicalTo('some_param'), $this->identicalTo('netgen_block_manager'))
             ->will($this->returnValue(false));
 
         $this->fallbackConfigurationMock
             ->expects($this->once())
             ->method('hasParameter')
-            ->with($this->equalTo('some_param'))
+            ->with($this->identicalTo('some_param'))
             ->will($this->returnValue(false));
 
         $this->assertFalse($this->configuration->hasParameter('some_param'));
@@ -104,13 +104,13 @@ final class ConfigResolverConfigurationTest extends TestCase
         $this->configResolverMock
             ->expects($this->any())
             ->method('hasParameter')
-            ->with($this->equalTo('some_param'), $this->equalTo('netgen_block_manager'))
+            ->with($this->identicalTo('some_param'), $this->identicalTo('netgen_block_manager'))
             ->will($this->returnValue(true));
 
         $this->configResolverMock
             ->expects($this->once())
             ->method('getParameter')
-            ->with($this->equalTo('some_param'), $this->equalTo('netgen_block_manager'))
+            ->with($this->identicalTo('some_param'), $this->identicalTo('netgen_block_manager'))
             ->will($this->returnValue('some_param_value'));
 
         $this->fallbackConfigurationMock
@@ -128,13 +128,13 @@ final class ConfigResolverConfigurationTest extends TestCase
         $this->configResolverMock
             ->expects($this->any())
             ->method('hasParameter')
-            ->with($this->equalTo('some_param'), $this->equalTo('netgen_block_manager'))
+            ->with($this->identicalTo('some_param'), $this->identicalTo('netgen_block_manager'))
             ->will($this->returnValue(false));
 
         $this->fallbackConfigurationMock
             ->expects($this->once())
             ->method('hasParameter')
-            ->with($this->equalTo('some_param'))
+            ->with($this->identicalTo('some_param'))
             ->will($this->returnValue(true));
 
         $this->configResolverMock
@@ -144,7 +144,7 @@ final class ConfigResolverConfigurationTest extends TestCase
         $this->fallbackConfigurationMock
             ->expects($this->once())
             ->method('getParameter')
-            ->with($this->equalTo('some_param'))
+            ->with($this->identicalTo('some_param'))
             ->will($this->returnValue('some_param_value'));
 
         $this->assertSame('some_param_value', $this->configuration->getParameter('some_param'));
@@ -160,13 +160,13 @@ final class ConfigResolverConfigurationTest extends TestCase
         $this->configResolverMock
             ->expects($this->once())
             ->method('hasParameter')
-            ->with($this->equalTo('some_param'), $this->equalTo('netgen_block_manager'))
+            ->with($this->identicalTo('some_param'), $this->identicalTo('netgen_block_manager'))
             ->will($this->returnValue(false));
 
         $this->fallbackConfigurationMock
             ->expects($this->once())
             ->method('hasParameter')
-            ->with($this->equalTo('some_param'))
+            ->with($this->identicalTo('some_param'))
             ->will($this->returnValue(false));
 
         $this->configuration->getParameter('some_param');

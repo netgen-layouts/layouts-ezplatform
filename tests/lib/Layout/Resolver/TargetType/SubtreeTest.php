@@ -75,7 +75,7 @@ final class SubtreeTest extends TestCase
         $this->locationServiceMock
             ->expects($this->once())
             ->method('loadLocation')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->returnValue(new Location()));
 
         $validator = Validation::createValidatorBuilder()
@@ -94,7 +94,7 @@ final class SubtreeTest extends TestCase
         $this->locationServiceMock
             ->expects($this->once())
             ->method('loadLocation')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->throwException(new NotFoundException('location', 42)));
 
         $validator = Validation::createValidatorBuilder()
@@ -122,7 +122,7 @@ final class SubtreeTest extends TestCase
         $this->contentExtractorMock
             ->expects($this->any())
             ->method('extractLocation')
-            ->with($this->equalTo($request))
+            ->with($this->identicalTo($request))
             ->will($this->returnValue($location));
 
         $this->assertSame([1, 2, 42], $this->targetType->provideValue($request));
@@ -139,7 +139,7 @@ final class SubtreeTest extends TestCase
         $this->contentExtractorMock
             ->expects($this->any())
             ->method('extractLocation')
-            ->with($this->equalTo($request))
+            ->with($this->identicalTo($request))
             ->will($this->returnValue(null));
 
         $this->assertNull($this->targetType->provideValue($request));

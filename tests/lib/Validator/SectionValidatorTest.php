@@ -64,7 +64,7 @@ final class SectionValidatorTest extends ValidatorTestCase
         $this->sectionServiceMock
             ->expects($this->once())
             ->method('loadSectionByIdentifier')
-            ->with($this->equalTo($identifier))
+            ->with($this->identicalTo($identifier))
             ->will(
                 $this->returnValue(
                     new EzSection(
@@ -101,7 +101,7 @@ final class SectionValidatorTest extends ValidatorTestCase
         $this->sectionServiceMock
             ->expects($this->once())
             ->method('loadSectionByIdentifier')
-            ->with($this->equalTo('unknown'))
+            ->with($this->identicalTo('unknown'))
             ->will(
                 $this->throwException(
                     new NotFoundException('section', 'unknown')

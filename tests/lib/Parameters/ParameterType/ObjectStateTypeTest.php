@@ -157,22 +157,18 @@ final class ObjectStateTypeTest extends TestCase
      */
     public function testValidation($value, bool $required, bool $isValid): void
     {
+        $group1 = new ObjectStateGroup(['identifier' => 'group1']);
+        $group2 = new ObjectStateGroup(['identifier' => 'group2']);
+
         $this->objectStateServiceMock
             ->expects($this->at(0))
             ->method('loadObjectStateGroups')
-            ->will(
-                $this->returnValue(
-                    [
-                        new ObjectStateGroup(['identifier' => 'group1']),
-                        new ObjectStateGroup(['identifier' => 'group2']),
-                    ]
-                )
-            );
+            ->will($this->returnValue([$group1, $group2]));
 
         $this->objectStateServiceMock
             ->expects($this->at(1))
             ->method('loadObjectStates')
-            ->with($this->equalTo(new ObjectStateGroup(['identifier' => 'group1'])))
+            ->with($this->identicalTo($group1))
             ->will(
                 $this->returnValue(
                     [
@@ -193,7 +189,7 @@ final class ObjectStateTypeTest extends TestCase
         $this->objectStateServiceMock
             ->expects($this->at(2))
             ->method('loadObjectStates')
-            ->with($this->equalTo(new ObjectStateGroup(['identifier' => 'group2'])))
+            ->with($this->identicalTo($group2))
             ->will($this->returnValue([]));
 
         $options = $value !== null ? ['multiple' => is_array($value)] : [];

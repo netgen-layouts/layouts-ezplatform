@@ -120,7 +120,7 @@ final class ObjectStateTypeTest extends FormTestCase
         $this->objectStateServiceMock
             ->expects($this->at(1))
             ->method('loadObjectStates')
-            ->with($this->equalTo($objectStateGroup1))
+            ->with($this->identicalTo($objectStateGroup1))
             ->will(
                 $this->returnValue(
                     [
@@ -147,7 +147,7 @@ final class ObjectStateTypeTest extends FormTestCase
         $this->objectStateServiceMock
             ->expects($this->at(2))
             ->method('loadObjectStates')
-            ->with($this->equalTo($objectStateGroup2))
+            ->with($this->identicalTo($objectStateGroup2))
             ->will(
                 $this->returnValue(
                     [

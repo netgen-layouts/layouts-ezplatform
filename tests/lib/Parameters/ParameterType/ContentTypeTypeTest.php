@@ -164,7 +164,7 @@ final class ContentTypeTypeTest extends TestCase
                 $this->contentTypeServiceMock
                     ->expects($this->at($index))
                     ->method('loadContentTypeByIdentifier')
-                    ->with($this->equalTo($identifier))
+                    ->with($this->identicalTo($identifier))
                     ->will(
                         $this->returnCallback(
                             function () use ($identifier): EzContentType {

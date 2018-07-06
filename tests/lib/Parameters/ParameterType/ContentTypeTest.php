@@ -143,7 +143,7 @@ final class ContentTypeTest extends TestCase
         $this->contentServiceMock
             ->expects($this->once())
             ->method('loadContentInfo')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->returnValue(new ContentInfo(['remoteId' => 'abc'])));
 
         $this->assertSame('abc', $this->type->export($this->getParameterDefinition(), 42));
@@ -157,7 +157,7 @@ final class ContentTypeTest extends TestCase
         $this->contentServiceMock
             ->expects($this->once())
             ->method('loadContentInfo')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->throwException(new NotFoundException('contentInfo', 42)));
 
         $this->assertNull($this->type->export($this->getParameterDefinition(), 42));
@@ -171,7 +171,7 @@ final class ContentTypeTest extends TestCase
         $this->contentServiceMock
             ->expects($this->once())
             ->method('loadContentInfoByRemoteId')
-            ->with($this->equalTo('abc'))
+            ->with($this->identicalTo('abc'))
             ->will($this->returnValue(new ContentInfo(['id' => 42])));
 
         $this->assertSame(42, $this->type->import($this->getParameterDefinition(), 'abc'));
@@ -185,7 +185,7 @@ final class ContentTypeTest extends TestCase
         $this->contentServiceMock
             ->expects($this->once())
             ->method('loadContentInfoByRemoteId')
-            ->with($this->equalTo('abc'))
+            ->with($this->identicalTo('abc'))
             ->will($this->throwException(new NotFoundException('contentInfo', 'abc')));
 
         $this->assertNull($this->type->import($this->getParameterDefinition(), 'abc'));
@@ -205,7 +205,7 @@ final class ContentTypeTest extends TestCase
             $this->contentServiceMock
                 ->expects($this->once())
                 ->method('loadContentInfo')
-                ->with($this->equalTo((int) $value))
+                ->with($this->identicalTo((int) $value))
                 ->will(
                     $this->returnCallback(
                         function () use ($value): void {

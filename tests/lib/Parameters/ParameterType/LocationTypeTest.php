@@ -144,7 +144,7 @@ final class LocationTypeTest extends TestCase
         $this->locationServiceMock
             ->expects($this->once())
             ->method('loadLocation')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->returnValue(new Location(['remoteId' => 'abc'])));
 
         $this->assertSame('abc', $this->type->export($this->getParameterDefinition(), 42));
@@ -158,7 +158,7 @@ final class LocationTypeTest extends TestCase
         $this->locationServiceMock
             ->expects($this->once())
             ->method('loadLocation')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->throwException(new NotFoundException('location', 42)));
 
         $this->assertNull($this->type->export($this->getParameterDefinition(), 42));
@@ -172,7 +172,7 @@ final class LocationTypeTest extends TestCase
         $this->locationServiceMock
             ->expects($this->once())
             ->method('loadLocationByRemoteId')
-            ->with($this->equalTo('abc'))
+            ->with($this->identicalTo('abc'))
             ->will($this->returnValue(new Location(['id' => 42])));
 
         $this->assertSame(42, $this->type->import($this->getParameterDefinition(), 'abc'));
@@ -186,7 +186,7 @@ final class LocationTypeTest extends TestCase
         $this->locationServiceMock
             ->expects($this->once())
             ->method('loadLocationByRemoteId')
-            ->with($this->equalTo('abc'))
+            ->with($this->identicalTo('abc'))
             ->will($this->throwException(new NotFoundException('location', 'abc')));
 
         $this->assertNull($this->type->import($this->getParameterDefinition(), 'abc'));
@@ -206,7 +206,7 @@ final class LocationTypeTest extends TestCase
             $this->locationServiceMock
                 ->expects($this->once())
                 ->method('loadLocation')
-                ->with($this->equalTo($value))
+                ->with($this->identicalTo($value))
                 ->will(
                     $this->returnCallback(
                         function () use ($value): void {

@@ -120,7 +120,7 @@ final class ContentTypeTypeTest extends FormTestCase
         $this->contentTypeServiceMock
             ->expects($this->at(1))
             ->method('loadContentTypes')
-            ->with($this->equalTo($contentTypeGroup1))
+            ->with($this->identicalTo($contentTypeGroup1))
             ->will(
                 $this->returnValue(
                     [
@@ -149,7 +149,7 @@ final class ContentTypeTypeTest extends FormTestCase
         $this->contentTypeServiceMock
             ->expects($this->at(2))
             ->method('loadContentTypes')
-            ->with($this->equalTo($contentTypeGroup2))
+            ->with($this->identicalTo($contentTypeGroup2))
             ->will(
                 $this->returnValue(
                     [

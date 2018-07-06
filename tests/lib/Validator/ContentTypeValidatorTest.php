@@ -65,7 +65,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
         $this->contentTypeServiceMock
             ->expects($this->once())
             ->method('loadContentTypeByIdentifier')
-            ->with($this->equalTo($identifier))
+            ->with($this->identicalTo($identifier))
             ->will(
                 $this->returnValue(
                     new EzContentType(
@@ -112,7 +112,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
         $this->contentTypeServiceMock
             ->expects($this->once())
             ->method('loadContentTypeByIdentifier')
-            ->with($this->equalTo('unknown'))
+            ->with($this->identicalTo('unknown'))
             ->will(
                 $this->throwException(
                     new NotFoundException('content type', 'unknown')

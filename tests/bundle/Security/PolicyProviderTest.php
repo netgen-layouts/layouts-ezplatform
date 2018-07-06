@@ -36,7 +36,7 @@ final class PolicyProviderTest extends TestCase
             ->expects($this->once())
             ->method('addConfig')
             ->with(
-                $this->equalTo(
+                $this->identicalTo(
                     [
                         'nglayouts' => [
                             'admin' => null,

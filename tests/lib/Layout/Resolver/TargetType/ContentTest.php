@@ -78,7 +78,7 @@ final class ContentTest extends TestCase
         $this->contentServiceMock
             ->expects($this->once())
             ->method('loadContentInfo')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->returnValue(new ContentInfo()));
 
         $validator = Validation::createValidatorBuilder()
@@ -97,7 +97,7 @@ final class ContentTest extends TestCase
         $this->contentServiceMock
             ->expects($this->once())
             ->method('loadContentInfo')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->throwException(new NotFoundException('content', 42)));
 
         $validator = Validation::createValidatorBuilder()
@@ -132,7 +132,7 @@ final class ContentTest extends TestCase
         $this->contentExtractorMock
             ->expects($this->any())
             ->method('extractContent')
-            ->with($this->equalTo($request))
+            ->with($this->identicalTo($request))
             ->will($this->returnValue($content));
 
         $this->assertSame(42, $this->targetType->provideValue($request));
@@ -148,7 +148,7 @@ final class ContentTest extends TestCase
         $this->contentExtractorMock
             ->expects($this->any())
             ->method('extractContent')
-            ->with($this->equalTo($request))
+            ->with($this->identicalTo($request))
             ->will($this->returnValue(null));
 
         $this->assertNull($this->targetType->provideValue($request));

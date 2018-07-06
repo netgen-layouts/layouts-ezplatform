@@ -63,7 +63,7 @@ final class ContentValidatorTest extends ValidatorTestCase
         $this->contentServiceMock
             ->expects($this->once())
             ->method('loadContentInfo')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->returnValue(new ContentInfo(['id' => 42])));
 
         $this->assertValid(true, 42);
@@ -91,7 +91,7 @@ final class ContentValidatorTest extends ValidatorTestCase
         $this->contentServiceMock
             ->expects($this->once())
             ->method('loadContentInfo')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->throwException(new NotFoundException('content', 42)));
 
         $this->assertValid(false, 42);

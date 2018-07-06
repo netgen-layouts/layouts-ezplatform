@@ -82,7 +82,7 @@ final class EzPublishRuntimeTest extends TestCase
         $this->contentServiceMock
             ->expects($this->once())
             ->method('loadContent')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->throwException(new Exception()));
 
         $this->assertSame('', $this->runtime->getContentName(42));
@@ -117,7 +117,7 @@ final class EzPublishRuntimeTest extends TestCase
         $this->locationServiceMock
             ->expects($this->once())
             ->method('loadLocation')
-            ->with($this->equalTo(22))
+            ->with($this->identicalTo(22))
             ->will($this->throwException(new Exception()));
 
         $this->assertSame([], $this->runtime->getLocationPath(22));
@@ -243,7 +243,7 @@ final class EzPublishRuntimeTest extends TestCase
         $this->contentTypeServiceMock
             ->expects($this->once())
             ->method('loadContentTypeByIdentifier')
-            ->with($this->equalTo('some_type'))
+            ->with($this->identicalTo('some_type'))
             ->will($this->throwException(new Exception()));
 
         $this->assertSame('', $this->runtime->getContentTypeName('some_type'));

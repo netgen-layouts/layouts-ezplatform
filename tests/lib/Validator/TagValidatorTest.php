@@ -43,7 +43,7 @@ final class TagValidatorTest extends ValidatorTestCase
         $this->tagsServiceMock
             ->expects($this->once())
             ->method('loadTag')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->returnValue(new APITag(['id' => 42])));
 
         $this->assertValid(true, 42);
@@ -71,7 +71,7 @@ final class TagValidatorTest extends ValidatorTestCase
         $this->tagsServiceMock
             ->expects($this->once())
             ->method('loadTag')
-            ->with($this->equalTo(42))
+            ->with($this->identicalTo(42))
             ->will($this->throwException(new NotFoundException('tag', 42)));
 
         $this->assertValid(false, 42);

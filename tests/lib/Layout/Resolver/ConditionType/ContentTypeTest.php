@@ -82,7 +82,7 @@ final class ContentTypeTest extends TestCase
         $this->contentTypeServiceMock
             ->expects($this->once())
             ->method('loadContentTypeByIdentifier')
-            ->with($this->equalTo('identifier'))
+            ->with($this->identicalTo('identifier'))
             ->will($this->returnValue(new EzContentType()));
 
         $validator = Validation::createValidatorBuilder()
@@ -101,7 +101,7 @@ final class ContentTypeTest extends TestCase
         $this->contentTypeServiceMock
             ->expects($this->once())
             ->method('loadContentTypeByIdentifier')
-            ->with($this->equalTo('unknown'))
+            ->with($this->identicalTo('unknown'))
             ->will($this->throwException(new NotFoundException('content type', 'unknown')));
 
         $validator = Validation::createValidatorBuilder()
@@ -141,13 +141,13 @@ final class ContentTypeTest extends TestCase
         $this->contentExtractorMock
             ->expects($this->any())
             ->method('extractContent')
-            ->with($this->equalTo($request))
+            ->with($this->identicalTo($request))
             ->will($this->returnValue($content));
 
         $this->contentTypeServiceMock
             ->expects($this->any())
             ->method('loadContentType')
-            ->with($this->equalTo(24))
+            ->with($this->identicalTo(24))
             ->will(
                 $this->returnValue(
                     new EzContentType(
@@ -172,7 +172,7 @@ final class ContentTypeTest extends TestCase
         $this->contentExtractorMock
             ->expects($this->any())
             ->method('extractContent')
-            ->with($this->equalTo($request))
+            ->with($this->identicalTo($request))
             ->will($this->returnValue(null));
 
         $this->assertFalse($this->conditionType->matches($request, ['article']));

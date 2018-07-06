@@ -170,7 +170,7 @@ final class SectionTypeTest extends TestCase
                 $this->sectionServiceMock
                     ->expects($this->at($index))
                     ->method('loadSectionByIdentifier')
-                    ->with($this->equalTo($identifier))
+                    ->with($this->identicalTo($identifier))
                     ->will(
                         $this->returnCallback(
                             function () use ($identifier): EzSection {
