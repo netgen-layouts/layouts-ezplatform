@@ -11,7 +11,6 @@ use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Helper\TranslationHelper;
 use eZ\Publish\Core\Repository\Repository;
-use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
@@ -41,11 +40,6 @@ final class EzPublishRuntimeTest extends TestCase
     private $contentTypeServiceMock;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $translationHelperMock;
-
-    /**
      * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime
      */
     private $runtime;
@@ -53,18 +47,17 @@ final class EzPublishRuntimeTest extends TestCase
     public function setUp(): void
     {
         $this->prepareRepositoryMock();
-        $this->translationHelperMock = $this->createMock(TranslationHelper::class);
 
         $this->runtime = new EzPublishRuntime(
             $this->repositoryMock,
-            $this->translationHelperMock
+            $this->createMock(TranslationHelper::class)
         );
     }
 
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::__construct
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getContentName
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContent
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadVersionInfo
      */
     public function testGetContentName(): void
     {
@@ -75,13 +68,13 @@ final class EzPublishRuntimeTest extends TestCase
 
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getContentName
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContent
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadVersionInfo
      */
     public function testGetContentNameWithException(): void
     {
         $this->contentServiceMock
             ->expects($this->once())
-            ->method('loadContent')
+            ->method('loadVersionInfoById')
             ->with($this->identicalTo(42))
             ->will($this->throwException(new Exception()));
 
@@ -90,8 +83,8 @@ final class EzPublishRuntimeTest extends TestCase
 
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getLocationPath
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContent
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadLocation
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadVersionInfo
      */
     public function testGetLocationPath(): void
     {
@@ -109,8 +102,8 @@ final class EzPublishRuntimeTest extends TestCase
 
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getLocationPath
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContent
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadLocation
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadVersionInfo
      */
     public function testGetLocationPathWithException(): void
     {
@@ -144,20 +137,10 @@ final class EzPublishRuntimeTest extends TestCase
                                     'eng-GB' => 'English content type ' . $identifier,
                                     'cro-HR' => 'Content type ' . $identifier,
                                 ],
+                                'mainLanguageCode' => 'cro-HR',
                                 'fieldDefinitions' => [],
                             ]
                         );
-                    }
-                )
-            );
-
-        $this->translationHelperMock
-            ->expects($this->any())
-            ->method('getTranslatedByMethod')
-            ->will(
-                $this->returnCallback(
-                    function ($object, string $method): string {
-                        return $object->{$method}('cro-HR');
                     }
                 )
             );
@@ -186,52 +169,15 @@ final class EzPublishRuntimeTest extends TestCase
                                     'eng-GB' => 'English content type ' . $identifier,
                                     'cro-HR' => 'Content type ' . $identifier,
                                 ],
+                                'mainLanguageCode' => 'eng-GB',
                                 'fieldDefinitions' => [],
                             ]
                         );
                     }
                 )
             );
-
-        $this->translationHelperMock
-            ->expects($this->any())
-            ->method('getTranslatedByMethod')
-            ->will($this->returnValue(null));
 
         $this->assertSame('English content type some_type', $this->runtime->getContentTypeName('some_type'));
-    }
-
-    /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getContentTypeName
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContentType
-     */
-    public function testGetContentTypeNameWithNoNames(): void
-    {
-        $this->mockServices();
-
-        $this->contentTypeServiceMock
-            ->expects($this->any())
-            ->method('loadContentTypeByIdentifier')
-            ->will(
-                $this->returnCallback(
-                    function (string $identifier): ContentType {
-                        return new ContentType(
-                            [
-                                'identifier' => $identifier,
-                                'names' => [],
-                                'fieldDefinitions' => [],
-                            ]
-                        );
-                    }
-                )
-            );
-
-        $this->translationHelperMock
-            ->expects($this->any())
-            ->method('getTranslatedByMethod')
-            ->will($this->returnValue(null));
-
-        $this->assertSame('', $this->runtime->getContentTypeName('some_type'));
     }
 
     /**
@@ -317,35 +263,16 @@ final class EzPublishRuntimeTest extends TestCase
 
         $this->contentServiceMock
             ->expects($this->any())
-            ->method('loadContent')
+            ->method('loadVersionInfoById')
             ->will(
                 $this->returnCallback(
-                    function ($contentId): Content {
-                        return new Content(
+                    function ($contentId): VersionInfo {
+                        return new VersionInfo(
                             [
-                                'versionInfo' => new VersionInfo(
-                                    [
-                                        'contentInfo' => new ContentInfo(
-                                            [
-                                                'id' => $contentId,
-                                                'name' => 'Content name ' . $contentId,
-                                            ]
-                                        ),
-                                    ]
-                                ),
+                                'prioritizedNameLanguageCode' => 'eng-GB',
+                                'names' => ['eng-GB' => 'Content name ' . $contentId],
                             ]
                         );
-                    }
-                )
-            );
-
-        $this->translationHelperMock
-            ->expects($this->any())
-            ->method('getTranslatedContentName')
-            ->will(
-                $this->returnCallback(
-                    function (Content $content): string {
-                        return $content->contentInfo->name;
                     }
                 )
             );

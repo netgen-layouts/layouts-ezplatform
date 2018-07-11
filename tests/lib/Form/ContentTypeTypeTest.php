@@ -33,6 +33,7 @@ final class ContentTypeTypeTest extends FormTestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::__construct
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getContentTypes
+     * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getTypeName
      */
     public function testSubmitValidData(): void
     {
@@ -69,6 +70,7 @@ final class ContentTypeTypeTest extends FormTestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::configureOptions
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getContentTypes
+     * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getTypeName
      */
     public function testConfigureOptions(): void
     {
@@ -127,18 +129,16 @@ final class ContentTypeTypeTest extends FormTestCase
                         new ContentType(
                             [
                                 'identifier' => 'article',
-                                'names' => [
-                                    'eng-GB' => 'Article',
-                                ],
+                                'names' => ['eng-GB' => 'Article'],
+                                'mainLanguageCode' => 'eng-GB',
                                 'fieldDefinitions' => [],
                             ]
                         ),
                         new ContentType(
                             [
                                 'identifier' => 'news',
-                                'names' => [
-                                    'eng-GB' => 'News',
-                                ],
+                                'names' => ['eng-GB' => 'News'],
+                                'mainLanguageCode' => 'eng-GB',
                                 'fieldDefinitions' => [],
                             ]
                         ),
@@ -156,9 +156,8 @@ final class ContentTypeTypeTest extends FormTestCase
                         new ContentType(
                             [
                                 'identifier' => 'image',
-                                'names' => [
-                                    'eng-GB' => 'Image',
-                                ],
+                                'names' => ['eng-GB' => 'Image'],
+                                'mainLanguageCode' => 'eng-GB',
                                 'fieldDefinitions' => [],
                             ]
                         ),

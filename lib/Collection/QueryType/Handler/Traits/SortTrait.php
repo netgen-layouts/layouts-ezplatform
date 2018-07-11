@@ -16,7 +16,7 @@ trait SortTrait
     /**
      * @var array
      */
-    private $sortClauses = [
+    private static $sortClauses = [
         'default' => SortClause\DatePublished::class,
         'date_published' => SortClause\DatePublished::class,
         'date_modified' => SortClause\DateModified::class,
@@ -36,7 +36,7 @@ trait SortTrait
     /**
      * @var array
      */
-    private $sortDirections = [
+    private static $sortDirections = [
         Location::SORT_ORDER_ASC => LocationQuery::SORT_ASC,
         Location::SORT_ORDER_DESC => LocationQuery::SORT_DESC,
     ];
@@ -93,12 +93,18 @@ trait SortTrait
         $sortDirection = $query->getParameter('sort_direction')->getValue() ?? LocationQuery::SORT_DESC;
 
         if ($sortType === 'defined_by_parent' && $parentLocation !== null) {
+            if (method_exists($parentLocation, 'getSortClauses')) {
+                return $parentLocation->getSortClauses();
+            }
+
+            // @deprecated Remove when support for eZ Publish 5 ends, together
+            // with sort type and sort direction mappings in the trait.
             $sortType = $parentLocation->sortField;
-            $sortDirection = $this->sortDirections[$parentLocation->sortOrder];
+            $sortDirection = self::$sortDirections[$parentLocation->sortOrder];
         }
 
         return [
-            new $this->sortClauses[$sortType]($sortDirection),
+            new self::$sortClauses[$sortType]($sortDirection),
         ];
     }
 }

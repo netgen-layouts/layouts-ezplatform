@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Netgen\BlockManager\Ez\Tests\Item\ValueConverter;
 
+use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Helper\TranslationHelper;
 use eZ\Publish\Core\Repository\Values\Content\Location;
+use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter;
 use PHPUnit\Framework\TestCase;
 
@@ -21,7 +23,7 @@ final class ContentValueConverterTest extends TestCase
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
-    private $translationHelperMock;
+    private $contentServiceMock;
 
     /**
      * @var \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter
@@ -31,6 +33,7 @@ final class ContentValueConverterTest extends TestCase
     public function setUp(): void
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
+        $this->contentServiceMock = $this->createMock(ContentService::class);
 
         $this->locationServiceMock
             ->expects($this->any())
@@ -44,17 +47,25 @@ final class ContentValueConverterTest extends TestCase
                 )
             );
 
-        $this->translationHelperMock = $this->createMock(TranslationHelper::class);
-
-        $this->translationHelperMock
+        $this->contentServiceMock
             ->expects($this->any())
-            ->method('getTranslatedContentNameByContentInfo')
+            ->method('loadVersionInfo')
             ->with($this->isInstanceOf(ContentInfo::class))
-            ->will($this->returnValue('Cool name'));
+            ->will(
+                $this->returnValue(
+                    new VersionInfo(
+                        [
+                            'prioritizedNameLanguageCode' => 'eng-GB',
+                            'names' => ['eng-GB' => 'Cool name'],
+                        ]
+                    )
+                )
+            );
 
         $this->valueConverter = new ContentValueConverter(
             $this->locationServiceMock,
-            $this->translationHelperMock
+            $this->contentServiceMock,
+            $this->createMock(TranslationHelper::class)
         );
     }
 

@@ -32,7 +32,9 @@ final class ObjectStateTypeTest extends FormTestCase
 
     /**
      * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::__construct
+     * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getGroupName
      * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getObjectStates
+     * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getStateName
      */
     public function testSubmitValidData(): void
     {
@@ -68,7 +70,9 @@ final class ObjectStateTypeTest extends FormTestCase
 
     /**
      * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::configureOptions
+     * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getGroupName
      * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getObjectStates
+     * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getStateName
      */
     public function testConfigureOptions(): void
     {
@@ -108,9 +112,9 @@ final class ObjectStateTypeTest extends FormTestCase
 
     private function configureObjectStateService(): void
     {
-        $objectStateGroup1 = new ObjectStateGroup(['identifier' => 'ez_lock', 'names' => ['eng-GB' => 'Lock']]);
-        $objectStateGroup2 = new ObjectStateGroup(['identifier' => 'other', 'names' => ['eng-GB' => 'Other']]);
-        $objectStateGroup3 = new ObjectStateGroup(['identifier' => 'third', 'names' => ['eng-GB' => 'Third']]);
+        $objectStateGroup1 = new ObjectStateGroup(['identifier' => 'ez_lock', 'names' => ['eng-GB' => 'Lock'], 'mainLanguageCode' => 'eng-GB']);
+        $objectStateGroup2 = new ObjectStateGroup(['identifier' => 'other', 'names' => ['eng-GB' => 'Other'], 'mainLanguageCode' => 'eng-GB']);
+        $objectStateGroup3 = new ObjectStateGroup(['identifier' => 'third', 'names' => ['eng-GB' => 'Third'], 'mainLanguageCode' => 'eng-GB']);
 
         $this->objectStateServiceMock
             ->expects($this->at(0))
@@ -127,17 +131,15 @@ final class ObjectStateTypeTest extends FormTestCase
                         new ObjectState(
                             [
                                 'identifier' => 'locked',
-                                'names' => [
-                                    'eng-GB' => 'Locked',
-                                ],
+                                'names' => ['eng-GB' => 'Locked'],
+                                'mainLanguageCode' => 'eng-GB',
                             ]
                         ),
                         new ObjectState(
                             [
                                 'identifier' => 'unlocked',
-                                'names' => [
-                                    'eng-GB' => 'Unlocked',
-                                ],
+                                'names' => ['eng-GB' => 'Unlocked'],
+                                'mainLanguageCode' => 'eng-GB',
                             ]
                         ),
                     ]
@@ -154,9 +156,8 @@ final class ObjectStateTypeTest extends FormTestCase
                         new ObjectState(
                             [
                                 'identifier' => 'other',
-                                'names' => [
-                                    'eng-GB' => 'Other',
-                                ],
+                                'names' => ['eng-GB' => 'Other'],
+                                'mainLanguageCode' => 'eng-GB',
                             ]
                         ),
                     ]
