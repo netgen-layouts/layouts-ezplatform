@@ -82,4 +82,9 @@ final class NetgenEzPublishBlockManagerExtension extends Extension implements Pr
             ]
         );
     }
+
+    public function getConfiguration(array $config, ContainerBuilder $container)
+    {
+        return new Configuration($this);
+    }
 }
