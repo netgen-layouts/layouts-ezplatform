@@ -9,6 +9,7 @@ use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAw
 use Netgen\Bundle\BlockManagerBundle\DependencyInjection\ConfigurationNode\DesignNode;
 use Netgen\Bundle\BlockManagerBundle\DependencyInjection\ConfigurationNode\ViewNode;
 use Netgen\Bundle\BlockManagerBundle\DependencyInjection\ExtensionPlugin as BaseExtensionPlugin;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -25,9 +26,15 @@ final class ExtensionPlugin extends BaseExtensionPlugin
      */
     private $container;
 
-    public function __construct(ContainerBuilder $container)
+    /**
+     * @var \Symfony\Component\DependencyInjection\Extension\ExtensionInterface
+     */
+    private $extension;
+
+    public function __construct(ContainerBuilder $container, ExtensionInterface $extension)
     {
         $this->container = $container;
+        $this->extension = $extension;
     }
 
     /**
@@ -89,7 +96,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
 
     public function addConfiguration(ArrayNodeDefinition $rootNode): void
     {
-        $configuration = new Configuration();
+        $configuration = new Configuration($this->extension);
         $systemNode = $configuration->generateScopeBaseNode($rootNode);
 
         $nodes = [
@@ -113,7 +120,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
     {
         $config = $this->fixUpViewConfig($config);
 
-        $processor = new ConfigurationProcessor($this->container, 'netgen_block_manager');
+        $processor = new ConfigurationProcessor($this->container, $this->extension->getAlias());
         foreach (array_keys($config) as $key) {
             if ($key === 'system' || !in_array($key, self::SITEACCCESS_AWARE_SETTINGS, true)) {
                 continue;

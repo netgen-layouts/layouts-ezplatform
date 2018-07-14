@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection;
 
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\Configuration as SiteAccessConfiguration;
+use Netgen\Bundle\BlockManagerBundle\DependencyInjection\TreeBuilder;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder as BaseTreeBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
-use Netgen\Bundle\BlockManagerBundle\DependencyInjection\TreeBuilder;
 
 final class Configuration extends SiteAccessConfiguration
 {
