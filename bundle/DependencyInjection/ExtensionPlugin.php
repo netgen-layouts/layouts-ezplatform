@@ -9,10 +9,10 @@ use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAw
 use Netgen\Bundle\BlockManagerBundle\DependencyInjection\ConfigurationNode\DesignNode;
 use Netgen\Bundle\BlockManagerBundle\DependencyInjection\ConfigurationNode\ViewNode;
 use Netgen\Bundle\BlockManagerBundle\DependencyInjection\ExtensionPlugin as BaseExtensionPlugin;
-use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
 final class ExtensionPlugin extends BaseExtensionPlugin
 {

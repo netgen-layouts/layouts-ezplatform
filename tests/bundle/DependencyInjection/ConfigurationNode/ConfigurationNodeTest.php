@@ -43,9 +43,9 @@ abstract class ConfigurationNodeTest extends TestCase
 
     public function setUp(): void
     {
-        $this->plugin = new ExtensionPlugin(new ContainerBuilder());
-
         $this->extension = new NetgenBlockManagerExtension();
+        $this->plugin = new ExtensionPlugin(new ContainerBuilder(), $this->extension);
+
         $this->extension->addPlugin($this->plugin);
 
         $this->partialProcessor = new PartialProcessor();

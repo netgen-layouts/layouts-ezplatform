@@ -18,7 +18,7 @@ final class ExtensionPluginTest extends AbstractExtensionTestCase
     public function testAppendFromPlugin(): void
     {
         $extension = new NetgenBlockManagerExtension();
-        $extension->addPlugin(new ExtensionPlugin($this->container));
+        $extension->addPlugin(new ExtensionPlugin($this->container, $extension));
 
         $extension->prepend($this->container);
 
