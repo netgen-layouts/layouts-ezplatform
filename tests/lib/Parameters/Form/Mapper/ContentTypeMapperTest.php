@@ -41,7 +41,7 @@ final class ContentTypeMapperTest extends TestCase
                 'types' => [42],
             ],
             $this->mapper->mapOptions(
-                new ParameterDefinition(
+                ParameterDefinition::fromArray(
                     [
                         'type' => new ParameterType(),
                         'options' => [

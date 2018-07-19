@@ -41,7 +41,7 @@ final class ObjectStateMapperTest extends TestCase
                 'states' => [42],
             ],
             $this->mapper->mapOptions(
-                new ParameterDefinition(
+                ParameterDefinition::fromArray(
                     [
                         'type' => new ParameterType(),
                         'options' => [

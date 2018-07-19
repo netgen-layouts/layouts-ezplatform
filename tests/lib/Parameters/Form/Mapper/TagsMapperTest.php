@@ -43,7 +43,7 @@ final class TagsMapperTest extends TestCase
                 'max' => 6,
             ],
             $this->mapper->mapOptions(
-                new ParameterDefinition(
+                ParameterDefinition::fromArray(
                     [
                         'type' => new ParameterType($this->createMock(TagsService::class)),
                         'options' => [

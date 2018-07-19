@@ -41,7 +41,7 @@ final class SectionMapperTest extends TestCase
                 'sections' => ['media'],
             ],
             $this->mapper->mapOptions(
-                new ParameterDefinition(
+                ParameterDefinition::fromArray(
                     [
                         'type' => new ParameterType(),
                         'options' => [

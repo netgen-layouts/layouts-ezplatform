@@ -40,7 +40,7 @@ final class ContentMapperTest extends TestCase
             [
                 'item_type' => 'ezcontent',
             ],
-            $this->mapper->mapOptions(new ParameterDefinition(['type' => new ParameterType($this->createMock(Repository::class))]))
+            $this->mapper->mapOptions(ParameterDefinition::fromArray(['type' => new ParameterType($this->createMock(Repository::class))]))
         );
     }
 }
