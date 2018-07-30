@@ -99,12 +99,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
         $configuration = new Configuration($this->extension);
         $systemNode = $configuration->generateScopeBaseNode($rootNode);
 
-        $nodes = [
-            new ViewNode(),
-            new DesignNode(),
-        ];
-
-        foreach ($nodes as $node) {
+        foreach ($this->getConfigurationNodes() as $node) {
             $systemNode->append($node->getConfigurationNode());
         }
     }
@@ -143,6 +138,14 @@ final class ExtensionPlugin extends BaseExtensionPlugin
     {
         return [
             __DIR__ . '/../Resources/config/block_type_groups.yml',
+        ];
+    }
+
+    protected function getConfigurationNodes(): array
+    {
+        return [
+            new ViewNode(),
+            new DesignNode(),
         ];
     }
 
