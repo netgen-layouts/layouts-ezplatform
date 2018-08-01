@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Netgen\BlockManager\Ez\Tests\Item\ValueLoader;
 
+use Exception;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Repository\Values\Content\Location;
-use Netgen\BlockManager\Exception\Item\ItemException;
 use Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader;
 use PHPUnit\Framework\TestCase;
 
@@ -50,7 +50,7 @@ final class LocationValueLoaderTest extends TestCase
         $this->locationServiceMock
             ->expects($this->any())
             ->method('loadLocation')
-            ->with($this->isType('int'))
+            ->with($this->identicalTo(52))
             ->will($this->returnValue($location));
 
         $this->assertSame($location, $this->valueLoader->load(52));
@@ -58,31 +58,27 @@ final class LocationValueLoaderTest extends TestCase
 
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader::load
-     * @expectedException \Netgen\BlockManager\Exception\Item\ItemException
-     * @expectedExceptionMessage Location with ID "52" could not be loaded.
      */
-    public function testLoadThrowsItemException(): void
+    public function testLoadWithNoLocation(): void
     {
         $this->locationServiceMock
             ->expects($this->any())
             ->method('loadLocation')
-            ->with($this->isType('int'))
-            ->will($this->throwException(new ItemException()));
+            ->with($this->identicalTo(52))
+            ->will($this->throwException(new Exception()));
 
-        $this->valueLoader->load(52);
+        $this->assertNull($this->valueLoader->load(52));
     }
 
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader::load
-     * @expectedException \Netgen\BlockManager\Exception\Item\ItemException
-     * @expectedExceptionMessage Location with ID "52" has unpublished content and cannot be loaded.
      */
-    public function testLoadThrowsItemExceptionWithNonPublishedContent(): void
+    public function testLoadWithNonPublishedContent(): void
     {
         $this->locationServiceMock
             ->expects($this->any())
             ->method('loadLocation')
-            ->with($this->isType('int'))
+            ->with($this->identicalTo(52))
             ->will(
                 $this->returnValue(
                     new Location(
@@ -97,7 +93,7 @@ final class LocationValueLoaderTest extends TestCase
                 )
             );
 
-        $this->valueLoader->load(52);
+        $this->assertNull($this->valueLoader->load(52));
     }
 
     /**
@@ -119,7 +115,7 @@ final class LocationValueLoaderTest extends TestCase
         $this->locationServiceMock
             ->expects($this->any())
             ->method('loadLocationByRemoteId')
-            ->with($this->isType('string'))
+            ->with($this->identicalTo('abc'))
             ->will($this->returnValue($location));
 
         $this->assertSame($location, $this->valueLoader->loadByRemoteId('abc'));
@@ -127,31 +123,27 @@ final class LocationValueLoaderTest extends TestCase
 
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader::loadByRemoteId
-     * @expectedException \Netgen\BlockManager\Exception\Item\ItemException
-     * @expectedExceptionMessage Location with remote ID "abc" could not be loaded.
      */
-    public function testLoadByRemoteIdThrowsItemException(): void
+    public function testLoadByRemoteIdWithNoLocation(): void
     {
         $this->locationServiceMock
             ->expects($this->any())
             ->method('loadLocationByRemoteId')
-            ->with($this->isType('string'))
-            ->will($this->throwException(new ItemException()));
+            ->with($this->identicalTo('abc'))
+            ->will($this->throwException(new Exception()));
 
-        $this->valueLoader->loadByRemoteId('abc');
+        $this->assertNull($this->valueLoader->loadByRemoteId('abc'));
     }
 
     /**
      * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader::loadByRemoteId
-     * @expectedException \Netgen\BlockManager\Exception\Item\ItemException
-     * @expectedExceptionMessage Location with remote ID "abc" has unpublished content and cannot be loaded.
      */
-    public function testLoadByRemoteIdThrowsItemExceptionWithNonPublishedContent(): void
+    public function testLoadByRemoteIdWithNonPublishedContent(): void
     {
         $this->locationServiceMock
             ->expects($this->any())
             ->method('loadLocationByRemoteId')
-            ->with($this->isType('string'))
+            ->with($this->identicalTo('abc'))
             ->will(
                 $this->returnValue(
                     new Location(
@@ -166,6 +158,6 @@ final class LocationValueLoaderTest extends TestCase
                 )
             );
 
-        $this->valueLoader->loadByRemoteId('abc');
+        $this->assertNull($this->valueLoader->loadByRemoteId('abc'));
     }
 }
