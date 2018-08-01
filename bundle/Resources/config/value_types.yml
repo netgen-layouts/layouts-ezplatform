@@ -1,7 +1,6 @@
-items:
-    value_types:
-        ezlocation:
-            name: 'eZ location'
-        ezcontent:
-            enabled: false
-            name: 'eZ content'
+value_types:
+    ezlocation:
+        name: 'eZ location'
+    ezcontent:
+        enabled: false
+        name: 'eZ content'
