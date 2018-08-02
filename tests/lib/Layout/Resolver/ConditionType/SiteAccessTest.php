@@ -28,7 +28,7 @@ final class SiteAccessTest extends TestCase
      */
     public function testGetType(): void
     {
-        $this->assertSame('ez_site_access', $this->conditionType->getType());
+        $this->assertSame('ez_site_access', $this->conditionType::getType());
     }
 
     /**

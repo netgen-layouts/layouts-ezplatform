@@ -71,7 +71,7 @@ final class ContentTypeTest extends TestCase
      */
     public function testGetType(): void
     {
-        $this->assertSame('ez_content_type', $this->conditionType->getType());
+        $this->assertSame('ez_content_type', $this->conditionType::getType());
     }
 
     /**

@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints;
 
 final class SiteAccess implements ConditionTypeInterface
 {
-    public function getType(): string
+    public static function getType(): string
     {
         return 'ez_site_access';
     }

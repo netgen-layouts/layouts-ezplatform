@@ -30,7 +30,7 @@ final class ContentType implements ConditionTypeInterface
         $this->contentTypeService = $contentTypeService;
     }
 
-    public function getType(): string
+    public static function getType(): string
     {
         return 'ez_content_type';
     }

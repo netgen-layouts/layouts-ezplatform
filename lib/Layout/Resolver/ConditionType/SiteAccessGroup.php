@@ -22,7 +22,7 @@ final class SiteAccessGroup implements ConditionTypeInterface
         $this->groupsBySiteAccess = $groupsBySiteAccess;
     }
 
-    public function getType(): string
+    public static function getType(): string
     {
         return 'ez_site_access_group';
     }
