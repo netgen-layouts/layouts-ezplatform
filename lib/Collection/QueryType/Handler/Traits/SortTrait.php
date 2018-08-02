@@ -44,7 +44,7 @@ trait SortTrait
     /**
      * Builds the parameters for sorting eZ content.
      */
-    private function buildSortParameters(ParameterBuilderInterface $builder, array $groups = [], ?array $allowedSortTypes = null): void
+    private function buildSortParameters(ParameterBuilderInterface $builder, array $groups = [], array $allowedSortTypes = []): void
     {
         $sortTypes = [
             'Published' => 'date_published',
@@ -54,7 +54,7 @@ trait SortTrait
             'Defined by parent' => 'defined_by_parent',
         ];
 
-        if (is_array($allowedSortTypes)) {
+        if (!empty($allowedSortTypes)) {
             $sortTypes = array_intersect($sortTypes, $allowedSortTypes);
         }
 
