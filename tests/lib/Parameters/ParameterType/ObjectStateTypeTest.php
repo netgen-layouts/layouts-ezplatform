@@ -55,7 +55,7 @@ final class ObjectStateTypeTest extends TestCase
      */
     public function testGetIdentifier(): void
     {
-        $this->assertSame('ez_object_state', $this->type->getIdentifier());
+        $this->assertSame('ez_object_state', $this->type::getIdentifier());
     }
 
     /**

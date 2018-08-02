@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints;
  */
 final class ContentTypeType extends ParameterType
 {
-    public function getIdentifier(): string
+    public static function getIdentifier(): string
     {
         return 'ez_content_type';
     }

@@ -35,7 +35,7 @@ final class TagsTypeTest extends TestCase
      */
     public function testGetIdentifier(): void
     {
-        $this->assertSame('eztags', $this->type->getIdentifier());
+        $this->assertSame('eztags', $this->type::getIdentifier());
     }
 
     /**

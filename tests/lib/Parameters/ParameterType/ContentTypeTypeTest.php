@@ -55,7 +55,7 @@ final class ContentTypeTypeTest extends TestCase
      */
     public function testGetIdentifier(): void
     {
-        $this->assertSame('ez_content_type', $this->type->getIdentifier());
+        $this->assertSame('ez_content_type', $this->type::getIdentifier());
     }
 
     /**

@@ -29,7 +29,7 @@ final class TagsType extends ParameterType
         $this->tagsService = $tagsService;
     }
 
-    public function getIdentifier(): string
+    public static function getIdentifier(): string
     {
         return 'eztags';
     }

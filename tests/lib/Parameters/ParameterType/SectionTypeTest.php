@@ -55,7 +55,7 @@ final class SectionTypeTest extends TestCase
      */
     public function testGetIdentifier(): void
     {
-        $this->assertSame('ez_section', $this->type->getIdentifier());
+        $this->assertSame('ez_section', $this->type::getIdentifier());
     }
 
     /**

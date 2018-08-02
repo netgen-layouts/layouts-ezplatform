@@ -28,7 +28,7 @@ final class LocationType extends ParameterType
         $this->repository = $repository;
     }
 
-    public function getIdentifier(): string
+    public static function getIdentifier(): string
     {
         return 'ezlocation';
     }
