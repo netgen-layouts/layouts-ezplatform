@@ -23,7 +23,7 @@ final class Subtree implements TargetTypeInterface
         $this->contentExtractor = $contentExtractor;
     }
 
-    public function getType(): string
+    public static function getType(): string
     {
         return 'ezsubtree';
     }

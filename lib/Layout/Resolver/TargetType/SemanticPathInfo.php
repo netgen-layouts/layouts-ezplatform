@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints;
 
 class SemanticPathInfo implements TargetTypeInterface
 {
-    public function getType(): string
+    public static function getType(): string
     {
         return 'ez_semantic_path_info';
     }

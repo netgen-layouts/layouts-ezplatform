@@ -26,7 +26,7 @@ final class SemanticPathInfoTest extends TestCase
      */
     public function testGetType(): void
     {
-        $this->assertSame('ez_semantic_path_info', $this->targetType->getType());
+        $this->assertSame('ez_semantic_path_info', $this->targetType::getType());
     }
 
     /**

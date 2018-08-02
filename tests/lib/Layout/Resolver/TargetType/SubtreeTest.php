@@ -64,7 +64,7 @@ final class SubtreeTest extends TestCase
      */
     public function testGetType(): void
     {
-        $this->assertSame('ezsubtree', $this->targetType->getType());
+        $this->assertSame('ezsubtree', $this->targetType::getType());
     }
 
     /**

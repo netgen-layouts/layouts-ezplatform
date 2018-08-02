@@ -26,7 +26,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
      */
     public function testGetType(): void
     {
-        $this->assertSame('ez_semantic_path_info_prefix', $this->targetType->getType());
+        $this->assertSame('ez_semantic_path_info_prefix', $this->targetType::getType());
     }
 
     /**
