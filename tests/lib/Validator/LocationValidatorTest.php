@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Netgen\BlockManager\Ez\Tests\Validator;
 
+use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\LocationService;
+use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\Content\Location as EzLocation;
+use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
 use Netgen\BlockManager\Ez\Validator\Constraint\Location;
 use Netgen\BlockManager\Ez\Validator\LocationValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
@@ -26,17 +29,24 @@ final class LocationValidatorTest extends ValidatorTestCase
      */
     private $locationServiceMock;
 
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject
+     */
+    private $contentTypeServiceMock;
+
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->constraint = new Location();
+        $this->constraint = new Location(['allowedTypes' => ['user']]);
     }
 
     public function getValidator(): ConstraintValidatorInterface
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService']);
+        $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
+
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService', 'getContentTypeService']);
 
         $this->repositoryMock
             ->expects($this->any())
@@ -51,6 +61,26 @@ final class LocationValidatorTest extends ValidatorTestCase
             ->method('getLocationService')
             ->will($this->returnValue($this->locationServiceMock));
 
+        $this->repositoryMock
+            ->expects($this->any())
+            ->method('getContentTypeService')
+            ->will($this->returnValue($this->contentTypeServiceMock));
+
+        $this->contentTypeServiceMock
+            ->expects($this->any())
+            ->method('loadContentType')
+            ->will(
+                $this->returnCallback(
+                    function (int $type): ContentType {
+                        if ($type === 24) {
+                            return new ContentType(['identifier' => 'user']);
+                        }
+
+                        return new ContentType(['identifier' => 'article']);
+                    }
+                )
+            );
+
         return new LocationValidator($this->repositoryMock);
     }
 
@@ -64,9 +94,57 @@ final class LocationValidatorTest extends ValidatorTestCase
             ->expects($this->once())
             ->method('loadLocation')
             ->with($this->identicalTo(42))
-            ->will($this->returnValue(new EzLocation(['id' => 42])));
+            ->will(
+                $this->returnValue(
+                    new EzLocation(
+                        [
+                            'id' => 42,
+                            'contentInfo' => new ContentInfo(['contentTypeId' => 24]),
+                        ]
+                    )
+                )
+            );
 
         $this->assertValid(true, 42);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::__construct
+     * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::validate
+     */
+    public function testValidateInvalidWithWrongType(): void
+    {
+        $this->locationServiceMock
+            ->expects($this->once())
+            ->method('loadLocation')
+            ->with($this->identicalTo(42))
+            ->will(
+                $this->returnValue(
+                    new EzLocation(
+                        [
+                            'id' => 42,
+                            'contentInfo' => new ContentInfo(['contentTypeId' => 52]),
+                        ]
+                    )
+                )
+            );
+
+        $this->assertValid(false, 42);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::__construct
+     * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::validate
+     */
+    public function testValidateInvalidWithNonExistingLocation(): void
+    {
+        $this->locationServiceMock
+            ->expects($this->once())
+            ->method('loadLocation')
+            ->with($this->identicalTo(42))
+            ->will($this->throwException(new NotFoundException('location', 42)));
+
+        $this->assertValid(false, 42);
     }
 
     /**
@@ -80,21 +158,6 @@ final class LocationValidatorTest extends ValidatorTestCase
             ->method('loadLocation');
 
         $this->assertValid(true, null);
-    }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::__construct
-     * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::validate
-     */
-    public function testValidateInvalid(): void
-    {
-        $this->locationServiceMock
-            ->expects($this->once())
-            ->method('loadLocation')
-            ->with($this->identicalTo(42))
-            ->will($this->throwException(new NotFoundException('location', 42)));
-
-        $this->assertValid(false, 42);
     }
 
     /**

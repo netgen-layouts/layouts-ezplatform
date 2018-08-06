@@ -17,8 +17,15 @@ final class ContentMapper extends Mapper
 
     public function mapOptions(ParameterDefinition $parameterDefinition): array
     {
-        return [
+        $options = [
             'item_type' => 'ezcontent',
         ];
+
+        $allowedTypes = $parameterDefinition->getOption('allowed_types');
+        if (!empty($allowedTypes)) {
+            $options['custom_params']['allowed_content_types'] = $allowedTypes;
+        }
+
+        return $options;
     }
 }

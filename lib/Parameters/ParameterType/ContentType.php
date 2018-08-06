@@ -35,9 +35,27 @@ final class ContentType extends ParameterType
 
     public function configureOptions(OptionsResolver $optionsResolver): void
     {
+        $optionsResolver->setRequired(['allow_invalid', 'allowed_types']);
+
         $optionsResolver->setDefault('allow_invalid', false);
-        $optionsResolver->setRequired(['allow_invalid']);
+        $optionsResolver->setDefault('allowed_types', []);
+
         $optionsResolver->setAllowedTypes('allow_invalid', 'bool');
+        $optionsResolver->setAllowedTypes('allowed_types', 'array');
+
+        // @deprecated Replace with "string[]" allowed type when support for Symfony 2.8 ends
+        $optionsResolver->setAllowedValues(
+            'allowed_types',
+            function (array $types): bool {
+                foreach ($types as $type) {
+                    if (!is_string($type)) {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+        );
     }
 
     public function export(ParameterDefinition $parameterDefinition, $value)
@@ -84,7 +102,12 @@ final class ContentType extends ParameterType
         return [
             new Constraints\Type(['type' => 'numeric']),
             new Constraints\GreaterThan(['value' => 0]),
-            new EzConstraints\Content(['allowInvalid' => $options['allow_invalid']]),
+            new EzConstraints\Content(
+                [
+                    'allowInvalid' => $options['allow_invalid'],
+                    'allowedTypes' => $options['allowed_types'],
+                ]
+            ),
         ];
     }
 }

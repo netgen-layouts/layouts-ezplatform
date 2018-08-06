@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
 
 use eZ\Publish\API\Repository\ContentService;
+use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
+use eZ\Publish\Core\Repository\Values\ContentType\ContentType as EzContentType;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\BlockManager\Parameters\ParameterDefinition;
@@ -28,10 +30,17 @@ final class ContentTypeTest extends TestCase
      */
     private $contentServiceMock;
 
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject
+     */
+    private $contentTypeServiceMock;
+
     public function setUp(): void
     {
         $this->contentServiceMock = $this->createMock(ContentService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentService']);
+        $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
+
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentService', 'getContentTypeService']);
 
         $this->repositoryMock
             ->expects($this->any())
@@ -45,6 +54,30 @@ final class ContentTypeTest extends TestCase
             ->expects($this->any())
             ->method('getContentService')
             ->will($this->returnValue($this->contentServiceMock));
+
+        $this->repositoryMock
+            ->expects($this->any())
+            ->method('getContentTypeService')
+            ->will($this->returnValue($this->contentTypeServiceMock));
+
+        $this->contentTypeServiceMock
+            ->expects($this->any())
+            ->method('loadContentType')
+            ->will(
+                $this->returnCallback(
+                    function (int $type): EzContentType {
+                        if ($type === 24) {
+                            return new EzContentType(['identifier' => 'user']);
+                        }
+
+                        if ($type === 42) {
+                            return new EzContentType(['identifier' => 'image']);
+                        }
+
+                        return new EzContentType(['identifier' => 'article']);
+                    }
+                )
+            );
 
         $this->type = new ContentType($this->repositoryMock);
     }
@@ -88,6 +121,7 @@ final class ContentTypeTest extends TestCase
                 [],
                 [
                     'allow_invalid' => false,
+                    'allowed_types' => [],
                 ],
             ],
             [
@@ -96,6 +130,7 @@ final class ContentTypeTest extends TestCase
                 ],
                 [
                     'allow_invalid' => false,
+                    'allowed_types' => [],
                 ],
             ],
             [
@@ -104,6 +139,25 @@ final class ContentTypeTest extends TestCase
                 ],
                 [
                     'allow_invalid' => true,
+                    'allowed_types' => [],
+                ],
+            ],
+            [
+                [
+                    'allowed_types' => [],
+                ],
+                [
+                    'allow_invalid' => false,
+                    'allowed_types' => [],
+                ],
+            ],
+            [
+                [
+                    'allowed_types' => ['image', 'user'],
+                ],
+                [
+                    'allow_invalid' => false,
+                    'allowed_types' => ['image', 'user'],
                 ],
             ],
         ];
@@ -127,6 +181,12 @@ final class ContentTypeTest extends TestCase
                 ],
                 [
                     'allow_invalid' => 1,
+                ],
+                [
+                    'allowed_types' => 'image',
+                ],
+                [
+                    'allowed_types' => [42],
                 ],
                 [
                     'undefined_value' => 'Value',
@@ -193,13 +253,14 @@ final class ContentTypeTest extends TestCase
 
     /**
      * @param mixed $value
+     * @param int $type
      * @param bool $required
      * @param bool $isValid
      *
      * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::getValueConstraints
      * @dataProvider validationProvider
      */
-    public function testValidation($value, bool $required, bool $isValid): void
+    public function testValidation($value, int $type, bool $required, bool $isValid): void
     {
         if ($value !== null) {
             $this->contentServiceMock
@@ -208,16 +269,18 @@ final class ContentTypeTest extends TestCase
                 ->with($this->identicalTo((int) $value))
                 ->will(
                     $this->returnCallback(
-                        function () use ($value): void {
+                        function () use ($value, $type): ContentInfo {
                             if (!is_int($value) || $value <= 0) {
                                 throw new NotFoundException('content', $value);
                             }
+
+                            return new ContentInfo(['id' => $value, 'contentTypeId' => $type]);
                         }
                     )
                 );
         }
 
-        $parameter = $this->getParameterDefinition([], $required);
+        $parameter = $this->getParameterDefinition(['allowed_types' => ['user', 'image']], $required);
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
@@ -232,18 +295,22 @@ final class ContentTypeTest extends TestCase
     public function validationProvider(): array
     {
         return [
-            [12, false, true],
-            [-12, false, false],
-            [0, false, false],
-            ['12', false, false],
-            ['', false, false],
-            [null, false, true],
-            [12, true, true],
-            [-12, true, false],
-            [0, true, false],
-            ['12', true, false],
-            ['', true, false],
-            [null, true, false],
+            [12, 24, false, true],
+            [12, 42, false, true],
+            [12, 52, false, false],
+            [-12, 24, false, false],
+            [0, 24, false, false],
+            ['12', 24, false, false],
+            ['', 24, false, false],
+            [null, 24, false, true],
+            [12, 24, true, true],
+            [12, 42, true, true],
+            [12, 52, true, false],
+            [-12, 24, true, false],
+            [0, 24, true, false],
+            ['12', 24, true, false],
+            ['', 24, true, false],
+            [null, 24, true, false],
         ];
     }
 

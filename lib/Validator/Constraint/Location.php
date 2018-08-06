@@ -14,11 +14,23 @@ final class Location extends Constraint
     public $message = 'netgen_block_manager.ezlocation.location_not_found';
 
     /**
+     * @var string
+     */
+    public $typeNotAllowedMessage = 'netgen_block_manager.ezlocation.type_not_allowed';
+
+    /**
      * If set to true, the constraint will accept values for non existing locations.
      *
      * @var bool
      */
     public $allowInvalid = false;
+
+    /**
+     * If not empty, the constraint will only accept locations with provided content types.
+     *
+     * @var array
+     */
+    public $allowedTypes = [];
 
     public function validatedBy(): string
     {

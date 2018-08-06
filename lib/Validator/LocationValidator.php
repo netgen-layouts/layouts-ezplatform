@@ -6,6 +6,7 @@ namespace Netgen\BlockManager\Ez\Validator;
 
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Repository;
+use eZ\Publish\API\Repository\Values\Content\Location as EzLocation;
 use Netgen\BlockManager\Ez\Validator\Constraint\Location;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -40,14 +41,27 @@ final class LocationValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, 'scalar');
         }
 
-        if (!$constraint->allowInvalid) {
-            try {
-                $this->repository->sudo(
-                    function (Repository $repository) use ($value): void {
-                        $repository->getLocationService()->loadLocation($value);
-                    }
+        try {
+            /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
+            $location = $this->repository->sudo(
+                function (Repository $repository) use ($value): EzLocation {
+                    return $repository->getLocationService()->loadLocation($value);
+                }
+            );
+
+            if (!empty($constraint->allowedTypes)) {
+                $contentType = $this->repository->getContentTypeService()->loadContentType(
+                    $location->contentInfo->contentTypeId
                 );
-            } catch (NotFoundException $e) {
+
+                if (!in_array($contentType->identifier, $constraint->allowedTypes, true)) {
+                    $this->context->buildViolation($constraint->typeNotAllowedMessage)
+                        ->setParameter('%contentType%', $contentType->identifier)
+                        ->addViolation();
+                }
+            }
+        } catch (NotFoundException $e) {
+            if (!$constraint->allowInvalid) {
                 $this->context->buildViolation($constraint->message)
                     ->setParameter('%locationId%', (string) $value)
                     ->addViolation();

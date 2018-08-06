@@ -32,15 +32,53 @@ final class LocationMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\Form\Mapper\LocationMapper::mapOptions
+     * @covers \Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentMapper::mapOptions
      */
     public function testMapOptions(): void
     {
+        $mappedOptions = $this->mapper->mapOptions(
+            ParameterDefinition::fromArray(
+                [
+                    'type' => new ParameterType($this->createMock(Repository::class)),
+                    'options' => [
+                        'allowed_types' => ['user', 'image'],
+                    ],
+                ]
+            )
+        );
+
+        $this->assertSame(
+            [
+                'item_type' => 'ezlocation',
+                'custom_params' => [
+                    'allowed_content_types' => ['user', 'image'],
+                ],
+            ],
+            $mappedOptions
+        );
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentMapper::mapOptions
+     */
+    public function testMapOptionsEmptyAllowedTypes(): void
+    {
+        $mappedOptions = $this->mapper->mapOptions(
+            ParameterDefinition::fromArray(
+                [
+                    'type' => new ParameterType($this->createMock(Repository::class)),
+                    'options' => [
+                        'allowed_types' => [],
+                    ],
+                ]
+            )
+        );
+
         $this->assertSame(
             [
                 'item_type' => 'ezlocation',
             ],
-            $this->mapper->mapOptions(ParameterDefinition::fromArray(['type' => new ParameterType($this->createMock(Repository::class))]))
+            $mappedOptions
         );
     }
 }

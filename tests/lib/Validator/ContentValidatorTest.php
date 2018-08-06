@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Netgen\BlockManager\Ez\Tests\Validator;
 
 use eZ\Publish\API\Repository\ContentService;
+use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
+use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
 use Netgen\BlockManager\Ez\Validator\Constraint\Content;
 use Netgen\BlockManager\Ez\Validator\ContentValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
@@ -26,17 +28,24 @@ final class ContentValidatorTest extends ValidatorTestCase
      */
     private $contentServiceMock;
 
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject
+     */
+    private $contentTypeServiceMock;
+
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->constraint = new Content();
+        $this->constraint = new Content(['allowedTypes' => ['user']]);
     }
 
     public function getValidator(): ConstraintValidatorInterface
     {
         $this->contentServiceMock = $this->createMock(ContentService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentService']);
+        $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
+
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentService', 'getContentTypeService']);
 
         $this->repositoryMock
             ->expects($this->any())
@@ -51,6 +60,26 @@ final class ContentValidatorTest extends ValidatorTestCase
             ->method('getContentService')
             ->will($this->returnValue($this->contentServiceMock));
 
+        $this->repositoryMock
+            ->expects($this->any())
+            ->method('getContentTypeService')
+            ->will($this->returnValue($this->contentTypeServiceMock));
+
+        $this->contentTypeServiceMock
+            ->expects($this->any())
+            ->method('loadContentType')
+            ->will(
+                $this->returnCallback(
+                    function (int $type): ContentType {
+                        if ($type === 24) {
+                            return new ContentType(['identifier' => 'user']);
+                        }
+
+                        return new ContentType(['identifier' => 'article']);
+                    }
+                )
+            );
+
         return new ContentValidator($this->repositoryMock);
     }
 
@@ -64,9 +93,39 @@ final class ContentValidatorTest extends ValidatorTestCase
             ->expects($this->once())
             ->method('loadContentInfo')
             ->with($this->identicalTo(42))
-            ->will($this->returnValue(new ContentInfo(['id' => 42])));
+            ->will($this->returnValue(new ContentInfo(['id' => 42, 'contentTypeId' => 24])));
 
         $this->assertValid(true, 42);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::__construct
+     * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::validate
+     */
+    public function testValidateInvalidWithWrongType(): void
+    {
+        $this->contentServiceMock
+            ->expects($this->once())
+            ->method('loadContentInfo')
+            ->with($this->identicalTo(42))
+            ->will($this->returnValue(new ContentInfo(['id' => 42, 'contentTypeId' => 52])));
+
+        $this->assertValid(false, 42);
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::__construct
+     * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::validate
+     */
+    public function testValidateInvalidWithNonExistingContent(): void
+    {
+        $this->contentServiceMock
+            ->expects($this->once())
+            ->method('loadContentInfo')
+            ->with($this->identicalTo(42))
+            ->will($this->throwException(new NotFoundException('content', 42)));
+
+        $this->assertValid(false, 42);
     }
 
     /**
@@ -80,21 +139,6 @@ final class ContentValidatorTest extends ValidatorTestCase
             ->method('loadContentInfo');
 
         $this->assertValid(true, null);
-    }
-
-    /**
-     * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::__construct
-     * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::validate
-     */
-    public function testValidateInvalid(): void
-    {
-        $this->contentServiceMock
-            ->expects($this->once())
-            ->method('loadContentInfo')
-            ->with($this->identicalTo(42))
-            ->will($this->throwException(new NotFoundException('content', 42)));
-
-        $this->assertValid(false, 42);
     }
 
     /**

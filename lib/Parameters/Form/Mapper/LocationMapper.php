@@ -17,8 +17,15 @@ final class LocationMapper extends Mapper
 
     public function mapOptions(ParameterDefinition $parameterDefinition): array
     {
-        return [
+        $options = [
             'item_type' => 'ezlocation',
         ];
+
+        $allowedTypes = $parameterDefinition->getOption('allowed_types');
+        if (!empty($allowedTypes)) {
+            $options['custom_params']['allowed_content_types'] = $allowedTypes;
+        }
+
+        return $options;
     }
 }

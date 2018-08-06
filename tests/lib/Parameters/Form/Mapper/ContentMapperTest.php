@@ -36,11 +36,49 @@ final class ContentMapperTest extends TestCase
      */
     public function testMapOptions(): void
     {
+        $mappedOptions = $this->mapper->mapOptions(
+            ParameterDefinition::fromArray(
+                [
+                    'type' => new ParameterType($this->createMock(Repository::class)),
+                    'options' => [
+                        'allowed_types' => ['user', 'image'],
+                    ],
+                ]
+            )
+        );
+
+        $this->assertSame(
+            [
+                'item_type' => 'ezcontent',
+                'custom_params' => [
+                    'allowed_content_types' => ['user', 'image'],
+                ],
+            ],
+            $mappedOptions
+        );
+    }
+
+    /**
+     * @covers \Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentMapper::mapOptions
+     */
+    public function testMapOptionsEmptyAllowedTypes(): void
+    {
+        $mappedOptions = $this->mapper->mapOptions(
+            ParameterDefinition::fromArray(
+                [
+                    'type' => new ParameterType($this->createMock(Repository::class)),
+                    'options' => [
+                        'allowed_types' => [],
+                    ],
+                ]
+            )
+        );
+
         $this->assertSame(
             [
                 'item_type' => 'ezcontent',
             ],
-            $this->mapper->mapOptions(ParameterDefinition::fromArray(['type' => new ParameterType($this->createMock(Repository::class))]))
+            $mappedOptions
         );
     }
 }
