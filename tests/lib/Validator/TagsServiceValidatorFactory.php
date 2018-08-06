@@ -21,7 +21,7 @@ final class TagsServiceValidatorFactory implements ConstraintValidatorFactoryInt
     /**
      * @var array
      */
-    private $validators = [];
+    private $validators;
 
     public function __construct(TagsService $tagsService)
     {

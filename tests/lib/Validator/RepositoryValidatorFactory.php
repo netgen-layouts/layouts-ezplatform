@@ -25,7 +25,7 @@ final class RepositoryValidatorFactory implements ConstraintValidatorFactoryInte
     /**
      * @var array
      */
-    private $validators = [];
+    private $validators;
 
     public function __construct(Repository $repository)
     {

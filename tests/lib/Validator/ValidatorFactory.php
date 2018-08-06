@@ -21,7 +21,7 @@ final class ValidatorFactory implements ConstraintValidatorFactoryInterface
     /**
      * @var array
      */
-    private $validators = [];
+    private $validators;
 
     public function __construct()
     {
