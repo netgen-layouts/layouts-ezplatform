@@ -35,9 +35,9 @@ final class RoleHierarchyTest extends TestCase
         $reachableRoles = $role->getReachableRoles([new Role($startingRole)]);
 
         self::assertCount(count($expectedReachableRoles), $reachableRoles);
+        self::assertContainsOnlyInstancesOf(Role::class, $reachableRoles);
 
         foreach ($reachableRoles as $index => $reachableRole) {
-            self::assertInstanceOf(Role::class, $reachableRole);
             self::assertSame($expectedReachableRoles[$index], $reachableRole->getRole());
         }
     }

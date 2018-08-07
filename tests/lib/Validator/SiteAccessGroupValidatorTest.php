@@ -19,16 +19,6 @@ final class SiteAccessGroupValidatorTest extends ValidatorTestCase
         $this->constraint = new SiteAccessGroup();
     }
 
-    public function getValidator(): ConstraintValidatorInterface
-    {
-        return new SiteAccessGroupValidator(
-            [
-                'frontend' => ['eng'],
-                'backend' => ['admin'],
-            ]
-        );
-    }
-
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\SiteAccessGroupValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\SiteAccessGroupValidator::validate
@@ -67,5 +57,15 @@ final class SiteAccessGroupValidatorTest extends ValidatorTestCase
             ['other', false],
             [null, true],
         ];
+    }
+
+    protected function getValidator(): ConstraintValidatorInterface
+    {
+        return new SiteAccessGroupValidator(
+            [
+                'frontend' => ['eng'],
+                'backend' => ['admin'],
+            ]
+        );
     }
 }

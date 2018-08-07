@@ -20,15 +20,6 @@ final class SectionTypeTest extends FormTestCase
      */
     private $sectionServiceMock;
 
-    public function getMainType(): FormTypeInterface
-    {
-        $this->sectionServiceMock = $this->createMock(SectionService::class);
-
-        return new SectionType(
-            $this->sectionServiceMock
-        );
-    }
-
     /**
      * @covers \Netgen\BlockManager\Ez\Form\SectionType::__construct
      * @covers \Netgen\BlockManager\Ez\Form\SectionType::getSections
@@ -154,6 +145,15 @@ final class SectionTypeTest extends FormTestCase
             [
                 'sections' => [42],
             ]
+        );
+    }
+
+    protected function getMainType(): FormTypeInterface
+    {
+        $this->sectionServiceMock = $this->createMock(SectionService::class);
+
+        return new SectionType(
+            $this->sectionServiceMock
         );
     }
 

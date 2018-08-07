@@ -19,11 +19,6 @@ final class SiteAccessValidatorTest extends ValidatorTestCase
         $this->constraint = new SiteAccess();
     }
 
-    public function getValidator(): ConstraintValidatorInterface
-    {
-        return new SiteAccessValidator(['eng', 'cro']);
-    }
-
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\SiteAccessValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\SiteAccessValidator::validate
@@ -62,5 +57,10 @@ final class SiteAccessValidatorTest extends ValidatorTestCase
             ['fre', false],
             [null, true],
         ];
+    }
+
+    protected function getValidator(): ConstraintValidatorInterface
+    {
+        return new SiteAccessValidator(['eng', 'cro']);
     }
 }

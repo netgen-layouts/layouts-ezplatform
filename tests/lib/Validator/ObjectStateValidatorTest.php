@@ -33,27 +33,6 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
         $this->constraint = new ObjectState();
     }
 
-    public function getValidator(): ConstraintValidatorInterface
-    {
-        $this->objectStateServiceMock = $this->createMock(ObjectStateService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getObjectStateService']);
-
-        $this->repositoryMock
-            ->expects(self::any())
-            ->method('sudo')
-            ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
-
-        $this->repositoryMock
-            ->expects(self::any())
-            ->method('getObjectStateService')
-            ->will(self::returnValue($this->objectStateServiceMock));
-
-        return new ObjectStateValidator($this->repositoryMock);
-    }
-
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::loadStateIdentifiers
@@ -198,5 +177,26 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
             ['unknown|state1', [], false],
             ['group1|unknown', [], false],
         ];
+    }
+
+    protected function getValidator(): ConstraintValidatorInterface
+    {
+        $this->objectStateServiceMock = $this->createMock(ObjectStateService::class);
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getObjectStateService']);
+
+        $this->repositoryMock
+            ->expects(self::any())
+            ->method('sudo')
+            ->with(self::anything())
+            ->will(self::returnCallback(function (callable $callback) {
+                return $callback($this->repositoryMock);
+            }));
+
+        $this->repositoryMock
+            ->expects(self::any())
+            ->method('getObjectStateService')
+            ->will(self::returnValue($this->objectStateServiceMock));
+
+        return new ObjectStateValidator($this->repositoryMock);
     }
 }

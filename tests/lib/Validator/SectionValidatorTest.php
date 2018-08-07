@@ -33,27 +33,6 @@ final class SectionValidatorTest extends ValidatorTestCase
         $this->constraint = new Section();
     }
 
-    public function getValidator(): ConstraintValidatorInterface
-    {
-        $this->sectionServiceMock = $this->createMock(SectionService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getSectionService']);
-
-        $this->repositoryMock
-            ->expects(self::any())
-            ->method('sudo')
-            ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
-
-        $this->repositoryMock
-            ->expects(self::any())
-            ->method('getSectionService')
-            ->will(self::returnValue($this->sectionServiceMock));
-
-        return new SectionValidator($this->repositoryMock);
-    }
-
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\SectionValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\SectionValidator::validate
@@ -151,5 +130,26 @@ final class SectionValidatorTest extends ValidatorTestCase
             ['media', ['standard'], false],
             ['media', ['media', 'standard'], true],
         ];
+    }
+
+    protected function getValidator(): ConstraintValidatorInterface
+    {
+        $this->sectionServiceMock = $this->createMock(SectionService::class);
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getSectionService']);
+
+        $this->repositoryMock
+            ->expects(self::any())
+            ->method('sudo')
+            ->with(self::anything())
+            ->will(self::returnCallback(function (callable $callback) {
+                return $callback($this->repositoryMock);
+            }));
+
+        $this->repositoryMock
+            ->expects(self::any())
+            ->method('getSectionService')
+            ->will(self::returnValue($this->sectionServiceMock));
+
+        return new SectionValidator($this->repositoryMock);
     }
 }

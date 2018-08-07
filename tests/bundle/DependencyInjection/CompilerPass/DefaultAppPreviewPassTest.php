@@ -52,7 +52,7 @@ final class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
 
         $this->compile();
 
-        self::assertContainerBuilderHasParameter(
+        $this->assertContainerBuilderHasParameter(
             'ezsettings.default.content_view',
             [
                 'full' => [
@@ -70,7 +70,7 @@ final class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
             ]
         );
 
-        self::assertContainerBuilderHasParameter(
+        $this->assertContainerBuilderHasParameter(
             'ezsettings.cro.location_view',
             [
                 'full' => [

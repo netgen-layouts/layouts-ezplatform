@@ -21,15 +21,6 @@ final class ContentTypeTypeTest extends FormTestCase
      */
     private $contentTypeServiceMock;
 
-    public function getMainType(): FormTypeInterface
-    {
-        $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
-
-        return new ContentTypeType(
-            $this->contentTypeServiceMock
-        );
-    }
-
     /**
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::__construct
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getContentTypes
@@ -106,6 +97,15 @@ final class ContentTypeTypeTest extends FormTestCase
             // @deprecated Remove when support for Symfony 2.8 ends
             self::assertTrue($options['choices_as_values']);
         }
+    }
+
+    protected function getMainType(): FormTypeInterface
+    {
+        $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
+
+        return new ContentTypeType(
+            $this->contentTypeServiceMock
+        );
     }
 
     private function configureContentTypeService(): void

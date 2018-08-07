@@ -29,7 +29,7 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
 
         $clientEnabled ?
             self::assertContainerBuilderNotHasAlias('netgen_block_manager.http_cache.client') :
-            self::assertContainerBuilderHasAlias(
+            $this->assertContainerBuilderHasAlias(
                 'netgen_block_manager.http_cache.client',
                 'netgen_block_manager.http_cache.client.null'
             );

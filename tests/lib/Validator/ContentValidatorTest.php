@@ -40,49 +40,6 @@ final class ContentValidatorTest extends ValidatorTestCase
         $this->constraint = new Content(['allowedTypes' => ['user']]);
     }
 
-    public function getValidator(): ConstraintValidatorInterface
-    {
-        $this->contentServiceMock = $this->createMock(ContentService::class);
-        $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
-
-        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentService', 'getContentTypeService']);
-
-        $this->repositoryMock
-            ->expects(self::any())
-            ->method('sudo')
-            ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
-
-        $this->repositoryMock
-            ->expects(self::any())
-            ->method('getContentService')
-            ->will(self::returnValue($this->contentServiceMock));
-
-        $this->repositoryMock
-            ->expects(self::any())
-            ->method('getContentTypeService')
-            ->will(self::returnValue($this->contentTypeServiceMock));
-
-        $this->contentTypeServiceMock
-            ->expects(self::any())
-            ->method('loadContentType')
-            ->will(
-                self::returnCallback(
-                    function (int $type): ContentType {
-                        if ($type === 24) {
-                            return new ContentType(['identifier' => 'user']);
-                        }
-
-                        return new ContentType(['identifier' => 'article']);
-                    }
-                )
-            );
-
-        return new ContentValidator($this->repositoryMock);
-    }
-
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\ContentValidator::validate
@@ -160,5 +117,48 @@ final class ContentValidatorTest extends ValidatorTestCase
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
         self::assertValid(true, []);
+    }
+
+    protected function getValidator(): ConstraintValidatorInterface
+    {
+        $this->contentServiceMock = $this->createMock(ContentService::class);
+        $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
+
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentService', 'getContentTypeService']);
+
+        $this->repositoryMock
+            ->expects(self::any())
+            ->method('sudo')
+            ->with(self::anything())
+            ->will(self::returnCallback(function (callable $callback) {
+                return $callback($this->repositoryMock);
+            }));
+
+        $this->repositoryMock
+            ->expects(self::any())
+            ->method('getContentService')
+            ->will(self::returnValue($this->contentServiceMock));
+
+        $this->repositoryMock
+            ->expects(self::any())
+            ->method('getContentTypeService')
+            ->will(self::returnValue($this->contentTypeServiceMock));
+
+        $this->contentTypeServiceMock
+            ->expects(self::any())
+            ->method('loadContentType')
+            ->will(
+                self::returnCallback(
+                    function (int $type): ContentType {
+                        if ($type === 24) {
+                            return new ContentType(['identifier' => 'user']);
+                        }
+
+                        return new ContentType(['identifier' => 'article']);
+                    }
+                )
+            );
+
+        return new ContentValidator($this->repositoryMock);
     }
 }

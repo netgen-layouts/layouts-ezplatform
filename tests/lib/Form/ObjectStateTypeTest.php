@@ -21,15 +21,6 @@ final class ObjectStateTypeTest extends FormTestCase
      */
     private $objectStateServiceMock;
 
-    public function getMainType(): FormTypeInterface
-    {
-        $this->objectStateServiceMock = $this->createMock(ObjectStateService::class);
-
-        return new ObjectStateType(
-            $this->objectStateServiceMock
-        );
-    }
-
     /**
      * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::__construct
      * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getGroupName
@@ -108,6 +99,15 @@ final class ObjectStateTypeTest extends FormTestCase
             // @deprecated Remove when support for Symfony 2.8 ends
             self::assertTrue($options['choices_as_values']);
         }
+    }
+
+    protected function getMainType(): FormTypeInterface
+    {
+        $this->objectStateServiceMock = $this->createMock(ObjectStateService::class);
+
+        return new ObjectStateType(
+            $this->objectStateServiceMock
+        );
     }
 
     private function configureObjectStateService(): void

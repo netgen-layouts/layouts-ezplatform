@@ -34,27 +34,6 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
         $this->constraint = new ContentType();
     }
 
-    public function getValidator(): ConstraintValidatorInterface
-    {
-        $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentTypeService']);
-
-        $this->repositoryMock
-            ->expects(self::any())
-            ->method('sudo')
-            ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
-
-        $this->repositoryMock
-            ->expects(self::any())
-            ->method('getContentTypeService')
-            ->will(self::returnValue($this->contentTypeServiceMock));
-
-        return new ContentTypeValidator($this->repositoryMock);
-    }
-
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::validate
@@ -166,5 +145,26 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
             ['article', ['group1'], ['group1' => ['news']], false],
             ['article', ['group1'], ['group1' => ['article', 'news']], true],
         ];
+    }
+
+    protected function getValidator(): ConstraintValidatorInterface
+    {
+        $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentTypeService']);
+
+        $this->repositoryMock
+            ->expects(self::any())
+            ->method('sudo')
+            ->with(self::anything())
+            ->will(self::returnCallback(function (callable $callback) {
+                return $callback($this->repositoryMock);
+            }));
+
+        $this->repositoryMock
+            ->expects(self::any())
+            ->method('getContentTypeService')
+            ->will(self::returnValue($this->contentTypeServiceMock));
+
+        return new ContentTypeValidator($this->repositoryMock);
     }
 }

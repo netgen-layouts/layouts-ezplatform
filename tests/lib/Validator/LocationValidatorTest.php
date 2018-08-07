@@ -41,49 +41,6 @@ final class LocationValidatorTest extends ValidatorTestCase
         $this->constraint = new Location(['allowedTypes' => ['user']]);
     }
 
-    public function getValidator(): ConstraintValidatorInterface
-    {
-        $this->locationServiceMock = $this->createMock(LocationService::class);
-        $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
-
-        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService', 'getContentTypeService']);
-
-        $this->repositoryMock
-            ->expects(self::any())
-            ->method('sudo')
-            ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
-
-        $this->repositoryMock
-            ->expects(self::any())
-            ->method('getLocationService')
-            ->will(self::returnValue($this->locationServiceMock));
-
-        $this->repositoryMock
-            ->expects(self::any())
-            ->method('getContentTypeService')
-            ->will(self::returnValue($this->contentTypeServiceMock));
-
-        $this->contentTypeServiceMock
-            ->expects(self::any())
-            ->method('loadContentType')
-            ->will(
-                self::returnCallback(
-                    function (int $type): ContentType {
-                        if ($type === 24) {
-                            return new ContentType(['identifier' => 'user']);
-                        }
-
-                        return new ContentType(['identifier' => 'article']);
-                    }
-                )
-            );
-
-        return new LocationValidator($this->repositoryMock);
-    }
-
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::validate
@@ -179,5 +136,48 @@ final class LocationValidatorTest extends ValidatorTestCase
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
         self::assertValid(true, []);
+    }
+
+    protected function getValidator(): ConstraintValidatorInterface
+    {
+        $this->locationServiceMock = $this->createMock(LocationService::class);
+        $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
+
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService', 'getContentTypeService']);
+
+        $this->repositoryMock
+            ->expects(self::any())
+            ->method('sudo')
+            ->with(self::anything())
+            ->will(self::returnCallback(function (callable $callback) {
+                return $callback($this->repositoryMock);
+            }));
+
+        $this->repositoryMock
+            ->expects(self::any())
+            ->method('getLocationService')
+            ->will(self::returnValue($this->locationServiceMock));
+
+        $this->repositoryMock
+            ->expects(self::any())
+            ->method('getContentTypeService')
+            ->will(self::returnValue($this->contentTypeServiceMock));
+
+        $this->contentTypeServiceMock
+            ->expects(self::any())
+            ->method('loadContentType')
+            ->will(
+                self::returnCallback(
+                    function (int $type): ContentType {
+                        if ($type === 24) {
+                            return new ContentType(['identifier' => 'user']);
+                        }
+
+                        return new ContentType(['identifier' => 'article']);
+                    }
+                )
+            );
+
+        return new LocationValidator($this->repositoryMock);
     }
 }

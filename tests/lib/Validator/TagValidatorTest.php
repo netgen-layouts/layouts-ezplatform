@@ -27,13 +27,6 @@ final class TagValidatorTest extends ValidatorTestCase
         $this->constraint = new Tag();
     }
 
-    public function getValidator(): ConstraintValidatorInterface
-    {
-        $this->tagsServiceMock = $this->createPartialMock(TagsService::class, ['loadTag']);
-
-        return new TagValidator($this->tagsServiceMock);
-    }
-
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::__construct
      * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::validate
@@ -96,5 +89,12 @@ final class TagValidatorTest extends ValidatorTestCase
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
         self::assertValid(true, []);
+    }
+
+    protected function getValidator(): ConstraintValidatorInterface
+    {
+        $this->tagsServiceMock = $this->createPartialMock(TagsService::class, ['loadTag']);
+
+        return new TagValidator($this->tagsServiceMock);
     }
 }
