@@ -83,7 +83,7 @@ trait ObjectStateFilterTrait
 
         foreach ($stateIdentifiers as $identifier) {
             $identifier = explode('|', $identifier);
-            if (!is_array($identifier) || count($identifier) !== 2) {
+            if (count($identifier) !== 2) {
                 continue;
             }
 
