@@ -58,11 +58,6 @@ final class ContentValueConverter implements ValueConverterInterface
         return $object->remoteId;
     }
 
-    /**
-     * @param \eZ\Publish\API\Repository\Values\Content\ContentInfo $object
-     *
-     * @return string
-     */
     public function getName($object): string
     {
         if (trait_exists(MultiLanguageNameTrait::class)) {
