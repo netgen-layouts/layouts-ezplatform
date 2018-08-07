@@ -11,11 +11,6 @@ use Netgen\BlockManager\Tests\Block\BlockDefinition\Integration\BlockTest;
 
 abstract class ContentFieldTest extends BlockTest
 {
-    public function createBlockDefinitionHandler(): BlockDefinitionHandlerInterface
-    {
-        return new ContentFieldHandler($this->createMock(ContentProviderInterface::class));
-    }
-
     public function parametersDataProvider(): array
     {
         return [
@@ -67,5 +62,10 @@ abstract class ContentFieldTest extends BlockTest
                 ],
             ],
         ];
+    }
+
+    protected function createBlockDefinitionHandler(): BlockDefinitionHandlerInterface
+    {
+        return new ContentFieldHandler($this->createMock(ContentProviderInterface::class));
     }
 }
