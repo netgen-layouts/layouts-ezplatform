@@ -46,17 +46,17 @@ final class ContentTest extends TestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentService']);
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('sudo')
-            ->with($this->anything())
-            ->will($this->returnCallback(function (callable $callback) {
+            ->with(self::anything())
+            ->will(self::returnCallback(function (callable $callback) {
                 return $callback($this->repositoryMock);
             }));
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getContentService')
-            ->will($this->returnValue($this->contentServiceMock));
+            ->will(self::returnValue($this->contentServiceMock));
 
         $this->targetType = new Content($this->contentExtractorMock);
     }
@@ -67,7 +67,7 @@ final class ContentTest extends TestCase
      */
     public function testGetType(): void
     {
-        $this->assertSame('ezcontent', $this->targetType::getType());
+        self::assertSame('ezcontent', $this->targetType::getType());
     }
 
     /**
@@ -76,17 +76,17 @@ final class ContentTest extends TestCase
     public function testValidation(): void
     {
         $this->contentServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadContentInfo')
-            ->with($this->identicalTo(42))
-            ->will($this->returnValue(new ContentInfo()));
+            ->with(self::identicalTo(42))
+            ->will(self::returnValue(new ContentInfo()));
 
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
 
         $errors = $validator->validate(42, $this->targetType->getConstraints());
-        $this->assertCount(0, $errors);
+        self::assertCount(0, $errors);
     }
 
     /**
@@ -95,17 +95,17 @@ final class ContentTest extends TestCase
     public function testValidationWithInvalidValue(): void
     {
         $this->contentServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadContentInfo')
-            ->with($this->identicalTo(42))
-            ->will($this->throwException(new NotFoundException('content', 42)));
+            ->with(self::identicalTo(42))
+            ->will(self::throwException(new NotFoundException('content', 42)));
 
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
 
         $errors = $validator->validate(42, $this->targetType->getConstraints());
-        $this->assertNotCount(0, $errors);
+        self::assertNotCount(0, $errors);
     }
 
     /**
@@ -130,12 +130,12 @@ final class ContentTest extends TestCase
         $request = Request::create('/');
 
         $this->contentExtractorMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('extractContent')
-            ->with($this->identicalTo($request))
-            ->will($this->returnValue($content));
+            ->with(self::identicalTo($request))
+            ->will(self::returnValue($content));
 
-        $this->assertSame(42, $this->targetType->provideValue($request));
+        self::assertSame(42, $this->targetType->provideValue($request));
     }
 
     /**
@@ -146,11 +146,11 @@ final class ContentTest extends TestCase
         $request = Request::create('/');
 
         $this->contentExtractorMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('extractContent')
-            ->with($this->identicalTo($request))
-            ->will($this->returnValue(null));
+            ->with(self::identicalTo($request))
+            ->will(self::returnValue(null));
 
-        $this->assertNull($this->targetType->provideValue($request));
+        self::assertNull($this->targetType->provideValue($request));
     }
 }

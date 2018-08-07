@@ -28,8 +28,8 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
         $this->compile();
 
         $clientEnabled ?
-            $this->assertContainerBuilderNotHasAlias('netgen_block_manager.http_cache.client') :
-            $this->assertContainerBuilderHasAlias(
+            self::assertContainerBuilderNotHasAlias('netgen_block_manager.http_cache.client') :
+            self::assertContainerBuilderHasAlias(
                 'netgen_block_manager.http_cache.client',
                 'netgen_block_manager.http_cache.client.null'
             );
@@ -46,7 +46,7 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
 
         $this->compile();
 
-        $this->assertContainerBuilderNotHasAlias('netgen_block_manager.http_cache.client');
+        self::assertContainerBuilderNotHasAlias('netgen_block_manager.http_cache.client');
     }
 
     public function processProvider(): array
@@ -64,7 +64,7 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
     {
         $this->compile();
 
-        $this->assertInstanceOf(FrozenParameterBag::class, $this->container->getParameterBag());
+        self::assertInstanceOf(FrozenParameterBag::class, $this->container->getParameterBag());
     }
 
     /**
@@ -80,9 +80,9 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
      */
     private function assertContainerBuilderNotHasAlias(string $aliasId): void
     {
-        $this->assertThat(
+        self::assertThat(
             $this->container,
-            $this->logicalNot(
+            self::logicalNot(
                 new ContainerBuilderHasAliasConstraint($aliasId)
             )
         );

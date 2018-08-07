@@ -48,28 +48,28 @@ final class ContentValidatorTest extends ValidatorTestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentService', 'getContentTypeService']);
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('sudo')
-            ->with($this->anything())
-            ->will($this->returnCallback(function (callable $callback) {
+            ->with(self::anything())
+            ->will(self::returnCallback(function (callable $callback) {
                 return $callback($this->repositoryMock);
             }));
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getContentService')
-            ->will($this->returnValue($this->contentServiceMock));
+            ->will(self::returnValue($this->contentServiceMock));
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getContentTypeService')
-            ->will($this->returnValue($this->contentTypeServiceMock));
+            ->will(self::returnValue($this->contentTypeServiceMock));
 
         $this->contentTypeServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadContentType')
             ->will(
-                $this->returnCallback(
+                self::returnCallback(
                     function (int $type): ContentType {
                         if ($type === 24) {
                             return new ContentType(['identifier' => 'user']);
@@ -90,12 +90,12 @@ final class ContentValidatorTest extends ValidatorTestCase
     public function testValidateValid(): void
     {
         $this->contentServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadContentInfo')
-            ->with($this->identicalTo(42))
-            ->will($this->returnValue(new ContentInfo(['id' => 42, 'contentTypeId' => 24])));
+            ->with(self::identicalTo(42))
+            ->will(self::returnValue(new ContentInfo(['id' => 42, 'contentTypeId' => 24])));
 
-        $this->assertValid(true, 42);
+        self::assertValid(true, 42);
     }
 
     /**
@@ -105,12 +105,12 @@ final class ContentValidatorTest extends ValidatorTestCase
     public function testValidateInvalidWithWrongType(): void
     {
         $this->contentServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadContentInfo')
-            ->with($this->identicalTo(42))
-            ->will($this->returnValue(new ContentInfo(['id' => 42, 'contentTypeId' => 52])));
+            ->with(self::identicalTo(42))
+            ->will(self::returnValue(new ContentInfo(['id' => 42, 'contentTypeId' => 52])));
 
-        $this->assertValid(false, 42);
+        self::assertValid(false, 42);
     }
 
     /**
@@ -120,12 +120,12 @@ final class ContentValidatorTest extends ValidatorTestCase
     public function testValidateInvalidWithNonExistingContent(): void
     {
         $this->contentServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadContentInfo')
-            ->with($this->identicalTo(42))
-            ->will($this->throwException(new NotFoundException('content', 42)));
+            ->with(self::identicalTo(42))
+            ->will(self::throwException(new NotFoundException('content', 42)));
 
-        $this->assertValid(false, 42);
+        self::assertValid(false, 42);
     }
 
     /**
@@ -135,10 +135,10 @@ final class ContentValidatorTest extends ValidatorTestCase
     public function testValidateNull(): void
     {
         $this->contentServiceMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('loadContentInfo');
 
-        $this->assertValid(true, null);
+        self::assertValid(true, null);
     }
 
     /**
@@ -149,7 +149,7 @@ final class ContentValidatorTest extends ValidatorTestCase
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->constraint = new NotBlank();
-        $this->assertValid(true, 'value');
+        self::assertValid(true, 'value');
     }
 
     /**
@@ -159,6 +159,6 @@ final class ContentValidatorTest extends ValidatorTestCase
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
-        $this->assertValid(true, []);
+        self::assertValid(true, []);
     }
 }

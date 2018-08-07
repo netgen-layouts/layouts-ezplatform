@@ -56,23 +56,23 @@ final class PageLayoutResolverTest extends TestCase
         $request = Request::create('/');
 
         $this->requestStackMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getCurrentRequest')
-            ->will($this->returnValue($request));
+            ->will(self::returnValue($request));
 
         $this->configResolverMock
-            ->expects($this->at(0))
+            ->expects(self::at(0))
             ->method('hasParameter')
-            ->with($this->identicalTo('pagelayout'))
-            ->will($this->returnValue(true));
+            ->with(self::identicalTo('pagelayout'))
+            ->will(self::returnValue(true));
 
         $this->configResolverMock
-            ->expects($this->at(1))
+            ->expects(self::at(1))
             ->method('getParameter')
-            ->with($this->identicalTo('pagelayout'))
-            ->will($this->returnValue('resolvedPagelayout'));
+            ->with(self::identicalTo('pagelayout'))
+            ->will(self::returnValue('resolvedPagelayout'));
 
-        $this->assertSame('resolvedPagelayout', $this->resolver->resolvePageLayout());
+        self::assertSame('resolvedPagelayout', $this->resolver->resolvePageLayout());
     }
 
     /**
@@ -81,24 +81,24 @@ final class PageLayoutResolverTest extends TestCase
     public function testResolvePageLayoutWitNoRequest(): void
     {
         $this->requestStackMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getCurrentRequest')
-            ->will($this->returnValue(null));
+            ->will(self::returnValue(null));
 
         $this->innerResolverMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('resolvePageLayout')
-            ->will($this->returnValue('defaultPageLayout'));
+            ->will(self::returnValue('defaultPageLayout'));
 
         $this->configResolverMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('hasParameter');
 
         $this->configResolverMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('getParameter');
 
-        $this->assertSame('defaultPageLayout', $this->resolver->resolvePageLayout());
+        self::assertSame('defaultPageLayout', $this->resolver->resolvePageLayout());
     }
 
     /**
@@ -110,23 +110,23 @@ final class PageLayoutResolverTest extends TestCase
         $request->attributes->set('layout', false);
 
         $this->requestStackMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getCurrentRequest')
-            ->will($this->returnValue($request));
+            ->will(self::returnValue($request));
 
         $this->innerResolverMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('resolvePageLayout');
 
         $this->configResolverMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('hasParameter');
 
         $this->configResolverMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('getParameter');
 
-        $this->assertSame('viewbaseLayout', $this->resolver->resolvePageLayout());
+        self::assertSame('viewbaseLayout', $this->resolver->resolvePageLayout());
     }
 
     /**
@@ -137,25 +137,25 @@ final class PageLayoutResolverTest extends TestCase
         $request = Request::create('/');
 
         $this->requestStackMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getCurrentRequest')
-            ->will($this->returnValue($request));
+            ->will(self::returnValue($request));
 
         $this->innerResolverMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('resolvePageLayout')
-            ->will($this->returnValue('defaultPageLayout'));
+            ->will(self::returnValue('defaultPageLayout'));
 
         $this->configResolverMock
-            ->expects($this->at(0))
+            ->expects(self::at(0))
             ->method('hasParameter')
-            ->with($this->identicalTo('pagelayout'))
-            ->will($this->returnValue(false));
+            ->with(self::identicalTo('pagelayout'))
+            ->will(self::returnValue(false));
 
         $this->configResolverMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('getParameter');
 
-        $this->assertSame('defaultPageLayout', $this->resolver->resolvePageLayout());
+        self::assertSame('defaultPageLayout', $this->resolver->resolvePageLayout());
     }
 }

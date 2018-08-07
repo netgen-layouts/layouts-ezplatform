@@ -44,12 +44,12 @@ final class ContentValueLoaderTest extends TestCase
         );
 
         $this->contentServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadContentInfo')
-            ->with($this->identicalTo(52))
-            ->will($this->returnValue($contentInfo));
+            ->with(self::identicalTo(52))
+            ->will(self::returnValue($contentInfo));
 
-        $this->assertSame($contentInfo, $this->valueLoader->load(52));
+        self::assertSame($contentInfo, $this->valueLoader->load(52));
     }
 
     /**
@@ -58,12 +58,12 @@ final class ContentValueLoaderTest extends TestCase
     public function testLoadWithNoContent(): void
     {
         $this->contentServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadContentInfo')
-            ->with($this->identicalTo(52))
-            ->will($this->throwException(new Exception()));
+            ->with(self::identicalTo(52))
+            ->will(self::throwException(new Exception()));
 
-        $this->assertNull($this->valueLoader->load(52));
+        self::assertNull($this->valueLoader->load(52));
     }
 
     /**
@@ -72,11 +72,11 @@ final class ContentValueLoaderTest extends TestCase
     public function testLoadWithNonPublishedContent(): void
     {
         $this->contentServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadContentInfo')
-            ->with($this->identicalTo(52))
+            ->with(self::identicalTo(52))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     new ContentInfo(
                         [
                             'published' => false,
@@ -86,7 +86,7 @@ final class ContentValueLoaderTest extends TestCase
                 )
             );
 
-        $this->assertNull($this->valueLoader->load(52));
+        self::assertNull($this->valueLoader->load(52));
     }
 
     /**
@@ -95,11 +95,11 @@ final class ContentValueLoaderTest extends TestCase
     public function testLoadWithNoMainLocation(): void
     {
         $this->contentServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadContentInfo')
-            ->with($this->identicalTo(52))
+            ->with(self::identicalTo(52))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     new ContentInfo(
                         [
                             'published' => true,
@@ -108,7 +108,7 @@ final class ContentValueLoaderTest extends TestCase
                 )
             );
 
-        $this->assertNull($this->valueLoader->load(52));
+        self::assertNull($this->valueLoader->load(52));
     }
 
     /**
@@ -125,12 +125,12 @@ final class ContentValueLoaderTest extends TestCase
         );
 
         $this->contentServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadContentInfoByRemoteId')
-            ->with($this->identicalTo('abc'))
-            ->will($this->returnValue($contentInfo));
+            ->with(self::identicalTo('abc'))
+            ->will(self::returnValue($contentInfo));
 
-        $this->assertSame($contentInfo, $this->valueLoader->loadByRemoteId('abc'));
+        self::assertSame($contentInfo, $this->valueLoader->loadByRemoteId('abc'));
     }
 
     /**
@@ -139,12 +139,12 @@ final class ContentValueLoaderTest extends TestCase
     public function testLoadByRemoteIdWithNoContent(): void
     {
         $this->contentServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadContentInfoByRemoteId')
-            ->with($this->identicalTo('abc'))
-            ->will($this->throwException(new Exception()));
+            ->with(self::identicalTo('abc'))
+            ->will(self::throwException(new Exception()));
 
-        $this->assertNull($this->valueLoader->loadByRemoteId('abc'));
+        self::assertNull($this->valueLoader->loadByRemoteId('abc'));
     }
 
     /**
@@ -153,11 +153,11 @@ final class ContentValueLoaderTest extends TestCase
     public function testLoadByRemoteIdWithNonPublishedContent(): void
     {
         $this->contentServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadContentInfoByRemoteId')
-            ->with($this->identicalTo('abc'))
+            ->with(self::identicalTo('abc'))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     new ContentInfo(
                         [
                             'published' => false,
@@ -167,7 +167,7 @@ final class ContentValueLoaderTest extends TestCase
                 )
             );
 
-        $this->assertNull($this->valueLoader->loadByRemoteId('abc'));
+        self::assertNull($this->valueLoader->loadByRemoteId('abc'));
     }
 
     /**
@@ -176,11 +176,11 @@ final class ContentValueLoaderTest extends TestCase
     public function testLoadByRemoteIdWithNoMainLocation(): void
     {
         $this->contentServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadContentInfoByRemoteId')
-            ->with($this->identicalTo('abc'))
+            ->with(self::identicalTo('abc'))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     new ContentInfo(
                         [
                             'published' => true,
@@ -189,6 +189,6 @@ final class ContentValueLoaderTest extends TestCase
                 )
             );
 
-        $this->assertNull($this->valueLoader->loadByRemoteId('abc'));
+        self::assertNull($this->valueLoader->loadByRemoteId('abc'));
     }
 }

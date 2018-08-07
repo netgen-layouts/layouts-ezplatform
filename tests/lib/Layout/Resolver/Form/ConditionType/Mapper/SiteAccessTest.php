@@ -29,7 +29,7 @@ final class SiteAccessTest extends TestCase
      */
     public function testGetFormType(): void
     {
-        $this->assertSame(ChoiceType::class, $this->mapper->getFormType());
+        self::assertSame(ChoiceType::class, $this->mapper->getFormType());
     }
 
     /**
@@ -37,7 +37,7 @@ final class SiteAccessTest extends TestCase
      */
     public function testGetFormOptions(): void
     {
-        $this->assertSame(
+        self::assertSame(
             [
                 'choices' => ['cro' => 'cro', 'eng' => 'eng'],
                 'choice_translation_domain' => false,

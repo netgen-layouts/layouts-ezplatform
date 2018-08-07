@@ -50,7 +50,7 @@ final class RequestContentExtractorTest extends TestCase
         $request = Request::create('/');
         $request->attributes->set('view', $contentView);
 
-        $this->assertSame($content, $this->contentExtractor->extractContent($request));
+        self::assertSame($content, $this->contentExtractor->extractContent($request));
     }
 
     /**
@@ -61,7 +61,7 @@ final class RequestContentExtractorTest extends TestCase
         $request = Request::create('/');
         $request->attributes->set('view', 42);
 
-        $this->assertNull($this->contentExtractor->extractContent($request));
+        self::assertNull($this->contentExtractor->extractContent($request));
     }
 
     /**
@@ -76,7 +76,7 @@ final class RequestContentExtractorTest extends TestCase
         $request = Request::create('/');
         $request->attributes->set('view', $contentView);
 
-        $this->assertSame($location, $this->contentExtractor->extractLocation($request));
+        self::assertSame($location, $this->contentExtractor->extractLocation($request));
     }
 
     /**
@@ -87,6 +87,6 @@ final class RequestContentExtractorTest extends TestCase
         $request = Request::create('/');
         $request->attributes->set('view', 42);
 
-        $this->assertNull($this->contentExtractor->extractLocation($request));
+        self::assertNull($this->contentExtractor->extractLocation($request));
     }
 }

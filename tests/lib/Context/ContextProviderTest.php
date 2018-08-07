@@ -65,8 +65,8 @@ final class ContextProviderTest extends TestCase
 
         $this->contextProvider->provideContext($this->context);
 
-        $this->assertTrue($this->context->has('ez_location_id'));
-        $this->assertSame(42, $this->context->get('ez_location_id'));
+        self::assertTrue($this->context->has('ez_location_id'));
+        self::assertSame(42, $this->context->get('ez_location_id'));
     }
 
     /**
@@ -82,7 +82,7 @@ final class ContextProviderTest extends TestCase
 
         $this->contextProvider->provideContext($this->context);
 
-        $this->assertFalse($this->context->has('ez_location_id'));
+        self::assertFalse($this->context->has('ez_location_id'));
     }
 
     /**
@@ -92,6 +92,6 @@ final class ContextProviderTest extends TestCase
     {
         $this->contextProvider->provideContext($this->context);
 
-        $this->assertFalse($this->context->has('ez_location_id'));
+        self::assertFalse($this->context->has('ez_location_id'));
     }
 }

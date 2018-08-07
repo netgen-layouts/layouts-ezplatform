@@ -44,17 +44,17 @@ final class ChildrenTest extends TestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService']);
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('sudo')
-            ->with($this->anything())
-            ->will($this->returnCallback(function (callable $callback) {
+            ->with(self::anything())
+            ->will(self::returnCallback(function (callable $callback) {
                 return $callback($this->repositoryMock);
             }));
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getLocationService')
-            ->will($this->returnValue($this->locationServiceMock));
+            ->will(self::returnValue($this->locationServiceMock));
 
         $this->targetType = new Children($this->contentExtractorMock);
     }
@@ -64,7 +64,7 @@ final class ChildrenTest extends TestCase
      */
     public function testGetType(): void
     {
-        $this->assertSame('ezchildren', $this->targetType::getType());
+        self::assertSame('ezchildren', $this->targetType::getType());
     }
 
     /**
@@ -73,17 +73,17 @@ final class ChildrenTest extends TestCase
     public function testValidation(): void
     {
         $this->locationServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadLocation')
-            ->with($this->identicalTo(42))
-            ->will($this->returnValue(new Location()));
+            ->with(self::identicalTo(42))
+            ->will(self::returnValue(new Location()));
 
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
 
         $errors = $validator->validate(42, $this->targetType->getConstraints());
-        $this->assertCount(0, $errors);
+        self::assertCount(0, $errors);
     }
 
     /**
@@ -92,17 +92,17 @@ final class ChildrenTest extends TestCase
     public function testValidationWithInvalidValue(): void
     {
         $this->locationServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadLocation')
-            ->with($this->identicalTo(42))
-            ->will($this->throwException(new NotFoundException('location', 42)));
+            ->with(self::identicalTo(42))
+            ->will(self::throwException(new NotFoundException('location', 42)));
 
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
 
         $errors = $validator->validate(42, $this->targetType->getConstraints());
-        $this->assertNotCount(0, $errors);
+        self::assertNotCount(0, $errors);
     }
 
     /**
@@ -120,12 +120,12 @@ final class ChildrenTest extends TestCase
         $request = Request::create('/');
 
         $this->contentExtractorMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('extractLocation')
-            ->with($this->identicalTo($request))
-            ->will($this->returnValue($location));
+            ->with(self::identicalTo($request))
+            ->will(self::returnValue($location));
 
-        $this->assertSame(84, $this->targetType->provideValue($request));
+        self::assertSame(84, $this->targetType->provideValue($request));
     }
 
     /**
@@ -137,11 +137,11 @@ final class ChildrenTest extends TestCase
         $request = Request::create('/');
 
         $this->contentExtractorMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('extractLocation')
-            ->with($this->identicalTo($request))
-            ->will($this->returnValue(null));
+            ->with(self::identicalTo($request))
+            ->will(self::returnValue(null));
 
-        $this->assertNull($this->targetType->provideValue($request));
+        self::assertNull($this->targetType->provideValue($request));
     }
 }

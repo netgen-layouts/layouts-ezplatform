@@ -19,8 +19,8 @@ final class SubtreeTest extends AbstractTargetHandlerTest
     {
         $rules = $this->handler->matchRules($this->getTargetIdentifier(), [1, 2, 42]);
 
-        $this->assertCount(1, $rules);
-        $this->assertSame(8, $rules[0]->id);
+        self::assertCount(1, $rules);
+        self::assertSame(8, $rules[0]->id);
     }
 
     protected function getTargetIdentifier(): string

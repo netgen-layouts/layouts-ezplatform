@@ -33,10 +33,10 @@ final class PolicyProviderTest extends TestCase
     public function testAddPolicies(): void
     {
         $this->configBuilderMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('addConfig')
             ->with(
-                $this->identicalTo(
+                self::identicalTo(
                     [
                         'nglayouts' => [
                             'admin' => null,

@@ -20,7 +20,7 @@ final class ConfigurationTest extends TestCase
     {
         $extensionMock = $this->createMock(ExtensionInterface::class);
         $extensionMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getAlias')
             ->willReturn('alias');
 
@@ -32,6 +32,6 @@ final class ConfigurationTest extends TestCase
      */
     public function testGetConfigTreeBuilder(): void
     {
-        $this->assertInstanceOf(TreeBuilder::class, $this->configuration->getConfigTreeBuilder());
+        self::assertInstanceOf(TreeBuilder::class, $this->configuration->getConfigTreeBuilder());
     }
 }

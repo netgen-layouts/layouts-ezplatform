@@ -71,7 +71,7 @@ abstract class ConfigurationNodeTest extends TestCase
         ksort($expectedConfig['system']);
         ksort($actualConfig['system']);
 
-        $this->assertSame($expectedConfig, $actualConfig);
+        self::assertSame($expectedConfig, $actualConfig);
     }
 
     /**

@@ -60,7 +60,7 @@ final class DefaultViewTemplatesPassTest extends AbstractCompilerPassTestCase
 
         $this->compile();
 
-        $this->assertContainerBuilderHasParameter(
+        self::assertContainerBuilderHasParameter(
             'netgen_block_manager.default.view',
             [
                 'test_view' => [
@@ -101,7 +101,7 @@ final class DefaultViewTemplatesPassTest extends AbstractCompilerPassTestCase
             ]
         );
 
-        $this->assertContainerBuilderHasParameter(
+        self::assertContainerBuilderHasParameter(
             'netgen_block_manager.cro.view',
             [
                 'test_view' => [
@@ -142,7 +142,7 @@ final class DefaultViewTemplatesPassTest extends AbstractCompilerPassTestCase
             ]
         );
 
-        $this->assertFalse($this->container->hasParameter('netgen_block_manager.eng.view'));
+        self::assertFalse($this->container->hasParameter('netgen_block_manager.eng.view'));
     }
 
     /**
@@ -152,7 +152,7 @@ final class DefaultViewTemplatesPassTest extends AbstractCompilerPassTestCase
     {
         $this->compile();
 
-        $this->assertInstanceOf(FrozenParameterBag::class, $this->container->getParameterBag());
+        self::assertInstanceOf(FrozenParameterBag::class, $this->container->getParameterBag());
     }
 
     /**

@@ -43,28 +43,28 @@ final class ContentTypeTest extends TestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentService', 'getContentTypeService']);
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('sudo')
-            ->with($this->anything())
-            ->will($this->returnCallback(function (callable $callback) {
+            ->with(self::anything())
+            ->will(self::returnCallback(function (callable $callback) {
                 return $callback($this->repositoryMock);
             }));
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getContentService')
-            ->will($this->returnValue($this->contentServiceMock));
+            ->will(self::returnValue($this->contentServiceMock));
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getContentTypeService')
-            ->will($this->returnValue($this->contentTypeServiceMock));
+            ->will(self::returnValue($this->contentTypeServiceMock));
 
         $this->contentTypeServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadContentType')
             ->will(
-                $this->returnCallback(
+                self::returnCallback(
                     function (int $type): EzContentType {
                         if ($type === 24) {
                             return new EzContentType(['identifier' => 'user']);
@@ -88,7 +88,7 @@ final class ContentTypeTest extends TestCase
      */
     public function testGetIdentifier(): void
     {
-        $this->assertSame('ezcontent', $this->type::getIdentifier());
+        self::assertSame('ezcontent', $this->type::getIdentifier());
     }
 
     /**
@@ -98,7 +98,7 @@ final class ContentTypeTest extends TestCase
     public function testValidOptions(array $options, array $resolvedOptions): void
     {
         $parameter = $this->getParameterDefinition($options);
-        $this->assertSame($resolvedOptions, $parameter->getOptions());
+        self::assertSame($resolvedOptions, $parameter->getOptions());
     }
 
     /**
@@ -201,12 +201,12 @@ final class ContentTypeTest extends TestCase
     public function testExport(): void
     {
         $this->contentServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadContentInfo')
-            ->with($this->identicalTo(42))
-            ->will($this->returnValue(new ContentInfo(['remoteId' => 'abc'])));
+            ->with(self::identicalTo(42))
+            ->will(self::returnValue(new ContentInfo(['remoteId' => 'abc'])));
 
-        $this->assertSame('abc', $this->type->export($this->getParameterDefinition(), 42));
+        self::assertSame('abc', $this->type->export($this->getParameterDefinition(), 42));
     }
 
     /**
@@ -215,12 +215,12 @@ final class ContentTypeTest extends TestCase
     public function testExportWithNonExistingContent(): void
     {
         $this->contentServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadContentInfo')
-            ->with($this->identicalTo(42))
-            ->will($this->throwException(new NotFoundException('contentInfo', 42)));
+            ->with(self::identicalTo(42))
+            ->will(self::throwException(new NotFoundException('contentInfo', 42)));
 
-        $this->assertNull($this->type->export($this->getParameterDefinition(), 42));
+        self::assertNull($this->type->export($this->getParameterDefinition(), 42));
     }
 
     /**
@@ -229,12 +229,12 @@ final class ContentTypeTest extends TestCase
     public function testImport(): void
     {
         $this->contentServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadContentInfoByRemoteId')
-            ->with($this->identicalTo('abc'))
-            ->will($this->returnValue(new ContentInfo(['id' => 42])));
+            ->with(self::identicalTo('abc'))
+            ->will(self::returnValue(new ContentInfo(['id' => 42])));
 
-        $this->assertSame(42, $this->type->import($this->getParameterDefinition(), 'abc'));
+        self::assertSame(42, $this->type->import($this->getParameterDefinition(), 'abc'));
     }
 
     /**
@@ -243,12 +243,12 @@ final class ContentTypeTest extends TestCase
     public function testImportWithNonExistingContent(): void
     {
         $this->contentServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadContentInfoByRemoteId')
-            ->with($this->identicalTo('abc'))
-            ->will($this->throwException(new NotFoundException('contentInfo', 'abc')));
+            ->with(self::identicalTo('abc'))
+            ->will(self::throwException(new NotFoundException('contentInfo', 'abc')));
 
-        $this->assertNull($this->type->import($this->getParameterDefinition(), 'abc'));
+        self::assertNull($this->type->import($this->getParameterDefinition(), 'abc'));
     }
 
     /**
@@ -264,11 +264,11 @@ final class ContentTypeTest extends TestCase
     {
         if ($value !== null) {
             $this->contentServiceMock
-                ->expects($this->once())
+                ->expects(self::once())
                 ->method('loadContentInfo')
-                ->with($this->identicalTo((int) $value))
+                ->with(self::identicalTo((int) $value))
                 ->will(
-                    $this->returnCallback(
+                    self::returnCallback(
                         function () use ($value, $type): ContentInfo {
                             if (!is_int($value) || $value <= 0) {
                                 throw new NotFoundException('content', $value);
@@ -286,7 +286,7 @@ final class ContentTypeTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $this->type->getConstraints($parameter, $value));
-        $this->assertSame($isValid, $errors->count() === 0);
+        self::assertSame($isValid, $errors->count() === 0);
     }
 
     /**
@@ -323,7 +323,7 @@ final class ContentTypeTest extends TestCase
      */
     public function testIsValueEmpty($value, bool $isEmpty): void
     {
-        $this->assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
+        self::assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
     }
 
     /**

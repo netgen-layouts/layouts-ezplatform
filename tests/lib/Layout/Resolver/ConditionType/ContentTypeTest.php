@@ -47,17 +47,17 @@ final class ContentTypeTest extends TestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentTypeService']);
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('sudo')
-            ->with($this->anything())
-            ->will($this->returnCallback(function (callable $callback) {
+            ->with(self::anything())
+            ->will(self::returnCallback(function (callable $callback) {
                 return $callback($this->repositoryMock);
             }));
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getContentTypeService')
-            ->will($this->returnValue($this->contentTypeServiceMock));
+            ->will(self::returnValue($this->contentTypeServiceMock));
 
         $this->conditionType = new ContentType(
             $this->contentExtractorMock,
@@ -71,7 +71,7 @@ final class ContentTypeTest extends TestCase
      */
     public function testGetType(): void
     {
-        $this->assertSame('ez_content_type', $this->conditionType::getType());
+        self::assertSame('ez_content_type', $this->conditionType::getType());
     }
 
     /**
@@ -80,17 +80,17 @@ final class ContentTypeTest extends TestCase
     public function testValidation(): void
     {
         $this->contentTypeServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadContentTypeByIdentifier')
-            ->with($this->identicalTo('identifier'))
-            ->will($this->returnValue(new EzContentType()));
+            ->with(self::identicalTo('identifier'))
+            ->will(self::returnValue(new EzContentType()));
 
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
 
         $errors = $validator->validate(['identifier'], $this->conditionType->getConstraints());
-        $this->assertCount(0, $errors);
+        self::assertCount(0, $errors);
     }
 
     /**
@@ -99,17 +99,17 @@ final class ContentTypeTest extends TestCase
     public function testValidationWithInvalidValue(): void
     {
         $this->contentTypeServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadContentTypeByIdentifier')
-            ->with($this->identicalTo('unknown'))
-            ->will($this->throwException(new NotFoundException('content type', 'unknown')));
+            ->with(self::identicalTo('unknown'))
+            ->will(self::throwException(new NotFoundException('content type', 'unknown')));
 
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
             ->getValidator();
 
         $errors = $validator->validate(['unknown'], $this->conditionType->getConstraints());
-        $this->assertNotCount(0, $errors);
+        self::assertNotCount(0, $errors);
     }
 
     /**
@@ -139,17 +139,17 @@ final class ContentTypeTest extends TestCase
         );
 
         $this->contentExtractorMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('extractContent')
-            ->with($this->identicalTo($request))
-            ->will($this->returnValue($content));
+            ->with(self::identicalTo($request))
+            ->will(self::returnValue($content));
 
         $this->contentTypeServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadContentType')
-            ->with($this->identicalTo(24))
+            ->with(self::identicalTo(24))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     new EzContentType(
                         [
                             'identifier' => 'article',
@@ -159,7 +159,7 @@ final class ContentTypeTest extends TestCase
                 )
             );
 
-        $this->assertSame($matches, $this->conditionType->matches($request, $value));
+        self::assertSame($matches, $this->conditionType->matches($request, $value));
     }
 
     /**
@@ -170,12 +170,12 @@ final class ContentTypeTest extends TestCase
         $request = Request::create('/');
 
         $this->contentExtractorMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('extractContent')
-            ->with($this->identicalTo($request))
-            ->will($this->returnValue(null));
+            ->with(self::identicalTo($request))
+            ->will(self::returnValue(null));
 
-        $this->assertFalse($this->conditionType->matches($request, ['article']));
+        self::assertFalse($this->conditionType->matches($request, ['article']));
     }
 
     public function matchesProvider(): array

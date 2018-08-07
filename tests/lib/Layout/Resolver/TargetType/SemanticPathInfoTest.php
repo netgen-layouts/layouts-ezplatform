@@ -26,7 +26,7 @@ final class SemanticPathInfoTest extends TestCase
      */
     public function testGetType(): void
     {
-        $this->assertSame('ez_semantic_path_info', $this->targetType::getType());
+        self::assertSame('ez_semantic_path_info', $this->targetType::getType());
     }
 
     /**
@@ -41,7 +41,7 @@ final class SemanticPathInfoTest extends TestCase
         $validator = Validation::createValidator();
 
         $errors = $validator->validate($value, $this->targetType->getConstraints());
-        $this->assertSame($isValid, $errors->count() === 0);
+        self::assertSame($isValid, $errors->count() === 0);
     }
 
     /**
@@ -52,7 +52,7 @@ final class SemanticPathInfoTest extends TestCase
         $request = Request::create('/the/answer');
         $request->attributes->set('semanticPathinfo', '/the/answer');
 
-        $this->assertSame(
+        self::assertSame(
             '/the/answer',
             $this->targetType->provideValue($request)
         );
@@ -66,7 +66,7 @@ final class SemanticPathInfoTest extends TestCase
         $request = Request::create('/the/answer');
         $request->attributes->set('semanticPathinfo', false);
 
-        $this->assertSame(
+        self::assertSame(
             '/',
             $this->targetType->provideValue($request)
         );
@@ -79,7 +79,7 @@ final class SemanticPathInfoTest extends TestCase
     {
         $request = Request::create('/the/answer');
 
-        $this->assertNull($this->targetType->provideValue($request));
+        self::assertNull($this->targetType->provideValue($request));
     }
 
     /**

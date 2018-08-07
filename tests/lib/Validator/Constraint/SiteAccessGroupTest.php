@@ -15,6 +15,6 @@ final class SiteAccessGroupTest extends TestCase
     public function testValidatedBy(): void
     {
         $constraint = new SiteAccessGroup();
-        $this->assertSame('ngbm_ez_site_access_group', $constraint->validatedBy());
+        self::assertSame('ngbm_ez_site_access_group', $constraint->validatedBy());
     }
 }

@@ -27,7 +27,7 @@ final class SectionMapperTest extends TestCase
      */
     public function testGetFormType(): void
     {
-        $this->assertSame(SectionType::class, $this->mapper->getFormType());
+        self::assertSame(SectionType::class, $this->mapper->getFormType());
     }
 
     /**
@@ -35,7 +35,7 @@ final class SectionMapperTest extends TestCase
      */
     public function testMapOptions(): void
     {
-        $this->assertSame(
+        self::assertSame(
             [
                 'multiple' => true,
                 'sections' => ['media'],

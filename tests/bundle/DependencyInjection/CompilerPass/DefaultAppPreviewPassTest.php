@@ -52,7 +52,7 @@ final class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
 
         $this->compile();
 
-        $this->assertContainerBuilderHasParameter(
+        self::assertContainerBuilderHasParameter(
             'ezsettings.default.content_view',
             [
                 'full' => [
@@ -70,7 +70,7 @@ final class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
             ]
         );
 
-        $this->assertContainerBuilderHasParameter(
+        self::assertContainerBuilderHasParameter(
             'ezsettings.cro.location_view',
             [
                 'full' => [
@@ -91,8 +91,8 @@ final class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
             ]
         );
 
-        $this->assertFalse($this->container->hasParameter('netgen_block_manager.default.location_view'));
-        $this->assertFalse($this->container->hasParameter('netgen_block_manager.cro.content_view'));
+        self::assertFalse($this->container->hasParameter('netgen_block_manager.default.location_view'));
+        self::assertFalse($this->container->hasParameter('netgen_block_manager.cro.content_view'));
     }
 
     /**
@@ -102,7 +102,7 @@ final class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
     {
         $this->compile();
 
-        $this->assertInstanceOf(FrozenParameterBag::class, $this->container->getParameterBag());
+        self::assertInstanceOf(FrozenParameterBag::class, $this->container->getParameterBag());
     }
 
     /**

@@ -39,17 +39,17 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getObjectStateService']);
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('sudo')
-            ->with($this->anything())
-            ->will($this->returnCallback(function (callable $callback) {
+            ->with(self::anything())
+            ->will(self::returnCallback(function (callable $callback) {
                 return $callback($this->repositoryMock);
             }));
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getObjectStateService')
-            ->will($this->returnValue($this->objectStateServiceMock));
+            ->will(self::returnValue($this->objectStateServiceMock));
 
         return new ObjectStateValidator($this->repositoryMock);
     }
@@ -66,16 +66,16 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
         $group2 = new ObjectStateGroup(['identifier' => 'group2']);
 
         $this->objectStateServiceMock
-            ->expects($this->at(0))
+            ->expects(self::at(0))
             ->method('loadObjectStateGroups')
-            ->will($this->returnValue([$group1, $group2]));
+            ->will(self::returnValue([$group1, $group2]));
 
         $this->objectStateServiceMock
-            ->expects($this->at(1))
+            ->expects(self::at(1))
             ->method('loadObjectStates')
-            ->with($this->identicalTo($group1))
+            ->with(self::identicalTo($group1))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     [
                         new EzObjectState(
                             [
@@ -92,11 +92,11 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
             );
 
         $this->objectStateServiceMock
-            ->expects($this->at(2))
+            ->expects(self::at(2))
             ->method('loadObjectStates')
-            ->with($this->identicalTo($group2))
+            ->with(self::identicalTo($group2))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     [
                         new EzObjectState(
                             [
@@ -113,7 +113,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
             );
 
         $this->constraint->allowedStates = $allowedStates;
-        $this->assertValid($isValid, $identifier);
+        self::assertValid($isValid, $identifier);
     }
 
     /**
@@ -124,14 +124,14 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
     public function testValidateNull(): void
     {
         $this->objectStateServiceMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('loadObjectStateGroups');
 
         $this->objectStateServiceMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('loadObjectStates');
 
-        $this->assertValid(true, null);
+        self::assertValid(true, null);
     }
 
     /**
@@ -142,7 +142,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->constraint = new NotBlank();
-        $this->assertValid(true, 'value');
+        self::assertValid(true, 'value');
     }
 
     /**
@@ -152,7 +152,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
-        $this->assertValid(true, 42);
+        self::assertValid(true, 42);
     }
 
     /**
@@ -162,7 +162,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValueFormat(): void
     {
-        $this->assertValid(true, 'state');
+        self::assertValid(true, 'state');
     }
 
     /**
@@ -173,7 +173,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidAllowedStates(): void
     {
         $this->constraint->allowedStates = 42;
-        $this->assertValid(true, 'group1|state1');
+        self::assertValid(true, 'group1|state1');
     }
 
     public function validateDataProvider(): array

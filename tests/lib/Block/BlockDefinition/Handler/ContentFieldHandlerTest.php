@@ -36,7 +36,7 @@ final class ContentFieldHandlerTest extends TestCase
      */
     public function testIsContextual(): void
     {
-        $this->assertTrue($this->handler->isContextual(new Block()));
+        self::assertTrue($this->handler->isContextual(new Block()));
     }
 
     /**
@@ -49,23 +49,23 @@ final class ContentFieldHandlerTest extends TestCase
         $location = new Location();
 
         $this->contentProviderMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('provideContent')
-            ->will($this->returnValue($content));
+            ->will(self::returnValue($content));
 
         $this->contentProviderMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('provideLocation')
-            ->will($this->returnValue($location));
+            ->will(self::returnValue($location));
 
         $params = new DynamicParameters();
 
         $this->handler->getDynamicParameters($params, new Block());
 
-        $this->assertArrayHasKey('content', $params);
-        $this->assertArrayHasKey('location', $params);
+        self::assertArrayHasKey('content', $params);
+        self::assertArrayHasKey('location', $params);
 
-        $this->assertSame($content, $params['content']);
-        $this->assertSame($location, $params['location']);
+        self::assertSame($content, $params['content']);
+        self::assertSame($location, $params['location']);
     }
 }

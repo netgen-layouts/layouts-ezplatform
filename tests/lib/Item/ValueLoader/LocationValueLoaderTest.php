@@ -48,12 +48,12 @@ final class LocationValueLoaderTest extends TestCase
         );
 
         $this->locationServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadLocation')
-            ->with($this->identicalTo(52))
-            ->will($this->returnValue($location));
+            ->with(self::identicalTo(52))
+            ->will(self::returnValue($location));
 
-        $this->assertSame($location, $this->valueLoader->load(52));
+        self::assertSame($location, $this->valueLoader->load(52));
     }
 
     /**
@@ -62,12 +62,12 @@ final class LocationValueLoaderTest extends TestCase
     public function testLoadWithNoLocation(): void
     {
         $this->locationServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadLocation')
-            ->with($this->identicalTo(52))
-            ->will($this->throwException(new Exception()));
+            ->with(self::identicalTo(52))
+            ->will(self::throwException(new Exception()));
 
-        $this->assertNull($this->valueLoader->load(52));
+        self::assertNull($this->valueLoader->load(52));
     }
 
     /**
@@ -76,11 +76,11 @@ final class LocationValueLoaderTest extends TestCase
     public function testLoadWithNonPublishedContent(): void
     {
         $this->locationServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadLocation')
-            ->with($this->identicalTo(52))
+            ->with(self::identicalTo(52))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     new Location(
                         [
                             'contentInfo' => new ContentInfo(
@@ -93,7 +93,7 @@ final class LocationValueLoaderTest extends TestCase
                 )
             );
 
-        $this->assertNull($this->valueLoader->load(52));
+        self::assertNull($this->valueLoader->load(52));
     }
 
     /**
@@ -113,12 +113,12 @@ final class LocationValueLoaderTest extends TestCase
         );
 
         $this->locationServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadLocationByRemoteId')
-            ->with($this->identicalTo('abc'))
-            ->will($this->returnValue($location));
+            ->with(self::identicalTo('abc'))
+            ->will(self::returnValue($location));
 
-        $this->assertSame($location, $this->valueLoader->loadByRemoteId('abc'));
+        self::assertSame($location, $this->valueLoader->loadByRemoteId('abc'));
     }
 
     /**
@@ -127,12 +127,12 @@ final class LocationValueLoaderTest extends TestCase
     public function testLoadByRemoteIdWithNoLocation(): void
     {
         $this->locationServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadLocationByRemoteId')
-            ->with($this->identicalTo('abc'))
-            ->will($this->throwException(new Exception()));
+            ->with(self::identicalTo('abc'))
+            ->will(self::throwException(new Exception()));
 
-        $this->assertNull($this->valueLoader->loadByRemoteId('abc'));
+        self::assertNull($this->valueLoader->loadByRemoteId('abc'));
     }
 
     /**
@@ -141,11 +141,11 @@ final class LocationValueLoaderTest extends TestCase
     public function testLoadByRemoteIdWithNonPublishedContent(): void
     {
         $this->locationServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadLocationByRemoteId')
-            ->with($this->identicalTo('abc'))
+            ->with(self::identicalTo('abc'))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     new Location(
                         [
                             'contentInfo' => new ContentInfo(
@@ -158,6 +158,6 @@ final class LocationValueLoaderTest extends TestCase
                 )
             );
 
-        $this->assertNull($this->valueLoader->loadByRemoteId('abc'));
+        self::assertNull($this->valueLoader->loadByRemoteId('abc'));
     }
 }

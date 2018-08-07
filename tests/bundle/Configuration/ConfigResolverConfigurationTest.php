@@ -44,16 +44,16 @@ final class ConfigResolverConfigurationTest extends TestCase
     public function testHasParameter(): void
     {
         $this->configResolverMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('hasParameter')
-            ->with($this->identicalTo('some_param'), $this->identicalTo('netgen_block_manager'))
-            ->will($this->returnValue(true));
+            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_block_manager'))
+            ->will(self::returnValue(true));
 
         $this->fallbackConfigurationMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('hasParameter');
 
-        $this->assertTrue($this->configuration->hasParameter('some_param'));
+        self::assertTrue($this->configuration->hasParameter('some_param'));
     }
 
     /**
@@ -62,18 +62,18 @@ final class ConfigResolverConfigurationTest extends TestCase
     public function testHasParameterWithNoParameter(): void
     {
         $this->configResolverMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('hasParameter')
-            ->with($this->identicalTo('some_param'), $this->identicalTo('netgen_block_manager'))
-            ->will($this->returnValue(false));
+            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_block_manager'))
+            ->will(self::returnValue(false));
 
         $this->fallbackConfigurationMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('hasParameter')
-            ->with($this->identicalTo('some_param'))
-            ->will($this->returnValue(true));
+            ->with(self::identicalTo('some_param'))
+            ->will(self::returnValue(true));
 
-        $this->assertTrue($this->configuration->hasParameter('some_param'));
+        self::assertTrue($this->configuration->hasParameter('some_param'));
     }
 
     /**
@@ -82,18 +82,18 @@ final class ConfigResolverConfigurationTest extends TestCase
     public function testHasParameterWithNoFallbackParameter(): void
     {
         $this->configResolverMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('hasParameter')
-            ->with($this->identicalTo('some_param'), $this->identicalTo('netgen_block_manager'))
-            ->will($this->returnValue(false));
+            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_block_manager'))
+            ->will(self::returnValue(false));
 
         $this->fallbackConfigurationMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('hasParameter')
-            ->with($this->identicalTo('some_param'))
-            ->will($this->returnValue(false));
+            ->with(self::identicalTo('some_param'))
+            ->will(self::returnValue(false));
 
-        $this->assertFalse($this->configuration->hasParameter('some_param'));
+        self::assertFalse($this->configuration->hasParameter('some_param'));
     }
 
     /**
@@ -102,22 +102,22 @@ final class ConfigResolverConfigurationTest extends TestCase
     public function testGetParameter(): void
     {
         $this->configResolverMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('hasParameter')
-            ->with($this->identicalTo('some_param'), $this->identicalTo('netgen_block_manager'))
-            ->will($this->returnValue(true));
+            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_block_manager'))
+            ->will(self::returnValue(true));
 
         $this->configResolverMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getParameter')
-            ->with($this->identicalTo('some_param'), $this->identicalTo('netgen_block_manager'))
-            ->will($this->returnValue('some_param_value'));
+            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_block_manager'))
+            ->will(self::returnValue('some_param_value'));
 
         $this->fallbackConfigurationMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('getParameter');
 
-        $this->assertSame('some_param_value', $this->configuration->getParameter('some_param'));
+        self::assertSame('some_param_value', $this->configuration->getParameter('some_param'));
     }
 
     /**
@@ -126,28 +126,28 @@ final class ConfigResolverConfigurationTest extends TestCase
     public function testGetFallbackParameter(): void
     {
         $this->configResolverMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('hasParameter')
-            ->with($this->identicalTo('some_param'), $this->identicalTo('netgen_block_manager'))
-            ->will($this->returnValue(false));
+            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_block_manager'))
+            ->will(self::returnValue(false));
 
         $this->fallbackConfigurationMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('hasParameter')
-            ->with($this->identicalTo('some_param'))
-            ->will($this->returnValue(true));
+            ->with(self::identicalTo('some_param'))
+            ->will(self::returnValue(true));
 
         $this->configResolverMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('getParameter');
 
         $this->fallbackConfigurationMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getParameter')
-            ->with($this->identicalTo('some_param'))
-            ->will($this->returnValue('some_param_value'));
+            ->with(self::identicalTo('some_param'))
+            ->will(self::returnValue('some_param_value'));
 
-        $this->assertSame('some_param_value', $this->configuration->getParameter('some_param'));
+        self::assertSame('some_param_value', $this->configuration->getParameter('some_param'));
     }
 
     /**
@@ -158,16 +158,16 @@ final class ConfigResolverConfigurationTest extends TestCase
     public function testGetParameterThrowsConfigurationException(): void
     {
         $this->configResolverMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('hasParameter')
-            ->with($this->identicalTo('some_param'), $this->identicalTo('netgen_block_manager'))
-            ->will($this->returnValue(false));
+            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_block_manager'))
+            ->will(self::returnValue(false));
 
         $this->fallbackConfigurationMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('hasParameter')
-            ->with($this->identicalTo('some_param'))
-            ->will($this->returnValue(false));
+            ->with(self::identicalTo('some_param'))
+            ->will(self::returnValue(false));
 
         $this->configuration->getParameter('some_param');
     }

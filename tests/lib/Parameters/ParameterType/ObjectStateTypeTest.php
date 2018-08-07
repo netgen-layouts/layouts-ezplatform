@@ -35,17 +35,17 @@ final class ObjectStateTypeTest extends TestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getObjectStateService']);
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('sudo')
-            ->with($this->anything())
-            ->will($this->returnCallback(function (callable $callback) {
+            ->with(self::anything())
+            ->will(self::returnCallback(function (callable $callback) {
                 return $callback($this->repositoryMock);
             }));
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getObjectStateService')
-            ->will($this->returnValue($this->objectStateServiceMock));
+            ->will(self::returnValue($this->objectStateServiceMock));
 
         $this->type = new ObjectStateType();
     }
@@ -55,7 +55,7 @@ final class ObjectStateTypeTest extends TestCase
      */
     public function testGetIdentifier(): void
     {
-        $this->assertSame('ez_object_state', $this->type::getIdentifier());
+        self::assertSame('ez_object_state', $this->type::getIdentifier());
     }
 
     /**
@@ -65,7 +65,7 @@ final class ObjectStateTypeTest extends TestCase
     public function testValidOptions(array $options, array $resolvedOptions): void
     {
         $parameter = $this->getParameterDefinition($options);
-        $this->assertSame($resolvedOptions, $parameter->getOptions());
+        self::assertSame($resolvedOptions, $parameter->getOptions());
     }
 
     /**
@@ -161,16 +161,16 @@ final class ObjectStateTypeTest extends TestCase
         $group2 = new ObjectStateGroup(['identifier' => 'group2']);
 
         $this->objectStateServiceMock
-            ->expects($this->at(0))
+            ->expects(self::at(0))
             ->method('loadObjectStateGroups')
-            ->will($this->returnValue([$group1, $group2]));
+            ->will(self::returnValue([$group1, $group2]));
 
         $this->objectStateServiceMock
-            ->expects($this->at(1))
+            ->expects(self::at(1))
             ->method('loadObjectStates')
-            ->with($this->identicalTo($group1))
+            ->with(self::identicalTo($group1))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     [
                         new EzObjectState(
                             [
@@ -187,10 +187,10 @@ final class ObjectStateTypeTest extends TestCase
             );
 
         $this->objectStateServiceMock
-            ->expects($this->at(2))
+            ->expects(self::at(2))
             ->method('loadObjectStates')
-            ->with($this->identicalTo($group2))
-            ->will($this->returnValue([]));
+            ->with(self::identicalTo($group2))
+            ->will(self::returnValue([]));
 
         $options = $value !== null ? ['multiple' => is_array($value)] : [];
         $parameter = $this->getParameterDefinition($options, $required);
@@ -199,7 +199,7 @@ final class ObjectStateTypeTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $this->type->getConstraints($parameter, $value));
-        $this->assertSame($isValid, $errors->count() === 0);
+        self::assertSame($isValid, $errors->count() === 0);
     }
 
     /**
@@ -213,11 +213,11 @@ final class ObjectStateTypeTest extends TestCase
     public function testValidationWithEmptyValues($value, bool $required, bool $isValid): void
     {
         $this->objectStateServiceMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('loadObjectStateGroups');
 
         $this->objectStateServiceMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('loadObjectStates');
 
         $options = $value !== null ? ['multiple' => is_array($value)] : [];
@@ -227,7 +227,7 @@ final class ObjectStateTypeTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $this->type->getConstraints($parameter, $value));
-        $this->assertSame($isValid, $errors->count() === 0);
+        self::assertSame($isValid, $errors->count() === 0);
     }
 
     public function validationProvider(): array
@@ -270,7 +270,7 @@ final class ObjectStateTypeTest extends TestCase
      */
     public function testFromHash($value, $convertedValue, bool $multiple): void
     {
-        $this->assertSame(
+        self::assertSame(
             $convertedValue,
             $this->type->fromHash(
                 $this->getParameterDefinition(
@@ -338,7 +338,7 @@ final class ObjectStateTypeTest extends TestCase
      */
     public function testIsValueEmpty($value, bool $isEmpty): void
     {
-        $this->assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
+        self::assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
     }
 
     /**

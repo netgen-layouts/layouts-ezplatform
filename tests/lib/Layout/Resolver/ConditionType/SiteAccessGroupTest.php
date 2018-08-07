@@ -38,7 +38,7 @@ final class SiteAccessGroupTest extends TestCase
      */
     public function testGetType(): void
     {
-        $this->assertSame('ez_site_access_group', $this->conditionType::getType());
+        self::assertSame('ez_site_access_group', $this->conditionType::getType());
     }
 
     /**
@@ -55,7 +55,7 @@ final class SiteAccessGroupTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $this->conditionType->getConstraints());
-        $this->assertSame($isValid, $errors->count() === 0);
+        self::assertSame($isValid, $errors->count() === 0);
     }
 
     /**
@@ -71,7 +71,7 @@ final class SiteAccessGroupTest extends TestCase
         $request = Request::create('/');
         $request->attributes->set('siteaccess', new EzPublishSiteAccess('eng'));
 
-        $this->assertSame($matches, $this->conditionType->matches($request, $value));
+        self::assertSame($matches, $this->conditionType->matches($request, $value));
     }
 
     /**
@@ -82,7 +82,7 @@ final class SiteAccessGroupTest extends TestCase
         $request = Request::create('/');
         $request->attributes->set('siteaccess', new EzPublishSiteAccess('cro'));
 
-        $this->assertFalse($this->conditionType->matches($request, ['frontend']));
+        self::assertFalse($this->conditionType->matches($request, ['frontend']));
     }
 
     /**
@@ -92,7 +92,7 @@ final class SiteAccessGroupTest extends TestCase
     {
         $request = Request::create('/');
 
-        $this->assertFalse($this->conditionType->matches($request, ['frontend']));
+        self::assertFalse($this->conditionType->matches($request, ['frontend']));
     }
 
     /**

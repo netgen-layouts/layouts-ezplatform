@@ -68,10 +68,10 @@ final class Ez5RequestContentExtractorTest extends TestCase
         $request->attributes->set('content', $content);
 
         $this->contentServiceMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('loadContent');
 
-        $this->assertSame($content, $this->contentProvider->extractContent($request));
+        self::assertSame($content, $this->contentProvider->extractContent($request));
     }
 
     /**
@@ -98,12 +98,12 @@ final class Ez5RequestContentExtractorTest extends TestCase
         $request->attributes->set('_route', UrlAliasRouter::URL_ALIAS_ROUTE_NAME);
 
         $this->contentServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadContent')
-            ->with($this->identicalTo(42))
-            ->will($this->returnValue($content));
+            ->with(self::identicalTo(42))
+            ->will(self::returnValue($content));
 
-        $this->assertSame($content, $this->contentProvider->extractContent($request));
+        self::assertSame($content, $this->contentProvider->extractContent($request));
     }
 
     /**
@@ -114,7 +114,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
         $request = Request::create('/');
         $request->attributes->set('content', 42);
 
-        $this->assertNull($this->contentProvider->extractContent($request));
+        self::assertNull($this->contentProvider->extractContent($request));
     }
 
     /**
@@ -126,7 +126,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
         $request->attributes->set('contentId', 42);
         $request->attributes->set('_route', 'route');
 
-        $this->assertNull($this->contentProvider->extractContent($request));
+        self::assertNull($this->contentProvider->extractContent($request));
     }
 
     /**
@@ -139,12 +139,12 @@ final class Ez5RequestContentExtractorTest extends TestCase
         $request->attributes->set('_route', UrlAliasRouter::URL_ALIAS_ROUTE_NAME);
 
         $this->contentServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadContent')
-            ->with($this->identicalTo(42))
-            ->will($this->throwException(new NotFoundException('content', 42)));
+            ->with(self::identicalTo(42))
+            ->will(self::throwException(new NotFoundException('content', 42)));
 
-        $this->assertNull($this->contentProvider->extractContent($request));
+        self::assertNull($this->contentProvider->extractContent($request));
     }
 
     /**
@@ -158,10 +158,10 @@ final class Ez5RequestContentExtractorTest extends TestCase
         $request->attributes->set('location', $location);
 
         $this->locationServiceMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('loadLocation');
 
-        $this->assertSame($location, $this->contentProvider->extractLocation($request));
+        self::assertSame($location, $this->contentProvider->extractLocation($request));
     }
 
     /**
@@ -176,12 +176,12 @@ final class Ez5RequestContentExtractorTest extends TestCase
         $request->attributes->set('_route', UrlAliasRouter::URL_ALIAS_ROUTE_NAME);
 
         $this->locationServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadLocation')
-            ->with($this->identicalTo(42))
-            ->will($this->returnValue($location));
+            ->with(self::identicalTo(42))
+            ->will(self::returnValue($location));
 
-        $this->assertSame($location, $this->contentProvider->extractLocation($request));
+        self::assertSame($location, $this->contentProvider->extractLocation($request));
     }
 
     /**
@@ -192,7 +192,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
         $request = Request::create('/');
         $request->attributes->set('location', 42);
 
-        $this->assertNull($this->contentProvider->extractLocation($request));
+        self::assertNull($this->contentProvider->extractLocation($request));
     }
 
     /**
@@ -204,7 +204,7 @@ final class Ez5RequestContentExtractorTest extends TestCase
         $request->attributes->set('locationId', 42);
         $request->attributes->set('_route', 'route');
 
-        $this->assertNull($this->contentProvider->extractLocation($request));
+        self::assertNull($this->contentProvider->extractLocation($request));
     }
 
     /**
@@ -217,11 +217,11 @@ final class Ez5RequestContentExtractorTest extends TestCase
         $request->attributes->set('_route', UrlAliasRouter::URL_ALIAS_ROUTE_NAME);
 
         $this->locationServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadLocation')
-            ->with($this->identicalTo(42))
-            ->will($this->throwException(new NotFoundException('location', 42)));
+            ->with(self::identicalTo(42))
+            ->will(self::throwException(new NotFoundException('location', 42)));
 
-        $this->assertNull($this->contentProvider->extractLocation($request));
+        self::assertNull($this->contentProvider->extractLocation($request));
     }
 }

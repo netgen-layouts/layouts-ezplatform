@@ -41,12 +41,12 @@ final class TagValidatorTest extends ValidatorTestCase
     public function testValidateValid(): void
     {
         $this->tagsServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadTag')
-            ->with($this->identicalTo(42))
-            ->will($this->returnValue(new APITag(['id' => 42])));
+            ->with(self::identicalTo(42))
+            ->will(self::returnValue(new APITag(['id' => 42])));
 
-        $this->assertValid(true, 42);
+        self::assertValid(true, 42);
     }
 
     /**
@@ -56,10 +56,10 @@ final class TagValidatorTest extends ValidatorTestCase
     public function testValidateNull(): void
     {
         $this->tagsServiceMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('loadTag');
 
-        $this->assertValid(true, null);
+        self::assertValid(true, null);
     }
 
     /**
@@ -69,12 +69,12 @@ final class TagValidatorTest extends ValidatorTestCase
     public function testValidateInvalid(): void
     {
         $this->tagsServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadTag')
-            ->with($this->identicalTo(42))
-            ->will($this->throwException(new NotFoundException('tag', 42)));
+            ->with(self::identicalTo(42))
+            ->will(self::throwException(new NotFoundException('tag', 42)));
 
-        $this->assertValid(false, 42);
+        self::assertValid(false, 42);
     }
 
     /**
@@ -85,7 +85,7 @@ final class TagValidatorTest extends ValidatorTestCase
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->constraint = new NotBlank();
-        $this->assertValid(true, 'value');
+        self::assertValid(true, 'value');
     }
 
     /**
@@ -95,6 +95,6 @@ final class TagValidatorTest extends ValidatorTestCase
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
-        $this->assertValid(true, []);
+        self::assertValid(true, []);
     }
 }

@@ -55,8 +55,8 @@ final class ContentTypeTypeTest extends FormTestCase
 
         $form->submit($submittedData);
 
-        $this->assertTrue($form->isSynchronized());
-        $this->assertSame($submittedData, $form->getData());
+        self::assertTrue($form->isSynchronized());
+        self::assertSame($submittedData, $form->getData());
     }
 
     /**
@@ -64,7 +64,7 @@ final class ContentTypeTypeTest extends FormTestCase
      */
     public function testGetParent(): void
     {
-        $this->assertSame(ChoiceType::class, $this->formType->getParent());
+        self::assertSame(ChoiceType::class, $this->formType->getParent());
     }
 
     /**
@@ -89,8 +89,8 @@ final class ContentTypeTypeTest extends FormTestCase
             ]
         );
 
-        $this->assertFalse($options['choice_translation_domain']);
-        $this->assertSame(
+        self::assertFalse($options['choice_translation_domain']);
+        self::assertSame(
             [
                 'Group1' => [
                     'Article' => 'article',
@@ -104,7 +104,7 @@ final class ContentTypeTypeTest extends FormTestCase
 
         if (Kernel::VERSION_ID < 30100) {
             // @deprecated Remove when support for Symfony 2.8 ends
-            $this->assertTrue($options['choices_as_values']);
+            self::assertTrue($options['choices_as_values']);
         }
     }
 
@@ -115,16 +115,16 @@ final class ContentTypeTypeTest extends FormTestCase
         $contentTypeGroup3 = new ContentTypeGroup(['identifier' => 'Group3']);
 
         $this->contentTypeServiceMock
-            ->expects($this->at(0))
+            ->expects(self::at(0))
             ->method('loadContentTypeGroups')
-            ->will($this->returnValue([$contentTypeGroup1, $contentTypeGroup2, $contentTypeGroup3]));
+            ->will(self::returnValue([$contentTypeGroup1, $contentTypeGroup2, $contentTypeGroup3]));
 
         $this->contentTypeServiceMock
-            ->expects($this->at(1))
+            ->expects(self::at(1))
             ->method('loadContentTypes')
-            ->with($this->identicalTo($contentTypeGroup1))
+            ->with(self::identicalTo($contentTypeGroup1))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     [
                         new ContentType(
                             [
@@ -147,11 +147,11 @@ final class ContentTypeTypeTest extends FormTestCase
             );
 
         $this->contentTypeServiceMock
-            ->expects($this->at(2))
+            ->expects(self::at(2))
             ->method('loadContentTypes')
-            ->with($this->identicalTo($contentTypeGroup2))
+            ->with(self::identicalTo($contentTypeGroup2))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     [
                         new ContentType(
                             [

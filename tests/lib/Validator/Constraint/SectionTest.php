@@ -15,6 +15,6 @@ final class SectionTest extends TestCase
     public function testValidatedBy(): void
     {
         $constraint = new Section();
-        $this->assertSame('ngbm_ez_section', $constraint->validatedBy());
+        self::assertSame('ngbm_ez_section', $constraint->validatedBy());
     }
 }

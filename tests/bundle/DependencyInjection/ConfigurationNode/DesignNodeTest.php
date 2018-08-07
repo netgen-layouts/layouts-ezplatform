@@ -24,7 +24,7 @@ final class DesignNodeTest extends ConfigurationNodeTest
         ];
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
-        $this->assertInjectedConfigurationEqual($expectedConfig, $config);
+        self::assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 
     /**
@@ -54,7 +54,7 @@ final class DesignNodeTest extends ConfigurationNodeTest
             )
         );
 
-        $this->assertSame('test1', $config['system']['default']['design']);
+        self::assertSame('test1', $config['system']['default']['design']);
     }
 
     /**
@@ -84,7 +84,7 @@ final class DesignNodeTest extends ConfigurationNodeTest
             )
         );
 
-        $this->assertSame('standard', $config['system']['default']['design']);
+        self::assertSame('standard', $config['system']['default']['design']);
     }
 
     /**

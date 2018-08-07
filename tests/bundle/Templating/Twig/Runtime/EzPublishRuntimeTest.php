@@ -63,7 +63,7 @@ final class EzPublishRuntimeTest extends TestCase
     {
         $this->mockServices();
 
-        $this->assertSame('Content name 42', $this->runtime->getContentName(42));
+        self::assertSame('Content name 42', $this->runtime->getContentName(42));
     }
 
     /**
@@ -73,12 +73,12 @@ final class EzPublishRuntimeTest extends TestCase
     public function testGetContentNameWithException(): void
     {
         $this->contentServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadVersionInfoById')
-            ->with($this->identicalTo(42))
-            ->will($this->throwException(new Exception()));
+            ->with(self::identicalTo(42))
+            ->will(self::throwException(new Exception()));
 
-        $this->assertSame('', $this->runtime->getContentName(42));
+        self::assertSame('', $this->runtime->getContentName(42));
     }
 
     /**
@@ -90,7 +90,7 @@ final class EzPublishRuntimeTest extends TestCase
     {
         $this->mockServices();
 
-        $this->assertSame(
+        self::assertSame(
             [
                 'Content name 102',
                 'Content name 142',
@@ -108,12 +108,12 @@ final class EzPublishRuntimeTest extends TestCase
     public function testGetLocationPathWithException(): void
     {
         $this->locationServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadLocation')
-            ->with($this->identicalTo(22))
-            ->will($this->throwException(new Exception()));
+            ->with(self::identicalTo(22))
+            ->will(self::throwException(new Exception()));
 
-        $this->assertSame([], $this->runtime->getLocationPath(22));
+        self::assertSame([], $this->runtime->getLocationPath(22));
     }
 
     /**
@@ -125,10 +125,10 @@ final class EzPublishRuntimeTest extends TestCase
         $this->mockServices();
 
         $this->contentTypeServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadContentTypeByIdentifier')
             ->will(
-                $this->returnCallback(
+                self::returnCallback(
                     function (string $identifier): ContentType {
                         return new ContentType(
                             [
@@ -145,7 +145,7 @@ final class EzPublishRuntimeTest extends TestCase
                 )
             );
 
-        $this->assertSame('Content type some_type', $this->runtime->getContentTypeName('some_type'));
+        self::assertSame('Content type some_type', $this->runtime->getContentTypeName('some_type'));
     }
 
     /**
@@ -157,10 +157,10 @@ final class EzPublishRuntimeTest extends TestCase
         $this->mockServices();
 
         $this->contentTypeServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadContentTypeByIdentifier')
             ->will(
-                $this->returnCallback(
+                self::returnCallback(
                     function (string $identifier): ContentType {
                         return new ContentType(
                             [
@@ -177,7 +177,7 @@ final class EzPublishRuntimeTest extends TestCase
                 )
             );
 
-        $this->assertSame('English content type some_type', $this->runtime->getContentTypeName('some_type'));
+        self::assertSame('English content type some_type', $this->runtime->getContentTypeName('some_type'));
     }
 
     /**
@@ -187,12 +187,12 @@ final class EzPublishRuntimeTest extends TestCase
     public function testGetContentTypeNameWithException(): void
     {
         $this->contentTypeServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadContentTypeByIdentifier')
-            ->with($this->identicalTo('some_type'))
-            ->will($this->throwException(new Exception()));
+            ->with(self::identicalTo('some_type'))
+            ->will(self::throwException(new Exception()));
 
-        $this->assertSame('', $this->runtime->getContentTypeName('some_type'));
+        self::assertSame('', $this->runtime->getContentTypeName('some_type'));
     }
 
     private function prepareRepositoryMock(): void
@@ -212,11 +212,11 @@ final class EzPublishRuntimeTest extends TestCase
         );
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('sudo')
-            ->with($this->anything())
+            ->with(self::anything())
             ->will(
-                $this->returnCallback(
+                self::returnCallback(
                     function (callable $callback) {
                         return $callback($this->repositoryMock);
                     }
@@ -224,28 +224,28 @@ final class EzPublishRuntimeTest extends TestCase
             );
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getLocationService')
-            ->will($this->returnValue($this->locationServiceMock));
+            ->will(self::returnValue($this->locationServiceMock));
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getContentService')
-            ->will($this->returnValue($this->contentServiceMock));
+            ->will(self::returnValue($this->contentServiceMock));
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getContentTypeService')
-            ->will($this->returnValue($this->contentTypeServiceMock));
+            ->will(self::returnValue($this->contentTypeServiceMock));
     }
 
     private function mockServices(): void
     {
         $this->locationServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadLocation')
             ->will(
-                $this->returnCallback(
+                self::returnCallback(
                     function ($locationId): Location {
                         return new Location(
                             [
@@ -262,10 +262,10 @@ final class EzPublishRuntimeTest extends TestCase
             );
 
         $this->contentServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadVersionInfoById')
             ->will(
-                $this->returnCallback(
+                self::returnCallback(
                     function ($contentId): VersionInfo {
                         return new VersionInfo(
                             [

@@ -53,7 +53,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
         ];
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
-        $this->assertInjectedConfigurationEqual($expectedConfig, $config);
+        self::assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 
     /**
@@ -136,7 +136,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
         // other_context context should not appear in original config, but only in siteaccess aware one
         unset($expectedConfig['view']['block_view']['other_context']);
 
-        $this->assertInjectedConfigurationEqual($expectedConfig, $config);
+        self::assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 
     /**
@@ -235,7 +235,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
 
         $expectedConfig['system']['cro']['design'] = 'standard';
 
-        $this->assertInjectedConfigurationEqual($expectedConfig, $config);
+        self::assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 
     /**
@@ -308,26 +308,26 @@ final class ViewNodeTest extends ConfigurationNodeTest
         $processedConfig = $this->processConfig($config);
 
         // Default scope should only have block_two and block_one
-        $this->assertSame(
+        self::assertSame(
             ['block_two', 'block_one'],
             array_keys($processedConfig['system']['default']['view']['block_view']['context'])
         );
 
         // But only "cro" siteaccess aware one should have all
         // with block_three having priority because it comes from siteaccess scope
-        $this->assertSame(
+        self::assertSame(
             ['block_three', 'block_two', 'block_one'],
             array_keys($processedConfig['system']['cro']['view']['block_view']['context'])
         );
 
         // Rule in "default" scope needs to have the original value
-        $this->assertSame(
+        self::assertSame(
             'block.html.twig',
             $processedConfig['system']['default']['view']['block_view']['context']['block_two']['template']
         );
 
         // Rule in "cro" scope needs to override existing rule in default scope
-        $this->assertSame(
+        self::assertSame(
             'block2.html.twig',
             $processedConfig['system']['cro']['view']['block_view']['context']['block_two']['template']
         );
@@ -393,7 +393,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
 
         // Default scope should have all three rules,
         // but rule from system node (block_three) should be first
-        $this->assertSame(
+        self::assertSame(
             ['block_three', 'block_two', 'block_one'],
             array_keys($processedConfig['system']['default']['view']['block_view']['context'])
         );
@@ -442,7 +442,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
         ];
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
-        $this->assertInjectedConfigurationEqual($expectedConfig, $config);
+        self::assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 
     /**
@@ -488,7 +488,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
         ];
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
-        $this->assertInjectedConfigurationEqual($expectedConfig, $config);
+        self::assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 
     /**
@@ -529,7 +529,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
         ];
 
         $expectedConfig = $this->getExtendedExpectedConfig($expectedConfig);
-        $this->assertInjectedConfigurationEqual($expectedConfig, $config);
+        self::assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 
     /**
@@ -583,6 +583,6 @@ final class ViewNodeTest extends ConfigurationNodeTest
             )
         );
 
-        $this->assertSame($expectedConfig['system']['default'], $config['system']['default']);
+        self::assertSame($expectedConfig['system']['default'], $config['system']['default']);
     }
 }

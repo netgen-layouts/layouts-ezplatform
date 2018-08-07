@@ -36,7 +36,7 @@ final class SiteAccessGroupValidatorTest extends ValidatorTestCase
      */
     public function testValidate(?string $identifier, bool $isValid): void
     {
-        $this->assertValid($isValid, $identifier);
+        self::assertValid($isValid, $identifier);
     }
 
     /**
@@ -47,7 +47,7 @@ final class SiteAccessGroupValidatorTest extends ValidatorTestCase
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->constraint = new NotBlank();
-        $this->assertValid(true, 'value');
+        self::assertValid(true, 'value');
     }
 
     /**
@@ -57,7 +57,7 @@ final class SiteAccessGroupValidatorTest extends ValidatorTestCase
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
-        $this->assertValid(true, 42);
+        self::assertValid(true, 42);
     }
 
     public function validateDataProvider(): array

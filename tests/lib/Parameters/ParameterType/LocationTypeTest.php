@@ -45,28 +45,28 @@ final class LocationTypeTest extends TestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService', 'getContentTypeService']);
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('sudo')
-            ->with($this->anything())
-            ->will($this->returnCallback(function (callable $callback) {
+            ->with(self::anything())
+            ->will(self::returnCallback(function (callable $callback) {
                 return $callback($this->repositoryMock);
             }));
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getLocationService')
-            ->will($this->returnValue($this->locationServiceMock));
+            ->will(self::returnValue($this->locationServiceMock));
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getContentTypeService')
-            ->will($this->returnValue($this->contentTypeServiceMock));
+            ->will(self::returnValue($this->contentTypeServiceMock));
 
         $this->contentTypeServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadContentType')
             ->will(
-                $this->returnCallback(
+                self::returnCallback(
                     function (int $type): EzContentType {
                         if ($type === 24) {
                             return new EzContentType(['identifier' => 'user']);
@@ -90,7 +90,7 @@ final class LocationTypeTest extends TestCase
      */
     public function testGetIdentifier(): void
     {
-        $this->assertSame('ezlocation', $this->type::getIdentifier());
+        self::assertSame('ezlocation', $this->type::getIdentifier());
     }
 
     /**
@@ -100,7 +100,7 @@ final class LocationTypeTest extends TestCase
     public function testValidOptions(array $options, array $resolvedOptions): void
     {
         $parameter = $this->getParameterDefinition($options);
-        $this->assertSame($resolvedOptions, $parameter->getOptions());
+        self::assertSame($resolvedOptions, $parameter->getOptions());
     }
 
     /**
@@ -203,12 +203,12 @@ final class LocationTypeTest extends TestCase
     public function testExport(): void
     {
         $this->locationServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadLocation')
-            ->with($this->identicalTo(42))
-            ->will($this->returnValue(new Location(['remoteId' => 'abc'])));
+            ->with(self::identicalTo(42))
+            ->will(self::returnValue(new Location(['remoteId' => 'abc'])));
 
-        $this->assertSame('abc', $this->type->export($this->getParameterDefinition(), 42));
+        self::assertSame('abc', $this->type->export($this->getParameterDefinition(), 42));
     }
 
     /**
@@ -217,12 +217,12 @@ final class LocationTypeTest extends TestCase
     public function testExportWithNonExistingLocation(): void
     {
         $this->locationServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadLocation')
-            ->with($this->identicalTo(42))
-            ->will($this->throwException(new NotFoundException('location', 42)));
+            ->with(self::identicalTo(42))
+            ->will(self::throwException(new NotFoundException('location', 42)));
 
-        $this->assertNull($this->type->export($this->getParameterDefinition(), 42));
+        self::assertNull($this->type->export($this->getParameterDefinition(), 42));
     }
 
     /**
@@ -231,12 +231,12 @@ final class LocationTypeTest extends TestCase
     public function testImport(): void
     {
         $this->locationServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadLocationByRemoteId')
-            ->with($this->identicalTo('abc'))
-            ->will($this->returnValue(new Location(['id' => 42])));
+            ->with(self::identicalTo('abc'))
+            ->will(self::returnValue(new Location(['id' => 42])));
 
-        $this->assertSame(42, $this->type->import($this->getParameterDefinition(), 'abc'));
+        self::assertSame(42, $this->type->import($this->getParameterDefinition(), 'abc'));
     }
 
     /**
@@ -245,12 +245,12 @@ final class LocationTypeTest extends TestCase
     public function testImportWithNonExistingLocation(): void
     {
         $this->locationServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadLocationByRemoteId')
-            ->with($this->identicalTo('abc'))
-            ->will($this->throwException(new NotFoundException('location', 'abc')));
+            ->with(self::identicalTo('abc'))
+            ->will(self::throwException(new NotFoundException('location', 'abc')));
 
-        $this->assertNull($this->type->import($this->getParameterDefinition(), 'abc'));
+        self::assertNull($this->type->import($this->getParameterDefinition(), 'abc'));
     }
 
     /**
@@ -266,11 +266,11 @@ final class LocationTypeTest extends TestCase
     {
         if ($value !== null) {
             $this->locationServiceMock
-                ->expects($this->once())
+                ->expects(self::once())
                 ->method('loadLocation')
-                ->with($this->identicalTo($value))
+                ->with(self::identicalTo($value))
                 ->will(
-                    $this->returnCallback(
+                    self::returnCallback(
                         function () use ($value, $type): Location {
                             if (!is_int($value) || $value <= 0) {
                                 throw new NotFoundException('location', $value);
@@ -293,7 +293,7 @@ final class LocationTypeTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $this->type->getConstraints($parameter, $value));
-        $this->assertSame($isValid, $errors->count() === 0);
+        self::assertSame($isValid, $errors->count() === 0);
     }
 
     /**
@@ -330,7 +330,7 @@ final class LocationTypeTest extends TestCase
      */
     public function testIsValueEmpty($value, bool $isEmpty): void
     {
-        $this->assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
+        self::assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
     }
 
     /**

@@ -49,28 +49,28 @@ final class LocationValidatorTest extends ValidatorTestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService', 'getContentTypeService']);
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('sudo')
-            ->with($this->anything())
-            ->will($this->returnCallback(function (callable $callback) {
+            ->with(self::anything())
+            ->will(self::returnCallback(function (callable $callback) {
                 return $callback($this->repositoryMock);
             }));
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getLocationService')
-            ->will($this->returnValue($this->locationServiceMock));
+            ->will(self::returnValue($this->locationServiceMock));
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getContentTypeService')
-            ->will($this->returnValue($this->contentTypeServiceMock));
+            ->will(self::returnValue($this->contentTypeServiceMock));
 
         $this->contentTypeServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadContentType')
             ->will(
-                $this->returnCallback(
+                self::returnCallback(
                     function (int $type): ContentType {
                         if ($type === 24) {
                             return new ContentType(['identifier' => 'user']);
@@ -91,11 +91,11 @@ final class LocationValidatorTest extends ValidatorTestCase
     public function testValidateValid(): void
     {
         $this->locationServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadLocation')
-            ->with($this->identicalTo(42))
+            ->with(self::identicalTo(42))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     new EzLocation(
                         [
                             'id' => 42,
@@ -105,7 +105,7 @@ final class LocationValidatorTest extends ValidatorTestCase
                 )
             );
 
-        $this->assertValid(true, 42);
+        self::assertValid(true, 42);
     }
 
     /**
@@ -115,11 +115,11 @@ final class LocationValidatorTest extends ValidatorTestCase
     public function testValidateInvalidWithWrongType(): void
     {
         $this->locationServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadLocation')
-            ->with($this->identicalTo(42))
+            ->with(self::identicalTo(42))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     new EzLocation(
                         [
                             'id' => 42,
@@ -129,7 +129,7 @@ final class LocationValidatorTest extends ValidatorTestCase
                 )
             );
 
-        $this->assertValid(false, 42);
+        self::assertValid(false, 42);
     }
 
     /**
@@ -139,12 +139,12 @@ final class LocationValidatorTest extends ValidatorTestCase
     public function testValidateInvalidWithNonExistingLocation(): void
     {
         $this->locationServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadLocation')
-            ->with($this->identicalTo(42))
-            ->will($this->throwException(new NotFoundException('location', 42)));
+            ->with(self::identicalTo(42))
+            ->will(self::throwException(new NotFoundException('location', 42)));
 
-        $this->assertValid(false, 42);
+        self::assertValid(false, 42);
     }
 
     /**
@@ -154,10 +154,10 @@ final class LocationValidatorTest extends ValidatorTestCase
     public function testValidateNull(): void
     {
         $this->locationServiceMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('loadLocation');
 
-        $this->assertValid(true, null);
+        self::assertValid(true, null);
     }
 
     /**
@@ -168,7 +168,7 @@ final class LocationValidatorTest extends ValidatorTestCase
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->constraint = new NotBlank();
-        $this->assertValid(true, 'value');
+        self::assertValid(true, 'value');
     }
 
     /**
@@ -178,6 +178,6 @@ final class LocationValidatorTest extends ValidatorTestCase
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
-        $this->assertValid(true, []);
+        self::assertValid(true, []);
     }
 }

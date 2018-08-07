@@ -27,7 +27,7 @@ final class ObjectStateMapperTest extends TestCase
      */
     public function testGetFormType(): void
     {
-        $this->assertSame(ObjectStateType::class, $this->mapper->getFormType());
+        self::assertSame(ObjectStateType::class, $this->mapper->getFormType());
     }
 
     /**
@@ -35,7 +35,7 @@ final class ObjectStateMapperTest extends TestCase
      */
     public function testMapOptions(): void
     {
-        $this->assertSame(
+        self::assertSame(
             [
                 'multiple' => true,
                 'states' => [42],

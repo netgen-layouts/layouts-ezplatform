@@ -35,7 +35,7 @@ final class TagsTypeTest extends TestCase
      */
     public function testGetIdentifier(): void
     {
-        $this->assertSame('eztags', $this->type::getIdentifier());
+        self::assertSame('eztags', $this->type::getIdentifier());
     }
 
     /**
@@ -45,7 +45,7 @@ final class TagsTypeTest extends TestCase
     public function testValidOptions(array $options, array $resolvedOptions): void
     {
         $parameter = $this->getParameterDefinition($options);
-        $this->assertSame($resolvedOptions, $parameter->getOptions());
+        self::assertSame($resolvedOptions, $parameter->getOptions());
     }
 
     /**
@@ -209,12 +209,12 @@ final class TagsTypeTest extends TestCase
     public function testExport(): void
     {
         $this->tagsServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadTag')
-            ->with($this->identicalTo(42))
-            ->will($this->returnValue(new Tag(['remoteId' => 'abc'])));
+            ->with(self::identicalTo(42))
+            ->will(self::returnValue(new Tag(['remoteId' => 'abc'])));
 
-        $this->assertSame('abc', $this->type->export($this->getParameterDefinition(), 42));
+        self::assertSame('abc', $this->type->export($this->getParameterDefinition(), 42));
     }
 
     /**
@@ -223,12 +223,12 @@ final class TagsTypeTest extends TestCase
     public function testExportWithNonExistingTag(): void
     {
         $this->tagsServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadTag')
-            ->with($this->identicalTo(42))
-            ->will($this->throwException(new NotFoundException('tag', 42)));
+            ->with(self::identicalTo(42))
+            ->will(self::throwException(new NotFoundException('tag', 42)));
 
-        $this->assertNull($this->type->export($this->getParameterDefinition(), 42));
+        self::assertNull($this->type->export($this->getParameterDefinition(), 42));
     }
 
     /**
@@ -237,12 +237,12 @@ final class TagsTypeTest extends TestCase
     public function testImport(): void
     {
         $this->tagsServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadTagByRemoteId')
-            ->with($this->identicalTo('abc'))
-            ->will($this->returnValue(new Tag(['id' => 42])));
+            ->with(self::identicalTo('abc'))
+            ->will(self::returnValue(new Tag(['id' => 42])));
 
-        $this->assertSame(42, $this->type->import($this->getParameterDefinition(), 'abc'));
+        self::assertSame(42, $this->type->import($this->getParameterDefinition(), 'abc'));
     }
 
     /**
@@ -251,12 +251,12 @@ final class TagsTypeTest extends TestCase
     public function testImportWithNonExistingTag(): void
     {
         $this->tagsServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadTagByRemoteId')
-            ->with($this->identicalTo('abc'))
-            ->will($this->throwException(new NotFoundException('tag', 'abc')));
+            ->with(self::identicalTo('abc'))
+            ->will(self::throwException(new NotFoundException('tag', 'abc')));
 
-        $this->assertNull($this->type->import($this->getParameterDefinition(), 'abc'));
+        self::assertNull($this->type->import($this->getParameterDefinition(), 'abc'));
     }
 
     /**
@@ -273,11 +273,11 @@ final class TagsTypeTest extends TestCase
             foreach ($values as $i => $value) {
                 if ($value !== null) {
                     $this->tagsServiceMock
-                        ->expects($this->at($i))
+                        ->expects(self::at($i))
                         ->method('loadTag')
-                        ->with($this->identicalTo($value))
+                        ->with(self::identicalTo($value))
                         ->will(
-                            $this->returnCallback(
+                            self::returnCallback(
                                 function () use ($value): void {
                                     if (!is_int($value) || $value <= 0) {
                                         throw new NotFoundException('tag', $value);
@@ -295,7 +295,7 @@ final class TagsTypeTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($values, $this->type->getConstraints($parameter, $values));
-        $this->assertSame($isValid, $errors->count() === 0);
+        self::assertSame($isValid, $errors->count() === 0);
     }
 
     public function validationProvider(): array

@@ -39,17 +39,17 @@ final class SectionValidatorTest extends ValidatorTestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getSectionService']);
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('sudo')
-            ->with($this->anything())
-            ->will($this->returnCallback(function (callable $callback) {
+            ->with(self::anything())
+            ->will(self::returnCallback(function (callable $callback) {
                 return $callback($this->repositoryMock);
             }));
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getSectionService')
-            ->will($this->returnValue($this->sectionServiceMock));
+            ->will(self::returnValue($this->sectionServiceMock));
 
         return new SectionValidator($this->repositoryMock);
     }
@@ -62,11 +62,11 @@ final class SectionValidatorTest extends ValidatorTestCase
     public function testValidate(string $identifier, array $allowedSections, bool $isValid): void
     {
         $this->sectionServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadSectionByIdentifier')
-            ->with($this->identicalTo($identifier))
+            ->with(self::identicalTo($identifier))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     new EzSection(
                         [
                             'identifier' => $identifier,
@@ -76,7 +76,7 @@ final class SectionValidatorTest extends ValidatorTestCase
             );
 
         $this->constraint->allowedSections = $allowedSections;
-        $this->assertValid($isValid, $identifier);
+        self::assertValid($isValid, $identifier);
     }
 
     /**
@@ -86,10 +86,10 @@ final class SectionValidatorTest extends ValidatorTestCase
     public function testValidateNull(): void
     {
         $this->sectionServiceMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('loadSectionByIdentifier');
 
-        $this->assertValid(true, null);
+        self::assertValid(true, null);
     }
 
     /**
@@ -99,16 +99,16 @@ final class SectionValidatorTest extends ValidatorTestCase
     public function testValidateInvalid(): void
     {
         $this->sectionServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadSectionByIdentifier')
-            ->with($this->identicalTo('unknown'))
+            ->with(self::identicalTo('unknown'))
             ->will(
-                $this->throwException(
+                self::throwException(
                     new NotFoundException('section', 'unknown')
                 )
             );
 
-        $this->assertValid(false, 'unknown');
+        self::assertValid(false, 'unknown');
     }
 
     /**
@@ -119,7 +119,7 @@ final class SectionValidatorTest extends ValidatorTestCase
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->constraint = new NotBlank();
-        $this->assertValid(true, 'value');
+        self::assertValid(true, 'value');
     }
 
     /**
@@ -129,7 +129,7 @@ final class SectionValidatorTest extends ValidatorTestCase
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
-        $this->assertValid(true, 42);
+        self::assertValid(true, 42);
     }
 
     /**
@@ -140,7 +140,7 @@ final class SectionValidatorTest extends ValidatorTestCase
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidAllowedSections(): void
     {
         $this->constraint->allowedSections = 42;
-        $this->assertValid(true, 'media');
+        self::assertValid(true, 'media');
     }
 
     public function validateDataProvider(): array

@@ -15,6 +15,6 @@ final class TagTest extends TestCase
     public function testValidatedBy(): void
     {
         $constraint = new Tag();
-        $this->assertSame('ngbm_eztags', $constraint->validatedBy());
+        self::assertSame('ngbm_eztags', $constraint->validatedBy());
     }
 }

@@ -34,11 +34,11 @@ final class RoleHierarchyTest extends TestCase
         /** @var \Symfony\Component\Security\Core\Role\Role[] $reachableRoles */
         $reachableRoles = $role->getReachableRoles([new Role($startingRole)]);
 
-        $this->assertCount(count($expectedReachableRoles), $reachableRoles);
+        self::assertCount(count($expectedReachableRoles), $reachableRoles);
 
         foreach ($reachableRoles as $index => $reachableRole) {
-            $this->assertInstanceOf(Role::class, $reachableRole);
-            $this->assertSame($expectedReachableRoles[$index], $reachableRole->getRole());
+            self::assertInstanceOf(Role::class, $reachableRole);
+            self::assertSame($expectedReachableRoles[$index], $reachableRole->getRole());
         }
     }
 

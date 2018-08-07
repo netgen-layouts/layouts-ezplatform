@@ -26,12 +26,12 @@ final class ExtensionPluginTest extends AbstractExtensionTestCase
             ...$this->container->getExtensionConfig('netgen_block_manager')
         );
 
-        $this->assertInternalType('array', $config);
+        self::assertInternalType('array', $config);
 
-        $this->assertArrayHasKey('block_type_groups', $config);
-        $this->assertArrayHasKey('placeholders', $config['block_type_groups']);
+        self::assertArrayHasKey('block_type_groups', $config);
+        self::assertArrayHasKey('placeholders', $config['block_type_groups']);
 
-        $this->assertSame(
+        self::assertSame(
             [
                 'block_types' => [
                     'ezcontent_field',

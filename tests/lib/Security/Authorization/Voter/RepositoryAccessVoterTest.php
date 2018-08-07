@@ -58,19 +58,19 @@ final class RepositoryAccessVoterTest extends TestCase
         $i = 0;
         foreach ($repoAccess as $function => $hasAccess) {
             $this->accessDecisionManagerMock
-                ->expects($this->at($i++))
+                ->expects(self::at($i++))
                 ->method('decide')
                 ->with(
-                    $this->identicalTo($token),
-                    $this->equalTo([new Attribute('nglayouts', $function)]),
-                    $this->isNull()
+                    self::identicalTo($token),
+                    self::equalTo([new Attribute('nglayouts', $function)]),
+                    self::isNull()
                 )
-                ->will($this->returnValue($hasAccess));
+                ->will(self::returnValue($hasAccess));
         }
 
         $result = $this->voter->vote($token, null, [$attribute]);
 
-        $this->assertSame($voteResult, $result);
+        self::assertSame($voteResult, $result);
     }
 
     public function voteDataProvider(): array

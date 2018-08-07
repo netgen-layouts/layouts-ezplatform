@@ -69,18 +69,18 @@ final class ContentProviderTest extends TestCase
         $this->context->set('ez_location_id', 42);
 
         $this->locationServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadLocation')
-            ->with($this->identicalTo(42))
-            ->will($this->returnValue($location));
+            ->with(self::identicalTo(42))
+            ->will(self::returnValue($location));
 
         $this->contentServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadContent')
-            ->with($this->identicalTo(24))
-            ->will($this->returnValue($content));
+            ->with(self::identicalTo(24))
+            ->will(self::returnValue($content));
 
-        $this->assertSame($content, $this->contentProvider->provideContent());
+        self::assertSame($content, $this->contentProvider->provideContent());
     }
 
     /**
@@ -90,14 +90,14 @@ final class ContentProviderTest extends TestCase
     public function testProvideContentWithoutContent(): void
     {
         $this->locationServiceMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('loadLocation');
 
         $this->contentServiceMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('loadContent');
 
-        $this->assertNull($this->contentProvider->provideContent());
+        self::assertNull($this->contentProvider->provideContent());
     }
 
     /**
@@ -111,12 +111,12 @@ final class ContentProviderTest extends TestCase
         $this->context->set('ez_location_id', 42);
 
         $this->locationServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadLocation')
-            ->with($this->identicalTo(42))
-            ->will($this->returnValue($location));
+            ->with(self::identicalTo(42))
+            ->will(self::returnValue($location));
 
-        $this->assertSame($location, $this->contentProvider->provideLocation());
+        self::assertSame($location, $this->contentProvider->provideLocation());
     }
 
     /**
@@ -126,9 +126,9 @@ final class ContentProviderTest extends TestCase
     public function testProvideLocationWithoutLocation(): void
     {
         $this->locationServiceMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('loadLocation');
 
-        $this->assertNull($this->contentProvider->provideLocation());
+        self::assertNull($this->contentProvider->provideLocation());
     }
 }

@@ -56,8 +56,8 @@ final class ObjectStateTypeTest extends FormTestCase
 
         $form->submit($submittedData);
 
-        $this->assertTrue($form->isSynchronized());
-        $this->assertSame($submittedData, $form->getData());
+        self::assertTrue($form->isSynchronized());
+        self::assertSame($submittedData, $form->getData());
     }
 
     /**
@@ -65,7 +65,7 @@ final class ObjectStateTypeTest extends FormTestCase
      */
     public function testGetParent(): void
     {
-        $this->assertSame(ChoiceType::class, $this->formType->getParent());
+        self::assertSame(ChoiceType::class, $this->formType->getParent());
     }
 
     /**
@@ -91,8 +91,8 @@ final class ObjectStateTypeTest extends FormTestCase
             ]
         );
 
-        $this->assertFalse($options['choice_translation_domain']);
-        $this->assertSame(
+        self::assertFalse($options['choice_translation_domain']);
+        self::assertSame(
             [
                 'Lock' => [
                     'Locked' => 'ez_lock|locked',
@@ -106,7 +106,7 @@ final class ObjectStateTypeTest extends FormTestCase
 
         if (Kernel::VERSION_ID < 30100) {
             // @deprecated Remove when support for Symfony 2.8 ends
-            $this->assertTrue($options['choices_as_values']);
+            self::assertTrue($options['choices_as_values']);
         }
     }
 
@@ -117,16 +117,16 @@ final class ObjectStateTypeTest extends FormTestCase
         $objectStateGroup3 = new ObjectStateGroup(['identifier' => 'third', 'names' => ['eng-GB' => 'Third'], 'mainLanguageCode' => 'eng-GB']);
 
         $this->objectStateServiceMock
-            ->expects($this->at(0))
+            ->expects(self::at(0))
             ->method('loadObjectStateGroups')
-            ->will($this->returnValue([$objectStateGroup1, $objectStateGroup2, $objectStateGroup3]));
+            ->will(self::returnValue([$objectStateGroup1, $objectStateGroup2, $objectStateGroup3]));
 
         $this->objectStateServiceMock
-            ->expects($this->at(1))
+            ->expects(self::at(1))
             ->method('loadObjectStates')
-            ->with($this->identicalTo($objectStateGroup1))
+            ->with(self::identicalTo($objectStateGroup1))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     [
                         new ObjectState(
                             [
@@ -147,11 +147,11 @@ final class ObjectStateTypeTest extends FormTestCase
             );
 
         $this->objectStateServiceMock
-            ->expects($this->at(2))
+            ->expects(self::at(2))
             ->method('loadObjectStates')
-            ->with($this->identicalTo($objectStateGroup2))
+            ->with(self::identicalTo($objectStateGroup2))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     [
                         new ObjectState(
                             [

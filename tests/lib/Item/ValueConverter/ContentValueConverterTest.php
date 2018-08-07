@@ -36,11 +36,11 @@ final class ContentValueConverterTest extends TestCase
         $this->contentServiceMock = $this->createMock(ContentService::class);
 
         $this->locationServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadLocation')
-            ->with($this->isType('int'))
+            ->with(self::isType('int'))
             ->will(
-                $this->returnCallback(
+                self::returnCallback(
                     function ($id): Location {
                         return new Location(['id' => $id, 'invisible' => false]);
                     }
@@ -48,11 +48,11 @@ final class ContentValueConverterTest extends TestCase
             );
 
         $this->contentServiceMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('loadVersionInfo')
-            ->with($this->isInstanceOf(ContentInfo::class))
+            ->with(self::isInstanceOf(ContentInfo::class))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     new VersionInfo(
                         [
                             'prioritizedNameLanguageCode' => 'eng-GB',
@@ -75,8 +75,8 @@ final class ContentValueConverterTest extends TestCase
      */
     public function testSupports(): void
     {
-        $this->assertTrue($this->valueConverter->supports(new ContentInfo()));
-        $this->assertFalse($this->valueConverter->supports(new Location()));
+        self::assertTrue($this->valueConverter->supports(new ContentInfo()));
+        self::assertFalse($this->valueConverter->supports(new Location()));
     }
 
     /**
@@ -84,7 +84,7 @@ final class ContentValueConverterTest extends TestCase
      */
     public function testGetValueType(): void
     {
-        $this->assertSame(
+        self::assertSame(
             'ezcontent',
             $this->valueConverter->getValueType(
                 new ContentInfo()
@@ -97,7 +97,7 @@ final class ContentValueConverterTest extends TestCase
      */
     public function testGetId(): void
     {
-        $this->assertSame(
+        self::assertSame(
             24,
             $this->valueConverter->getId(
                 new ContentInfo(['id' => 24, 'mainLocationId' => 42])
@@ -110,7 +110,7 @@ final class ContentValueConverterTest extends TestCase
      */
     public function testGetRemoteId(): void
     {
-        $this->assertSame(
+        self::assertSame(
             'abc',
             $this->valueConverter->getRemoteId(
                 new ContentInfo(['remoteId' => 'abc'])
@@ -123,7 +123,7 @@ final class ContentValueConverterTest extends TestCase
      */
     public function testGetName(): void
     {
-        $this->assertSame(
+        self::assertSame(
             'Cool name',
             $this->valueConverter->getName(
                 new ContentInfo(['mainLocationId' => 42])
@@ -136,7 +136,7 @@ final class ContentValueConverterTest extends TestCase
      */
     public function testGetIsVisible(): void
     {
-        $this->assertTrue(
+        self::assertTrue(
             $this->valueConverter->getIsVisible(
                 new ContentInfo(['mainLocationId' => 42])
             )
@@ -150,6 +150,6 @@ final class ContentValueConverterTest extends TestCase
     {
         $object = new ContentInfo(['id' => 42]);
 
-        $this->assertSame($object, $this->valueConverter->getObject($object));
+        self::assertSame($object, $this->valueConverter->getObject($object));
     }
 }

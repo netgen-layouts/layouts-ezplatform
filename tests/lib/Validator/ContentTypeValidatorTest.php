@@ -40,17 +40,17 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentTypeService']);
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('sudo')
-            ->with($this->anything())
-            ->will($this->returnCallback(function (callable $callback) {
+            ->with(self::anything())
+            ->will(self::returnCallback(function (callable $callback) {
                 return $callback($this->repositoryMock);
             }));
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getContentTypeService')
-            ->will($this->returnValue($this->contentTypeServiceMock));
+            ->will(self::returnValue($this->contentTypeServiceMock));
 
         return new ContentTypeValidator($this->repositoryMock);
     }
@@ -63,11 +63,11 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
     public function testValidate(string $identifier, array $groups, array $allowedTypes, bool $isValid): void
     {
         $this->contentTypeServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadContentTypeByIdentifier')
-            ->with($this->identicalTo($identifier))
+            ->with(self::identicalTo($identifier))
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     new EzContentType(
                         [
                             'identifier' => $identifier,
@@ -87,7 +87,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
             );
 
         $this->constraint->allowedTypes = $allowedTypes;
-        $this->assertValid($isValid, $identifier);
+        self::assertValid($isValid, $identifier);
     }
 
     /**
@@ -97,10 +97,10 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
     public function testValidateNull(): void
     {
         $this->contentTypeServiceMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('loadContentTypeByIdentifier');
 
-        $this->assertValid(true, null);
+        self::assertValid(true, null);
     }
 
     /**
@@ -110,16 +110,16 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
     public function testValidateInvalid(): void
     {
         $this->contentTypeServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('loadContentTypeByIdentifier')
-            ->with($this->identicalTo('unknown'))
+            ->with(self::identicalTo('unknown'))
             ->will(
-                $this->throwException(
+                self::throwException(
                     new NotFoundException('content type', 'unknown')
                 )
             );
 
-        $this->assertValid(false, 'unknown');
+        self::assertValid(false, 'unknown');
     }
 
     /**
@@ -130,7 +130,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->constraint = new NotBlank();
-        $this->assertValid(true, 'value');
+        self::assertValid(true, 'value');
     }
 
     /**
@@ -140,7 +140,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
-        $this->assertValid(true, 42);
+        self::assertValid(true, 42);
     }
 
     /**
@@ -151,7 +151,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidAllowedTypes(): void
     {
         $this->constraint->allowedTypes = 42;
-        $this->assertValid(true, 'article');
+        self::assertValid(true, 'article');
     }
 
     public function validateDataProvider(): array

@@ -50,8 +50,8 @@ final class SectionTypeTest extends FormTestCase
 
         $form->submit($submittedData);
 
-        $this->assertTrue($form->isSynchronized());
-        $this->assertSame($submittedData, $form->getData());
+        self::assertTrue($form->isSynchronized());
+        self::assertSame($submittedData, $form->getData());
     }
 
     /**
@@ -74,8 +74,8 @@ final class SectionTypeTest extends FormTestCase
 
         $form->submit($submittedData);
 
-        $this->assertTrue($form->isSynchronized());
-        $this->assertSame($submittedData, $form->getData());
+        self::assertTrue($form->isSynchronized());
+        self::assertSame($submittedData, $form->getData());
     }
 
     /**
@@ -99,8 +99,8 @@ final class SectionTypeTest extends FormTestCase
 
         $form->submit($submittedData);
 
-        $this->assertFalse($form->isSynchronized());
-        $this->assertNull($form->getData());
+        self::assertFalse($form->isSynchronized());
+        self::assertNull($form->getData());
     }
 
     /**
@@ -108,7 +108,7 @@ final class SectionTypeTest extends FormTestCase
      */
     public function testGetParent(): void
     {
-        $this->assertSame(ChoiceType::class, $this->formType->getParent());
+        self::assertSame(ChoiceType::class, $this->formType->getParent());
     }
 
     /**
@@ -129,12 +129,12 @@ final class SectionTypeTest extends FormTestCase
             ]
         );
 
-        $this->assertFalse($options['choice_translation_domain']);
-        $this->assertSame(['Media' => 'media'], $options['choices']);
+        self::assertFalse($options['choice_translation_domain']);
+        self::assertSame(['Media' => 'media'], $options['choices']);
 
         if (Kernel::VERSION_ID < 30100) {
             // @deprecated Remove when support for Symfony 2.8 ends
-            $this->assertTrue($options['choices_as_values']);
+            self::assertTrue($options['choices_as_values']);
         }
     }
 
@@ -160,10 +160,10 @@ final class SectionTypeTest extends FormTestCase
     private function configureSectionService(): void
     {
         $this->sectionServiceMock
-            ->expects($this->at(0))
+            ->expects(self::at(0))
             ->method('loadSections')
             ->will(
-                $this->returnValue(
+                self::returnValue(
                     [
                         new Section(
                             [

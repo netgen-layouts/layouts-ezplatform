@@ -35,17 +35,17 @@ final class SectionTypeTest extends TestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getSectionService']);
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('sudo')
-            ->with($this->anything())
-            ->will($this->returnCallback(function (callable $callback) {
+            ->with(self::anything())
+            ->will(self::returnCallback(function (callable $callback) {
                 return $callback($this->repositoryMock);
             }));
 
         $this->repositoryMock
-            ->expects($this->any())
+            ->expects(self::any())
             ->method('getSectionService')
-            ->will($this->returnValue($this->sectionServiceMock));
+            ->will(self::returnValue($this->sectionServiceMock));
 
         $this->type = new SectionType();
     }
@@ -55,7 +55,7 @@ final class SectionTypeTest extends TestCase
      */
     public function testGetIdentifier(): void
     {
-        $this->assertSame('ez_section', $this->type::getIdentifier());
+        self::assertSame('ez_section', $this->type::getIdentifier());
     }
 
     /**
@@ -65,7 +65,7 @@ final class SectionTypeTest extends TestCase
     public function testValidOptions(array $options, array $resolvedOptions): void
     {
         $parameter = $this->getParameterDefinition($options);
-        $this->assertSame($resolvedOptions, $parameter->getOptions());
+        self::assertSame($resolvedOptions, $parameter->getOptions());
     }
 
     /**
@@ -168,11 +168,11 @@ final class SectionTypeTest extends TestCase
             $options = ['multiple' => is_array($value)];
             foreach ((array) $value as $index => $identifier) {
                 $this->sectionServiceMock
-                    ->expects($this->at($index))
+                    ->expects(self::at($index))
                     ->method('loadSectionByIdentifier')
-                    ->with($this->identicalTo($identifier))
+                    ->with(self::identicalTo($identifier))
                     ->will(
-                        $this->returnCallback(
+                        self::returnCallback(
                             function () use ($identifier): EzSection {
                                 if (!is_string($identifier) || !in_array($identifier, ['media', 'standard'], true)) {
                                     throw new NotFoundException('content type', $identifier);
@@ -195,7 +195,7 @@ final class SectionTypeTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate($value, $this->type->getConstraints($parameter, $value));
-        $this->assertSame($isValid, $errors->count() === 0);
+        self::assertSame($isValid, $errors->count() === 0);
     }
 
     /**
@@ -231,7 +231,7 @@ final class SectionTypeTest extends TestCase
      */
     public function testFromHash($value, $convertedValue, bool $multiple): void
     {
-        $this->assertSame(
+        self::assertSame(
             $convertedValue,
             $this->type->fromHash(
                 $this->getParameterDefinition(
@@ -299,7 +299,7 @@ final class SectionTypeTest extends TestCase
      */
     public function testIsValueEmpty($value, bool $isEmpty): void
     {
-        $this->assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
+        self::assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
     }
 
     /**
