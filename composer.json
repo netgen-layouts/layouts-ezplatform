@@ -1,5 +1,5 @@
 {
-    "name": "netgen/block-manager-ezpublish",
+    "name": "netgen/layouts-ezplatform",
     "description": "Netgen Layouts & eZ Platform integration",
     "license": "proprietary",
     "authors": [
@@ -9,7 +9,8 @@
         }
     ],
     "require": {
-        "netgen/block-manager": "~0.12.0",
+        "netgen/layouts-core": "~0.12.0",
+        "netgen/content-browser-ezplatform": "~0.12.0",
         "ezsystems/ezpublish-kernel": "^5.4 || ^6.10 || ^7.0"
     },
     "require-dev": {
@@ -20,11 +21,11 @@
         "ezsystems/ezplatform-http-cache": "*",
         "matthiasnoback/symfony-dependency-injection-test": "^3.0",
         "matthiasnoback/symfony-config-test": "^4.0",
-        "netgen/tagsbundle": "^2.0 || ^3.0",
+        "netgen/tagsbundle": "^3.3",
         "franzl/studio": "*"
     },
     "suggest": {
-        "netgen/block-manager-site-api": "Integrate Netgen Layouts with eZ Platform Site API to boost your site-building productivity with eZ Platform"
+        "netgen/layouts-ezplatform-site-api": "Integrate Netgen Layouts with eZ Platform Site API to boost your site-building productivity with eZ Platform"
     },
     "scripts": {
         "test": "@php vendor/bin/phpunit --colors=always",
@@ -32,9 +33,6 @@
         "phpstan": "@php vendor/bin/phpstan analyse -c phpstan.neon --level=7 --ansi lib bundle",
         "phpstan-tests": "@php vendor/bin/phpstan analyse -c phpstan.tests.neon --level=7 --ansi tests"
     },
-    "repositories": [
-        { "type": "composer", "url": "https://packagist.netgen.biz" }
-    ],
     "autoload": {
         "psr-4": {
             "Netgen\\BlockManager\\Ez\\": "lib/",
@@ -43,7 +41,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Netgen\\BlockManager\\Tests\\": "vendor/netgen/block-manager/tests/lib/",
+            "Netgen\\BlockManager\\Tests\\": "vendor/netgen/layouts-core/tests/lib/",
             "Netgen\\BlockManager\\Ez\\Tests\\": "tests/lib/",
             "Netgen\\Bundle\\EzPublishBlockManagerBundle\\Tests\\": "tests/bundle/"
         },

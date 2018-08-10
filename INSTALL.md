@@ -7,21 +7,22 @@ Use Composer to install the integration
 Run the following command to install Netgen Layouts & eZ Platform integration:
 
 ```
-composer require netgen/block-manager-ezpublish:^1.0
+composer require netgen/layouts-ezplatform
 ```
 
-Activating integration bundle
------------------------------
+Activating integration bundles
+------------------------------
 
 After completing standard Netgen Layouts install instructions, you also need to
-activate `NetgenEzPublishBlockManagerBundle`. Make sure it is activated after
-all other Netgen Layouts bundles.
+activate `NetgenEzPublishBlockManagerBundle` and `NetgenContentBrowserEzPlatformBundle`.
+Make sure they are activated after all other Netgen Layouts and Content Browser bundles.
 
 ```
 ...
 
 $bundles[] = new Netgen\Bundle\BlockManagerAdminBundle\NetgenBlockManagerAdminBundle();
 $bundles[] = new Netgen\Bundle\EzPublishBlockManagerBundle\NetgenEzPublishBlockManagerBundle();
+$bundles[] = new Netgen\Bundle\ContentBrowserEzPlatformBundle\ContentBrowserEzPlatformBundle();
 
 return $bundles;
 ```
@@ -40,17 +41,3 @@ extension:
 [ExtensionSettings]
 ActiveExtensions[]=nglayouts
 ```
-
-Configuring your main pagelayout template
------------------------------------------
-
-To configure which template is your main pagelayout, use the following semantic
-configuration somewhere in your application:
-
-```
-netgen_block_manager:
-    pagelayout: "@NetgenSite/pagelayout.html.twig"
-```
-
-If using eZ Platform 1.3 or later, there's no need setting the main pagelayout,
-since it will be picked up automatically from your pagelayout siteaccess config.
