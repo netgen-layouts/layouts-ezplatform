@@ -1,0 +1,41 @@
+{% set content = block('content') %}
+{% set title = block('title') %}
+
+{#
+    We embed the main layout.html.twig instead of extending it
+    to be able to inject additional markup before and after its
+    content block.
+#}
+{% embed '@EzPlatformAdminUi/layout.html.twig' %}
+    {% trans_default_domain 'ngbm_admin' %}
+
+    {% block title %}{{ title|raw }}{% endblock %}
+    {% block pageTitle %}{% endblock %}
+
+    {% block stylesheets %}
+        {# @todo Move to proper page_head block #}
+        {% include '@NetgenBlockManagerAdmin/admin/head.html.twig' %}
+
+        {{ parent() }}
+
+        {% include '@NetgenBlockManagerAdmin/admin/stylesheets.html.twig' %}
+
+        <link rel="stylesheet" href="{{ asset('bundles/netgenezpublishblockmanager/css/admin/style.css') }}">
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+
+        {% include '@NetgenBlockManagerAdmin/admin/javascripts.html.twig' %}
+    {% endblock %}
+
+    {% block content %}
+        <div class="ng-layouts-app row">
+            <div class="layouts-content">
+
+            {{ content|raw }}
+
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

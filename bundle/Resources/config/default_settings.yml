@@ -1,2 +1,3 @@
 parameters:
     netgen_block_manager.app.ezpublish.item_preview_template: '@@NetgenEzPublishBlockManager/api/item/ngbm_app_preview.html.twig'
+    netgen_block_manager.ezpublish.admin.pagelayout: '@@NetgenEzPublishBlockManager/admin/pagelayout.html.twig'

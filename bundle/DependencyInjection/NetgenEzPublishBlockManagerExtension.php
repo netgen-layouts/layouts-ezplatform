@@ -45,6 +45,10 @@ final class NetgenEzPublishBlockManagerExtension extends Extension implements Pr
 
         $activatedBundles = array_keys($container->getParameter('kernel.bundles'));
 
+        if (in_array('EzPlatformAdminUiBundle', $activatedBundles, true)) {
+            $loader->load('admin/services.yml');
+        }
+
         if (in_array('NetgenTagsBundle', $activatedBundles, true)) {
             $loader->load('eztags/services.yml');
         }
