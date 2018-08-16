@@ -7,9 +7,9 @@ namespace Netgen\BlockManager\Ez\Collection\QueryType\Handler\Traits;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use eZ\Publish\SPI\Persistence\Content\Section\Handler;
-use Netgen\BlockManager\API\Values\Collection\Query;
 use Netgen\BlockManager\Ez\Parameters\ParameterType as EzParameterType;
 use Netgen\BlockManager\Parameters\ParameterBuilderInterface;
+use Netgen\BlockManager\Parameters\ParameterCollectionInterface;
 use Netgen\BlockManager\Parameters\ParameterType;
 
 trait SectionFilterTrait
@@ -53,13 +53,13 @@ trait SectionFilterTrait
     /**
      * Returns the criteria used to filter content by section.
      */
-    private function getSectionFilterCriteria(Query $query): ?Criterion
+    private function getSectionFilterCriteria(ParameterCollectionInterface $parameterCollection): ?Criterion
     {
-        if ($query->getParameter('filter_by_section')->getValue() !== true) {
+        if ($parameterCollection->getParameter('filter_by_section')->getValue() !== true) {
             return null;
         }
 
-        $sections = $query->getParameter('sections')->getValue();
+        $sections = $parameterCollection->getParameter('sections')->getValue();
         if (empty($sections)) {
             return null;
         }

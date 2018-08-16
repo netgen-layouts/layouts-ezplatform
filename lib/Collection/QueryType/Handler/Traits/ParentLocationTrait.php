@@ -6,10 +6,10 @@ namespace Netgen\BlockManager\Ez\Collection\QueryType\Handler\Traits;
 
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\Location;
-use Netgen\BlockManager\API\Values\Collection\Query;
 use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
 use Netgen\BlockManager\Ez\Parameters\ParameterType as EzParameterType;
 use Netgen\BlockManager\Parameters\ParameterBuilderInterface;
+use Netgen\BlockManager\Parameters\ParameterCollectionInterface;
 use Netgen\BlockManager\Parameters\ParameterType;
 use Throwable;
 
@@ -66,15 +66,15 @@ trait ParentLocationTrait
     }
 
     /**
-     * Returns the parent location to use for the query.
+     * Returns the parent location to use for the parameter collection.
      */
-    private function getParentLocation(Query $query): ?Location
+    private function getParentLocation(ParameterCollectionInterface $parameterCollection): ?Location
     {
-        if ($query->getParameter('use_current_location')->getValue() === true) {
+        if ($parameterCollection->getParameter('use_current_location')->getValue() === true) {
             return $this->contentProvider->provideLocation();
         }
 
-        $parentLocationId = $query->getParameter('parent_location_id')->getValue();
+        $parentLocationId = $parameterCollection->getParameter('parent_location_id')->getValue();
         if (empty($parentLocationId)) {
             return null;
         }

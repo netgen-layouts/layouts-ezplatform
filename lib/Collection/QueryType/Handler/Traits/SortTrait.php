@@ -7,8 +7,8 @@ namespace Netgen\BlockManager\Ez\Collection\QueryType\Handler\Traits;
 use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\Values\Content\LocationQuery;
 use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
-use Netgen\BlockManager\API\Values\Collection\Query;
 use Netgen\BlockManager\Parameters\ParameterBuilderInterface;
+use Netgen\BlockManager\Parameters\ParameterCollectionInterface;
 use Netgen\BlockManager\Parameters\ParameterType;
 
 trait SortTrait
@@ -87,10 +87,10 @@ trait SortTrait
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Query\SortClause[]
      */
-    private function getSortClauses(Query $query, ?Location $parentLocation = null): array
+    private function getSortClauses(ParameterCollectionInterface $parameterCollection, ?Location $parentLocation = null): array
     {
-        $sortType = $query->getParameter('sort_type')->getValue() ?? 'default';
-        $sortDirection = $query->getParameter('sort_direction')->getValue() ?? LocationQuery::SORT_DESC;
+        $sortType = $parameterCollection->getParameter('sort_type')->getValue() ?? 'default';
+        $sortDirection = $parameterCollection->getParameter('sort_direction')->getValue() ?? LocationQuery::SORT_DESC;
 
         if ($sortType === 'defined_by_parent' && $parentLocation !== null) {
             if (method_exists($parentLocation, 'getSortClauses')) {

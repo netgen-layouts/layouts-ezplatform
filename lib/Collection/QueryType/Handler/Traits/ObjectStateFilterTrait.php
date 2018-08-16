@@ -7,9 +7,9 @@ namespace Netgen\BlockManager\Ez\Collection\QueryType\Handler\Traits;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use eZ\Publish\SPI\Persistence\Content\ObjectState\Handler;
-use Netgen\BlockManager\API\Values\Collection\Query;
 use Netgen\BlockManager\Ez\Parameters\ParameterType as EzParameterType;
 use Netgen\BlockManager\Parameters\ParameterBuilderInterface;
+use Netgen\BlockManager\Parameters\ParameterCollectionInterface;
 use Netgen\BlockManager\Parameters\ParameterType;
 
 trait ObjectStateFilterTrait
@@ -53,13 +53,13 @@ trait ObjectStateFilterTrait
     /**
      * Returns the criteria used to filter content by object state.
      */
-    private function getObjectStateFilterCriteria(Query $query): ?Criterion
+    private function getObjectStateFilterCriteria(ParameterCollectionInterface $parameterCollection): ?Criterion
     {
-        if ($query->getParameter('filter_by_object_state')->getValue() !== true) {
+        if ($parameterCollection->getParameter('filter_by_object_state')->getValue() !== true) {
             return null;
         }
 
-        $objectStates = $query->getParameter('object_states')->getValue();
+        $objectStates = $parameterCollection->getParameter('object_states')->getValue();
         if (empty($objectStates)) {
             return null;
         }
