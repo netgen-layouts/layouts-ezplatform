@@ -19,6 +19,7 @@
         "phpstan/phpstan": "^0.10",
         "phpstan/phpstan-phpunit": "^0.10",
         "ezsystems/ezplatform-http-cache": "*",
+        "ezsystems/ezplatform-admin-ui": "^1.0",
         "matthiasnoback/symfony-dependency-injection-test": "^3.0",
         "matthiasnoback/symfony-config-test": "^4.0",
         "netgen/tagsbundle": "^3.3",
