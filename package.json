@@ -16,6 +16,7 @@
         "grunt-sass": "^3.0.1",
         "grunt-wiredep": "^3.0.1",
         "jit-grunt": "^0.10.0",
+        "node-sass": "^4.9.2",
         "time-grunt": "^1.1.0"
     }
 }
