@@ -13,6 +13,7 @@ cache:
 
 env:
   - PHPUNIT_CONFIG="phpunit.xml" SYMFONY_VERSION="~3.4.0"
+  - PHPUNIT_CONFIG="phpunit.xml" SYMFONY_VERSION="~4.1.0"
 
 matrix:
   include:
@@ -56,7 +57,7 @@ script:
 notifications:
   email: false
   slack:
-    secure: <TOKEN>
+    secure: j2rUMFQitNUT9oyeWHqhBtVwCs7ogGszxMtCRGPpEnc/d5z2L0ObKlxgTRrYCFETIOya+pzqrTeYIlmpcQ4c6cRYpbiyg1Zs5bQtVwbVWye3efezP38JFQUoCos0Uu5bgO2LTdyq7cyn6vqksA3Fsr112w83NtUgfbrQMCTfj1pLBAgekd0XwtTC1cFU9qcgifKGFtsHrJq55vOKf67cQPEts0+TpwUJHg6pLchl7NHV+5CUVSHx3pYzHwF23lLmiVrCWn4tcPFAfAvADiSv/vUeSz1YUftd/iPLQW4wSGWP8y43MnleZ0uYLrenaeBKehigMyYxNR7WJfP65/je3+WPgvsD/h4ncdTkG0aobLxYSn3fCCvj6+rHjEIROZVl6B3K3GLfzaNUCj+UWezNE4lcDISUlAxodFlnLdlrqcy6vGnDJEmpEF4sahPlrU+zeozwwRDxRB1hU1+c5Q4NcW3cw6lZsNQIKFYzpsXgzkwYMiqQSI2GUOiNSSBoDbxlQG7CWw7Mnd9W7WRWRBAYz6+Fu1m0Y2sgSV0rktGlV6GX1bxwiXyBcHSicYNEiE2tgCikUr3zUt+P7nWB3gpPerFHJ8/+8fsRzi9pixyGvXTmZkzFpbFjEDv3Iyi7q2Dnw/fYHAXMeWbopen84Z56k2aHWUKRtOPDDU+laLocQlM=
     on_success: change
     on_failure: always
     on_pull_requests: false
