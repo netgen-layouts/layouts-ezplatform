@@ -3,28 +3,25 @@ sudo: false
 
 language: php
 
+php:
+  - 7.1
+  - 7.2
+
 cache:
   directories:
     - $HOME/.composer/cache/files
 
+env:
+  - PHPUNIT_CONFIG="phpunit.xml" SYMFONY_VERSION="~3.4.0"
+
 matrix:
-  fast_finish: true
   include:
-    # PHP 7.1
-    - php: 7.1
-      env: PHPUNIT_CONFIG="phpunit.xml" SYMFONY_VERSION="~2.8.0"
-    - php: 7.1
+    -
+      php: 7.1
       env: PHPUNIT_CONFIG="phpunit.xml" SYMFONY_VERSION="~2.8.0" DEPS="low"
-    - php: 7.1
-      env: PHPUNIT_CONFIG="phpunit.xml" SYMFONY_VERSION="~3.4.0"
-    # PHP 7.2
-    - php: 7.2
-      env: PHPUNIT_CONFIG="phpunit.xml" SYMFONY_VERSION="~2.8.0"
-    - php: 7.2
-      env: PHPUNIT_CONFIG="phpunit.xml" SYMFONY_VERSION="~3.4.0"
-    # PHPStan
-    - php: 7.2
-      env: RUN_PHPSTAN="yes" SYMFONY_VERSION="~3.4.0"
+    -
+      php: 7.2
+      env: RUN_PHPSTAN="yes"
 
 branches:
   only:
@@ -40,23 +37,29 @@ before_script:
 
   - if [ "$SYMFONY_VERSION" != "" ] ; then composer require --no-update symfony/symfony:$SYMFONY_VERSION ; fi
 
-  # PHPStan and eZ Platform UI cannot be installed on Symfony 2.8
-  - if [ "$SYMFONY_VERSION" = "~2.8.0" ] ; then composer remove --dev --no-update ezsystems/ezplatform-admin-ui phpstan/phpstan phpstan/phpstan-phpunit ; fi
+  # PHPStan cannot be installed on Symfony 2.8
+  - if [ "$SYMFONY_VERSION" = "~2.8.0" ] ; then composer remove --dev --no-update phpstan/phpstan phpstan/phpstan-phpunit ; fi
 
   - |
     if [ "$DEPS" = "low" ] ; then
-      composer update --prefer-dist --prefer-lowest --prefer-stable
+      composer update --no-suggest --prefer-dist --prefer-lowest --prefer-stable
     else
-      composer update --prefer-dist
+      composer update --no-suggest --prefer-dist
     fi
 
 script:
-  - if [ "$PHPUNIT_CONFIG" != "" ] ; then vendor/bin/phpunit -c $PHPUNIT_CONFIG ; fi
+  - composer validate --strict
+  - if [ "$PHPUNIT_CONFIG" != "" ] ; then vendor/bin/phpunit -c $PHPUNIT_CONFIG --colors=always ; fi
   - if [ "$RUN_PHPSTAN" != "" ] ; then composer phpstan ; fi
   - if [ "$RUN_PHPSTAN" != "" ] ; then composer phpstan-tests ; fi
 
 notifications:
   email: false
+  slack:
+    secure: <TOKEN>
+    on_success: change
+    on_failure: always
+    on_pull_requests: false
 
 git:
-  depth: 30
+  depth: 1
