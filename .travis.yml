@@ -13,7 +13,6 @@ cache:
 
 env:
   - PHPUNIT_CONFIG="phpunit.xml" SYMFONY_VERSION="~3.4.0"
-  - PHPUNIT_CONFIG="phpunit.xml" SYMFONY_VERSION="~4.1.0"
 
 matrix:
   include:
@@ -38,8 +37,8 @@ before_script:
 
   - if [ "$SYMFONY_VERSION" != "" ] ; then composer require --no-update symfony/symfony:$SYMFONY_VERSION ; fi
 
-  # PHPStan cannot be installed on Symfony 2.8
-  - if [ "$SYMFONY_VERSION" = "~2.8.0" ] ; then composer remove --dev --no-update phpstan/phpstan phpstan/phpstan-phpunit ; fi
+  # PHPStan and eZ Platform Admin UI cannot be installed on Symfony 2.8
+  - if [ "$SYMFONY_VERSION" = "~2.8.0" ] ; then composer remove --dev --no-update phpstan/phpstan phpstan/phpstan-phpunit ezsystems/ezplatform-admin-ui ; fi
 
   - |
     if [ "$DEPS" = "low" ] ; then
