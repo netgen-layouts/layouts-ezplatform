@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 return [
     'ngbm_rule' => [
-        ['id' => 1, 'status' => 1, 'layout_id' => 11, 'comment' => null],
-        ['id' => 2, 'status' => 0, 'layout_id' => 12, 'comment' => null],
-        ['id' => 3, 'status' => 1, 'layout_id' => 13, 'comment' => null],
-        ['id' => 4, 'status' => 1, 'layout_id' => 14, 'comment' => null],
-        ['id' => 5, 'status' => 1, 'layout_id' => null, 'comment' => null],
-        ['id' => 6, 'status' => 1, 'layout_id' => 16, 'comment' => null],
-        ['id' => 7, 'status' => 1, 'layout_id' => 17, 'comment' => null],
-        ['id' => 8, 'status' => 1, 'layout_id' => 1, 'comment' => null],
-        ['id' => 9, 'status' => 1, 'layout_id' => 19, 'comment' => null],
-        ['id' => 10, 'status' => 1, 'layout_id' => 20, 'comment' => null],
-        ['id' => 11, 'status' => 1, 'layout_id' => 21, 'comment' => null],
+        ['id' => 1, 'status' => 1, 'layout_id' => 11, 'comment' => ''],
+        ['id' => 2, 'status' => 0, 'layout_id' => 12, 'comment' => ''],
+        ['id' => 3, 'status' => 1, 'layout_id' => 13, 'comment' => ''],
+        ['id' => 4, 'status' => 1, 'layout_id' => 14, 'comment' => ''],
+        ['id' => 5, 'status' => 1, 'layout_id' => null, 'comment' => ''],
+        ['id' => 6, 'status' => 1, 'layout_id' => 16, 'comment' => ''],
+        ['id' => 7, 'status' => 1, 'layout_id' => 17, 'comment' => ''],
+        ['id' => 8, 'status' => 1, 'layout_id' => 1, 'comment' => ''],
+        ['id' => 9, 'status' => 1, 'layout_id' => 19, 'comment' => ''],
+        ['id' => 10, 'status' => 1, 'layout_id' => 20, 'comment' => ''],
+        ['id' => 11, 'status' => 1, 'layout_id' => 21, 'comment' => ''],
     ],
     'ngbm_rule_data' => [
         ['rule_id' => 1, 'enabled' => 1, 'priority' => 10],
