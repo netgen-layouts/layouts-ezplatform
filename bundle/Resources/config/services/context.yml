@@ -3,7 +3,6 @@ services:
         class: Netgen\BlockManager\Ez\Context\ContextProvider
         public: false
         arguments:
-            - "@netgen_block_manager.ezpublish.content_extractor"
             - "@request_stack"
         tags:
             - { name: netgen_block_manager.context.provider }
