@@ -6,7 +6,6 @@ namespace Netgen\BlockManager\Ez\Tests\Item\ValueConverter;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use eZ\Publish\Core\Helper\TranslationHelper;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter;
@@ -44,8 +43,7 @@ final class LocationValueConverterTest extends TestCase
             );
 
         $this->valueConverter = new LocationValueConverter(
-            $this->contentServiceMock,
-            $this->createMock(TranslationHelper::class)
+            $this->contentServiceMock
         );
     }
 

@@ -24,7 +24,6 @@ final class ContentTypeTypeTest extends FormTestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::__construct
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getContentTypes
-     * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getTypeName
      */
     public function testSubmitValidData(): void
     {
@@ -61,7 +60,6 @@ final class ContentTypeTypeTest extends FormTestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::configureOptions
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getContentTypes
-     * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getTypeName
      */
     public function testConfigureOptions(): void
     {

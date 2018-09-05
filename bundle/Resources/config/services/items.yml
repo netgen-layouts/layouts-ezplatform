@@ -4,7 +4,6 @@ services:
         public: false
         arguments:
             - "@ezpublish.api.service.content"
-            - "@ezpublish.translation_helper"
         tags:
             - { name: netgen_block_manager.item.value_converter }
 
@@ -14,7 +13,6 @@ services:
         arguments:
             - "@ezpublish.api.service.location"
             - "@ezpublish.api.service.content"
-            - "@ezpublish.translation_helper"
         tags:
             - { name: netgen_block_manager.item.value_converter }
 

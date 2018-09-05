@@ -9,7 +9,6 @@ use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use eZ\Publish\Core\Helper\TranslationHelper;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
@@ -49,8 +48,7 @@ final class EzPublishRuntimeTest extends TestCase
         $this->prepareRepositoryMock();
 
         $this->runtime = new EzPublishRuntime(
-            $this->repositoryMock,
-            $this->createMock(TranslationHelper::class)
+            $this->repositoryMock
         );
     }
 

@@ -62,12 +62,6 @@ final class PageLayoutResolverTest extends TestCase
 
         $this->configResolverMock
             ->expects(self::at(0))
-            ->method('hasParameter')
-            ->with(self::identicalTo('pagelayout'))
-            ->will(self::returnValue(true));
-
-        $this->configResolverMock
-            ->expects(self::at(1))
             ->method('getParameter')
             ->with(self::identicalTo('pagelayout'))
             ->will(self::returnValue('resolvedPagelayout'));
@@ -127,35 +121,5 @@ final class PageLayoutResolverTest extends TestCase
             ->method('getParameter');
 
         self::assertSame('viewbaseLayout', $this->resolver->resolvePageLayout());
-    }
-
-    /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver::resolvePageLayout
-     */
-    public function testResolvePageLayoutNoPageLayoutParam(): void
-    {
-        $request = Request::create('/');
-
-        $this->requestStackMock
-            ->expects(self::once())
-            ->method('getCurrentRequest')
-            ->will(self::returnValue($request));
-
-        $this->innerResolverMock
-            ->expects(self::once())
-            ->method('resolvePageLayout')
-            ->will(self::returnValue('defaultPageLayout'));
-
-        $this->configResolverMock
-            ->expects(self::at(0))
-            ->method('hasParameter')
-            ->with(self::identicalTo('pagelayout'))
-            ->will(self::returnValue(false));
-
-        $this->configResolverMock
-            ->expects(self::never())
-            ->method('getParameter');
-
-        self::assertSame('defaultPageLayout', $this->resolver->resolvePageLayout());
     }
 }

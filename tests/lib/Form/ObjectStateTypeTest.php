@@ -23,9 +23,7 @@ final class ObjectStateTypeTest extends FormTestCase
 
     /**
      * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::__construct
-     * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getGroupName
      * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getObjectStates
-     * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getStateName
      */
     public function testSubmitValidData(): void
     {
@@ -61,9 +59,7 @@ final class ObjectStateTypeTest extends FormTestCase
 
     /**
      * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::configureOptions
-     * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getGroupName
      * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getObjectStates
-     * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getStateName
      */
     public function testConfigureOptions(): void
     {

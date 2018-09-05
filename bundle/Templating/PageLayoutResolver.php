@@ -60,11 +60,6 @@ final class PageLayoutResolver implements PageLayoutResolverInterface
             return $this->viewbaseLayout;
         }
 
-        if (!$this->configResolver->hasParameter('pagelayout')) {
-            // @deprecated Remove when support for eZ Publish 5 ends
-            return $this->innerResolver->resolvePageLayout();
-        }
-
         return $this->configResolver->getParameter('pagelayout');
     }
 }

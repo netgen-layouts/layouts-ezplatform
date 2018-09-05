@@ -22,23 +22,6 @@ trait SortTrait
         'date_modified' => SortClause\DateModified::class,
         'content_name' => SortClause\ContentName::class,
         'location_priority' => SortClause\Location\Priority::class,
-        Location::SORT_FIELD_PATH => SortClause\Location\Path::class,
-        Location::SORT_FIELD_PUBLISHED => SortClause\DatePublished::class,
-        Location::SORT_FIELD_MODIFIED => SortClause\DateModified::class,
-        Location::SORT_FIELD_SECTION => SortClause\SectionIdentifier::class,
-        Location::SORT_FIELD_DEPTH => SortClause\Location\Depth::class,
-        Location::SORT_FIELD_PRIORITY => SortClause\Location\Priority::class,
-        Location::SORT_FIELD_NAME => SortClause\ContentName::class,
-        Location::SORT_FIELD_NODE_ID => SortClause\Location\Id::class,
-        Location::SORT_FIELD_CONTENTOBJECT_ID => SortClause\ContentId::class,
-    ];
-
-    /**
-     * @var array
-     */
-    private static $sortDirections = [
-        Location::SORT_ORDER_ASC => LocationQuery::SORT_ASC,
-        Location::SORT_ORDER_DESC => LocationQuery::SORT_DESC,
     ];
 
     /**
@@ -93,14 +76,7 @@ trait SortTrait
         $sortDirection = $parameterCollection->getParameter('sort_direction')->getValue() ?? LocationQuery::SORT_DESC;
 
         if ($sortType === 'defined_by_parent' && $parentLocation !== null) {
-            if (method_exists($parentLocation, 'getSortClauses')) {
-                return $parentLocation->getSortClauses();
-            }
-
-            // @deprecated Remove when support for eZ Publish 5 ends, together
-            // with sort type and sort direction mappings in the trait.
-            $sortType = $parentLocation->sortField;
-            $sortDirection = self::$sortDirections[$parentLocation->sortOrder];
+            return $parentLocation->getSortClauses();
         }
 
         return [

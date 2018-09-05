@@ -23,7 +23,6 @@ services:
         # public: false
         arguments:
             - "@ezpublish.api.repository"
-            - "@ezpublish.translation_helper"
         tags:
             - { name: twig.runtime }
             - { name: netgen_block_manager.twig.runtime }

@@ -11,7 +11,7 @@
     "require": {
         "netgen/layouts-core": "~0.12.0",
         "netgen/content-browser-ezplatform": "~0.12.0",
-        "ezsystems/ezpublish-kernel": "^5.4 || ^6.10 || ^7.0"
+        "ezsystems/ezpublish-kernel": "^6.13 || ^7.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.3",

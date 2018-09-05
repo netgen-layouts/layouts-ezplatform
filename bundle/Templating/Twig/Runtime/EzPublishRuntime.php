@@ -5,12 +5,9 @@ declare(strict_types=1);
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime;
 
 use eZ\Publish\API\Repository\Repository;
-use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\Values\Content\VersionInfo;
 use eZ\Publish\API\Repository\Values\ContentType\ContentType;
-use eZ\Publish\Core\Helper\TranslationHelper;
-use eZ\Publish\Core\Repository\Values\MultiLanguageNameTrait;
 use Throwable;
 
 final class EzPublishRuntime
@@ -20,15 +17,9 @@ final class EzPublishRuntime
      */
     private $repository;
 
-    /**
-     * @var \eZ\Publish\Core\Helper\TranslationHelper
-     */
-    private $translationHelper;
-
-    public function __construct(Repository $repository, TranslationHelper $translationHelper)
+    public function __construct(Repository $repository)
     {
         $this->repository = $repository;
-        $this->translationHelper = $translationHelper;
     }
 
     /**
@@ -43,16 +34,7 @@ final class EzPublishRuntime
         try {
             $versionInfo = $this->loadVersionInfo($contentId);
 
-            if (trait_exists(MultiLanguageNameTrait::class)) {
-                return $versionInfo->getName() ?? '';
-            }
-
-            // Below is a @deprecated BC layer for eZ Publish 5 to fetch content name.
-            // Remove when support for eZ Publish 5 ends.
-
-            $content = $this->loadContent($contentId);
-
-            return $this->translationHelper->getTranslatedContentName($content);
+            return $versionInfo->getName() ?? '';
         } catch (Throwable $t) {
             return '';
         }
@@ -94,47 +76,10 @@ final class EzPublishRuntime
         try {
             $contentType = $this->loadContentType($identifier);
 
-            if (trait_exists(MultiLanguageNameTrait::class)) {
-                return $contentType->getName() ?? '';
-            }
-
-            // Below is a @deprecated BC layer for eZ Publish 5 to fetch content type name.
-            // Remove when support for eZ Publish 5 ends.
-
-            $contentTypeName = $this->translationHelper->getTranslatedByMethod(
-                $contentType,
-                'getName'
-            );
-
-            if ($contentTypeName !== null) {
-                return $contentTypeName;
-            }
-
-            $contentTypeNames = $contentType->getNames();
-            if (empty($contentTypeNames)) {
-                return '';
-            }
-
-            return array_values($contentTypeNames)[0];
+            return $contentType->getName() ?? '';
         } catch (Throwable $t) {
             return '';
         }
-    }
-
-    /**
-     * Loads the content for provided content ID.
-     *
-     * @param int|string $contentId
-     *
-     * @return \eZ\Publish\API\Repository\Values\Content\Content
-     */
-    private function loadContent($contentId): Content
-    {
-        return $this->repository->sudo(
-            function (Repository $repository) use ($contentId): Content {
-                return $repository->getContentService()->loadContent($contentId);
-            }
-        );
     }
 
     /**

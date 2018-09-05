@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Netgen\BlockManager\Ez\Form;
 
 use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\API\Repository\Values\ContentType\ContentType;
-use eZ\Publish\Core\Repository\Values\MultiLanguageNameTrait;
 use Netgen\BlockManager\Form\AbstractType;
 use Netgen\BlockManager\Form\ChoicesAsValuesTrait;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -79,26 +77,11 @@ final class ContentTypeType extends AbstractType
                     continue;
                 }
 
-                $allContentTypes[$group->identifier][$this->getTypeName($contentType)] = $contentType->identifier;
+                $contentTypeName = $contentType->getName() ?? $contentType->identifier;
+                $allContentTypes[$group->identifier][$contentTypeName] = $contentType->identifier;
             }
         }
 
         return $allContentTypes;
-    }
-
-    /**
-     * @deprecated BC layer for eZ Publish 5 to fetch content type name.
-     *
-     * Remove when support for eZ Publish 5 ends.
-     */
-    private function getTypeName(ContentType $type): string
-    {
-        if (trait_exists(MultiLanguageNameTrait::class)) {
-            return $type->getName() ?? '';
-        }
-
-        $typeNames = array_values($type->getNames());
-
-        return $typeNames[0] ?? '';
     }
 }

@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace Netgen\BlockManager\Ez\Form;
 
 use eZ\Publish\API\Repository\ObjectStateService;
-use eZ\Publish\API\Repository\Values\ObjectState\ObjectState;
-use eZ\Publish\API\Repository\Values\ObjectState\ObjectStateGroup;
-use eZ\Publish\Core\Repository\Values\MultiLanguageNameTrait;
 use Netgen\BlockManager\Form\AbstractType;
 use Netgen\BlockManager\Form\ChoicesAsValuesTrait;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -81,42 +78,13 @@ final class ObjectStateType extends AbstractType
                     continue;
                 }
 
-                $allObjectStates[$this->getGroupName($group)][$this->getStateName($objectState)] = $group->identifier . '|' . $objectState->identifier;
+                $groupName = $group->getName() ?? $group->identifier;
+                $stateName = $objectState->getName() ?? $objectState->identifier;
+
+                $allObjectStates[$groupName][$stateName] = $group->identifier . '|' . $objectState->identifier;
             }
         }
 
         return $allObjectStates;
-    }
-
-    /**
-     * @deprecated BC layer for eZ Publish 5 to fetch object state name.
-     *
-     * Remove when support for eZ Publish 5 ends.
-     */
-    private function getStateName(ObjectState $state): string
-    {
-        if (trait_exists(MultiLanguageNameTrait::class)) {
-            return $state->getName() ?? '';
-        }
-
-        $stateNames = array_values($state->getNames());
-
-        return $stateNames[0] ?? '';
-    }
-
-    /**
-     * @deprecated BC layer for eZ Publish 5 to fetch object state group name.
-     *
-     * Remove when support for eZ Publish 5 ends.
-     */
-    private function getGroupName(ObjectStateGroup $group): string
-    {
-        if (trait_exists(MultiLanguageNameTrait::class)) {
-            return $group->getName() ?? '';
-        }
-
-        $groupNames = array_values($group->getNames());
-
-        return $groupNames[0] ?? '';
     }
 }

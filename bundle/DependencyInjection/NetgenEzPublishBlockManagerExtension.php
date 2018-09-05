@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection;
 
-use eZ\Publish\Core\MVC\Symfony\View\ContentValueView;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -38,10 +37,6 @@ final class NetgenEzPublishBlockManagerExtension extends Extension implements Pr
         $loader->load('services/layout_resolver/target_handlers.yml');
         $loader->load('services/layout_resolver/forms.yml');
         $loader->load('services/collection/query_types.yml');
-
-        if (!interface_exists(ContentValueView::class)) {
-            $loader->load('services/ez5_services.yml');
-        }
 
         $activatedBundles = array_keys($container->getParameter('kernel.bundles'));
 
