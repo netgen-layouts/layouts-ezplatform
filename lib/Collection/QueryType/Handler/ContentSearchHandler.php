@@ -84,7 +84,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         $this->buildObjectStateFilterParameters($builder, $advancedGroup);
     }
 
-    public function getValues(Query $query, $offset = 0, $limit = null)
+    public function getValues(Query $query, int $offset = 0, ?int $limit = null): iterable
     {
         $parentLocation = $this->getParentLocation($query);
 
