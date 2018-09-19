@@ -94,7 +94,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
 
         $locationQuery = $this->buildLocationQuery($query, $parentLocation);
         $locationQuery->offset = $offset;
-        $locationQuery->limit = $limit;
+        $locationQuery->limit = $limit ?? PHP_INT_MAX;
 
         // We're disabling query count for performance reasons, however
         // it can only be disabled if limit is not 0
