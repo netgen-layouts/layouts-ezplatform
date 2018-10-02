@@ -2,6 +2,7 @@
     "name": "netgen/layouts-ezplatform",
     "description": "Netgen Layouts & eZ Platform integration",
     "license": "GPL-2.0-only",
+    "type": "symfony-bundle",
     "authors": [
         {
             "name": "Netgen",
