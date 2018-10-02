@@ -47,7 +47,7 @@
             "Netgen\\Bundle\\EzPublishBlockManagerBundle\\Tests\\": "tests/bundle/"
         },
         "files": [
-            "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php"
+            "vendor/symfony/var-dumper/Resources/functions/dump.php"
         ]
     },
     "minimum-stability": "dev",
