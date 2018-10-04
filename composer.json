@@ -10,8 +10,8 @@
         }
     ],
     "require": {
-        "netgen/layouts-core": "~0.12.0",
-        "netgen/content-browser-ezplatform": "~0.12.0",
+        "netgen/layouts-core": "~0.13.0",
+        "netgen/content-browser-ezplatform": "~0.13.0",
         "ezsystems/ezpublish-kernel": "^6.13 || ^7.0"
     },
     "require-dev": {
@@ -55,7 +55,7 @@
     "prefer-stable": true,
     "extra": {
         "branch-alias": {
-            "dev-master": "0.12.x-dev"
+            "dev-master": "0.13.x-dev"
         }
     }
 }
