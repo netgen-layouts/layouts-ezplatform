@@ -26,7 +26,7 @@ final class SiteAccessGroup extends Mapper
         $this->siteAccessGroupList = array_combine(
             $siteAccessGroupList,
             $siteAccessGroupList
-        );
+        ) ?: [];
     }
 
     public function getFormType(): string
