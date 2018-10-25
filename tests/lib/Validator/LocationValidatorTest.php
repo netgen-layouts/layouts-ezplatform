@@ -16,6 +16,7 @@ use Netgen\BlockManager\Ez\Validator\LocationValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 final class LocationValidatorTest extends ValidatorTestCase
 {
@@ -119,22 +120,24 @@ final class LocationValidatorTest extends ValidatorTestCase
 
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::validate
-     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
-     * @expectedExceptionMessage Expected argument of type "Netgen\BlockManager\Ez\Validator\Constraint\Location", "Symfony\Component\Validator\Constraints\NotBlank" given
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
+        $this->expectException(UnexpectedTypeException::class);
+        $this->expectExceptionMessage('Expected argument of type "Netgen\\BlockManager\\Ez\\Validator\\Constraint\\Location", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
+
         $this->constraint = new NotBlank();
         self::assertValid(true, 'value');
     }
 
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\LocationValidator::validate
-     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
-     * @expectedExceptionMessage Expected argument of type "scalar", "array" given
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
+        $this->expectException(UnexpectedTypeException::class);
+        $this->expectExceptionMessage('Expected argument of type "scalar", "array" given');
+
         self::assertValid(true, []);
     }
 

@@ -13,6 +13,7 @@ use Netgen\BlockManager\Ez\Validator\ObjectStateValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 final class ObjectStateValidatorTest extends ValidatorTestCase
 {
@@ -115,42 +116,46 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
 
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::validate
-     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
-     * @expectedExceptionMessage Expected argument of type "Netgen\BlockManager\Ez\Validator\Constraint\ObjectState", "Symfony\Component\Validator\Constraints\NotBlank" given
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
+        $this->expectException(UnexpectedTypeException::class);
+        $this->expectExceptionMessage('Expected argument of type "Netgen\\BlockManager\\Ez\\Validator\\Constraint\\ObjectState", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
+
         $this->constraint = new NotBlank();
         self::assertValid(true, 'value');
     }
 
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::validate
-     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
-     * @expectedExceptionMessage Expected argument of type "string", "integer" given
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
+        $this->expectException(UnexpectedTypeException::class);
+        $this->expectExceptionMessage('Expected argument of type "string", "integer" given');
+
         self::assertValid(true, 42);
     }
 
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::validate
-     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
-     * @expectedExceptionMessage Expected argument of type "string with "|" delimiter", "string" given
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValueFormat(): void
     {
+        $this->expectException(UnexpectedTypeException::class);
+        $this->expectExceptionMessage('Expected argument of type "string with "|" delimiter", "string" given');
+
         self::assertValid(true, 'state');
     }
 
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::validate
-     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
-     * @expectedExceptionMessage Expected argument of type "array", "integer" given
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidAllowedStates(): void
     {
+        $this->expectException(UnexpectedTypeException::class);
+        $this->expectExceptionMessage('Expected argument of type "array", "integer" given');
+
         $this->constraint->allowedStates = 42;
         self::assertValid(true, 'group1|state1');
     }

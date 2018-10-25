@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\DependencyInjection\ConfigurationNode;
 
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
+
 final class DesignNodeTest extends ConfigurationNodeTest
 {
     /**
@@ -92,11 +94,12 @@ final class DesignNodeTest extends ConfigurationNodeTest
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::validateCurrentDesign
-     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
-     * @expectedExceptionMessage Design "unknown" does not exist. Available designs are: test1, test2
      */
     public function testInvalidDesignThrowsInvalidConfigurationException(): void
     {
+        $this->expectException(InvalidConfigurationException::class);
+        $this->expectExceptionMessage('Design "unknown" does not exist. Available designs are: test1, test2');
+
         $config = [
             [
                 'design_list' => ['test1' => ['theme1'], 'test2' => ['theme2']],

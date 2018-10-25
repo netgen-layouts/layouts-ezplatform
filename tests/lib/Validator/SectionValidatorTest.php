@@ -13,6 +13,7 @@ use Netgen\BlockManager\Ez\Validator\SectionValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 final class SectionValidatorTest extends ValidatorTestCase
 {
@@ -92,32 +93,35 @@ final class SectionValidatorTest extends ValidatorTestCase
 
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\SectionValidator::validate
-     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
-     * @expectedExceptionMessage Expected argument of type "Netgen\BlockManager\Ez\Validator\Constraint\Section", "Symfony\Component\Validator\Constraints\NotBlank" given
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
+        $this->expectException(UnexpectedTypeException::class);
+        $this->expectExceptionMessage('Expected argument of type "Netgen\\BlockManager\\Ez\\Validator\\Constraint\\Section", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
+
         $this->constraint = new NotBlank();
         self::assertValid(true, 'value');
     }
 
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\SectionValidator::validate
-     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
-     * @expectedExceptionMessage Expected argument of type "string", "integer" given
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
+        $this->expectException(UnexpectedTypeException::class);
+        $this->expectExceptionMessage('Expected argument of type "string", "integer" given');
+
         self::assertValid(true, 42);
     }
 
     /**
      * @covers \Netgen\BlockManager\Ez\Validator\SectionValidator::validate
-     * @expectedException \Symfony\Component\Validator\Exception\UnexpectedTypeException
-     * @expectedExceptionMessage Expected argument of type "array", "integer" given
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidAllowedSections(): void
     {
+        $this->expectException(UnexpectedTypeException::class);
+        $this->expectExceptionMessage('Expected argument of type "array", "integer" given');
+
         $this->constraint->allowedSections = 42;
         self::assertValid(true, 'media');
     }

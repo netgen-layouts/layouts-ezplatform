@@ -11,6 +11,7 @@ use Netgen\BlockManager\Tests\TestCase\FormTestCase;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class SectionTypeTest extends FormTestCase
@@ -132,11 +133,12 @@ final class SectionTypeTest extends FormTestCase
     /**
      * @covers \Netgen\BlockManager\Ez\Form\SectionType::configureOptions
      * @covers \Netgen\BlockManager\Ez\Form\SectionType::getSections
-     * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     * @expectedExceptionMessage The option "sections" with value array is invalid.
      */
     public function testConfigureOptionsWithInvalidSection(): void
     {
+        $this->expectException(InvalidOptionsException::class);
+        $this->expectExceptionMessage('The option "sections" with value array is invalid.');
+
         $optionsResolver = new OptionsResolver();
 
         $this->formType->configureOptions($optionsResolver);

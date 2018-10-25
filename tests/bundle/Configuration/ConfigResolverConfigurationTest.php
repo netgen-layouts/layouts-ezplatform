@@ -6,6 +6,7 @@ namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Configuration;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use Netgen\Bundle\BlockManagerBundle\Configuration\ConfigurationInterface;
+use Netgen\Bundle\BlockManagerBundle\Exception\ConfigurationException;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration;
 use PHPUnit\Framework\TestCase;
 
@@ -152,11 +153,12 @@ final class ConfigResolverConfigurationTest extends TestCase
 
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Configuration\ConfigResolverConfiguration::getParameter
-     * @expectedException \Netgen\Bundle\BlockManagerBundle\Exception\ConfigurationException
-     * @expectedExceptionMessage Parameter "some_param" does not exist in configuration.
      */
     public function testGetParameterThrowsConfigurationException(): void
     {
+        $this->expectException(ConfigurationException::class);
+        $this->expectExceptionMessage('Parameter "some_param" does not exist in configuration.');
+
         $this->configResolverMock
             ->expects(self::once())
             ->method('hasParameter')
