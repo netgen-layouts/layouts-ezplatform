@@ -35,4 +35,4 @@ services:
             - "@netgen_block_manager.ezpublish.security.role_hierarchy"
             - "@security.access.decision_manager"
         tags:
-            - { name: security.voter }
+            - { name: security.voter, priority: 0 }
