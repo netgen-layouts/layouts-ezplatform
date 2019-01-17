@@ -30,16 +30,29 @@ final class LocationValueConverter implements ValueConverterInterface
         return 'ezlocation';
     }
 
+    /**
+     * @param \eZ\Publish\API\Repository\Values\Content\Location $object
+     *
+     * @return int|string
+     */
     public function getId($object)
     {
         return $object->id;
     }
 
+    /**
+     * @param \eZ\Publish\API\Repository\Values\Content\Location $object
+     *
+     * @return int|string
+     */
     public function getRemoteId($object)
     {
         return $object->remoteId;
     }
 
+    /**
+     * @param \eZ\Publish\API\Repository\Values\Content\Location $object
+     */
     public function getName($object): string
     {
         $versionInfo = $this->contentService->loadVersionInfo($object->getContentInfo());
@@ -47,6 +60,9 @@ final class LocationValueConverter implements ValueConverterInterface
         return $versionInfo->getName() ?? '';
     }
 
+    /**
+     * @param \eZ\Publish\API\Repository\Values\Content\Location $object
+     */
     public function getIsVisible($object): bool
     {
         return !$object->invisible;

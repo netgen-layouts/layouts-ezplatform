@@ -6,3 +6,4 @@ parameters:
         # eZ Platform
         - '#Call to an undefined method eZ\\Publish\\API\\Repository\\Repository::sudo\(\)#'
         - '#Call to an undefined method Netgen\\TagsBundle\\API\\Repository\\TagsService::sudo\(\)#'
+        - '#Parameter \#1 \$name of method Symfony\\Component\\Routing\\Generator\\UrlGeneratorInterface::generate\(\) expects string, eZ\\Publish\\API\\Repository\\Values\\Content\\Location given.#'
