@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\ConditionType;
 
 use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\Content\Content;
-use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentType as EzContentType;
 use Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface;
 use Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType;
@@ -126,13 +124,9 @@ final class ContentTypeTest extends TestCase
 
         $content = new Content(
             [
-                'versionInfo' => new VersionInfo(
+                'contentType' => new EzContentType(
                     [
-                        'contentInfo' => new ContentInfo(
-                            [
-                                'contentTypeId' => 24,
-                            ]
-                        ),
+                        'identifier' => 'article',
                     ]
                 ),
             ]
@@ -143,21 +137,6 @@ final class ContentTypeTest extends TestCase
             ->method('extractContent')
             ->with(self::identicalTo($request))
             ->will(self::returnValue($content));
-
-        $this->contentTypeServiceMock
-            ->expects(self::any())
-            ->method('loadContentType')
-            ->with(self::identicalTo(24))
-            ->will(
-                self::returnValue(
-                    new EzContentType(
-                        [
-                            'identifier' => 'article',
-                            'fieldDefinitions' => [],
-                        ]
-                    )
-                )
-            );
 
         self::assertSame($matches, $this->conditionType->matches($request, $value));
     }

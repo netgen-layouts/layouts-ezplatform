@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
 
-use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
+use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
-use eZ\Publish\Core\Repository\Values\ContentType\ContentType as EzContentType;
+use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
 use Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\BlockManager\Parameters\ParameterDefinition;
@@ -33,17 +32,10 @@ final class LocationTypeTest extends TestCase
      */
     private $locationServiceMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentTypeServiceMock;
-
     public function setUp(): void
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
-        $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
-
-        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService', 'getContentTypeService']);
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService']);
 
         $this->repositoryMock
             ->expects(self::any())
@@ -57,30 +49,6 @@ final class LocationTypeTest extends TestCase
             ->expects(self::any())
             ->method('getLocationService')
             ->will(self::returnValue($this->locationServiceMock));
-
-        $this->repositoryMock
-            ->expects(self::any())
-            ->method('getContentTypeService')
-            ->will(self::returnValue($this->contentTypeServiceMock));
-
-        $this->contentTypeServiceMock
-            ->expects(self::any())
-            ->method('loadContentType')
-            ->will(
-                self::returnCallback(
-                    function (int $type): EzContentType {
-                        if ($type === 24) {
-                            return new EzContentType(['identifier' => 'user']);
-                        }
-
-                        if ($type === 42) {
-                            return new EzContentType(['identifier' => 'image']);
-                        }
-
-                        return new EzContentType(['identifier' => 'article']);
-                    }
-                )
-            );
 
         $this->type = new LocationType($this->repositoryMock);
     }
@@ -278,10 +246,21 @@ final class LocationTypeTest extends TestCase
                                 throw new NotFoundException('location', $value);
                             }
 
+                            $contentTypeIdentifier = 'article';
+                            if ($type === 24) {
+                                $contentTypeIdentifier = 'user';
+                            } elseif ($type === 42) {
+                                $contentTypeIdentifier = 'image';
+                            }
+
                             return new Location(
                                 [
                                     'id' => $value,
-                                    'contentInfo' => new ContentInfo(['contentTypeId' => $type]),
+                                    'content' => new Content(
+                                        [
+                                            'contentType' => new ContentType(['identifier' => $contentTypeIdentifier]),
+                                        ]
+                                    ),
                                 ]
                             );
                         }

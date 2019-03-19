@@ -6,6 +6,7 @@ namespace Netgen\BlockManager\Ez\Layout\Resolver\ConditionType;
 
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\Values\Content\Content;
+use eZ\Publish\API\Repository\Values\ContentType\ContentType as EzContentType;
 use Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
@@ -62,10 +63,26 @@ final class ContentType implements ConditionTypeInterface
             return false;
         }
 
-        $contentType = $this->contentTypeService->loadContentType(
-            $content->contentInfo->contentTypeId
-        );
+        $contentType = $this->getContentType($content);
 
         return in_array($contentType->identifier, $value, true);
+    }
+
+    /**
+     * Loads the content type for provided content.
+     *
+     * @deprecated Acts as a BC layer for eZ kernel <7.4
+     */
+    private function getContentType(Content $content): EzContentType
+    {
+        if (method_exists($content, 'getContentType')) {
+            return $content->getContentType();
+        }
+
+        // @deprecated Remove when support for eZ kernel < 7.4 ends
+
+        return $this->contentTypeService->loadContentType(
+            $content->contentInfo->contentTypeId
+        );
     }
 }

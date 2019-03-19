@@ -136,7 +136,6 @@ final class EzPublishRuntimeTest extends TestCase
                                     'cro-HR' => 'Content type ' . $identifier,
                                 ],
                                 'mainLanguageCode' => 'cro-HR',
-                                'fieldDefinitions' => [],
                             ]
                         );
                     }
@@ -168,7 +167,6 @@ final class EzPublishRuntimeTest extends TestCase
                                     'cro-HR' => 'Content type ' . $identifier,
                                 ],
                                 'mainLanguageCode' => 'eng-GB',
-                                'fieldDefinitions' => [],
                             ]
                         );
                     }

@@ -129,7 +129,6 @@ final class ContentTypeTypeTest extends FormTestCase
                                 'identifier' => 'article',
                                 'names' => ['eng-GB' => 'Article'],
                                 'mainLanguageCode' => 'eng-GB',
-                                'fieldDefinitions' => [],
                             ]
                         ),
                         new ContentType(
@@ -137,7 +136,6 @@ final class ContentTypeTypeTest extends FormTestCase
                                 'identifier' => 'news',
                                 'names' => ['eng-GB' => 'News'],
                                 'mainLanguageCode' => 'eng-GB',
-                                'fieldDefinitions' => [],
                             ]
                         ),
                     ]
@@ -156,7 +154,6 @@ final class ContentTypeTypeTest extends FormTestCase
                                 'identifier' => 'image',
                                 'names' => ['eng-GB' => 'Image'],
                                 'mainLanguageCode' => 'eng-GB',
-                                'fieldDefinitions' => [],
                             ]
                         ),
                     ]

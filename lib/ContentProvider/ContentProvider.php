@@ -48,6 +48,12 @@ final class ContentProvider implements ContentProviderInterface
             return null;
         }
 
+        if (method_exists($location, 'getContent')) {
+            return $location->getContent();
+        }
+
+        // @deprecated Remove when support for eZ kernel < 7.2 ends
+
         return $this->contentService->loadContent($location->contentId);
     }
 

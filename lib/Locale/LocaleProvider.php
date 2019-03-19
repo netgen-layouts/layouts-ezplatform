@@ -80,14 +80,9 @@ class LocaleProvider implements LocaleProviderInterface
     public function getRequestLocales(Request $request): array
     {
         $requestLocales = [];
+        $languages = $this->loadLanguages();
 
-        foreach ($this->languageCodes as $languageCode) {
-            try {
-                $language = $this->languageService->loadLanguage($languageCode);
-            } catch (NotFoundException $e) {
-                continue;
-            }
-
+        foreach ($languages as $language) {
             $locale = $this->getPosixLocale($language);
 
             if (!is_array($locale)) {
@@ -98,6 +93,37 @@ class LocaleProvider implements LocaleProviderInterface
         }
 
         return $requestLocales;
+    }
+
+    /**
+     * Loads the list of eZ Platform languages from language codes available in the object.
+     *
+     * @deprecated Acts as a BC layer for eZ kernel <7.5
+     *
+     * @return \eZ\Publish\API\Repository\Values\Content\Language[]
+     */
+    private function loadLanguages(): iterable
+    {
+        if (method_exists($this->languageService, 'loadLanguageListByCode')) {
+            /* @var \eZ\Publish\API\Repository\Values\Content\Language[] $languages */
+            return $this->languageService->loadLanguageListByCode($this->languageCodes);
+        }
+
+        // @deprecated Remove when support for eZ kernel < 7.5 ends
+
+        $languages = [];
+
+        foreach ($this->languageCodes as $languageCode) {
+            try {
+                $language = $this->languageService->loadLanguage($languageCode);
+            } catch (NotFoundException $e) {
+                continue;
+            }
+
+            $languages[] = $language;
+        }
+
+        return $languages;
     }
 
     /**
