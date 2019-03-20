@@ -22,7 +22,7 @@ Make sure they are activated after all other Netgen Layouts and Content Browser 
 
 $bundles[] = new Netgen\Bundle\BlockManagerAdminBundle\NetgenBlockManagerAdminBundle();
 $bundles[] = new Netgen\Bundle\EzPublishBlockManagerBundle\NetgenEzPublishBlockManagerBundle();
-$bundles[] = new Netgen\Bundle\ContentBrowserEzPlatformBundle\ContentBrowserEzPlatformBundle();
+$bundles[] = new Netgen\Bundle\ContentBrowserEzPlatformBundle\NetgenContentBrowserEzPlatformBundle();
 
 return $bundles;
 ```
