@@ -10,8 +10,10 @@ $Module = [
 
 $ViewList = [];
 
-$FunctionList = [
-    'admin' => [],
-    'editor' => [],
-    'api' => [],
-];
+if (!interface_exists('Netgen\Layouts\Enterprise\API\Service\RoleService')) {
+    $FunctionList = [
+        'admin' => [],
+        'editor' => [],
+        'api' => [],
+    ];
+}

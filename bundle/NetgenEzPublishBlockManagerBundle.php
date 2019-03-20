@@ -23,8 +23,10 @@ final class NetgenEzPublishBlockManagerBundle extends Bundle
         $container->addCompilerPass(new CompilerPass\HttpCache\ConfigureLegacyHttpCachePass());
         $container->addCompilerPass(new CompilerPass\HttpCache\ConfigureHttpCachePass());
 
-        /** @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\EzPublishCoreExtension $ezCoreExtension */
-        $ezCoreExtension = $container->getExtension('ezpublish');
-        $ezCoreExtension->addPolicyProvider(new PolicyProvider());
+        if (!interface_exists('Netgen\Layouts\Enterprise\API\Service\RoleService')) {
+            /** @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\EzPublishCoreExtension $ezCoreExtension */
+            $ezCoreExtension = $container->getExtension('ezpublish');
+            $ezCoreExtension->addPolicyProvider(new PolicyProvider());
+        }
     }
 }
