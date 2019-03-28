@@ -50,7 +50,7 @@ final class ObjectStateValidator extends ConstraintValidator
 
         $originalValue = $value;
         $value = explode('|', $value);
-        if (!is_array($value) || count($value) !== 2) {
+        if (count($value) !== 2) {
             throw new UnexpectedTypeException($originalValue, 'string with "|" delimiter');
         }
 

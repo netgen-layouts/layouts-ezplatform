@@ -19,9 +19,6 @@ final class LocationValueUrlGenerator implements ValueUrlGeneratorInterface
         $this->urlGenerator = $urlGenerator;
     }
 
-    /**
-     * @param \eZ\Publish\API\Repository\Values\Content\Location $object
-     */
     public function generate($object): ?string
     {
         return $this->urlGenerator->generate($object);

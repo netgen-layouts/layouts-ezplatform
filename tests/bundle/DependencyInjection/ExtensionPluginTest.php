@@ -29,8 +29,6 @@ final class ExtensionPluginTest extends AbstractExtensionTestCase
             ...$this->container->getExtensionConfig('netgen_block_manager')
         );
 
-        self::assertIsArray($config);
-
         self::assertArrayHasKey('block_type_groups', $config);
         self::assertArrayHasKey('placeholders', $config['block_type_groups']);
 

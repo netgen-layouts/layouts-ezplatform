@@ -49,6 +49,13 @@ final class RepositoryAccessVoter extends Voter
         $this->accessDecisionManager = $accessDecisionManager;
     }
 
+    /**
+     * @param \Symfony\Component\Security\Core\Authentication\Token\TokenInterface $token
+     * @param mixed $object
+     * @param array $attributes
+     *
+     * @return int
+     */
     public function vote(TokenInterface $token, $object, array $attributes): int
     {
         // abstain vote by default in case none of the attributes are supported

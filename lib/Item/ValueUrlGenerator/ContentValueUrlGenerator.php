@@ -20,9 +20,6 @@ final class ContentValueUrlGenerator implements ValueUrlGeneratorInterface
         $this->urlGenerator = $urlGenerator;
     }
 
-    /**
-     * @param \eZ\Publish\API\Repository\Values\Content\ContentInfo $object
-     */
     public function generate($object): ?string
     {
         return $this->urlGenerator->generate(

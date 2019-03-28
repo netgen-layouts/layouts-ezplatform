@@ -1,3 +1,6 @@
+includes:
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+
 parameters:
     autoload_files:
         - tests/bundle/DependencyInjection/CompilerPass/HttpCache/Stubs/LegacyClasses.php
@@ -6,4 +9,20 @@ parameters:
         # eZ Platform
         - '#Call to an undefined method eZ\\Publish\\API\\Repository\\Repository::sudo\(\)#'
         - '#Call to an undefined method Netgen\\TagsBundle\\API\\Repository\\TagsService::sudo\(\)#'
-        - '#Parameter \#1 \$name of method Symfony\\Component\\Routing\\Generator\\UrlGeneratorInterface::generate\(\) expects string, eZ\\Publish\\API\\Repository\\Values\\Content\\Location given.#'
+        - '#Parameter \#1 \$name of method Symfony\\Component\\Routing\\Generator\\UrlGeneratorInterface::generate\(\) expects string, object given.#'
+        - '#Call to function method_exists\(\) with eZ\\Publish\\API\\Repository\\Values\\Content\\(Content|Location)#'
+
+        -
+            message: '#Access to an undefined property object::\$id.#'
+            path: lib/Item/ValueUrlGenerator/ContentValueUrlGenerator.php
+
+        - '#Call to function is_string\(\) with string will always evaluate to true.#'
+        - '#Call to function is_array\(\) with array will always evaluate to true.#'
+
+        -
+            message: '#should be contravariant with parameter \$object#'
+            path: lib/Item/ValueConverter/ContentValueConverter.php
+
+        -
+            message: '#should be contravariant with parameter \$object#'
+            path: lib/Item/ValueConverter/LocationValueConverter.php
