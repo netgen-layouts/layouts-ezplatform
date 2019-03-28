@@ -49,7 +49,7 @@ final class ContentValidator extends ConstraintValidator
                 }
             );
 
-            if (!empty($constraint->allowedTypes)) {
+            if (count($constraint->allowedTypes ?? []) > 0) {
                 $contentType = $this->repository->getContentTypeService()->loadContentType(
                     $contentInfo->contentTypeId
                 );

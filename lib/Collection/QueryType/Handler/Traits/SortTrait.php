@@ -37,7 +37,7 @@ trait SortTrait
             'Defined by parent' => 'defined_by_parent',
         ];
 
-        if (!empty($allowedSortTypes)) {
+        if (count($allowedSortTypes) > 0) {
             $sortTypes = array_intersect($sortTypes, $allowedSortTypes);
         }
 

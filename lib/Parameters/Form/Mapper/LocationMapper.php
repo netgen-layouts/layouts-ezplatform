@@ -21,8 +21,8 @@ final class LocationMapper extends Mapper
             'item_type' => 'ezlocation',
         ];
 
-        $allowedTypes = $parameterDefinition->getOption('allowed_types');
-        if (!empty($allowedTypes)) {
+        $allowedTypes = $parameterDefinition->getOption('allowed_types') ?? [];
+        if (count($allowedTypes) > 0) {
             $options['custom_params']['allowed_content_types'] = $allowedTypes;
         }
 

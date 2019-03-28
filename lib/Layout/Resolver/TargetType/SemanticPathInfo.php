@@ -32,7 +32,7 @@ class SemanticPathInfo implements TargetTypeInterface
         // Semantic path info can in some cases be false (for example, on homepage
         // of a secondary siteaccess: i.e. /cro)
         $semanticPathInfo = $request->attributes->get('semanticPathinfo');
-        if (empty($semanticPathInfo)) {
+        if (!is_string($semanticPathInfo) || $semanticPathInfo === '') {
             $semanticPathInfo = '/';
         }
 

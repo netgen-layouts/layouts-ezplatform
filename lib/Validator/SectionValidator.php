@@ -59,7 +59,7 @@ final class SectionValidator extends ConstraintValidator
             return;
         }
 
-        if (empty($constraint->allowedSections)) {
+        if (count($constraint->allowedSections ?? []) === 0) {
             return;
         }
 

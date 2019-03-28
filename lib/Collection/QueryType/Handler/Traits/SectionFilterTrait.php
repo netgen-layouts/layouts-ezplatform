@@ -59,8 +59,8 @@ trait SectionFilterTrait
             return null;
         }
 
-        $sections = $parameterCollection->getParameter('sections')->getValue();
-        if (empty($sections)) {
+        $sections = $parameterCollection->getParameter('sections')->getValue() ?? [];
+        if (count($sections) === 0) {
             return null;
         }
 

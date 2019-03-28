@@ -68,7 +68,7 @@ final class ContentTypeValidator extends ConstraintValidator
             $contentType->getContentTypeGroups()
         );
 
-        if (empty($constraint->allowedTypes)) {
+        if (count($constraint->allowedTypes ?? []) === 0) {
             return;
         }
 

@@ -72,7 +72,7 @@ final class ObjectStateValidator extends ConstraintValidator
             return;
         }
 
-        if (empty($constraint->allowedStates)) {
+        if (count($constraint->allowedStates ?? []) === 0) {
             return;
         }
 

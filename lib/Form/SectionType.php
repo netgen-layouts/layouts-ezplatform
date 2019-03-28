@@ -78,7 +78,7 @@ final class SectionType extends AbstractType
         $configuredSections = $options['sections'];
 
         foreach ($sections as $section) {
-            if (!empty($configuredSections) && !in_array($section->identifier, $configuredSections, true)) {
+            if (count($configuredSections) > 0 && !in_array($section->identifier, $configuredSections, true)) {
                 continue;
             }
 

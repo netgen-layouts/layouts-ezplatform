@@ -72,8 +72,8 @@ trait ContentTypeFilterTrait
             return null;
         }
 
-        $contentTypes = $parameterCollection->getParameter('content_types')->getValue();
-        if (empty($contentTypes)) {
+        $contentTypes = $parameterCollection->getParameter('content_types')->getValue() ?? [];
+        if (count($contentTypes) === 0) {
             return null;
         }
 

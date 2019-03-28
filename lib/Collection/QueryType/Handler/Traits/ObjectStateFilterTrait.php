@@ -59,8 +59,8 @@ trait ObjectStateFilterTrait
             return null;
         }
 
-        $objectStates = $parameterCollection->getParameter('object_states')->getValue();
-        if (empty($objectStates)) {
+        $objectStates = $parameterCollection->getParameter('object_states')->getValue() ?? [];
+        if (count($objectStates) === 0) {
             return null;
         }
 

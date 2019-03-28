@@ -50,7 +50,7 @@ final class SiteAccessGroup implements ConditionTypeInterface
             return false;
         }
 
-        if (!is_array($value) || empty($value)) {
+        if (!is_array($value) || count($value) === 0) {
             return false;
         }
 
@@ -59,6 +59,6 @@ final class SiteAccessGroup implements ConditionTypeInterface
             return false;
         }
 
-        return !empty(array_intersect($value, $this->groupsBySiteAccess[$siteAccess->name]));
+        return count(array_intersect($value, $this->groupsBySiteAccess[$siteAccess->name])) > 0;
     }
 }

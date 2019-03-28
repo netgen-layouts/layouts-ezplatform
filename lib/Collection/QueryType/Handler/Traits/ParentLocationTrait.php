@@ -75,7 +75,7 @@ trait ParentLocationTrait
         }
 
         $parentLocationId = $parameterCollection->getParameter('parent_location_id')->getValue();
-        if (empty($parentLocationId)) {
+        if ($parentLocationId === null) {
             return null;
         }
 

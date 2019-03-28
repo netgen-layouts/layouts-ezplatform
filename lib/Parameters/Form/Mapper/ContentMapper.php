@@ -21,8 +21,8 @@ final class ContentMapper extends Mapper
             'item_type' => 'ezcontent',
         ];
 
-        $allowedTypes = $parameterDefinition->getOption('allowed_types');
-        if (!empty($allowedTypes)) {
+        $allowedTypes = $parameterDefinition->getOption('allowed_types') ?? [];
+        if (count($allowedTypes) > 0) {
             $options['custom_params']['allowed_content_types'] = $allowedTypes;
         }
 

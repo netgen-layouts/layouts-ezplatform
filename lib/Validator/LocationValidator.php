@@ -50,7 +50,7 @@ final class LocationValidator extends ConstraintValidator
                 }
             );
 
-            if (!empty($constraint->allowedTypes)) {
+            if (count($constraint->allowedTypes ?? []) > 0) {
                 $contentType = $this->getContentType($location);
 
                 if (!in_array($contentType->identifier, $constraint->allowedTypes, true)) {
