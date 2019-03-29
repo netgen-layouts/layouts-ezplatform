@@ -16,7 +16,7 @@ use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
 use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime;
 use PHPUnit\Framework\TestCase;
 
-final class EzPublishRuntimeTest extends TestCase
+final class EzPublishRuntimeLegacyTest extends TestCase
 {
     /**
      * @var \eZ\Publish\API\Repository\Repository&\PHPUnit\Framework\MockObject\MockObject
@@ -45,7 +45,7 @@ final class EzPublishRuntimeTest extends TestCase
 
     public function setUp(): void
     {
-        $this->markTestSkipped('This test requires eZ Publish kernel 7.4+ to run.');
+        $this->markTestSkipped('This test requires eZ Publish kernel 6.13 to run.');
 
         $this->prepareRepositoryMock();
 
@@ -138,6 +138,7 @@ final class EzPublishRuntimeTest extends TestCase
                                     'cro-HR' => 'Content type ' . $identifier,
                                 ],
                                 'mainLanguageCode' => 'cro-HR',
+                                'fieldDefinitions' => [],
                             ]
                         );
                     }
@@ -169,6 +170,7 @@ final class EzPublishRuntimeTest extends TestCase
                                     'cro-HR' => 'Content type ' . $identifier,
                                 ],
                                 'mainLanguageCode' => 'eng-GB',
+                                'fieldDefinitions' => [],
                             ]
                         );
                     }

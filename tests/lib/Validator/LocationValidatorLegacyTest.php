@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Netgen\BlockManager\Ez\Tests\Validator;
 
+use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\LocationService;
+use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
-use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location as EzLocation;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
 use Netgen\BlockManager\Ez\Validator\Constraint\Location;
@@ -17,7 +18,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
-final class LocationValidatorTest extends ValidatorTestCase
+final class LocationValidatorLegacyTest extends ValidatorTestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
@@ -29,9 +30,14 @@ final class LocationValidatorTest extends ValidatorTestCase
      */
     private $locationServiceMock;
 
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject
+     */
+    private $contentTypeServiceMock;
+
     public function setUp(): void
     {
-        $this->markTestSkipped('This test requires eZ Publish kernel 7.4+ to run.');
+        $this->markTestSkipped('This test requires eZ Publish kernel 6.13 to run.');
 
         parent::setUp();
 
@@ -53,7 +59,7 @@ final class LocationValidatorTest extends ValidatorTestCase
                     new EzLocation(
                         [
                             'id' => 42,
-                            'content' => new Content(['contentType' => new ContentType(['identifier' => 'user'])]),
+                            'contentInfo' => new ContentInfo(['contentTypeId' => 24]),
                         ]
                     )
                 )
@@ -77,7 +83,7 @@ final class LocationValidatorTest extends ValidatorTestCase
                     new EzLocation(
                         [
                             'id' => 42,
-                            'content' => new Content(['contentType' => new ContentType(['identifier' => 'article'])]),
+                            'contentInfo' => new ContentInfo(['contentTypeId' => 52]),
                         ]
                     )
                 )
@@ -140,7 +146,9 @@ final class LocationValidatorTest extends ValidatorTestCase
     protected function getValidator(): ConstraintValidatorInterface
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
-        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService']);
+        $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
+
+        $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService', 'getContentTypeService']);
 
         $this->repositoryMock
             ->expects(self::any())
@@ -154,6 +162,26 @@ final class LocationValidatorTest extends ValidatorTestCase
             ->expects(self::any())
             ->method('getLocationService')
             ->will(self::returnValue($this->locationServiceMock));
+
+        $this->repositoryMock
+            ->expects(self::any())
+            ->method('getContentTypeService')
+            ->will(self::returnValue($this->contentTypeServiceMock));
+
+        $this->contentTypeServiceMock
+            ->expects(self::any())
+            ->method('loadContentType')
+            ->will(
+                self::returnCallback(
+                    function (int $type): ContentType {
+                        if ($type === 24) {
+                            return new ContentType(['identifier' => 'user']);
+                        }
+
+                        return new ContentType(['identifier' => 'article']);
+                    }
+                )
+            );
 
         return new LocationValidator($this->repositoryMock);
     }

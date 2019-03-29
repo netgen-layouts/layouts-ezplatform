@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\ConditionType;
 
 use eZ\Publish\API\Repository\ContentTypeService;
+use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\Content\Content;
+use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentType as EzContentType;
 use Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface;
 use Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType;
@@ -16,7 +18,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
 
-final class ContentTypeTest extends TestCase
+final class ContentTypeLegacyTest extends TestCase
 {
     /**
      * @var \eZ\Publish\API\Repository\Repository&\PHPUnit\Framework\MockObject\MockObject
@@ -40,7 +42,7 @@ final class ContentTypeTest extends TestCase
 
     public function setUp(): void
     {
-        $this->markTestSkipped('This test requires eZ Publish kernel 7.4+ to run.');
+        $this->markTestSkipped('This test requires eZ Publish kernel 6.13 to run.');
 
         $this->contentExtractorMock = $this->createMock(ContentExtractorInterface::class);
         $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
@@ -126,9 +128,13 @@ final class ContentTypeTest extends TestCase
 
         $content = new Content(
             [
-                'contentType' => new EzContentType(
+                'versionInfo' => new VersionInfo(
                     [
-                        'identifier' => 'article',
+                        'contentInfo' => new ContentInfo(
+                            [
+                                'contentTypeId' => 24,
+                            ]
+                        ),
                     ]
                 ),
             ]
@@ -139,6 +145,21 @@ final class ContentTypeTest extends TestCase
             ->method('extractContent')
             ->with(self::identicalTo($request))
             ->will(self::returnValue($content));
+
+        $this->contentTypeServiceMock
+            ->expects(self::any())
+            ->method('loadContentType')
+            ->with(self::identicalTo(24))
+            ->will(
+                self::returnValue(
+                    new EzContentType(
+                        [
+                            'identifier' => 'article',
+                            'fieldDefinitions' => [],
+                        ]
+                    )
+                )
+            );
 
         self::assertSame($matches, $this->conditionType->matches($request, $value));
     }

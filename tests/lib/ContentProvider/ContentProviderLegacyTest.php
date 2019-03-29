@@ -6,18 +6,24 @@ namespace Netgen\BlockManager\Ez\Tests\ContentProvider;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\LocationService;
+use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\BlockManager\Context\Context;
 use Netgen\BlockManager\Ez\ContentProvider\ContentProvider;
 use PHPUnit\Framework\TestCase;
 
-final class ContentProviderTest extends TestCase
+final class ContentProviderLegacyTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
     private $locationServiceMock;
+
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject
+     */
+    private $contentServiceMock;
 
     /**
      * @var \Netgen\BlockManager\Context\ContextInterface
@@ -31,14 +37,15 @@ final class ContentProviderTest extends TestCase
 
     public function setUp(): void
     {
-        $this->markTestSkipped('This test requires eZ Publish kernel 7.4+ to run.');
+        $this->markTestSkipped('This test requires eZ Publish kernel 6.13 to run.');
 
         $this->locationServiceMock = $this->createMock(LocationService::class);
+        $this->contentServiceMock = $this->createMock(ContentService::class);
         $this->context = new Context();
 
         $this->contentProvider = new ContentProvider(
             $this->locationServiceMock,
-            $this->createMock(ContentService::class),
+            $this->contentServiceMock,
             $this->context
         );
     }
@@ -53,7 +60,11 @@ final class ContentProviderTest extends TestCase
         $content = new Content();
         $location = new Location(
             [
-                'content' => $content,
+                'contentInfo' => new ContentInfo(
+                    [
+                        'id' => 24,
+                    ]
+                ),
             ]
         );
 
@@ -64,6 +75,12 @@ final class ContentProviderTest extends TestCase
             ->method('loadLocation')
             ->with(self::identicalTo(42))
             ->will(self::returnValue($location));
+
+        $this->contentServiceMock
+            ->expects(self::once())
+            ->method('loadContent')
+            ->with(self::identicalTo(24))
+            ->will(self::returnValue($content));
 
         self::assertSame($content, $this->contentProvider->provideContent());
     }
@@ -77,6 +94,10 @@ final class ContentProviderTest extends TestCase
         $this->locationServiceMock
             ->expects(self::never())
             ->method('loadLocation');
+
+        $this->contentServiceMock
+            ->expects(self::never())
+            ->method('loadContent');
 
         self::assertNull($this->contentProvider->provideContent());
     }

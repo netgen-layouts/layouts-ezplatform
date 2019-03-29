@@ -14,7 +14,7 @@ use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class ContentTypeTypeTest extends FormTestCase
+final class ContentTypeTypeLegacyTest extends FormTestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
@@ -23,7 +23,7 @@ final class ContentTypeTypeTest extends FormTestCase
 
     public function setUp(): void
     {
-        $this->markTestSkipped('This test requires eZ Publish kernel 7.4+ to run.');
+        $this->markTestSkipped('This test requires eZ Publish kernel 6.13 to run.');
     }
 
     /**
@@ -134,6 +134,7 @@ final class ContentTypeTypeTest extends FormTestCase
                                 'identifier' => 'article',
                                 'names' => ['eng-GB' => 'Article'],
                                 'mainLanguageCode' => 'eng-GB',
+                                'fieldDefinitions' => [],
                             ]
                         ),
                         new ContentType(
@@ -141,6 +142,7 @@ final class ContentTypeTypeTest extends FormTestCase
                                 'identifier' => 'news',
                                 'names' => ['eng-GB' => 'News'],
                                 'mainLanguageCode' => 'eng-GB',
+                                'fieldDefinitions' => [],
                             ]
                         ),
                     ]
@@ -159,6 +161,7 @@ final class ContentTypeTypeTest extends FormTestCase
                                 'identifier' => 'image',
                                 'names' => ['eng-GB' => 'Image'],
                                 'mainLanguageCode' => 'eng-GB',
+                                'fieldDefinitions' => [],
                             ]
                         ),
                     ]
