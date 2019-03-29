@@ -90,11 +90,6 @@ final class LocationType extends ParameterType
         }
     }
 
-    public function isValueEmpty(ParameterDefinition $parameterDefinition, $value): bool
-    {
-        return $value === null;
-    }
-
     protected function getValueConstraints(ParameterDefinition $parameterDefinition, $value): array
     {
         $options = $parameterDefinition->getOptions();
