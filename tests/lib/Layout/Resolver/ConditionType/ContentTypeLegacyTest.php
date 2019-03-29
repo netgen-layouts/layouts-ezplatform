@@ -16,6 +16,7 @@ use Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType;
 use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Validator\Validation;
 
 final class ContentTypeLegacyTest extends TestCase
@@ -42,7 +43,9 @@ final class ContentTypeLegacyTest extends TestCase
 
     public function setUp(): void
     {
-        $this->markTestSkipped('This test requires eZ Publish kernel 6.13 to run.');
+        if (Kernel::VERSION_ID >= 30000) {
+            self::markTestSkipped('This test requires eZ Publish kernel 6.13 to run.');
+        }
 
         $this->contentExtractorMock = $this->createMock(ContentExtractorInterface::class);
         $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);

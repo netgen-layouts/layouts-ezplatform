@@ -23,7 +23,11 @@ final class ContentTypeTypeTest extends FormTestCase
 
     public function setUp(): void
     {
-        $this->markTestSkipped('This test requires eZ Publish kernel 7.4+ to run.');
+        if (Kernel::VERSION_ID < 30400) {
+            self::markTestSkipped('This test requires eZ Publish kernel 7.4+ to run.');
+        }
+
+        parent::setUp();
     }
 
     /**

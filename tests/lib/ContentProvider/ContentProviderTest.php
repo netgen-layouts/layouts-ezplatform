@@ -11,6 +11,7 @@ use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\BlockManager\Context\Context;
 use Netgen\BlockManager\Ez\ContentProvider\ContentProvider;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpKernel\Kernel;
 
 final class ContentProviderTest extends TestCase
 {
@@ -31,7 +32,9 @@ final class ContentProviderTest extends TestCase
 
     public function setUp(): void
     {
-        $this->markTestSkipped('This test requires eZ Publish kernel 7.4+ to run.');
+        if (Kernel::VERSION_ID < 30400) {
+            self::markTestSkipped('This test requires eZ Publish kernel 7.4+ to run.');
+        }
 
         $this->locationServiceMock = $this->createMock(LocationService::class);
         $this->context = new Context();
