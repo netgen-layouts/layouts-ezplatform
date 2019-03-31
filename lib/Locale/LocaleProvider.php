@@ -105,7 +105,6 @@ class LocaleProvider implements LocaleProviderInterface
     private function loadLanguages(): iterable
     {
         if (method_exists($this->languageService, 'loadLanguageListByCode')) {
-            /* @var \eZ\Publish\API\Repository\Values\Content\Language[] $languages */
             return $this->languageService->loadLanguageListByCode($this->languageCodes);
         }
 
