@@ -72,10 +72,8 @@ final class ContentProvider implements ContentProviderInterface
             return null;
         }
 
-        $location = $this->locationService->loadLocation(
+        return $this->locationService->loadLocation(
             (int) $this->context->get('ez_location_id')
         );
-
-        return $location;
     }
 }

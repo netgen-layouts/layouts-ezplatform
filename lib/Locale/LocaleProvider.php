@@ -109,7 +109,7 @@ class LocaleProvider implements LocaleProviderInterface
             return $this->languageService->loadLanguageListByCode($this->languageCodes);
         }
 
-        // @deprecated Remove when support for eZ kernel < 7.5 ends
+        // Deprecated: Remove when support for eZ kernel < 7.5 ends
 
         $languages = [];
 
