@@ -6,13 +6,14 @@ namespace Netgen\BlockManager\Ez\Tests\Locale;
 
 use eZ\Publish\API\Repository\LanguageService;
 use eZ\Publish\API\Repository\Values\Content\Language;
+use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\MVC\Symfony\Locale\LocaleConverterInterface;
 use Netgen\BlockManager\Ez\Locale\LocaleProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Kernel;
 
-final class LocaleProviderTest extends TestCase
+final class LocaleProviderLegacyTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
@@ -31,8 +32,8 @@ final class LocaleProviderTest extends TestCase
 
     public function setUp(): void
     {
-        if (Kernel::VERSION_ID < 30400) {
-            self::markTestSkipped('This test requires eZ Publish kernel 7.5+ to run.');
+        if (Kernel::VERSION_ID >= 30000) {
+            self::markTestSkipped('This test requires eZ Publish kernel 6.13 to run.');
         }
 
         $this->languageServiceMock = $this->createMock(LanguageService::class);
@@ -122,16 +123,42 @@ final class LocaleProviderTest extends TestCase
         $this->localeProvider->setLanguages(['eng-GB', 'ger-DE', 'unknown', 'cro-HR']);
 
         $this->languageServiceMock
-            ->expects(self::once())
-            ->method('loadLanguageListByCode')
-            ->with(self::identicalTo(['eng-GB', 'ger-DE', 'unknown', 'cro-HR']))
+            ->expects(self::at(0))
+            ->method('loadLanguage')
+            ->with(self::identicalTo('eng-GB'))
             ->will(
                 self::returnValue(
-                    [
-                        new Language(['languageCode' => 'eng-GB', 'enabled' => true]),
-                        new Language(['languageCode' => 'ger-DE', 'enabled' => false]),
-                        new Language(['languageCode' => 'cro-HR', 'enabled' => true]),
-                    ]
+                    new Language(['languageCode' => 'eng-GB', 'enabled' => true])
+                )
+            );
+
+        $this->languageServiceMock
+            ->expects(self::at(1))
+            ->method('loadLanguage')
+            ->with(self::identicalTo('ger-DE'))
+            ->will(
+                self::returnValue(
+                    new Language(['languageCode' => 'ger-DE', 'enabled' => false])
+                )
+            );
+
+        $this->languageServiceMock
+            ->expects(self::at(2))
+            ->method('loadLanguage')
+            ->with(self::identicalTo('unknown'))
+            ->will(
+                self::throwException(
+                    new NotFoundException('language', 'unknown')
+                )
+            );
+
+        $this->languageServiceMock
+            ->expects(self::at(3))
+            ->method('loadLanguage')
+            ->with(self::identicalTo('cro-HR'))
+            ->will(
+                self::returnValue(
+                    new Language(['languageCode' => 'cro-HR', 'enabled' => true])
                 )
             );
 
@@ -162,14 +189,12 @@ final class LocaleProviderTest extends TestCase
         $this->localeProvider->setLanguages(['eng-GB']);
 
         $this->languageServiceMock
-            ->expects(self::once())
-            ->method('loadLanguageListByCode')
-            ->with(self::identicalTo(['eng-GB']))
+            ->expects(self::at(0))
+            ->method('loadLanguage')
+            ->with(self::identicalTo('eng-GB'))
             ->will(
                 self::returnValue(
-                    [
-                        new Language(['languageCode' => 'eng-GB', 'enabled' => true]),
-                    ]
+                    new Language(['languageCode' => 'eng-GB', 'enabled' => true])
                 )
             );
 
@@ -194,14 +219,12 @@ final class LocaleProviderTest extends TestCase
         $this->localeProvider->setLanguages(['eng-GB']);
 
         $this->languageServiceMock
-            ->expects(self::once())
-            ->method('loadLanguageListByCode')
-            ->with(self::identicalTo(['eng-GB']))
+            ->expects(self::at(0))
+            ->method('loadLanguage')
+            ->with(self::identicalTo('eng-GB'))
             ->will(
                 self::returnValue(
-                    [
-                        new Language(['languageCode' => 'eng-GB', 'enabled' => true]),
-                    ]
+                    new Language(['languageCode' => 'eng-GB', 'enabled' => true])
                 )
             );
 
