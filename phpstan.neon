@@ -7,7 +7,6 @@ parameters:
 
     ignoreErrors:
         # eZ Platform
-        - '#Call to an undefined method Netgen\\TagsBundle\\API\\Repository\\TagsService::sudo\(\)#'
         - '#Parameter \#1 \$name of method Symfony\\Component\\Routing\\Generator\\UrlGeneratorInterface::generate\(\) expects string, object given.#'
         - '#Call to function method_exists\(\)#'
 
