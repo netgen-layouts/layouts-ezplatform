@@ -47,7 +47,7 @@ final class SectionValidator extends ConstraintValidator
 
         try {
             $this->repository->sudo(
-                function (Repository $repository) use ($value): APISection {
+                static function (Repository $repository) use ($value): APISection {
                     return $repository->getSectionService()->loadSectionByIdentifier($value);
                 }
             );

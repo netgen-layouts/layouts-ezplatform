@@ -51,7 +51,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
                     [
                         'identifier' => $identifier,
                         'contentTypeGroups' => array_map(
-                            function (string $group): ContentTypeGroup {
+                            static function (string $group): ContentTypeGroup {
                                 return new ContentTypeGroup(
                                     [
                                         'identifier' => $group,

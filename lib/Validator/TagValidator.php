@@ -43,7 +43,7 @@ final class TagValidator extends ConstraintValidator
         if (!$constraint->allowInvalid) {
             try {
                 $this->tagsService->sudo(
-                    function (TagsService $tagsService) use ($value): void {
+                    static function (TagsService $tagsService) use ($value): void {
                         $tagsService->loadTag($value);
                     }
                 );

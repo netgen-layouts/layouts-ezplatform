@@ -46,7 +46,7 @@ final class ContentType extends ParameterType
         // @deprecated Replace with "string[]" allowed type when support for Symfony 2.8 ends
         $optionsResolver->setAllowedValues(
             'allowed_types',
-            function (array $types): bool {
+            static function (array $types): bool {
                 foreach ($types as $type) {
                     if (!is_string($type)) {
                         return false;
@@ -63,7 +63,7 @@ final class ContentType extends ParameterType
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
-                function (Repository $repository) use ($value): ContentInfo {
+                static function (Repository $repository) use ($value): ContentInfo {
                     return $repository->getContentService()->loadContentInfo($value);
                 }
             );
@@ -79,7 +79,7 @@ final class ContentType extends ParameterType
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
-                function (Repository $repository) use ($value): ContentInfo {
+                static function (Repository $repository) use ($value): ContentInfo {
                     return $repository->getContentService()->loadContentInfoByRemoteId($value);
                 }
             );

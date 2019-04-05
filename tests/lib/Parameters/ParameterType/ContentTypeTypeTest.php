@@ -170,7 +170,7 @@ final class ContentTypeTypeTest extends TestCase
                     ->method('loadContentTypeByIdentifier')
                     ->with(self::identicalTo($identifier))
                     ->willReturnCallback(
-                        function () use ($identifier): EzContentType {
+                        static function () use ($identifier): EzContentType {
                             if (!is_string($identifier) || !in_array($identifier, ['article', 'news'], true)) {
                                 throw new NotFoundException('content type', $identifier);
                             }

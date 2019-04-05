@@ -92,7 +92,7 @@ final class EzPublishRuntime
     private function loadVersionInfo($contentId): VersionInfo
     {
         return $this->repository->sudo(
-            function (Repository $repository) use ($contentId): VersionInfo {
+            static function (Repository $repository) use ($contentId): VersionInfo {
                 return $repository->getContentService()->loadVersionInfoById($contentId);
             }
         );
@@ -108,7 +108,7 @@ final class EzPublishRuntime
     private function loadLocation($locationId): Location
     {
         return $this->repository->sudo(
-            function (Repository $repository) use ($locationId): Location {
+            static function (Repository $repository) use ($locationId): Location {
                 return $repository->getLocationService()->loadLocation($locationId);
             }
         );
@@ -120,7 +120,7 @@ final class EzPublishRuntime
     private function loadContentType(string $identifier): ContentType
     {
         return $this->repository->sudo(
-            function (Repository $repository) use ($identifier): ContentType {
+            static function (Repository $repository) use ($identifier): ContentType {
                 return $repository->getContentTypeService()->loadContentTypeByIdentifier($identifier);
             }
         );

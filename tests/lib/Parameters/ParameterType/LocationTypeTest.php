@@ -247,7 +247,7 @@ final class LocationTypeTest extends TestCase
                 ->method('loadLocation')
                 ->with(self::identicalTo($value))
                 ->willReturnCallback(
-                    function () use ($value, $type): Location {
+                    static function () use ($value, $type): Location {
                         if (!is_int($value) || $value <= 0) {
                             throw new NotFoundException('location', $value);
                         }

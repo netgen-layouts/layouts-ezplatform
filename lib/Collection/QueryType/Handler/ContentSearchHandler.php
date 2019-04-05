@@ -106,7 +106,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         );
 
         return array_map(
-            function (SearchHit $searchHit) {
+            static function (SearchHit $searchHit) {
                 return $searchHit->valueObject;
             },
             $searchResult->searchHits
@@ -157,7 +157,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
 
         $criteria = array_filter(
             $criteria,
-            function ($criterion): bool {
+            static function ($criterion): bool {
                 return $criterion instanceof Criterion;
             }
         );

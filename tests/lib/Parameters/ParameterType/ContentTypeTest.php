@@ -67,7 +67,7 @@ final class ContentTypeTest extends TestCase
             ->expects(self::any())
             ->method('loadContentType')
             ->willReturnCallback(
-                function (int $type): EzContentType {
+                static function (int $type): EzContentType {
                     if ($type === 24) {
                         return new EzContentType(['identifier' => 'user']);
                     }
@@ -270,7 +270,7 @@ final class ContentTypeTest extends TestCase
                 ->method('loadContentInfo')
                 ->with(self::identicalTo((int) $value))
                 ->willReturnCallback(
-                    function () use ($value, $type): ContentInfo {
+                    static function () use ($value, $type): ContentInfo {
                         if (!is_int($value) || $value <= 0) {
                             throw new NotFoundException('content', $value);
                         }

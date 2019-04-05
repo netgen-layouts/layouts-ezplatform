@@ -176,7 +176,7 @@ final class SectionTypeTest extends TestCase
                     ->method('loadSectionByIdentifier')
                     ->with(self::identicalTo($identifier))
                     ->willReturnCallback(
-                        function () use ($identifier): EzSection {
+                        static function () use ($identifier): EzSection {
                             if (!is_string($identifier) || !in_array($identifier, ['media', 'standard'], true)) {
                                 throw new NotFoundException('content type', $identifier);
                             }

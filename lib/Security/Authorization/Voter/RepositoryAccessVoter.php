@@ -110,7 +110,7 @@ final class RepositoryAccessVoter extends Voter
     private function getReachableAttributes($attribute): array
     {
         return array_map(
-            function (Role $role) {
+            static function (Role $role) {
                 return $role->getRole();
             },
             $this->roleHierarchy->getReachableRoles([new Role($attribute)])

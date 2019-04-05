@@ -49,7 +49,7 @@ final class ContentTypeValidator extends ConstraintValidator
         try {
             /** @var \eZ\Publish\API\Repository\Values\ContentType\ContentType $contentType */
             $contentType = $this->repository->sudo(
-                function (Repository $repository) use ($value): APIContentType {
+                static function (Repository $repository) use ($value): APIContentType {
                     return $repository->getContentTypeService()->loadContentTypeByIdentifier($value);
                 }
             );
@@ -62,7 +62,7 @@ final class ContentTypeValidator extends ConstraintValidator
         }
 
         $groupIdentifiers = array_map(
-            function (ContentTypeGroup $group): string {
+            static function (ContentTypeGroup $group): string {
                 return $group->identifier;
             },
             $contentType->getContentTypeGroups()

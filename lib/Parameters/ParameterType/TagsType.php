@@ -46,17 +46,23 @@ final class TagsType extends ParameterType
         $optionsResolver->setAllowedTypes('max', ['int', 'null']);
         $optionsResolver->setAllowedTypes('allow_invalid', 'bool');
 
-        $optionsResolver->setAllowedValues('min', function (?int $value): bool {
-            return $value === null || $value > 0;
-        });
+        $optionsResolver->setAllowedValues(
+            'min',
+            static function (?int $value): bool {
+                return $value === null || $value > 0;
+            }
+        );
 
-        $optionsResolver->setAllowedValues('max', function (?int $value): bool {
-            return $value === null || $value > 0;
-        });
+        $optionsResolver->setAllowedValues(
+            'max',
+            static function (?int $value): bool {
+                return $value === null || $value > 0;
+            }
+        );
 
         $optionsResolver->setNormalizer(
             'max',
-            function (Options $options, ?int $value): ?int {
+            static function (Options $options, ?int $value): ?int {
                 if ($value === null || $options['min'] === null) {
                     return $value;
                 }
@@ -75,7 +81,7 @@ final class TagsType extends ParameterType
         try {
             /** @var \Netgen\TagsBundle\API\Repository\Values\Tags\Tag $tag */
             $tag = $this->tagsService->sudo(
-                function (TagsService $tagsService) use ($value): Tag {
+                static function (TagsService $tagsService) use ($value): Tag {
                     return $tagsService->loadTag($value);
                 }
             );
@@ -91,7 +97,7 @@ final class TagsType extends ParameterType
         try {
             /** @var \Netgen\TagsBundle\API\Repository\Values\Tags\Tag $tag */
             $tag = $this->tagsService->sudo(
-                function (TagsService $tagsService) use ($value): Tag {
+                static function (TagsService $tagsService) use ($value): Tag {
                     return $tagsService->loadTagByRemoteId($value);
                 }
             );

@@ -33,7 +33,7 @@ final class SectionType extends ParameterType
         // @deprecated Replace with "string[]" allowed type when support for Symfony 2.8 ends
         $optionsResolver->setAllowedValues(
             'sections',
-            function (array $sections): bool {
+            static function (array $sections): bool {
                 foreach ($sections as $section) {
                     if (!is_string($section)) {
                         return false;

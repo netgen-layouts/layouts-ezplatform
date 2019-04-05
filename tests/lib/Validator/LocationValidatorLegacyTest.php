@@ -172,7 +172,7 @@ final class LocationValidatorLegacyTest extends ValidatorTestCase
             ->expects(self::any())
             ->method('loadContentType')
             ->willReturnCallback(
-                function (int $type): ContentType {
+                static function (int $type): ContentType {
                     if ($type === 24) {
                         return new ContentType(['identifier' => 'user']);
                     }

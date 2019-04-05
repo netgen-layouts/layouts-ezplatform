@@ -131,7 +131,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->expects(self::any())
             ->method('loadContentTypeByIdentifier')
             ->willReturnCallback(
-                function (string $identifier): ContentType {
+                static function (string $identifier): ContentType {
                     return new ContentType(
                         [
                             'identifier' => $identifier,
@@ -160,7 +160,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->expects(self::any())
             ->method('loadContentTypeByIdentifier')
             ->willReturnCallback(
-                function (string $identifier): ContentType {
+                static function (string $identifier): ContentType {
                     return new ContentType(
                         [
                             'identifier' => $identifier,
@@ -240,7 +240,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->expects(self::any())
             ->method('loadLocation')
             ->willReturnCallback(
-                function ($locationId): Location {
+                static function ($locationId): Location {
                     return new Location(
                         [
                             'path' => [1, 2, 42, 84],
@@ -258,7 +258,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->expects(self::any())
             ->method('loadVersionInfoById')
             ->willReturnCallback(
-                function ($contentId): VersionInfo {
+                static function ($contentId): VersionInfo {
                     return new VersionInfo(
                         [
                             'prioritizedNameLanguageCode' => 'eng-GB',

@@ -44,7 +44,7 @@ final class ContentValidator extends ConstraintValidator
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
-                function (Repository $repository) use ($value): ContentInfo {
+                static function (Repository $repository) use ($value): ContentInfo {
                     return $repository->getContentService()->loadContentInfo((int) $value);
                 }
             );
