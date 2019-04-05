@@ -124,52 +124,48 @@ final class ContentTypeTypeLegacyTest extends FormTestCase
         $this->contentTypeServiceMock
             ->expects(self::at(0))
             ->method('loadContentTypeGroups')
-            ->will(self::returnValue([$contentTypeGroup1, $contentTypeGroup2, $contentTypeGroup3]));
+            ->willReturn([$contentTypeGroup1, $contentTypeGroup2, $contentTypeGroup3]);
 
         $this->contentTypeServiceMock
             ->expects(self::at(1))
             ->method('loadContentTypes')
             ->with(self::identicalTo($contentTypeGroup1))
-            ->will(
-                self::returnValue(
-                    [
-                        new ContentType(
-                            [
-                                'identifier' => 'article',
-                                'names' => ['eng-GB' => 'Article'],
-                                'mainLanguageCode' => 'eng-GB',
-                                'fieldDefinitions' => [],
-                            ]
-                        ),
-                        new ContentType(
-                            [
-                                'identifier' => 'news',
-                                'names' => ['eng-GB' => 'News'],
-                                'mainLanguageCode' => 'eng-GB',
-                                'fieldDefinitions' => [],
-                            ]
-                        ),
-                    ]
-                )
+            ->willReturn(
+                [
+                    new ContentType(
+                        [
+                            'identifier' => 'article',
+                            'names' => ['eng-GB' => 'Article'],
+                            'mainLanguageCode' => 'eng-GB',
+                            'fieldDefinitions' => [],
+                        ]
+                    ),
+                    new ContentType(
+                        [
+                            'identifier' => 'news',
+                            'names' => ['eng-GB' => 'News'],
+                            'mainLanguageCode' => 'eng-GB',
+                            'fieldDefinitions' => [],
+                        ]
+                    ),
+                ]
             );
 
         $this->contentTypeServiceMock
             ->expects(self::at(2))
             ->method('loadContentTypes')
             ->with(self::identicalTo($contentTypeGroup2))
-            ->will(
-                self::returnValue(
-                    [
-                        new ContentType(
-                            [
-                                'identifier' => 'image',
-                                'names' => ['eng-GB' => 'Image'],
-                                'mainLanguageCode' => 'eng-GB',
-                                'fieldDefinitions' => [],
-                            ]
-                        ),
-                    ]
-                )
+            ->willReturn(
+                [
+                    new ContentType(
+                        [
+                            'identifier' => 'image',
+                            'names' => ['eng-GB' => 'Image'],
+                            'mainLanguageCode' => 'eng-GB',
+                            'fieldDefinitions' => [],
+                        ]
+                    ),
+                ]
             );
     }
 }

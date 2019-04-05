@@ -51,12 +51,12 @@ final class ContentFieldHandlerTest extends TestCase
         $this->contentProviderMock
             ->expects(self::once())
             ->method('provideContent')
-            ->will(self::returnValue($content));
+            ->willReturn($content);
 
         $this->contentProviderMock
             ->expects(self::once())
             ->method('provideLocation')
-            ->will(self::returnValue($location));
+            ->willReturn($location);
 
         $params = new DynamicParameters();
 

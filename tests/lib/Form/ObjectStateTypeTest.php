@@ -115,49 +115,45 @@ final class ObjectStateTypeTest extends FormTestCase
         $this->objectStateServiceMock
             ->expects(self::at(0))
             ->method('loadObjectStateGroups')
-            ->will(self::returnValue([$objectStateGroup1, $objectStateGroup2, $objectStateGroup3]));
+            ->willReturn([$objectStateGroup1, $objectStateGroup2, $objectStateGroup3]);
 
         $this->objectStateServiceMock
             ->expects(self::at(1))
             ->method('loadObjectStates')
             ->with(self::identicalTo($objectStateGroup1))
-            ->will(
-                self::returnValue(
-                    [
-                        new ObjectState(
-                            [
-                                'identifier' => 'locked',
-                                'names' => ['eng-GB' => 'Locked'],
-                                'mainLanguageCode' => 'eng-GB',
-                            ]
-                        ),
-                        new ObjectState(
-                            [
-                                'identifier' => 'unlocked',
-                                'names' => ['eng-GB' => 'Unlocked'],
-                                'mainLanguageCode' => 'eng-GB',
-                            ]
-                        ),
-                    ]
-                )
+            ->willReturn(
+                [
+                    new ObjectState(
+                        [
+                            'identifier' => 'locked',
+                            'names' => ['eng-GB' => 'Locked'],
+                            'mainLanguageCode' => 'eng-GB',
+                        ]
+                    ),
+                    new ObjectState(
+                        [
+                            'identifier' => 'unlocked',
+                            'names' => ['eng-GB' => 'Unlocked'],
+                            'mainLanguageCode' => 'eng-GB',
+                        ]
+                    ),
+                ]
             );
 
         $this->objectStateServiceMock
             ->expects(self::at(2))
             ->method('loadObjectStates')
             ->with(self::identicalTo($objectStateGroup2))
-            ->will(
-                self::returnValue(
-                    [
-                        new ObjectState(
-                            [
-                                'identifier' => 'other',
-                                'names' => ['eng-GB' => 'Other'],
-                                'mainLanguageCode' => 'eng-GB',
-                            ]
-                        ),
-                    ]
-                )
+            ->willReturn(
+                [
+                    new ObjectState(
+                        [
+                            'identifier' => 'other',
+                            'names' => ['eng-GB' => 'Other'],
+                            'mainLanguageCode' => 'eng-GB',
+                        ]
+                    ),
+                ]
             );
     }
 }

@@ -47,7 +47,7 @@ final class ContentValueLoaderTest extends TestCase
             ->expects(self::any())
             ->method('loadContentInfo')
             ->with(self::identicalTo(52))
-            ->will(self::returnValue($contentInfo));
+            ->willReturn($contentInfo);
 
         self::assertSame($contentInfo, $this->valueLoader->load(52));
     }
@@ -61,7 +61,7 @@ final class ContentValueLoaderTest extends TestCase
             ->expects(self::any())
             ->method('loadContentInfo')
             ->with(self::identicalTo(52))
-            ->will(self::throwException(new Exception()));
+            ->willThrowException(new Exception());
 
         self::assertNull($this->valueLoader->load(52));
     }
@@ -75,14 +75,12 @@ final class ContentValueLoaderTest extends TestCase
             ->expects(self::any())
             ->method('loadContentInfo')
             ->with(self::identicalTo(52))
-            ->will(
-                self::returnValue(
-                    new ContentInfo(
-                        [
-                            'published' => false,
-                            'mainLocationId' => 42,
-                        ]
-                    )
+            ->willReturn(
+                new ContentInfo(
+                    [
+                        'published' => false,
+                        'mainLocationId' => 42,
+                    ]
                 )
             );
 
@@ -98,13 +96,11 @@ final class ContentValueLoaderTest extends TestCase
             ->expects(self::any())
             ->method('loadContentInfo')
             ->with(self::identicalTo(52))
-            ->will(
-                self::returnValue(
-                    new ContentInfo(
-                        [
-                            'published' => true,
-                        ]
-                    )
+            ->willReturn(
+                new ContentInfo(
+                    [
+                        'published' => true,
+                    ]
                 )
             );
 
@@ -128,7 +124,7 @@ final class ContentValueLoaderTest extends TestCase
             ->expects(self::any())
             ->method('loadContentInfoByRemoteId')
             ->with(self::identicalTo('abc'))
-            ->will(self::returnValue($contentInfo));
+            ->willReturn($contentInfo);
 
         self::assertSame($contentInfo, $this->valueLoader->loadByRemoteId('abc'));
     }
@@ -142,7 +138,7 @@ final class ContentValueLoaderTest extends TestCase
             ->expects(self::any())
             ->method('loadContentInfoByRemoteId')
             ->with(self::identicalTo('abc'))
-            ->will(self::throwException(new Exception()));
+            ->willThrowException(new Exception());
 
         self::assertNull($this->valueLoader->loadByRemoteId('abc'));
     }
@@ -156,14 +152,12 @@ final class ContentValueLoaderTest extends TestCase
             ->expects(self::any())
             ->method('loadContentInfoByRemoteId')
             ->with(self::identicalTo('abc'))
-            ->will(
-                self::returnValue(
-                    new ContentInfo(
-                        [
-                            'published' => false,
-                            'mainLocationId' => 42,
-                        ]
-                    )
+            ->willReturn(
+                new ContentInfo(
+                    [
+                        'published' => false,
+                        'mainLocationId' => 42,
+                    ]
                 )
             );
 
@@ -179,13 +173,11 @@ final class ContentValueLoaderTest extends TestCase
             ->expects(self::any())
             ->method('loadContentInfoByRemoteId')
             ->with(self::identicalTo('abc'))
-            ->will(
-                self::returnValue(
-                    new ContentInfo(
-                        [
-                            'published' => true,
-                        ]
-                    )
+            ->willReturn(
+                new ContentInfo(
+                    [
+                        'published' => true,
+                    ]
                 )
             );
 

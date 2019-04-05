@@ -55,14 +55,16 @@ final class ContentTypeLegacyTest extends TestCase
             ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
+            ->willReturnCallback(
+                function (callable $callback) {
+                    return $callback($this->repositoryMock);
+                }
+            );
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getContentTypeService')
-            ->will(self::returnValue($this->contentTypeServiceMock));
+            ->willReturn($this->contentTypeServiceMock);
 
         $this->conditionType = new ContentType(
             $this->contentExtractorMock,
@@ -88,7 +90,7 @@ final class ContentTypeLegacyTest extends TestCase
             ->expects(self::once())
             ->method('loadContentTypeByIdentifier')
             ->with(self::identicalTo('identifier'))
-            ->will(self::returnValue(new EzContentType()));
+            ->willReturn(new EzContentType());
 
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
@@ -107,7 +109,7 @@ final class ContentTypeLegacyTest extends TestCase
             ->expects(self::once())
             ->method('loadContentTypeByIdentifier')
             ->with(self::identicalTo('unknown'))
-            ->will(self::throwException(new NotFoundException('content type', 'unknown')));
+            ->willThrowException(new NotFoundException('content type', 'unknown'));
 
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
@@ -147,20 +149,18 @@ final class ContentTypeLegacyTest extends TestCase
             ->expects(self::any())
             ->method('extractContent')
             ->with(self::identicalTo($request))
-            ->will(self::returnValue($content));
+            ->willReturn($content);
 
         $this->contentTypeServiceMock
             ->expects(self::any())
             ->method('loadContentType')
             ->with(self::identicalTo(24))
-            ->will(
-                self::returnValue(
-                    new EzContentType(
-                        [
-                            'identifier' => 'article',
-                            'fieldDefinitions' => [],
-                        ]
-                    )
+            ->willReturn(
+                new EzContentType(
+                    [
+                        'identifier' => 'article',
+                        'fieldDefinitions' => [],
+                    ]
                 )
             );
 
@@ -178,7 +178,7 @@ final class ContentTypeLegacyTest extends TestCase
             ->expects(self::any())
             ->method('extractContent')
             ->with(self::identicalTo($request))
-            ->will(self::returnValue(null));
+            ->willReturn(null);
 
         self::assertFalse($this->conditionType->matches($request, ['article']));
     }

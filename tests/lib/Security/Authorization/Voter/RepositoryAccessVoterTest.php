@@ -65,7 +65,7 @@ final class RepositoryAccessVoterTest extends TestCase
                     self::equalTo([new Attribute('nglayouts', $function)]),
                     self::isNull()
                 )
-                ->will(self::returnValue($hasAccess));
+                ->willReturn($hasAccess);
         }
 
         $result = $this->voter->vote($token, null, [$attribute]);

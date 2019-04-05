@@ -39,14 +39,16 @@ final class SectionTypeTest extends TestCase
             ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
+            ->willReturnCallback(
+                function (callable $callback) {
+                    return $callback($this->repositoryMock);
+                }
+            );
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getSectionService')
-            ->will(self::returnValue($this->sectionServiceMock));
+            ->willReturn($this->sectionServiceMock);
 
         $this->type = new SectionType();
     }
@@ -173,20 +175,18 @@ final class SectionTypeTest extends TestCase
                     ->expects(self::at($index))
                     ->method('loadSectionByIdentifier')
                     ->with(self::identicalTo($identifier))
-                    ->will(
-                        self::returnCallback(
-                            function () use ($identifier): EzSection {
-                                if (!is_string($identifier) || !in_array($identifier, ['media', 'standard'], true)) {
-                                    throw new NotFoundException('content type', $identifier);
-                                }
-
-                                return new EzSection(
-                                    [
-                                        'identifier' => $identifier,
-                                    ]
-                                );
+                    ->willReturnCallback(
+                        function () use ($identifier): EzSection {
+                            if (!is_string($identifier) || !in_array($identifier, ['media', 'standard'], true)) {
+                                throw new NotFoundException('content type', $identifier);
                             }
-                        )
+
+                            return new EzSection(
+                                [
+                                    'identifier' => $identifier,
+                                ]
+                            );
+                        }
                     );
             }
         }

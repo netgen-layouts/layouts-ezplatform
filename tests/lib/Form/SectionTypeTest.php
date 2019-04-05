@@ -164,17 +164,15 @@ final class SectionTypeTest extends FormTestCase
         $this->sectionServiceMock
             ->expects(self::at(0))
             ->method('loadSections')
-            ->will(
-                self::returnValue(
-                    [
-                        new Section(
-                            [
-                                'identifier' => 'media',
-                                'name' => 'Media',
-                            ]
-                        ),
-                    ]
-                )
+            ->willReturn(
+                [
+                    new Section(
+                        [
+                            'identifier' => 'media',
+                            'name' => 'Media',
+                        ]
+                    ),
+                ]
             );
     }
 }

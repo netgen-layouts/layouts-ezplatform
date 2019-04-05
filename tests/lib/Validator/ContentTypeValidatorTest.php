@@ -46,23 +46,21 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
             ->expects(self::once())
             ->method('loadContentTypeByIdentifier')
             ->with(self::identicalTo($identifier))
-            ->will(
-                self::returnValue(
-                    new EzContentType(
-                        [
-                            'identifier' => $identifier,
-                            'contentTypeGroups' => array_map(
-                                function (string $group): ContentTypeGroup {
-                                    return new ContentTypeGroup(
-                                        [
-                                            'identifier' => $group,
-                                        ]
-                                    );
-                                },
-                                $groups
-                            ),
-                        ]
-                    )
+            ->willReturn(
+                new EzContentType(
+                    [
+                        'identifier' => $identifier,
+                        'contentTypeGroups' => array_map(
+                            function (string $group): ContentTypeGroup {
+                                return new ContentTypeGroup(
+                                    [
+                                        'identifier' => $group,
+                                    ]
+                                );
+                            },
+                            $groups
+                        ),
+                    ]
                 )
             );
 
@@ -93,11 +91,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
             ->expects(self::once())
             ->method('loadContentTypeByIdentifier')
             ->with(self::identicalTo('unknown'))
-            ->will(
-                self::throwException(
-                    new NotFoundException('content type', 'unknown')
-                )
-            );
+            ->willThrowException(new NotFoundException('content type', 'unknown'));
 
         self::assertValid(false, 'unknown');
     }
@@ -160,14 +154,16 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
             ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
+            ->willReturnCallback(
+                function (callable $callback) {
+                    return $callback($this->repositoryMock);
+                }
+            );
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getContentTypeService')
-            ->will(self::returnValue($this->contentTypeServiceMock));
+            ->willReturn($this->contentTypeServiceMock);
 
         return new ContentTypeValidator($this->repositoryMock);
     }

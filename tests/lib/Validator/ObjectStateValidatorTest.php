@@ -48,48 +48,44 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
         $this->objectStateServiceMock
             ->expects(self::at(0))
             ->method('loadObjectStateGroups')
-            ->will(self::returnValue([$group1, $group2]));
+            ->willReturn([$group1, $group2]);
 
         $this->objectStateServiceMock
             ->expects(self::at(1))
             ->method('loadObjectStates')
             ->with(self::identicalTo($group1))
-            ->will(
-                self::returnValue(
-                    [
-                        new EzObjectState(
-                            [
-                                'identifier' => 'state1',
-                            ]
-                        ),
-                        new EzObjectState(
-                            [
-                                'identifier' => 'state2',
-                            ]
-                        ),
-                    ]
-                )
+            ->willReturn(
+                [
+                    new EzObjectState(
+                        [
+                            'identifier' => 'state1',
+                        ]
+                    ),
+                    new EzObjectState(
+                        [
+                            'identifier' => 'state2',
+                        ]
+                    ),
+                ]
             );
 
         $this->objectStateServiceMock
             ->expects(self::at(2))
             ->method('loadObjectStates')
             ->with(self::identicalTo($group2))
-            ->will(
-                self::returnValue(
-                    [
-                        new EzObjectState(
-                            [
-                                'identifier' => 'state1',
-                            ]
-                        ),
-                        new EzObjectState(
-                            [
-                                'identifier' => 'state2',
-                            ]
-                        ),
-                    ]
-                )
+            ->willReturn(
+                [
+                    new EzObjectState(
+                        [
+                            'identifier' => 'state1',
+                        ]
+                    ),
+                    new EzObjectState(
+                        [
+                            'identifier' => 'state2',
+                        ]
+                    ),
+                ]
             );
 
         $this->constraint->allowedStates = $allowedStates;
@@ -193,14 +189,16 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
             ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
+            ->willReturnCallback(
+                function (callable $callback) {
+                    return $callback($this->repositoryMock);
+                }
+            );
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getObjectStateService')
-            ->will(self::returnValue($this->objectStateServiceMock));
+            ->willReturn($this->objectStateServiceMock);
 
         return new ObjectStateValidator($this->repositoryMock);
     }

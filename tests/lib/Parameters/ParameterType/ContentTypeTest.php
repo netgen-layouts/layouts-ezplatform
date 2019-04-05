@@ -47,37 +47,37 @@ final class ContentTypeTest extends TestCase
             ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
+            ->willReturnCallback(
+                function (callable $callback) {
+                    return $callback($this->repositoryMock);
+                }
+            );
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getContentService')
-            ->will(self::returnValue($this->contentServiceMock));
+            ->willReturn($this->contentServiceMock);
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getContentTypeService')
-            ->will(self::returnValue($this->contentTypeServiceMock));
+            ->willReturn($this->contentTypeServiceMock);
 
         $this->contentTypeServiceMock
             ->expects(self::any())
             ->method('loadContentType')
-            ->will(
-                self::returnCallback(
-                    function (int $type): EzContentType {
-                        if ($type === 24) {
-                            return new EzContentType(['identifier' => 'user']);
-                        }
-
-                        if ($type === 42) {
-                            return new EzContentType(['identifier' => 'image']);
-                        }
-
-                        return new EzContentType(['identifier' => 'article']);
+            ->willReturnCallback(
+                function (int $type): EzContentType {
+                    if ($type === 24) {
+                        return new EzContentType(['identifier' => 'user']);
                     }
-                )
+
+                    if ($type === 42) {
+                        return new EzContentType(['identifier' => 'image']);
+                    }
+
+                    return new EzContentType(['identifier' => 'article']);
+                }
             );
 
         $this->type = new ContentType($this->repositoryMock);
@@ -206,7 +206,7 @@ final class ContentTypeTest extends TestCase
             ->expects(self::once())
             ->method('loadContentInfo')
             ->with(self::identicalTo(42))
-            ->will(self::returnValue(new ContentInfo(['remoteId' => 'abc'])));
+            ->willReturn(new ContentInfo(['remoteId' => 'abc']));
 
         self::assertSame('abc', $this->type->export($this->getParameterDefinition(), 42));
     }
@@ -220,7 +220,7 @@ final class ContentTypeTest extends TestCase
             ->expects(self::once())
             ->method('loadContentInfo')
             ->with(self::identicalTo(42))
-            ->will(self::throwException(new NotFoundException('contentInfo', 42)));
+            ->willThrowException(new NotFoundException('contentInfo', 42));
 
         self::assertNull($this->type->export($this->getParameterDefinition(), 42));
     }
@@ -234,7 +234,7 @@ final class ContentTypeTest extends TestCase
             ->expects(self::once())
             ->method('loadContentInfoByRemoteId')
             ->with(self::identicalTo('abc'))
-            ->will(self::returnValue(new ContentInfo(['id' => 42])));
+            ->willReturn(new ContentInfo(['id' => 42]));
 
         self::assertSame(42, $this->type->import($this->getParameterDefinition(), 'abc'));
     }
@@ -248,7 +248,7 @@ final class ContentTypeTest extends TestCase
             ->expects(self::once())
             ->method('loadContentInfoByRemoteId')
             ->with(self::identicalTo('abc'))
-            ->will(self::throwException(new NotFoundException('contentInfo', 'abc')));
+            ->willThrowException(new NotFoundException('contentInfo', 'abc'));
 
         self::assertNull($this->type->import($this->getParameterDefinition(), 'abc'));
     }
@@ -269,16 +269,14 @@ final class ContentTypeTest extends TestCase
                 ->expects(self::once())
                 ->method('loadContentInfo')
                 ->with(self::identicalTo((int) $value))
-                ->will(
-                    self::returnCallback(
-                        function () use ($value, $type): ContentInfo {
-                            if (!is_int($value) || $value <= 0) {
-                                throw new NotFoundException('content', $value);
-                            }
-
-                            return new ContentInfo(['id' => $value, 'contentTypeId' => $type]);
+                ->willReturnCallback(
+                    function () use ($value, $type): ContentInfo {
+                        if (!is_int($value) || $value <= 0) {
+                            throw new NotFoundException('content', $value);
                         }
-                    )
+
+                        return new ContentInfo(['id' => $value, 'contentTypeId' => $type]);
+                    }
                 );
         }
 

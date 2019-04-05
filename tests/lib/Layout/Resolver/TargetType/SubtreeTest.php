@@ -47,14 +47,16 @@ final class SubtreeTest extends TestCase
             ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
+            ->willReturnCallback(
+                function (callable $callback) {
+                    return $callback($this->repositoryMock);
+                }
+            );
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getLocationService')
-            ->will(self::returnValue($this->locationServiceMock));
+            ->willReturn($this->locationServiceMock);
 
         $this->targetType = new Subtree($this->contentExtractorMock);
     }
@@ -76,7 +78,7 @@ final class SubtreeTest extends TestCase
             ->expects(self::once())
             ->method('loadLocation')
             ->with(self::identicalTo(42))
-            ->will(self::returnValue(new Location()));
+            ->willReturn(new Location());
 
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
@@ -95,7 +97,7 @@ final class SubtreeTest extends TestCase
             ->expects(self::once())
             ->method('loadLocation')
             ->with(self::identicalTo(42))
-            ->will(self::throwException(new NotFoundException('location', 42)));
+            ->willThrowException(new NotFoundException('location', 42));
 
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
@@ -123,7 +125,7 @@ final class SubtreeTest extends TestCase
             ->expects(self::any())
             ->method('extractLocation')
             ->with(self::identicalTo($request))
-            ->will(self::returnValue($location));
+            ->willReturn($location);
 
         self::assertSame([1, 2, 42], $this->targetType->provideValue($request));
     }
@@ -140,7 +142,7 @@ final class SubtreeTest extends TestCase
             ->expects(self::any())
             ->method('extractLocation')
             ->with(self::identicalTo($request))
-            ->will(self::returnValue(null));
+            ->willReturn(null);
 
         self::assertNull($this->targetType->provideValue($request));
     }

@@ -214,7 +214,7 @@ final class TagsTypeTest extends TestCase
             ->expects(self::once())
             ->method('loadTag')
             ->with(self::identicalTo(42))
-            ->will(self::returnValue(new Tag(['remoteId' => 'abc'])));
+            ->willReturn(new Tag(['remoteId' => 'abc']));
 
         self::assertSame('abc', $this->type->export($this->getParameterDefinition(), 42));
     }
@@ -228,7 +228,7 @@ final class TagsTypeTest extends TestCase
             ->expects(self::once())
             ->method('loadTag')
             ->with(self::identicalTo(42))
-            ->will(self::throwException(new NotFoundException('tag', 42)));
+            ->willThrowException(new NotFoundException('tag', 42));
 
         self::assertNull($this->type->export($this->getParameterDefinition(), 42));
     }
@@ -242,7 +242,7 @@ final class TagsTypeTest extends TestCase
             ->expects(self::once())
             ->method('loadTagByRemoteId')
             ->with(self::identicalTo('abc'))
-            ->will(self::returnValue(new Tag(['id' => 42])));
+            ->willReturn(new Tag(['id' => 42]));
 
         self::assertSame(42, $this->type->import($this->getParameterDefinition(), 'abc'));
     }
@@ -256,7 +256,7 @@ final class TagsTypeTest extends TestCase
             ->expects(self::once())
             ->method('loadTagByRemoteId')
             ->with(self::identicalTo('abc'))
-            ->will(self::throwException(new NotFoundException('tag', 'abc')));
+            ->willThrowException(new NotFoundException('tag', 'abc'));
 
         self::assertNull($this->type->import($this->getParameterDefinition(), 'abc'));
     }
@@ -278,14 +278,12 @@ final class TagsTypeTest extends TestCase
                         ->expects(self::at($i))
                         ->method('loadTag')
                         ->with(self::identicalTo($value))
-                        ->will(
-                            self::returnCallback(
-                                function () use ($value): void {
-                                    if (!is_int($value) || $value <= 0) {
-                                        throw new NotFoundException('tag', $value);
-                                    }
+                        ->willReturnCallback(
+                            function () use ($value): void {
+                                if (!is_int($value) || $value <= 0) {
+                                    throw new NotFoundException('tag', $value);
                                 }
-                            )
+                            }
                         );
                 }
             }

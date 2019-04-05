@@ -51,7 +51,7 @@ final class ContentValidatorTest extends ValidatorTestCase
             ->expects(self::once())
             ->method('loadContentInfo')
             ->with(self::identicalTo(42))
-            ->will(self::returnValue(new ContentInfo(['id' => 42, 'contentTypeId' => 24])));
+            ->willReturn(new ContentInfo(['id' => 42, 'contentTypeId' => 24]));
 
         self::assertValid(true, 42);
     }
@@ -66,7 +66,7 @@ final class ContentValidatorTest extends ValidatorTestCase
             ->expects(self::once())
             ->method('loadContentInfo')
             ->with(self::identicalTo(42))
-            ->will(self::returnValue(new ContentInfo(['id' => 42, 'contentTypeId' => 52])));
+            ->willReturn(new ContentInfo(['id' => 42, 'contentTypeId' => 52]));
 
         self::assertValid(false, 42);
     }
@@ -81,7 +81,7 @@ final class ContentValidatorTest extends ValidatorTestCase
             ->expects(self::once())
             ->method('loadContentInfo')
             ->with(self::identicalTo(42))
-            ->will(self::throwException(new NotFoundException('content', 42)));
+            ->willThrowException(new NotFoundException('content', 42));
 
         self::assertValid(false, 42);
     }
@@ -133,33 +133,33 @@ final class ContentValidatorTest extends ValidatorTestCase
             ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
+            ->willReturnCallback(
+                function (callable $callback) {
+                    return $callback($this->repositoryMock);
+                }
+            );
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getContentService')
-            ->will(self::returnValue($this->contentServiceMock));
+            ->willReturn($this->contentServiceMock);
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getContentTypeService')
-            ->will(self::returnValue($this->contentTypeServiceMock));
+            ->willReturn($this->contentTypeServiceMock);
 
         $this->contentTypeServiceMock
             ->expects(self::any())
             ->method('loadContentType')
-            ->will(
-                self::returnCallback(
-                    function (int $type): ContentType {
-                        if ($type === 24) {
-                            return new ContentType(['identifier' => 'user']);
-                        }
-
-                        return new ContentType(['identifier' => 'article']);
+            ->willReturnCallback(
+                function (int $type): ContentType {
+                    if ($type === 24) {
+                        return new ContentType(['identifier' => 'user']);
                     }
-                )
+
+                    return new ContentType(['identifier' => 'article']);
+                }
             );
 
         return new ContentValidator($this->repositoryMock);

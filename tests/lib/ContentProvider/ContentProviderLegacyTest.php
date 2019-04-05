@@ -77,13 +77,13 @@ final class ContentProviderLegacyTest extends TestCase
             ->expects(self::once())
             ->method('loadLocation')
             ->with(self::identicalTo(42))
-            ->will(self::returnValue($location));
+            ->willReturn($location);
 
         $this->contentServiceMock
             ->expects(self::once())
             ->method('loadContent')
             ->with(self::identicalTo(24))
-            ->will(self::returnValue($content));
+            ->willReturn($content);
 
         self::assertSame($content, $this->contentProvider->provideContent());
     }
@@ -119,7 +119,7 @@ final class ContentProviderLegacyTest extends TestCase
             ->expects(self::once())
             ->method('loadLocation')
             ->with(self::identicalTo(42))
-            ->will(self::returnValue($location));
+            ->willReturn($location);
 
         self::assertSame($location, $this->contentProvider->provideLocation());
     }

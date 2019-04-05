@@ -79,7 +79,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->expects(self::once())
             ->method('loadVersionInfoById')
             ->with(self::identicalTo(42))
-            ->will(self::throwException(new Exception()));
+            ->willThrowException(new Exception());
 
         self::assertSame('', $this->runtime->getContentName(42));
     }
@@ -114,7 +114,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->expects(self::once())
             ->method('loadLocation')
             ->with(self::identicalTo(22))
-            ->will(self::throwException(new Exception()));
+            ->willThrowException(new Exception());
 
         self::assertSame([], $this->runtime->getLocationPath(22));
     }
@@ -130,21 +130,19 @@ final class EzPublishRuntimeTest extends TestCase
         $this->contentTypeServiceMock
             ->expects(self::any())
             ->method('loadContentTypeByIdentifier')
-            ->will(
-                self::returnCallback(
-                    function (string $identifier): ContentType {
-                        return new ContentType(
-                            [
-                                'identifier' => $identifier,
-                                'names' => [
-                                    'eng-GB' => 'English content type ' . $identifier,
-                                    'cro-HR' => 'Content type ' . $identifier,
-                                ],
-                                'mainLanguageCode' => 'cro-HR',
-                            ]
-                        );
-                    }
-                )
+            ->willReturnCallback(
+                function (string $identifier): ContentType {
+                    return new ContentType(
+                        [
+                            'identifier' => $identifier,
+                            'names' => [
+                                'eng-GB' => 'English content type ' . $identifier,
+                                'cro-HR' => 'Content type ' . $identifier,
+                            ],
+                            'mainLanguageCode' => 'cro-HR',
+                        ]
+                    );
+                }
             );
 
         self::assertSame('Content type some_type', $this->runtime->getContentTypeName('some_type'));
@@ -161,21 +159,19 @@ final class EzPublishRuntimeTest extends TestCase
         $this->contentTypeServiceMock
             ->expects(self::any())
             ->method('loadContentTypeByIdentifier')
-            ->will(
-                self::returnCallback(
-                    function (string $identifier): ContentType {
-                        return new ContentType(
-                            [
-                                'identifier' => $identifier,
-                                'names' => [
-                                    'eng-GB' => 'English content type ' . $identifier,
-                                    'cro-HR' => 'Content type ' . $identifier,
-                                ],
-                                'mainLanguageCode' => 'eng-GB',
-                            ]
-                        );
-                    }
-                )
+            ->willReturnCallback(
+                function (string $identifier): ContentType {
+                    return new ContentType(
+                        [
+                            'identifier' => $identifier,
+                            'names' => [
+                                'eng-GB' => 'English content type ' . $identifier,
+                                'cro-HR' => 'Content type ' . $identifier,
+                            ],
+                            'mainLanguageCode' => 'eng-GB',
+                        ]
+                    );
+                }
             );
 
         self::assertSame('English content type some_type', $this->runtime->getContentTypeName('some_type'));
@@ -191,7 +187,7 @@ final class EzPublishRuntimeTest extends TestCase
             ->expects(self::once())
             ->method('loadContentTypeByIdentifier')
             ->with(self::identicalTo('some_type'))
-            ->will(self::throwException(new Exception()));
+            ->willThrowException(new Exception());
 
         self::assertSame('', $this->runtime->getContentTypeName('some_type'));
     }
@@ -216,28 +212,26 @@ final class EzPublishRuntimeTest extends TestCase
             ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
-            ->will(
-                self::returnCallback(
-                    function (callable $callback) {
-                        return $callback($this->repositoryMock);
-                    }
-                )
+            ->willReturnCallback(
+                function (callable $callback) {
+                    return $callback($this->repositoryMock);
+                }
             );
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getLocationService')
-            ->will(self::returnValue($this->locationServiceMock));
+            ->willReturn($this->locationServiceMock);
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getContentService')
-            ->will(self::returnValue($this->contentServiceMock));
+            ->willReturn($this->contentServiceMock);
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getContentTypeService')
-            ->will(self::returnValue($this->contentTypeServiceMock));
+            ->willReturn($this->contentTypeServiceMock);
     }
 
     private function mockServices(): void
@@ -245,37 +239,33 @@ final class EzPublishRuntimeTest extends TestCase
         $this->locationServiceMock
             ->expects(self::any())
             ->method('loadLocation')
-            ->will(
-                self::returnCallback(
-                    function ($locationId): Location {
-                        return new Location(
-                            [
-                                'path' => [1, 2, 42, 84],
-                                'contentInfo' => new ContentInfo(
-                                    [
-                                        'id' => $locationId + 100,
-                                    ]
-                                ),
-                            ]
-                        );
-                    }
-                )
+            ->willReturnCallback(
+                function ($locationId): Location {
+                    return new Location(
+                        [
+                            'path' => [1, 2, 42, 84],
+                            'contentInfo' => new ContentInfo(
+                                [
+                                    'id' => $locationId + 100,
+                                ]
+                            ),
+                        ]
+                    );
+                }
             );
 
         $this->contentServiceMock
             ->expects(self::any())
             ->method('loadVersionInfoById')
-            ->will(
-                self::returnCallback(
-                    function ($contentId): VersionInfo {
-                        return new VersionInfo(
-                            [
-                                'prioritizedNameLanguageCode' => 'eng-GB',
-                                'names' => ['eng-GB' => 'Content name ' . $contentId],
-                            ]
-                        );
-                    }
-                )
+            ->willReturnCallback(
+                function ($contentId): VersionInfo {
+                    return new VersionInfo(
+                        [
+                            'prioritizedNameLanguageCode' => 'eng-GB',
+                            'names' => ['eng-GB' => 'Content name ' . $contentId],
+                        ]
+                    );
+                }
             );
     }
 }

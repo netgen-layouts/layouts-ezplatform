@@ -51,7 +51,7 @@ final class LocationValueLoaderTest extends TestCase
             ->expects(self::any())
             ->method('loadLocation')
             ->with(self::identicalTo(52))
-            ->will(self::returnValue($location));
+            ->willReturn($location);
 
         self::assertSame($location, $this->valueLoader->load(52));
     }
@@ -65,7 +65,7 @@ final class LocationValueLoaderTest extends TestCase
             ->expects(self::any())
             ->method('loadLocation')
             ->with(self::identicalTo(52))
-            ->will(self::throwException(new Exception()));
+            ->willThrowException(new Exception());
 
         self::assertNull($this->valueLoader->load(52));
     }
@@ -79,17 +79,15 @@ final class LocationValueLoaderTest extends TestCase
             ->expects(self::any())
             ->method('loadLocation')
             ->with(self::identicalTo(52))
-            ->will(
-                self::returnValue(
-                    new Location(
-                        [
-                            'contentInfo' => new ContentInfo(
-                                [
-                                    'published' => false,
-                                ]
-                            ),
-                        ]
-                    )
+            ->willReturn(
+                new Location(
+                    [
+                        'contentInfo' => new ContentInfo(
+                            [
+                                'published' => false,
+                            ]
+                        ),
+                    ]
                 )
             );
 
@@ -116,7 +114,7 @@ final class LocationValueLoaderTest extends TestCase
             ->expects(self::any())
             ->method('loadLocationByRemoteId')
             ->with(self::identicalTo('abc'))
-            ->will(self::returnValue($location));
+            ->willReturn($location);
 
         self::assertSame($location, $this->valueLoader->loadByRemoteId('abc'));
     }
@@ -130,7 +128,7 @@ final class LocationValueLoaderTest extends TestCase
             ->expects(self::any())
             ->method('loadLocationByRemoteId')
             ->with(self::identicalTo('abc'))
-            ->will(self::throwException(new Exception()));
+            ->willThrowException(new Exception());
 
         self::assertNull($this->valueLoader->loadByRemoteId('abc'));
     }
@@ -144,17 +142,15 @@ final class LocationValueLoaderTest extends TestCase
             ->expects(self::any())
             ->method('loadLocationByRemoteId')
             ->with(self::identicalTo('abc'))
-            ->will(
-                self::returnValue(
-                    new Location(
-                        [
-                            'contentInfo' => new ContentInfo(
-                                [
-                                    'published' => false,
-                                ]
-                            ),
-                        ]
-                    )
+            ->willReturn(
+                new Location(
+                    [
+                        'contentInfo' => new ContentInfo(
+                            [
+                                'published' => false,
+                            ]
+                        ),
+                    ]
                 )
             );
 

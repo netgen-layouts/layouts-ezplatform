@@ -54,37 +54,37 @@ final class LocationTypeLegacyTest extends TestCase
             ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
+            ->willReturnCallback(
+                function (callable $callback) {
+                    return $callback($this->repositoryMock);
+                }
+            );
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getLocationService')
-            ->will(self::returnValue($this->locationServiceMock));
+            ->willReturn($this->locationServiceMock);
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getContentTypeService')
-            ->will(self::returnValue($this->contentTypeServiceMock));
+            ->willReturn($this->contentTypeServiceMock);
 
         $this->contentTypeServiceMock
             ->expects(self::any())
             ->method('loadContentType')
-            ->will(
-                self::returnCallback(
-                    function (int $type): EzContentType {
-                        if ($type === 24) {
-                            return new EzContentType(['identifier' => 'user']);
-                        }
-
-                        if ($type === 42) {
-                            return new EzContentType(['identifier' => 'image']);
-                        }
-
-                        return new EzContentType(['identifier' => 'article']);
+            ->willReturnCallback(
+                function (int $type): EzContentType {
+                    if ($type === 24) {
+                        return new EzContentType(['identifier' => 'user']);
                     }
-                )
+
+                    if ($type === 42) {
+                        return new EzContentType(['identifier' => 'image']);
+                    }
+
+                    return new EzContentType(['identifier' => 'article']);
+                }
             );
 
         $this->type = new LocationType($this->repositoryMock);
@@ -213,7 +213,7 @@ final class LocationTypeLegacyTest extends TestCase
             ->expects(self::once())
             ->method('loadLocation')
             ->with(self::identicalTo(42))
-            ->will(self::returnValue(new Location(['remoteId' => 'abc'])));
+            ->willReturn(new Location(['remoteId' => 'abc']));
 
         self::assertSame('abc', $this->type->export($this->getParameterDefinition(), 42));
     }
@@ -227,7 +227,7 @@ final class LocationTypeLegacyTest extends TestCase
             ->expects(self::once())
             ->method('loadLocation')
             ->with(self::identicalTo(42))
-            ->will(self::throwException(new NotFoundException('location', 42)));
+            ->willThrowException(new NotFoundException('location', 42));
 
         self::assertNull($this->type->export($this->getParameterDefinition(), 42));
     }
@@ -241,7 +241,7 @@ final class LocationTypeLegacyTest extends TestCase
             ->expects(self::once())
             ->method('loadLocationByRemoteId')
             ->with(self::identicalTo('abc'))
-            ->will(self::returnValue(new Location(['id' => 42])));
+            ->willReturn(new Location(['id' => 42]));
 
         self::assertSame(42, $this->type->import($this->getParameterDefinition(), 'abc'));
     }
@@ -255,7 +255,7 @@ final class LocationTypeLegacyTest extends TestCase
             ->expects(self::once())
             ->method('loadLocationByRemoteId')
             ->with(self::identicalTo('abc'))
-            ->will(self::throwException(new NotFoundException('location', 'abc')));
+            ->willThrowException(new NotFoundException('location', 'abc'));
 
         self::assertNull($this->type->import($this->getParameterDefinition(), 'abc'));
     }
@@ -276,21 +276,19 @@ final class LocationTypeLegacyTest extends TestCase
                 ->expects(self::once())
                 ->method('loadLocation')
                 ->with(self::identicalTo($value))
-                ->will(
-                    self::returnCallback(
-                        function () use ($value, $type): Location {
-                            if (!is_int($value) || $value <= 0) {
-                                throw new NotFoundException('location', $value);
-                            }
-
-                            return new Location(
-                                [
-                                    'id' => $value,
-                                    'contentInfo' => new ContentInfo(['contentTypeId' => $type]),
-                                ]
-                            );
+                ->willReturnCallback(
+                    function () use ($value, $type): Location {
+                        if (!is_int($value) || $value <= 0) {
+                            throw new NotFoundException('location', $value);
                         }
-                    )
+
+                        return new Location(
+                            [
+                                'id' => $value,
+                                'contentInfo' => new ContentInfo(['contentTypeId' => $type]),
+                            ]
+                        );
+                    }
                 );
         }
 

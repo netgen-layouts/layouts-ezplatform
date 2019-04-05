@@ -49,14 +49,16 @@ final class ContentTest extends TestCase
             ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
+            ->willReturnCallback(
+                function (callable $callback) {
+                    return $callback($this->repositoryMock);
+                }
+            );
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getContentService')
-            ->will(self::returnValue($this->contentServiceMock));
+            ->willReturn($this->contentServiceMock);
 
         $this->targetType = new Content($this->contentExtractorMock);
     }
@@ -79,7 +81,7 @@ final class ContentTest extends TestCase
             ->expects(self::once())
             ->method('loadContentInfo')
             ->with(self::identicalTo(42))
-            ->will(self::returnValue(new ContentInfo()));
+            ->willReturn(new ContentInfo());
 
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
@@ -98,7 +100,7 @@ final class ContentTest extends TestCase
             ->expects(self::once())
             ->method('loadContentInfo')
             ->with(self::identicalTo(42))
-            ->will(self::throwException(new NotFoundException('content', 42)));
+            ->willThrowException(new NotFoundException('content', 42));
 
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
@@ -133,7 +135,7 @@ final class ContentTest extends TestCase
             ->expects(self::any())
             ->method('extractContent')
             ->with(self::identicalTo($request))
-            ->will(self::returnValue($content));
+            ->willReturn($content);
 
         self::assertSame(42, $this->targetType->provideValue($request));
     }
@@ -149,7 +151,7 @@ final class ContentTest extends TestCase
             ->expects(self::any())
             ->method('extractContent')
             ->with(self::identicalTo($request))
-            ->will(self::returnValue(null));
+            ->willReturn(null);
 
         self::assertNull($this->targetType->provideValue($request));
     }

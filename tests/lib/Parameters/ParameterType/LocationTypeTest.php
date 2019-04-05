@@ -46,14 +46,16 @@ final class LocationTypeTest extends TestCase
             ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
+            ->willReturnCallback(
+                function (callable $callback) {
+                    return $callback($this->repositoryMock);
+                }
+            );
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getLocationService')
-            ->will(self::returnValue($this->locationServiceMock));
+            ->willReturn($this->locationServiceMock);
 
         $this->type = new LocationType($this->repositoryMock);
     }
@@ -181,7 +183,7 @@ final class LocationTypeTest extends TestCase
             ->expects(self::once())
             ->method('loadLocation')
             ->with(self::identicalTo(42))
-            ->will(self::returnValue(new Location(['remoteId' => 'abc'])));
+            ->willReturn(new Location(['remoteId' => 'abc']));
 
         self::assertSame('abc', $this->type->export($this->getParameterDefinition(), 42));
     }
@@ -195,7 +197,7 @@ final class LocationTypeTest extends TestCase
             ->expects(self::once())
             ->method('loadLocation')
             ->with(self::identicalTo(42))
-            ->will(self::throwException(new NotFoundException('location', 42)));
+            ->willThrowException(new NotFoundException('location', 42));
 
         self::assertNull($this->type->export($this->getParameterDefinition(), 42));
     }
@@ -209,7 +211,7 @@ final class LocationTypeTest extends TestCase
             ->expects(self::once())
             ->method('loadLocationByRemoteId')
             ->with(self::identicalTo('abc'))
-            ->will(self::returnValue(new Location(['id' => 42])));
+            ->willReturn(new Location(['id' => 42]));
 
         self::assertSame(42, $this->type->import($this->getParameterDefinition(), 'abc'));
     }
@@ -223,7 +225,7 @@ final class LocationTypeTest extends TestCase
             ->expects(self::once())
             ->method('loadLocationByRemoteId')
             ->with(self::identicalTo('abc'))
-            ->will(self::throwException(new NotFoundException('location', 'abc')));
+            ->willThrowException(new NotFoundException('location', 'abc'));
 
         self::assertNull($this->type->import($this->getParameterDefinition(), 'abc'));
     }
@@ -244,32 +246,30 @@ final class LocationTypeTest extends TestCase
                 ->expects(self::once())
                 ->method('loadLocation')
                 ->with(self::identicalTo($value))
-                ->will(
-                    self::returnCallback(
-                        function () use ($value, $type): Location {
-                            if (!is_int($value) || $value <= 0) {
-                                throw new NotFoundException('location', $value);
-                            }
-
-                            $contentTypeIdentifier = 'article';
-                            if ($type === 24) {
-                                $contentTypeIdentifier = 'user';
-                            } elseif ($type === 42) {
-                                $contentTypeIdentifier = 'image';
-                            }
-
-                            return new Location(
-                                [
-                                    'id' => $value,
-                                    'content' => new Content(
-                                        [
-                                            'contentType' => new ContentType(['identifier' => $contentTypeIdentifier]),
-                                        ]
-                                    ),
-                                ]
-                            );
+                ->willReturnCallback(
+                    function () use ($value, $type): Location {
+                        if (!is_int($value) || $value <= 0) {
+                            throw new NotFoundException('location', $value);
                         }
-                    )
+
+                        $contentTypeIdentifier = 'article';
+                        if ($type === 24) {
+                            $contentTypeIdentifier = 'user';
+                        } elseif ($type === 42) {
+                            $contentTypeIdentifier = 'image';
+                        }
+
+                        return new Location(
+                            [
+                                'id' => $value,
+                                'content' => new Content(
+                                    [
+                                        'contentType' => new ContentType(['identifier' => $contentTypeIdentifier]),
+                                    ]
+                                ),
+                            ]
+                        );
+                    }
                 );
         }
 

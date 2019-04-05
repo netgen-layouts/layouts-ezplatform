@@ -42,7 +42,7 @@ final class ContentValueUrlGeneratorTest extends TestCase
                 self::identicalTo(UrlAliasRouter::URL_ALIAS_ROUTE_NAME),
                 self::identicalTo(['contentId' => 42])
             )
-            ->will(self::returnValue('/content/path'));
+            ->willReturn('/content/path');
 
         self::assertSame('/content/path', $this->urlGenerator->generate(new ContentInfo(['id' => 42])));
     }

@@ -55,27 +55,25 @@ final class LocaleProviderTest extends TestCase
         $this->languageServiceMock
             ->expects(self::any())
             ->method('loadLanguages')
-            ->will(
-                self::returnValue(
-                    [
-                        new Language(['languageCode' => 'eng-GB', 'enabled' => true]),
-                        new Language(['languageCode' => 'ger-DE', 'enabled' => false]),
-                        new Language(['languageCode' => 'cro-HR', 'enabled' => true]),
-                    ]
-                )
+            ->willReturn(
+                [
+                    new Language(['languageCode' => 'eng-GB', 'enabled' => true]),
+                    new Language(['languageCode' => 'ger-DE', 'enabled' => false]),
+                    new Language(['languageCode' => 'cro-HR', 'enabled' => true]),
+                ]
             );
 
         $this->localeConverterMock
             ->expects(self::at(0))
             ->method('convertToPOSIX')
             ->with(self::identicalTo('eng-GB'))
-            ->will(self::returnValue('en'));
+            ->willReturn('en');
 
         $this->localeConverterMock
             ->expects(self::at(1))
             ->method('convertToPOSIX')
             ->with(self::identicalTo('cro-HR'))
-            ->will(self::returnValue('hr'));
+            ->willReturn('hr');
 
         $availableLocales = $this->localeProvider->getAvailableLocales();
 
@@ -93,19 +91,17 @@ final class LocaleProviderTest extends TestCase
         $this->languageServiceMock
             ->expects(self::any())
             ->method('loadLanguages')
-            ->will(
-                self::returnValue(
-                    [
-                        new Language(['languageCode' => 'unknown', 'enabled' => true]),
-                    ]
-                )
+            ->willReturn(
+                [
+                    new Language(['languageCode' => 'unknown', 'enabled' => true]),
+                ]
             );
 
         $this->localeConverterMock
             ->expects(self::at(0))
             ->method('convertToPOSIX')
             ->with(self::identicalTo('unknown'))
-            ->will(self::returnValue(null));
+            ->willReturn(null);
 
         $availableLocales = $this->localeProvider->getAvailableLocales();
 
@@ -125,27 +121,25 @@ final class LocaleProviderTest extends TestCase
             ->expects(self::once())
             ->method('loadLanguageListByCode')
             ->with(self::identicalTo(['eng-GB', 'ger-DE', 'unknown', 'cro-HR']))
-            ->will(
-                self::returnValue(
-                    [
-                        new Language(['languageCode' => 'eng-GB', 'enabled' => true]),
-                        new Language(['languageCode' => 'ger-DE', 'enabled' => false]),
-                        new Language(['languageCode' => 'cro-HR', 'enabled' => true]),
-                    ]
-                )
+            ->willReturn(
+                [
+                    new Language(['languageCode' => 'eng-GB', 'enabled' => true]),
+                    new Language(['languageCode' => 'ger-DE', 'enabled' => false]),
+                    new Language(['languageCode' => 'cro-HR', 'enabled' => true]),
+                ]
             );
 
         $this->localeConverterMock
             ->expects(self::at(0))
             ->method('convertToPOSIX')
             ->with(self::identicalTo('eng-GB'))
-            ->will(self::returnValue('en'));
+            ->willReturn('en');
 
         $this->localeConverterMock
             ->expects(self::at(1))
             ->method('convertToPOSIX')
             ->with(self::identicalTo('cro-HR'))
-            ->will(self::returnValue('hr'));
+            ->willReturn('hr');
 
         $requestLocales = $this->localeProvider->getRequestLocales(Request::create(''));
 
@@ -165,19 +159,17 @@ final class LocaleProviderTest extends TestCase
             ->expects(self::once())
             ->method('loadLanguageListByCode')
             ->with(self::identicalTo(['eng-GB']))
-            ->will(
-                self::returnValue(
-                    [
-                        new Language(['languageCode' => 'eng-GB', 'enabled' => true]),
-                    ]
-                )
+            ->willReturn(
+                [
+                    new Language(['languageCode' => 'eng-GB', 'enabled' => true]),
+                ]
             );
 
         $this->localeConverterMock
             ->expects(self::at(0))
             ->method('convertToPOSIX')
             ->with(self::identicalTo('eng-GB'))
-            ->will(self::returnValue(null));
+            ->willReturn(null);
 
         $requestLocales = $this->localeProvider->getRequestLocales(Request::create(''));
 
@@ -197,19 +189,17 @@ final class LocaleProviderTest extends TestCase
             ->expects(self::once())
             ->method('loadLanguageListByCode')
             ->with(self::identicalTo(['eng-GB']))
-            ->will(
-                self::returnValue(
-                    [
-                        new Language(['languageCode' => 'eng-GB', 'enabled' => true]),
-                    ]
-                )
+            ->willReturn(
+                [
+                    new Language(['languageCode' => 'eng-GB', 'enabled' => true]),
+                ]
             );
 
         $this->localeConverterMock
             ->expects(self::at(0))
             ->method('convertToPOSIX')
             ->with(self::identicalTo('eng-GB'))
-            ->will(self::returnValue('unknown'));
+            ->willReturn('unknown');
 
         $requestLocales = $this->localeProvider->getRequestLocales(Request::create(''));
 

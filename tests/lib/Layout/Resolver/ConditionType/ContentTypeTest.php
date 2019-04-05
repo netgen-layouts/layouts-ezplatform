@@ -53,14 +53,16 @@ final class ContentTypeTest extends TestCase
             ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
+            ->willReturnCallback(
+                function (callable $callback) {
+                    return $callback($this->repositoryMock);
+                }
+            );
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getContentTypeService')
-            ->will(self::returnValue($this->contentTypeServiceMock));
+            ->willReturn($this->contentTypeServiceMock);
 
         $this->conditionType = new ContentType(
             $this->contentExtractorMock,
@@ -86,7 +88,7 @@ final class ContentTypeTest extends TestCase
             ->expects(self::once())
             ->method('loadContentTypeByIdentifier')
             ->with(self::identicalTo('identifier'))
-            ->will(self::returnValue(new EzContentType()));
+            ->willReturn(new EzContentType());
 
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
@@ -105,7 +107,7 @@ final class ContentTypeTest extends TestCase
             ->expects(self::once())
             ->method('loadContentTypeByIdentifier')
             ->with(self::identicalTo('unknown'))
-            ->will(self::throwException(new NotFoundException('content type', 'unknown')));
+            ->willThrowException(new NotFoundException('content type', 'unknown'));
 
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
@@ -141,7 +143,7 @@ final class ContentTypeTest extends TestCase
             ->expects(self::any())
             ->method('extractContent')
             ->with(self::identicalTo($request))
-            ->will(self::returnValue($content));
+            ->willReturn($content);
 
         self::assertSame($matches, $this->conditionType->matches($request, $value));
     }
@@ -157,7 +159,7 @@ final class ContentTypeTest extends TestCase
             ->expects(self::any())
             ->method('extractContent')
             ->with(self::identicalTo($request))
-            ->will(self::returnValue(null));
+            ->willReturn(null);
 
         self::assertFalse($this->conditionType->matches($request, ['article']));
     }

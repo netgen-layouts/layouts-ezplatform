@@ -38,26 +38,22 @@ final class ContentValueConverterTest extends TestCase
             ->expects(self::any())
             ->method('loadLocation')
             ->with(self::isType('int'))
-            ->will(
-                self::returnCallback(
-                    function ($id): Location {
-                        return new Location(['id' => $id, 'invisible' => false]);
-                    }
-                )
+            ->willReturnCallback(
+                function ($id): Location {
+                    return new Location(['id' => $id, 'invisible' => false]);
+                }
             );
 
         $this->contentServiceMock
             ->expects(self::any())
             ->method('loadVersionInfo')
             ->with(self::isInstanceOf(ContentInfo::class))
-            ->will(
-                self::returnValue(
-                    new VersionInfo(
-                        [
-                            'prioritizedNameLanguageCode' => 'eng-GB',
-                            'names' => ['eng-GB' => 'Cool name'],
-                        ]
-                    )
+            ->willReturn(
+                new VersionInfo(
+                    [
+                        'prioritizedNameLanguageCode' => 'eng-GB',
+                        'names' => ['eng-GB' => 'Cool name'],
+                    ]
                 )
             );
 

@@ -39,14 +39,16 @@ final class ContentTypeTypeTest extends TestCase
             ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
+            ->willReturnCallback(
+                function (callable $callback) {
+                    return $callback($this->repositoryMock);
+                }
+            );
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getContentTypeService')
-            ->will(self::returnValue($this->contentTypeServiceMock));
+            ->willReturn($this->contentTypeServiceMock);
 
         $this->type = new ContentTypeType();
     }
@@ -167,20 +169,18 @@ final class ContentTypeTypeTest extends TestCase
                     ->expects(self::at($index))
                     ->method('loadContentTypeByIdentifier')
                     ->with(self::identicalTo($identifier))
-                    ->will(
-                        self::returnCallback(
-                            function () use ($identifier): EzContentType {
-                                if (!is_string($identifier) || !in_array($identifier, ['article', 'news'], true)) {
-                                    throw new NotFoundException('content type', $identifier);
-                                }
-
-                                return new EzContentType(
-                                    [
-                                        'identifier' => $identifier,
-                                    ]
-                                );
+                    ->willReturnCallback(
+                        function () use ($identifier): EzContentType {
+                            if (!is_string($identifier) || !in_array($identifier, ['article', 'news'], true)) {
+                                throw new NotFoundException('content type', $identifier);
                             }
-                        )
+
+                            return new EzContentType(
+                                [
+                                    'identifier' => $identifier,
+                                ]
+                            );
+                        }
                     );
             }
         }

@@ -45,13 +45,11 @@ final class SectionValidatorTest extends ValidatorTestCase
             ->expects(self::once())
             ->method('loadSectionByIdentifier')
             ->with(self::identicalTo($identifier))
-            ->will(
-                self::returnValue(
-                    new EzSection(
-                        [
-                            'identifier' => $identifier,
-                        ]
-                    )
+            ->willReturn(
+                new EzSection(
+                    [
+                        'identifier' => $identifier,
+                    ]
                 )
             );
 
@@ -82,11 +80,7 @@ final class SectionValidatorTest extends ValidatorTestCase
             ->expects(self::once())
             ->method('loadSectionByIdentifier')
             ->with(self::identicalTo('unknown'))
-            ->will(
-                self::throwException(
-                    new NotFoundException('section', 'unknown')
-                )
-            );
+            ->willThrowException(new NotFoundException('section', 'unknown'));
 
         self::assertValid(false, 'unknown');
     }
@@ -145,14 +139,16 @@ final class SectionValidatorTest extends ValidatorTestCase
             ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
+            ->willReturnCallback(
+                function (callable $callback) {
+                    return $callback($this->repositoryMock);
+                }
+            );
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getSectionService')
-            ->will(self::returnValue($this->sectionServiceMock));
+            ->willReturn($this->sectionServiceMock);
 
         return new SectionValidator($this->repositoryMock);
     }

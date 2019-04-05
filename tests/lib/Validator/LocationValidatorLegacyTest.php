@@ -57,14 +57,12 @@ final class LocationValidatorLegacyTest extends ValidatorTestCase
             ->expects(self::once())
             ->method('loadLocation')
             ->with(self::identicalTo(42))
-            ->will(
-                self::returnValue(
-                    new EzLocation(
-                        [
-                            'id' => 42,
-                            'contentInfo' => new ContentInfo(['contentTypeId' => 24]),
-                        ]
-                    )
+            ->willReturn(
+                new EzLocation(
+                    [
+                        'id' => 42,
+                        'contentInfo' => new ContentInfo(['contentTypeId' => 24]),
+                    ]
                 )
             );
 
@@ -81,14 +79,12 @@ final class LocationValidatorLegacyTest extends ValidatorTestCase
             ->expects(self::once())
             ->method('loadLocation')
             ->with(self::identicalTo(42))
-            ->will(
-                self::returnValue(
-                    new EzLocation(
-                        [
-                            'id' => 42,
-                            'contentInfo' => new ContentInfo(['contentTypeId' => 52]),
-                        ]
-                    )
+            ->willReturn(
+                new EzLocation(
+                    [
+                        'id' => 42,
+                        'contentInfo' => new ContentInfo(['contentTypeId' => 52]),
+                    ]
                 )
             );
 
@@ -105,7 +101,7 @@ final class LocationValidatorLegacyTest extends ValidatorTestCase
             ->expects(self::once())
             ->method('loadLocation')
             ->with(self::identicalTo(42))
-            ->will(self::throwException(new NotFoundException('location', 42)));
+            ->willThrowException(new NotFoundException('location', 42));
 
         self::assertValid(false, 42);
     }
@@ -157,33 +153,32 @@ final class LocationValidatorLegacyTest extends ValidatorTestCase
             ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
-            ->will(self::returnCallback(function (callable $callback) {
-                return $callback($this->repositoryMock);
-            }));
-
+            ->willReturnCallback(
+                function (callable $callback) {
+                    return $callback($this->repositoryMock);
+                }
+            );
         $this->repositoryMock
             ->expects(self::any())
             ->method('getLocationService')
-            ->will(self::returnValue($this->locationServiceMock));
+            ->willReturn($this->locationServiceMock);
 
         $this->repositoryMock
             ->expects(self::any())
             ->method('getContentTypeService')
-            ->will(self::returnValue($this->contentTypeServiceMock));
+            ->willReturn($this->contentTypeServiceMock);
 
         $this->contentTypeServiceMock
             ->expects(self::any())
             ->method('loadContentType')
-            ->will(
-                self::returnCallback(
-                    function (int $type): ContentType {
-                        if ($type === 24) {
-                            return new ContentType(['identifier' => 'user']);
-                        }
-
-                        return new ContentType(['identifier' => 'article']);
+            ->willReturnCallback(
+                function (int $type): ContentType {
+                    if ($type === 24) {
+                        return new ContentType(['identifier' => 'user']);
                     }
-                )
+
+                    return new ContentType(['identifier' => 'article']);
+                }
             );
 
         return new LocationValidator($this->repositoryMock);

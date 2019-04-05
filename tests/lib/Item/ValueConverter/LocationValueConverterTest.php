@@ -31,14 +31,12 @@ final class LocationValueConverterTest extends TestCase
             ->expects(self::any())
             ->method('loadVersionInfo')
             ->with(self::isInstanceOf(ContentInfo::class))
-            ->will(
-                self::returnValue(
-                    new VersionInfo(
-                        [
-                            'prioritizedNameLanguageCode' => 'eng-GB',
-                            'names' => ['eng-GB' => 'Cool name'],
-                        ]
-                    )
+            ->willReturn(
+                new VersionInfo(
+                    [
+                        'prioritizedNameLanguageCode' => 'eng-GB',
+                        'names' => ['eng-GB' => 'Cool name'],
+                    ]
                 )
             );
 

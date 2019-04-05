@@ -66,7 +66,7 @@ final class ContentProviderTest extends TestCase
             ->expects(self::once())
             ->method('loadLocation')
             ->with(self::identicalTo(42))
-            ->will(self::returnValue($location));
+            ->willReturn($location);
 
         self::assertSame($content, $this->contentProvider->provideContent());
     }
@@ -98,7 +98,7 @@ final class ContentProviderTest extends TestCase
             ->expects(self::once())
             ->method('loadLocation')
             ->with(self::identicalTo(42))
-            ->will(self::returnValue($location));
+            ->willReturn($location);
 
         self::assertSame($location, $this->contentProvider->provideLocation());
     }

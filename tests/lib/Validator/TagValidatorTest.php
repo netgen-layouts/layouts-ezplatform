@@ -38,7 +38,7 @@ final class TagValidatorTest extends ValidatorTestCase
             ->expects(self::once())
             ->method('loadTag')
             ->with(self::identicalTo(42))
-            ->will(self::returnValue(new APITag(['id' => 42])));
+            ->willReturn(new APITag(['id' => 42]));
 
         self::assertValid(true, 42);
     }
@@ -66,7 +66,7 @@ final class TagValidatorTest extends ValidatorTestCase
             ->expects(self::once())
             ->method('loadTag')
             ->with(self::identicalTo(42))
-            ->will(self::throwException(new NotFoundException('tag', 42)));
+            ->willThrowException(new NotFoundException('tag', 42));
 
         self::assertValid(false, 42);
     }
