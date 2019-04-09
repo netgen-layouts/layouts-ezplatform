@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Config\Loader\DelegatingLoader;
+use Symfony\Component\Config\Loader\LoaderResolver;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Symfony\Component\DependencyInjection\Loader\GlobFileLoader;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Yaml\Yaml;
@@ -16,27 +19,19 @@ final class NetgenEzPublishBlockManagerExtension extends Extension implements Pr
 {
     public function load(array $configs, ContainerBuilder $container): void
     {
-        $loader = new YamlFileLoader(
-            $container,
-            new FileLocator(__DIR__ . '/../Resources/config')
+        $locator = new FileLocator(__DIR__ . '/../Resources/config');
+
+        $loader = new DelegatingLoader(
+            new LoaderResolver(
+                [
+                    new GlobFileLoader($container, $locator),
+                    new YamlFileLoader($container, $locator),
+                ]
+            )
         );
 
         $loader->load('default_settings.yml');
-        $loader->load('services/configuration.yml');
-        $loader->load('services/block_definitions.yml');
-        $loader->load('services/validators.yml');
-        $loader->load('services/parameters.yml');
-        $loader->load('services/templating.yml');
-        $loader->load('services/items.yml');
-        $loader->load('services/forms.yml');
-        $loader->load('services/services.yml');
-        $loader->load('services/locale.yml');
-        $loader->load('services/context.yml');
-        $loader->load('services/layout_resolver/condition_types.yml');
-        $loader->load('services/layout_resolver/target_types.yml');
-        $loader->load('services/layout_resolver/target_handlers.yml');
-        $loader->load('services/layout_resolver/forms.yml');
-        $loader->load('services/collection/query_types.yml');
+        $loader->load('services/**/*.yml', 'glob');
 
         $activatedBundles = array_keys($container->getParameter('kernel.bundles'));
 
