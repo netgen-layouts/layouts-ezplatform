@@ -2,7 +2,7 @@ services:
     netgen_block_manager.parameters.parameter_type.eztags:
         class: Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType
         arguments:
-            - "@ezpublish.api.service.tags"
+            - "@eztags.api.service.tags"
         tags:
             - { name: netgen_block_manager.parameters.parameter_type }
 
@@ -14,6 +14,6 @@ services:
     netgen_block_manager.validator.eztags:
         class: Netgen\BlockManager\Ez\Validator\TagValidator
         arguments:
-            - "@ezpublish.api.service.tags"
+            - "@eztags.api.service.tags"
         tags:
             - { name: validator.constraint_validator, alias: ngbm_eztags }
