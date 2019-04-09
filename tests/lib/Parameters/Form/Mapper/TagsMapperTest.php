@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ez\Tests\Parameters\Form\Mapper;
 
-use Netgen\Layouts\Ez\Parameters\Form\Mapper\TagsMapper;
-use Netgen\Layouts\Ez\Parameters\ParameterType\TagsType as ParameterType;
 use Netgen\BlockManager\Parameters\ParameterDefinition;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserMultipleType;
+use Netgen\Layouts\Ez\Parameters\Form\Mapper\TagsMapper;
+use Netgen\Layouts\Ez\Parameters\ParameterType\TagsType as ParameterType;
 use Netgen\TagsBundle\API\Repository\TagsService;
 use PHPUnit\Framework\TestCase;
 

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ez\Tests\Parameters\ParameterType;
 
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
+use Netgen\BlockManager\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use Netgen\Layouts\Ez\Parameters\ParameterType\TagsType;
 use Netgen\Layouts\Ez\Tests\Validator\TagsServiceValidatorFactory;
-use Netgen\BlockManager\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use Netgen\TagsBundle\API\Repository\Values\Tags\Tag;
 use Netgen\TagsBundle\Core\Repository\TagsService;
 use PHPUnit\Framework\TestCase;

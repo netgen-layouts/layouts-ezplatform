@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ez\Tests\Block\BlockDefinition\Integration;
 
 use Netgen\BlockManager\Block\BlockDefinition\BlockDefinitionHandlerInterface;
+use Netgen\BlockManager\Tests\Block\BlockDefinition\Integration\BlockTest;
 use Netgen\Layouts\Ez\Block\BlockDefinition\Handler\ContentFieldHandler;
 use Netgen\Layouts\Ez\ContentProvider\ContentProviderInterface;
-use Netgen\BlockManager\Tests\Block\BlockDefinition\Integration\BlockTest;
 
 abstract class ContentFieldTest extends BlockTest
 {

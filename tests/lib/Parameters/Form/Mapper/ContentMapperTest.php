@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ez\Tests\Parameters\Form\Mapper;
 
 use eZ\Publish\API\Repository\Repository;
-use Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentMapper;
-use Netgen\Layouts\Ez\Parameters\ParameterType\ContentType as ParameterType;
 use Netgen\BlockManager\Parameters\ParameterDefinition;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
+use Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentMapper;
+use Netgen\Layouts\Ez\Parameters\ParameterType\ContentType as ParameterType;
 use PHPUnit\Framework\TestCase;
 
 final class ContentMapperTest extends TestCase

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ez\Tests\Parameters\Form\Mapper;
 
+use Netgen\BlockManager\Parameters\ParameterDefinition;
 use Netgen\Layouts\Ez\Form\SectionType;
 use Netgen\Layouts\Ez\Parameters\Form\Mapper\SectionMapper;
 use Netgen\Layouts\Ez\Parameters\ParameterType\SectionType as ParameterType;
-use Netgen\BlockManager\Parameters\ParameterDefinition;
 use PHPUnit\Framework\TestCase;
 
 final class SectionMapperTest extends TestCase

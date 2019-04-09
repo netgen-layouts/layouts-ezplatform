@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ez\Layout\Resolver\TargetType;
 
 use eZ\Publish\API\Repository\Values\Content\Content as APIContent;
+use Netgen\BlockManager\Layout\Resolver\TargetTypeInterface;
 use Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface;
 use Netgen\Layouts\Ez\Validator\Constraint as EzConstraints;
-use Netgen\BlockManager\Layout\Resolver\TargetTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
 

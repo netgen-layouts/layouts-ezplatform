@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ez\Tests\Block\BlockDefinition\Integration\Doctrine;
 
-use Netgen\Layouts\Ez\Tests\Block\BlockDefinition\Integration\ContentFieldTest as BaseContentFieldTest;
 use Netgen\BlockManager\Tests\Persistence\Doctrine\TestCaseTrait;
+use Netgen\Layouts\Ez\Tests\Block\BlockDefinition\Integration\ContentFieldTest as BaseContentFieldTest;
 
 /**
  * @covers \Netgen\Layouts\Ez\Block\BlockDefinition\Handler\ContentFieldHandler::buildParameters

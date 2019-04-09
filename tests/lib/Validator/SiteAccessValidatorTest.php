@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ez\Tests\Validator;
 
+use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Netgen\Layouts\Ez\Validator\Constraint\SiteAccess;
 use Netgen\Layouts\Ez\Validator\SiteAccessValidator;
-use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;

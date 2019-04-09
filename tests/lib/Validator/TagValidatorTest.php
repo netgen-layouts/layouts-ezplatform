@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ez\Tests\Validator;
 
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
+use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Netgen\Layouts\Ez\Validator\Constraint\Tag;
 use Netgen\Layouts\Ez\Validator\TagValidator;
-use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Netgen\TagsBundle\API\Repository\Values\Tags\Tag as APITag;
 use Netgen\TagsBundle\Core\Repository\TagsService;
 use Symfony\Component\Validator\Constraints\NotBlank;

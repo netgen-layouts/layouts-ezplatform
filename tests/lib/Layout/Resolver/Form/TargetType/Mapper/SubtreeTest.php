@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\Form\TargetType\Mapper;
 
-use Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Subtree;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
+use Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Subtree;
 use PHPUnit\Framework\TestCase;
 
 final class SubtreeTest extends TestCase

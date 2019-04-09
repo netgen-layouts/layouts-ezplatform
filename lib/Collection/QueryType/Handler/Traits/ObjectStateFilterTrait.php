@@ -7,10 +7,10 @@ namespace Netgen\Layouts\Ez\Collection\QueryType\Handler\Traits;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use eZ\Publish\SPI\Persistence\Content\ObjectState\Handler;
-use Netgen\Layouts\Ez\Parameters\ParameterType as EzParameterType;
 use Netgen\BlockManager\Parameters\ParameterBuilderInterface;
 use Netgen\BlockManager\Parameters\ParameterCollectionInterface;
 use Netgen\BlockManager\Parameters\ParameterType;
+use Netgen\Layouts\Ez\Parameters\ParameterType as EzParameterType;
 
 trait ObjectStateFilterTrait
 {
