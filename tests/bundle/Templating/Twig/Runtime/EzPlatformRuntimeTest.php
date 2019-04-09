@@ -13,10 +13,10 @@ use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime;
 use PHPUnit\Framework\TestCase;
 
-final class EzPublishRuntimeTest extends TestCase
+final class EzPlatformRuntimeTest extends TestCase
 {
     /**
      * @var \eZ\Publish\API\Repository\Repository&\PHPUnit\Framework\MockObject\MockObject
@@ -39,7 +39,7 @@ final class EzPublishRuntimeTest extends TestCase
     private $contentTypeServiceMock;
 
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime
      */
     private $runtime;
 
@@ -47,15 +47,15 @@ final class EzPublishRuntimeTest extends TestCase
     {
         $this->prepareRepositoryMock();
 
-        $this->runtime = new EzPublishRuntime(
+        $this->runtime = new EzPlatformRuntime(
             $this->repositoryMock
         );
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::__construct
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getContentName
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadVersionInfo
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime::__construct
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime::getContentName
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadVersionInfo
      */
     public function testGetContentName(): void
     {
@@ -65,8 +65,8 @@ final class EzPublishRuntimeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getContentName
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadVersionInfo
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime::getContentName
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadVersionInfo
      */
     public function testGetContentNameWithException(): void
     {
@@ -80,9 +80,9 @@ final class EzPublishRuntimeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getLocationPath
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadLocation
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadVersionInfo
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime::getLocationPath
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadLocation
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadVersionInfo
      */
     public function testGetLocationPath(): void
     {
@@ -99,9 +99,9 @@ final class EzPublishRuntimeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getLocationPath
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadLocation
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadVersionInfo
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime::getLocationPath
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadLocation
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadVersionInfo
      */
     public function testGetLocationPathWithException(): void
     {
@@ -115,8 +115,8 @@ final class EzPublishRuntimeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getContentTypeName
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContentType
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime::getContentTypeName
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadContentType
      */
     public function testGetContentTypeName(): void
     {
@@ -144,8 +144,8 @@ final class EzPublishRuntimeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getContentTypeName
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContentType
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime::getContentTypeName
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadContentType
      */
     public function testGetContentTypeNameWithNoTranslatedName(): void
     {
@@ -173,8 +173,8 @@ final class EzPublishRuntimeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::getContentTypeName
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime::loadContentType
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime::getContentTypeName
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadContentType
      */
     public function testGetContentTypeNameWithException(): void
     {

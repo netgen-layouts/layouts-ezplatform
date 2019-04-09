@@ -14,6 +14,6 @@ services:
     netgen_block_manager.layout.resolver.condition_type.ez_content_type:
         class: Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\ContentType
         arguments:
-            - "@netgen_block_manager.ezpublish.content_extractor"
+            - "@netgen_block_manager.ezplatform.content_extractor"
         tags:
             - { name: netgen_block_manager.layout.resolver.condition_type }

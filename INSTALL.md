@@ -27,8 +27,8 @@ $bundles[] = new Netgen\Bundle\ContentBrowserEzPlatformBundle\NetgenContentBrows
 return $bundles;
 ```
 
-Activating legacy eZ Publish extension
---------------------------------------
+Activating the legacy extension
+-------------------------------
 
 If you use eZ Platform legacy admin interface in your eZ Platform installation,
 you might want to activate `nglayouts` legacy extension to be able to add

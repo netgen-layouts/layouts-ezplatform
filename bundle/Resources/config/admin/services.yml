@@ -1,16 +1,16 @@
 services:
-    netgen_block_manager.ezpublish.event_listener.admin.main_menu_builder:
+    netgen_block_manager.ezplatform.event_listener.admin.main_menu_builder:
         class: Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\Admin\MainMenuBuilderListener
         arguments:
             - "@security.authorization_checker"
         tags:
             - { name: kernel.event_subscriber }
 
-    netgen_block_manager.ezpublish.event_listener.admin.set_page_layout:
+    netgen_block_manager.ezplatform.event_listener.admin.set_page_layout:
         class: Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\Admin\SetPageLayoutListener
         arguments:
             - "@request_stack"
             - "%ezpublish.siteaccess.groups_by_siteaccess%"
-            - "%netgen_block_manager.ezpublish.admin.pagelayout%"
+            - "%netgen_block_manager.ezplatform.admin.pagelayout%"
         tags:
             - { name: kernel.event_subscriber }

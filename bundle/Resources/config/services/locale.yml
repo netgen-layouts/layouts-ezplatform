@@ -1,8 +1,8 @@
 services:
     netgen_block_manager.locale.provider:
-        alias: netgen_block_manager.locale.provider.ezpublish
+        alias: netgen_block_manager.locale.provider.ezplatform
 
-    netgen_block_manager.locale.provider.ezpublish:
+    netgen_block_manager.locale.provider.ezplatform:
         class: Netgen\BlockManager\Ez\Locale\LocaleProvider
         # Must be lazy since it uses dynamic "$languages$" parameter
         lazy: true

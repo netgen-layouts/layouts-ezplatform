@@ -4,24 +4,24 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Templating\Twig\Extension;
 
-use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension;
+use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPlatformExtension;
 use PHPUnit\Framework\TestCase;
 use Twig\TwigFunction;
 
-final class EzPublishExtensionTest extends TestCase
+final class EzPlatformExtensionTest extends TestCase
 {
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension
+     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPlatformExtension
      */
     private $extension;
 
     public function setUp(): void
     {
-        $this->extension = new EzPublishExtension();
+        $this->extension = new EzPlatformExtension();
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension::getFunctions
+     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPlatformExtension::getFunctions
      */
     public function testGetFunctions(): void
     {

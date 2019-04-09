@@ -1,5 +1,5 @@
 services:
-    netgen_block_manager.context.provider.ezpublish:
+    netgen_block_manager.context.provider.ezplatform:
         class: Netgen\BlockManager\Ez\Context\ContextProvider
         arguments:
             - "@request_stack"

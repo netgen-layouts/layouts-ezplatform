@@ -10,7 +10,7 @@ use eZ\Publish\API\Repository\Values\Content\VersionInfo;
 use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use Throwable;
 
-final class EzPublishRuntime
+final class EzPlatformRuntime
 {
     /**
      * @var \eZ\Publish\API\Repository\Repository

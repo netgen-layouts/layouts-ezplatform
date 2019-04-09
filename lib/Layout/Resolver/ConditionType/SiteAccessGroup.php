@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Netgen\BlockManager\Ez\Layout\Resolver\ConditionType;
 
-use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzPublishSiteAccess;
+use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzSiteAccess;
 use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,7 +46,7 @@ final class SiteAccessGroup implements ConditionTypeInterface
     public function matches(Request $request, $value): bool
     {
         $siteAccess = $request->attributes->get('siteaccess');
-        if (!$siteAccess instanceof EzPublishSiteAccess) {
+        if (!$siteAccess instanceof EzSiteAccess) {
             return false;
         }
 

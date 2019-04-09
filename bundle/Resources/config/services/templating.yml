@@ -1,5 +1,5 @@
 services:
-    netgen_block_manager.templating.pagelayout_resolver.ezpublish:
+    netgen_block_manager.templating.pagelayout_resolver.ezplatform:
         class: Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver
         arguments:
             - "@netgen_block_manager.templating.pagelayout_resolver.default"
@@ -8,15 +8,15 @@ services:
             - "%ezpublish.content_view.viewbase_layout%"
 
     netgen_block_manager.templating.pagelayout_resolver:
-        alias: netgen_block_manager.templating.pagelayout_resolver.ezpublish
+        alias: netgen_block_manager.templating.pagelayout_resolver.ezplatform
 
-    netgen_block_manager.templating.twig.extension.ez_publish:
-        class: Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPublishExtension
+    netgen_block_manager.templating.twig.extension.ez_platform:
+        class: Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPlatformExtension
         tags:
             - { name: twig.extension }
 
-    netgen_block_manager.templating.twig.runtime.ez_publish:
-        class: Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPublishRuntime
+    netgen_block_manager.templating.twig.runtime.ez_platform:
+        class: Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime
         arguments:
             - "@ezpublish.api.repository"
         tags:

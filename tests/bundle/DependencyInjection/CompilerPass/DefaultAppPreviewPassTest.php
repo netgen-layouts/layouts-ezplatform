@@ -19,7 +19,7 @@ final class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
     {
         $this->container->setParameter('ezpublish.siteaccess.list', ['cro']);
         $this->container->setParameter(
-            'netgen_block_manager.app.ezpublish.item_preview_template',
+            'netgen_block_manager.app.ezplatform.item_preview_template',
             'default.html.twig'
         );
 

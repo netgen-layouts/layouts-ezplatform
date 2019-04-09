@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\ConditionType;
 
-use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzPublishSiteAccess;
+use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzSiteAccess;
 use Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccessGroup;
 use Netgen\BlockManager\Ez\Tests\Validator\ValidatorFactory;
 use PHPUnit\Framework\TestCase;
@@ -69,7 +69,7 @@ final class SiteAccessGroupTest extends TestCase
     public function testMatches($value, bool $matches): void
     {
         $request = Request::create('/');
-        $request->attributes->set('siteaccess', new EzPublishSiteAccess('eng'));
+        $request->attributes->set('siteaccess', new EzSiteAccess('eng'));
 
         self::assertSame($matches, $this->conditionType->matches($request, $value));
     }
@@ -80,7 +80,7 @@ final class SiteAccessGroupTest extends TestCase
     public function testMatchesWithSiteAccessWithNoGroups(): void
     {
         $request = Request::create('/');
-        $request->attributes->set('siteaccess', new EzPublishSiteAccess('cro'));
+        $request->attributes->set('siteaccess', new EzSiteAccess('cro'));
 
         self::assertFalse($this->conditionType->matches($request, ['frontend']));
     }
