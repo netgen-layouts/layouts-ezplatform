@@ -6,15 +6,12 @@ namespace Netgen\BlockManager\Ez\Form;
 
 use eZ\Publish\API\Repository\SectionService;
 use Netgen\BlockManager\Form\AbstractType;
-use Netgen\BlockManager\Form\ChoicesAsValuesTrait;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class SectionType extends AbstractType
 {
-    use ChoicesAsValuesTrait;
-
     /**
      * @var \eZ\Publish\API\Repository\SectionService
      */
@@ -31,21 +28,7 @@ final class SectionType extends AbstractType
 
         $resolver->setDefault('sections', []);
         $resolver->setRequired(['sections']);
-        $resolver->setAllowedTypes('sections', 'array');
-
-        // @deprecated Replace with "string[]" allowed type when support for Symfony 2.8 ends
-        $resolver->setAllowedValues(
-            'sections',
-            static function (array $sections): bool {
-                foreach ($sections as $section) {
-                    if (!is_string($section)) {
-                        return false;
-                    }
-                }
-
-                return true;
-            }
-        );
+        $resolver->setAllowedTypes('sections', 'string[]');
 
         $resolver->setDefault(
             'choices',
@@ -55,10 +38,6 @@ final class SectionType extends AbstractType
         );
 
         $resolver->setDefault('choice_translation_domain', false);
-
-        $resolver->setDefaults(
-            $this->getChoicesAsValuesOption()
-        );
     }
 
     public function getParent(): string

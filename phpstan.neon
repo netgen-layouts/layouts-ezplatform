@@ -2,9 +2,6 @@ includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
 
 parameters:
-    autoload_files:
-        - tests/bundle/DependencyInjection/CompilerPass/HttpCache/Stubs/LegacyClasses.php
-
     ignoreErrors:
         # eZ Platform
         -

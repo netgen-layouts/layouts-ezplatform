@@ -8,7 +8,6 @@ use EzSystems\PlatformHttpCacheBundle\PurgeClient\LocalPurgeClient;
 use EzSystems\PlatformHttpCacheBundle\PurgeClient\VarnishPurgeClient;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Kernel;
 
 final class ConfigureHttpCachePass implements CompilerPassInterface
 {
@@ -27,8 +26,8 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
             !is_a($purgeClientClass, VarnishPurgeClient::class, true)
             && !is_a($purgeClientClass, LocalPurgeClient::class, true)
         ) {
-            $this->log(
-                $container,
+            $container->log(
+                $this,
                 sprintf(
                     'Cache clearing in Netgen Layouts cannot be automatically configured since eZ Platform purge client is neither an instance of "%s" nor "%s". Use Netgen Layouts "%s" config to enable or disable HTTP cache clearing.',
                     VarnishPurgeClient::class,
@@ -46,22 +45,5 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
                 'netgen_block_manager.http_cache.client.null'
             );
         }
-    }
-
-    /**
-     * @deprecated
-     *
-     * Logs a message into the log. Acts as a BC layer to support Symfony 2.8.
-     */
-    private function log(ContainerBuilder $container, string $message): void
-    {
-        if (Kernel::VERSION_ID < 30300) {
-            $compiler = $container->getCompiler();
-            $compiler->addLogMessage($compiler->getLoggingFormatter()->format($this, $message));
-
-            return;
-        }
-
-        $container->log($this, $message);
     }
 }

@@ -5,15 +5,12 @@ declare(strict_types=1);
 namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
-use Netgen\BlockManager\Tests\TestCase\LegacyTestCaseTrait;
 use Netgen\Bundle\BlockManagerBundle\DependencyInjection\NetgenBlockManagerExtension;
 use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin;
 use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension;
 
 final class ExtensionPluginTest extends AbstractExtensionTestCase
 {
-    use LegacyTestCaseTrait;
-
     /**
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::__construct
      * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::appendConfigurationFiles

@@ -2,7 +2,3 @@ includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - vendor/phpstan/phpstan-phpunit/rules.neon
-
-parameters:
-    autoload_files:
-        - tests/bundle/DependencyInjection/CompilerPass/HttpCache/Stubs/LegacyClasses.php

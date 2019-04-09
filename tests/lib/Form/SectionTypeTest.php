@@ -123,11 +123,6 @@ final class SectionTypeTest extends FormTestCase
 
         self::assertFalse($options['choice_translation_domain']);
         self::assertSame(['Media' => 'media'], $options['choices']);
-
-        if (Kernel::VERSION_ID < 30100) {
-            // @deprecated Remove when support for Symfony 2.8 ends
-            self::assertTrue($options['choices_as_values']);
-        }
     }
 
     /**

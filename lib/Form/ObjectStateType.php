@@ -6,15 +6,12 @@ namespace Netgen\BlockManager\Ez\Form;
 
 use eZ\Publish\API\Repository\ObjectStateService;
 use Netgen\BlockManager\Form\AbstractType;
-use Netgen\BlockManager\Form\ChoicesAsValuesTrait;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class ObjectStateType extends AbstractType
 {
-    use ChoicesAsValuesTrait;
-
     /**
      * @var \eZ\Publish\API\Repository\ObjectStateService
      */
@@ -41,10 +38,6 @@ final class ObjectStateType extends AbstractType
         );
 
         $resolver->setDefault('choice_translation_domain', false);
-
-        $resolver->setDefaults(
-            $this->getChoicesAsValuesOption()
-        );
     }
 
     public function getParent(): string

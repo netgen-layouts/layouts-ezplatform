@@ -41,21 +41,7 @@ final class ContentType extends ParameterType
         $optionsResolver->setDefault('allowed_types', []);
 
         $optionsResolver->setAllowedTypes('allow_invalid', 'bool');
-        $optionsResolver->setAllowedTypes('allowed_types', 'array');
-
-        // @deprecated Replace with "string[]" allowed type when support for Symfony 2.8 ends
-        $optionsResolver->setAllowedValues(
-            'allowed_types',
-            static function (array $types): bool {
-                foreach ($types as $type) {
-                    if (!is_string($type)) {
-                        return false;
-                    }
-                }
-
-                return true;
-            }
-        );
+        $optionsResolver->setAllowedTypes('allowed_types', 'string[]');
     }
 
     public function export(ParameterDefinition $parameterDefinition, $value)

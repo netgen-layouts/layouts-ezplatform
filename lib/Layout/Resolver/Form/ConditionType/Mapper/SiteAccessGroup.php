@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper;
 
-use Netgen\BlockManager\Form\ChoicesAsValuesTrait;
 use Netgen\BlockManager\Layout\Resolver\Form\ConditionType\Mapper;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 final class SiteAccessGroup extends Mapper
 {
-    use ChoicesAsValuesTrait;
-
     /**
      * @var array
      */
@@ -41,6 +38,6 @@ final class SiteAccessGroup extends Mapper
             'choice_translation_domain' => false,
             'multiple' => true,
             'expanded' => true,
-        ] + $this->getChoicesAsValuesOption();
+        ];
     }
 }

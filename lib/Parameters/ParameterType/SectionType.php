@@ -28,21 +28,7 @@ final class SectionType extends ParameterType
         $optionsResolver->setRequired(['multiple', 'sections']);
 
         $optionsResolver->setAllowedTypes('multiple', 'bool');
-        $optionsResolver->setAllowedTypes('sections', 'array');
-
-        // @deprecated Replace with "string[]" allowed type when support for Symfony 2.8 ends
-        $optionsResolver->setAllowedValues(
-            'sections',
-            static function (array $sections): bool {
-                foreach ($sections as $section) {
-                    if (!is_string($section)) {
-                        return false;
-                    }
-                }
-
-                return true;
-            }
-        );
+        $optionsResolver->setAllowedTypes('sections', 'string[]');
     }
 
     public function fromHash(ParameterDefinition $parameterDefinition, $value)
