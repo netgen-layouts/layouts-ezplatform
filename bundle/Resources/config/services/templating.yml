@@ -25,4 +25,3 @@ services:
             - "@ezpublish.api.repository"
         tags:
             - { name: twig.runtime }
-            - { name: netgen_block_manager.twig.runtime }
