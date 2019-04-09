@@ -1,7 +1,6 @@
 services:
     netgen_block_manager.form.ez_content_type:
         class: Netgen\BlockManager\Ez\Form\ContentTypeType
-        # public: false
         arguments:
             - "@ezpublish.api.service.content_type"
         tags:
@@ -9,7 +8,6 @@ services:
 
     netgen_block_manager.form.ez_section:
         class: Netgen\BlockManager\Ez\Form\SectionType
-        # public: false
         arguments:
             - "@ezpublish.api.service.section"
         tags:
@@ -17,7 +15,6 @@ services:
 
     netgen_block_manager.form.ez_object_state:
         class: Netgen\BlockManager\Ez\Form\ObjectStateType
-        # public: false
         arguments:
             - "@ezpublish.api.service.object_state"
         tags:

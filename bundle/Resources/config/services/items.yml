@@ -1,7 +1,6 @@
 services:
     netgen_block_manager.item.value_converter.ezlocation:
         class: Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter
-        public: false
         arguments:
             - "@ezpublish.api.service.content"
         tags:
@@ -9,7 +8,6 @@ services:
 
     netgen_block_manager.item.value_converter.ezcontent:
         class: Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter
-        public: false
         arguments:
             - "@ezpublish.api.service.location"
             - "@ezpublish.api.service.content"
@@ -18,7 +16,6 @@ services:
 
     netgen_block_manager.item.value_loader.ezlocation:
         class: Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader
-        public: false
         arguments:
             - "@ezpublish.api.service.location"
         tags:
@@ -26,7 +23,6 @@ services:
 
     netgen_block_manager.item.value_loader.ezcontent:
         class: Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader
-        public: false
         arguments:
             - "@ezpublish.api.service.content"
         tags:
@@ -34,7 +30,6 @@ services:
 
     netgen_block_manager.item.value_url_generator.ezlocation:
         class: Netgen\BlockManager\Ez\Item\ValueUrlGenerator\LocationValueUrlGenerator
-        public: false
         arguments:
             - "@router"
         tags:
@@ -42,7 +37,6 @@ services:
 
     netgen_block_manager.item.value_url_generator.ezcontent:
         class: Netgen\BlockManager\Ez\Item\ValueUrlGenerator\ContentValueUrlGenerator
-        public: false
         arguments:
             - "@router"
         tags:

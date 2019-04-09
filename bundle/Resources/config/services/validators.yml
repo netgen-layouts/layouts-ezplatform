@@ -1,7 +1,6 @@
 services:
     netgen_block_manager.validator.ezlocation:
         class: Netgen\BlockManager\Ez\Validator\LocationValidator
-        # public: false
         arguments:
             - "@ezpublish.api.repository"
         tags:
@@ -9,7 +8,6 @@ services:
 
     netgen_block_manager.validator.ezcontent:
         class: Netgen\BlockManager\Ez\Validator\ContentValidator
-        # public: false
         arguments:
             - "@ezpublish.api.repository"
         tags:
@@ -17,7 +15,6 @@ services:
 
     netgen_block_manager.validator.ez_site_access:
         class: Netgen\BlockManager\Ez\Validator\SiteAccessValidator
-        # public: false
         arguments:
             - "%ezpublish.siteaccess.list%"
         tags:
@@ -25,7 +22,6 @@ services:
 
     netgen_block_manager.validator.ez_site_access_group:
         class: Netgen\BlockManager\Ez\Validator\SiteAccessGroupValidator
-        # public: false
         arguments:
             - "%ezpublish.siteaccess.groups%"
         tags:
@@ -33,7 +29,6 @@ services:
 
     netgen_block_manager.validator.ez_content_type:
         class: Netgen\BlockManager\Ez\Validator\ContentTypeValidator
-        # public: false
         arguments:
             - "@ezpublish.api.repository"
         tags:
@@ -41,7 +36,6 @@ services:
 
     netgen_block_manager.validator.ez_section:
         class: Netgen\BlockManager\Ez\Validator\SectionValidator
-        # public: false
         arguments:
             - "@ezpublish.api.repository"
         tags:
@@ -49,7 +43,6 @@ services:
 
     netgen_block_manager.validator.ez_object_state:
         class: Netgen\BlockManager\Ez\Validator\ObjectStateValidator
-        # public: false
         arguments:
             - "@ezpublish.api.repository"
         tags:

@@ -1,7 +1,6 @@
 services:
     netgen_block_manager.ezpublish.event_listener.admin.main_menu_builder:
         class: Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\Admin\MainMenuBuilderListener
-        public: false
         arguments:
             - "@security.authorization_checker"
         tags:
@@ -9,7 +8,6 @@ services:
 
     netgen_block_manager.ezpublish.event_listener.admin.set_page_layout:
         class: Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\Admin\SetPageLayoutListener
-        public: false
         arguments:
             - "@request_stack"
             - "%ezpublish.siteaccess.groups_by_siteaccess%"

@@ -1,7 +1,6 @@
 services:
     netgen_block_manager.parameters.parameter_type.eztags:
         class: Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType
-        public: false
         arguments:
             - "@ezpublish.api.service.tags"
         tags:
@@ -9,13 +8,11 @@ services:
 
     netgen_block_manager.parameters.form.mapper.eztags:
         class: Netgen\BlockManager\Ez\Parameters\Form\Mapper\TagsMapper
-        public: false
         tags:
             - { name: netgen_block_manager.parameters.form.mapper, type: eztags }
 
     netgen_block_manager.validator.eztags:
         class: Netgen\BlockManager\Ez\Validator\TagValidator
-        # public: false
         arguments:
             - "@ezpublish.api.service.tags"
         tags:

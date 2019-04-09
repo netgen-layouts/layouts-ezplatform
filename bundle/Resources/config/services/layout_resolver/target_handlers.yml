@@ -1,36 +1,30 @@
 services:
     netgen_block_manager.layout.resolver.target_handler.doctrine.ezlocation:
         class: Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine\Location
-        public: false
         tags:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ezlocation }
 
     netgen_block_manager.layout.resolver.target_handler.doctrine.ezcontent:
         class: Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine\Location
-        public: false
         tags:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ezcontent }
 
     netgen_block_manager.layout.resolver.target_handler.doctrine.ezchildren:
         class: Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine\Location
-        public: false
         tags:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ezchildren }
 
     netgen_block_manager.layout.resolver.target_handler.doctrine.ezsubtree:
         class: Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine\Subtree
-        public: false
         tags:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ezsubtree }
 
     netgen_block_manager.layout.resolver.target_handler.doctrine.ez_semantic_path_info:
         class: Netgen\BlockManager\Layout\Resolver\TargetHandler\Doctrine\Route
-        public: false
         tags:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ez_semantic_path_info }
 
     netgen_block_manager.layout.resolver.target_handler.doctrine.ez_semantic_path_info_prefix:
         class: Netgen\BlockManager\Layout\Resolver\TargetHandler\Doctrine\RoutePrefix
-        public: false
         tags:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ez_semantic_path_info_prefix }
