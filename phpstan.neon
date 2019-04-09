@@ -8,9 +8,6 @@ parameters:
             message: '#Parameter \#1 \$name of method Symfony\\Component\\Routing\\Generator\\UrlGeneratorInterface::generate\(\) expects string, object given.#'
             path: lib/Item/ValueUrlGenerator/LocationValueUrlGenerator.php
 
-        # Support for eZ Platform deprecated features
-        - '#Call to function method_exists\(\)#'
-
         -
             message: '#Access to an undefined property object::\$id.#'
             path: lib/Item/ValueUrlGenerator/ContentValueUrlGenerator.php

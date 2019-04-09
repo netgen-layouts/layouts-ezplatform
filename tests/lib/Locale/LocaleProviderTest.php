@@ -10,7 +10,6 @@ use eZ\Publish\Core\MVC\Symfony\Locale\LocaleConverterInterface;
 use Netgen\BlockManager\Ez\Locale\LocaleProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Kernel;
 
 final class LocaleProviderTest extends TestCase
 {
@@ -31,10 +30,6 @@ final class LocaleProviderTest extends TestCase
 
     public function setUp(): void
     {
-        if (Kernel::VERSION_ID < 30400) {
-            self::markTestSkipped('This test requires eZ Publish kernel 7.5+ to run.');
-        }
-
         $this->languageServiceMock = $this->createMock(LanguageService::class);
 
         $this->localeConverterMock = $this->createMock(LocaleConverterInterface::class);

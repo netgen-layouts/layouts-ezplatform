@@ -39,7 +39,7 @@ final class SiteAccessTest extends TestCase
                 'choices' => ['cro' => 'cro', 'eng' => 'eng'],
                 'choice_translation_domain' => false,
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
             ],
             $this->mapper->getFormOptions()
         );

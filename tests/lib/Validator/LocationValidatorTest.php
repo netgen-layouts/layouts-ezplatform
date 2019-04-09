@@ -13,7 +13,6 @@ use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
 use Netgen\BlockManager\Ez\Validator\Constraint\Location;
 use Netgen\BlockManager\Ez\Validator\LocationValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -32,10 +31,6 @@ final class LocationValidatorTest extends ValidatorTestCase
 
     public function setUp(): void
     {
-        if (Kernel::VERSION_ID < 30400) {
-            self::markTestSkipped('This test requires eZ Publish kernel 7.4+ to run.');
-        }
-
         parent::setUp();
 
         $this->constraint = new Location(['allowedTypes' => ['user']]);

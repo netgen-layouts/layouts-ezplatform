@@ -44,7 +44,7 @@ final class SiteAccessGroupTest extends TestCase
                 'choices' => ['frontend' => 'frontend', 'backend' => 'backend'],
                 'choice_translation_domain' => false,
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
             ],
             $this->mapper->getFormOptions()
         );

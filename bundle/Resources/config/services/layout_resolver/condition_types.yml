@@ -18,6 +18,5 @@ services:
         public: false
         arguments:
             - "@netgen_block_manager.ezpublish.content_extractor"
-            - "@ezpublish.api.service.content_type"
         tags:
             - { name: netgen_block_manager.layout.resolver.condition_type }

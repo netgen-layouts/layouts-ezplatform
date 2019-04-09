@@ -7,7 +7,6 @@ namespace Netgen\BlockManager\Ez\Validator;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\API\Repository\Values\Content\Location as EzLocation;
-use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use Netgen\BlockManager\Ez\Validator\Constraint\Location;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -51,7 +50,7 @@ final class LocationValidator extends ConstraintValidator
             );
 
             if (count($constraint->allowedTypes ?? []) > 0) {
-                $contentType = $this->getContentType($location);
+                $contentType = $location->getContent()->getContentType();
 
                 if (!in_array($contentType->identifier, $constraint->allowedTypes, true)) {
                     $this->context->buildViolation($constraint->typeNotAllowedMessage)
@@ -66,23 +65,5 @@ final class LocationValidator extends ConstraintValidator
                     ->addViolation();
             }
         }
-    }
-
-    /**
-     * Loads the content type for provided location.
-     *
-     * @deprecated Acts as a BC layer for eZ kernel <7.4
-     */
-    private function getContentType(EzLocation $location): ContentType
-    {
-        if (method_exists($location, 'getContent') && method_exists($location->getContent(), 'getContentType')) {
-            return $location->getContent()->getContentType();
-        }
-
-        // @deprecated Remove when support for eZ kernel < 7.4 ends
-
-        return $this->repository->getContentTypeService()->loadContentType(
-            $location->contentInfo->contentTypeId
-        );
     }
 }

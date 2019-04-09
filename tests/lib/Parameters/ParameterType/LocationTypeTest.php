@@ -15,7 +15,6 @@ use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\BlockManager\Parameters\ParameterDefinition;
 use Netgen\BlockManager\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
 use Symfony\Component\Validator\Validation;
 
@@ -35,10 +34,6 @@ final class LocationTypeTest extends TestCase
 
     public function setUp(): void
     {
-        if (Kernel::VERSION_ID < 30400) {
-            self::markTestSkipped('This test requires eZ Publish kernel 7.4+ to run.');
-        }
-
         $this->locationServiceMock = $this->createMock(LocationService::class);
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService']);
 

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Netgen\BlockManager\Ez\Locale;
 
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\LanguageService;
 use eZ\Publish\API\Repository\Values\Content\Language;
 use eZ\Publish\Core\MVC\Symfony\Locale\LocaleConverterInterface;
@@ -74,7 +73,7 @@ class LocaleProvider implements LocaleProviderInterface
     public function getRequestLocales(Request $request): array
     {
         $requestLocales = [];
-        $languages = $this->loadLanguages();
+        $languages = $this->languageService->loadLanguageListByCode($this->languageCodes);
 
         foreach ($languages as $language) {
             $locale = $this->getPosixLocale($language);
@@ -87,36 +86,6 @@ class LocaleProvider implements LocaleProviderInterface
         }
 
         return $requestLocales;
-    }
-
-    /**
-     * Loads the list of eZ Platform languages from language codes available in the object.
-     *
-     * @deprecated Acts as a BC layer for eZ kernel <7.5
-     *
-     * @return \eZ\Publish\API\Repository\Values\Content\Language[]
-     */
-    private function loadLanguages(): iterable
-    {
-        if (method_exists($this->languageService, 'loadLanguageListByCode')) {
-            return $this->languageService->loadLanguageListByCode($this->languageCodes);
-        }
-
-        // Deprecated: Remove when support for eZ kernel < 7.5 ends
-
-        $languages = [];
-
-        foreach ($this->languageCodes as $languageCode) {
-            try {
-                $language = $this->languageService->loadLanguage($languageCode);
-            } catch (NotFoundException $e) {
-                continue;
-            }
-
-            $languages[] = $language;
-        }
-
-        return $languages;
     }
 
     /**

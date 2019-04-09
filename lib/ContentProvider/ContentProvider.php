@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Netgen\BlockManager\Ez\ContentProvider;
 
-use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\Location;
@@ -22,22 +21,13 @@ final class ContentProvider implements ContentProviderInterface
     private $locationService;
 
     /**
-     * @var \eZ\Publish\API\Repository\ContentService
-     */
-    private $contentService;
-
-    /**
      * @var \Netgen\BlockManager\Context\ContextInterface
      */
     private $context;
 
-    public function __construct(
-        LocationService $locationService,
-        ContentService $contentService,
-        ContextInterface $context
-    ) {
+    public function __construct(LocationService $locationService, ContextInterface $context)
+    {
         $this->locationService = $locationService;
-        $this->contentService = $contentService;
         $this->context = $context;
     }
 
@@ -48,13 +38,7 @@ final class ContentProvider implements ContentProviderInterface
             return null;
         }
 
-        if (method_exists($location, 'getContent')) {
-            return $location->getContent();
-        }
-
-        // @deprecated Remove when support for eZ kernel < 7.2 ends
-
-        return $this->contentService->loadContent($location->contentId);
+        return $location->getContent();
     }
 
     public function provideLocation(): ?Location

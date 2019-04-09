@@ -11,7 +11,6 @@ use Netgen\BlockManager\Ez\Form\ObjectStateType;
 use Netgen\BlockManager\Tests\TestCase\FormTestCase;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormTypeInterface;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class ObjectStateTypeTest extends FormTestCase

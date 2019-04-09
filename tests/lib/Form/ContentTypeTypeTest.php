@@ -11,7 +11,6 @@ use Netgen\BlockManager\Ez\Form\ContentTypeType;
 use Netgen\BlockManager\Tests\TestCase\FormTestCase;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormTypeInterface;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class ContentTypeTypeTest extends FormTestCase
@@ -20,15 +19,6 @@ final class ContentTypeTypeTest extends FormTestCase
      * @var \PHPUnit\Framework\MockObject\MockObject
      */
     private $contentTypeServiceMock;
-
-    public function setUp(): void
-    {
-        if (Kernel::VERSION_ID < 30400) {
-            self::markTestSkipped('This test requires eZ Publish kernel 7.4+ to run.');
-        }
-
-        parent::setUp();
-    }
 
     /**
      * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::__construct
