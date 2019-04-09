@@ -51,25 +51,25 @@ final class RepositoryAccessVoter extends Voter
 
     /**
      * @param \Symfony\Component\Security\Core\Authentication\Token\TokenInterface $token
-     * @param mixed $object
+     * @param mixed $subject
      * @param mixed[] $attributes
      *
      * @return int
      */
-    public function vote(TokenInterface $token, $object, array $attributes): int
+    public function vote(TokenInterface $token, $subject, array $attributes): int
     {
         // abstain vote by default in case none of the attributes are supported
         $vote = self::ACCESS_ABSTAIN;
 
         foreach ($attributes as $attribute) {
-            if (!$this->supports($attribute, $object)) {
+            if (!$this->supports($attribute, $subject)) {
                 continue;
             }
 
             $reachableAttributes = $this->getReachableAttributes($attribute);
 
             // rely on vote resolved by parent implementation
-            $vote = parent::vote($token, $object, $reachableAttributes);
+            $vote = parent::vote($token, $subject, $reachableAttributes);
 
             // return only if granted
             if ($vote === self::ACCESS_GRANTED) {
