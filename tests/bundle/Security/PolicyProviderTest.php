@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Security;
+namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\Security;
 
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ConfigBuilderInterface;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Security\PolicyProvider;
+use Netgen\Bundle\LayoutsEzPlatformBundle\Security\PolicyProvider;
 use PHPUnit\Framework\TestCase;
 
 final class PolicyProviderTest extends TestCase
@@ -16,7 +16,7 @@ final class PolicyProviderTest extends TestCase
     private $configBuilderMock;
 
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Security\PolicyProvider
+     * @var \Netgen\Bundle\LayoutsEzPlatformBundle\Security\PolicyProvider
      */
     private $policyProvider;
 
@@ -28,7 +28,7 @@ final class PolicyProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Security\PolicyProvider::addPolicies
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Security\PolicyProvider::addPolicies
      */
     public function testAddPolicies(): void
     {

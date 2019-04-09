@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\Form\TargetType\Mapper;
+namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\Form\TargetType\Mapper;
 
-use Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Subtree;
+use Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Subtree;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 use PHPUnit\Framework\TestCase;
 
@@ -21,7 +21,7 @@ final class SubtreeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Subtree::getFormType
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Subtree::getFormType
      */
     public function testGetFormType(): void
     {
@@ -29,7 +29,7 @@ final class SubtreeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Subtree::getFormOptions
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Subtree::getFormOptions
      */
     public function testGetFormOptions(): void
     {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Templating;
+namespace Netgen\Bundle\LayoutsEzPlatformBundle\Templating;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use Netgen\Bundle\BlockManagerBundle\Templating\PageLayoutResolverInterface;

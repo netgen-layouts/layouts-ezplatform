@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Collection\QueryType\Handler;
+namespace Netgen\Layouts\Ez\Collection\QueryType\Handler;
 
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\SearchService;
@@ -15,7 +15,7 @@ use eZ\Publish\SPI\Persistence\Content\Section\Handler as SectionHandler;
 use eZ\Publish\SPI\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Netgen\BlockManager\API\Values\Collection\Query;
 use Netgen\BlockManager\Collection\QueryType\QueryTypeHandlerInterface;
-use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
+use Netgen\Layouts\Ez\ContentProvider\ContentProviderInterface;
 use Netgen\BlockManager\Parameters\ParameterBuilderInterface;
 
 /**

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
+namespace Netgen\Layouts\Ez\Tests\Parameters\ParameterType;
 
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType;
-use Netgen\BlockManager\Ez\Tests\Validator\TagsServiceValidatorFactory;
+use Netgen\Layouts\Ez\Parameters\ParameterType\TagsType;
+use Netgen\Layouts\Ez\Tests\Validator\TagsServiceValidatorFactory;
 use Netgen\BlockManager\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use Netgen\TagsBundle\API\Repository\Values\Tags\Tag;
 use Netgen\TagsBundle\Core\Repository\TagsService;
@@ -31,8 +31,8 @@ final class TagsTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::__construct
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::getIdentifier
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::__construct
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::getIdentifier
      */
     public function testGetIdentifier(): void
     {
@@ -40,7 +40,7 @@ final class TagsTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::configureOptions
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::configureOptions
      * @dataProvider validOptionsProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
@@ -50,7 +50,7 @@ final class TagsTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::configureOptions
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::configureOptions
      * @dataProvider invalidOptionsProvider
      */
     public function testInvalidOptions(array $options): void
@@ -206,7 +206,7 @@ final class TagsTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::export
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::export
      */
     public function testExport(): void
     {
@@ -220,7 +220,7 @@ final class TagsTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::export
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::export
      */
     public function testExportWithNonExistingTag(): void
     {
@@ -234,7 +234,7 @@ final class TagsTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::import
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::import
      */
     public function testImport(): void
     {
@@ -248,7 +248,7 @@ final class TagsTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::import
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::import
      */
     public function testImportWithNonExistingTag(): void
     {
@@ -266,7 +266,7 @@ final class TagsTypeTest extends TestCase
      * @param bool $required
      * @param bool $isValid
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType::getValueConstraints
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::getValueConstraints
      * @dataProvider validationProvider
      */
     public function testValidation($values, bool $required, bool $isValid): void

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Security\Authorization\Voter;
+namespace Netgen\Layouts\Ez\Tests\Security\Authorization\Voter;
 
 use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute;
-use Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter;
-use Netgen\BlockManager\Ez\Security\Role\RoleHierarchy;
+use Netgen\Layouts\Ez\Security\Authorization\Voter\RepositoryAccessVoter;
+use Netgen\Layouts\Ez\Security\Role\RoleHierarchy;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
@@ -20,7 +20,7 @@ final class RepositoryAccessVoterTest extends TestCase
     private $accessDecisionManagerMock;
 
     /**
-     * @var \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter
+     * @var \Netgen\Layouts\Ez\Security\Authorization\Voter\RepositoryAccessVoter
      */
     private $voter;
 
@@ -43,11 +43,11 @@ final class RepositoryAccessVoterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter::__construct
-     * @covers \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter::getReachableAttributes
-     * @covers \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter::supports
-     * @covers \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter::vote
-     * @covers \Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter::voteOnAttribute
+     * @covers \Netgen\Layouts\Ez\Security\Authorization\Voter\RepositoryAccessVoter::__construct
+     * @covers \Netgen\Layouts\Ez\Security\Authorization\Voter\RepositoryAccessVoter::getReachableAttributes
+     * @covers \Netgen\Layouts\Ez\Security\Authorization\Voter\RepositoryAccessVoter::supports
+     * @covers \Netgen\Layouts\Ez\Security\Authorization\Voter\RepositoryAccessVoter::vote
+     * @covers \Netgen\Layouts\Ez\Security\Authorization\Voter\RepositoryAccessVoter::voteOnAttribute
      *
      * @dataProvider voteDataProvider
      */

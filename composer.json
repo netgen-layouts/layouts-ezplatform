@@ -38,15 +38,15 @@
     },
     "autoload": {
         "psr-4": {
-            "Netgen\\BlockManager\\Ez\\": "lib/",
-            "Netgen\\Bundle\\EzPublishBlockManagerBundle\\": "bundle/"
+            "Netgen\\Layouts\\Ez\\": "lib/",
+            "Netgen\\Bundle\\LayoutsEzPlatformBundle\\": "bundle/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Netgen\\BlockManager\\Tests\\": "vendor/netgen/layouts-core/tests/lib/",
-            "Netgen\\BlockManager\\Ez\\Tests\\": "tests/lib/",
-            "Netgen\\Bundle\\EzPublishBlockManagerBundle\\Tests\\": "tests/bundle/"
+            "Netgen\\Layouts\\Ez\\Tests\\": "tests/lib/",
+            "Netgen\\Bundle\\LayoutsEzPlatformBundle\\Tests\\": "tests/bundle/"
         },
         "files": [
             "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php"

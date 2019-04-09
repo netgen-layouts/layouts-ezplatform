@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Block\BlockDefinition\Handler;
+namespace Netgen\Layouts\Ez\Block\BlockDefinition\Handler;
 
 use Netgen\BlockManager\API\Values\Block\Block;
 use Netgen\BlockManager\Block\BlockDefinition\BlockDefinitionHandler;
 use Netgen\BlockManager\Block\DynamicParameters;
-use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
+use Netgen\Layouts\Ez\ContentProvider\ContentProviderInterface;
 use Netgen\BlockManager\Parameters\ParameterBuilderInterface;
 use Netgen\BlockManager\Parameters\ParameterType;
 
@@ -18,7 +18,7 @@ use Netgen\BlockManager\Parameters\ParameterType;
 final class ContentFieldHandler extends BlockDefinitionHandler
 {
     /**
-     * @var \Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface
+     * @var \Netgen\Layouts\Ez\ContentProvider\ContentProviderInterface
      */
     private $contentProvider;
 

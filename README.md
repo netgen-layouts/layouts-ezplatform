@@ -17,13 +17,13 @@ You can also run unit tests on a real database. After you create the database,
 run the tests with:
 
 ```
-$ DATABASE=mysql://root@localhost/ngbm vendor/bin/phpunit
+$ DATABASE=mysql://root@localhost/nglayouts vendor/bin/phpunit
 ```
 
-where `mysql://root@localhost/ngbm` is a DSN to your MySQL database.
+where `mysql://root@localhost/nglayouts` is a DSN to your MySQL database.
 
 If you use PostgreSQL, you can use the following command:
 
 ```
-$ DATABASE=pgsql://user:pass@localhost/ngbm vendor/bin/phpunit
+$ DATABASE=pgsql://user:pass@localhost/nglayouts vendor/bin/phpunit
 ```

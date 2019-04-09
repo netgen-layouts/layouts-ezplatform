@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\TargetType;
+namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\TargetType;
 
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\Content\Location;
-use Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface;
-use Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children;
-use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
+use Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface;
+use Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children;
+use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
@@ -28,7 +28,7 @@ final class ChildrenTest extends TestCase
     private $contentExtractorMock;
 
     /**
-     * @var \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children
+     * @var \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children
      */
     private $targetType;
 
@@ -62,7 +62,7 @@ final class ChildrenTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children::getType
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children::getType
      */
     public function testGetType(): void
     {
@@ -70,7 +70,7 @@ final class ChildrenTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children::getConstraints
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children::getConstraints
      */
     public function testValidation(): void
     {
@@ -89,7 +89,7 @@ final class ChildrenTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children::getConstraints
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children::getConstraints
      */
     public function testValidationWithInvalidValue(): void
     {
@@ -108,8 +108,8 @@ final class ChildrenTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children::__construct
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children::provideValue
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children::__construct
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children::provideValue
      */
     public function testProvideValue(): void
     {
@@ -131,8 +131,8 @@ final class ChildrenTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children::__construct
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\Children::provideValue
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children::__construct
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children::provideValue
      */
     public function testProvideValueWithNoLocation(): void
     {

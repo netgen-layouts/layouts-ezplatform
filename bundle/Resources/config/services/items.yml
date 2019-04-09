@@ -1,13 +1,13 @@
 services:
     netgen_block_manager.item.value_converter.ezlocation:
-        class: Netgen\BlockManager\Ez\Item\ValueConverter\LocationValueConverter
+        class: Netgen\Layouts\Ez\Item\ValueConverter\LocationValueConverter
         arguments:
             - "@ezpublish.api.service.content"
         tags:
             - { name: netgen_block_manager.item.value_converter }
 
     netgen_block_manager.item.value_converter.ezcontent:
-        class: Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter
+        class: Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter
         arguments:
             - "@ezpublish.api.service.location"
             - "@ezpublish.api.service.content"
@@ -15,28 +15,28 @@ services:
             - { name: netgen_block_manager.item.value_converter }
 
     netgen_block_manager.item.value_loader.ezlocation:
-        class: Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader
+        class: Netgen\Layouts\Ez\Item\ValueLoader\LocationValueLoader
         arguments:
             - "@ezpublish.api.service.location"
         tags:
             - { name: netgen_block_manager.item.value_loader, value_type: ezlocation }
 
     netgen_block_manager.item.value_loader.ezcontent:
-        class: Netgen\BlockManager\Ez\Item\ValueLoader\ContentValueLoader
+        class: Netgen\Layouts\Ez\Item\ValueLoader\ContentValueLoader
         arguments:
             - "@ezpublish.api.service.content"
         tags:
             - { name: netgen_block_manager.item.value_loader, value_type: ezcontent }
 
     netgen_block_manager.item.value_url_generator.ezlocation:
-        class: Netgen\BlockManager\Ez\Item\ValueUrlGenerator\LocationValueUrlGenerator
+        class: Netgen\Layouts\Ez\Item\ValueUrlGenerator\LocationValueUrlGenerator
         arguments:
             - "@router"
         tags:
             - { name: netgen_block_manager.item.value_url_generator, value_type: ezlocation }
 
     netgen_block_manager.item.value_url_generator.ezcontent:
-        class: Netgen\BlockManager\Ez\Item\ValueUrlGenerator\ContentValueUrlGenerator
+        class: Netgen\Layouts\Ez\Item\ValueUrlGenerator\ContentValueUrlGenerator
         arguments:
             - "@router"
         tags:

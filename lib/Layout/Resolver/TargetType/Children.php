@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Layout\Resolver\TargetType;
+namespace Netgen\Layouts\Ez\Layout\Resolver\TargetType;
 
 use eZ\Publish\API\Repository\Values\Content\Location as APILocation;
-use Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface;
-use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
+use Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface;
+use Netgen\Layouts\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Layout\Resolver\TargetTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints;
 final class Children implements TargetTypeInterface
 {
     /**
-     * @var \Netgen\BlockManager\Ez\ContentProvider\ContentExtractorInterface
+     * @var \Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface
      */
     private $contentExtractor;
 

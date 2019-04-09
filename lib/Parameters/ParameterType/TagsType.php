@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Parameters\ParameterType;
+namespace Netgen\Layouts\Ez\Parameters\ParameterType;
 
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use Netgen\BlockManager\Ez\Validator\Constraint as EzConstraints;
+use Netgen\Layouts\Ez\Validator\Constraint as EzConstraints;
 use Netgen\BlockManager\Parameters\ParameterDefinition;
 use Netgen\BlockManager\Parameters\ParameterType;
 use Netgen\TagsBundle\API\Repository\TagsService;

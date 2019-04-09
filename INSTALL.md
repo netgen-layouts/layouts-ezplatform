@@ -14,14 +14,14 @@ Activating integration bundles
 ------------------------------
 
 After completing standard Netgen Layouts install instructions, you also need to
-activate `NetgenEzPublishBlockManagerBundle` and `NetgenContentBrowserEzPlatformBundle`.
+activate `NetgenLayoutsEzPlatformBundle` and `NetgenContentBrowserEzPlatformBundle`.
 Make sure they are activated after all other Netgen Layouts and Content Browser bundles.
 
 ```
 ...
 
 $bundles[] = new Netgen\Bundle\BlockManagerAdminBundle\NetgenBlockManagerAdminBundle();
-$bundles[] = new Netgen\Bundle\EzPublishBlockManagerBundle\NetgenEzPublishBlockManagerBundle();
+$bundles[] = new Netgen\Bundle\LayoutsEzPlatformBundle\NetgenLayoutsEzPlatformBundle();
 $bundles[] = new Netgen\Bundle\ContentBrowserEzPlatformBundle\NetgenContentBrowserEzPlatformBundle();
 
 return $bundles;

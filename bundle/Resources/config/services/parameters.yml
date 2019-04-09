@@ -1,54 +1,54 @@
 services:
     netgen_block_manager.parameters.parameter_type.ezlocation:
-        class: Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType
+        class: Netgen\Layouts\Ez\Parameters\ParameterType\LocationType
         arguments:
             - "@ezpublish.api.repository"
         tags:
             - { name: netgen_block_manager.parameters.parameter_type }
 
     netgen_block_manager.parameters.parameter_type.ezcontent:
-        class: Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType
+        class: Netgen\Layouts\Ez\Parameters\ParameterType\ContentType
         arguments:
             - "@ezpublish.api.repository"
         tags:
             - { name: netgen_block_manager.parameters.parameter_type }
 
     netgen_block_manager.parameters.parameter_type.ez_content_type:
-        class: Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType
+        class: Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType
         tags:
             - { name: netgen_block_manager.parameters.parameter_type }
 
     netgen_block_manager.parameters.parameter_type.ez_section:
-        class: Netgen\BlockManager\Ez\Parameters\ParameterType\SectionType
+        class: Netgen\Layouts\Ez\Parameters\ParameterType\SectionType
         tags:
             - { name: netgen_block_manager.parameters.parameter_type }
 
     netgen_block_manager.parameters.parameter_type.ez_object_state:
-        class: Netgen\BlockManager\Ez\Parameters\ParameterType\ObjectStateType
+        class: Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType
         tags:
             - { name: netgen_block_manager.parameters.parameter_type }
 
     netgen_block_manager.parameters.form.mapper.ezlocation:
-        class: Netgen\BlockManager\Ez\Parameters\Form\Mapper\LocationMapper
+        class: Netgen\Layouts\Ez\Parameters\Form\Mapper\LocationMapper
         tags:
             - { name: netgen_block_manager.parameters.form.mapper, type: ezlocation }
 
     netgen_block_manager.parameters.form.mapper.ezcontent:
-        class: Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentMapper
+        class: Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentMapper
         tags:
             - { name: netgen_block_manager.parameters.form.mapper, type: ezcontent }
 
     netgen_block_manager.parameters.form.mapper.ez_content_type:
-        class: Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentTypeMapper
+        class: Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentTypeMapper
         tags:
             - { name: netgen_block_manager.parameters.form.mapper, type: ez_content_type }
 
     netgen_block_manager.parameters.form.mapper.ez_section:
-        class: Netgen\BlockManager\Ez\Parameters\Form\Mapper\SectionMapper
+        class: Netgen\Layouts\Ez\Parameters\Form\Mapper\SectionMapper
         tags:
             - { name: netgen_block_manager.parameters.form.mapper, type: ez_section }
 
     netgen_block_manager.parameters.form.mapper.ez_object_state:
-        class: Netgen\BlockManager\Ez\Parameters\Form\Mapper\ObjectStateMapper
+        class: Netgen\Layouts\Ez\Parameters\Form\Mapper\ObjectStateMapper
         tags:
             - { name: netgen_block_manager.parameters.form.mapper, type: ez_object_state }

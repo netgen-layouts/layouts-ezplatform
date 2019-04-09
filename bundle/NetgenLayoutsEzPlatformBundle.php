@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle;
+namespace Netgen\Bundle\LayoutsEzPlatformBundle;
 
-use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass;
-use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Security\PolicyProvider;
+use Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass;
+use Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\ExtensionPlugin;
+use Netgen\Bundle\LayoutsEzPlatformBundle\Security\PolicyProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-final class NetgenEzPublishBlockManagerBundle extends Bundle
+final class NetgenLayoutsEzPlatformBundle extends Bundle
 {
     public function build(ContainerBuilder $container): void
     {
-        /** @var \Netgen\Bundle\BlockManagerBundle\DependencyInjection\NetgenBlockManagerExtension $blockManagerExtension */
-        $blockManagerExtension = $container->getExtension('netgen_block_manager');
-        $blockManagerExtension->addPlugin(new ExtensionPlugin($container, $blockManagerExtension));
+        /** @var \Netgen\Bundle\BlockManagerBundle\DependencyInjection\NetgenBlockManagerExtension $layoutsExtension */
+        $layoutsExtension = $container->getExtension('netgen_block_manager');
+        $layoutsExtension->addPlugin(new ExtensionPlugin($container, $layoutsExtension));
 
         $container->addCompilerPass(new CompilerPass\View\DefaultViewTemplatesPass());
         $container->addCompilerPass(new CompilerPass\DefaultAppPreviewPass());

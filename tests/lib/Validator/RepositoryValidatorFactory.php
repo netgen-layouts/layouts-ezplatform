@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Validator;
+namespace Netgen\Layouts\Ez\Tests\Validator;
 
 use eZ\Publish\API\Repository\Repository;
-use Netgen\BlockManager\Ez\Validator\ContentTypeValidator;
-use Netgen\BlockManager\Ez\Validator\ContentValidator;
-use Netgen\BlockManager\Ez\Validator\LocationValidator;
-use Netgen\BlockManager\Ez\Validator\ObjectStateValidator;
-use Netgen\BlockManager\Ez\Validator\SectionValidator;
+use Netgen\Layouts\Ez\Validator\ContentTypeValidator;
+use Netgen\Layouts\Ez\Validator\ContentValidator;
+use Netgen\Layouts\Ez\Validator\LocationValidator;
+use Netgen\Layouts\Ez\Validator\ObjectStateValidator;
+use Netgen\Layouts\Ez\Validator\SectionValidator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorFactory;
 use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;

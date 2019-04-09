@@ -1,21 +1,21 @@
 services:
     netgen_block_manager.layout.resolver.target_handler.doctrine.ezlocation:
-        class: Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine\Location
+        class: Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Location
         tags:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ezlocation }
 
     netgen_block_manager.layout.resolver.target_handler.doctrine.ezcontent:
-        class: Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine\Location
+        class: Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Location
         tags:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ezcontent }
 
     netgen_block_manager.layout.resolver.target_handler.doctrine.ezchildren:
-        class: Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine\Location
+        class: Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Location
         tags:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ezchildren }
 
     netgen_block_manager.layout.resolver.target_handler.doctrine.ezsubtree:
-        class: Netgen\BlockManager\Ez\Layout\Resolver\TargetHandler\Doctrine\Subtree
+        class: Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Subtree
         tags:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ezsubtree }
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Item\ValueUrlGenerator;
+namespace Netgen\Layouts\Ez\Item\ValueUrlGenerator;
 
 use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use Netgen\BlockManager\Item\ValueUrlGeneratorInterface;

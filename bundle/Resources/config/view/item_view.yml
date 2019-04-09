@@ -20,10 +20,10 @@ view:
                     item\value_type: ezlocation
         api:
             ezcontent:
-                template: "@NetgenEzPublishBlockManager/api/item/ezcontent.html.twig"
+                template: "@NetgenLayoutsEzPlatform/api/item/ezcontent.html.twig"
                 match:
                     item\value_type: ezcontent
             ezlocation:
-                template: "@NetgenEzPublishBlockManager/api/item/ezlocation.html.twig"
+                template: "@NetgenLayoutsEzPlatform/api/item/ezlocation.html.twig"
                 match:
                     item\value_type: ezlocation

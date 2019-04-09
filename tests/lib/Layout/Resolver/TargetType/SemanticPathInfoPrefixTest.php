@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\TargetType;
+namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\TargetType;
 
-use Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix;
+use Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Validation;
 final class SemanticPathInfoPrefixTest extends TestCase
 {
     /**
-     * @var \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix
+     * @var \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix
      */
     private $targetType;
 
@@ -22,7 +22,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::getType
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::getType
      */
     public function testGetType(): void
     {
@@ -33,7 +33,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
      * @param mixed $value
      * @param bool $isValid
      *
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::getConstraints
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::getConstraints
      * @dataProvider validationProvider
      */
     public function testValidation($value, bool $isValid): void
@@ -45,7 +45,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::provideValue
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::provideValue
      */
     public function testProvideValue(): void
     {
@@ -59,7 +59,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::provideValue
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::provideValue
      */
     public function testProvideValueWithEmptySemanticPathInfo(): void
     {
@@ -73,7 +73,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::provideValue
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::provideValue
      */
     public function testProvideValueWithNoSemanticPathInfo(): void
     {

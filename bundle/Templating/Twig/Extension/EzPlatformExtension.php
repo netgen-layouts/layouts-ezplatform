@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension;
+namespace Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Extension;
 
-use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime\EzPlatformRuntime;
+use Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 

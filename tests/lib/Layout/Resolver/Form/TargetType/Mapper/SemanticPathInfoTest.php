@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\Form\TargetType\Mapper;
+namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\Form\TargetType\Mapper;
 
-use Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\SemanticPathInfo;
+use Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\SemanticPathInfo;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -21,7 +21,7 @@ final class SemanticPathInfoTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\SemanticPathInfo::getFormType
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\SemanticPathInfo::getFormType
      */
     public function testGetFormType(): void
     {

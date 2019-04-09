@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Validator;
+namespace Netgen\Layouts\Ez\Tests\Validator;
 
-use Netgen\BlockManager\Ez\Validator\Constraint\SiteAccessGroup;
-use Netgen\BlockManager\Ez\Validator\SiteAccessGroupValidator;
+use Netgen\Layouts\Ez\Validator\Constraint\SiteAccessGroup;
+use Netgen\Layouts\Ez\Validator\SiteAccessGroupValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
@@ -21,8 +21,8 @@ final class SiteAccessGroupValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\SiteAccessGroupValidator::__construct
-     * @covers \Netgen\BlockManager\Ez\Validator\SiteAccessGroupValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\SiteAccessGroupValidator::__construct
+     * @covers \Netgen\Layouts\Ez\Validator\SiteAccessGroupValidator::validate
      * @dataProvider validateDataProvider
      */
     public function testValidate(?string $identifier, bool $isValid): void
@@ -31,19 +31,19 @@ final class SiteAccessGroupValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\SiteAccessGroupValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\SiteAccessGroupValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->expectException(UnexpectedTypeException::class);
-        $this->expectExceptionMessage('Expected argument of type "Netgen\\BlockManager\\Ez\\Validator\\Constraint\\SiteAccessGroup", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
+        $this->expectExceptionMessage('Expected argument of type "Netgen\\Layouts\\Ez\\Validator\\Constraint\\SiteAccessGroup", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
 
         $this->constraint = new NotBlank();
         self::assertValid(true, 'value');
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\SiteAccessGroupValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\SiteAccessGroupValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {

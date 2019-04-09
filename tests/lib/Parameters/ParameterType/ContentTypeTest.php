@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
+namespace Netgen\Layouts\Ez\Tests\Parameters\ParameterType;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\ContentTypeService;
@@ -10,8 +10,8 @@ use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentType as EzContentType;
-use Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType;
-use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
+use Netgen\Layouts\Ez\Parameters\ParameterType\ContentType;
+use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\BlockManager\Parameters\ParameterDefinition;
 use Netgen\BlockManager\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use PHPUnit\Framework\TestCase;
@@ -84,8 +84,8 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::__construct
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::getIdentifier
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::__construct
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::getIdentifier
      */
     public function testGetIdentifier(): void
     {
@@ -93,7 +93,7 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::configureOptions
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::configureOptions
      * @dataProvider validOptionsProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
@@ -103,7 +103,7 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::configureOptions
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::configureOptions
      * @dataProvider invalidOptionsProvider
      */
     public function testInvalidOptions(array $options): void
@@ -198,7 +198,7 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::export
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::export
      */
     public function testExport(): void
     {
@@ -212,7 +212,7 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::export
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::export
      */
     public function testExportWithNonExistingContent(): void
     {
@@ -226,7 +226,7 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::import
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::import
      */
     public function testImport(): void
     {
@@ -240,7 +240,7 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::import
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::import
      */
     public function testImportWithNonExistingContent(): void
     {
@@ -259,7 +259,7 @@ final class ContentTypeTest extends TestCase
      * @param bool $required
      * @param bool $isValid
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::getValueConstraints
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::getValueConstraints
      * @dataProvider validationProvider
      */
     public function testValidation($value, int $type, bool $required, bool $isValid): void
@@ -318,7 +318,7 @@ final class ContentTypeTest extends TestCase
      * @param mixed $value
      * @param bool $isEmpty
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentType::isValueEmpty
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::isValueEmpty
      * @dataProvider emptyProvider
      */
     public function testIsValueEmpty($value, bool $isEmpty): void

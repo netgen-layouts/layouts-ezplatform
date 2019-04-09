@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Form;
+namespace Netgen\Layouts\Ez\Form;
 
 use eZ\Publish\API\Repository\ContentTypeService;
 use Netgen\BlockManager\Form\AbstractType;

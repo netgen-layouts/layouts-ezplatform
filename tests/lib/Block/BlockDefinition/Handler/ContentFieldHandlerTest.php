@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Block\BlockDefinition\Handler;
+namespace Netgen\Layouts\Ez\Tests\Block\BlockDefinition\Handler;
 
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\BlockManager\API\Values\Block\Block;
 use Netgen\BlockManager\Block\DynamicParameters;
-use Netgen\BlockManager\Ez\Block\BlockDefinition\Handler\ContentFieldHandler;
-use Netgen\BlockManager\Ez\ContentProvider\ContentProviderInterface;
+use Netgen\Layouts\Ez\Block\BlockDefinition\Handler\ContentFieldHandler;
+use Netgen\Layouts\Ez\ContentProvider\ContentProviderInterface;
 use PHPUnit\Framework\TestCase;
 
 final class ContentFieldHandlerTest extends TestCase
@@ -20,7 +20,7 @@ final class ContentFieldHandlerTest extends TestCase
     private $contentProviderMock;
 
     /**
-     * @var \Netgen\BlockManager\Ez\Block\BlockDefinition\Handler\ContentFieldHandler
+     * @var \Netgen\Layouts\Ez\Block\BlockDefinition\Handler\ContentFieldHandler
      */
     private $handler;
 
@@ -32,7 +32,7 @@ final class ContentFieldHandlerTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Block\BlockDefinition\Handler\ContentFieldHandler::isContextual
+     * @covers \Netgen\Layouts\Ez\Block\BlockDefinition\Handler\ContentFieldHandler::isContextual
      */
     public function testIsContextual(): void
     {
@@ -40,8 +40,8 @@ final class ContentFieldHandlerTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Block\BlockDefinition\Handler\ContentFieldHandler::__construct
-     * @covers \Netgen\BlockManager\Ez\Block\BlockDefinition\Handler\ContentFieldHandler::getDynamicParameters
+     * @covers \Netgen\Layouts\Ez\Block\BlockDefinition\Handler\ContentFieldHandler::__construct
+     * @covers \Netgen\Layouts\Ez\Block\BlockDefinition\Handler\ContentFieldHandler::getDynamicParameters
      */
     public function testGetDynamicParameters(): void
     {

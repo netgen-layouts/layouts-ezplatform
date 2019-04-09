@@ -8,7 +8,7 @@ view:
                     block\view_type: ezcontent_field
         api:
             ezcontent_field:
-                template: "@NetgenEzPublishBlockManager/api/block/ezcontent_field.html.twig"
+                template: "@NetgenLayoutsEzPlatform/api/block/ezcontent_field.html.twig"
                 match:
                     block\definition: ezcontent_field
                     api_version: 1

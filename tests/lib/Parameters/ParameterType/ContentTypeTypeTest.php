@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
+namespace Netgen\Layouts\Ez\Tests\Parameters\ParameterType;
 
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentType as EzContentType;
-use Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType;
-use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
+use Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType;
+use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\BlockManager\Parameters\ParameterDefinition;
 use Netgen\BlockManager\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use PHPUnit\Framework\TestCase;
@@ -54,7 +54,7 @@ final class ContentTypeTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType::getIdentifier
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType::getIdentifier
      */
     public function testGetIdentifier(): void
     {
@@ -62,7 +62,7 @@ final class ContentTypeTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType::configureOptions
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType::configureOptions
      * @dataProvider validOptionsProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
@@ -72,7 +72,7 @@ final class ContentTypeTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType::configureOptions
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType::configureOptions
      * @dataProvider invalidOptionsProvider
      */
     public function testInvalidOptions(array $options): void
@@ -156,7 +156,7 @@ final class ContentTypeTypeTest extends TestCase
      * @param bool $required
      * @param bool $isValid
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType::getValueConstraints
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType::getValueConstraints
      * @dataProvider validationProvider
      */
     public function testValidation($value, bool $required, bool $isValid): void
@@ -222,7 +222,7 @@ final class ContentTypeTypeTest extends TestCase
      * @param mixed $convertedValue
      * @param bool $multiple
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType::fromHash
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType::fromHash
      * @dataProvider fromHashProvider
      */
     public function testFromHash($value, $convertedValue, bool $multiple): void
@@ -290,7 +290,7 @@ final class ContentTypeTypeTest extends TestCase
      * @param mixed $value
      * @param bool $isEmpty
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType::isValueEmpty
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType::isValueEmpty
      * @dataProvider emptyProvider
      */
     public function testIsValueEmpty($value, bool $isEmpty): void

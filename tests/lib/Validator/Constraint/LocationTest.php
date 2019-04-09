@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Validator\Constraint;
+namespace Netgen\Layouts\Ez\Tests\Validator\Constraint;
 
-use Netgen\BlockManager\Ez\Validator\Constraint\Location;
+use Netgen\Layouts\Ez\Validator\Constraint\Location;
 use PHPUnit\Framework\TestCase;
 
 final class LocationTest extends TestCase
 {
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\Constraint\Location::validatedBy
+     * @covers \Netgen\Layouts\Ez\Validator\Constraint\Location::validatedBy
      */
     public function testValidatedBy(): void
     {

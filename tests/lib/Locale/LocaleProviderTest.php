@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Locale;
+namespace Netgen\Layouts\Ez\Tests\Locale;
 
 use eZ\Publish\API\Repository\LanguageService;
 use eZ\Publish\API\Repository\Values\Content\Language;
 use eZ\Publish\Core\MVC\Symfony\Locale\LocaleConverterInterface;
-use Netgen\BlockManager\Ez\Locale\LocaleProvider;
+use Netgen\Layouts\Ez\Locale\LocaleProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,7 +24,7 @@ final class LocaleProviderTest extends TestCase
     private $localeConverterMock;
 
     /**
-     * @var \Netgen\BlockManager\Ez\Locale\LocaleProvider
+     * @var \Netgen\Layouts\Ez\Locale\LocaleProvider
      */
     private $localeProvider;
 
@@ -41,9 +41,9 @@ final class LocaleProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::__construct
-     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getAvailableLocales
-     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getPosixLocale
+     * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::__construct
+     * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::getAvailableLocales
+     * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::getPosixLocale
      */
     public function testGetAvailableLocales(): void
     {
@@ -77,9 +77,9 @@ final class LocaleProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::__construct
-     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getAvailableLocales
-     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getPosixLocale
+     * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::__construct
+     * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::getAvailableLocales
+     * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::getPosixLocale
      */
     public function testGetAvailableLocalesWithInvalidPosixLocale(): void
     {
@@ -104,9 +104,9 @@ final class LocaleProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getPosixLocale
-     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getRequestLocales
-     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::setLanguages
+     * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::getPosixLocale
+     * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::getRequestLocales
+     * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::setLanguages
      */
     public function testGetRequestLocales(): void
     {
@@ -142,9 +142,9 @@ final class LocaleProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getPosixLocale
-     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getRequestLocales
-     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::setLanguages
+     * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::getPosixLocale
+     * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::getRequestLocales
+     * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::setLanguages
      */
     public function testGetRequestLocalesWithInvalidPosixLocale(): void
     {
@@ -172,9 +172,9 @@ final class LocaleProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getPosixLocale
-     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::getRequestLocales
-     * @covers \Netgen\BlockManager\Ez\Locale\LocaleProvider::setLanguages
+     * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::getPosixLocale
+     * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::getRequestLocales
+     * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::setLanguages
      */
     public function testGetRequestLocalesWithNonExistingPosixLocale(): void
     {

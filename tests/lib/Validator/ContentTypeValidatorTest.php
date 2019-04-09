@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Validator;
+namespace Netgen\Layouts\Ez\Tests\Validator;
 
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentType as EzContentType;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentTypeGroup;
-use Netgen\BlockManager\Ez\Validator\Constraint\ContentType;
-use Netgen\BlockManager\Ez\Validator\ContentTypeValidator;
+use Netgen\Layouts\Ez\Validator\Constraint\ContentType;
+use Netgen\Layouts\Ez\Validator\ContentTypeValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
@@ -36,8 +36,8 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::__construct
-     * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::__construct
+     * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::validate
      * @dataProvider  validateDataProvider
      */
     public function testValidate(string $identifier, array $groups, array $allowedTypes, bool $isValid): void
@@ -69,8 +69,8 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::__construct
-     * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::__construct
+     * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::validate
      */
     public function testValidateNull(): void
     {
@@ -82,8 +82,8 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::__construct
-     * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::__construct
+     * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::validate
      */
     public function testValidateInvalid(): void
     {
@@ -97,19 +97,19 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->expectException(UnexpectedTypeException::class);
-        $this->expectExceptionMessage('Expected argument of type "Netgen\\BlockManager\\Ez\\Validator\\Constraint\\ContentType", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
+        $this->expectExceptionMessage('Expected argument of type "Netgen\\Layouts\\Ez\\Validator\\Constraint\\ContentType", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
 
         $this->constraint = new NotBlank();
         self::assertValid(true, 'value');
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
@@ -120,7 +120,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\ContentTypeValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidAllowedTypes(): void
     {

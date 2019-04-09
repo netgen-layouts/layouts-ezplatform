@@ -15,10 +15,10 @@
     beStrictAboutChangesToGlobalState="true"
 >
     <testsuites>
-        <testsuite name="Netgen\BlockManager\Ez">
+        <testsuite name="Netgen\Layouts\Ez">
             <directory>tests/lib</directory>
         </testsuite>
-        <testsuite name="Netgen\Bundle\EzPublishBlockManagerBundle">
+        <testsuite name="Netgen\Bundle\LayoutsEzPlatformBundle">
             <directory>tests/bundle</directory>
         </testsuite>
     </testsuites>
@@ -28,8 +28,8 @@
             <directory suffix=".php">lib</directory>
             <directory suffix=".php">bundle</directory>
             <exclude>
-                <file>bundle/NetgenEzPublishBlockManagerBundle.php</file>
-                <file>bundle/DependencyInjection/NetgenEzPublishBlockManagerExtension.php</file>
+                <file>bundle/NetgenLayoutsEzPlatformBundle.php</file>
+                <file>bundle/DependencyInjection/NetgenLayoutsEzPlatformExtension.php</file>
             </exclude>
             <exclude>
                 <directory>bundle/ezpublish_legacy</directory>

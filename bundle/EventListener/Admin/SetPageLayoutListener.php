@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\EventListener\Admin;
+namespace Netgen\Bundle\LayoutsEzPlatformBundle\EventListener\Admin;
 
 use EzSystems\EzPlatformAdminUiBundle\EzPlatformAdminUiBundle;
 use Netgen\Bundle\BlockManagerAdminBundle\Event\AdminMatchEvent;

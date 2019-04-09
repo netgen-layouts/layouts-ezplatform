@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Validator;
+namespace Netgen\Layouts\Ez\Validator;
 
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use Netgen\BlockManager\Ez\Validator\Constraint\Tag;
+use Netgen\Layouts\Ez\Validator\Constraint\Tag;
 use Netgen\TagsBundle\API\Repository\TagsService;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;

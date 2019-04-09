@@ -6,7 +6,7 @@ services:
         alias: ezpublish.api.service.search
 
     netgen_block_manager.ezplatform.content_provider:
-        class: Netgen\BlockManager\Ez\ContentProvider\ContentProvider
+        class: Netgen\Layouts\Ez\ContentProvider\ContentProvider
         arguments:
             - "@ezpublish.api.service.location"
             - "@netgen_block_manager.context"
@@ -15,15 +15,15 @@ services:
         alias: netgen_block_manager.ezplatform.content_extractor.request
 
     netgen_block_manager.ezplatform.content_extractor.request:
-        class: Netgen\BlockManager\Ez\ContentProvider\RequestContentExtractor
+        class: Netgen\Layouts\Ez\ContentProvider\RequestContentExtractor
 
     netgen_block_manager.ezplatform.security.role_hierarchy:
-        class: Netgen\BlockManager\Ez\Security\Role\RoleHierarchy
+        class: Netgen\Layouts\Ez\Security\Role\RoleHierarchy
         arguments:
             - "%security.role_hierarchy.roles%"
 
     netgen_block_manager.ezplatform.security.repository_access_voter:
-        class: Netgen\BlockManager\Ez\Security\Authorization\Voter\RepositoryAccessVoter
+        class: Netgen\Layouts\Ez\Security\Authorization\Voter\RepositoryAccessVoter
         arguments:
             - "@netgen_block_manager.ezplatform.security.role_hierarchy"
             - "@security.access.decision_manager"

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\DependencyInjection\CompilerPass\View;
+namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\DependencyInjection\CompilerPass\View;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
-use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass;
+use Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 
 final class DefaultViewTemplatesPassTest extends AbstractCompilerPassTestCase
 {
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass::process
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass::process
      */
     public function testProcess(): void
     {
@@ -146,7 +146,7 @@ final class DefaultViewTemplatesPassTest extends AbstractCompilerPassTestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass::process
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass::process
      */
     public function testProcessWithEmptyContainer(): void
     {

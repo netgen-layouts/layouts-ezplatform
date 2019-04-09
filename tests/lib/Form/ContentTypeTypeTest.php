@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Form;
+namespace Netgen\Layouts\Ez\Tests\Form;
 
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentTypeGroup;
-use Netgen\BlockManager\Ez\Form\ContentTypeType;
+use Netgen\Layouts\Ez\Form\ContentTypeType;
 use Netgen\BlockManager\Tests\TestCase\FormTestCase;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormTypeInterface;
@@ -21,8 +21,8 @@ final class ContentTypeTypeTest extends FormTestCase
     private $contentTypeServiceMock;
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::__construct
-     * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getContentTypes
+     * @covers \Netgen\Layouts\Ez\Form\ContentTypeType::__construct
+     * @covers \Netgen\Layouts\Ez\Form\ContentTypeType::getContentTypes
      */
     public function testSubmitValidData(): void
     {
@@ -49,7 +49,7 @@ final class ContentTypeTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getParent
+     * @covers \Netgen\Layouts\Ez\Form\ContentTypeType::getParent
      */
     public function testGetParent(): void
     {
@@ -57,8 +57,8 @@ final class ContentTypeTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::configureOptions
-     * @covers \Netgen\BlockManager\Ez\Form\ContentTypeType::getContentTypes
+     * @covers \Netgen\Layouts\Ez\Form\ContentTypeType::configureOptions
+     * @covers \Netgen\Layouts\Ez\Form\ContentTypeType::getContentTypes
      */
     public function testConfigureOptions(): void
     {

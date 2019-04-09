@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Validator;
+namespace Netgen\Layouts\Ez\Validator;
 
 use eZ\Publish\API\Repository\Repository;
-use Netgen\BlockManager\Ez\Validator\Constraint\ObjectState;
+use Netgen\Layouts\Ez\Validator\Constraint\ObjectState;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;

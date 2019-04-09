@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\CompilerPass\HttpCache;
+namespace Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\HttpCache;
 
 use EzSystems\PlatformHttpCacheBundle\PurgeClient\LocalPurgeClient;
 use EzSystems\PlatformHttpCacheBundle\PurgeClient\VarnishPurgeClient;

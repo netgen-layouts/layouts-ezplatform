@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Configuration;
+namespace Netgen\Bundle\LayoutsEzPlatformBundle\Configuration;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use Netgen\Bundle\BlockManagerBundle\Configuration\ConfigurationInterface;

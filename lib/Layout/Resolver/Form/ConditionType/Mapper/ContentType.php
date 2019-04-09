@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Layout\Resolver\Form\ConditionType\Mapper;
+namespace Netgen\Layouts\Ez\Layout\Resolver\Form\ConditionType\Mapper;
 
-use Netgen\BlockManager\Ez\Form\ContentTypeType;
+use Netgen\Layouts\Ez\Form\ContentTypeType;
 use Netgen\BlockManager\Layout\Resolver\Form\ConditionType\Mapper;
 
 final class ContentType extends Mapper

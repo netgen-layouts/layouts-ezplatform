@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\Form\TargetType\Mapper;
+namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\Form\TargetType\Mapper;
 
-use Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Location;
+use Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Location;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 use PHPUnit\Framework\TestCase;
 
@@ -21,7 +21,7 @@ final class LocationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Location::getFormType
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Location::getFormType
      */
     public function testGetFormType(): void
     {
@@ -29,7 +29,7 @@ final class LocationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\Form\TargetType\Mapper\Location::getFormOptions
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Location::getFormOptions
      */
     public function testGetFormOptions(): void
     {

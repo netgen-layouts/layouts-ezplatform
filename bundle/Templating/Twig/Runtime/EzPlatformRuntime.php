@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Runtime;
+namespace Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime;
 
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\API\Repository\Values\Content\Location;

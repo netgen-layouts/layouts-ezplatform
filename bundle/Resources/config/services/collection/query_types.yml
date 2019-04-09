@@ -1,6 +1,6 @@
 services:
     netgen_block_manager.collection.query_type.handler.ezcontent_search:
-        class: Netgen\BlockManager\Ez\Collection\QueryType\Handler\ContentSearchHandler
+        class: Netgen\Layouts\Ez\Collection\QueryType\Handler\ContentSearchHandler
         # Needs to be lazy since we're injecting "languages" dynamic param
         lazy: true
         arguments:

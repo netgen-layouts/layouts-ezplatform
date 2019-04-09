@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Parameters\Form\Mapper;
+namespace Netgen\Layouts\Ez\Tests\Parameters\Form\Mapper;
 
-use Netgen\BlockManager\Ez\Parameters\Form\Mapper\TagsMapper;
-use Netgen\BlockManager\Ez\Parameters\ParameterType\TagsType as ParameterType;
+use Netgen\Layouts\Ez\Parameters\Form\Mapper\TagsMapper;
+use Netgen\Layouts\Ez\Parameters\ParameterType\TagsType as ParameterType;
 use Netgen\BlockManager\Parameters\ParameterDefinition;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserMultipleType;
 use Netgen\TagsBundle\API\Repository\TagsService;
@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 final class TagsMapperTest extends TestCase
 {
     /**
-     * @var \Netgen\BlockManager\Ez\Parameters\Form\Mapper\TagsMapper
+     * @var \Netgen\Layouts\Ez\Parameters\Form\Mapper\TagsMapper
      */
     private $mapper;
 
@@ -24,7 +24,7 @@ final class TagsMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\Form\Mapper\TagsMapper::getFormType
+     * @covers \Netgen\Layouts\Ez\Parameters\Form\Mapper\TagsMapper::getFormType
      */
     public function testGetFormType(): void
     {
@@ -32,7 +32,7 @@ final class TagsMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\Form\Mapper\TagsMapper::mapOptions
+     * @covers \Netgen\Layouts\Ez\Parameters\Form\Mapper\TagsMapper::mapOptions
      */
     public function testMapOptions(): void
     {

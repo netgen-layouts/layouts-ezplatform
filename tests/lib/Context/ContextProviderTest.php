@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Context;
+namespace Netgen\Layouts\Ez\Tests\Context;
 
 use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use eZ\Publish\Core\MVC\Symfony\View\ContentView;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\BlockManager\Context\Context;
-use Netgen\BlockManager\Ez\Context\ContextProvider;
+use Netgen\Layouts\Ez\Context\ContextProvider;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +27,7 @@ final class ContextProviderTest extends TestCase
     private $context;
 
     /**
-     * @var \Netgen\BlockManager\Ez\Context\ContextProvider
+     * @var \Netgen\Layouts\Ez\Context\ContextProvider
      */
     private $contextProvider;
 
@@ -40,8 +40,8 @@ final class ContextProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::__construct
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::provideContext
+     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::__construct
+     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::provideContext
      */
     public function testProvideContext(): void
     {
@@ -60,8 +60,8 @@ final class ContextProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::__construct
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::provideContext
+     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::__construct
+     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::provideContext
      */
     public function testProvideContextWithInvalidView(): void
     {
@@ -76,8 +76,8 @@ final class ContextProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::__construct
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::provideContext
+     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::__construct
+     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::provideContext
      */
     public function testProvideContextWithLocation(): void
     {
@@ -93,8 +93,8 @@ final class ContextProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::__construct
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::provideContext
+     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::__construct
+     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::provideContext
      */
     public function testProvideContextWithInvalidLocation(): void
     {
@@ -109,8 +109,8 @@ final class ContextProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::__construct
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::provideContext
+     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::__construct
+     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::provideContext
      */
     public function testProvideContextWithLocationId(): void
     {
@@ -127,8 +127,8 @@ final class ContextProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::__construct
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::provideContext
+     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::__construct
+     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::provideContext
      */
     public function testProvideContextWithInvalidRoute(): void
     {
@@ -144,7 +144,7 @@ final class ContextProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Context\ContextProvider::provideContext
+     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::provideContext
      */
     public function testProvideContextWithNoRequest(): void
     {

@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Parameters\Form\Mapper;
+namespace Netgen\Layouts\Ez\Tests\Parameters\Form\Mapper;
 
-use Netgen\BlockManager\Ez\Form\SectionType;
-use Netgen\BlockManager\Ez\Parameters\Form\Mapper\SectionMapper;
-use Netgen\BlockManager\Ez\Parameters\ParameterType\SectionType as ParameterType;
+use Netgen\Layouts\Ez\Form\SectionType;
+use Netgen\Layouts\Ez\Parameters\Form\Mapper\SectionMapper;
+use Netgen\Layouts\Ez\Parameters\ParameterType\SectionType as ParameterType;
 use Netgen\BlockManager\Parameters\ParameterDefinition;
 use PHPUnit\Framework\TestCase;
 
 final class SectionMapperTest extends TestCase
 {
     /**
-     * @var \Netgen\BlockManager\Ez\Parameters\Form\Mapper\SectionMapper
+     * @var \Netgen\Layouts\Ez\Parameters\Form\Mapper\SectionMapper
      */
     private $mapper;
 
@@ -23,7 +23,7 @@ final class SectionMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\Form\Mapper\SectionMapper::getFormType
+     * @covers \Netgen\Layouts\Ez\Parameters\Form\Mapper\SectionMapper::getFormType
      */
     public function testGetFormType(): void
     {
@@ -31,7 +31,7 @@ final class SectionMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\Form\Mapper\SectionMapper::mapOptions
+     * @covers \Netgen\Layouts\Ez\Parameters\Form\Mapper\SectionMapper::mapOptions
      */
     public function testMapOptions(): void
     {

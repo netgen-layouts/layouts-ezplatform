@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\ConditionType;
+namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\ConditionType;
 
 use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzSiteAccess;
-use Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccessGroup;
-use Netgen\BlockManager\Ez\Tests\Validator\ValidatorFactory;
+use Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccessGroup;
+use Netgen\Layouts\Ez\Tests\Validator\ValidatorFactory;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Validation;
 final class SiteAccessGroupTest extends TestCase
 {
     /**
-     * @var \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccessGroup
+     * @var \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccessGroup
      */
     private $conditionType;
 
@@ -33,8 +33,8 @@ final class SiteAccessGroupTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::__construct
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::getType
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::__construct
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::getType
      */
     public function testGetType(): void
     {
@@ -45,7 +45,7 @@ final class SiteAccessGroupTest extends TestCase
      * @param mixed $value
      * @param bool $isValid
      *
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::getConstraints
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::getConstraints
      * @dataProvider validationProvider
      */
     public function testValidation($value, bool $isValid): void
@@ -59,7 +59,7 @@ final class SiteAccessGroupTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::matches
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::matches
      *
      * @param mixed $value
      * @param bool $matches
@@ -75,7 +75,7 @@ final class SiteAccessGroupTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::matches
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::matches
      */
     public function testMatchesWithSiteAccessWithNoGroups(): void
     {
@@ -86,7 +86,7 @@ final class SiteAccessGroupTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::matches
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::matches
      */
     public function testMatchesWithNoSiteAccess(): void
     {

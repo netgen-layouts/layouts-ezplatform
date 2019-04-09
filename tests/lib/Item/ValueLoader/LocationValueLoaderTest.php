@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Item\ValueLoader;
+namespace Netgen\Layouts\Ez\Tests\Item\ValueLoader;
 
 use Exception;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Repository\Values\Content\Location;
-use Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader;
+use Netgen\Layouts\Ez\Item\ValueLoader\LocationValueLoader;
 use PHPUnit\Framework\TestCase;
 
 final class LocationValueLoaderTest extends TestCase
@@ -19,7 +19,7 @@ final class LocationValueLoaderTest extends TestCase
     private $locationServiceMock;
 
     /**
-     * @var \Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader
+     * @var \Netgen\Layouts\Ez\Item\ValueLoader\LocationValueLoader
      */
     private $valueLoader;
 
@@ -31,8 +31,8 @@ final class LocationValueLoaderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader::__construct
-     * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader::load
+     * @covers \Netgen\Layouts\Ez\Item\ValueLoader\LocationValueLoader::__construct
+     * @covers \Netgen\Layouts\Ez\Item\ValueLoader\LocationValueLoader::load
      */
     public function testLoad(): void
     {
@@ -57,7 +57,7 @@ final class LocationValueLoaderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader::load
+     * @covers \Netgen\Layouts\Ez\Item\ValueLoader\LocationValueLoader::load
      */
     public function testLoadWithNoLocation(): void
     {
@@ -71,7 +71,7 @@ final class LocationValueLoaderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader::load
+     * @covers \Netgen\Layouts\Ez\Item\ValueLoader\LocationValueLoader::load
      */
     public function testLoadWithNonPublishedContent(): void
     {
@@ -95,7 +95,7 @@ final class LocationValueLoaderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader::loadByRemoteId
+     * @covers \Netgen\Layouts\Ez\Item\ValueLoader\LocationValueLoader::loadByRemoteId
      */
     public function testLoadByRemoteId(): void
     {
@@ -120,7 +120,7 @@ final class LocationValueLoaderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader::loadByRemoteId
+     * @covers \Netgen\Layouts\Ez\Item\ValueLoader\LocationValueLoader::loadByRemoteId
      */
     public function testLoadByRemoteIdWithNoLocation(): void
     {
@@ -134,7 +134,7 @@ final class LocationValueLoaderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Item\ValueLoader\LocationValueLoader::loadByRemoteId
+     * @covers \Netgen\Layouts\Ez\Item\ValueLoader\LocationValueLoader::loadByRemoteId
      */
     public function testLoadByRemoteIdWithNonPublishedContent(): void
     {

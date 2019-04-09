@@ -1,48 +1,48 @@
 services:
     netgen_block_manager.validator.ezlocation:
-        class: Netgen\BlockManager\Ez\Validator\LocationValidator
+        class: Netgen\Layouts\Ez\Validator\LocationValidator
         arguments:
             - "@ezpublish.api.repository"
         tags:
             - { name: validator.constraint_validator, alias: ngbm_ezlocation }
 
     netgen_block_manager.validator.ezcontent:
-        class: Netgen\BlockManager\Ez\Validator\ContentValidator
+        class: Netgen\Layouts\Ez\Validator\ContentValidator
         arguments:
             - "@ezpublish.api.repository"
         tags:
             - { name: validator.constraint_validator, alias: ngbm_ezcontent }
 
     netgen_block_manager.validator.ez_site_access:
-        class: Netgen\BlockManager\Ez\Validator\SiteAccessValidator
+        class: Netgen\Layouts\Ez\Validator\SiteAccessValidator
         arguments:
             - "%ezpublish.siteaccess.list%"
         tags:
             - { name: validator.constraint_validator, alias: ngbm_ez_site_access }
 
     netgen_block_manager.validator.ez_site_access_group:
-        class: Netgen\BlockManager\Ez\Validator\SiteAccessGroupValidator
+        class: Netgen\Layouts\Ez\Validator\SiteAccessGroupValidator
         arguments:
             - "%ezpublish.siteaccess.groups%"
         tags:
             - { name: validator.constraint_validator, alias: ngbm_ez_site_access_group }
 
     netgen_block_manager.validator.ez_content_type:
-        class: Netgen\BlockManager\Ez\Validator\ContentTypeValidator
+        class: Netgen\Layouts\Ez\Validator\ContentTypeValidator
         arguments:
             - "@ezpublish.api.repository"
         tags:
             - { name: validator.constraint_validator, alias: ngbm_ez_content_type }
 
     netgen_block_manager.validator.ez_section:
-        class: Netgen\BlockManager\Ez\Validator\SectionValidator
+        class: Netgen\Layouts\Ez\Validator\SectionValidator
         arguments:
             - "@ezpublish.api.repository"
         tags:
             - { name: validator.constraint_validator, alias: ngbm_ez_section }
 
     netgen_block_manager.validator.ez_object_state:
-        class: Netgen\BlockManager\Ez\Validator\ObjectStateValidator
+        class: Netgen\Layouts\Ez\Validator\ObjectStateValidator
         arguments:
             - "@ezpublish.api.repository"
         tags:

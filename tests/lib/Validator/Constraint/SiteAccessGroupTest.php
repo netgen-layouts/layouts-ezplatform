@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Validator\Constraint;
+namespace Netgen\Layouts\Ez\Tests\Validator\Constraint;
 
-use Netgen\BlockManager\Ez\Validator\Constraint\SiteAccessGroup;
+use Netgen\Layouts\Ez\Validator\Constraint\SiteAccessGroup;
 use PHPUnit\Framework\TestCase;
 
 final class SiteAccessGroupTest extends TestCase
 {
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\Constraint\SiteAccessGroup::validatedBy
+     * @covers \Netgen\Layouts\Ez\Validator\Constraint\SiteAccessGroup::validatedBy
      */
     public function testValidatedBy(): void
     {

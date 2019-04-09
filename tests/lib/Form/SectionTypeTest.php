@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Form;
+namespace Netgen\Layouts\Ez\Tests\Form;
 
 use eZ\Publish\API\Repository\SectionService;
 use eZ\Publish\API\Repository\Values\Content\Section;
-use Netgen\BlockManager\Ez\Form\SectionType;
+use Netgen\Layouts\Ez\Form\SectionType;
 use Netgen\BlockManager\Tests\TestCase\FormTestCase;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormTypeInterface;
@@ -21,8 +21,8 @@ final class SectionTypeTest extends FormTestCase
     private $sectionServiceMock;
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Form\SectionType::__construct
-     * @covers \Netgen\BlockManager\Ez\Form\SectionType::getSections
+     * @covers \Netgen\Layouts\Ez\Form\SectionType::__construct
+     * @covers \Netgen\Layouts\Ez\Form\SectionType::getSections
      */
     public function testSubmitValidData(): void
     {
@@ -46,8 +46,8 @@ final class SectionTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Form\SectionType::__construct
-     * @covers \Netgen\BlockManager\Ez\Form\SectionType::getSections
+     * @covers \Netgen\Layouts\Ez\Form\SectionType::__construct
+     * @covers \Netgen\Layouts\Ez\Form\SectionType::getSections
      */
     public function testSubmitValidDataWithAllSectionsAllowed(): void
     {
@@ -70,8 +70,8 @@ final class SectionTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Form\SectionType::__construct
-     * @covers \Netgen\BlockManager\Ez\Form\SectionType::getSections
+     * @covers \Netgen\Layouts\Ez\Form\SectionType::__construct
+     * @covers \Netgen\Layouts\Ez\Form\SectionType::getSections
      */
     public function testSubmitNonAllowedSections(): void
     {
@@ -95,7 +95,7 @@ final class SectionTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Form\SectionType::getParent
+     * @covers \Netgen\Layouts\Ez\Form\SectionType::getParent
      */
     public function testGetParent(): void
     {
@@ -103,8 +103,8 @@ final class SectionTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Form\SectionType::configureOptions
-     * @covers \Netgen\BlockManager\Ez\Form\SectionType::getSections
+     * @covers \Netgen\Layouts\Ez\Form\SectionType::configureOptions
+     * @covers \Netgen\Layouts\Ez\Form\SectionType::getSections
      */
     public function testConfigureOptions(): void
     {
@@ -125,8 +125,8 @@ final class SectionTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Form\SectionType::configureOptions
-     * @covers \Netgen\BlockManager\Ez\Form\SectionType::getSections
+     * @covers \Netgen\Layouts\Ez\Form\SectionType::configureOptions
+     * @covers \Netgen\Layouts\Ez\Form\SectionType::getSections
      */
     public function testConfigureOptionsWithInvalidSection(): void
     {

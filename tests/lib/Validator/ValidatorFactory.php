@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Validator;
+namespace Netgen\Layouts\Ez\Tests\Validator;
 
-use Netgen\BlockManager\Ez\Validator\SiteAccessGroupValidator;
-use Netgen\BlockManager\Ez\Validator\SiteAccessValidator;
+use Netgen\Layouts\Ez\Validator\SiteAccessGroupValidator;
+use Netgen\Layouts\Ez\Validator\SiteAccessValidator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorFactory;
 use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;

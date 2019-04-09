@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
+namespace Netgen\Layouts\Ez\Tests\Parameters\ParameterType;
 
 use eZ\Publish\API\Repository\ObjectStateService;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\ObjectState\ObjectState as EzObjectState;
 use eZ\Publish\Core\Repository\Values\ObjectState\ObjectStateGroup;
-use Netgen\BlockManager\Ez\Parameters\ParameterType\ObjectStateType;
-use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
+use Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType;
+use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\BlockManager\Parameters\ParameterDefinition;
 use Netgen\BlockManager\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use PHPUnit\Framework\TestCase;
@@ -54,7 +54,7 @@ final class ObjectStateTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ObjectStateType::getIdentifier
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::getIdentifier
      */
     public function testGetIdentifier(): void
     {
@@ -62,7 +62,7 @@ final class ObjectStateTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ObjectStateType::configureOptions
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::configureOptions
      * @dataProvider validOptionsProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
@@ -72,7 +72,7 @@ final class ObjectStateTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ObjectStateType::configureOptions
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::configureOptions
      * @dataProvider invalidOptionsProvider
      */
     public function testInvalidOptions(array $options): void
@@ -156,7 +156,7 @@ final class ObjectStateTypeTest extends TestCase
      * @param bool $required
      * @param bool $isValid
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ObjectStateType::getValueConstraints
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::getValueConstraints
      * @dataProvider validationProvider
      */
     public function testValidation($value, bool $required, bool $isValid): void
@@ -209,7 +209,7 @@ final class ObjectStateTypeTest extends TestCase
      * @param bool $required
      * @param bool $isValid
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ObjectStateType::getValueConstraints
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::getValueConstraints
      * @dataProvider validationWithEmptyValuesProvider
      */
     public function testValidationWithEmptyValues($value, bool $required, bool $isValid): void
@@ -267,7 +267,7 @@ final class ObjectStateTypeTest extends TestCase
      * @param mixed $convertedValue
      * @param bool $multiple
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ObjectStateType::fromHash
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::fromHash
      * @dataProvider fromHashProvider
      */
     public function testFromHash($value, $convertedValue, bool $multiple): void
@@ -335,7 +335,7 @@ final class ObjectStateTypeTest extends TestCase
      * @param mixed $value
      * @param bool $isEmpty
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\ObjectStateType::isValueEmpty
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::isValueEmpty
      * @dataProvider emptyProvider
      */
     public function testIsValueEmpty($value, bool $isEmpty): void

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
+namespace Netgen\Layouts\Ez\Tests\Parameters\ParameterType;
 
 use eZ\Publish\API\Repository\SectionService;
 use eZ\Publish\API\Repository\Values\Content\Section as EzSection;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
-use Netgen\BlockManager\Ez\Parameters\ParameterType\SectionType;
-use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
+use Netgen\Layouts\Ez\Parameters\ParameterType\SectionType;
+use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\BlockManager\Parameters\ParameterDefinition;
 use Netgen\BlockManager\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use PHPUnit\Framework\TestCase;
@@ -54,7 +54,7 @@ final class SectionTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\SectionType::getIdentifier
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::getIdentifier
      */
     public function testGetIdentifier(): void
     {
@@ -62,7 +62,7 @@ final class SectionTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\SectionType::configureOptions
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::configureOptions
      * @dataProvider validOptionsProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
@@ -72,7 +72,7 @@ final class SectionTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\SectionType::configureOptions
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::configureOptions
      * @dataProvider invalidOptionsProvider
      */
     public function testInvalidOptions(array $options): void
@@ -162,7 +162,7 @@ final class SectionTypeTest extends TestCase
      * @param bool $required
      * @param bool $isValid
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\SectionType::getValueConstraints
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::getValueConstraints
      * @dataProvider validationProvider
      */
     public function testValidation($value, bool $required, bool $isValid): void
@@ -228,7 +228,7 @@ final class SectionTypeTest extends TestCase
      * @param mixed $convertedValue
      * @param bool $multiple
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\SectionType::fromHash
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::fromHash
      * @dataProvider fromHashProvider
      */
     public function testFromHash($value, $convertedValue, bool $multiple): void
@@ -296,7 +296,7 @@ final class SectionTypeTest extends TestCase
      * @param mixed $value
      * @param bool $isEmpty
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\SectionType::isValueEmpty
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::isValueEmpty
      * @dataProvider emptyProvider
      */
     public function testIsValueEmpty($value, bool $isEmpty): void

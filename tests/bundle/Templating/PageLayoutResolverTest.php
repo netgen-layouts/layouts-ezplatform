@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Templating;
+namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\Templating;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use Netgen\Bundle\BlockManagerBundle\Templating\PageLayoutResolverInterface;
-use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver;
+use Netgen\Bundle\LayoutsEzPlatformBundle\Templating\PageLayoutResolver;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -29,7 +29,7 @@ final class PageLayoutResolverTest extends TestCase
     private $requestStackMock;
 
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver
+     * @var \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\PageLayoutResolver
      */
     private $resolver;
 
@@ -48,8 +48,8 @@ final class PageLayoutResolverTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver::__construct
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver::resolvePageLayout
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\PageLayoutResolver::__construct
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\PageLayoutResolver::resolvePageLayout
      */
     public function testResolvePageLayout(): void
     {
@@ -70,7 +70,7 @@ final class PageLayoutResolverTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver::resolvePageLayout
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\PageLayoutResolver::resolvePageLayout
      */
     public function testResolvePageLayoutWitNoRequest(): void
     {
@@ -96,7 +96,7 @@ final class PageLayoutResolverTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\PageLayoutResolver::resolvePageLayout
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\PageLayoutResolver::resolvePageLayout
      */
     public function testResolvePageLayoutWithDisabledLayout(): void
     {

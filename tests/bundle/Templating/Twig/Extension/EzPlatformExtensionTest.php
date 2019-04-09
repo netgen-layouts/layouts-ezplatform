@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\Templating\Twig\Extension;
+namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\Templating\Twig\Extension;
 
-use Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPlatformExtension;
+use Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Extension\EzPlatformExtension;
 use PHPUnit\Framework\TestCase;
 use Twig\TwigFunction;
 
 final class EzPlatformExtensionTest extends TestCase
 {
     /**
-     * @var \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPlatformExtension
+     * @var \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Extension\EzPlatformExtension
      */
     private $extension;
 
@@ -21,7 +21,7 @@ final class EzPlatformExtensionTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\Templating\Twig\Extension\EzPlatformExtension::getFunctions
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Extension\EzPlatformExtension::getFunctions
      */
     public function testGetFunctions(): void
     {

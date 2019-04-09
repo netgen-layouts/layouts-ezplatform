@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\ContentProvider;
+namespace Netgen\Layouts\Ez\Tests\ContentProvider;
 
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\BlockManager\Context\Context;
-use Netgen\BlockManager\Ez\ContentProvider\ContentProvider;
+use Netgen\Layouts\Ez\ContentProvider\ContentProvider;
 use PHPUnit\Framework\TestCase;
 
 final class ContentProviderTest extends TestCase
@@ -24,7 +24,7 @@ final class ContentProviderTest extends TestCase
     private $context;
 
     /**
-     * @var \Netgen\BlockManager\Ez\ContentProvider\ContentProvider
+     * @var \Netgen\Layouts\Ez\ContentProvider\ContentProvider
      */
     private $contentProvider;
 
@@ -40,9 +40,9 @@ final class ContentProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::__construct
-     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::loadLocation
-     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::provideContent
+     * @covers \Netgen\Layouts\Ez\ContentProvider\ContentProvider::__construct
+     * @covers \Netgen\Layouts\Ez\ContentProvider\ContentProvider::loadLocation
+     * @covers \Netgen\Layouts\Ez\ContentProvider\ContentProvider::provideContent
      */
     public function testProvideContent(): void
     {
@@ -65,8 +65,8 @@ final class ContentProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::loadLocation
-     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::provideContent
+     * @covers \Netgen\Layouts\Ez\ContentProvider\ContentProvider::loadLocation
+     * @covers \Netgen\Layouts\Ez\ContentProvider\ContentProvider::provideContent
      */
     public function testProvideContentWithoutContent(): void
     {
@@ -78,8 +78,8 @@ final class ContentProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::loadLocation
-     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::provideLocation
+     * @covers \Netgen\Layouts\Ez\ContentProvider\ContentProvider::loadLocation
+     * @covers \Netgen\Layouts\Ez\ContentProvider\ContentProvider::provideLocation
      */
     public function testProvideLocation(): void
     {
@@ -97,8 +97,8 @@ final class ContentProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::loadLocation
-     * @covers \Netgen\BlockManager\Ez\ContentProvider\ContentProvider::provideLocation
+     * @covers \Netgen\Layouts\Ez\ContentProvider\ContentProvider::loadLocation
+     * @covers \Netgen\Layouts\Ez\ContentProvider\ContentProvider::provideLocation
      */
     public function testProvideLocationWithoutLocation(): void
     {

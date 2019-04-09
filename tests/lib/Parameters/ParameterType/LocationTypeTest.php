@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Parameters\ParameterType;
+namespace Netgen\Layouts\Ez\Tests\Parameters\ParameterType;
 
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
@@ -10,8 +10,8 @@ use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
-use Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType;
-use Netgen\BlockManager\Ez\Tests\Validator\RepositoryValidatorFactory;
+use Netgen\Layouts\Ez\Parameters\ParameterType\LocationType;
+use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\BlockManager\Parameters\ParameterDefinition;
 use Netgen\BlockManager\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use PHPUnit\Framework\TestCase;
@@ -56,8 +56,8 @@ final class LocationTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::__construct
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::getIdentifier
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::__construct
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::getIdentifier
      */
     public function testGetIdentifier(): void
     {
@@ -65,7 +65,7 @@ final class LocationTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::configureOptions
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::configureOptions
      * @dataProvider validOptionsProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
@@ -75,7 +75,7 @@ final class LocationTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::configureOptions
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::configureOptions
      * @dataProvider invalidOptionsProvider
      */
     public function testInvalidOptions(array $options): void
@@ -170,7 +170,7 @@ final class LocationTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::export
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::export
      */
     public function testExport(): void
     {
@@ -184,7 +184,7 @@ final class LocationTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::export
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::export
      */
     public function testExportWithNonExistingLocation(): void
     {
@@ -198,7 +198,7 @@ final class LocationTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::import
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::import
      */
     public function testImport(): void
     {
@@ -212,7 +212,7 @@ final class LocationTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::import
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::import
      */
     public function testImportWithNonExistingLocation(): void
     {
@@ -231,7 +231,7 @@ final class LocationTypeTest extends TestCase
      * @param bool $required
      * @param bool $isValid
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::getValueConstraints
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::getValueConstraints
      * @dataProvider validationProvider
      */
     public function testValidation($value, int $type, bool $required, bool $isValid): void
@@ -306,7 +306,7 @@ final class LocationTypeTest extends TestCase
      * @param mixed $value
      * @param bool $isEmpty
      *
-     * @covers \Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType::isValueEmpty
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::isValueEmpty
      * @dataProvider emptyProvider
      */
     public function testIsValueEmpty($value, bool $isEmpty): void

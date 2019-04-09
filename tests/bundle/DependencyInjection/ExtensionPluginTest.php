@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\EzPublishBlockManagerBundle\Tests\DependencyInjection;
+namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Netgen\Bundle\BlockManagerBundle\DependencyInjection\NetgenBlockManagerExtension;
-use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin;
-use Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\NetgenEzPublishBlockManagerExtension;
+use Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\ExtensionPlugin;
+use Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\NetgenLayoutsEzPlatformExtension;
 
 final class ExtensionPluginTest extends AbstractExtensionTestCase
 {
     /**
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::__construct
-     * @covers \Netgen\Bundle\EzPublishBlockManagerBundle\DependencyInjection\ExtensionPlugin::appendConfigurationFiles
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\ExtensionPlugin::__construct
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\ExtensionPlugin::appendConfigurationFiles
      */
     public function testAppendFromPlugin(): void
     {
@@ -41,6 +41,6 @@ final class ExtensionPluginTest extends AbstractExtensionTestCase
 
     protected function getContainerExtensions(): array
     {
-        return [new NetgenEzPublishBlockManagerExtension()];
+        return [new NetgenLayoutsEzPlatformExtension()];
     }
 }

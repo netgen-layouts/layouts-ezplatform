@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Form;
+namespace Netgen\Layouts\Ez\Tests\Form;
 
 use eZ\Publish\API\Repository\ObjectStateService;
 use eZ\Publish\Core\Repository\Values\ObjectState\ObjectState;
 use eZ\Publish\Core\Repository\Values\ObjectState\ObjectStateGroup;
-use Netgen\BlockManager\Ez\Form\ObjectStateType;
+use Netgen\Layouts\Ez\Form\ObjectStateType;
 use Netgen\BlockManager\Tests\TestCase\FormTestCase;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormTypeInterface;
@@ -21,8 +21,8 @@ final class ObjectStateTypeTest extends FormTestCase
     private $objectStateServiceMock;
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::__construct
-     * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getObjectStates
+     * @covers \Netgen\Layouts\Ez\Form\ObjectStateType::__construct
+     * @covers \Netgen\Layouts\Ez\Form\ObjectStateType::getObjectStates
      */
     public function testSubmitValidData(): void
     {
@@ -49,7 +49,7 @@ final class ObjectStateTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getParent
+     * @covers \Netgen\Layouts\Ez\Form\ObjectStateType::getParent
      */
     public function testGetParent(): void
     {
@@ -57,8 +57,8 @@ final class ObjectStateTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::configureOptions
-     * @covers \Netgen\BlockManager\Ez\Form\ObjectStateType::getObjectStates
+     * @covers \Netgen\Layouts\Ez\Form\ObjectStateType::configureOptions
+     * @covers \Netgen\Layouts\Ez\Form\ObjectStateType::getObjectStates
      */
     public function testConfigureOptions(): void
     {

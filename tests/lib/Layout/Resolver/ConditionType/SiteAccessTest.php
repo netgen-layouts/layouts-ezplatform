@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Layout\Resolver\ConditionType;
+namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\ConditionType;
 
 use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzSiteAccess;
-use Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccess;
-use Netgen\BlockManager\Ez\Tests\Validator\ValidatorFactory;
+use Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccess;
+use Netgen\Layouts\Ez\Tests\Validator\ValidatorFactory;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Validation;
 final class SiteAccessTest extends TestCase
 {
     /**
-     * @var \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccess
+     * @var \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccess
      */
     private $conditionType;
 
@@ -24,7 +24,7 @@ final class SiteAccessTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccess::getType
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccess::getType
      */
     public function testGetType(): void
     {
@@ -35,7 +35,7 @@ final class SiteAccessTest extends TestCase
      * @param mixed $value
      * @param bool $isValid
      *
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccess::getConstraints
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccess::getConstraints
      * @dataProvider validationProvider
      */
     public function testValidation($value, bool $isValid): void
@@ -49,7 +49,7 @@ final class SiteAccessTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccess::matches
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccess::matches
      *
      * @param mixed $value
      * @param bool $matches
@@ -65,7 +65,7 @@ final class SiteAccessTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Layout\Resolver\ConditionType\SiteAccess::matches
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccess::matches
      */
     public function testMatchesWithNoSiteAccess(): void
     {

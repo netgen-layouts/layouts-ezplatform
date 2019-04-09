@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Parameters\Form\Mapper;
+namespace Netgen\Layouts\Ez\Tests\Parameters\Form\Mapper;
 
-use Netgen\BlockManager\Ez\Form\ContentTypeType;
-use Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentTypeMapper;
-use Netgen\BlockManager\Ez\Parameters\ParameterType\ContentTypeType as ParameterType;
+use Netgen\Layouts\Ez\Form\ContentTypeType;
+use Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentTypeMapper;
+use Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType as ParameterType;
 use Netgen\BlockManager\Parameters\ParameterDefinition;
 use PHPUnit\Framework\TestCase;
 
 final class ContentTypeMapperTest extends TestCase
 {
     /**
-     * @var \Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentTypeMapper
+     * @var \Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentTypeMapper
      */
     private $mapper;
 
@@ -23,7 +23,7 @@ final class ContentTypeMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentTypeMapper::getFormType
+     * @covers \Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentTypeMapper::getFormType
      */
     public function testGetFormType(): void
     {
@@ -31,7 +31,7 @@ final class ContentTypeMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentTypeMapper::mapOptions
+     * @covers \Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentTypeMapper::mapOptions
      */
     public function testMapOptions(): void
     {

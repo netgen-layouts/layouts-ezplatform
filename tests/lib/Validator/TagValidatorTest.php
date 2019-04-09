@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Validator;
+namespace Netgen\Layouts\Ez\Tests\Validator;
 
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use Netgen\BlockManager\Ez\Validator\Constraint\Tag;
-use Netgen\BlockManager\Ez\Validator\TagValidator;
+use Netgen\Layouts\Ez\Validator\Constraint\Tag;
+use Netgen\Layouts\Ez\Validator\TagValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Netgen\TagsBundle\API\Repository\Values\Tags\Tag as APITag;
 use Netgen\TagsBundle\Core\Repository\TagsService;
@@ -29,8 +29,8 @@ final class TagValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::__construct
-     * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\TagValidator::__construct
+     * @covers \Netgen\Layouts\Ez\Validator\TagValidator::validate
      */
     public function testValidateValid(): void
     {
@@ -44,8 +44,8 @@ final class TagValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::__construct
-     * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\TagValidator::__construct
+     * @covers \Netgen\Layouts\Ez\Validator\TagValidator::validate
      */
     public function testValidateNull(): void
     {
@@ -57,8 +57,8 @@ final class TagValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::__construct
-     * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\TagValidator::__construct
+     * @covers \Netgen\Layouts\Ez\Validator\TagValidator::validate
      */
     public function testValidateInvalid(): void
     {
@@ -72,19 +72,19 @@ final class TagValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\TagValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->expectException(UnexpectedTypeException::class);
-        $this->expectExceptionMessage('Expected argument of type "Netgen\\BlockManager\\Ez\\Validator\\Constraint\\Tag", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
+        $this->expectExceptionMessage('Expected argument of type "Netgen\\Layouts\\Ez\\Validator\\Constraint\\Tag", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
 
         $this->constraint = new NotBlank();
         self::assertValid(true, 'value');
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\TagValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\TagValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {

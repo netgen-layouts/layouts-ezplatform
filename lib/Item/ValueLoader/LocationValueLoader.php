@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Item\ValueLoader;
+namespace Netgen\Layouts\Ez\Item\ValueLoader;
 
 use eZ\Publish\API\Repository\LocationService;
 use Netgen\BlockManager\Item\ValueLoaderInterface;

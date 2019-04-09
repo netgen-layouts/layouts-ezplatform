@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Item\ValueConverter;
+namespace Netgen\Layouts\Ez\Tests\Item\ValueConverter;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
-use Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter;
+use Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter;
 use PHPUnit\Framework\TestCase;
 
 final class ContentValueConverterTest extends TestCase
@@ -25,7 +25,7 @@ final class ContentValueConverterTest extends TestCase
     private $contentServiceMock;
 
     /**
-     * @var \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter
+     * @var \Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter
      */
     private $valueConverter;
 
@@ -64,8 +64,8 @@ final class ContentValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::__construct
-     * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::supports
+     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter::__construct
+     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter::supports
      */
     public function testSupports(): void
     {
@@ -74,7 +74,7 @@ final class ContentValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::getValueType
+     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter::getValueType
      */
     public function testGetValueType(): void
     {
@@ -87,7 +87,7 @@ final class ContentValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::getId
+     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter::getId
      */
     public function testGetId(): void
     {
@@ -100,7 +100,7 @@ final class ContentValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::getRemoteId
+     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter::getRemoteId
      */
     public function testGetRemoteId(): void
     {
@@ -113,7 +113,7 @@ final class ContentValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::getName
+     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter::getName
      */
     public function testGetName(): void
     {
@@ -126,7 +126,7 @@ final class ContentValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::getIsVisible
+     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter::getIsVisible
      */
     public function testGetIsVisible(): void
     {
@@ -138,7 +138,7 @@ final class ContentValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Item\ValueConverter\ContentValueConverter::getObject
+     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter::getObject
      */
     public function testGetObject(): void
     {

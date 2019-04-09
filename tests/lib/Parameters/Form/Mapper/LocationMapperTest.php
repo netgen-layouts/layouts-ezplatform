@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Parameters\Form\Mapper;
+namespace Netgen\Layouts\Ez\Tests\Parameters\Form\Mapper;
 
 use eZ\Publish\API\Repository\Repository;
-use Netgen\BlockManager\Ez\Parameters\Form\Mapper\LocationMapper;
-use Netgen\BlockManager\Ez\Parameters\ParameterType\LocationType as ParameterType;
+use Netgen\Layouts\Ez\Parameters\Form\Mapper\LocationMapper;
+use Netgen\Layouts\Ez\Parameters\ParameterType\LocationType as ParameterType;
 use Netgen\BlockManager\Parameters\ParameterDefinition;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 use PHPUnit\Framework\TestCase;
@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 final class LocationMapperTest extends TestCase
 {
     /**
-     * @var \Netgen\BlockManager\Ez\Parameters\Form\Mapper\LocationMapper
+     * @var \Netgen\Layouts\Ez\Parameters\Form\Mapper\LocationMapper
      */
     private $mapper;
 
@@ -24,7 +24,7 @@ final class LocationMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\Form\Mapper\LocationMapper::getFormType
+     * @covers \Netgen\Layouts\Ez\Parameters\Form\Mapper\LocationMapper::getFormType
      */
     public function testGetFormType(): void
     {
@@ -32,7 +32,7 @@ final class LocationMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentMapper::mapOptions
+     * @covers \Netgen\Layouts\Ez\Parameters\Form\Mapper\LocationMapper::mapOptions
      */
     public function testMapOptions(): void
     {
@@ -59,7 +59,7 @@ final class LocationMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Parameters\Form\Mapper\ContentMapper::mapOptions
+     * @covers \Netgen\Layouts\Ez\Parameters\Form\Mapper\LocationMapper::mapOptions
      */
     public function testMapOptionsEmptyAllowedTypes(): void
     {

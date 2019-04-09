@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Item\ValueUrlGenerator;
+namespace Netgen\Layouts\Ez\Tests\Item\ValueUrlGenerator;
 
 use eZ\Publish\Core\Repository\Values\Content\Location;
-use Netgen\BlockManager\Ez\Item\ValueUrlGenerator\LocationValueUrlGenerator;
+use Netgen\Layouts\Ez\Item\ValueUrlGenerator\LocationValueUrlGenerator;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -17,7 +17,7 @@ final class LocationValueUrlGeneratorTest extends TestCase
     private $urlGeneratorMock;
 
     /**
-     * @var \Netgen\BlockManager\Ez\Item\ValueUrlGenerator\LocationValueUrlGenerator
+     * @var \Netgen\Layouts\Ez\Item\ValueUrlGenerator\LocationValueUrlGenerator
      */
     private $urlGenerator;
 
@@ -29,8 +29,8 @@ final class LocationValueUrlGeneratorTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Item\ValueUrlGenerator\LocationValueUrlGenerator::__construct
-     * @covers \Netgen\BlockManager\Ez\Item\ValueUrlGenerator\LocationValueUrlGenerator::generate
+     * @covers \Netgen\Layouts\Ez\Item\ValueUrlGenerator\LocationValueUrlGenerator::__construct
+     * @covers \Netgen\Layouts\Ez\Item\ValueUrlGenerator\LocationValueUrlGenerator::generate
      */
     public function testGenerate(): void
     {

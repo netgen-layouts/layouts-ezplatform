@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Collection\QueryType\Handler\Traits;
+namespace Netgen\Layouts\Ez\Collection\QueryType\Handler\Traits;
 
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use eZ\Publish\SPI\Persistence\Content\Type\Handler;
-use Netgen\BlockManager\Ez\Parameters\ParameterType as EzParameterType;
+use Netgen\Layouts\Ez\Parameters\ParameterType as EzParameterType;
 use Netgen\BlockManager\Parameters\ParameterBuilderInterface;
 use Netgen\BlockManager\Parameters\ParameterCollectionInterface;
 use Netgen\BlockManager\Parameters\ParameterType;

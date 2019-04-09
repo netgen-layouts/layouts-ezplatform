@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Tests\Validator;
+namespace Netgen\Layouts\Ez\Tests\Validator;
 
 use eZ\Publish\API\Repository\ObjectStateService;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\ObjectState\ObjectState as EzObjectState;
 use eZ\Publish\Core\Repository\Values\ObjectState\ObjectStateGroup;
-use Netgen\BlockManager\Ez\Validator\Constraint\ObjectState;
-use Netgen\BlockManager\Ez\Validator\ObjectStateValidator;
+use Netgen\Layouts\Ez\Validator\Constraint\ObjectState;
+use Netgen\Layouts\Ez\Validator\ObjectStateValidator;
 use Netgen\BlockManager\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
@@ -35,9 +35,9 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::__construct
-     * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::loadStateIdentifiers
-     * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::__construct
+     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::loadStateIdentifiers
+     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::validate
      * @dataProvider validateDataProvider
      */
     public function testValidate(string $identifier, array $allowedStates, bool $isValid): void
@@ -93,9 +93,9 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::__construct
-     * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::loadStateIdentifiers
-     * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::__construct
+     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::loadStateIdentifiers
+     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::validate
      */
     public function testValidateNull(): void
     {
@@ -111,19 +111,19 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->expectException(UnexpectedTypeException::class);
-        $this->expectExceptionMessage('Expected argument of type "Netgen\\BlockManager\\Ez\\Validator\\Constraint\\ObjectState", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
+        $this->expectExceptionMessage('Expected argument of type "Netgen\\Layouts\\Ez\\Validator\\Constraint\\ObjectState", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
 
         $this->constraint = new NotBlank();
         self::assertValid(true, 'value');
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
@@ -134,7 +134,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValueFormat(): void
     {
@@ -145,7 +145,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\BlockManager\Ez\Validator\ObjectStateValidator::validate
+     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidAllowedStates(): void
     {

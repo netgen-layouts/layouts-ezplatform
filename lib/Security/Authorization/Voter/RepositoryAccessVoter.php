@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Security\Authorization\Voter;
+namespace Netgen\Layouts\Ez\Security\Authorization\Voter;
 
 use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;

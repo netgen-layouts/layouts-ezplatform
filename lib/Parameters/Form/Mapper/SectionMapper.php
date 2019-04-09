@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\BlockManager\Ez\Parameters\Form\Mapper;
+namespace Netgen\Layouts\Ez\Parameters\Form\Mapper;
 
-use Netgen\BlockManager\Ez\Form\SectionType;
+use Netgen\Layouts\Ez\Form\SectionType;
 use Netgen\BlockManager\Parameters\Form\Mapper;
 use Netgen\BlockManager\Parameters\ParameterDefinition;
 
