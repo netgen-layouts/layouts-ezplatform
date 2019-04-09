@@ -19,7 +19,7 @@ final class LocationValueUrlGenerator implements ValueUrlGeneratorInterface
         $this->urlGenerator = $urlGenerator;
     }
 
-    public function generate($object): ?string
+    public function generate(object $object): ?string
     {
         return $this->urlGenerator->generate($object);
     }

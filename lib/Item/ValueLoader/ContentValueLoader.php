@@ -20,7 +20,7 @@ final class ContentValueLoader implements ValueLoaderInterface
         $this->contentService = $contentService;
     }
 
-    public function load($id)
+    public function load($id): ?object
     {
         try {
             $contentInfo = $this->contentService->loadContentInfo((int) $id);
@@ -35,7 +35,7 @@ final class ContentValueLoader implements ValueLoaderInterface
         return $contentInfo;
     }
 
-    public function loadByRemoteId($remoteId)
+    public function loadByRemoteId($remoteId): ?object
     {
         try {
             $contentInfo = $this->contentService->loadContentInfoByRemoteId((string) $remoteId);

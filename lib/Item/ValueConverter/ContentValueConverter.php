@@ -29,12 +29,12 @@ final class ContentValueConverter implements ValueConverterInterface
         $this->contentService = $contentService;
     }
 
-    public function supports($object): bool
+    public function supports(object $object): bool
     {
         return $object instanceof ContentInfo;
     }
 
-    public function getValueType($object): string
+    public function getValueType(object $object): string
     {
         return 'ezcontent';
     }
@@ -44,7 +44,7 @@ final class ContentValueConverter implements ValueConverterInterface
      *
      * @return int|string
      */
-    public function getId($object)
+    public function getId(object $object)
     {
         return $object->id;
     }
@@ -54,7 +54,7 @@ final class ContentValueConverter implements ValueConverterInterface
      *
      * @return int|string
      */
-    public function getRemoteId($object)
+    public function getRemoteId(object $object)
     {
         return $object->remoteId;
     }
@@ -62,7 +62,7 @@ final class ContentValueConverter implements ValueConverterInterface
     /**
      * @param \eZ\Publish\API\Repository\Values\Content\ContentInfo $object
      */
-    public function getName($object): string
+    public function getName(object $object): string
     {
         $versionInfo = $this->contentService->loadVersionInfo($object);
 
@@ -72,14 +72,14 @@ final class ContentValueConverter implements ValueConverterInterface
     /**
      * @param \eZ\Publish\API\Repository\Values\Content\ContentInfo $object
      */
-    public function getIsVisible($object): bool
+    public function getIsVisible(object $object): bool
     {
         $mainLocation = $this->locationService->loadLocation($object->mainLocationId);
 
         return !$mainLocation->invisible;
     }
 
-    public function getObject($object)
+    public function getObject(object $object): object
     {
         return $object;
     }
