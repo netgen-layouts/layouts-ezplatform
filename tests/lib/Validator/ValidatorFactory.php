@@ -28,8 +28,8 @@ final class ValidatorFactory implements ConstraintValidatorFactoryInterface
         $this->baseValidatorFactory = new ConstraintValidatorFactory();
 
         $this->validators = [
-            'ngbm_ez_site_access' => new SiteAccessValidator(['eng', 'cro']),
-            'ngbm_ez_site_access_group' => new SiteAccessGroupValidator(
+            'nglayouts_ez_site_access' => new SiteAccessValidator(['eng', 'cro']),
+            'nglayouts_ez_site_access_group' => new SiteAccessGroupValidator(
                 [
                     'frontend' => ['eng'],
                     'backend' => ['admin'],

@@ -11,7 +11,7 @@ final class Tag extends Constraint
     /**
      * @var string
      */
-    public $message = 'netgen_block_manager.eztags.tag_not_found';
+    public $message = 'netgen_layouts.ezplatform.tags.tag_not_found';
 
     /**
      * If set to true, the constraint will accept values for non existing tags.
@@ -22,6 +22,6 @@ final class Tag extends Constraint
 
     public function validatedBy(): string
     {
-        return 'ngbm_eztags';
+        return 'nglayouts_eztags';
     }
 }

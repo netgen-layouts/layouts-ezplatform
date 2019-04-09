@@ -15,6 +15,6 @@ final class ContentTest extends TestCase
     public function testValidatedBy(): void
     {
         $constraint = new Content();
-        self::assertSame('ngbm_ezcontent', $constraint->validatedBy());
+        self::assertSame('nglayouts_ezcontent', $constraint->validatedBy());
     }
 }

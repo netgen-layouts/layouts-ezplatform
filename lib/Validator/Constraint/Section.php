@@ -11,12 +11,12 @@ final class Section extends Constraint
     /**
      * @var string
      */
-    public $message = 'netgen_block_manager.ez_section.section_not_found';
+    public $message = 'netgen_layouts.ezplatform.section.section_not_found';
 
     /**
      * @var string
      */
-    public $notAllowedMessage = 'netgen_block_manager.ez_section.section_not_allowed';
+    public $notAllowedMessage = 'netgen_layouts.ezplatform.section.section_not_allowed';
 
     /**
      * If not empty, the constraint will validate only if section identifier
@@ -28,6 +28,6 @@ final class Section extends Constraint
 
     public function validatedBy(): string
     {
-        return 'ngbm_ez_section';
+        return 'nglayouts_ez_section';
     }
 }

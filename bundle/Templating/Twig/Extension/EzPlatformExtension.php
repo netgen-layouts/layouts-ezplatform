@@ -14,15 +14,15 @@ final class EzPlatformExtension extends AbstractExtension
     {
         return [
             new TwigFunction(
-                'ngbm_ezcontent_name',
+                'nglayouts_ezcontent_name',
                 [EzPlatformRuntime::class, 'getContentName']
             ),
             new TwigFunction(
-                'ngbm_ezlocation_path',
+                'nglayouts_ezlocation_path',
                 [EzPlatformRuntime::class, 'getLocationPath']
             ),
             new TwigFunction(
-                'ngbm_ez_content_type_name',
+                'nglayouts_ez_content_type_name',
                 [EzPlatformRuntime::class, 'getContentTypeName']
             ),
         ];

@@ -19,7 +19,7 @@ final class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
     {
         $this->container->setParameter('ezpublish.siteaccess.list', ['cro']);
         $this->container->setParameter(
-            'netgen_block_manager.app.ezplatform.item_preview_template',
+            'netgen_layouts.app.ezplatform.item_preview_template',
             'default.html.twig'
         );
 
@@ -42,9 +42,9 @@ final class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
                         'template' => 'article.html.twig',
                     ],
                 ],
-                'ngbm_app_preview' => [
+                'nglayouts_app_preview' => [
                     'article' => [
-                        'template' => 'ngbm_article.html.twig',
+                        'template' => 'nglayouts_article.html.twig',
                     ],
                 ],
             ]
@@ -60,8 +60,8 @@ final class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
                         'template' => 'article.html.twig',
                     ],
                 ],
-                'ngbm_app_preview' => [
-                    '___ngbm_app_preview_default___' => [
+                'nglayouts_app_preview' => [
+                    '___nglayouts_app_preview_default___' => [
                         'template' => 'default.html.twig',
                         'match' => [],
                         'params' => [],
@@ -78,11 +78,11 @@ final class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
                         'template' => 'article.html.twig',
                     ],
                 ],
-                'ngbm_app_preview' => [
+                'nglayouts_app_preview' => [
                     'article' => [
-                        'template' => 'ngbm_article.html.twig',
+                        'template' => 'nglayouts_article.html.twig',
                     ],
-                    '___ngbm_app_preview_default___' => [
+                    '___nglayouts_app_preview_default___' => [
                         'template' => 'default.html.twig',
                         'match' => [],
                         'params' => [],

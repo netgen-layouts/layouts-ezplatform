@@ -17,7 +17,7 @@ final class DefaultAppPreviewPass implements CompilerPassInterface
 
         $defaultRule = [
             'template' => $container->getParameter(
-                'netgen_block_manager.app.ezplatform.item_preview_template'
+                'netgen_layouts.app.ezplatform.item_preview_template'
             ),
             'match' => [],
             'params' => [],
@@ -54,13 +54,13 @@ final class DefaultAppPreviewPass implements CompilerPassInterface
     {
         $scopeRules = is_array($scopeRules) ? $scopeRules : [];
 
-        $blockManagerRules = $scopeRules['ngbm_app_preview'] ?? [];
+        $layoutsRules = $scopeRules['nglayouts_app_preview'] ?? [];
 
-        $blockManagerRules += [
-            '___ngbm_app_preview_default___' => $defaultRule,
+        $layoutsRules += [
+            '___nglayouts_app_preview_default___' => $defaultRule,
         ];
 
-        $scopeRules['ngbm_app_preview'] = $blockManagerRules;
+        $scopeRules['nglayouts_app_preview'] = $layoutsRules;
 
         return $scopeRules;
     }

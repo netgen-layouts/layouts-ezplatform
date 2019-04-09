@@ -1,7 +1,7 @@
 system:
     default:
         image_variations:
-            ngbm_app_preview:
+            nglayouts_app_preview:
                 reference: original
                 filters:
                     - { name: thumbnail, params: { size: [160, 90], mode: outbound } }

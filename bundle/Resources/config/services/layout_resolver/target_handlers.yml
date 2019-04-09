@@ -1,30 +1,30 @@
 services:
-    netgen_block_manager.layout.resolver.target_handler.doctrine.ezlocation:
+    netgen_layouts.ezplatform.layout_resolver.target_handler.doctrine.location:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Location
         tags:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ezlocation }
 
-    netgen_block_manager.layout.resolver.target_handler.doctrine.ezcontent:
+    netgen_layouts.ezplatform.layout_resolver.target_handler.doctrine.content:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Location
         tags:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ezcontent }
 
-    netgen_block_manager.layout.resolver.target_handler.doctrine.ezchildren:
+    netgen_layouts.ezplatform.layout_resolver.target_handler.doctrine.children:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Location
         tags:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ezchildren }
 
-    netgen_block_manager.layout.resolver.target_handler.doctrine.ezsubtree:
+    netgen_layouts.ezplatform.layout_resolver.target_handler.doctrine.subtree:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Subtree
         tags:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ezsubtree }
 
-    netgen_block_manager.layout.resolver.target_handler.doctrine.ez_semantic_path_info:
+    netgen_layouts.ezplatform.layout_resolver.target_handler.doctrine.semantic_path_info:
         class: Netgen\BlockManager\Layout\Resolver\TargetHandler\Doctrine\Route
         tags:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ez_semantic_path_info }
 
-    netgen_block_manager.layout.resolver.target_handler.doctrine.ez_semantic_path_info_prefix:
+    netgen_layouts.ezplatform.layout_resolver.target_handler.doctrine.semantic_path_info_prefix:
         class: Netgen\BlockManager\Layout\Resolver\TargetHandler\Doctrine\RoutePrefix
         tags:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ez_semantic_path_info_prefix }

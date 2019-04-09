@@ -32,11 +32,11 @@ final class RepositoryValidatorFactory implements ConstraintValidatorFactoryInte
         $this->baseValidatorFactory = new ConstraintValidatorFactory();
 
         $this->validators = [
-            'ngbm_ezlocation' => new LocationValidator($repository),
-            'ngbm_ezcontent' => new ContentValidator($repository),
-            'ngbm_ez_content_type' => new ContentTypeValidator($repository),
-            'ngbm_ez_section' => new SectionValidator($repository),
-            'ngbm_ez_object_state' => new ObjectStateValidator($repository),
+            'nglayouts_ezlocation' => new LocationValidator($repository),
+            'nglayouts_ezcontent' => new ContentValidator($repository),
+            'nglayouts_ez_content_type' => new ContentTypeValidator($repository),
+            'nglayouts_ez_section' => new SectionValidator($repository),
+            'nglayouts_ez_object_state' => new ObjectStateValidator($repository),
         ];
     }
 

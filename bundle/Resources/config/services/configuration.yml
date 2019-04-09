@@ -1,5 +1,5 @@
 services:
-    netgen_block_manager.configuration.config_resolver:
+    netgen_layouts.ezplatform.configuration.config_resolver:
         class: Netgen\Bundle\LayoutsEzPlatformBundle\Configuration\ConfigResolverConfiguration
         arguments:
             - "@ezpublish.config.resolver"
@@ -7,5 +7,5 @@ services:
         lazy: true
 
     netgen_block_manager.configuration:
-        alias: netgen_block_manager.configuration.config_resolver
+        alias: netgen_layouts.ezplatform.configuration.config_resolver
         public: true

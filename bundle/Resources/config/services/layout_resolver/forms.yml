@@ -1,49 +1,49 @@
 services:
-    netgen_block_manager.layout.resolver.form.target_type.mapper.ezchildren:
+    netgen_layouts.ezplatform.layout_resolver.target_type.form_mapper.children:
         class: Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Children
         tags:
             - { name: netgen_block_manager.layout.resolver.form.target_type.mapper, target_type: ezchildren }
 
-    netgen_block_manager.layout.resolver.form.target_type.mapper.ezsubtree:
+    netgen_layouts.ezplatform.layout_resolver.target_type.form_mapper.subtree:
         class: Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Subtree
         tags:
             - { name: netgen_block_manager.layout.resolver.form.target_type.mapper, target_type: ezsubtree }
 
-    netgen_block_manager.layout.resolver.form.target_type.mapper.ezlocation:
+    netgen_layouts.ezplatform.layout_resolver.target_type.form_mapper.location:
         class: Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Location
         tags:
             - { name: netgen_block_manager.layout.resolver.form.target_type.mapper, target_type: ezlocation }
 
-    netgen_block_manager.layout.resolver.form.target_type.mapper.ezcontent:
+    netgen_layouts.ezplatform.layout_resolver.target_type.form_mapper.content:
         class: Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Content
         tags:
             - { name: netgen_block_manager.layout.resolver.form.target_type.mapper, target_type: ezcontent }
 
-    netgen_block_manager.layout.resolver.form.target_type.mapper.ez_semantic_path_info:
+    netgen_layouts.ezplatform.layout_resolver.target_type.form_mapper.semantic_path_info:
         class: Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\SemanticPathInfo
         tags:
             - { name: netgen_block_manager.layout.resolver.form.target_type.mapper, target_type: ez_semantic_path_info }
 
-    netgen_block_manager.layout.resolver.form.target_type.mapper.ez_semantic_path_info_prefix:
+    netgen_layouts.ezplatform.layout_resolver.target_type.form_mapper.semantic_path_info_prefix:
         class: Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\SemanticPathInfoPrefix
         tags:
             - { name: netgen_block_manager.layout.resolver.form.target_type.mapper, target_type: ez_semantic_path_info_prefix }
 
-    netgen_block_manager.layout.resolver.form.condition_type.mapper.ez_site_access:
+    netgen_layouts.ezplatform.layout_resolver.condition_type.form_mapper.site_access:
         class: Netgen\Layouts\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess
         arguments:
             - "%ezpublish.siteaccess.list%"
         tags:
             - { name: netgen_block_manager.layout.resolver.form.condition_type.mapper, condition_type: ez_site_access }
 
-    netgen_block_manager.layout.resolver.form.condition_type.mapper.ez_site_access_group:
+    netgen_layouts.ezplatform.layout_resolver.condition_type.form_mapper.site_access_group:
         class: Netgen\Layouts\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccessGroup
         arguments:
             - "%ezpublish.siteaccess.groups%"
         tags:
             - { name: netgen_block_manager.layout.resolver.form.condition_type.mapper, condition_type: ez_site_access_group }
 
-    netgen_block_manager.layout.resolver.form.condition_type.mapper.ez_content_type:
+    netgen_layouts.ezplatform.layout_resolver.condition_type.form_mapper.content_type:
         class: Netgen\Layouts\Ez\Layout\Resolver\Form\ConditionType\Mapper\ContentType
         tags:
             - { name: netgen_block_manager.layout.resolver.form.condition_type.mapper, condition_type: ez_content_type }

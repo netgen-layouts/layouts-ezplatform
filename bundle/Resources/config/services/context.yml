@@ -1,5 +1,5 @@
 services:
-    netgen_block_manager.context.provider.ezplatform:
+    netgen_layouts.ezplatform.context.provider:
         class: Netgen\Layouts\Ez\Context\ContextProvider
         arguments:
             - "@request_stack"

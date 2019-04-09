@@ -2,30 +2,30 @@ services:
     # Alias to eZ Platform search service, allowing for replacement
     # of search service with other implementations system wide
 
-    netgen_block_manager.ezplatform.search_service:
+    netgen_layouts.ezplatform.search_service:
         alias: ezpublish.api.service.search
 
-    netgen_block_manager.ezplatform.content_provider:
+    netgen_layouts.ezplatform.content_provider:
         class: Netgen\Layouts\Ez\ContentProvider\ContentProvider
         arguments:
             - "@ezpublish.api.service.location"
             - "@netgen_block_manager.context"
 
-    netgen_block_manager.ezplatform.content_extractor:
-        alias: netgen_block_manager.ezplatform.content_extractor.request
+    netgen_layouts.ezplatform.content_extractor:
+        alias: netgen_layouts.ezplatform.content_extractor.request
 
-    netgen_block_manager.ezplatform.content_extractor.request:
+    netgen_layouts.ezplatform.content_extractor.request:
         class: Netgen\Layouts\Ez\ContentProvider\RequestContentExtractor
 
-    netgen_block_manager.ezplatform.security.role_hierarchy:
+    netgen_layouts.ezplatform.security.role_hierarchy:
         class: Netgen\Layouts\Ez\Security\Role\RoleHierarchy
         arguments:
             - "%security.role_hierarchy.roles%"
 
-    netgen_block_manager.ezplatform.security.repository_access_voter:
+    netgen_layouts.ezplatform.security.repository_access_voter:
         class: Netgen\Layouts\Ez\Security\Authorization\Voter\RepositoryAccessVoter
         arguments:
-            - "@netgen_block_manager.ezplatform.security.role_hierarchy"
+            - "@netgen_layouts.ezplatform.security.role_hierarchy"
             - "@security.access.decision_manager"
         tags:
             - { name: security.voter, priority: 0 }

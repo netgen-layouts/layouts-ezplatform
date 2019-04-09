@@ -1,12 +1,12 @@
 services:
-    netgen_block_manager.item.value_converter.ezlocation:
+    netgen_layouts.ezplatform.item.value_converter.location:
         class: Netgen\Layouts\Ez\Item\ValueConverter\LocationValueConverter
         arguments:
             - "@ezpublish.api.service.content"
         tags:
             - { name: netgen_block_manager.item.value_converter }
 
-    netgen_block_manager.item.value_converter.ezcontent:
+    netgen_layouts.ezplatform.item.value_converter.content:
         class: Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter
         arguments:
             - "@ezpublish.api.service.location"
@@ -14,28 +14,28 @@ services:
         tags:
             - { name: netgen_block_manager.item.value_converter }
 
-    netgen_block_manager.item.value_loader.ezlocation:
+    netgen_layouts.ezplatform.item.value_loader.location:
         class: Netgen\Layouts\Ez\Item\ValueLoader\LocationValueLoader
         arguments:
             - "@ezpublish.api.service.location"
         tags:
             - { name: netgen_block_manager.item.value_loader, value_type: ezlocation }
 
-    netgen_block_manager.item.value_loader.ezcontent:
+    netgen_layouts.ezplatform.item.value_loader.content:
         class: Netgen\Layouts\Ez\Item\ValueLoader\ContentValueLoader
         arguments:
             - "@ezpublish.api.service.content"
         tags:
             - { name: netgen_block_manager.item.value_loader, value_type: ezcontent }
 
-    netgen_block_manager.item.value_url_generator.ezlocation:
+    netgen_layouts.ezplatform.item.value_url_generator.location:
         class: Netgen\Layouts\Ez\Item\ValueUrlGenerator\LocationValueUrlGenerator
         arguments:
             - "@router"
         tags:
             - { name: netgen_block_manager.item.value_url_generator, value_type: ezlocation }
 
-    netgen_block_manager.item.value_url_generator.ezcontent:
+    netgen_layouts.ezplatform.item.value_url_generator.content:
         class: Netgen\Layouts\Ez\Item\ValueUrlGenerator\ContentValueUrlGenerator
         arguments:
             - "@router"

@@ -11,12 +11,12 @@ final class Location extends Constraint
     /**
      * @var string
      */
-    public $message = 'netgen_block_manager.ezlocation.location_not_found';
+    public $message = 'netgen_layouts.ezplatform.location.location_not_found';
 
     /**
      * @var string
      */
-    public $typeNotAllowedMessage = 'netgen_block_manager.ezlocation.type_not_allowed';
+    public $typeNotAllowedMessage = 'netgen_layouts.ezplatform.location.type_not_allowed';
 
     /**
      * If set to true, the constraint will accept values for non existing locations.
@@ -34,6 +34,6 @@ final class Location extends Constraint
 
     public function validatedBy(): string
     {
-        return 'ngbm_ezlocation';
+        return 'nglayouts_ezlocation';
     }
 }

@@ -1,15 +1,15 @@
 services:
-    netgen_block_manager.collection.query_type.handler.ezcontent_search:
+    netgen_layouts.ezplatform.collection.query_type_handler.content_search:
         class: Netgen\Layouts\Ez\Collection\QueryType\Handler\ContentSearchHandler
         # Needs to be lazy since we're injecting "languages" dynamic param
         lazy: true
         arguments:
             - "@ezpublish.api.service.location"
-            - "@netgen_block_manager.ezplatform.search_service"
+            - "@netgen_layouts.ezplatform.search_service"
             - "@ezpublish.spi.persistence.content_type_handler"
             - "@ezpublish.spi.persistence.section_handler"
             - "@ezpublish.spi.persistence.object_state_handler"
-            - "@netgen_block_manager.ezplatform.content_provider"
+            - "@netgen_layouts.ezplatform.content_provider"
         calls:
             - [setLanguages, ["$languages$"]]
         tags:

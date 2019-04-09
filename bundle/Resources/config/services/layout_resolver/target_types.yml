@@ -1,38 +1,38 @@
 services:
-    netgen_block_manager.layout.resolver.target_type.ezlocation:
+    netgen_layouts.ezplatform.layout_resolver.target_type.location:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetType\Location
         arguments:
-            - "@netgen_block_manager.ezplatform.content_extractor"
+            - "@netgen_layouts.ezplatform.content_extractor"
         tags:
             - { name: netgen_block_manager.layout.resolver.target_type, priority: 140 }
 
-    netgen_block_manager.layout.resolver.target_type.ezcontent:
+    netgen_layouts.ezplatform.layout_resolver.target_type.content:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content
         arguments:
-            - "@netgen_block_manager.ezplatform.content_extractor"
+            - "@netgen_layouts.ezplatform.content_extractor"
         tags:
             - { name: netgen_block_manager.layout.resolver.target_type, priority: 150 }
 
-    netgen_block_manager.layout.resolver.target_type.ezchildren:
+    netgen_layouts.ezplatform.layout_resolver.target_type.children:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children
         arguments:
-            - "@netgen_block_manager.ezplatform.content_extractor"
+            - "@netgen_layouts.ezplatform.content_extractor"
         tags:
             - { name: netgen_block_manager.layout.resolver.target_type, priority: 120 }
 
-    netgen_block_manager.layout.resolver.target_type.ezsubtree:
+    netgen_layouts.ezplatform.layout_resolver.target_type.subtree:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetType\Subtree
         arguments:
-            - "@netgen_block_manager.ezplatform.content_extractor"
+            - "@netgen_layouts.ezplatform.content_extractor"
         tags:
             - { name: netgen_block_manager.layout.resolver.target_type, priority: 130 }
 
-    netgen_block_manager.layout.resolver.target_type.ez_semantic_path_info:
+    netgen_layouts.ezplatform.layout_resolver.target_type.semantic_path_info:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfo
         tags:
             - { name: netgen_block_manager.layout.resolver.target_type, priority: 110 }
 
-    netgen_block_manager.layout.resolver.target_type.ez_semantic_path_info_prefix:
+    netgen_layouts.ezplatform.layout_resolver.target_type.semantic_path_info_prefix:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix
         tags:
             - { name: netgen_block_manager.layout.resolver.target_type, priority: 100 }

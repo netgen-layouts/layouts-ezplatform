@@ -1,49 +1,49 @@
 services:
-    netgen_block_manager.validator.ezlocation:
+    netgen_layouts.ezplatform.validator.location:
         class: Netgen\Layouts\Ez\Validator\LocationValidator
         arguments:
             - "@ezpublish.api.repository"
         tags:
-            - { name: validator.constraint_validator, alias: ngbm_ezlocation }
+            - { name: validator.constraint_validator, alias: nglayouts_ezlocation }
 
-    netgen_block_manager.validator.ezcontent:
+    netgen_layouts.ezplatform.validator.content:
         class: Netgen\Layouts\Ez\Validator\ContentValidator
         arguments:
             - "@ezpublish.api.repository"
         tags:
-            - { name: validator.constraint_validator, alias: ngbm_ezcontent }
+            - { name: validator.constraint_validator, alias: nglayouts_ezcontent }
 
-    netgen_block_manager.validator.ez_site_access:
+    netgen_layouts.ezplatform.validator.site_access:
         class: Netgen\Layouts\Ez\Validator\SiteAccessValidator
         arguments:
             - "%ezpublish.siteaccess.list%"
         tags:
-            - { name: validator.constraint_validator, alias: ngbm_ez_site_access }
+            - { name: validator.constraint_validator, alias: nglayouts_ez_site_access }
 
-    netgen_block_manager.validator.ez_site_access_group:
+    netgen_layouts.ezplatform.validator.site_access_group:
         class: Netgen\Layouts\Ez\Validator\SiteAccessGroupValidator
         arguments:
             - "%ezpublish.siteaccess.groups%"
         tags:
-            - { name: validator.constraint_validator, alias: ngbm_ez_site_access_group }
+            - { name: validator.constraint_validator, alias: nglayouts_ez_site_access_group }
 
-    netgen_block_manager.validator.ez_content_type:
+    netgen_layouts.ezplatform.validator.content_type:
         class: Netgen\Layouts\Ez\Validator\ContentTypeValidator
         arguments:
             - "@ezpublish.api.repository"
         tags:
-            - { name: validator.constraint_validator, alias: ngbm_ez_content_type }
+            - { name: validator.constraint_validator, alias: nglayouts_ez_content_type }
 
-    netgen_block_manager.validator.ez_section:
+    netgen_layouts.ezplatform.validator.section:
         class: Netgen\Layouts\Ez\Validator\SectionValidator
         arguments:
             - "@ezpublish.api.repository"
         tags:
-            - { name: validator.constraint_validator, alias: ngbm_ez_section }
+            - { name: validator.constraint_validator, alias: nglayouts_ez_section }
 
-    netgen_block_manager.validator.ez_object_state:
+    netgen_layouts.ezplatform.validator.object_state:
         class: Netgen\Layouts\Ez\Validator\ObjectStateValidator
         arguments:
             - "@ezpublish.api.repository"
         tags:
-            - { name: validator.constraint_validator, alias: ngbm_ez_object_state }
+            - { name: validator.constraint_validator, alias: nglayouts_ez_object_state }

@@ -1,19 +1,19 @@
 services:
-    netgen_block_manager.form.ez_content_type:
+    netgen_layouts.ezplatform.form.content_type:
         class: Netgen\Layouts\Ez\Form\ContentTypeType
         arguments:
             - "@ezpublish.api.service.content_type"
         tags:
             - { name: form.type }
 
-    netgen_block_manager.form.ez_section:
+    netgen_layouts.ezplatform.form.section:
         class: Netgen\Layouts\Ez\Form\SectionType
         arguments:
             - "@ezpublish.api.service.section"
         tags:
             - { name: form.type }
 
-    netgen_block_manager.form.ez_object_state:
+    netgen_layouts.ezplatform.form.object_state:
         class: Netgen\Layouts\Ez\Form\ObjectStateType
         arguments:
             - "@ezpublish.api.service.object_state"
