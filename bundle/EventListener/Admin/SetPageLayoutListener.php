@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Netgen\Bundle\LayoutsEzPlatformBundle\EventListener\Admin;
 
 use EzSystems\EzPlatformAdminUiBundle\EzPlatformAdminUiBundle;
-use Netgen\Bundle\BlockManagerAdminBundle\Event\AdminMatchEvent;
-use Netgen\Bundle\BlockManagerAdminBundle\Event\BlockManagerAdminEvents;
+use Netgen\Bundle\LayoutsAdminBundle\Event\AdminMatchEvent;
+use Netgen\Bundle\LayoutsAdminBundle\Event\LayoutsAdminEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -40,7 +40,7 @@ final class SetPageLayoutListener implements EventSubscriberInterface
 
     public static function getSubscribedEvents(): array
     {
-        return [BlockManagerAdminEvents::ADMIN_MATCH => ['onAdminMatch', -255]];
+        return [LayoutsAdminEvents::ADMIN_MATCH => ['onAdminMatch', -255]];
     }
 
     /**

@@ -49,22 +49,22 @@ final class MainMenuBuilderListener implements EventSubscriberInterface
         $layouts = $menu
             ->addChild('nglayouts')
             ->setLabel('menu.main_menu.header')
-            ->setExtra('translation_domain', 'ngbm_admin');
+            ->setExtra('translation_domain', 'nglayouts_admin');
 
         $layouts
-            ->addChild('layout_resolver', ['route' => 'ngbm_admin_layout_resolver_index'])
+            ->addChild('layout_resolver', ['route' => 'nglayouts_admin_layout_resolver_index'])
             ->setLabel('menu.main_menu.layout_resolver')
-            ->setExtra('translation_domain', 'ngbm_admin');
+            ->setExtra('translation_domain', 'nglayouts_admin');
 
         $layouts
-            ->addChild('layouts', ['route' => 'ngbm_admin_layouts_index'])
+            ->addChild('layouts', ['route' => 'nglayouts_admin_layouts_index'])
             ->setLabel('menu.main_menu.layouts')
-            ->setExtra('translation_domain', 'ngbm_admin');
+            ->setExtra('translation_domain', 'nglayouts_admin');
 
         $layouts
-            ->addChild('shared_layouts', ['route' => 'ngbm_admin_shared_layouts_index'])
+            ->addChild('shared_layouts', ['route' => 'nglayouts_admin_shared_layouts_index'])
             ->setLabel('menu.main_menu.shared_layouts')
-            ->setExtra('translation_domain', 'ngbm_admin');
+            ->setExtra('translation_domain', 'nglayouts_admin');
 
         $menu->reorderChildren($menuOrder);
     }

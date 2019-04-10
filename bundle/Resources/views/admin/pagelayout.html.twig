@@ -7,18 +7,18 @@
     content block.
 #}
 {% embed '@EzPlatformAdminUi/layout.html.twig' %}
-    {% trans_default_domain 'ngbm_admin' %}
+    {% trans_default_domain 'nglayouts_admin' %}
 
     {% block title %}{{ title|raw }}{% endblock %}
     {% block pageTitle %}{% endblock %}
 
     {% block stylesheets %}
         {# @todo Move to proper page_head block #}
-        {% include '@NetgenBlockManagerAdmin/admin/head.html.twig' %}
+        {% include '@NetgenLayoutsAdmin/admin/head.html.twig' %}
 
         {{ parent() }}
 
-        {% include '@NetgenBlockManagerAdmin/admin/stylesheets.html.twig' %}
+        {% include '@NetgenLayoutsAdmin/admin/stylesheets.html.twig' %}
 
         <link rel="stylesheet" href="{{ asset('bundles/netgenlayoutsezplatform/css/admin/style.css') }}">
     {% endblock %}
@@ -26,7 +26,7 @@
     {% block javascripts %}
         {{ parent() }}
 
-        {% include '@NetgenBlockManagerAdmin/admin/javascripts.html.twig' %}
+        {% include '@NetgenLayoutsAdmin/admin/javascripts.html.twig' %}
     {% endblock %}
 
     {% block content %}

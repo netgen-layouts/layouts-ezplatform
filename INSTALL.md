@@ -20,7 +20,7 @@ Make sure they are activated after all other Netgen Layouts and Content Browser 
 ```
 ...
 
-$bundles[] = new Netgen\Bundle\BlockManagerAdminBundle\NetgenBlockManagerAdminBundle();
+$bundles[] = new Netgen\Bundle\LayoutsAdminBundle\NetgenLayoutsAdminBundle();
 $bundles[] = new Netgen\Bundle\LayoutsEzPlatformBundle\NetgenLayoutsEzPlatformBundle();
 $bundles[] = new Netgen\Bundle\ContentBrowserEzPlatformBundle\NetgenContentBrowserEzPlatformBundle();
 
