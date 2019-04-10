@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\View;
 
-use Netgen\Bundle\BlockManagerBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass as BasePass;
+use Netgen\Bundle\LayoutsBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass as BasePass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class DefaultViewTemplatesPass extends BasePass
@@ -21,7 +21,7 @@ final class DefaultViewTemplatesPass extends BasePass
         );
 
         foreach ($scopes as $scope) {
-            $scopeParam = "netgen_block_manager.{$scope}.view";
+            $scopeParam = "netgen_layouts.{$scope}.view";
             if (!$container->hasParameter($scopeParam)) {
                 continue;
             }

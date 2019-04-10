@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\Templating;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use Netgen\Bundle\BlockManagerBundle\Templating\PageLayoutResolverInterface;
+use Netgen\Bundle\LayoutsBundle\Templating\PageLayoutResolverInterface;
 use Netgen\Bundle\LayoutsEzPlatformBundle\Templating\PageLayoutResolver;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;

@@ -6,8 +6,8 @@ namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\DependencyInjection\Config
 
 use Matthias\SymfonyConfigTest\Partial\PartialProcessor;
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
-use Netgen\Bundle\BlockManagerBundle\DependencyInjection\Configuration;
-use Netgen\Bundle\BlockManagerBundle\DependencyInjection\NetgenBlockManagerExtension;
+use Netgen\Bundle\LayoutsBundle\DependencyInjection\Configuration;
+use Netgen\Bundle\LayoutsBundle\DependencyInjection\NetgenLayoutsExtension;
 use Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\ExtensionPlugin;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -27,7 +27,7 @@ abstract class ConfigurationNodeTest extends TestCase
     ];
 
     /**
-     * @var \Netgen\Bundle\BlockManagerBundle\DependencyInjection\NetgenBlockManagerExtension
+     * @var \Netgen\Bundle\LayoutsBundle\DependencyInjection\NetgenLayoutsExtension
      */
     protected $extension;
 
@@ -43,7 +43,7 @@ abstract class ConfigurationNodeTest extends TestCase
 
     public function setUp(): void
     {
-        $this->extension = new NetgenBlockManagerExtension();
+        $this->extension = new NetgenLayoutsExtension();
         $this->plugin = new ExtensionPlugin(new ContainerBuilder(), $this->extension);
 
         $this->extension->addPlugin($this->plugin);

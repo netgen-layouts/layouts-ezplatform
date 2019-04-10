@@ -6,9 +6,9 @@ namespace Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection;
 
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ConfigurationProcessor;
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ContextualizerInterface;
-use Netgen\Bundle\BlockManagerBundle\DependencyInjection\ConfigurationNode\DesignNode;
-use Netgen\Bundle\BlockManagerBundle\DependencyInjection\ConfigurationNode\ViewNode;
-use Netgen\Bundle\BlockManagerBundle\DependencyInjection\ExtensionPlugin as BaseExtensionPlugin;
+use Netgen\Bundle\LayoutsBundle\DependencyInjection\ConfigurationNode\DesignNode;
+use Netgen\Bundle\LayoutsBundle\DependencyInjection\ConfigurationNode\ViewNode;
+use Netgen\Bundle\LayoutsBundle\DependencyInjection\ExtensionPlugin as BaseExtensionPlugin;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -47,7 +47,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
      *
      * [
      *     0 => [
-     *         'netgen_block_manager' => [
+     *         'netgen_layouts' => [
      *             'view' => ...
      *         ]
      *     ]
@@ -57,7 +57,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
      *
      * [
      *     0 => [
-     *         'netgen_block_manager' => [
+     *         'netgen_layouts' => [
      *             'view' => ...,
      *             'system' => [
      *                 'default' => [

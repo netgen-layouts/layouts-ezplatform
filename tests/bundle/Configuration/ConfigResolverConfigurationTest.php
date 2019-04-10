@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\Configuration;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use Netgen\Bundle\BlockManagerBundle\Configuration\ConfigurationInterface;
-use Netgen\Bundle\BlockManagerBundle\Exception\ConfigurationException;
+use Netgen\Bundle\LayoutsBundle\Configuration\ConfigurationInterface;
+use Netgen\Bundle\LayoutsBundle\Exception\ConfigurationException;
 use Netgen\Bundle\LayoutsEzPlatformBundle\Configuration\ConfigResolverConfiguration;
 use PHPUnit\Framework\TestCase;
 
@@ -47,7 +47,7 @@ final class ConfigResolverConfigurationTest extends TestCase
         $this->configResolverMock
             ->expects(self::once())
             ->method('hasParameter')
-            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_block_manager'))
+            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_layouts'))
             ->willReturn(true);
 
         $this->fallbackConfigurationMock
@@ -65,7 +65,7 @@ final class ConfigResolverConfigurationTest extends TestCase
         $this->configResolverMock
             ->expects(self::once())
             ->method('hasParameter')
-            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_block_manager'))
+            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_layouts'))
             ->willReturn(false);
 
         $this->fallbackConfigurationMock
@@ -85,7 +85,7 @@ final class ConfigResolverConfigurationTest extends TestCase
         $this->configResolverMock
             ->expects(self::once())
             ->method('hasParameter')
-            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_block_manager'))
+            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_layouts'))
             ->willReturn(false);
 
         $this->fallbackConfigurationMock
@@ -105,13 +105,13 @@ final class ConfigResolverConfigurationTest extends TestCase
         $this->configResolverMock
             ->expects(self::any())
             ->method('hasParameter')
-            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_block_manager'))
+            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_layouts'))
             ->willReturn(true);
 
         $this->configResolverMock
             ->expects(self::once())
             ->method('getParameter')
-            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_block_manager'))
+            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_layouts'))
             ->willReturn('some_param_value');
 
         $this->fallbackConfigurationMock
@@ -129,7 +129,7 @@ final class ConfigResolverConfigurationTest extends TestCase
         $this->configResolverMock
             ->expects(self::any())
             ->method('hasParameter')
-            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_block_manager'))
+            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_layouts'))
             ->willReturn(false);
 
         $this->fallbackConfigurationMock
@@ -162,7 +162,7 @@ final class ConfigResolverConfigurationTest extends TestCase
         $this->configResolverMock
             ->expects(self::once())
             ->method('hasParameter')
-            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_block_manager'))
+            ->with(self::identicalTo('some_param'), self::identicalTo('netgen_layouts'))
             ->willReturn(false);
 
         $this->fallbackConfigurationMock

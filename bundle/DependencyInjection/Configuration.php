@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection;
 
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\Configuration as SiteAccessConfiguration;
-use Netgen\Bundle\BlockManagerBundle\DependencyInjection\TreeBuilder;
+use Netgen\Bundle\LayoutsBundle\DependencyInjection\TreeBuilder;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder as BaseTreeBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 

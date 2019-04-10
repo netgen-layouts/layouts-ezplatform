@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
-use Netgen\Bundle\BlockManagerBundle\DependencyInjection\NetgenBlockManagerExtension;
+use Netgen\Bundle\LayoutsBundle\DependencyInjection\NetgenLayoutsExtension;
 use Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\ExtensionPlugin;
 use Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\NetgenLayoutsEzPlatformExtension;
 
@@ -17,13 +17,13 @@ final class ExtensionPluginTest extends AbstractExtensionTestCase
      */
     public function testAppendFromPlugin(): void
     {
-        $extension = new NetgenBlockManagerExtension();
+        $extension = new NetgenLayoutsExtension();
         $extension->addPlugin(new ExtensionPlugin($this->container, $extension));
 
         $extension->prepend($this->container);
 
         $config = array_merge(
-            ...$this->container->getExtensionConfig('netgen_block_manager')
+            ...$this->container->getExtensionConfig('netgen_layouts')
         );
 
         self::assertArrayHasKey('block_type_groups', $config);

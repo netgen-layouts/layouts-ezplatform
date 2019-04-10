@@ -19,7 +19,7 @@ final class DefaultViewTemplatesPassTest extends AbstractCompilerPassTestCase
         $this->container->setParameter('ezpublish.siteaccess.list', ['cro', 'eng']);
 
         $this->container->setParameter(
-            'netgen_block_manager.default.view',
+            'netgen_layouts.default.view',
             [
                 'test_view' => [
                     'api' => [
@@ -32,7 +32,7 @@ final class DefaultViewTemplatesPassTest extends AbstractCompilerPassTestCase
         );
 
         $this->container->setParameter(
-            'netgen_block_manager.cro.view',
+            'netgen_layouts.cro.view',
             [
                 'test_view' => [
                     'default' => [
@@ -45,7 +45,7 @@ final class DefaultViewTemplatesPassTest extends AbstractCompilerPassTestCase
         );
 
         $this->container->setParameter(
-            'netgen_block_manager.default_view_templates',
+            'netgen_layouts.default_view_templates',
             [
                 'test_view' => [
                     'default' => 'default.html.twig',
@@ -61,7 +61,7 @@ final class DefaultViewTemplatesPassTest extends AbstractCompilerPassTestCase
         $this->compile();
 
         $this->assertContainerBuilderHasParameter(
-            'netgen_block_manager.default.view',
+            'netgen_layouts.default.view',
             [
                 'test_view' => [
                     'default' => [
@@ -102,7 +102,7 @@ final class DefaultViewTemplatesPassTest extends AbstractCompilerPassTestCase
         );
 
         $this->assertContainerBuilderHasParameter(
-            'netgen_block_manager.cro.view',
+            'netgen_layouts.cro.view',
             [
                 'test_view' => [
                     'default' => [
@@ -142,7 +142,7 @@ final class DefaultViewTemplatesPassTest extends AbstractCompilerPassTestCase
             ]
         );
 
-        self::assertFalse($this->container->hasParameter('netgen_block_manager.eng.view'));
+        self::assertFalse($this->container->hasParameter('netgen_layouts.eng.view'));
     }
 
     /**

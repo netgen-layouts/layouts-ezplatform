@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Netgen\Bundle\LayoutsEzPlatformBundle\Templating;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use Netgen\Bundle\BlockManagerBundle\Templating\PageLayoutResolverInterface;
+use Netgen\Bundle\LayoutsBundle\Templating\PageLayoutResolverInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 final class PageLayoutResolver implements PageLayoutResolverInterface
 {
     /**
-     * @var \Netgen\Bundle\BlockManagerBundle\Templating\PageLayoutResolverInterface
+     * @var \Netgen\Bundle\LayoutsBundle\Templating\PageLayoutResolverInterface
      */
     private $innerResolver;
 

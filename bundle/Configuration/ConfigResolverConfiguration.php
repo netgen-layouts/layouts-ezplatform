@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Netgen\Bundle\LayoutsEzPlatformBundle\Configuration;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use Netgen\Bundle\BlockManagerBundle\Configuration\ConfigurationInterface;
-use Netgen\Bundle\BlockManagerBundle\Exception\ConfigurationException;
+use Netgen\Bundle\LayoutsBundle\Configuration\ConfigurationInterface;
+use Netgen\Bundle\LayoutsBundle\Exception\ConfigurationException;
 
 /**
  * Implementation of ConfigurationInterface that uses eZ Platform
@@ -25,7 +25,7 @@ class ConfigResolverConfiguration implements ConfigurationInterface
     private $configResolver;
 
     /**
-     * @var \Netgen\Bundle\BlockManagerBundle\Configuration\ConfigurationInterface
+     * @var \Netgen\Bundle\LayoutsBundle\Configuration\ConfigurationInterface
      */
     private $fallbackConfiguration;
 
