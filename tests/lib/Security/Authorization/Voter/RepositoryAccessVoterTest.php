@@ -28,8 +28,8 @@ final class RepositoryAccessVoterTest extends TestCase
     {
         $roleHierarchy = new RoleHierarchy(
             [
-                'ROLE_NGBM_ADMIN' => [
-                    'ROLE_NGBM_EDITOR',
+                'ROLE_NGLAYOUTS_ADMIN' => [
+                    'ROLE_NGLAYOUTS_EDITOR',
                 ],
             ]
         );
@@ -77,15 +77,15 @@ final class RepositoryAccessVoterTest extends TestCase
     {
         return [
             // Only matches admin eZ function
-            ['ROLE_NGBM_ADMIN', ['admin' => true], VoterInterface::ACCESS_GRANTED],
-            ['ROLE_NGBM_ADMIN', ['admin' => false], VoterInterface::ACCESS_DENIED],
+            ['ROLE_NGLAYOUTS_ADMIN', ['admin' => true], VoterInterface::ACCESS_GRANTED],
+            ['ROLE_NGLAYOUTS_ADMIN', ['admin' => false], VoterInterface::ACCESS_DENIED],
 
             // Matches both admin and editor eZ functions
-            ['ROLE_NGBM_EDITOR', ['editor' => true], VoterInterface::ACCESS_GRANTED],
-            ['ROLE_NGBM_EDITOR', ['editor' => false, 'admin' => true], VoterInterface::ACCESS_GRANTED],
-            ['ROLE_NGBM_EDITOR', ['editor' => false, 'admin' => false], VoterInterface::ACCESS_DENIED],
+            ['ROLE_NGLAYOUTS_EDITOR', ['editor' => true], VoterInterface::ACCESS_GRANTED],
+            ['ROLE_NGLAYOUTS_EDITOR', ['editor' => false, 'admin' => true], VoterInterface::ACCESS_GRANTED],
+            ['ROLE_NGLAYOUTS_EDITOR', ['editor' => false, 'admin' => false], VoterInterface::ACCESS_DENIED],
 
-            ['ROLE_NGBM_UNKNOWN', [], VoterInterface::ACCESS_DENIED],
+            ['ROLE_NGLAYOUTS_UNKNOWN', [], VoterInterface::ACCESS_DENIED],
 
             ['ROLE_UNSUPPORTED', [], VoterInterface::ACCESS_ABSTAIN],
         ];

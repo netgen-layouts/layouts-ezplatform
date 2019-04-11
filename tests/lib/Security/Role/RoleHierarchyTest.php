@@ -22,11 +22,11 @@ final class RoleHierarchyTest extends TestCase
     {
         $role = new RoleHierarchy(
             [
-                'ROLE_NGBM_ADMIN' => [
-                    'ROLE_NGBM_EDITOR',
+                'ROLE_NGLAYOUTS_ADMIN' => [
+                    'ROLE_NGLAYOUTS_EDITOR',
                 ],
-                'ROLE_NGBM_EDITOR' => [
-                    'ROLE_NGBM_API',
+                'ROLE_NGLAYOUTS_EDITOR' => [
+                    'ROLE_NGLAYOUTS_API',
                 ],
             ]
         );
@@ -46,16 +46,16 @@ final class RoleHierarchyTest extends TestCase
     {
         return [
             [
-                'ROLE_NGBM_ADMIN',
-                ['ROLE_NGBM_ADMIN'],
+                'ROLE_NGLAYOUTS_ADMIN',
+                ['ROLE_NGLAYOUTS_ADMIN'],
             ],
             [
-                'ROLE_NGBM_EDITOR',
-                ['ROLE_NGBM_EDITOR', 'ROLE_NGBM_ADMIN'],
+                'ROLE_NGLAYOUTS_EDITOR',
+                ['ROLE_NGLAYOUTS_EDITOR', 'ROLE_NGLAYOUTS_ADMIN'],
             ],
             [
-                'ROLE_NGBM_API',
-                ['ROLE_NGBM_API', 'ROLE_NGBM_EDITOR', 'ROLE_NGBM_ADMIN'],
+                'ROLE_NGLAYOUTS_API',
+                ['ROLE_NGLAYOUTS_API', 'ROLE_NGLAYOUTS_EDITOR', 'ROLE_NGLAYOUTS_ADMIN'],
             ],
         ];
     }

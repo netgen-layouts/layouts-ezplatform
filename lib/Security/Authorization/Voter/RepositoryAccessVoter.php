@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 
 /**
- * Votes on Netgen Layouts attributes (ROLE_NGBM_*) by matching corresponding access
+ * Votes on Netgen Layouts attributes (ROLE_NGLAYOUTS_*) by matching corresponding access
  * rights in eZ Platform Repository.
  */
 final class RepositoryAccessVoter extends Voter
@@ -26,9 +26,9 @@ final class RepositoryAccessVoter extends Voter
      * Map of supported attributes to corresponding functions in the eZ Platform module.
      */
     private const ATTRIBUTE_TO_POLICY_MAP = [
-        'ROLE_NGBM_ADMIN' => 'admin',
-        'ROLE_NGBM_EDITOR' => 'editor',
-        'ROLE_NGBM_API' => 'api',
+        'ROLE_NGLAYOUTS_ADMIN' => 'admin',
+        'ROLE_NGLAYOUTS_EDITOR' => 'editor',
+        'ROLE_NGLAYOUTS_API' => 'api',
     ];
 
     /**
@@ -82,7 +82,7 @@ final class RepositoryAccessVoter extends Voter
 
     protected function supports($attribute, $subject): bool
     {
-        return is_string($attribute) && mb_strpos($attribute, 'ROLE_NGBM_') === 0;
+        return is_string($attribute) && mb_strpos($attribute, 'ROLE_NGLAYOUTS_') === 0;
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token): bool
