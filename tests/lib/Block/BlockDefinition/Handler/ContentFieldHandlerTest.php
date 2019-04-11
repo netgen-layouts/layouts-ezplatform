@@ -6,8 +6,8 @@ namespace Netgen\Layouts\Ez\Tests\Block\BlockDefinition\Handler;
 
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
-use Netgen\BlockManager\API\Values\Block\Block;
-use Netgen\BlockManager\Block\DynamicParameters;
+use Netgen\Layouts\API\Values\Block\Block;
+use Netgen\Layouts\Block\DynamicParameters;
 use Netgen\Layouts\Ez\Block\BlockDefinition\Handler\ContentFieldHandler;
 use Netgen\Layouts\Ez\ContentProvider\ContentProviderInterface;
 use PHPUnit\Framework\TestCase;

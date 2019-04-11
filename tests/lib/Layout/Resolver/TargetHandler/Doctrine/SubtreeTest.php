@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\TargetHandler\Doctrine;
 
-use Netgen\BlockManager\Persistence\Doctrine\QueryHandler\TargetHandlerInterface;
-use Netgen\BlockManager\Tests\Layout\Resolver\TargetHandler\Doctrine\AbstractTargetHandlerTest;
 use Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Subtree;
+use Netgen\Layouts\Persistence\Doctrine\QueryHandler\TargetHandlerInterface;
+use Netgen\Layouts\Tests\Layout\Resolver\TargetHandler\Doctrine\AbstractTargetHandlerTest;
 
 final class SubtreeTest extends AbstractTargetHandlerTest
 {

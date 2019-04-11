@@ -7,8 +7,8 @@ namespace Netgen\Layouts\Ez\Locale;
 use eZ\Publish\API\Repository\LanguageService;
 use eZ\Publish\API\Repository\Values\Content\Language;
 use eZ\Publish\Core\MVC\Symfony\Locale\LocaleConverterInterface;
-use Netgen\BlockManager\Locale\LocaleProviderInterface;
-use Netgen\BlockManager\Utils\BackwardsCompatibility\Locales;
+use Netgen\Layouts\Locale\LocaleProviderInterface;
+use Netgen\Layouts\Utils\BackwardsCompatibility\Locales;
 use Symfony\Component\HttpFoundation\Request;
 
 /**

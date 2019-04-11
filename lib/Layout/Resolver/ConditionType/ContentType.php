@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ez\Layout\Resolver\ConditionType;
 
 use eZ\Publish\API\Repository\Values\Content\Content;
-use Netgen\BlockManager\Layout\Resolver\ConditionTypeInterface;
 use Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface;
 use Netgen\Layouts\Ez\Validator\Constraint as EzConstraints;
+use Netgen\Layouts\Layout\Resolver\ConditionTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
 

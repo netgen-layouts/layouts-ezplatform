@@ -7,7 +7,7 @@ namespace Netgen\Layouts\Ez\Item\ValueConverter;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use Netgen\BlockManager\Item\ValueConverterInterface;
+use Netgen\Layouts\Item\ValueConverterInterface;
 
 final class ContentValueConverter implements ValueConverterInterface
 {

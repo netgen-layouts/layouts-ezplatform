@@ -7,7 +7,7 @@ namespace Netgen\Layouts\Ez\Tests\Context;
 use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use eZ\Publish\Core\MVC\Symfony\View\ContentView;
 use eZ\Publish\Core\Repository\Values\Content\Location;
-use Netgen\BlockManager\Context\Context;
+use Netgen\Layouts\Context\Context;
 use Netgen\Layouts\Ez\Context\ContextProvider;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -22,7 +22,7 @@ final class ContextProviderTest extends TestCase
     private $requestStack;
 
     /**
-     * @var \Netgen\BlockManager\Context\ContextInterface
+     * @var \Netgen\Layouts\Context\ContextInterface
      */
     private $context;
 

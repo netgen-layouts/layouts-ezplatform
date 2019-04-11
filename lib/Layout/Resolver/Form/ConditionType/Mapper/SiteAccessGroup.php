@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ez\Layout\Resolver\Form\ConditionType\Mapper;
 
-use Netgen\BlockManager\Layout\Resolver\Form\ConditionType\Mapper;
+use Netgen\Layouts\Layout\Resolver\Form\ConditionType\Mapper;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 final class SiteAccessGroup extends Mapper

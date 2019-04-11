@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ez\Item\ValueUrlGenerator;
 
-use Netgen\BlockManager\Item\ValueUrlGeneratorInterface;
+use Netgen\Layouts\Item\ValueUrlGeneratorInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class LocationValueUrlGenerator implements ValueUrlGeneratorInterface

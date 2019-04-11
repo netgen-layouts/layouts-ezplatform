@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ez\Tests\Parameters\Form\Mapper;
 
-use Netgen\BlockManager\Parameters\ParameterDefinition;
 use Netgen\Layouts\Ez\Form\ObjectStateType;
 use Netgen\Layouts\Ez\Parameters\Form\Mapper\ObjectStateMapper;
 use Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType as ParameterType;
+use Netgen\Layouts\Parameters\ParameterDefinition;
 use PHPUnit\Framework\TestCase;
 
 final class ObjectStateMapperTest extends TestCase

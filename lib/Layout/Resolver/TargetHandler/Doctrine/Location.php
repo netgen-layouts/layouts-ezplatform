@@ -6,7 +6,7 @@ namespace Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine;
 
 use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Types\Type;
-use Netgen\BlockManager\Persistence\Doctrine\QueryHandler\TargetHandlerInterface;
+use Netgen\Layouts\Persistence\Doctrine\QueryHandler\TargetHandlerInterface;
 
 final class Location implements TargetHandlerInterface
 {

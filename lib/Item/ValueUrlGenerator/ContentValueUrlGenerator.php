@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ez\Item\ValueUrlGenerator;
 
 use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
-use Netgen\BlockManager\Item\ValueUrlGeneratorInterface;
+use Netgen\Layouts\Item\ValueUrlGeneratorInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class ContentValueUrlGenerator implements ValueUrlGeneratorInterface

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ez\Parameters\Form\Mapper;
 
-use Netgen\BlockManager\Parameters\Form\Mapper;
-use Netgen\BlockManager\Parameters\ParameterDefinition;
 use Netgen\Layouts\Ez\Form\SectionType;
+use Netgen\Layouts\Parameters\Form\Mapper;
+use Netgen\Layouts\Parameters\ParameterDefinition;
 
 final class SectionMapper extends Mapper
 {

@@ -7,8 +7,8 @@ namespace Netgen\Layouts\Ez\Context;
 use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use eZ\Publish\Core\MVC\Symfony\View\LocationValueView;
-use Netgen\BlockManager\Context\ContextInterface;
-use Netgen\BlockManager\Context\ContextProviderInterface;
+use Netgen\Layouts\Context\ContextInterface;
+use Netgen\Layouts\Context\ContextProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 

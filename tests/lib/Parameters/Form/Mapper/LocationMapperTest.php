@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ez\Tests\Parameters\Form\Mapper;
 
 use eZ\Publish\API\Repository\Repository;
-use Netgen\BlockManager\Parameters\ParameterDefinition;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 use Netgen\Layouts\Ez\Parameters\Form\Mapper\LocationMapper;
 use Netgen\Layouts\Ez\Parameters\ParameterType\LocationType as ParameterType;
+use Netgen\Layouts\Parameters\ParameterDefinition;
 use PHPUnit\Framework\TestCase;
 
 final class LocationMapperTest extends TestCase

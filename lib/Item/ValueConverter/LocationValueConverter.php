@@ -6,7 +6,7 @@ namespace Netgen\Layouts\Ez\Item\ValueConverter;
 
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\Values\Content\Location;
-use Netgen\BlockManager\Item\ValueConverterInterface;
+use Netgen\Layouts\Item\ValueConverterInterface;
 
 final class LocationValueConverter implements ValueConverterInterface
 {

@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 final class SemanticPathInfoTest extends TestCase
 {
     /**
-     * @var \Netgen\BlockManager\Layout\Resolver\Form\TargetType\MapperInterface
+     * @var \Netgen\Layouts\Layout\Resolver\Form\TargetType\MapperInterface
      */
     private $mapper;
 

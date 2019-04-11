@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ez\Form;
 
 use eZ\Publish\API\Repository\SectionService;
-use Netgen\BlockManager\Form\AbstractType;
+use Netgen\Layouts\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;

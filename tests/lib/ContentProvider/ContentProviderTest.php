@@ -7,7 +7,7 @@ namespace Netgen\Layouts\Ez\Tests\ContentProvider;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
-use Netgen\BlockManager\Context\Context;
+use Netgen\Layouts\Context\Context;
 use Netgen\Layouts\Ez\ContentProvider\ContentProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -19,7 +19,7 @@ final class ContentProviderTest extends TestCase
     private $locationServiceMock;
 
     /**
-     * @var \Netgen\BlockManager\Context\ContextInterface
+     * @var \Netgen\Layouts\Context\ContextInterface
      */
     private $context;
 

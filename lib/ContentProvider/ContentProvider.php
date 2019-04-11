@@ -7,7 +7,7 @@ namespace Netgen\Layouts\Ez\ContentProvider;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\Location;
-use Netgen\BlockManager\Context\ContextInterface;
+use Netgen\Layouts\Context\ContextInterface;
 
 /**
  * Provides the eZ Platform content and location objects from the
@@ -21,7 +21,7 @@ final class ContentProvider implements ContentProviderInterface
     private $locationService;
 
     /**
-     * @var \Netgen\BlockManager\Context\ContextInterface
+     * @var \Netgen\Layouts\Context\ContextInterface
      */
     private $context;
 

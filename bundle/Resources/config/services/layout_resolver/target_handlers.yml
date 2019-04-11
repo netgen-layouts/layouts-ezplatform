@@ -20,11 +20,11 @@ services:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ezsubtree }
 
     netgen_layouts.ezplatform.layout_resolver.target_handler.doctrine.semantic_path_info:
-        class: Netgen\BlockManager\Layout\Resolver\TargetHandler\Doctrine\Route
+        class: Netgen\Layouts\Layout\Resolver\TargetHandler\Doctrine\Route
         tags:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ez_semantic_path_info }
 
     netgen_layouts.ezplatform.layout_resolver.target_handler.doctrine.semantic_path_info_prefix:
-        class: Netgen\BlockManager\Layout\Resolver\TargetHandler\Doctrine\RoutePrefix
+        class: Netgen\Layouts\Layout\Resolver\TargetHandler\Doctrine\RoutePrefix
         tags:
             - { name: netgen_block_manager.layout.resolver.target_handler.doctrine, target_type: ez_semantic_path_info_prefix }

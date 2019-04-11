@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ez\Collection\QueryType\Handler\Traits;
 
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
-use Netgen\BlockManager\Parameters\ParameterBuilderInterface;
-use Netgen\BlockManager\Parameters\ParameterCollectionInterface;
-use Netgen\BlockManager\Parameters\ParameterType;
+use Netgen\Layouts\Parameters\ParameterBuilderInterface;
+use Netgen\Layouts\Parameters\ParameterCollectionInterface;
+use Netgen\Layouts\Parameters\ParameterType;
 
 trait MainLocationFilterTrait
 {

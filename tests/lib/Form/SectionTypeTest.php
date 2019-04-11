@@ -6,8 +6,8 @@ namespace Netgen\Layouts\Ez\Tests\Form;
 
 use eZ\Publish\API\Repository\SectionService;
 use eZ\Publish\API\Repository\Values\Content\Section;
-use Netgen\BlockManager\Tests\TestCase\FormTestCase;
 use Netgen\Layouts\Ez\Form\SectionType;
+use Netgen\Layouts\Tests\TestCase\FormTestCase;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
