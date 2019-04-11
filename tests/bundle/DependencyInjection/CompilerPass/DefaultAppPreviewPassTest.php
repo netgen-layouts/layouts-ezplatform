@@ -91,8 +91,8 @@ final class DefaultAppPreviewPassTest extends AbstractCompilerPassTestCase
             ]
         );
 
-        self::assertFalse($this->container->hasParameter('netgen_block_manager.default.location_view'));
-        self::assertFalse($this->container->hasParameter('netgen_block_manager.cro.content_view'));
+        self::assertFalse($this->container->hasParameter('netgen_layouts.default.location_view'));
+        self::assertFalse($this->container->hasParameter('netgen_layouts.cro.content_view'));
     }
 
     /**
