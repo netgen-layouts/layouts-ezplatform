@@ -11,8 +11,6 @@ use Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Location;
 final class LocationTest extends AbstractTargetHandlerTest
 {
     /**
-     * @covers \Netgen\BlockManager\Persistence\Doctrine\Handler\LayoutResolverHandler::matchRules
-     * @covers \Netgen\BlockManager\Persistence\Doctrine\QueryHandler\LayoutResolverQueryHandler::matchRules
      * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Location::handleQuery
      */
     public function testMatchRules(): void
