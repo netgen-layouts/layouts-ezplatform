@@ -22,16 +22,16 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
      */
     public function testProcess(string $definitionClass, bool $clientEnabled): void
     {
-        $this->setDefinition('netgen_block_manager.http_cache.client', new Definition());
+        $this->setDefinition('netgen_layouts.http_cache.client', new Definition());
         $this->setDefinition('ezplatform.http_cache.purge_client', new Definition($definitionClass));
 
         $this->compile();
 
         $clientEnabled ?
-            self::assertContainerBuilderNotHasAlias('netgen_block_manager.http_cache.client') :
+            self::assertContainerBuilderNotHasAlias('netgen_layouts.http_cache.client') :
             $this->assertContainerBuilderHasAlias(
-                'netgen_block_manager.http_cache.client',
-                'netgen_block_manager.http_cache.client.null'
+                'netgen_layouts.http_cache.client',
+                'netgen_layouts.http_cache.client.null'
             );
     }
 
@@ -40,12 +40,12 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
      */
     public function testProcessWithNoSupportedClient(): void
     {
-        $this->setDefinition('netgen_block_manager.http_cache.client', new Definition());
+        $this->setDefinition('netgen_layouts.http_cache.client', new Definition());
         $this->setDefinition('ezplatform.http_cache.purge_client', new Definition(stdClass::class));
 
         $this->compile();
 
-        self::assertContainerBuilderNotHasAlias('netgen_block_manager.http_cache.client');
+        self::assertContainerBuilderNotHasAlias('netgen_layouts.http_cache.client');
     }
 
     public function processProvider(): array

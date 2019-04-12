@@ -2,12 +2,12 @@ services:
     netgen_layouts.ezplatform.templating.pagelayout_resolver:
         class: Netgen\Bundle\LayoutsEzPlatformBundle\Templating\PageLayoutResolver
         arguments:
-            - "@netgen_block_manager.templating.pagelayout_resolver.default"
+            - "@netgen_layouts.templating.pagelayout_resolver.default"
             - "@ezpublish.config.resolver"
             - "@request_stack"
             - "%ezpublish.content_view.viewbase_layout%"
 
-    netgen_block_manager.templating.pagelayout_resolver:
+    netgen_layouts.templating.pagelayout_resolver:
         alias: netgen_layouts.ezplatform.templating.pagelayout_resolver
 
     netgen_layouts.ezplatform.templating.twig.extension.ez_platform:

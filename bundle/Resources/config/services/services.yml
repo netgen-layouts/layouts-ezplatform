@@ -9,7 +9,7 @@ services:
         class: Netgen\Layouts\Ez\ContentProvider\ContentProvider
         arguments:
             - "@ezpublish.api.service.location"
-            - "@netgen_block_manager.context"
+            - "@netgen_layouts.context"
 
     netgen_layouts.ezplatform.content_extractor:
         alias: netgen_layouts.ezplatform.content_extractor.request

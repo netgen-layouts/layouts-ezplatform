@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class ConfigureHttpCachePass implements CompilerPassInterface
 {
-    private const SERVICE_NAME = 'netgen_block_manager.http_cache.client';
+    private const SERVICE_NAME = 'netgen_layouts.http_cache.client';
 
     public function process(ContainerBuilder $container): void
     {
@@ -42,7 +42,7 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
         if (!is_a($purgeClientClass, VarnishPurgeClient::class, true)) {
             $container->setAlias(
                 self::SERVICE_NAME,
-                'netgen_block_manager.http_cache.client.null'
+                'netgen_layouts.http_cache.client.null'
             );
         }
     }
