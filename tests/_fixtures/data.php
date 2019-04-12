@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 return [
-    'ngbm_rule' => [
+    'nglayouts_rule' => [
         ['id' => 1, 'status' => 1, 'layout_id' => 11, 'comment' => ''],
         ['id' => 2, 'status' => 0, 'layout_id' => 12, 'comment' => ''],
         ['id' => 3, 'status' => 1, 'layout_id' => 13, 'comment' => ''],
@@ -16,7 +16,7 @@ return [
         ['id' => 10, 'status' => 1, 'layout_id' => 20, 'comment' => ''],
         ['id' => 11, 'status' => 1, 'layout_id' => 21, 'comment' => ''],
     ],
-    'ngbm_rule_data' => [
+    'nglayouts_rule_data' => [
         ['rule_id' => 1, 'enabled' => 1, 'priority' => 10],
         ['rule_id' => 2, 'enabled' => 1, 'priority' => 9],
         ['rule_id' => 3, 'enabled' => 1, 'priority' => 8],
@@ -29,7 +29,7 @@ return [
         ['rule_id' => 10, 'enabled' => 1, 'priority' => 1],
         ['rule_id' => 11, 'enabled' => 1, 'priority' => 0],
     ],
-    'ngbm_rule_target' => [
+    'nglayouts_rule_target' => [
         ['id' => 1, 'status' => 1, 'rule_id' => 1, 'type' => 'ezlocation', 'value' => 72],
         ['id' => 2, 'status' => 1, 'rule_id' => 1, 'type' => 'ezlocation', 'value' => 73],
         ['id' => 3, 'status' => 0, 'rule_id' => 2, 'type' => 'ezlocation', 'value' => 74],
