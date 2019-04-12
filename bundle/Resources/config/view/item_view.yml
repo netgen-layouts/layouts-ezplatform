@@ -2,20 +2,20 @@ view:
     item_view:
         default:
             ezcontent:
-                template: "@ngbm/item/ezcontent.html.twig"
+                template: "@nglayouts/item/ezcontent.html.twig"
                 match:
                     item\value_type: ezcontent
             ezlocation:
-                template: "@ngbm/item/ezlocation.html.twig"
+                template: "@nglayouts/item/ezlocation.html.twig"
                 match:
                     item\value_type: ezlocation
         ajax:
             ezcontent:
-                template: "@ngbm/item/ezcontent.html.twig"
+                template: "@nglayouts/item/ezcontent.html.twig"
                 match:
                     item\value_type: ezcontent
             ezlocation:
-                template: "@ngbm/item/ezlocation.html.twig"
+                template: "@nglayouts/item/ezlocation.html.twig"
                 match:
                     item\value_type: ezlocation
         api:
