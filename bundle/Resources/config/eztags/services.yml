@@ -4,12 +4,12 @@ services:
         arguments:
             - "@eztags.api.service.tags"
         tags:
-            - { name: netgen_block_manager.parameters.parameter_type }
+            - { name: netgen_layouts.parameter_type }
 
     netgen_layouts.ezplatform.parameters.form_mapper.tags:
         class: Netgen\Layouts\Ez\Parameters\Form\Mapper\TagsMapper
         tags:
-            - { name: netgen_block_manager.parameters.form.mapper, type: eztags }
+            - { name: netgen_layouts.parameter_type.form_mapper, type: eztags }
 
     netgen_layouts.ezplatform.validator.tags:
         class: Netgen\Layouts\Ez\Validator\TagValidator

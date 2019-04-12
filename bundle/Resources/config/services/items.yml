@@ -4,7 +4,7 @@ services:
         arguments:
             - "@ezpublish.api.service.content"
         tags:
-            - { name: netgen_block_manager.item.value_converter }
+            - { name: netgen_layouts.cms_value_converter }
 
     netgen_layouts.ezplatform.item.value_converter.content:
         class: Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter
@@ -12,32 +12,32 @@ services:
             - "@ezpublish.api.service.location"
             - "@ezpublish.api.service.content"
         tags:
-            - { name: netgen_block_manager.item.value_converter }
+            - { name: netgen_layouts.cms_value_converter }
 
     netgen_layouts.ezplatform.item.value_loader.location:
         class: Netgen\Layouts\Ez\Item\ValueLoader\LocationValueLoader
         arguments:
             - "@ezpublish.api.service.location"
         tags:
-            - { name: netgen_block_manager.item.value_loader, value_type: ezlocation }
+            - { name: netgen_layouts.cms_value_loader, value_type: ezlocation }
 
     netgen_layouts.ezplatform.item.value_loader.content:
         class: Netgen\Layouts\Ez\Item\ValueLoader\ContentValueLoader
         arguments:
             - "@ezpublish.api.service.content"
         tags:
-            - { name: netgen_block_manager.item.value_loader, value_type: ezcontent }
+            - { name: netgen_layouts.cms_value_loader, value_type: ezcontent }
 
     netgen_layouts.ezplatform.item.value_url_generator.location:
         class: Netgen\Layouts\Ez\Item\ValueUrlGenerator\LocationValueUrlGenerator
         arguments:
             - "@router"
         tags:
-            - { name: netgen_block_manager.item.value_url_generator, value_type: ezlocation }
+            - { name: netgen_layouts.cms_value_url_generator, value_type: ezlocation }
 
     netgen_layouts.ezplatform.item.value_url_generator.content:
         class: Netgen\Layouts\Ez\Item\ValueUrlGenerator\ContentValueUrlGenerator
         arguments:
             - "@router"
         tags:
-            - { name: netgen_block_manager.item.value_url_generator, value_type: ezcontent }
+            - { name: netgen_layouts.cms_value_url_generator, value_type: ezcontent }

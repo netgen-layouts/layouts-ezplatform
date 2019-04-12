@@ -2,18 +2,18 @@ services:
     netgen_layouts.ezplatform.layout_resolver.condition_type.site_access:
         class: Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccess
         tags:
-            - { name: netgen_block_manager.layout.resolver.condition_type }
+            - { name: netgen_layouts.condition_type }
 
     netgen_layouts.ezplatform.layout_resolver.condition_type.site_access_group:
         class: Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccessGroup
         arguments:
             - "%ezpublish.siteaccess.groups_by_siteaccess%"
         tags:
-            - { name: netgen_block_manager.layout.resolver.condition_type }
+            - { name: netgen_layouts.condition_type }
 
     netgen_layouts.ezplatform.layout_resolver.condition_type.content_type:
         class: Netgen\Layouts\Ez\Layout\Resolver\ConditionType\ContentType
         arguments:
             - "@netgen_layouts.ezplatform.content_extractor"
         tags:
-            - { name: netgen_block_manager.layout.resolver.condition_type }
+            - { name: netgen_layouts.condition_type }

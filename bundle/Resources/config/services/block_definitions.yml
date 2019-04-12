@@ -4,4 +4,4 @@ services:
         arguments:
             - "@netgen_layouts.ezplatform.content_provider"
         tags:
-            - { name: netgen_block_manager.block.block_definition_handler, identifier: ezcontent_field }
+            - { name: netgen_layouts.block_definition_handler, identifier: ezcontent_field }
