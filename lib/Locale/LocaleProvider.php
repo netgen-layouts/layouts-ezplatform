@@ -9,8 +9,8 @@ use eZ\Publish\API\Repository\LanguageService;
 use eZ\Publish\API\Repository\Values\Content\Language;
 use eZ\Publish\Core\MVC\Symfony\Locale\LocaleConverterInterface;
 use Netgen\BlockManager\Locale\LocaleProviderInterface;
+use Netgen\BlockManager\Utils\BackwardsCompatibility\Locales;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Intl\Intl;
 
 /**
  * eZ Platform specific locale provider that provides the existing locales
@@ -31,11 +31,6 @@ class LocaleProvider implements LocaleProviderInterface
     private $localeConverter;
 
     /**
-     * @var \Symfony\Component\Intl\ResourceBundle\LocaleBundleInterface
-     */
-    private $localeBundle;
-
-    /**
      * @var string[]
      */
     private $languageCodes = [];
@@ -44,7 +39,6 @@ class LocaleProvider implements LocaleProviderInterface
     {
         $this->languageService = $languageService;
         $this->localeConverter = $localeConverter;
-        $this->localeBundle = Intl::getLocaleBundle();
     }
 
     /**
@@ -141,12 +135,10 @@ class LocaleProvider implements LocaleProviderInterface
             return null;
         }
 
-        $localeName = $this->localeBundle->getLocaleName($posixLocale);
-
-        if ($localeName === null) {
+        if (!Locales::exists($posixLocale)) {
             return null;
         }
 
-        return [$posixLocale, $localeName];
+        return [$posixLocale, Locales::getName($posixLocale)];
     }
 }
