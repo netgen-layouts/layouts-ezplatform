@@ -1,0 +1,7 @@
+services:
+    netgen_layouts.ezplatform.limitation_type.layouts_role:
+        class: eZ\Publish\Core\Limitation\BlockingLimitationType
+        arguments:
+            - NetgenLayoutsRole
+        tags:
+            - {name: ezpublish.limitationType, alias: NetgenLayoutsRole}
