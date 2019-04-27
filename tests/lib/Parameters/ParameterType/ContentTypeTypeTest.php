@@ -30,7 +30,7 @@ final class ContentTypeTypeTest extends TestCase
      */
     private $contentTypeServiceMock;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentTypeService']);

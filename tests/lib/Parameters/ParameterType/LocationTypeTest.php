@@ -32,7 +32,7 @@ final class LocationTypeTest extends TestCase
      */
     private $locationServiceMock;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService']);

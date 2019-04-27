@@ -36,7 +36,7 @@ final class ContentTypeTest extends TestCase
      */
     private $contentTypeServiceMock;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->contentServiceMock = $this->createMock(ContentService::class);
         $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);

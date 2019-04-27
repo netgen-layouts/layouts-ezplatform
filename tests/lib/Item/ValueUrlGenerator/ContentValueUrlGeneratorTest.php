@@ -22,7 +22,7 @@ final class ContentValueUrlGeneratorTest extends TestCase
      */
     private $urlGenerator;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->urlGeneratorMock = $this->createMock(UrlGeneratorInterface::class);
 

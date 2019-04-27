@@ -28,7 +28,7 @@ final class LocaleProviderTest extends TestCase
      */
     private $localeProvider;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->languageServiceMock = $this->createMock(LanguageService::class);
 

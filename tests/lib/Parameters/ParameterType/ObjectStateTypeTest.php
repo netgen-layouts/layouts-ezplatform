@@ -30,7 +30,7 @@ final class ObjectStateTypeTest extends TestCase
      */
     private $objectStateServiceMock;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->objectStateServiceMock = $this->createMock(ObjectStateService::class);
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getObjectStateService']);

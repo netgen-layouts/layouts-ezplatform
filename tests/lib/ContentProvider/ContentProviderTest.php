@@ -28,7 +28,7 @@ final class ContentProviderTest extends TestCase
      */
     private $contentProvider;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
         $this->context = new Context();

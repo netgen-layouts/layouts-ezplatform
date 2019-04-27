@@ -21,7 +21,7 @@ final class TagValidatorTest extends ValidatorTestCase
      */
     private $tagsServiceMock;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 

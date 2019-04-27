@@ -23,7 +23,7 @@ final class LocationValueConverterTest extends TestCase
      */
     private $valueConverter;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->contentServiceMock = $this->createMock(ContentService::class);
 

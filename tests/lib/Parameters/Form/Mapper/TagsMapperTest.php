@@ -18,7 +18,7 @@ final class TagsMapperTest extends TestCase
      */
     private $mapper;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->mapper = new TagsMapper();
     }

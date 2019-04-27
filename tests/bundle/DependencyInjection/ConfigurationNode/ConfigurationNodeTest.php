@@ -41,7 +41,7 @@ abstract class ConfigurationNodeTest extends TestCase
      */
     protected $partialProcessor;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->extension = new NetgenLayoutsExtension();
         $this->plugin = new ExtensionPlugin(new ContainerBuilder(), $this->extension);

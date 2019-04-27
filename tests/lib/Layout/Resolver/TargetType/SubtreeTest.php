@@ -37,7 +37,7 @@ final class SubtreeTest extends TestCase
      */
     private $targetType;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->contentExtractorMock = $this->createMock(ContentExtractorInterface::class);
         $this->locationServiceMock = $this->createMock(LocationService::class);

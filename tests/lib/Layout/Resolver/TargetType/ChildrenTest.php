@@ -37,7 +37,7 @@ final class ChildrenTest extends TestCase
      */
     private $locationServiceMock;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->contentExtractorMock = $this->createMock(ContentExtractorInterface::class);
         $this->locationServiceMock = $this->createMock(LocationService::class);

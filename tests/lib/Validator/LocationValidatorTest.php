@@ -29,7 +29,7 @@ final class LocationValidatorTest extends ValidatorTestCase
      */
     private $locationServiceMock;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 

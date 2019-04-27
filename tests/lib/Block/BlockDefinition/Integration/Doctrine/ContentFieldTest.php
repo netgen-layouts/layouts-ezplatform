@@ -14,7 +14,7 @@ final class ContentFieldTest extends BaseContentFieldTest
 {
     use TestCaseTrait;
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->closeDatabase();
     }

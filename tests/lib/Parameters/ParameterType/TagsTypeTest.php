@@ -23,7 +23,7 @@ final class TagsTypeTest extends TestCase
      */
     private $tagsServiceMock;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->tagsServiceMock = $this->createPartialMock(TagsService::class, ['loadTag', 'loadTagByRemoteId']);
 

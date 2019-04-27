@@ -16,7 +16,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
      */
     private $targetType;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->targetType = new SemanticPathInfoPrefix();
     }

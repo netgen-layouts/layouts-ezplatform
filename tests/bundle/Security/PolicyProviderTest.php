@@ -20,7 +20,7 @@ final class PolicyProviderTest extends TestCase
      */
     private $policyProvider;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->configBuilderMock = $this->createMock(ConfigBuilderInterface::class);
 

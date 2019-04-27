@@ -31,7 +31,7 @@ final class ContextProviderTest extends TestCase
      */
     private $contextProvider;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->requestStack = new RequestStack();
         $this->context = new Context();

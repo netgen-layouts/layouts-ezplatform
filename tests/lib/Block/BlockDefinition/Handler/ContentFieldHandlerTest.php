@@ -24,7 +24,7 @@ final class ContentFieldHandlerTest extends TestCase
      */
     private $handler;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->contentProviderMock = $this->createMock(ContentProviderInterface::class);
 

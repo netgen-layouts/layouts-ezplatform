@@ -20,7 +20,7 @@ final class RequestContentExtractorTest extends TestCase
      */
     private $contentExtractor;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->contentExtractor = new RequestContentExtractor();
     }

@@ -24,7 +24,7 @@ final class RepositoryAccessVoterTest extends TestCase
      */
     private $voter;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $roleHierarchy = new RoleHierarchy(
             [

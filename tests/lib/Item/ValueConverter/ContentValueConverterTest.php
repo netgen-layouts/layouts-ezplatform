@@ -29,7 +29,7 @@ final class ContentValueConverterTest extends TestCase
      */
     private $valueConverter;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
         $this->contentServiceMock = $this->createMock(ContentService::class);

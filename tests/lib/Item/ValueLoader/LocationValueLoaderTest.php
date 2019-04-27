@@ -23,7 +23,7 @@ final class LocationValueLoaderTest extends TestCase
      */
     private $valueLoader;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
 

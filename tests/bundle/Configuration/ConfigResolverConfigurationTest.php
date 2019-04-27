@@ -27,7 +27,7 @@ final class ConfigResolverConfigurationTest extends TestCase
      */
     private $configuration;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->configResolverMock = $this->createMock(ConfigResolverInterface::class);
         $this->fallbackConfigurationMock = $this->createMock(ConfigurationInterface::class);

@@ -43,7 +43,7 @@ final class EzPlatformRuntimeTest extends TestCase
      */
     private $runtime;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->prepareRepositoryMock();
 

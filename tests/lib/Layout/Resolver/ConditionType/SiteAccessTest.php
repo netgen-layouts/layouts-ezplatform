@@ -18,7 +18,7 @@ final class SiteAccessTest extends TestCase
      */
     private $conditionType;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->conditionType = new SiteAccess();
     }

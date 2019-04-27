@@ -27,7 +27,7 @@ final class SectionValidatorTest extends ValidatorTestCase
      */
     private $sectionServiceMock;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
