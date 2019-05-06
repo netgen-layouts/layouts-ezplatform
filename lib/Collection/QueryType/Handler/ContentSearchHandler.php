@@ -30,6 +30,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     use Traits\SortTrait;
     use Traits\QueryTypeFilterTrait;
     use Traits\MainLocationFilterTrait;
+    use Traits\CurrentLocationFilterTrait;
     use Traits\ContentTypeFilterTrait;
     use Traits\SectionFilterTrait;
     use Traits\ObjectStateFilterTrait;
@@ -79,6 +80,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         $this->buildSortParameters($builder);
         $this->buildQueryTypeParameters($builder, $advancedGroup);
         $this->buildMainLocationParameters($builder, $advancedGroup);
+        $this->buildCurrentLocationParameters($builder, $advancedGroup);
         $this->buildContentTypeFilterParameters($builder, $advancedGroup);
         $this->buildSectionFilterParameters($builder, $advancedGroup);
         $this->buildObjectStateFilterParameters($builder, $advancedGroup);
@@ -154,6 +156,11 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
             $this->getSectionFilterCriteria($query),
             $this->getObjectStateFilterCriteria($query),
         ];
+
+        $currentLocation = $this->contentProvider->provideLocation();
+        if ($currentLocation instanceof Location) {
+            $criteria[] = $this->getCurrentLocationFilterCriteria($query, $currentLocation);
+        }
 
         $criteria = array_filter(
             $criteria,
