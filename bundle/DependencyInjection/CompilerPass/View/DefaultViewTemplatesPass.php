@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\View;
 
-use Netgen\Bundle\LayoutsBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass as BasePass;
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-final class DefaultViewTemplatesPass extends BasePass
+final class DefaultViewTemplatesPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
@@ -30,5 +30,47 @@ final class DefaultViewTemplatesPass extends BasePass
             $scopeRules = $this->updateRules($container, $scopeRules);
             $container->setParameter($scopeParam, $scopeRules);
         }
+    }
+
+    /**
+     * Updates all view rules to add the default template match.
+     */
+    private function updateRules(ContainerBuilder $container, ?array $allRules): array
+    {
+        $allRules = is_array($allRules) ? $allRules : [];
+
+        $defaultTemplates = $container->getParameter('netgen_layouts.default_view_templates');
+
+        foreach ($defaultTemplates as $viewName => $viewTemplates) {
+            foreach ($viewTemplates as $context => $template) {
+                $rules = [];
+
+                if (isset($allRules[$viewName][$context]) && is_array($allRules[$viewName][$context])) {
+                    $rules = $allRules[$viewName][$context];
+                }
+
+                $rules = $this->addDefaultRule($viewName, $context, $rules, $template);
+
+                $allRules[$viewName][$context] = $rules;
+            }
+        }
+
+        return $allRules;
+    }
+
+    /**
+     * Adds the default view template as a fallback to specified view rules.
+     */
+    private function addDefaultRule(string $viewName, string $context, array $rules, string $defaultTemplate): array
+    {
+        $rules += [
+            "___{$viewName}_{$context}_default___" => [
+                'template' => $defaultTemplate,
+                'match' => [],
+                'parameters' => [],
+            ],
+        ];
+
+        return $rules;
     }
 }
