@@ -64,7 +64,7 @@ final class LocationType extends ParameterType
             /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
             $location = $this->repository->sudo(
                 static function (Repository $repository) use ($value): Location {
-                    return $repository->getLocationService()->loadLocation($value);
+                    return $repository->getLocationService()->loadLocation((int) $value);
                 }
             );
 
@@ -80,7 +80,7 @@ final class LocationType extends ParameterType
             /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
             $location = $this->repository->sudo(
                 static function (Repository $repository) use ($value): Location {
-                    return $repository->getLocationService()->loadLocationByRemoteId($value);
+                    return $repository->getLocationService()->loadLocationByRemoteId((string) $value);
                 }
             );
 

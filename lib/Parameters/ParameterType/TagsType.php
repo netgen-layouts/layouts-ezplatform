@@ -82,7 +82,7 @@ final class TagsType extends ParameterType
             /** @var \Netgen\TagsBundle\API\Repository\Values\Tags\Tag $tag */
             $tag = $this->tagsService->sudo(
                 static function (TagsService $tagsService) use ($value): Tag {
-                    return $tagsService->loadTag($value);
+                    return $tagsService->loadTag((int) $value);
                 }
             );
 
@@ -98,7 +98,7 @@ final class TagsType extends ParameterType
             /** @var \Netgen\TagsBundle\API\Repository\Values\Tags\Tag $tag */
             $tag = $this->tagsService->sudo(
                 static function (TagsService $tagsService) use ($value): Tag {
-                    return $tagsService->loadTagByRemoteId($value);
+                    return $tagsService->loadTagByRemoteId((string) $value);
                 }
             );
 
