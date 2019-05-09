@@ -22,7 +22,7 @@ final class ContextProviderTest extends TestCase
     private $requestStack;
 
     /**
-     * @var \Netgen\Layouts\Context\ContextInterface
+     * @var \Netgen\Layouts\Context\Context
      */
     private $context;
 

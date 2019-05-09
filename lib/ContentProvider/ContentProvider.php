@@ -7,7 +7,7 @@ namespace Netgen\Layouts\Ez\ContentProvider;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\Location;
-use Netgen\Layouts\Context\ContextInterface;
+use Netgen\Layouts\Context\Context;
 
 /**
  * Provides the eZ Platform content and location objects from the
@@ -21,11 +21,11 @@ final class ContentProvider implements ContentProviderInterface
     private $locationService;
 
     /**
-     * @var \Netgen\Layouts\Context\ContextInterface
+     * @var \Netgen\Layouts\Context\Context
      */
     private $context;
 
-    public function __construct(LocationService $locationService, ContextInterface $context)
+    public function __construct(LocationService $locationService, Context $context)
     {
         $this->locationService = $locationService;
         $this->context = $context;

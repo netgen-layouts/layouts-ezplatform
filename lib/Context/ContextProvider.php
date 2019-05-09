@@ -7,7 +7,7 @@ namespace Netgen\Layouts\Ez\Context;
 use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use eZ\Publish\Core\MVC\Symfony\View\LocationValueView;
-use Netgen\Layouts\Context\ContextInterface;
+use Netgen\Layouts\Context\Context;
 use Netgen\Layouts\Context\ContextProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -24,7 +24,7 @@ final class ContextProvider implements ContextProviderInterface
         $this->requestStack = $requestStack;
     }
 
-    public function provideContext(ContextInterface $context): void
+    public function provideContext(Context $context): void
     {
         $currentRequest = $this->requestStack->getCurrentRequest();
         if (!$currentRequest instanceof Request) {
