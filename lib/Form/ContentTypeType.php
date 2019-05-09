@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ez\Form;
 
 use eZ\Publish\API\Repository\ContentTypeService;
-use Netgen\Layouts\Form\AbstractType;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,7 +24,7 @@ final class ContentTypeType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        parent::configureOptions($resolver);
+        $resolver->setDefault('translation_domain', 'nglayouts_forms');
 
         $resolver->setDefault('types', []);
         $resolver->setRequired(['types']);
