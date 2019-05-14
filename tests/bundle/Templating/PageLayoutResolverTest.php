@@ -43,7 +43,7 @@ final class PageLayoutResolverTest extends TestCase
             $this->innerResolverMock,
             $this->configResolverMock,
             $this->requestStackMock,
-            'viewbaseLayout'
+            'fallback_layout.html.twig'
         );
     }
 
@@ -64,9 +64,9 @@ final class PageLayoutResolverTest extends TestCase
             ->expects(self::at(0))
             ->method('getParameter')
             ->with(self::identicalTo('pagelayout'))
-            ->willReturn('resolvedPagelayout');
+            ->willReturn('resolved_layout.html.twig');
 
-        self::assertSame('resolvedPagelayout', $this->resolver->resolvePageLayout());
+        self::assertSame('resolved_layout.html.twig', $this->resolver->resolvePageLayout());
     }
 
     /**
@@ -82,7 +82,7 @@ final class PageLayoutResolverTest extends TestCase
         $this->innerResolverMock
             ->expects(self::once())
             ->method('resolvePageLayout')
-            ->willReturn('defaultPageLayout');
+            ->willReturn('default_layout.html.twig');
 
         $this->configResolverMock
             ->expects(self::never())
@@ -92,7 +92,7 @@ final class PageLayoutResolverTest extends TestCase
             ->expects(self::never())
             ->method('getParameter');
 
-        self::assertSame('defaultPageLayout', $this->resolver->resolvePageLayout());
+        self::assertSame('default_layout.html.twig', $this->resolver->resolvePageLayout());
     }
 
     /**
@@ -120,6 +120,6 @@ final class PageLayoutResolverTest extends TestCase
             ->expects(self::never())
             ->method('getParameter');
 
-        self::assertSame('viewbaseLayout', $this->resolver->resolvePageLayout());
+        self::assertSame('fallback_layout.html.twig', $this->resolver->resolvePageLayout());
     }
 }

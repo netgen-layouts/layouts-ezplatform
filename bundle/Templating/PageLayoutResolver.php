@@ -35,18 +35,18 @@ final class PageLayoutResolver implements PageLayoutResolverInterface
     /**
      * @var string
      */
-    private $viewbaseLayout;
+    private $baseViewLayout;
 
     public function __construct(
         PageLayoutResolverInterface $innerResolver,
         ConfigResolverInterface $configResolver,
         RequestStack $requestStack,
-        string $viewbaseLayout
+        string $baseViewLayout
     ) {
         $this->innerResolver = $innerResolver;
         $this->configResolver = $configResolver;
         $this->requestStack = $requestStack;
-        $this->viewbaseLayout = $viewbaseLayout;
+        $this->baseViewLayout = $baseViewLayout;
     }
 
     public function resolvePageLayout(): string
@@ -57,7 +57,7 @@ final class PageLayoutResolver implements PageLayoutResolverInterface
         }
 
         if ($currentRequest->attributes->get('layout') === false) {
-            return $this->viewbaseLayout;
+            return $this->baseViewLayout;
         }
 
         return $this->configResolver->getParameter('pagelayout');
