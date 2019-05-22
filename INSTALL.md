@@ -1,8 +1,6 @@
-Netgen Layouts & eZ Platform integration installation instructions
-==================================================================
+# Netgen Layouts & eZ Platform integration installation instructions
 
-Use Composer to install the integration
----------------------------------------
+## Use Composer to install the integration
 
 Run the following command to install Netgen Layouts & eZ Platform integration:
 
@@ -10,8 +8,7 @@ Run the following command to install Netgen Layouts & eZ Platform integration:
 composer require netgen/layouts-ezplatform
 ```
 
-Activating integration bundles
-------------------------------
+## Activating integration bundles
 
 After completing standard Netgen Layouts install instructions, you also need to
 activate `NetgenLayoutsEzPlatformBundle` and `NetgenContentBrowserEzPlatformBundle`.
@@ -27,8 +24,7 @@ $bundles[] = new Netgen\Bundle\ContentBrowserEzPlatformBundle\NetgenContentBrows
 return $bundles;
 ```
 
-Activating the legacy extension
--------------------------------
+## Activating the legacy extension
 
 If you use eZ Platform legacy admin interface in your eZ Platform installation,
 you might want to activate `nglayouts` legacy extension to be able to add
