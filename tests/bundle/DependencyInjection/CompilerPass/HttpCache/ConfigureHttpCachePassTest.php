@@ -23,7 +23,7 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
     public function testProcess(string $definitionClass, bool $clientEnabled): void
     {
         $this->setDefinition('netgen_layouts.http_cache.client', new Definition());
-        $this->setDefinition('ezplatform.http_cache.purge_client', new Definition($definitionClass));
+        $this->setDefinition('ezplatform.http_cache.purge_client_internal', new Definition($definitionClass));
 
         $this->compile();
 
@@ -41,7 +41,7 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
     public function testProcessWithNoSupportedClient(): void
     {
         $this->setDefinition('netgen_layouts.http_cache.client', new Definition());
-        $this->setDefinition('ezplatform.http_cache.purge_client', new Definition(stdClass::class));
+        $this->setDefinition('ezplatform.http_cache.purge_client_internal', new Definition(stdClass::class));
 
         $this->compile();
 

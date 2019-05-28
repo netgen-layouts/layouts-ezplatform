@@ -15,11 +15,11 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
 
     public function process(ContainerBuilder $container): void
     {
-        if (!$container->has(self::SERVICE_NAME) || !$container->has('ezplatform.http_cache.purge_client')) {
+        if (!$container->has(self::SERVICE_NAME) || !$container->has('ezplatform.http_cache.purge_client_internal')) {
             return;
         }
 
-        $purgeClient = $container->findDefinition('ezplatform.http_cache.purge_client');
+        $purgeClient = $container->findDefinition('ezplatform.http_cache.purge_client_internal');
         $purgeClientClass = $container->getParameterBag()->resolveValue($purgeClient->getClass());
 
         if (
