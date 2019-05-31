@@ -62,6 +62,39 @@ final class PageLayoutResolverTest extends TestCase
 
         $this->configResolverMock
             ->expects(self::at(0))
+            ->method('hasParameter')
+            ->with(self::identicalTo('page_layout'))
+            ->willReturn(true);
+
+        $this->configResolverMock
+            ->expects(self::at(1))
+            ->method('getParameter')
+            ->with(self::identicalTo('page_layout'))
+            ->willReturn('resolved_layout.html.twig');
+
+        self::assertSame('resolved_layout.html.twig', $this->resolver->resolvePageLayout());
+    }
+
+    /**
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\PageLayoutResolver::resolvePageLayout
+     */
+    public function testResolvePageLayoutWithLegacyPagelayout(): void
+    {
+        $request = Request::create('/');
+
+        $this->requestStackMock
+            ->expects(self::once())
+            ->method('getCurrentRequest')
+            ->willReturn($request);
+
+        $this->configResolverMock
+            ->expects(self::at(0))
+            ->method('hasParameter')
+            ->with(self::identicalTo('page_layout'))
+            ->willReturn(false);
+
+        $this->configResolverMock
+            ->expects(self::at(1))
             ->method('getParameter')
             ->with(self::identicalTo('pagelayout'))
             ->willReturn('resolved_layout.html.twig');
