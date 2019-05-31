@@ -1,6 +1,7 @@
 .idea/
 .sass-cache/
 .tmp/
+bundle/Resources/public/dev/
 coverage/
 node_modules/
 vendor/
