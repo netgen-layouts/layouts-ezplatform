@@ -1,0 +1,12 @@
+services:
+    netgen_layouts.ezplatform.http_cache.repository_prefix_decorator_client:
+        class: Netgen\Layouts\Ez\HttpCache\RepositoryPrefixDecorator
+        decorates: netgen_layouts.http_cache.client
+        arguments:
+            - "@netgen_layouts.ezplatform.http_cache.repository_prefix_decorator_client.inner"
+            - "@ezplatform.http_cache.repository_tag_prefix"
+
+    netgen_layouts.ezplatform.http_cache.varnish.host_header_provider:
+        class: Netgen\Layouts\Ez\HttpCache\Varnish\HostHeaderProvider
+        arguments:
+            - "@ezpublish.config.resolver"

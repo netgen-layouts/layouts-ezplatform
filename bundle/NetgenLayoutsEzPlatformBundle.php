@@ -21,6 +21,7 @@ final class NetgenLayoutsEzPlatformBundle extends Bundle
         $container->addCompilerPass(new CompilerPass\View\DefaultViewTemplatesPass());
         $container->addCompilerPass(new CompilerPass\DefaultAppPreviewPass());
         $container->addCompilerPass(new CompilerPass\HttpCache\ConfigureHttpCachePass());
+        $container->addCompilerPass(new CompilerPass\HttpCache\VarnishClientPass());
 
         if (!interface_exists('Netgen\Layouts\Enterprise\API\Service\RoleService')) {
             /** @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\EzPublishCoreExtension $ezCoreExtension */

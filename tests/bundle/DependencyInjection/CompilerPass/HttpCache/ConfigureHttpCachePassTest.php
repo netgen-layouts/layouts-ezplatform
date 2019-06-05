@@ -28,7 +28,7 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
         $this->compile();
 
         $clientEnabled ?
-            self::assertContainerBuilderNotHasAlias('netgen_layouts.http_cache.client') :
+            $this->assertContainerBuilderNotHasAlias('netgen_layouts.http_cache.client') :
             $this->assertContainerBuilderHasAlias(
                 'netgen_layouts.http_cache.client',
                 'netgen_layouts.http_cache.client.null'
@@ -45,7 +45,7 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
 
         $this->compile();
 
-        self::assertContainerBuilderNotHasAlias('netgen_layouts.http_cache.client');
+        $this->assertContainerBuilderNotHasAlias('netgen_layouts.http_cache.client');
     }
 
     public function processProvider(): array
