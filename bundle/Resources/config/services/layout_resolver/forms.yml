@@ -2,22 +2,22 @@ services:
     netgen_layouts.ezplatform.layout_resolver.target_type.form_mapper.children:
         class: Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Children
         tags:
-            - { name: netgen_layouts.target_type.form_mapper, target_type: ezchildren }
+            - { name: netgen_layouts.target_type.form_mapper, target_type: ez_children }
 
     netgen_layouts.ezplatform.layout_resolver.target_type.form_mapper.subtree:
         class: Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Subtree
         tags:
-            - { name: netgen_layouts.target_type.form_mapper, target_type: ezsubtree }
+            - { name: netgen_layouts.target_type.form_mapper, target_type: ez_subtree }
 
     netgen_layouts.ezplatform.layout_resolver.target_type.form_mapper.location:
         class: Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Location
         tags:
-            - { name: netgen_layouts.target_type.form_mapper, target_type: ezlocation }
+            - { name: netgen_layouts.target_type.form_mapper, target_type: ez_location }
 
     netgen_layouts.ezplatform.layout_resolver.target_type.form_mapper.content:
         class: Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Content
         tags:
-            - { name: netgen_layouts.target_type.form_mapper, target_type: ezcontent }
+            - { name: netgen_layouts.target_type.form_mapper, target_type: ez_content }
 
     netgen_layouts.ezplatform.layout_resolver.target_type.form_mapper.semantic_path_info:
         class: Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\SemanticPathInfo

@@ -25,7 +25,7 @@ final class Content implements TargetTypeInterface
 
     public static function getType(): string
     {
-        return 'ezcontent';
+        return 'ez_content';
     }
 
     public function getConstraints(): array

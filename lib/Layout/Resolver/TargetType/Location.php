@@ -25,7 +25,7 @@ final class Location implements TargetTypeInterface
 
     public static function getType(): string
     {
-        return 'ezlocation';
+        return 'ez_location';
     }
 
     public function getConstraints(): array

@@ -1,19 +1,19 @@
 view:
     rule_target_view:
         value:
-            ezchildren:
-                template: "@NetgenLayoutsEzPlatform/admin/layout_resolver/target/value/ezchildren.html.twig"
+            ez_children:
+                template: "@NetgenLayoutsEzPlatform/admin/layout_resolver/target/value/ez_children.html.twig"
                 match:
-                    rule_target\type: ezchildren
-            ezcontent:
-                template: "@NetgenLayoutsEzPlatform/admin/layout_resolver/target/value/ezcontent.html.twig"
+                    rule_target\type: ez_children
+            ez_content:
+                template: "@NetgenLayoutsEzPlatform/admin/layout_resolver/target/value/ez_content.html.twig"
                 match:
-                    rule_target\type: ezcontent
-            ezlocation:
-                template: "@NetgenLayoutsEzPlatform/admin/layout_resolver/target/value/ezlocation.html.twig"
+                    rule_target\type: ez_content
+            ez_location:
+                template: "@NetgenLayoutsEzPlatform/admin/layout_resolver/target/value/ez_location.html.twig"
                 match:
-                    rule_target\type: ezlocation
-            ezsubtree:
-                template: "@NetgenLayoutsEzPlatform/admin/layout_resolver/target/value/ezsubtree.html.twig"
+                    rule_target\type: ez_location
+            ez_subtree:
+                template: "@NetgenLayoutsEzPlatform/admin/layout_resolver/target/value/ez_subtree.html.twig"
                 match:
-                    rule_target\type: ezsubtree
+                    rule_target\type: ez_subtree

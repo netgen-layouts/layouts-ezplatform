@@ -25,7 +25,7 @@ final class Subtree implements TargetTypeInterface
 
     public static function getType(): string
     {
-        return 'ezsubtree';
+        return 'ez_subtree';
     }
 
     public function getConstraints(): array

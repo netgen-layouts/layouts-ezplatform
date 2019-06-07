@@ -23,7 +23,7 @@ final class SubtreeTest extends AbstractTargetHandlerTest
 
     protected function getTargetIdentifier(): string
     {
-        return 'ezsubtree';
+        return 'ez_subtree';
     }
 
     protected function getTargetHandler(): TargetHandlerInterface

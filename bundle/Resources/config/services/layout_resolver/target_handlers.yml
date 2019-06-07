@@ -2,22 +2,22 @@ services:
     netgen_layouts.ezplatform.layout_resolver.target_handler.doctrine.location:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Location
         tags:
-            - { name: netgen_layouts.target_type.doctrine_handler, target_type: ezlocation }
+            - { name: netgen_layouts.target_type.doctrine_handler, target_type: ez_location }
 
     netgen_layouts.ezplatform.layout_resolver.target_handler.doctrine.content:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Location
         tags:
-            - { name: netgen_layouts.target_type.doctrine_handler, target_type: ezcontent }
+            - { name: netgen_layouts.target_type.doctrine_handler, target_type: ez_content }
 
     netgen_layouts.ezplatform.layout_resolver.target_handler.doctrine.children:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Location
         tags:
-            - { name: netgen_layouts.target_type.doctrine_handler, target_type: ezchildren }
+            - { name: netgen_layouts.target_type.doctrine_handler, target_type: ez_children }
 
     netgen_layouts.ezplatform.layout_resolver.target_handler.doctrine.subtree:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Subtree
         tags:
-            - { name: netgen_layouts.target_type.doctrine_handler, target_type: ezsubtree }
+            - { name: netgen_layouts.target_type.doctrine_handler, target_type: ez_subtree }
 
     netgen_layouts.ezplatform.layout_resolver.target_handler.doctrine.semantic_path_info:
         class: Netgen\Layouts\Layout\Resolver\TargetHandler\Doctrine\Route

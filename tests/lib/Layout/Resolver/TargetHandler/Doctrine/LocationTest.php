@@ -23,7 +23,7 @@ final class LocationTest extends AbstractTargetHandlerTest
 
     protected function getTargetIdentifier(): string
     {
-        return 'ezlocation';
+        return 'ez_location';
     }
 
     protected function getTargetHandler(): TargetHandlerInterface

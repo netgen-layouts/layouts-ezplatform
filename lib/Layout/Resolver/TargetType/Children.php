@@ -25,7 +25,7 @@ final class Children implements TargetTypeInterface
 
     public static function getType(): string
     {
-        return 'ezchildren';
+        return 'ez_children';
     }
 
     public function getConstraints(): array
