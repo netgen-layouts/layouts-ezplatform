@@ -1,3 +1,3 @@
 parameters:
-    netgen_layouts.app.ezplatform.item_preview_template: '@@NetgenLayoutsEzPlatform/api/item/nglayouts_app_preview.html.twig'
+    netgen_layouts.app.ezplatform.item_preview_template: '@@NetgenLayoutsEzPlatform/app/item/nglayouts_app_preview.html.twig'
     netgen_layouts.ezplatform.admin.pagelayout: '@@NetgenLayoutsEzPlatform/admin/pagelayout.html.twig'
