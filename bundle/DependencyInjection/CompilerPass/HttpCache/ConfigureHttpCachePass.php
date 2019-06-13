@@ -42,7 +42,7 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
         if (!is_a($purgeClientClass, VarnishPurgeClient::class, true)) {
             $container->setAlias(
                 self::SERVICE_NAME,
-                'netgen_layouts.http_cache.client.null'
+                'netgen_layouts.ezplatform.http_cache.client.local'
             );
         }
     }
