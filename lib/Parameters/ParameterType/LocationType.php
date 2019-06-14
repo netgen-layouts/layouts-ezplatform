@@ -30,7 +30,7 @@ final class LocationType extends ParameterType
 
     public static function getIdentifier(): string
     {
-        return 'ezlocation';
+        return 'ez_location';
     }
 
     public function configureOptions(OptionsResolver $optionsResolver): void

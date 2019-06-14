@@ -61,7 +61,7 @@ final class LocationTypeTest extends TestCase
      */
     public function testGetIdentifier(): void
     {
-        self::assertSame('ezlocation', $this->type::getIdentifier());
+        self::assertSame('ez_location', $this->type::getIdentifier());
     }
 
     /**

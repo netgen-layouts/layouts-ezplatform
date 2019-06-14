@@ -31,7 +31,7 @@ final class TagsType extends ParameterType
 
     public static function getIdentifier(): string
     {
-        return 'eztags';
+        return 'ez_tags';
     }
 
     public function configureOptions(OptionsResolver $optionsResolver): void

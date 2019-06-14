@@ -31,12 +31,12 @@ services:
     netgen_layouts.ezplatform.parameters.form_mapper.location:
         class: Netgen\Layouts\Ez\Parameters\Form\Mapper\LocationMapper
         tags:
-            - { name: netgen_layouts.parameter_type.form_mapper, type: ezlocation }
+            - { name: netgen_layouts.parameter_type.form_mapper, type: ez_location }
 
     netgen_layouts.ezplatform.parameters.form_mapper.content:
         class: Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentMapper
         tags:
-            - { name: netgen_layouts.parameter_type.form_mapper, type: ezcontent }
+            - { name: netgen_layouts.parameter_type.form_mapper, type: ez_content }
 
     netgen_layouts.ezplatform.parameters.form_mapper.content_type:
         class: Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentTypeMapper

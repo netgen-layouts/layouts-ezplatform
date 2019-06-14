@@ -30,7 +30,7 @@ final class ContentType extends ParameterType
 
     public static function getIdentifier(): string
     {
-        return 'ezcontent';
+        return 'ez_content';
     }
 
     public function configureOptions(OptionsResolver $optionsResolver): void
