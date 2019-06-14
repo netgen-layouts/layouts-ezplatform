@@ -34,6 +34,6 @@ final class Content extends Constraint
 
     public function validatedBy(): string
     {
-        return 'nglayouts_ezcontent';
+        return 'nglayouts_ez_content';
     }
 }

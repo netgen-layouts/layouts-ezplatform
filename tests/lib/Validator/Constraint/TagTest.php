@@ -15,6 +15,6 @@ final class TagTest extends TestCase
     public function testValidatedBy(): void
     {
         $constraint = new Tag();
-        self::assertSame('nglayouts_eztags', $constraint->validatedBy());
+        self::assertSame('nglayouts_ez_tags', $constraint->validatedBy());
     }
 }

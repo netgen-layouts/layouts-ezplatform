@@ -4,14 +4,14 @@ services:
         arguments:
             - "@ezpublish.api.repository"
         tags:
-            - { name: validator.constraint_validator, alias: nglayouts_ezlocation }
+            - { name: validator.constraint_validator, alias: nglayouts_ez_location }
 
     netgen_layouts.ezplatform.validator.content:
         class: Netgen\Layouts\Ez\Validator\ContentValidator
         arguments:
             - "@ezpublish.api.repository"
         tags:
-            - { name: validator.constraint_validator, alias: nglayouts_ezcontent }
+            - { name: validator.constraint_validator, alias: nglayouts_ez_content }
 
     netgen_layouts.ezplatform.validator.site_access:
         class: Netgen\Layouts\Ez\Validator\SiteAccessValidator

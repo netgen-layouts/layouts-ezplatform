@@ -28,7 +28,7 @@ final class TagsServiceValidatorFactory implements ConstraintValidatorFactoryInt
         $this->baseValidatorFactory = new ConstraintValidatorFactory();
 
         $this->validators = [
-            'nglayouts_eztags' => new TagValidator($tagsService),
+            'nglayouts_ez_tags' => new TagValidator($tagsService),
         ];
     }
 

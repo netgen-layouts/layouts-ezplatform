@@ -34,6 +34,6 @@ final class Location extends Constraint
 
     public function validatedBy(): string
     {
-        return 'nglayouts_ezlocation';
+        return 'nglayouts_ez_location';
     }
 }

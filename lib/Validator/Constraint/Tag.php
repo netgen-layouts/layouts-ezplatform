@@ -22,6 +22,6 @@ final class Tag extends Constraint
 
     public function validatedBy(): string
     {
-        return 'nglayouts_eztags';
+        return 'nglayouts_ez_tags';
     }
 }

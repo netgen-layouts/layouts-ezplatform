@@ -16,4 +16,4 @@ services:
         arguments:
             - "@eztags.api.service.tags"
         tags:
-            - { name: validator.constraint_validator, alias: nglayouts_eztags }
+            - { name: validator.constraint_validator, alias: nglayouts_ez_tags }
