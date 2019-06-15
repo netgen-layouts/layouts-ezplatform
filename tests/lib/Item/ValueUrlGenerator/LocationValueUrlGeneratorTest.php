@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ez\Tests\Item\ValueUrlGenerator;
 
+use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\Layouts\Ez\Item\ValueUrlGenerator\LocationValueUrlGenerator;
 use PHPUnit\Framework\TestCase;
@@ -34,14 +35,15 @@ final class LocationValueUrlGeneratorTest extends TestCase
      */
     public function testGenerate(): void
     {
-        $location = new Location();
-
         $this->urlGeneratorMock
             ->expects(self::once())
             ->method('generate')
-            ->with(self::identicalTo($location))
+            ->with(
+                self::identicalTo(UrlAliasRouter::URL_ALIAS_ROUTE_NAME),
+                self::identicalTo(['locationId' => 42])
+            )
             ->willReturn('/location/path');
 
-        self::assertSame('/location/path', $this->urlGenerator->generate($location));
+        self::assertSame('/location/path', $this->urlGenerator->generate(new Location(['id' => 42])));
     }
 }
