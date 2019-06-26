@@ -19,3 +19,7 @@ parameters:
         -
             message: '#Call to function is_array\(\) with array will always evaluate to true.#'
             path: lib/Validator/
+
+        -
+            message: '#Return type \(void\) of method Netgen\\Bundle\\LayoutsEzPlatformBundle\\Security\\PolicyProvider::addPolicies\(\) should be compatible#'
+            path: bundle/Security/PolicyProvider.php
