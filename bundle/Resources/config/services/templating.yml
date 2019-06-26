@@ -15,6 +15,13 @@ services:
         tags:
             - { name: twig.extension }
 
+    netgen_layouts.ezplatform.templating.twig.extension.ez_platform_bc:
+        class: Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Extension\EzPlatformBCExtension
+        arguments:
+            - "@ezpublish.twig.extension.content"
+        tags:
+            - { name: twig.extension }
+
     netgen_layouts.ezplatform.templating.twig.runtime.ez_platform:
         class: Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime
         arguments:

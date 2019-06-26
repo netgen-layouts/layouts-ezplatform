@@ -11,7 +11,8 @@
 
     {% if field_identifier is not empty and content.fields[field_identifier] is defined %}
         {% block ezcontent_field %}
-            {% if not ez_is_field_empty(content, field_identifier) %}
+            {# We should use ez_field_is_empty function, but it does not exist on eZ kernel 7.5 #}
+            {% if not nglayouts_ez_field_is_empty(content, field_identifier) %}
                 {{ ez_render_field(content, field_identifier) }}
             {% endif %}
         {% endblock %}
