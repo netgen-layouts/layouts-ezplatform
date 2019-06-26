@@ -21,6 +21,7 @@
         "phpstan/phpstan": "^0.11",
         "phpstan/phpstan-strict-rules": "^0.11",
         "phpstan/phpstan-phpunit": "^0.11",
+        "vimeo/psalm": "^3.4",
         "ezsystems/ezplatform-admin-ui": "^1.5 || ^2.0",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "matthiasnoback/symfony-config-test": "^4.0.1",
@@ -34,7 +35,8 @@
         "test": "@php vendor/bin/phpunit --colors=always",
         "coverage": "@php -dzend_extension=xdebug.so vendor/bin/phpunit --coverage-html=coverage --colors=always",
         "phpstan": "@php vendor/bin/phpstan analyse -c phpstan.neon --level=7 --ansi lib bundle",
-        "phpstan-tests": "@php vendor/bin/phpstan analyse -c phpstan.tests.neon --level=7 --ansi tests"
+        "phpstan-tests": "@php vendor/bin/phpstan analyse -c phpstan.tests.neon --level=7 --ansi tests",
+        "psalm": "@php vendor/bin/psalm -c psalm.xml --show-info=false"
     },
     "autoload": {
         "psr-4": {

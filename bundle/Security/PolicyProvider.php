@@ -9,7 +9,7 @@ use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Security\PolicyProvider\Po
 
 final class PolicyProvider implements PolicyProviderInterface
 {
-    public function addPolicies(ConfigBuilderInterface $configBuilder)
+    public function addPolicies(ConfigBuilderInterface $configBuilder): void
     {
         $configBuilder->addConfig(
             [

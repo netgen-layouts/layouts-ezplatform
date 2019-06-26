@@ -111,7 +111,7 @@ final class RepositoryAccessVoter extends Voter
     {
         return array_map(
             static function (Role $role) {
-                return $role->getRole();
+                return $role->getRole() ?? '';
             },
             $this->roleHierarchy->getReachableRoles([new Role($attribute)])
         );

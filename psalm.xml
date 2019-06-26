@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<psalm
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+>
+    <projectFiles>
+        <directory name="bundle" />
+        <directory name="lib" />
+        <ignoreFiles>
+            <directory name="vendor" />
+        </ignoreFiles>
+    </projectFiles>
+
+    <issueHandlers>
+        <!-- Symfony -->
+
+        <ArgumentTypeCoercion>
+            <errorLevel type="suppress">
+                <file name="lib/Security/Authorization/Voter/RepositoryAccessVoter.php" />
+            </errorLevel>
+        </ArgumentTypeCoercion>
+
+        <!-- eZ Platform -->
+
+        <ImplementedReturnTypeMismatch>
+            <errorLevel type="suppress">
+                <file name="bundle/Security/PolicyProvider.php" />
+            </errorLevel>
+        </ImplementedReturnTypeMismatch>
+
+        <!-- Netgen Layouts specifics -->
+
+        <MoreSpecificImplementedParamType>
+            <errorLevel type="suppress">
+                <directory name="lib/Item/ValueConverter" />
+                <directory name="lib/Item/ValueUrlGenerator" />
+            </errorLevel>
+        </MoreSpecificImplementedParamType>
+
+        <MoreSpecificReturnType>
+            <errorLevel type="suppress">
+                <file name="lib/Collection/QueryType/Handler/Traits/SortTrait.php" />
+            </errorLevel>
+        </MoreSpecificReturnType>
+
+        <!-- level 3 issues - slightly lazy code writing, but provably low false-negatives -->
+
+        <DeprecatedClass errorLevel="info" />
+        <InternalMethod errorLevel="info" />
+        <PropertyNotSetInConstructor errorLevel="info" />
+        <DocblockTypeContradiction errorLevel="info" />
+        <RedundantConditionGivenDocblockType errorLevel="info" />
+    </issueHandlers>
+</psalm>
