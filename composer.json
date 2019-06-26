@@ -13,7 +13,7 @@
         "netgen/layouts-core": "~1.0.0",
         "netgen/content-browser-ezplatform": "~1.0.0",
         "ezsystems/ezpublish-kernel": "^7.5 || ^8.0",
-        "ezsystems/ezplatform-http-cache": ">=0.9.1 || ^1.0"
+        "ezsystems/ezplatform-http-cache": ">=0.9.1, <1.0 || ^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.1",
