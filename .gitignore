@@ -1,6 +1,4 @@
 .idea/
-.sass-cache/
-.tmp/
 bundle/Resources/public/dev/
 coverage/
 node_modules/
@@ -9,8 +7,8 @@ vendor/
 .phpunit.result.cache
 composer.lock
 composer.phar
-grunt.lock
 package-lock.json
 phpunit.phar
 studio.json
 yarn.lock
+yarn-error.log
