@@ -10,6 +10,7 @@ use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\Values\Content\LocationQuery;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use eZ\Publish\API\Repository\Values\Content\Search\SearchHit;
+use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use eZ\Publish\SPI\Persistence\Content\ObjectState\Handler as ObjectStateHandler;
 use eZ\Publish\SPI\Persistence\Content\Section\Handler as SectionHandler;
 use eZ\Publish\SPI\Persistence\Content\Type\Handler as ContentTypeHandler;
@@ -21,10 +22,8 @@ use Netgen\Layouts\Parameters\ParameterBuilderInterface;
 /**
  * Handler for a query which retrieves the eZ locations from the repository
  * based on parameters provided in the query.
- *
- * @final
  */
-class ContentSearchHandler implements QueryTypeHandlerInterface
+final class ContentSearchHandler implements QueryTypeHandlerInterface
 {
     use Traits\ParentLocationTrait;
     use Traits\SortTrait;
@@ -41,9 +40,9 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
     private $searchService;
 
     /**
-     * @var array
+     * @var \eZ\Publish\Core\MVC\ConfigResolverInterface
      */
-    private $languages = [];
+    private $configResolver;
 
     public function __construct(
         LocationService $locationService,
@@ -51,25 +50,17 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
         ContentTypeHandler $contentTypeHandler,
         SectionHandler $sectionHandler,
         ObjectStateHandler $objectStateHandler,
-        ContentProviderInterface $contentProvider
+        ContentProviderInterface $contentProvider,
+        ConfigResolverInterface $configResolver
     ) {
         $this->searchService = $searchService;
+        $this->configResolver = $configResolver;
 
         $this->setContentTypeHandler($contentTypeHandler);
         $this->setSectionHandler($sectionHandler);
         $this->setObjectStateHandler($objectStateHandler);
         $this->setContentProvider($contentProvider);
         $this->setLocationService($locationService);
-    }
-
-    /**
-     * Sets the current siteaccess languages into the handler.
-     *
-     * @param string[]|null $languages
-     */
-    public function setLanguages(?array $languages = null): void
-    {
-        $this->languages = $languages ?? [];
     }
 
     public function buildParameters(ParameterBuilderInterface $builder): void
@@ -104,7 +95,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
 
         $searchResult = $this->searchService->findLocations(
             $locationQuery,
-            ['languages' => $this->languages]
+            ['languages' => $this->configResolver->getParameter('languages')]
         );
 
         return array_map(
@@ -128,7 +119,7 @@ class ContentSearchHandler implements QueryTypeHandlerInterface
 
         $searchResult = $this->searchService->findLocations(
             $locationQuery,
-            ['languages' => $this->languages]
+            ['languages' => $this->configResolver->getParameter('languages')]
         );
 
         return $searchResult->totalCount ?? 0;

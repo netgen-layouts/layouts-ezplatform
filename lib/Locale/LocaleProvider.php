@@ -6,6 +6,7 @@ namespace Netgen\Layouts\Ez\Locale;
 
 use eZ\Publish\API\Repository\LanguageService;
 use eZ\Publish\API\Repository\Values\Content\Language;
+use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use eZ\Publish\Core\MVC\Symfony\Locale\LocaleConverterInterface;
 use Netgen\Layouts\Locale\LocaleProviderInterface;
 use Netgen\Layouts\Utils\BackwardsCompatibility\Locales;
@@ -14,10 +15,8 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * eZ Platform specific locale provider that provides the existing locales
  * by reading them from eZ Platform database.
- *
- * @final
  */
-class LocaleProvider implements LocaleProviderInterface
+final class LocaleProvider implements LocaleProviderInterface
 {
     /**
      * @var \eZ\Publish\API\Repository\LanguageService
@@ -30,24 +29,18 @@ class LocaleProvider implements LocaleProviderInterface
     private $localeConverter;
 
     /**
-     * @var string[]
+     * @var \eZ\Publish\Core\MVC\ConfigResolverInterface
      */
-    private $languageCodes = [];
+    private $configResolver;
 
-    public function __construct(LanguageService $languageService, LocaleConverterInterface $localeConverter)
-    {
+    public function __construct(
+        LanguageService $languageService,
+        LocaleConverterInterface $localeConverter,
+        ConfigResolverInterface $configResolver
+    ) {
         $this->languageService = $languageService;
         $this->localeConverter = $localeConverter;
-    }
-
-    /**
-     * Sets the available language codes to the provider.
-     *
-     * @param string[]|null $languageCodes
-     */
-    public function setLanguages(?array $languageCodes = null): void
-    {
-        $this->languageCodes = $languageCodes ?? [];
+        $this->configResolver = $configResolver;
     }
 
     public function getAvailableLocales(): array
@@ -73,7 +66,9 @@ class LocaleProvider implements LocaleProviderInterface
     public function getRequestLocales(Request $request): array
     {
         $requestLocales = [];
-        $languages = $this->languageService->loadLanguageListByCode($this->languageCodes);
+        $languages = $this->languageService->loadLanguageListByCode(
+            $this->configResolver->getParameter('languages')
+        );
 
         foreach ($languages as $language) {
             $locale = $this->getPosixLocale($language);

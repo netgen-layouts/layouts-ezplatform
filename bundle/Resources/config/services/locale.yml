@@ -4,10 +4,7 @@ services:
 
     netgen_layouts.ezplatform.locale.provider:
         class: Netgen\Layouts\Ez\Locale\LocaleProvider
-        # Must be lazy since it uses dynamic "$languages$" parameter
-        lazy: true
         arguments:
             - "@ezpublish.api.service.language"
             - "@ezpublish.locale.converter"
-        calls:
-            - [setLanguages, ["$languages$"]]
+            - "@ezpublish.config.resolver"

@@ -6,6 +6,7 @@ namespace Netgen\Layouts\Ez\Tests\Locale;
 
 use eZ\Publish\API\Repository\LanguageService;
 use eZ\Publish\API\Repository\Values\Content\Language;
+use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use eZ\Publish\Core\MVC\Symfony\Locale\LocaleConverterInterface;
 use Netgen\Layouts\Ez\Locale\LocaleProvider;
 use PHPUnit\Framework\TestCase;
@@ -24,6 +25,11 @@ final class LocaleProviderTest extends TestCase
     private $localeConverterMock;
 
     /**
+     * @var \PHPUnit\Framework\MockObject\MockObject
+     */
+    private $configResolverMock;
+
+    /**
      * @var \Netgen\Layouts\Ez\Locale\LocaleProvider
      */
     private $localeProvider;
@@ -31,12 +37,13 @@ final class LocaleProviderTest extends TestCase
     protected function setUp(): void
     {
         $this->languageServiceMock = $this->createMock(LanguageService::class);
-
         $this->localeConverterMock = $this->createMock(LocaleConverterInterface::class);
+        $this->configResolverMock = $this->createMock(ConfigResolverInterface::class);
 
         $this->localeProvider = new LocaleProvider(
             $this->languageServiceMock,
-            $this->localeConverterMock
+            $this->localeConverterMock,
+            $this->configResolverMock
         );
     }
 
@@ -106,11 +113,14 @@ final class LocaleProviderTest extends TestCase
     /**
      * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::getPosixLocale
      * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::getRequestLocales
-     * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::setLanguages
      */
     public function testGetRequestLocales(): void
     {
-        $this->localeProvider->setLanguages(['eng-GB', 'ger-DE', 'unknown', 'cro-HR']);
+        $this->configResolverMock
+            ->expects(self::at(0))
+            ->method('getParameter')
+            ->with(self::identicalTo('languages'))
+            ->willReturn(['eng-GB', 'ger-DE', 'unknown', 'cro-HR']);
 
         $this->languageServiceMock
             ->expects(self::once())
@@ -144,11 +154,14 @@ final class LocaleProviderTest extends TestCase
     /**
      * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::getPosixLocale
      * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::getRequestLocales
-     * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::setLanguages
      */
     public function testGetRequestLocalesWithInvalidPosixLocale(): void
     {
-        $this->localeProvider->setLanguages(['eng-GB']);
+        $this->configResolverMock
+            ->expects(self::at(0))
+            ->method('getParameter')
+            ->with(self::identicalTo('languages'))
+            ->willReturn(['eng-GB']);
 
         $this->languageServiceMock
             ->expects(self::once())
@@ -174,11 +187,14 @@ final class LocaleProviderTest extends TestCase
     /**
      * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::getPosixLocale
      * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::getRequestLocales
-     * @covers \Netgen\Layouts\Ez\Locale\LocaleProvider::setLanguages
      */
     public function testGetRequestLocalesWithNonExistingPosixLocale(): void
     {
-        $this->localeProvider->setLanguages(['eng-GB']);
+        $this->configResolverMock
+            ->expects(self::at(0))
+            ->method('getParameter')
+            ->with(self::identicalTo('languages'))
+            ->willReturn(['eng-GB']);
 
         $this->languageServiceMock
             ->expects(self::once())
