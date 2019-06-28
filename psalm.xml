@@ -38,12 +38,6 @@
             </errorLevel>
         </MoreSpecificImplementedParamType>
 
-        <MoreSpecificReturnType>
-            <errorLevel type="suppress">
-                <file name="lib/Collection/QueryType/Handler/Traits/SortTrait.php" />
-            </errorLevel>
-        </MoreSpecificReturnType>
-
         <!-- level 3 issues - slightly lazy code writing, but provably low false-negatives -->
 
         <DeprecatedClass errorLevel="info" />

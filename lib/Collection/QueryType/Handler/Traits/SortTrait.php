@@ -79,8 +79,9 @@ trait SortTrait
             return $parentLocation->getSortClauses();
         }
 
-        return [
-            new self::$sortClauses[$sortType]($sortDirection),
-        ];
+        /** @var \eZ\Publish\API\Repository\Values\Content\Query\SortClause $sortClause */
+        $sortClause = new self::$sortClauses[$sortType]($sortDirection);
+
+        return [$sortClause];
     }
 }
