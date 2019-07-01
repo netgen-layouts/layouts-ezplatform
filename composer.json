@@ -25,7 +25,7 @@
         "ezsystems/ezplatform-admin-ui": "^1.5 || ^2.0",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "matthiasnoback/symfony-config-test": "^4.0.1",
-        "netgen/tagsbundle": "^3.4",
+        "netgen/tagsbundle": "^3.4 || ^4.0",
         "franzl/studio": "*"
     },
     "suggest": {
