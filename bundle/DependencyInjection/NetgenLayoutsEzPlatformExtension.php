@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection;
 
+use eZ\Publish\SPI\FieldType\Nameable;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\DelegatingLoader;
 use Symfony\Component\Config\Loader\LoaderResolver;
@@ -46,6 +47,13 @@ final class NetgenLayoutsEzPlatformExtension extends Extension implements Prepen
         if (in_array('NetgenTagsBundle', $activatedBundles, true)) {
             $loader->load('eztags/services.yml');
         }
+
+        $loader->load(
+            // Nameable interface for field types does not exist in eZ Platform v3
+            interface_exists(Nameable::class) ?
+                'ezplatform_v2/http_cache.yml' :
+                'ezplatform_v3/http_cache.yml'
+        );
     }
 
     public function prepend(ContainerBuilder $container): void

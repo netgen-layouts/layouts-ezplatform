@@ -23,3 +23,7 @@ parameters:
         -
             message: '#Return type \(void\) of method Netgen\\Bundle\\LayoutsEzPlatformBundle\\Security\\PolicyProvider::addPolicies\(\) should be compatible#'
             path: bundle/Security/PolicyProvider.php
+
+        -
+            message: '#Toflar\\Psr6HttpCacheStore\\Psr6StoreInterface#'
+            path: lib/HttpCache/LocalClient.php

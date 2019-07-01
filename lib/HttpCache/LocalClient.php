@@ -4,31 +4,24 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ez\HttpCache;
 
-use EzSystems\PlatformHttpCacheBundle\RequestAwarePurger;
 use Netgen\Layouts\HttpCache\ClientInterface;
-use Symfony\Component\HttpFoundation\Request;
+use Toflar\Psr6HttpCacheStore\Psr6StoreInterface;
 
 final class LocalClient implements ClientInterface
 {
     /**
-     * @var \EzSystems\PlatformHttpCacheBundle\RequestAwarePurger
+     * @var \Toflar\Psr6HttpCacheStore\Psr6StoreInterface
      */
-    private $requestAwarePurger;
+    private $cacheStore;
 
-    public function __construct(RequestAwarePurger $requestAwarePurger)
+    public function __construct(Psr6StoreInterface $cacheStore)
     {
-        $this->requestAwarePurger = $requestAwarePurger;
+        $this->cacheStore = $cacheStore;
     }
 
     public function purge(array $tags): void
     {
-        if (count($tags) === 0) {
-            return;
-        }
-
-        $purgeRequest = Request::create('http://localhost/', 'PURGE');
-        $purgeRequest->headers->set('key', implode(' ', $tags));
-        $this->requestAwarePurger->purgeByRequest($purgeRequest);
+        $this->cacheStore->invalidateTags($tags);
     }
 
     public function commit(): bool

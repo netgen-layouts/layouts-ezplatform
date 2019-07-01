@@ -1,9 +1,4 @@
 services:
-    netgen_layouts.ezplatform.http_cache.client.local:
-        class: Netgen\Layouts\Ez\HttpCache\LocalClient
-        arguments:
-            - "@ezplatform.http_cache.store"
-
     netgen_layouts.ezplatform.http_cache.repository_prefix_decorator_client:
         class: Netgen\Layouts\Ez\HttpCache\RepositoryPrefixDecorator
         decorates: netgen_layouts.http_cache.client

@@ -1,0 +1,5 @@
+services:
+    netgen_layouts.ezplatform.http_cache.client.local:
+        class: Netgen\Layouts\Ez\HttpCache\LegacyLocalClient
+        arguments:
+            - "@ezplatform.http_cache.store"

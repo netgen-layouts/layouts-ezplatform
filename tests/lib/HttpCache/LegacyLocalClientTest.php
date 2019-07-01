@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ez\Tests\HttpCache;
 
 use EzSystems\PlatformHttpCacheBundle\RequestAwarePurger;
-use Netgen\Layouts\Ez\HttpCache\LocalClient;
+use Netgen\Layouts\Ez\HttpCache\LegacyLocalClient;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
-final class LocalClientTest extends TestCase
+final class LegacyLocalClientTest extends TestCase
 {
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject
@@ -17,19 +17,19 @@ final class LocalClientTest extends TestCase
     private $requestAwarePurgerMock;
 
     /**
-     * @var \Netgen\Layouts\Ez\HttpCache\LocalClient
+     * @var \Netgen\Layouts\Ez\HttpCache\LegacyLocalClient
      */
     private $client;
 
     protected function setUp(): void
     {
         $this->requestAwarePurgerMock = $this->createMock(RequestAwarePurger::class);
-        $this->client = new LocalClient($this->requestAwarePurgerMock);
+        $this->client = new LegacyLocalClient($this->requestAwarePurgerMock);
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\HttpCache\LocalClient::__construct
-     * @covers \Netgen\Layouts\Ez\HttpCache\LocalClient::purge
+     * @covers \Netgen\Layouts\Ez\HttpCache\LegacyLocalClient::__construct
+     * @covers \Netgen\Layouts\Ez\HttpCache\LegacyLocalClient::purge
      */
     public function testPurge(): void
     {
@@ -47,8 +47,8 @@ final class LocalClientTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\HttpCache\LocalClient::__construct
-     * @covers \Netgen\Layouts\Ez\HttpCache\LocalClient::purge
+     * @covers \Netgen\Layouts\Ez\HttpCache\LegacyLocalClient::__construct
+     * @covers \Netgen\Layouts\Ez\HttpCache\LegacyLocalClient::purge
      */
     public function testPurgeWithNoTags(): void
     {
@@ -60,7 +60,7 @@ final class LocalClientTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\HttpCache\LocalClient::commit
+     * @covers \Netgen\Layouts\Ez\HttpCache\LegacyLocalClient::commit
      */
     public function testCommit(): void
     {

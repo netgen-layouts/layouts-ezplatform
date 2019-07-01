@@ -1,0 +1,5 @@
+services:
+    netgen_layouts.ezplatform.http_cache.client.local:
+        class: Netgen\Layouts\Ez\HttpCache\LocalClient
+        arguments:
+            - "@ezplatform.http_cache.tag_aware_store"

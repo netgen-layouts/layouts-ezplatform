@@ -29,6 +29,18 @@
             </errorLevel>
         </ImplementedReturnTypeMismatch>
 
+        <UndefinedDocblockClass>
+            <errorLevel type="suppress">
+                <referencedClass name="Toflar\Psr6HttpCacheStore\Psr6StoreInterface" />
+            </errorLevel>
+        </UndefinedDocblockClass>
+
+        <UndefinedClass>
+            <errorLevel type="suppress">
+                <referencedClass name="Toflar\Psr6HttpCacheStore\Psr6StoreInterface" />
+            </errorLevel>
+        </UndefinedClass>
+
         <!-- Netgen Layouts specifics -->
 
         <MoreSpecificImplementedParamType>
