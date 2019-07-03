@@ -44,7 +44,7 @@ final class TagValidator extends ConstraintValidator
             try {
                 $this->tagsService->sudo(
                     static function (TagsService $tagsService) use ($value): void {
-                        $tagsService->loadTag($value);
+                        $tagsService->loadTag((int) $value);
                     }
                 );
             } catch (NotFoundException $e) {
