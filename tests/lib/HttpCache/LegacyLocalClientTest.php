@@ -23,7 +23,7 @@ final class LegacyLocalClientTest extends TestCase
 
     protected function setUp(): void
     {
-        if (!class_exists(RequestAwarePurger::class)) {
+        if (!interface_exists(RequestAwarePurger::class)) {
             self::markTestSkipped('The tests require eZ Platform HTTP Cache 0.x to run.');
         }
 
