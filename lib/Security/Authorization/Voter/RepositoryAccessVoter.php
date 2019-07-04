@@ -113,7 +113,9 @@ final class RepositoryAccessVoter extends Voter
             static function (Role $role) {
                 return $role->getRole() ?? '';
             },
-            $this->roleHierarchy->getReachableRoles([new Role($attribute)])
+            method_exists($this->roleHierarchy, 'getReachableRoleNames') ?
+                $this->roleHierarchy->getReachableRoleNames([$attribute]) :
+                $this->roleHierarchy->getReachableRoles([new Role($attribute)])
         );
     }
 }
