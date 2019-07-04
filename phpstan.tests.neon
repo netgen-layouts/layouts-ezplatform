@@ -2,3 +2,9 @@ includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - vendor/phpstan/phpstan-phpunit/rules.neon
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#Call to an undefined method Netgen\\Layouts\\Ez\\Security\\Role\\RoleHierarchy::getReachableRoleNames\(\).#'
+            path: tests/lib/Security/Role/RoleHierarchyTest.php
