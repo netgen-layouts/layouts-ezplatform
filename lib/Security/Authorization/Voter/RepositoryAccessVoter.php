@@ -109,13 +109,15 @@ final class RepositoryAccessVoter extends Voter
      */
     private function getReachableAttributes($attribute): array
     {
+        if (method_exists($this->roleHierarchy, 'getReachableRoleNames')) {
+            return $this->roleHierarchy->getReachableRoleNames([$attribute]);
+        }
+
         return array_map(
-            static function (Role $role) {
+            static function (Role $role): string {
                 return $role->getRole() ?? '';
             },
-            method_exists($this->roleHierarchy, 'getReachableRoleNames') ?
-                $this->roleHierarchy->getReachableRoleNames([$attribute]) :
-                $this->roleHierarchy->getReachableRoles([new Role($attribute)])
+            $this->roleHierarchy->getReachableRoles([new Role($attribute)])
         );
     }
 }
