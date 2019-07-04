@@ -279,10 +279,12 @@ final class TagsTypeTest extends TestCase
                         ->method('loadTag')
                         ->with(self::identicalTo($value))
                         ->willReturnCallback(
-                            static function () use ($value): void {
+                            static function () use ($value): Tag {
                                 if (!is_int($value) || $value <= 0) {
                                     throw new NotFoundException('tag', $value);
                                 }
+
+                                return new Tag(['id' => $value]);
                             }
                         );
                 }
