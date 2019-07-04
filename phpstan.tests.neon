@@ -8,3 +8,7 @@ parameters:
         -
             message: '#Call to an undefined method Netgen\\Layouts\\Ez\\Security\\Role\\RoleHierarchy::getReachableRoleNames\(\).#'
             path: tests/lib/Security/Role/RoleHierarchyTest.php
+
+        -
+            message: '#Toflar\\Psr6HttpCacheStore\\Psr6StoreInterface#'
+            path: tests/lib/HttpCache/LocalClientTest.php
