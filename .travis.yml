@@ -5,6 +5,7 @@ language: php
 php:
   - 7.2
   - 7.3
+  - 7.4snapshot
 
 cache:
   directories:
@@ -32,6 +33,9 @@ matrix:
       node_js: node
       before_script: ~
       script: npm run prod
+   allow_failures:
+     - php: 7.4snapshot
+   fast_finish: true
 
 branches:
   only:
