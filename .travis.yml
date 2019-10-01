@@ -31,8 +31,9 @@ matrix:
       cache: ~
       language: node_js
       node_js: node
+      install: yarn install
       before_script: ~
-      script: npm run prod
+      script: yarn run prod
   fast_finish: true
 
 branches:
