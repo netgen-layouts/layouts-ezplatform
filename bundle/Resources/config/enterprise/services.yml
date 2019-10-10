@@ -4,4 +4,4 @@ services:
         arguments:
             - NetgenLayoutsRole
         tags:
-            - {name: ezpublish.limitationType, alias: NetgenLayoutsRole}
+            - { name: ezpublish.limitationType, alias: NetgenLayoutsRole }
