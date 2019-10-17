@@ -31,42 +31,42 @@ final class NetgenLayoutsEzPlatformExtension extends Extension implements Prepen
             )
         );
 
-        $loader->load('default_settings.yml');
-        $loader->load('services/**/*.yml', 'glob');
+        $loader->load('default_settings.yaml');
+        $loader->load('services/**/*.yaml', 'glob');
 
         $activatedBundles = array_keys($container->getParameter('kernel.bundles'));
 
         if (!in_array('NetgenLayoutsEnterpriseEzPlatformBundle', $activatedBundles, true)) {
-            $loader->load('enterprise/services.yml');
+            $loader->load('enterprise/services.yaml');
         }
 
         if (in_array('EzPlatformAdminUiBundle', $activatedBundles, true)) {
-            $loader->load('admin/services.yml');
+            $loader->load('admin/services.yaml');
         }
 
         if (in_array('NetgenTagsBundle', $activatedBundles, true)) {
-            $loader->load('eztags/services.yml');
+            $loader->load('eztags/services.yaml');
         }
 
         $loader->load(
             // Nameable interface for field types does not exist in eZ Platform v3
             interface_exists(Nameable::class) ?
-                'ezplatform_v2/http_cache.yml' :
-                'ezplatform_v3/http_cache.yml'
+                'ezplatform_v2/http_cache.yaml' :
+                'ezplatform_v3/http_cache.yaml'
         );
     }
 
     public function prepend(ContainerBuilder $container): void
     {
         $prependConfigs = [
-            'block_definitions.yml' => 'netgen_layouts',
-            'query_types.yml' => 'netgen_layouts',
-            'value_types.yml' => 'netgen_layouts',
-            'view/block_view.yml' => 'netgen_layouts',
-            'view/item_view.yml' => 'netgen_layouts',
-            'view/rule_condition_view.yml' => 'netgen_layouts',
-            'view/rule_target_view.yml' => 'netgen_layouts',
-            'ezplatform/image.yml' => 'ezpublish',
+            'block_definitions.yaml' => 'netgen_layouts',
+            'query_types.yaml' => 'netgen_layouts',
+            'value_types.yaml' => 'netgen_layouts',
+            'view/block_view.yaml' => 'netgen_layouts',
+            'view/item_view.yaml' => 'netgen_layouts',
+            'view/rule_condition_view.yaml' => 'netgen_layouts',
+            'view/rule_target_view.yaml' => 'netgen_layouts',
+            'ezplatform/image.yaml' => 'ezpublish',
         ];
 
         foreach ($prependConfigs as $configFile => $prependConfig) {

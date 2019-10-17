@@ -137,7 +137,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
     public function appendConfigurationFiles(): array
     {
         return [
-            __DIR__ . '/../Resources/config/block_type_groups.yml',
+            __DIR__ . '/../Resources/config/block_type_groups.yaml',
         ];
     }
 
