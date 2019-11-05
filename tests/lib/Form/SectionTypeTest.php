@@ -131,7 +131,7 @@ final class SectionTypeTest extends FormTestCase
     public function testConfigureOptionsWithInvalidSection(): void
     {
         $this->expectException(InvalidOptionsException::class);
-        $this->expectExceptionMessage('The option "sections" with value array is expected to be of type "string[]", but one of the elements is of type "integer[]".');
+        $this->expectExceptionMessage('The option "sections" with value array is expected to be of type "string[]", but one of the elements is of type "integer".');
 
         $optionsResolver = new OptionsResolver();
 
