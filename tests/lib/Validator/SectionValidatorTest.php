@@ -54,7 +54,7 @@ final class SectionValidatorTest extends ValidatorTestCase
             );
 
         $this->constraint->allowedSections = $allowedSections;
-        self::assertValid($isValid, $identifier);
+        $this->assertValid($isValid, $identifier);
     }
 
     /**
@@ -67,7 +67,7 @@ final class SectionValidatorTest extends ValidatorTestCase
             ->expects(self::never())
             ->method('loadSectionByIdentifier');
 
-        self::assertValid(true, null);
+        $this->assertValid(true, null);
     }
 
     /**
@@ -82,7 +82,7 @@ final class SectionValidatorTest extends ValidatorTestCase
             ->with(self::identicalTo('unknown'))
             ->willThrowException(new NotFoundException('section', 'unknown'));
 
-        self::assertValid(false, 'unknown');
+        $this->assertValid(false, 'unknown');
     }
 
     /**
@@ -94,7 +94,7 @@ final class SectionValidatorTest extends ValidatorTestCase
         $this->expectExceptionMessage('Expected argument of type "Netgen\\Layouts\\Ez\\Validator\\Constraint\\Section", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
 
         $this->constraint = new NotBlank();
-        self::assertValid(true, 'value');
+        $this->assertValid(true, 'value');
     }
 
     /**
@@ -105,7 +105,7 @@ final class SectionValidatorTest extends ValidatorTestCase
         $this->expectException(UnexpectedTypeException::class);
         $this->expectExceptionMessage('Expected argument of type "string", "integer" given');
 
-        self::assertValid(true, 42);
+        $this->assertValid(true, 42);
     }
 
     /**
@@ -117,7 +117,7 @@ final class SectionValidatorTest extends ValidatorTestCase
         $this->expectExceptionMessage('Expected argument of type "array", "integer" given');
 
         $this->constraint->allowedSections = 42;
-        self::assertValid(true, 'media');
+        $this->assertValid(true, 'media');
     }
 
     public function validateDataProvider(): array

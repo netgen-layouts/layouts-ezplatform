@@ -53,7 +53,7 @@ final class ContentValidatorTest extends ValidatorTestCase
             ->with(self::identicalTo(42))
             ->willReturn(new ContentInfo(['id' => 42, 'contentTypeId' => 24]));
 
-        self::assertValid(true, 42);
+        $this->assertValid(true, 42);
     }
 
     /**
@@ -68,7 +68,7 @@ final class ContentValidatorTest extends ValidatorTestCase
             ->with(self::identicalTo(42))
             ->willReturn(new ContentInfo(['id' => 42, 'contentTypeId' => 52]));
 
-        self::assertValid(false, 42);
+        $this->assertValid(false, 42);
     }
 
     /**
@@ -83,7 +83,7 @@ final class ContentValidatorTest extends ValidatorTestCase
             ->with(self::identicalTo(42))
             ->willThrowException(new NotFoundException('content', 42));
 
-        self::assertValid(false, 42);
+        $this->assertValid(false, 42);
     }
 
     /**
@@ -96,7 +96,7 @@ final class ContentValidatorTest extends ValidatorTestCase
             ->expects(self::never())
             ->method('loadContentInfo');
 
-        self::assertValid(true, null);
+        $this->assertValid(true, null);
     }
 
     /**
@@ -108,7 +108,7 @@ final class ContentValidatorTest extends ValidatorTestCase
         $this->expectExceptionMessage('Expected argument of type "Netgen\\Layouts\\Ez\\Validator\\Constraint\\Content", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
 
         $this->constraint = new NotBlank();
-        self::assertValid(true, 'value');
+        $this->assertValid(true, 'value');
     }
 
     /**
@@ -119,7 +119,7 @@ final class ContentValidatorTest extends ValidatorTestCase
         $this->expectException(UnexpectedTypeException::class);
         $this->expectExceptionMessage('Expected argument of type "scalar", "array" given');
 
-        self::assertValid(true, []);
+        $this->assertValid(true, []);
     }
 
     protected function getValidator(): ConstraintValidatorInterface

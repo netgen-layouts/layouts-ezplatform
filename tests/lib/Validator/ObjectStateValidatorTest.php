@@ -89,7 +89,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
             );
 
         $this->constraint->allowedStates = $allowedStates;
-        self::assertValid($isValid, $identifier);
+        $this->assertValid($isValid, $identifier);
     }
 
     /**
@@ -107,7 +107,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
             ->expects(self::never())
             ->method('loadObjectStates');
 
-        self::assertValid(true, null);
+        $this->assertValid(true, null);
     }
 
     /**
@@ -119,7 +119,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
         $this->expectExceptionMessage('Expected argument of type "Netgen\\Layouts\\Ez\\Validator\\Constraint\\ObjectState", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
 
         $this->constraint = new NotBlank();
-        self::assertValid(true, 'value');
+        $this->assertValid(true, 'value');
     }
 
     /**
@@ -130,7 +130,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
         $this->expectException(UnexpectedTypeException::class);
         $this->expectExceptionMessage('Expected argument of type "string", "integer" given');
 
-        self::assertValid(true, 42);
+        $this->assertValid(true, 42);
     }
 
     /**
@@ -141,7 +141,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
         $this->expectException(UnexpectedTypeException::class);
         $this->expectExceptionMessage('Expected argument of type "string with "|" delimiter", "string" given');
 
-        self::assertValid(true, 'state');
+        $this->assertValid(true, 'state');
     }
 
     /**
@@ -153,7 +153,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
         $this->expectExceptionMessage('Expected argument of type "array", "integer" given');
 
         $this->constraint->allowedStates = 42;
-        self::assertValid(true, 'group1|state1');
+        $this->assertValid(true, 'group1|state1');
     }
 
     public function validateDataProvider(): array

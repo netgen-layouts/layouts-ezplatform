@@ -27,7 +27,7 @@ final class SiteAccessValidatorTest extends ValidatorTestCase
      */
     public function testValidate(?string $identifier, bool $isValid): void
     {
-        self::assertValid($isValid, $identifier);
+        $this->assertValid($isValid, $identifier);
     }
 
     /**
@@ -39,7 +39,7 @@ final class SiteAccessValidatorTest extends ValidatorTestCase
         $this->expectExceptionMessage('Expected argument of type "Netgen\\Layouts\\Ez\\Validator\\Constraint\\SiteAccess", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
 
         $this->constraint = new NotBlank();
-        self::assertValid(true, 'value');
+        $this->assertValid(true, 'value');
     }
 
     /**
@@ -50,7 +50,7 @@ final class SiteAccessValidatorTest extends ValidatorTestCase
         $this->expectException(UnexpectedTypeException::class);
         $this->expectExceptionMessage('Expected argument of type "string", "integer" given');
 
-        self::assertValid(true, 42);
+        $this->assertValid(true, 42);
     }
 
     public function validateDataProvider(): array

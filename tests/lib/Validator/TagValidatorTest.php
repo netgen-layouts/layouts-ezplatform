@@ -40,7 +40,7 @@ final class TagValidatorTest extends ValidatorTestCase
             ->with(self::identicalTo(42))
             ->willReturn(new APITag(['id' => 42]));
 
-        self::assertValid(true, 42);
+        $this->assertValid(true, 42);
     }
 
     /**
@@ -53,7 +53,7 @@ final class TagValidatorTest extends ValidatorTestCase
             ->expects(self::never())
             ->method('loadTag');
 
-        self::assertValid(true, null);
+        $this->assertValid(true, null);
     }
 
     /**
@@ -68,7 +68,7 @@ final class TagValidatorTest extends ValidatorTestCase
             ->with(self::identicalTo(42))
             ->willThrowException(new NotFoundException('tag', 42));
 
-        self::assertValid(false, 42);
+        $this->assertValid(false, 42);
     }
 
     /**
@@ -80,7 +80,7 @@ final class TagValidatorTest extends ValidatorTestCase
         $this->expectExceptionMessage('Expected argument of type "Netgen\\Layouts\\Ez\\Validator\\Constraint\\Tag", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
 
         $this->constraint = new NotBlank();
-        self::assertValid(true, 'value');
+        $this->assertValid(true, 'value');
     }
 
     /**
@@ -91,7 +91,7 @@ final class TagValidatorTest extends ValidatorTestCase
         $this->expectException(UnexpectedTypeException::class);
         $this->expectExceptionMessage('Expected argument of type "scalar", "array" given');
 
-        self::assertValid(true, []);
+        $this->assertValid(true, []);
     }
 
     protected function getValidator(): ConstraintValidatorInterface

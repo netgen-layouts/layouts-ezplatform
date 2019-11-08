@@ -65,7 +65,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
             );
 
         $this->constraint->allowedTypes = $allowedTypes;
-        self::assertValid($isValid, $identifier);
+        $this->assertValid($isValid, $identifier);
     }
 
     /**
@@ -78,7 +78,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
             ->expects(self::never())
             ->method('loadContentTypeByIdentifier');
 
-        self::assertValid(true, null);
+        $this->assertValid(true, null);
     }
 
     /**
@@ -93,7 +93,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
             ->with(self::identicalTo('unknown'))
             ->willThrowException(new NotFoundException('content type', 'unknown'));
 
-        self::assertValid(false, 'unknown');
+        $this->assertValid(false, 'unknown');
     }
 
     /**
@@ -105,7 +105,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
         $this->expectExceptionMessage('Expected argument of type "Netgen\\Layouts\\Ez\\Validator\\Constraint\\ContentType", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
 
         $this->constraint = new NotBlank();
-        self::assertValid(true, 'value');
+        $this->assertValid(true, 'value');
     }
 
     /**
@@ -116,7 +116,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
         $this->expectException(UnexpectedTypeException::class);
         $this->expectExceptionMessage('Expected argument of type "string", "integer" given');
 
-        self::assertValid(true, 42);
+        $this->assertValid(true, 42);
     }
 
     /**
@@ -128,7 +128,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
         $this->expectExceptionMessage('Expected argument of type "array", "integer" given');
 
         $this->constraint->allowedTypes = 42;
-        self::assertValid(true, 'article');
+        $this->assertValid(true, 'article');
     }
 
     public function validateDataProvider(): array
