@@ -80,7 +80,7 @@ trait ParentLocationTrait
         }
 
         try {
-            $parentLocation = $this->locationService->loadLocation($parentLocationId);
+            $parentLocation = $this->locationService->loadLocation((int) $parentLocationId);
 
             return $parentLocation->invisible ? null : $parentLocation;
         } catch (Throwable $t) {

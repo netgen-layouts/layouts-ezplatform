@@ -45,7 +45,7 @@ final class LocationValidator extends ConstraintValidator
             /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
             $location = $this->repository->sudo(
                 static function (Repository $repository) use ($value): EzLocation {
-                    return $repository->getLocationService()->loadLocation($value);
+                    return $repository->getLocationService()->loadLocation((int) $value);
                 }
             );
 
