@@ -227,31 +227,24 @@ final class LocationTypeTest extends TestCase
 
     /**
      * @param mixed $value
-     * @param int $type
+     * @param string $type
      * @param bool $required
      * @param bool $isValid
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::getValueConstraints
      * @dataProvider validationProvider
      */
-    public function testValidation($value, int $type, bool $required, bool $isValid): void
+    public function testValidation($value, string $type, bool $required, bool $isValid): void
     {
         if ($value !== null) {
             $this->locationServiceMock
                 ->expects(self::once())
                 ->method('loadLocation')
-                ->with(self::identicalTo($value))
+                ->with(self::identicalTo((int) $value))
                 ->willReturnCallback(
                     static function () use ($value, $type): Location {
                         if (!is_int($value) || $value <= 0) {
                             throw new NotFoundException('location', $value);
-                        }
-
-                        $contentTypeIdentifier = 'article';
-                        if ($type === 24) {
-                            $contentTypeIdentifier = 'user';
-                        } elseif ($type === 42) {
-                            $contentTypeIdentifier = 'image';
                         }
 
                         return new Location(
@@ -259,7 +252,7 @@ final class LocationTypeTest extends TestCase
                                 'id' => $value,
                                 'content' => new Content(
                                     [
-                                        'contentType' => new ContentType(['identifier' => $contentTypeIdentifier]),
+                                        'contentType' => new ContentType(['identifier' => $type]),
                                     ]
                                 ),
                             ]
@@ -283,22 +276,22 @@ final class LocationTypeTest extends TestCase
     public function validationProvider(): array
     {
         return [
-            [12, 24, false, true],
-            [12, 42, false, true],
-            [12, 52, false, false],
-            [-12, 24, false, false],
-            [0, 24, false, false],
-            ['12', 24, false, false],
-            ['', 24, false, false],
-            [null, 24, false, true],
-            [12, 24, true, true],
-            [12, 42, true, true],
-            [12, 52, true, false],
-            [-12, 24, true, false],
-            [0, 24, true, false],
-            ['12', 24, true, false],
-            ['', 24, true, false],
-            [null, 24, true, false],
+            [12, 'user', false, true],
+            [12, 'image', false, true],
+            [12, 'article', false, false],
+            [-12, 'user', false, false],
+            [0, 'user', false, false],
+            ['12', 'user', false, false],
+            ['', 'user', false, false],
+            [null, 'user', false, true],
+            [12, 'user', true, true],
+            [12, 'image', true, true],
+            [12, 'article', true, false],
+            [-12, 'user', true, false],
+            [0, 'user', true, false],
+            ['12', 'user', true, false],
+            ['', 'user', true, false],
+            [null, 'user', true, false],
         ];
     }
 

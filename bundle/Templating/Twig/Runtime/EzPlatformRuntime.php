@@ -32,7 +32,7 @@ final class EzPlatformRuntime
     public function getContentName($contentId): string
     {
         try {
-            $versionInfo = $this->loadVersionInfo($contentId);
+            $versionInfo = $this->loadVersionInfo((int) $contentId);
 
             return $versionInfo->getName() ?? '';
         } catch (Throwable $t) {
@@ -50,7 +50,7 @@ final class EzPlatformRuntime
     public function getLocationPath($locationId): array
     {
         try {
-            $location = $this->loadLocation($locationId);
+            $location = $this->loadLocation((int) $locationId);
 
             $locationPath = $location->path;
             array_shift($locationPath);
@@ -58,7 +58,7 @@ final class EzPlatformRuntime
             $translatedNames = [];
 
             foreach ($locationPath as $locationPathId) {
-                $locationInPath = $this->loadLocation($locationPathId);
+                $locationInPath = $this->loadLocation((int) $locationPathId);
                 $translatedNames[] = $this->getContentName($locationInPath->contentInfo->id);
             }
 
@@ -84,12 +84,8 @@ final class EzPlatformRuntime
 
     /**
      * Loads the version info for provided content ID.
-     *
-     * @param int|string $contentId
-     *
-     * @return \eZ\Publish\API\Repository\Values\Content\VersionInfo
      */
-    private function loadVersionInfo($contentId): VersionInfo
+    private function loadVersionInfo(int $contentId): VersionInfo
     {
         return $this->repository->sudo(
             static function (Repository $repository) use ($contentId): VersionInfo {
@@ -100,12 +96,8 @@ final class EzPlatformRuntime
 
     /**
      * Loads the location for provided location ID.
-     *
-     * @param int|string $locationId
-     *
-     * @return \eZ\Publish\API\Repository\Values\Content\Location
      */
-    private function loadLocation($locationId): Location
+    private function loadLocation(int $locationId): Location
     {
         return $this->repository->sudo(
             static function (Repository $repository) use ($locationId): Location {
