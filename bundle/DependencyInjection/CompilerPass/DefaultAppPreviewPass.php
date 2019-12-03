@@ -49,6 +49,11 @@ final class DefaultAppPreviewPass implements CompilerPassInterface
     /**
      * Adds the default eZ content preview template to default scope as a fallback
      * when no preview rules are defined.
+     *
+     * @param array<string, array> $scopeRules
+     * @param array<string, mixed> $defaultRule
+     *
+     * @return array<string, array>
      */
     private function addDefaultPreviewRule(?array $scopeRules, array $defaultRule): array
     {

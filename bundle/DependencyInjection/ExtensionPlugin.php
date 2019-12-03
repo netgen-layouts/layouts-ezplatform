@@ -70,6 +70,10 @@ final class ExtensionPlugin extends BaseExtensionPlugin
      *
      * If the original array already has a system key, it will be removed and prepended
      * to configs generated from the original parameters.
+     *
+     * @param mixed[] $configs
+     *
+     * @return mixed[]
      */
     public function preProcessConfiguration(array $configs): array
     {
@@ -110,6 +114,10 @@ final class ExtensionPlugin extends BaseExtensionPlugin
      * The postprocessor calls eZ Platform mapConfigArray and mapSettings methods from siteaccess aware
      * configuration processor as per documentation, to make the configuration correctly apply to all
      * siteaccesses.
+     *
+     * @param mixed[] $config
+     *
+     * @return mixed[]
      */
     public function postProcessConfiguration(array $config): array
     {
@@ -126,6 +134,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
                 $processor->mapSetting($key, $config);
         }
 
+        /** @var string[] $designList */
         $designList = array_keys($config['design_list']);
         foreach ($config['system'] as $scopeConfig) {
             $this->validateCurrentDesign($scopeConfig['design'], $designList);
@@ -134,6 +143,9 @@ final class ExtensionPlugin extends BaseExtensionPlugin
         return $config;
     }
 
+    /**
+     * @return string[]
+     */
     public function appendConfigurationFiles(): array
     {
         return [
@@ -141,6 +153,9 @@ final class ExtensionPlugin extends BaseExtensionPlugin
         ];
     }
 
+    /**
+     * @return \Netgen\Bundle\LayoutsBundle\DependencyInjection\ConfigurationNodeInterface[]
+     */
     protected function getConfigurationNodes(): array
     {
         return [
@@ -165,6 +180,10 @@ final class ExtensionPlugin extends BaseExtensionPlugin
      * This iterates over all default view configs for each view and context, and merges
      * them in any found siteaccess or siteaccess group config, to make sure they're not lost
      * after contextualizer does it's thing.
+     *
+     * @param mixed[] $config
+     *
+     * @return mixed[]
      */
     private function fixUpViewConfig(array $config): array
     {
@@ -191,6 +210,8 @@ final class ExtensionPlugin extends BaseExtensionPlugin
 
     /**
      * Validates that the design specified in configuration exists in the system.
+     *
+     * @param string[] $designList
      */
     private function validateCurrentDesign(string $currentDesign, array $designList): void
     {

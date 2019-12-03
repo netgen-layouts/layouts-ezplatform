@@ -16,6 +16,9 @@ use Symfony\Component\Security\Core\Role\RoleHierarchy as BaseRoleHierarchy;
  */
 final class RoleHierarchy extends BaseRoleHierarchy
 {
+    /**
+     * @param array<string, string[]> $hierarchy
+     */
     public function __construct(array $hierarchy)
     {
         $reversedHierarchy = [];

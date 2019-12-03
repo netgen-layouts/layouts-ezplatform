@@ -35,6 +35,8 @@ final class SectionValidatorTest extends ValidatorTestCase
     }
 
     /**
+     * @param string[] $allowedSections
+     *
      * @covers \Netgen\Layouts\Ez\Validator\SectionValidator::__construct
      * @covers \Netgen\Layouts\Ez\Validator\SectionValidator::validate
      * @dataProvider  validateDataProvider

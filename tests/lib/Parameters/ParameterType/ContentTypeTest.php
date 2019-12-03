@@ -93,8 +93,11 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
+     * @param array<string, mixed> $options
+     * @param array<string, mixed> $resolvedOptions
+     *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::configureOptions
-     * @dataProvider validOptionsProvider
+     * @dataProvider validOptionsDataProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
     {
@@ -103,8 +106,10 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
+     * @param array<string, mixed> $options
+     *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::configureOptions
-     * @dataProvider invalidOptionsProvider
+     * @dataProvider invalidOptionsDataProvider
      */
     public function testInvalidOptions(array $options): void
     {
@@ -116,7 +121,7 @@ final class ContentTypeTest extends TestCase
     /**
      * Provider for testing valid parameter attributes.
      */
-    public function validOptionsProvider(): array
+    public function validOptionsDataProvider(): array
     {
         return [
             [
@@ -168,7 +173,7 @@ final class ContentTypeTest extends TestCase
     /**
      * Provider for testing invalid parameter attributes.
      */
-    public function invalidOptionsProvider(): array
+    public function invalidOptionsDataProvider(): array
     {
         return [
             [
@@ -260,7 +265,7 @@ final class ContentTypeTest extends TestCase
      * @param bool $isValid
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::getValueConstraints
-     * @dataProvider validationProvider
+     * @dataProvider validationDataProvider
      */
     public function testValidation($value, int $type, bool $required, bool $isValid): void
     {
@@ -292,7 +297,7 @@ final class ContentTypeTest extends TestCase
     /**
      * Provider for testing valid parameter values.
      */
-    public function validationProvider(): array
+    public function validationDataProvider(): array
     {
         return [
             [12, 24, false, true],
@@ -319,7 +324,7 @@ final class ContentTypeTest extends TestCase
      * @param bool $isEmpty
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::isValueEmpty
-     * @dataProvider emptyProvider
+     * @dataProvider emptyDataProvider
      */
     public function testIsValueEmpty($value, bool $isEmpty): void
     {
@@ -329,7 +334,7 @@ final class ContentTypeTest extends TestCase
     /**
      * Provider for testing if the value is empty.
      */
-    public function emptyProvider(): array
+    public function emptyDataProvider(): array
     {
         return [
             [null, true],

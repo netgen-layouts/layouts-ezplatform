@@ -17,9 +17,14 @@ parameters:
             path: lib/Security/Authorization/Voter/RepositoryAccessVoter.php
 
         -
-            message: '#Call to function is_array\(\) with array will always evaluate to true.#'
+            message: '#Call to function is_array\(\) with array\<.+\> will always evaluate to true.#'
             path: lib/Validator/
 
         -
             message: '#Toflar\\Psr6HttpCacheStore\\Psr6StoreInterface#'
             path: lib/HttpCache/LocalClient.php
+
+        # Disable errors about missing value types in various Symfony based classes
+
+        - '#Method .+Listener::getSubscribedEvents\(\) return type has no value type specified in iterable type array.#'
+        - '#has parameter \$menu with no value type specified in iterable type Knp\\Menu\\ItemInterface.#'

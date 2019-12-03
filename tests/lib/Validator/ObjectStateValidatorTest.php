@@ -35,6 +35,8 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
     }
 
     /**
+     * @param string[] $allowedStates
+     *
      * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::__construct
      * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::loadStateIdentifiers
      * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::validate

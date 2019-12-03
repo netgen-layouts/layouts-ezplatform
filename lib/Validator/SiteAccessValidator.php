@@ -15,10 +15,13 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 final class SiteAccessValidator extends ConstraintValidator
 {
     /**
-     * @var array
+     * @var string[]
      */
     private $siteAccessList;
 
+    /**
+     * @param string[] $siteAccessList
+     */
     public function __construct(array $siteAccessList)
     {
         $this->siteAccessList = $siteAccessList;

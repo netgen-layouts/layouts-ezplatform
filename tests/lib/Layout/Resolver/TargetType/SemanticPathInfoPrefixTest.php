@@ -34,7 +34,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
      * @param bool $isValid
      *
      * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::getConstraints
-     * @dataProvider validationProvider
+     * @dataProvider validationDataProvider
      */
     public function testValidation($value, bool $isValid): void
     {
@@ -85,7 +85,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
     /**
      * Provider for testing target type validation.
      */
-    public function validationProvider(): array
+    public function validationDataProvider(): array
     {
         return [
             ['/some/route', true],

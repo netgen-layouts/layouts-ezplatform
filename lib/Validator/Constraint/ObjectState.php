@@ -27,7 +27,7 @@ final class ObjectState extends Constraint
      * If not empty, the constraint will validate only if object state identifier
      * is in the list of provided object state identifiers.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     public $allowedStates = [];
 

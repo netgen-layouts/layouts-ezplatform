@@ -28,7 +28,7 @@ final class Content extends Constraint
     /**
      * If not empty, the constraint will only accept content with provided content types.
      *
-     * @var array
+     * @var string[]
      */
     public $allowedTypes = [];
 

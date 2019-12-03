@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection;
 
 use eZ\Publish\SPI\FieldType\Nameable;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\DelegatingLoader;
 use Symfony\Component\Config\Loader\LoaderResolver;
@@ -18,6 +19,9 @@ use Symfony\Component\Yaml\Yaml;
 
 final class NetgenLayoutsEzPlatformExtension extends Extension implements PrependExtensionInterface
 {
+    /**
+     * @param mixed[] $configs
+     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $locator = new FileLocator(__DIR__ . '/../Resources/config');
@@ -77,7 +81,10 @@ final class NetgenLayoutsEzPlatformExtension extends Extension implements Prepen
         }
     }
 
-    public function getConfiguration(array $config, ContainerBuilder $container)
+    /**
+     * @param mixed[] $config
+     */
+    public function getConfiguration(array $config, ContainerBuilder $container): ?ConfigurationInterface
     {
         return new Configuration($this);
     }

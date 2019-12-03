@@ -14,6 +14,8 @@ trait QueryTypeFilterTrait
 {
     /**
      * Builds the parameters for selecting a query type.
+     *
+     * @param string[] $groups
      */
     private function buildQueryTypeParameters(ParameterBuilderInterface $builder, array $groups = []): void
     {

@@ -19,7 +19,7 @@ final class SetPageLayoutListener implements EventSubscriberInterface
     private $requestStack;
 
     /**
-     * @var array
+     * @var array<string, string[]>
      */
     private $groupsBySiteAccess;
 
@@ -28,6 +28,9 @@ final class SetPageLayoutListener implements EventSubscriberInterface
      */
     private $pageLayoutTemplate;
 
+    /**
+     * @param array<string, string[]> $groupsBySiteAccess
+     */
     public function __construct(
         RequestStack $requestStack,
         array $groupsBySiteAccess,

@@ -36,7 +36,7 @@ final class SiteAccessTest extends TestCase
      * @param bool $isValid
      *
      * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccess::getConstraints
-     * @dataProvider validationProvider
+     * @dataProvider validationDataProvider
      */
     public function testValidation($value, bool $isValid): void
     {
@@ -54,7 +54,7 @@ final class SiteAccessTest extends TestCase
      * @param mixed $value
      * @param bool $matches
      *
-     * @dataProvider matchesProvider
+     * @dataProvider matchesDataProvider
      */
     public function testMatches($value, bool $matches): void
     {
@@ -77,7 +77,7 @@ final class SiteAccessTest extends TestCase
     /**
      * Provider for testing condition type validation.
      */
-    public function validationProvider(): array
+    public function validationDataProvider(): array
     {
         return [
             [['cro'], true],
@@ -89,7 +89,7 @@ final class SiteAccessTest extends TestCase
         ];
     }
 
-    public function matchesProvider(): array
+    public function matchesDataProvider(): array
     {
         return [
             ['not_array', false],

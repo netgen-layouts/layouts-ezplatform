@@ -18,7 +18,7 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
 {
     /**
      * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
-     * @dataProvider processProvider
+     * @dataProvider processDataProvider
      */
     public function testProcess(string $definitionClass, bool $clientEnabled): void
     {
@@ -48,7 +48,7 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
         $this->assertContainerBuilderNotHasAlias('netgen_layouts.http_cache.client');
     }
 
-    public function processProvider(): array
+    public function processDataProvider(): array
     {
         return [
             [VarnishPurgeClient::class, true],

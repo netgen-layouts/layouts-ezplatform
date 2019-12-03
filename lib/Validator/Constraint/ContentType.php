@@ -22,7 +22,7 @@ final class ContentType extends Constraint
      * If not empty, the constraint will validate only if content type identifier
      * is in the list of provided content type identifiers.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     public $allowedTypes = [];
 

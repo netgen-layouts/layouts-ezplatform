@@ -29,6 +29,8 @@ trait SectionFilterTrait
 
     /**
      * Builds the parameters for filtering by sections.
+     *
+     * @param string[] $groups
      */
     private function buildSectionFilterParameters(ParameterBuilderInterface $builder, array $groups = []): void
     {
@@ -69,6 +71,10 @@ trait SectionFilterTrait
 
     /**
      * Returns section IDs for all provided section identifiers.
+     *
+     * @param string[] $sectionIdentifiers
+     *
+     * @return int[]
      */
     private function getSectionIds(array $sectionIdentifiers): array
     {

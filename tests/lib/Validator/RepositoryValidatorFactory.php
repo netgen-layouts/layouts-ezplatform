@@ -23,7 +23,7 @@ final class RepositoryValidatorFactory implements ConstraintValidatorFactoryInte
     private $baseValidatorFactory;
 
     /**
-     * @var array
+     * @var array<string, \Symfony\Component\Validator\ConstraintValidatorInterface>
      */
     private $validators;
 

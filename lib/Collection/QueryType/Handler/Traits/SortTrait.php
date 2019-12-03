@@ -14,7 +14,7 @@ use Netgen\Layouts\Parameters\ParameterType;
 trait SortTrait
 {
     /**
-     * @var array
+     * @var array<string, class-string>
      */
     private static $sortClauses = [
         'default' => SortClause\DatePublished::class,
@@ -26,6 +26,9 @@ trait SortTrait
 
     /**
      * Builds the parameters for sorting eZ content.
+     *
+     * @param string[] $groups
+     * @param string[] $allowedSortTypes
      */
     private function buildSortParameters(ParameterBuilderInterface $builder, array $groups = [], array $allowedSortTypes = []): void
     {

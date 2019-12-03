@@ -28,7 +28,7 @@ final class Location extends Constraint
     /**
      * If not empty, the constraint will only accept locations with provided content types.
      *
-     * @var array
+     * @var string[]
      */
     public $allowedTypes = [];
 

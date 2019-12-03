@@ -15,10 +15,13 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 final class SiteAccessGroupValidator extends ConstraintValidator
 {
     /**
-     * @var array
+     * @var string[]
      */
     private $siteAccessGroupList;
 
+    /**
+     * @param array<string, string[]> $siteAccessGroupList
+     */
     public function __construct(array $siteAccessGroupList)
     {
         $this->siteAccessGroupList = array_keys($siteAccessGroupList);

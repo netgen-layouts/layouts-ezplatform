@@ -10,6 +10,7 @@ use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\Values\Content\LocationQuery;
 use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
 use eZ\Publish\API\Repository\Values\Content\Search\SearchHit;
+use eZ\Publish\API\Repository\Values\ValueObject;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use eZ\Publish\SPI\Persistence\Content\ObjectState\Handler as ObjectStateHandler;
 use eZ\Publish\SPI\Persistence\Content\Section\Handler as SectionHandler;
@@ -99,7 +100,7 @@ final class ContentSearchHandler implements QueryTypeHandlerInterface
         );
 
         return array_map(
-            static function (SearchHit $searchHit) {
+            static function (SearchHit $searchHit): ValueObject {
                 return $searchHit->valueObject;
             },
             $searchResult->searchHits

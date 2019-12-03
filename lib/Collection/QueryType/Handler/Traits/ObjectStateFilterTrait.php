@@ -29,6 +29,8 @@ trait ObjectStateFilterTrait
 
     /**
      * Builds the parameters for filtering by object states.
+     *
+     * @param string[] $groups
      */
     private function buildObjectStateFilterParameters(ParameterBuilderInterface $builder, array $groups = []): void
     {
@@ -76,6 +78,10 @@ trait ObjectStateFilterTrait
      * Returns object state IDs for all provided object state identifiers.
      *
      * State identifiers are in format "<group_identifier>|<state_identifier>"
+     *
+     * @param string[] $stateIdentifiers
+     *
+     * @return array<int, int[]>
      */
     private function getObjectStateIds(array $stateIdentifiers): array
     {
@@ -90,7 +96,7 @@ trait ObjectStateFilterTrait
             try {
                 $stateGroup = $this->objectStateHandler->loadGroupByIdentifier($identifier[0]);
                 $objectState = $this->objectStateHandler->loadByIdentifier($identifier[1], $stateGroup->id);
-                $idList[$stateGroup->id][] = $objectState->id;
+                $idList[(int) $stateGroup->id][] = (int) $objectState->id;
             } catch (NotFoundException $e) {
                 continue;
             }

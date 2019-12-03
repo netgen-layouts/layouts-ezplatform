@@ -21,7 +21,7 @@ final class ObjectStateValidator extends ConstraintValidator
     private $repository;
 
     /**
-     * @var array
+     * @var array<string, string[]>
      */
     private $stateIdentifiers;
 
@@ -99,7 +99,7 @@ final class ObjectStateValidator extends ConstraintValidator
     /**
      * Returns the list of object state identifiers separated by group.
      *
-     * @return string[][]
+     * @return array<string, string[]>
      */
     private function loadStateIdentifiers(): array
     {

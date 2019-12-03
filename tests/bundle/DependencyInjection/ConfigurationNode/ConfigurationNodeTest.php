@@ -54,6 +54,9 @@ abstract class ConfigurationNodeTest extends TestCase
     /**
      * Asserts that processed $config is equal to $expectedConfig, after being
      * processed by preprocessors and postprocessors.
+     *
+     * @param mixed[] $expectedConfig
+     * @param mixed[] $config
      */
     public function assertInjectedConfigurationEqual(array $expectedConfig, array $config): void
     {
@@ -85,6 +88,10 @@ abstract class ConfigurationNodeTest extends TestCase
 
     /**
      * Returns the expected config, extended with 'system' node.
+     *
+     * @param mixed[] $expectedConfig
+     *
+     * @return mixed[]
      */
     protected function getExtendedExpectedConfig(array $expectedConfig): array
     {
@@ -97,6 +104,10 @@ abstract class ConfigurationNodeTest extends TestCase
 
     /**
      * Processes the extension config by using pre and post processors.
+     *
+     * @param mixed[] $config
+     *
+     * @return mixed[]
      */
     protected function processConfig(array $config): array
     {

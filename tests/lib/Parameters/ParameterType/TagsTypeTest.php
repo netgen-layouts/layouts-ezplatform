@@ -40,8 +40,11 @@ final class TagsTypeTest extends TestCase
     }
 
     /**
+     * @param array<string, mixed> $options
+     * @param array<string, mixed> $resolvedOptions
+     *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::configureOptions
-     * @dataProvider validOptionsProvider
+     * @dataProvider validOptionsDataProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
     {
@@ -50,8 +53,10 @@ final class TagsTypeTest extends TestCase
     }
 
     /**
+     * @param array<string, mixed> $options
+     *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::configureOptions
-     * @dataProvider invalidOptionsProvider
+     * @dataProvider invalidOptionsDataProvider
      */
     public function testInvalidOptions(array $options): void
     {
@@ -63,7 +68,7 @@ final class TagsTypeTest extends TestCase
     /**
      * Provider for testing valid parameter attributes.
      */
-    public function validOptionsProvider(): array
+    public function validOptionsDataProvider(): array
     {
         return [
             [
@@ -164,7 +169,7 @@ final class TagsTypeTest extends TestCase
     /**
      * Provider for testing invalid parameter attributes.
      */
-    public function invalidOptionsProvider(): array
+    public function invalidOptionsDataProvider(): array
     {
         return [
             [
@@ -267,7 +272,7 @@ final class TagsTypeTest extends TestCase
      * @param bool $isValid
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::getValueConstraints
-     * @dataProvider validationProvider
+     * @dataProvider validationDataProvider
      */
     public function testValidation($values, bool $required, bool $isValid): void
     {
@@ -300,7 +305,7 @@ final class TagsTypeTest extends TestCase
         self::assertSame($isValid, $errors->count() === 0);
     }
 
-    public function validationProvider(): array
+    public function validationDataProvider(): array
     {
         return [
             [[12], false, true],

@@ -14,6 +14,8 @@ trait CurrentLocationFilterTrait
 {
     /**
      * Builds the parameters for filtering content by excluding the currently displayed location.
+     *
+     * @param string[] $groups
      */
     private function buildCurrentLocationParameters(ParameterBuilderInterface $builder, array $groups = []): void
     {

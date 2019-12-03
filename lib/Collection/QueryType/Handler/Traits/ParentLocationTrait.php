@@ -43,6 +43,8 @@ trait ParentLocationTrait
 
     /**
      * Builds the parameters for filtering by parent location.
+     *
+     * @param string[] $groups
      */
     private function buildParentLocationParameters(ParameterBuilderInterface $builder, array $groups = []): void
     {

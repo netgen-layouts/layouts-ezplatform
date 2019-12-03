@@ -47,6 +47,8 @@ final class SectionType extends AbstractType
 
     /**
      * Returns the allowed sections from eZ Platform.
+     *
+     * @return array<string, string>
      */
     private function getSections(Options $options): array
     {

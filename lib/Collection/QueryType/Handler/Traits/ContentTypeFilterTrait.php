@@ -29,6 +29,8 @@ trait ContentTypeFilterTrait
 
     /**
      * Builds the parameters for filtering by content types.
+     *
+     * @param string[] $groups
      */
     private function buildContentTypeFilterParameters(ParameterBuilderInterface $builder, array $groups = []): void
     {
@@ -90,6 +92,10 @@ trait ContentTypeFilterTrait
 
     /**
      * Returns content type IDs for all provided content type identifiers.
+     *
+     * @param string[] $contentTypeIdentifiers
+     *
+     * @return int[]
      */
     private function getContentTypeIds(array $contentTypeIdentifiers): array
     {

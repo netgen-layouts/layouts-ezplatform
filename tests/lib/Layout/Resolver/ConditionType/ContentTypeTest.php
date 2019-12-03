@@ -117,7 +117,7 @@ final class ContentTypeTest extends TestCase
      * @param mixed $value
      * @param bool $matches
      *
-     * @dataProvider matchesProvider
+     * @dataProvider matchesDataProvider
      */
     public function testMatches($value, bool $matches): void
     {
@@ -158,7 +158,7 @@ final class ContentTypeTest extends TestCase
         self::assertFalse($this->conditionType->matches($request, ['article']));
     }
 
-    public function matchesProvider(): array
+    public function matchesDataProvider(): array
     {
         return [
             ['not_array', false],

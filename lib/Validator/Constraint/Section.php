@@ -22,7 +22,7 @@ final class Section extends Constraint
      * If not empty, the constraint will validate only if section identifier
      * is in the list of provided section identifiers.
      *
-     * @var array
+     * @var string[]
      */
     public $allowedSections = [];
 

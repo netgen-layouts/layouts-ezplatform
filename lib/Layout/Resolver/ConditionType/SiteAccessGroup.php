@@ -13,10 +13,13 @@ use Symfony\Component\Validator\Constraints;
 final class SiteAccessGroup implements ConditionTypeInterface
 {
     /**
-     * @var array
+     * @var array<string, string[]>
      */
     private $groupsBySiteAccess;
 
+    /**
+     * @param array<string, string[]> $groupsBySiteAccess
+     */
     public function __construct(array $groupsBySiteAccess)
     {
         $this->groupsBySiteAccess = $groupsBySiteAccess;

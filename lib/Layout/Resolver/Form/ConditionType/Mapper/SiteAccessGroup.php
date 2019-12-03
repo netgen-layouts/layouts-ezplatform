@@ -10,20 +10,20 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 final class SiteAccessGroup extends Mapper
 {
     /**
-     * @var array
+     * @var array<string, string>
      */
     private $siteAccessGroupList;
 
+    /**
+     * @param array<string, string[]> $siteAccessGroupList
+     */
     public function __construct(array $siteAccessGroupList)
     {
         $siteAccessGroupList = array_keys($siteAccessGroupList);
 
-        // We want the array to have the same
-        // list for keys as well as values
-        $this->siteAccessGroupList = array_combine(
-            $siteAccessGroupList,
-            $siteAccessGroupList
-        ) ?: [];
+        // We want the array to have the same list for keys as well as values
+        $siteAccessGroupList = array_combine($siteAccessGroupList, $siteAccessGroupList);
+        $this->siteAccessGroupList = $siteAccessGroupList !== false ? $siteAccessGroupList : [];
     }
 
     public function getFormType(): string

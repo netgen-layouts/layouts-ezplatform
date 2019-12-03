@@ -13,6 +13,8 @@ trait MainLocationFilterTrait
 {
     /**
      * Builds the parameters for filtering content with main location only.
+     *
+     * @param string[] $groups
      */
     private function buildMainLocationParameters(ParameterBuilderInterface $builder, array $groups = []): void
     {

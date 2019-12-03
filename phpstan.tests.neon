@@ -4,6 +4,9 @@ includes:
     - vendor/phpstan/phpstan-phpunit/rules.neon
 
 parameters:
+    dynamicConstantNames:
+        - Symfony\Component\HttpKernel\Kernel::VERSION_ID
+
     ignoreErrors:
         -
             message: '#Call to an undefined method Netgen\\Layouts\\Ez\\Security\\Role\\RoleHierarchy::getReachableRoleNames\(\).#'
@@ -12,3 +15,7 @@ parameters:
         -
             message: '#Toflar\\Psr6HttpCacheStore\\Psr6StoreInterface#'
             path: tests/lib/HttpCache/LocalClientTest.php
+
+        # Disable errors about missing value types in PHPUnit data providers
+
+        - '#Method .+Test::\w+DataProvider\(\) return type has no value type specified in iterable type array.#'

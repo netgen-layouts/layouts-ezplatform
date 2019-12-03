@@ -36,6 +36,9 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
     }
 
     /**
+     * @param string[] $groups
+     * @param string[] $allowedTypes
+     *
      * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::__construct
      * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::validate
      * @dataProvider  validateDataProvider

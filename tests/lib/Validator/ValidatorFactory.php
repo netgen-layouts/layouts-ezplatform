@@ -19,7 +19,7 @@ final class ValidatorFactory implements ConstraintValidatorFactoryInterface
     private $baseValidatorFactory;
 
     /**
-     * @var array
+     * @var array<string, \Symfony\Component\Validator\ConstraintValidatorInterface>
      */
     private $validators;
 
