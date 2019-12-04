@@ -58,7 +58,7 @@ final class ContentTypeType extends ParameterType
             new EzConstraints\ContentType(['allowedTypes' => $parameterDefinition->getOption('types')]),
         ];
 
-        if (!$options['multiple']) {
+        if ($options['multiple'] === false) {
             return $contentTypeConstraints;
         }
 

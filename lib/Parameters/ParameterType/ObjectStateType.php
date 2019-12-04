@@ -58,7 +58,7 @@ final class ObjectStateType extends ParameterType
             new EzConstraints\ObjectState(['allowedStates' => $parameterDefinition->getOption('states')]),
         ];
 
-        if (!$options['multiple']) {
+        if ($options['multiple'] === false) {
             return $objectStateConstraints;
         }
 

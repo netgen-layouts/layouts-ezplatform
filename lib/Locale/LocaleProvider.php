@@ -88,7 +88,7 @@ final class LocaleProvider implements LocaleProviderInterface
      *
      * If POSIX locale does not exist or if language is not enabled, null will be returned.
      *
-     * @return string[]
+     * @return string[]|null
      */
     private function getPosixLocale(Language $language): ?array
     {

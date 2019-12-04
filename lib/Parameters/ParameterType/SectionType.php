@@ -58,7 +58,7 @@ final class SectionType extends ParameterType
             new EzConstraints\Section(['allowedSections' => $parameterDefinition->getOption('sections')]),
         ];
 
-        if (!$options['multiple']) {
+        if ($options['multiple'] === false) {
             return $sectionConstraints;
         }
 

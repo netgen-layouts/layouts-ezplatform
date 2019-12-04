@@ -35,7 +35,7 @@ final class DefaultViewTemplatesPass implements CompilerPassInterface
     /**
      * Updates all view rules to add the default template match.
      *
-     * @param mixed[] $allRules
+     * @param mixed[]|null $allRules
      *
      * @return mixed[]
      */
