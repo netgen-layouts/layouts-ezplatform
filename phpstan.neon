@@ -16,7 +16,7 @@ parameters:
             message: '#Toflar\\Psr6HttpCacheStore\\Psr6StoreInterface#'
             path: lib/HttpCache/LocalClient.php
 
-        # Disable errors about missing value types in various Symfony based classes
+        # Disable errors about missing value types in various vendor classes
 
         - '#Method .+Listener::getSubscribedEvents\(\) return type has no value type specified in iterable type array.#'
         - '#has parameter \$menu with no value type specified in iterable type Knp\\Menu\\ItemInterface.#'
