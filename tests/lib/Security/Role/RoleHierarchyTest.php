@@ -17,7 +17,7 @@ final class RoleHierarchyTest extends TestCase
      * @param string $startingRole
      * @param string[] $expectedReachableRoles
      *
-     * @dataProvider getReachableRolesProvider
+     * @dataProvider getReachableRolesDataProvider
      */
     public function testGetReachableRoles(string $startingRole, array $expectedReachableRoles): void
     {
