@@ -5,14 +5,6 @@ parameters:
     ignoreErrors:
         # eZ Platform
         -
-            message: '#should be contravariant with parameter \$object#'
-            path: lib/Item/ValueUrlGenerator/
-
-        -
-            message: '#should be contravariant with parameter \$object#'
-            path: lib/Item/ValueConverter/
-
-        -
             message: '#Call to function is_string\(\) with string will always evaluate to true.#'
             path: lib/Security/Authorization/Voter/RepositoryAccessVoter.php
 

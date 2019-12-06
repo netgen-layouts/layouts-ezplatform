@@ -9,6 +9,9 @@ use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use Netgen\Layouts\Item\ValueConverterInterface;
 
+/**
+ * @implements \Netgen\Layouts\Item\ValueConverterInterface<\eZ\Publish\API\Repository\Values\Content\ContentInfo>
+ */
 final class ContentValueConverter implements ValueConverterInterface
 {
     /**
@@ -39,29 +42,16 @@ final class ContentValueConverter implements ValueConverterInterface
         return 'ezcontent';
     }
 
-    /**
-     * @param \eZ\Publish\API\Repository\Values\Content\ContentInfo $object
-     *
-     * @return int|string
-     */
     public function getId(object $object)
     {
         return $object->id;
     }
 
-    /**
-     * @param \eZ\Publish\API\Repository\Values\Content\ContentInfo $object
-     *
-     * @return int|string
-     */
     public function getRemoteId(object $object)
     {
         return $object->remoteId;
     }
 
-    /**
-     * @param \eZ\Publish\API\Repository\Values\Content\ContentInfo $object
-     */
     public function getName(object $object): string
     {
         $versionInfo = $this->contentService->loadVersionInfo($object);
@@ -69,9 +59,6 @@ final class ContentValueConverter implements ValueConverterInterface
         return $versionInfo->getName() ?? '';
     }
 
-    /**
-     * @param \eZ\Publish\API\Repository\Values\Content\ContentInfo $object
-     */
     public function getIsVisible(object $object): bool
     {
         $mainLocation = $this->locationService->loadLocation($object->mainLocationId);

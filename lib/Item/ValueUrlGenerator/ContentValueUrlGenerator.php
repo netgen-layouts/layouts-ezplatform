@@ -8,6 +8,9 @@ use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use Netgen\Layouts\Item\ValueUrlGeneratorInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
+/**
+ * @implements \Netgen\Layouts\Item\ValueUrlGeneratorInterface<\eZ\Publish\API\Repository\Values\Content\ContentInfo>
+ */
 final class ContentValueUrlGenerator implements ValueUrlGeneratorInterface
 {
     /**
@@ -20,9 +23,6 @@ final class ContentValueUrlGenerator implements ValueUrlGeneratorInterface
         $this->urlGenerator = $urlGenerator;
     }
 
-    /**
-     * @param \eZ\Publish\API\Repository\Values\Content\ContentInfo $object
-     */
     public function generate(object $object): ?string
     {
         return $this->urlGenerator->generate(
