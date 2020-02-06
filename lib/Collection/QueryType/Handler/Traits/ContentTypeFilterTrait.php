@@ -15,15 +15,21 @@ use Netgen\Layouts\Parameters\ParameterType;
 trait ContentTypeFilterTrait
 {
     /**
+     * @deprecated: Unused property, will be removed in 2.0
+     *
      * @var \eZ\Publish\SPI\Persistence\Content\Type\Handler
      */
     private $contentTypeHandler;
 
     /**
      * Sets the content type handler used by the trait.
+     *
+     * @deprecated: Unused method, will be removed in 2.0
      */
     private function setContentTypeHandler(Handler $handler): void
     {
+        @trigger_error('"Netgen\Layouts\Ez\Collection\QueryType\Handler\Traits\ContentTypeFilterTrait::setContentTypeHandler" method and corresponding "$contentTypeHandler" property are deprecated in 1.2 and will be removed in 2.0. Use eZ Platform ContentTypeIdentifier criterion directly.', E_USER_DEPRECATED);
+
         $this->contentTypeHandler = $handler;
     }
 
@@ -79,9 +85,7 @@ trait ContentTypeFilterTrait
             return null;
         }
 
-        $contentTypeFilter = new Criterion\ContentTypeId(
-            $this->getContentTypeIds($contentTypes)
-        );
+        $contentTypeFilter = new Criterion\ContentTypeIdentifier($contentTypes);
 
         if ($parameterCollection->getParameter('content_types_filter')->getValue() === 'exclude') {
             $contentTypeFilter = new Criterion\LogicalNot($contentTypeFilter);
@@ -93,12 +97,16 @@ trait ContentTypeFilterTrait
     /**
      * Returns content type IDs for all provided content type identifiers.
      *
+     * @deprecated: Unused method, will be removed in 2.0
+     *
      * @param string[] $contentTypeIdentifiers
      *
      * @return int[]
      */
     private function getContentTypeIds(array $contentTypeIdentifiers): array
     {
+        @trigger_error('"Netgen\Layouts\Ez\Collection\QueryType\Handler\Traits\ContentTypeFilterTrait::getContentTypeIds" method is deprecated in 1.2 and will be removed in 2.0. Use eZ Platform ContentTypeIdentifier criterion directly.', E_USER_DEPRECATED);
+
         $idList = [];
 
         foreach ($contentTypeIdentifiers as $identifier) {

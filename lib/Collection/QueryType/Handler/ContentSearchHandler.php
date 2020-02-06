@@ -14,7 +14,6 @@ use eZ\Publish\API\Repository\Values\ValueObject;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use eZ\Publish\SPI\Persistence\Content\ObjectState\Handler as ObjectStateHandler;
 use eZ\Publish\SPI\Persistence\Content\Section\Handler as SectionHandler;
-use eZ\Publish\SPI\Persistence\Content\Type\Handler as ContentTypeHandler;
 use Netgen\Layouts\API\Values\Collection\Query;
 use Netgen\Layouts\Collection\QueryType\QueryTypeHandlerInterface;
 use Netgen\Layouts\Ez\ContentProvider\ContentProviderInterface;
@@ -48,7 +47,6 @@ final class ContentSearchHandler implements QueryTypeHandlerInterface
     public function __construct(
         LocationService $locationService,
         SearchService $searchService,
-        ContentTypeHandler $contentTypeHandler,
         SectionHandler $sectionHandler,
         ObjectStateHandler $objectStateHandler,
         ContentProviderInterface $contentProvider,
@@ -57,7 +55,6 @@ final class ContentSearchHandler implements QueryTypeHandlerInterface
         $this->searchService = $searchService;
         $this->configResolver = $configResolver;
 
-        $this->setContentTypeHandler($contentTypeHandler);
         $this->setSectionHandler($sectionHandler);
         $this->setObjectStateHandler($objectStateHandler);
         $this->setContentProvider($contentProvider);
