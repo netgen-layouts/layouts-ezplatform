@@ -23,12 +23,6 @@
 
         <!-- eZ Platform -->
 
-        <ImplementedReturnTypeMismatch>
-            <errorLevel type="suppress">
-                <file name="bundle/Security/PolicyProvider.php" />
-            </errorLevel>
-        </ImplementedReturnTypeMismatch>
-
         <UndefinedDocblockClass>
             <errorLevel type="suppress">
                 <referencedClass name="Toflar\Psr6HttpCacheStore\Psr6StoreInterface" />
@@ -41,16 +35,7 @@
             </errorLevel>
         </UndefinedClass>
 
-        <!-- Netgen Layouts specifics -->
-
-        <MoreSpecificImplementedParamType>
-            <errorLevel type="suppress">
-                <directory name="lib/Item/ValueConverter" />
-                <directory name="lib/Item/ValueUrlGenerator" />
-            </errorLevel>
-        </MoreSpecificImplementedParamType>
-
-        <!-- level 3 issues - slightly lazy code writing, but provably low false-negatives -->
+        <!-- level 3 issues - slightly lazy code writing, but probably low false-negatives -->
 
         <DeprecatedClass errorLevel="info" />
         <InternalMethod errorLevel="info" />
