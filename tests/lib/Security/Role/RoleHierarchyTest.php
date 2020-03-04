@@ -77,7 +77,6 @@ final class RoleHierarchyTest extends TestCase
         self::assertCount(count($expectedReachableRoles), $reachableRoles);
 
         foreach ($reachableRoles as $index => $reachableRole) {
-            self::assertIsString($reachableRole);
             self::assertSame($expectedReachableRoles[$index], $reachableRole);
         }
     }
