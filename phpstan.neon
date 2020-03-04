@@ -6,6 +6,12 @@ parameters:
         - Symfony\Component\HttpKernel\Kernel::VERSION_ID
 
     ignoreErrors:
+        # Symfony
+
+        -
+            message: '#Call to an undefined method Symfony\\Component\\Security\\Core\\Role\\RoleHierarchyInterface::getReachableRoleNames\(\).#'
+            path: lib/Security/Authorization/Voter/RepositoryAccessVoter.php
+
         # eZ Platform
         -
             message: '#Call to function is_string\(\) with string will always evaluate to true.#'
