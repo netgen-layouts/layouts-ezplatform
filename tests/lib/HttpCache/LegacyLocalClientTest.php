@@ -24,7 +24,7 @@ final class LegacyLocalClientTest extends TestCase
     protected function setUp(): void
     {
         if (!interface_exists(RequestAwarePurger::class)) {
-            self::markTestSkipped('The tests require eZ Platform HTTP Cache 0.x to run.');
+            self::markTestSkipped('The tests require eZ Platform HTTP Cache 1.x to run.');
         }
 
         $this->requestAwarePurgerMock = $this->createMock(RequestAwarePurger::class);
