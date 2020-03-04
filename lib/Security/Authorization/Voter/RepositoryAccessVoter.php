@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ez\Security\Authorization\Voter;
 
 use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
@@ -109,7 +110,7 @@ final class RepositoryAccessVoter extends Voter
      */
     private function getReachableAttributes($attribute): array
     {
-        if (method_exists($this->roleHierarchy, 'getReachableRoleNames')) {
+        if (Kernel::VERSION_ID >= 40400) {
             return $this->roleHierarchy->getReachableRoleNames([$attribute]);
         }
 
