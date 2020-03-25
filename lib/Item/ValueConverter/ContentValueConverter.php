@@ -61,7 +61,7 @@ final class ContentValueConverter implements ValueConverterInterface
 
     public function getIsVisible(object $object): bool
     {
-        $mainLocation = $this->locationService->loadLocation($object->mainLocationId);
+        $mainLocation = $this->locationService->loadLocation((int) $object->mainLocationId);
 
         return !$mainLocation->invisible;
     }
