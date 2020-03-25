@@ -86,6 +86,10 @@ final class RepositoryAccessVoter extends Voter
         return is_string($attribute) && mb_strpos($attribute, 'ROLE_NGLAYOUTS_') === 0;
     }
 
+    /**
+     * @param string $attribute
+     * @param mixed $subject
+     */
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token): bool
     {
         if (!isset(self::ATTRIBUTE_TO_POLICY_MAP[$attribute])) {
