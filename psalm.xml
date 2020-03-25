@@ -27,6 +27,12 @@
             </errorLevel>
         </ArgumentTypeCoercion>
 
+        <MissingDependency>
+            <errorLevel type="suppress">
+                <file name="bundle/EventListener/Admin/SetPageLayoutListener.php" />
+            </errorLevel>
+        </MissingDependency>
+
         <!-- eZ Platform -->
 
         <UndefinedDocblockClass>
