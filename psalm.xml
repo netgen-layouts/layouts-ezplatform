@@ -17,7 +17,7 @@
 
         <UndefinedInterfaceMethod>
             <errorLevel type="suppress">
-                <referencedMethod name="Symfony\Component\Security\Core\Role\RoleHierarchyInterface::getReachableRoleNames" />
+                <referencedMethod name="Symfony\Component\Security\Core\Role\RoleHierarchyInterface::getReachableRoles" />
             </errorLevel>
         </UndefinedInterfaceMethod>
 
@@ -37,13 +37,15 @@
 
         <UndefinedDocblockClass>
             <errorLevel type="suppress">
-                <referencedClass name="Toflar\Psr6HttpCacheStore\Psr6StoreInterface" />
+                <referencedClass name="EzSystems\PlatformHttpCacheBundle\RequestAwarePurger" />
             </errorLevel>
         </UndefinedDocblockClass>
 
         <UndefinedClass>
             <errorLevel type="suppress">
-                <referencedClass name="Toflar\Psr6HttpCacheStore\Psr6StoreInterface" />
+                <referencedClass name="EzSystems\PlatformHttpCacheBundle\RequestAwarePurger" />
+                <referencedClass name="eZ\Publish\SPI\FieldType\Nameable" />
+                <referencedClass name="Symfony\Component\Security\Core\Role\Role" />
             </errorLevel>
         </UndefinedClass>
 

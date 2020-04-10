@@ -9,8 +9,10 @@ parameters:
         # Symfony
 
         -
-            message: '#Call to an undefined method Symfony\\Component\\Security\\Core\\Role\\RoleHierarchyInterface::getReachableRoleNames\(\).#'
+            message: '#Call to an undefined method Symfony\\Component\\Security\\Core\\Role\\RoleHierarchyInterface::getReachableRoles\(\).#'
             path: lib/Security/Authorization/Voter/RepositoryAccessVoter.php
+
+        - '#Symfony\\Component\\Security\\Core\\Role\\Role#'
 
         # eZ Platform
         -
@@ -21,9 +23,8 @@ parameters:
             message: '#Call to function is_array\(\) with array\<.+\> will always evaluate to true.#'
             path: lib/Validator/
 
-        -
-            message: '#Toflar\\Psr6HttpCacheStore\\Psr6StoreInterface#'
-            path: lib/HttpCache/LocalClient.php
+        - '#eZ\\Publish\\SPI\\FieldType\\Nameable#'
+        - '#EzSystems\\PlatformHttpCacheBundle\\RequestAwarePurger#'
 
         # Disable errors about missing value types in various vendor classes
 
