@@ -81,6 +81,10 @@ final class RepositoryAccessVoter extends Voter
         return $vote;
     }
 
+    /**
+     * @param string $attribute
+     * @param mixed $subject
+     */
     protected function supports($attribute, $subject): bool
     {
         return is_string($attribute) && mb_strpos($attribute, 'ROLE_NGLAYOUTS_') === 0;
