@@ -23,7 +23,6 @@ parameters:
             message: '#Call to function is_array\(\) with array\<.+\> will always evaluate to true.#'
             path: lib/Validator/
 
-        - '#eZ\\Publish\\SPI\\FieldType\\Nameable#'
         - '#EzSystems\\PlatformHttpCacheBundle\\RequestAwarePurger#'
 
         # Disable errors about missing value types in various vendor classes
