@@ -44,6 +44,11 @@ final class LocationType extends ParameterType
         $optionsResolver->setAllowedTypes('allowed_types', 'string[]');
     }
 
+    public function fromHash(ParameterDefinition $parameterDefinition, $value)
+    {
+        return $value !== null ? (int) $value : null;
+    }
+
     public function export(ParameterDefinition $parameterDefinition, $value)
     {
         try {

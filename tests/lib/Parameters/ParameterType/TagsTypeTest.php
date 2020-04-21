@@ -211,6 +211,38 @@ final class TagsTypeTest extends TestCase
     }
 
     /**
+     * @param mixed $value
+     * @param mixed $convertedValue
+     *
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::fromHash
+     * @dataProvider fromHashDataProvider
+     */
+    public function testFromHash($value, $convertedValue): void
+    {
+        self::assertSame(
+            $convertedValue,
+            $this->type->fromHash(
+                $this->getParameterDefinition(),
+                $value
+            )
+        );
+    }
+
+    public function fromHashDataProvider(): array
+    {
+        return [
+            [
+                null,
+                null,
+            ],
+            [
+                [42, '24'],
+                [42, 24],
+            ],
+        ];
+    }
+
+    /**
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::export
      */
     public function testExport(): void
