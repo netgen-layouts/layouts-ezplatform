@@ -76,6 +76,11 @@ final class TagsType extends ParameterType
         );
     }
 
+    public function fromHash(ParameterDefinition $parameterDefinition, $value)
+    {
+        return is_array($value) ? array_map('intval', $value) : $value;
+    }
+
     public function export(ParameterDefinition $parameterDefinition, $value)
     {
         try {

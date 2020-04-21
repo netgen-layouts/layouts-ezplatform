@@ -321,6 +321,42 @@ final class ContentTypeTest extends TestCase
 
     /**
      * @param mixed $value
+     * @param mixed $convertedValue
+     *
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::fromHash
+     * @dataProvider fromHashDataProvider
+     */
+    public function testFromHash($value, $convertedValue): void
+    {
+        self::assertSame(
+            $convertedValue,
+            $this->type->fromHash(
+                $this->getParameterDefinition(),
+                $value
+            )
+        );
+    }
+
+    public function fromHashDataProvider(): array
+    {
+        return [
+            [
+                null,
+                null,
+            ],
+            [
+                '42',
+                42,
+            ],
+            [
+                42,
+                42,
+            ],
+        ];
+    }
+
+    /**
+     * @param mixed $value
      * @param bool $isEmpty
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::isValueEmpty
