@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\DependencyInjection\ConfigurationNode;
 
+use function array_keys;
+
 final class ViewNodeTest extends ConfigurationNodeTest
 {
     /**

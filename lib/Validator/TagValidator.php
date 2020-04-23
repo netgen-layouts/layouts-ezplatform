@@ -10,6 +10,7 @@ use Netgen\TagsBundle\API\Repository\TagsService;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
+use function is_scalar;
 
 /**
  * Validates if the provided value is an ID of a valid tag in Netgen Tags.

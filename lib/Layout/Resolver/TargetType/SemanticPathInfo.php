@@ -7,6 +7,7 @@ namespace Netgen\Layouts\Ez\Layout\Resolver\TargetType;
 use Netgen\Layouts\Layout\Resolver\TargetTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
+use function is_string;
 
 class SemanticPathInfo implements TargetTypeInterface
 {

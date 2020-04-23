@@ -17,6 +17,7 @@ use Netgen\Layouts\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
 use Symfony\Component\Validator\Validation;
+use function is_int;
 
 final class LocationTypeTest extends TestCase
 {

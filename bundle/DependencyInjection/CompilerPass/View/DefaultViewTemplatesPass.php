@@ -6,6 +6,8 @@ namespace Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use function array_merge;
+use function is_array;
 
 final class DefaultViewTemplatesPass implements CompilerPassInterface
 {

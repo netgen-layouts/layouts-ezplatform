@@ -16,6 +16,10 @@ use Symfony\Component\DependencyInjection\Loader\GlobFileLoader;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Yaml\Yaml;
+use function array_keys;
+use function file_get_contents;
+use function in_array;
+use function interface_exists;
 
 final class NetgenLayoutsEzPlatformExtension extends Extension implements PrependExtensionInterface
 {

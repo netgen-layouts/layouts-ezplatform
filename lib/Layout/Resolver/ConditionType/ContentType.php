@@ -10,6 +10,9 @@ use Netgen\Layouts\Ez\Validator\Constraint as EzConstraints;
 use Netgen\Layouts\Layout\Resolver\ConditionTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
+use function count;
+use function in_array;
+use function is_array;
 
 final class ContentType implements ConditionTypeInterface
 {

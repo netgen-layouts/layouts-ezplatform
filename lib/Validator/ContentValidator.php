@@ -11,6 +11,9 @@ use Netgen\Layouts\Ez\Validator\Constraint\Content;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
+use function count;
+use function in_array;
+use function is_scalar;
 
 /**
  * Validates if the provided value is an ID of a valid content in eZ Platform.

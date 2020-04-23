@@ -9,6 +9,12 @@ use Netgen\Layouts\Ez\Validator\Constraint\ObjectState;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
+use function array_key_exists;
+use function count;
+use function explode;
+use function in_array;
+use function is_array;
+use function is_string;
 
 /**
  * Validates if the provided value is an identifier of a valid object state in eZ Platform.

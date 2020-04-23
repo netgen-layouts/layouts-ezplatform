@@ -9,6 +9,8 @@ use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\Layouts\Parameters\ParameterType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
+use function array_values;
+use function is_array;
 
 /**
  * Parameter type used to store and validate an identifier of a section in eZ Platform.

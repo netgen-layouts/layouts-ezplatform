@@ -7,6 +7,8 @@ namespace Netgen\Layouts\Ez\HttpCache;
 use EzSystems\PlatformHttpCacheBundle\RequestAwarePurger;
 use Netgen\Layouts\HttpCache\ClientInterface;
 use Symfony\Component\HttpFoundation\Request;
+use function count;
+use function implode;
 
 final class LegacyLocalClient implements ClientInterface
 {

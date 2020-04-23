@@ -13,6 +13,12 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
+use function array_keys;
+use function array_merge;
+use function implode;
+use function in_array;
+use function is_array;
+use function sprintf;
 
 final class ExtensionPlugin extends BaseExtensionPlugin
 {

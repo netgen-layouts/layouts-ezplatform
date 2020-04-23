@@ -6,6 +6,7 @@ namespace Netgen\Layouts\Ez\HttpCache;
 
 use EzSystems\PlatformHttpCacheBundle\RepositoryTagPrefix;
 use Netgen\Layouts\HttpCache\ClientInterface;
+use function array_map;
 
 final class RepositoryPrefixDecorator implements ClientInterface
 {

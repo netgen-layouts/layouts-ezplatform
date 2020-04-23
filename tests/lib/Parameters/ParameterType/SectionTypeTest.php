@@ -15,6 +15,9 @@ use Netgen\Layouts\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
 use Symfony\Component\Validator\Validation;
+use function in_array;
+use function is_array;
+use function is_string;
 
 final class SectionTypeTest extends TestCase
 {

@@ -11,6 +11,8 @@ use eZ\Publish\Core\MVC\Symfony\Locale\LocaleConverterInterface;
 use Netgen\Layouts\Ez\Locale\LocaleProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
+use function array_keys;
+use function array_values;
 
 final class LocaleProviderTest extends TestCase
 {

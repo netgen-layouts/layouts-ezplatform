@@ -11,6 +11,9 @@ use Netgen\Layouts\Ez\Parameters\ParameterType as EzParameterType;
 use Netgen\Layouts\Parameters\ParameterBuilderInterface;
 use Netgen\Layouts\Parameters\ParameterCollectionInterface;
 use Netgen\Layouts\Parameters\ParameterType;
+use function count;
+use function trigger_error;
+use const E_USER_DEPRECATED;
 
 trait ContentTypeFilterTrait
 {

@@ -15,6 +15,7 @@ use Netgen\Layouts\Tests\TestCase\ValidatorTestCase;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
+use function array_map;
 
 final class ContentTypeValidatorTest extends ValidatorTestCase
 {

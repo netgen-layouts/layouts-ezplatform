@@ -8,6 +8,8 @@ use EzSystems\PlatformHttpCacheBundle\RequestAwarePurger;
 use Netgen\Layouts\Ez\HttpCache\LegacyLocalClient;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
+use function implode;
+use function interface_exists;
 
 final class LegacyLocalClientTest extends TestCase
 {

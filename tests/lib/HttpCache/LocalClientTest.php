@@ -8,6 +8,7 @@ use EzSystems\PlatformHttpCacheBundle\RequestAwarePurger;
 use Netgen\Layouts\Ez\HttpCache\LocalClient;
 use PHPUnit\Framework\TestCase;
 use Toflar\Psr6HttpCacheStore\Psr6StoreInterface;
+use function interface_exists;
 
 final class LocalClientTest extends TestCase
 {

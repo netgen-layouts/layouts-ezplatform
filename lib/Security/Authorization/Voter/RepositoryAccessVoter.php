@@ -11,6 +11,9 @@ use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
+use function array_map;
+use function is_string;
+use function mb_strpos;
 
 /**
  * Votes on Netgen Layouts attributes (ROLE_NGLAYOUTS_*) by matching corresponding access
