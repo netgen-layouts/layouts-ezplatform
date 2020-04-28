@@ -33,6 +33,6 @@ final class SubtreeTest extends AbstractTargetHandlerTest
 
     protected function insertDatabaseFixtures(string $fixturesPath): void
     {
-        parent::insertDatabaseFixtures(__DIR__ . '/../../../../../_fixtures');
+        parent::insertDatabaseFixtures(__DIR__ . '/../../../../../_fixtures/data.php');
     }
 }
