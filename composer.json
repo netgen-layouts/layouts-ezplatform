@@ -25,7 +25,7 @@
         "phpstan/phpstan-phpunit": "^0.12",
         "vimeo/psalm": "^3.10",
         "matthiasnoback/symfony-dependency-injection-test": "^4.1",
-        "matthiasnoback/symfony-config-test": "^4.1",
+        "matthiasnoback/symfony-config-test": "^4.2",
         "netgen/tagsbundle": "^3.4 || ^4.0"
     },
     "suggest": {
