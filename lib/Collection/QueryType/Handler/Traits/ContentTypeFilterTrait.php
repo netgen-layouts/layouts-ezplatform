@@ -31,7 +31,7 @@ trait ContentTypeFilterTrait
      */
     private function setContentTypeHandler(Handler $handler): void
     {
-        @trigger_error('"Netgen\Layouts\Ez\Collection\QueryType\Handler\Traits\ContentTypeFilterTrait::setContentTypeHandler" method and corresponding "$contentTypeHandler" property are deprecated in 1.2 and will be removed in 2.0. Use eZ Platform ContentTypeIdentifier criterion directly.', E_USER_DEPRECATED);
+        trigger_deprecation('netgen/layouts-ezplatform', '1.2', '"%s::setContentTypeHandler" method and corresponding "$contentTypeHandler" property are deprecated. Use eZ Platform ContentTypeIdentifier criterion directly.', ContentTypeFilterTrait::class);
 
         $this->contentTypeHandler = $handler;
     }
@@ -108,7 +108,7 @@ trait ContentTypeFilterTrait
      */
     private function getContentTypeIds(array $contentTypeIdentifiers): array
     {
-        @trigger_error('"Netgen\Layouts\Ez\Collection\QueryType\Handler\Traits\ContentTypeFilterTrait::getContentTypeIds" method is deprecated in 1.2 and will be removed in 2.0. Use eZ Platform ContentTypeIdentifier criterion directly.', E_USER_DEPRECATED);
+        trigger_deprecation('netgen/layouts-ezplatform', '1.2', '"%s::getContentTypeIds" method is deprecated. Use eZ Platform ContentTypeIdentifier criterion directly.', ContentTypeFilterTrait::class);
 
         $idList = [];
 
