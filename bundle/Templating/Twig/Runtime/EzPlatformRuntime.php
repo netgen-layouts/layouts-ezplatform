@@ -27,8 +27,6 @@ final class EzPlatformRuntime
      * Returns the content name.
      *
      * @param int|string $contentId
-     *
-     * @return string
      */
     public function getContentName($contentId): string
     {

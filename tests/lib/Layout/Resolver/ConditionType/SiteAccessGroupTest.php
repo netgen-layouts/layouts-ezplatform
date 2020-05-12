@@ -43,7 +43,6 @@ final class SiteAccessGroupTest extends TestCase
 
     /**
      * @param mixed $value
-     * @param bool $isValid
      *
      * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::getConstraints
      * @dataProvider validationDataProvider
@@ -62,7 +61,6 @@ final class SiteAccessGroupTest extends TestCase
      * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::matches
      *
      * @param mixed $value
-     * @param bool $matches
      *
      * @dataProvider matchesDataProvider
      */

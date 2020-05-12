@@ -31,7 +31,6 @@ final class SemanticPathInfoTest extends TestCase
 
     /**
      * @param mixed $value
-     * @param bool $isValid
      *
      * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfo::getConstraints
      * @dataProvider validationDataProvider

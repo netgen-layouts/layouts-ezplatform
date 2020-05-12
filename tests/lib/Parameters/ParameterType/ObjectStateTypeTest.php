@@ -159,8 +159,6 @@ final class ObjectStateTypeTest extends TestCase
 
     /**
      * @param mixed $value
-     * @param bool $required
-     * @param bool $isValid
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::getValueConstraints
      * @dataProvider validationDataProvider
@@ -212,8 +210,6 @@ final class ObjectStateTypeTest extends TestCase
 
     /**
      * @param mixed $value
-     * @param bool $required
-     * @param bool $isValid
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::getValueConstraints
      * @dataProvider validationWithEmptyValuesDataProvider
@@ -271,7 +267,6 @@ final class ObjectStateTypeTest extends TestCase
     /**
      * @param mixed $value
      * @param mixed $convertedValue
-     * @param bool $multiple
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::fromHash
      * @dataProvider fromHashDataProvider
@@ -339,7 +334,6 @@ final class ObjectStateTypeTest extends TestCase
 
     /**
      * @param mixed $value
-     * @param bool $isEmpty
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::isValueEmpty
      * @dataProvider emptyDataProvider

@@ -115,7 +115,6 @@ final class ContentTypeTest extends TestCase
      * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\ContentType::matches
      *
      * @param mixed $value
-     * @param bool $matches
      *
      * @dataProvider matchesDataProvider
      */

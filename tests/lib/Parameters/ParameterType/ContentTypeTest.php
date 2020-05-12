@@ -261,9 +261,6 @@ final class ContentTypeTest extends TestCase
 
     /**
      * @param mixed $value
-     * @param int $type
-     * @param bool $required
-     * @param bool $isValid
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::getValueConstraints
      * @dataProvider validationDataProvider
@@ -358,7 +355,6 @@ final class ContentTypeTest extends TestCase
 
     /**
      * @param mixed $value
-     * @param bool $isEmpty
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::isValueEmpty
      * @dataProvider emptyDataProvider

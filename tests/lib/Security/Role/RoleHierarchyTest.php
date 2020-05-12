@@ -15,7 +15,6 @@ final class RoleHierarchyTest extends TestCase
     /**
      * @covers \Netgen\Layouts\Ez\Security\Role\RoleHierarchy::__construct
      *
-     * @param string $startingRole
      * @param string[] $expectedReachableRoles
      *
      * @dataProvider getReachableRolesDataProvider
@@ -51,7 +50,6 @@ final class RoleHierarchyTest extends TestCase
     /**
      * @covers \Netgen\Layouts\Ez\Security\Role\RoleHierarchy::__construct
      *
-     * @param string $startingRole
      * @param string[] $expectedReachableRoles
      *
      * @dataProvider getReachableRolesDataProvider

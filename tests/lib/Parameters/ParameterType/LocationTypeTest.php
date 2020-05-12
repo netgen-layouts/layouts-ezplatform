@@ -233,9 +233,6 @@ final class LocationTypeTest extends TestCase
 
     /**
      * @param mixed $value
-     * @param string $type
-     * @param bool $required
-     * @param bool $isValid
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::getValueConstraints
      * @dataProvider validationDataProvider
@@ -339,7 +336,6 @@ final class LocationTypeTest extends TestCase
 
     /**
      * @param mixed $value
-     * @param bool $isEmpty
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::isValueEmpty
      * @dataProvider emptyDataProvider

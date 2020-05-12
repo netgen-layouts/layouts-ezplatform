@@ -167,8 +167,6 @@ final class SectionTypeTest extends TestCase
 
     /**
      * @param mixed $value
-     * @param bool $required
-     * @param bool $isValid
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::getValueConstraints
      * @dataProvider validationDataProvider
@@ -234,7 +232,6 @@ final class SectionTypeTest extends TestCase
     /**
      * @param mixed $value
      * @param mixed $convertedValue
-     * @param bool $multiple
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::fromHash
      * @dataProvider fromHashDataProvider
@@ -302,7 +299,6 @@ final class SectionTypeTest extends TestCase
 
     /**
      * @param mixed $value
-     * @param bool $isEmpty
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::isValueEmpty
      * @dataProvider emptyDataProvider

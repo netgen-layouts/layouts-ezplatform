@@ -301,8 +301,6 @@ final class TagsTypeTest extends TestCase
 
     /**
      * @param mixed $values
-     * @param bool $required
-     * @param bool $isValid
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::getValueConstraints
      * @dataProvider validationDataProvider

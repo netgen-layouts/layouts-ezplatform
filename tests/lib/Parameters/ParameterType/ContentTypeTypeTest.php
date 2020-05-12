@@ -161,8 +161,6 @@ final class ContentTypeTypeTest extends TestCase
 
     /**
      * @param mixed $value
-     * @param bool $required
-     * @param bool $isValid
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType::getValueConstraints
      * @dataProvider validationDataProvider
@@ -228,7 +226,6 @@ final class ContentTypeTypeTest extends TestCase
     /**
      * @param mixed $value
      * @param mixed $convertedValue
-     * @param bool $multiple
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType::fromHash
      * @dataProvider fromHashDataProvider
@@ -296,7 +293,6 @@ final class ContentTypeTypeTest extends TestCase
 
     /**
      * @param mixed $value
-     * @param bool $isEmpty
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType::isValueEmpty
      * @dataProvider emptyDataProvider
