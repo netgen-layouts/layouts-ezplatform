@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 use function array_map;
 use function is_string;
-use function mb_strpos;
+use function str_starts_with;
 
 /**
  * Votes on Netgen Layouts attributes (ROLE_NGLAYOUTS_*) by matching corresponding access
@@ -87,7 +87,7 @@ final class RepositoryAccessVoter extends Voter
      */
     protected function supports($attribute, $subject): bool
     {
-        return is_string($attribute) && mb_strpos($attribute, 'ROLE_NGLAYOUTS_') === 0;
+        return is_string($attribute) && str_starts_with($attribute, 'ROLE_NGLAYOUTS_');
     }
 
     /**
