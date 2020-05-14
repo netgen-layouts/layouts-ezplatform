@@ -130,7 +130,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
         $this->expectException(UnexpectedTypeException::class);
-        $this->expectExceptionMessage('Expected argument of type "string", "integer" given');
+        $this->expectExceptionMessageMatches('/^Expected argument of type "string", "int(eger)?" given$/');
 
         $this->assertValid(true, 42);
     }
@@ -152,7 +152,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidAllowedStates(): void
     {
         $this->expectException(UnexpectedTypeException::class);
-        $this->expectExceptionMessage('Expected argument of type "array", "integer" given');
+        $this->expectExceptionMessageMatches('/^Expected argument of type "array", "int(eger)?" given$/');
 
         $this->constraint->allowedStates = 42;
         $this->assertValid(true, 'group1|state1');
