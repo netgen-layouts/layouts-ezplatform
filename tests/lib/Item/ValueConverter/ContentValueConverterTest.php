@@ -7,6 +7,7 @@ namespace Netgen\Layouts\Ez\Tests\Item\ValueConverter;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
+use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter;
@@ -46,13 +47,17 @@ final class ContentValueConverterTest extends TestCase
 
         $this->contentServiceMock
             ->expects(self::any())
-            ->method('loadVersionInfo')
+            ->method('loadContentByContentInfo')
             ->with(self::isInstanceOf(ContentInfo::class))
             ->willReturn(
-                new VersionInfo(
+                new Content(
                     [
-                        'prioritizedNameLanguageCode' => 'eng-GB',
-                        'names' => ['eng-GB' => 'Cool name'],
+                        'versionInfo' => new VersionInfo(
+                            [
+                                'prioritizedNameLanguageCode' => 'eng-GB',
+                                'names' => ['eng-GB' => 'Cool name'],
+                            ]
+                        ),
                     ]
                 )
             );

@@ -54,9 +54,9 @@ final class ContentValueConverter implements ValueConverterInterface
 
     public function getName(object $object): string
     {
-        $versionInfo = $this->contentService->loadVersionInfo($object);
+        $content = $this->contentService->loadContentByContentInfo($object);
 
-        return $versionInfo->getName() ?? '';
+        return $content->getName() ?? '';
     }
 
     public function getIsVisible(object $object): bool

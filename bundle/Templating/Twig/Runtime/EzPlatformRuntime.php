@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime;
 
 use eZ\Publish\API\Repository\Repository;
+use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\Location;
-use eZ\Publish\API\Repository\Values\Content\VersionInfo;
 use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use Throwable;
 use function array_shift;
@@ -31,9 +31,9 @@ final class EzPlatformRuntime
     public function getContentName($contentId): string
     {
         try {
-            $versionInfo = $this->loadVersionInfo((int) $contentId);
+            $content = $this->loadContent((int) $contentId);
 
-            return $versionInfo->getName() ?? '';
+            return $content->getName() ?? '';
         } catch (Throwable $t) {
             return '';
         }
@@ -82,13 +82,13 @@ final class EzPlatformRuntime
     }
 
     /**
-     * Loads the version info for provided content ID.
+     * Loads the content for provided content ID.
      */
-    private function loadVersionInfo(int $contentId): VersionInfo
+    private function loadContent(int $contentId): Content
     {
         return $this->repository->sudo(
-            static function (Repository $repository) use ($contentId): VersionInfo {
-                return $repository->getContentService()->loadVersionInfoById($contentId);
+            static function (Repository $repository) use ($contentId): Content {
+                return $repository->getContentService()->loadContent($contentId);
             }
         );
     }

@@ -1,8 +1,6 @@
 services:
     netgen_layouts.ezplatform.item.value_converter.location:
         class: Netgen\Layouts\Ez\Item\ValueConverter\LocationValueConverter
-        arguments:
-            - "@ezpublish.api.service.content"
         tags:
             - { name: netgen_layouts.cms_value_converter }
 
