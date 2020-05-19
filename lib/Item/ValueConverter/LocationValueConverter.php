@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ez\Item\ValueConverter;
 
-use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\Values\Content\Location;
 use Netgen\Layouts\Item\ValueConverterInterface;
 
@@ -13,16 +12,6 @@ use Netgen\Layouts\Item\ValueConverterInterface;
  */
 final class LocationValueConverter implements ValueConverterInterface
 {
-    /**
-     * @var \eZ\Publish\API\Repository\ContentService
-     */
-    private $contentService;
-
-    public function __construct(ContentService $contentService)
-    {
-        $this->contentService = $contentService;
-    }
-
     public function supports(object $object): bool
     {
         return $object instanceof Location;
@@ -45,9 +34,7 @@ final class LocationValueConverter implements ValueConverterInterface
 
     public function getName(object $object): string
     {
-        $versionInfo = $this->contentService->loadVersionInfo($object->getContentInfo());
-
-        return $versionInfo->getName() ?? '';
+        return $object->getContent()->getName() ?? '';
     }
 
     public function getIsVisible(object $object): bool

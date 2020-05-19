@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ez\Tests\Item\ValueConverter;
 
-use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
+use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use Netgen\Layouts\Ez\Item\ValueConverter\LocationValueConverter;
@@ -14,39 +14,16 @@ use PHPUnit\Framework\TestCase;
 final class LocationValueConverterTest extends TestCase
 {
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentServiceMock;
-
-    /**
      * @var \Netgen\Layouts\Ez\Item\ValueConverter\LocationValueConverter
      */
     private $valueConverter;
 
     protected function setUp(): void
     {
-        $this->contentServiceMock = $this->createMock(ContentService::class);
-
-        $this->contentServiceMock
-            ->expects(self::any())
-            ->method('loadVersionInfo')
-            ->with(self::isInstanceOf(ContentInfo::class))
-            ->willReturn(
-                new VersionInfo(
-                    [
-                        'prioritizedNameLanguageCode' => 'eng-GB',
-                        'names' => ['eng-GB' => 'Cool name'],
-                    ]
-                )
-            );
-
-        $this->valueConverter = new LocationValueConverter(
-            $this->contentServiceMock
-        );
+        $this->valueConverter = new LocationValueConverter();
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\LocationValueConverter::__construct
      * @covers \Netgen\Layouts\Ez\Item\ValueConverter\LocationValueConverter::supports
      */
     public function testSupports(): void
@@ -102,7 +79,20 @@ final class LocationValueConverterTest extends TestCase
         self::assertSame(
             'Cool name',
             $this->valueConverter->getName(
-                new Location(['contentInfo' => new ContentInfo()])
+                new Location(
+                    [
+                        'content' => new Content(
+                            [
+                                'versionInfo' => new VersionInfo(
+                                    [
+                                        'prioritizedNameLanguageCode' => 'cro-HR',
+                                        'names' => ['cro-HR' => 'Cool name'],
+                                    ]
+                                ),
+                            ]
+                        ),
+                    ]
+                )
             )
         );
     }

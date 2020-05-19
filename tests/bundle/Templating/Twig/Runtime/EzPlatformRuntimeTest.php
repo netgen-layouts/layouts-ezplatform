@@ -10,6 +10,7 @@ use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Repository\Repository;
+use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
@@ -55,7 +56,7 @@ final class EzPlatformRuntimeTest extends TestCase
     /**
      * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::__construct
      * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::getContentName
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadVersionInfo
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadContent
      */
     public function testGetContentName(): void
     {
@@ -66,13 +67,13 @@ final class EzPlatformRuntimeTest extends TestCase
 
     /**
      * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::getContentName
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadVersionInfo
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadContent
      */
     public function testGetContentNameWithException(): void
     {
         $this->contentServiceMock
             ->expects(self::once())
-            ->method('loadVersionInfoById')
+            ->method('loadContent')
             ->with(self::identicalTo(42))
             ->willThrowException(new Exception());
 
@@ -81,8 +82,8 @@ final class EzPlatformRuntimeTest extends TestCase
 
     /**
      * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::getLocationPath
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadContent
      * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadLocation
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadVersionInfo
      */
     public function testGetLocationPath(): void
     {
@@ -100,8 +101,8 @@ final class EzPlatformRuntimeTest extends TestCase
 
     /**
      * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::getLocationPath
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadContent
      * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadLocation
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadVersionInfo
      */
     public function testGetLocationPathWithException(): void
     {
@@ -251,13 +252,17 @@ final class EzPlatformRuntimeTest extends TestCase
 
         $this->contentServiceMock
             ->expects(self::any())
-            ->method('loadVersionInfoById')
+            ->method('loadContent')
             ->willReturnCallback(
-                static function ($contentId): VersionInfo {
-                    return new VersionInfo(
+                static function ($contentId): Content {
+                    return new Content(
                         [
-                            'prioritizedNameLanguageCode' => 'eng-GB',
-                            'names' => ['eng-GB' => 'Content name ' . $contentId],
+                            'versionInfo' => new VersionInfo(
+                                [
+                                    'prioritizedNameLanguageCode' => 'eng-GB',
+                                    'names' => ['eng-GB' => 'Content name ' . $contentId],
+                                ]
+                            ),
                         ]
                     );
                 }
