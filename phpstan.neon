@@ -14,6 +14,10 @@ parameters:
 
         - '#Symfony\\Component\\Security\\Core\\Role\\Role#'
 
+        # Doctrine DBAL
+        - '#Cannot call method fetchAll\(\) on Doctrine\\DBAL\\Driver\\ResultStatement\|int#'
+        - '#expects string\|null, Doctrine\\DBAL\\Query\\Expression\\CompositeExpression given#'
+
         # eZ Platform
         -
             message: '#Call to function is_string\(\) with string will always evaluate to true.#'

@@ -33,6 +33,27 @@
             </errorLevel>
         </MissingDependency>
 
+        <!-- Doctrine DBAL -->
+
+        <TooManyArguments>
+            <errorLevel type="suppress">
+                <referencedFunction name="Doctrine\DBAL\Query\Expression\ExpressionBuilder::andX" />
+                <referencedFunction name="Doctrine\DBAL\Query\Expression\ExpressionBuilder::orX" />
+            </errorLevel>
+        </TooManyArguments>
+
+        <ImplicitToStringCast>
+            <errorLevel type="suppress">
+                <file name="lib/AdminUI/RelatedLayoutsLoader.php" />
+            </errorLevel>
+        </ImplicitToStringCast>
+
+        <PossiblyInvalidMethodCall>
+            <errorLevel type="suppress">
+                <file name="lib/AdminUI/RelatedLayoutsLoader.php" />
+            </errorLevel>
+        </PossiblyInvalidMethodCall>
+
         <!-- eZ Platform -->
 
         <UndefinedDocblockClass>

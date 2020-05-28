@@ -57,7 +57,7 @@ module.exports = (env, argv) => {
     entry: `${resourcesPath}/es6/app.js`,
     output: {
       path: path.resolve(__dirname, `${resourcesPath}/${buildPath}`),
-      filename: 'js/app.js',
+      filename: 'js/ezadminui/app.js',
     },
     devtool: isEnvDevelopment ? 'cheap-module-source-map' : '',
     resolve: {
@@ -151,11 +151,9 @@ module.exports = (env, argv) => {
     plugins: [
       new CleanWebpackPlugin({
         cleanOnceBeforeBuildPatterns: ['**/*', '!images', '!dev', '!images/**', '!dev/**'],
-        // We cleanup the superfluous js/app.js since we don't build JavaScript modules here
-        cleanAfterEveryBuildPatterns: ['js/**'],
       }),
       new MiniCssExtractPlugin({
-        filename: 'css/admin/style.css',
+        filename: 'css/ezadminui/style.css',
       }),
     ],
   };

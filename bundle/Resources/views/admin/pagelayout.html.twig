@@ -10,24 +10,6 @@
     {% trans_default_domain 'nglayouts_admin' %}
 
     {% block title %}{{ title|raw }}{% endblock %}
-    {% block pageTitle %}{% endblock %}
-
-    {% block stylesheets %}
-        {# @todo Move to proper page_head block #}
-        {% include '@NetgenLayoutsAdmin/admin/head.html.twig' %}
-
-        {{ parent() }}
-
-        {% include '@NetgenLayoutsAdmin/admin/stylesheets.html.twig' %}
-
-        <link rel="stylesheet" href="{{ asset('bundles/netgenlayoutsezplatform/css/admin/style.css') }}">
-    {% endblock %}
-
-    {% block javascripts %}
-        {{ parent() }}
-
-        {% include '@NetgenLayoutsAdmin/admin/javascripts.html.twig' %}
-    {% endblock %}
 
     {% block content %}
         <div class="ng-layouts-app row">

@@ -1,0 +1,20 @@
+rules.title: 'List of layout mappings applied to this location/content, ordered by priority'
+rules.no_rules: 'No mappings'
+rules.mapped_layout: 'Mapped layout'
+rules.targets: 'Targets'
+rules.conditions: 'Conditions'
+
+related_layouts.title: 'List of layouts using this location/content as block item'
+related_layouts.layout_name: 'Name'
+related_layouts.description: 'Description'
+related_layouts.modified: 'Last modified'
+related_layouts.no_related_layouts: 'No related layouts'
+
+layouts.edit_layout: 'Edit layout'
+layouts.cache_clear.question: 'Are you sure you want to clear caches for this layout?'
+layouts.cache_clear.cancel: 'Cancel'
+layouts.cache_clear.submit: 'Clear cache'
+
+layouts.layout.clear_block_caches: 'Clear block caches'
+layouts.layout.clear_block_caches.note: 'Clears ESI and AJAX block caches'
+layouts.layout.clear_cache: 'Clear layout cache'
