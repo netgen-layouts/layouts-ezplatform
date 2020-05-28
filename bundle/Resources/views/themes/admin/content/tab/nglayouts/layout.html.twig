@@ -1,0 +1,56 @@
+{% trans_default_domain 'nglayouts_ezadminui' %}
+
+{% import '@NetgenLayoutsAdmin/admin/macros.html.twig' as macros %}
+
+{% set can_edit = is_granted('ROLE_NGLAYOUTS_EDITOR') or is_granted('nglayouts:layout:edit', layout) %}
+{% set can_clear_cache = is_granted('ROLE_NGLAYOUTS_ADMIN') or is_granted('nglayouts:layout:clear_cache', layout) %}
+
+<li class="layout-list-item" data-layout-id="{{ layout.id.toString }}">
+    <div class="layout-item">
+        <div class="layout-name">{{ layout.name }}</div>
+        <div class="layout-description">{{ layout.description }}</div>
+        <div class="layout-modified">{{ layout.modified|localizeddate }}</div>
+
+        {% if can_edit %}
+            <div class="layout-actions">
+                <a href="{{ macros.layout_path(layout.id.toString) }}" class="btn btn-primary btn-sm js-open-ngl">{{ 'layouts.edit_layout'|trans }}</a>
+            </div>
+        {% endif %}
+
+        {% if can_clear_cache %}
+            <div class="layout-dropdown dropdown">
+                <button id="layout-{{ layout.id.toString }}-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">…</button>
+                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="layout-{{ layout.id.toString }}-dropdown">
+                    <li><button {% if not http_cache_enabled %}disabled="disabled"{% endif %} class="js-clear-layout-cache">{{ 'layouts.layout.clear_cache'|trans }}</button></li>
+                    {% if is_enterprise %}
+                        <li><button {% if not http_cache_enabled %}disabled="disabled"{% endif %} class="js-clear-block-caches">{{ 'layouts.layout.clear_block_caches'|trans }} <span class="note">{{ 'layouts.layout.clear_block_caches.note'|trans }}</span></button></li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+
+    {% if can_clear_cache %}
+        <div class="modal fade ngmodal layout-cache-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{{ 'layouts.cache.layout.title'|trans({}, 'nglayouts_admin') }}: <strong>{{ layout.name }}</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <svg class="ez-icon ez-icon--medium" aria-hidden="true">
+                                <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#discard"></use>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{ 'layouts.cache_clear.question'|trans }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'layouts.cache_clear.cancel'|trans }}</button>
+                        <button type="button" class="btn btn-primary js-modal-confirm">{{ 'layouts.cache_clear.submit'|trans }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</li>

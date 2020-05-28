@@ -1,0 +1,6 @@
+view:
+    rule_view:
+        ezadminui:
+            rule:
+                template: "@ezdesign/content/tab/nglayouts/rule.html.twig"
+                match: ~

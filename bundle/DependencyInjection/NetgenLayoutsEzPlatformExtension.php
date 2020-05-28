@@ -70,6 +70,8 @@ final class NetgenLayoutsEzPlatformExtension extends Extension implements Prepen
             'view/item_view.yaml' => 'netgen_layouts',
             'view/rule_condition_view.yaml' => 'netgen_layouts',
             'view/rule_target_view.yaml' => 'netgen_layouts',
+            'view/rule_view.yaml' => 'netgen_layouts',
+            'view/layout_view.yaml' => 'netgen_layouts',
             'ezplatform/image.yaml' => 'ezpublish',
         ];
 

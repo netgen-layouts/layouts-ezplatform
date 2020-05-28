@@ -1,0 +1,25 @@
+{% trans_default_domain 'nglayouts_ezadminui' %}
+
+{% include '@ezdesign/parts/table_header.html.twig' with {
+    'headerText': 'rules.title'|trans
+} %}
+
+<div class="bg-white p-3 mb-5">
+    {% if rules is not empty %}
+        <ul class="layout-list">
+            <li class="layout-list-head">
+                <div class="layout-name">{{ 'rules.mapped_layout'|trans }}</div>
+                <div class="layout-target">{{ 'rules.targets'|trans }}</div>
+                <div class="layout-conditions">{{ 'rules.conditions'|trans }}</div>
+                <div class="layout-actions"></div>
+                <div class="layout-dropdown"></div>
+            </li>
+
+            {% for rule in rules %}
+                {{ nglayouts_render_rule(rule, { location: location }, 'ezadminui') }}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>{{ 'rules.no_rules'|trans }}</p>
+    {% endif %}
+</div>

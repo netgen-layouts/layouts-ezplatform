@@ -1,0 +1,6 @@
+view:
+    layout_view:
+        ezadminui:
+            layout:
+                template: "@ezdesign/content/tab/nglayouts/layout.html.twig"
+                match: ~
