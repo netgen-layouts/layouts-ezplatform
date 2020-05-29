@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ez\Context;
 
-use eZ\Publish\API\Repository\Values\Content\Location;
-use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
-use eZ\Publish\Core\MVC\Symfony\View\LocationValueView;
+use eZ\Publish\API\Repository\ContentService;
 use Netgen\Layouts\Context\Context;
 use Netgen\Layouts\Context\ContextProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use function in_array;
 
 final class ContextProvider implements ContextProviderInterface
 {
@@ -19,9 +18,27 @@ final class ContextProvider implements ContextProviderInterface
      */
     private $requestStack;
 
-    public function __construct(RequestStack $requestStack)
-    {
+    /**
+     * @var \eZ\Publish\API\Repository\ContentService
+     */
+    private $contentService;
+
+    /**
+     * @var string[]
+     */
+    private $allowedRoutes;
+
+    /**
+     * @param string[] $allowedRoutes
+     */
+    public function __construct(
+        RequestStack $requestStack,
+        ContentService $contentService,
+        array $allowedRoutes
+    ) {
         $this->requestStack = $requestStack;
+        $this->contentService = $contentService;
+        $this->allowedRoutes = $allowedRoutes;
     }
 
     public function provideContext(Context $context): void
@@ -31,37 +48,28 @@ final class ContextProvider implements ContextProviderInterface
             return;
         }
 
-        $locationId = null;
+        $currentRoute = $currentRequest->attributes->get('_route');
+        if (!in_array($currentRoute, $this->allowedRoutes, true)) {
+            return;
+        }
 
-        // Normally, here we would use request content extractor to
-        // extract the location from the request, but since currently
-        // it only supports extracting the content from "view" attribute,
-        // it cannot be used here since this is executed way before "view"
-        // attribute is even populated in the request.
+        $currentLocationId = null;
 
-        // @todo Consider refactoring the context builder to allow for some
-        // kind of provider fallback.
-
-        if ($currentRequest->attributes->has('view')) {
-            $view = $currentRequest->attributes->get('view');
-            if ($view instanceof LocationValueView) {
-                $locationId = $view->getLocation()->id;
-            }
-        } elseif ($currentRequest->attributes->has('location')) {
-            $location = $currentRequest->attributes->get('location');
-            if ($location instanceof Location) {
-                $locationId = $location->id;
-            }
-        } elseif ($currentRequest->attributes->has('locationId')) {
+        if ($currentRequest->attributes->has('locationId')) {
             $currentLocationId = $currentRequest->attributes->get('locationId');
-            $currentRoute = $currentRequest->attributes->get('_route');
-            if ($currentLocationId !== null && $currentRoute === UrlAliasRouter::URL_ALIAS_ROUTE_NAME) {
-                $locationId = $currentLocationId;
+        } elseif ($currentRequest->attributes->has('contentId')) {
+            $currentContentId = $currentRequest->attributes->get('contentId');
+            if ($currentContentId !== null) {
+                $currentLocationId = $this->contentService->loadContentInfo(
+                    (int) $currentContentId
+                )->mainLocationId;
             }
         }
 
-        if ($locationId !== null) {
-            $context->set('ez_location_id', (int) $locationId);
+        if ($currentLocationId === null) {
+            return;
         }
+
+        $context->set('ez_location_id', (int) $currentLocationId);
     }
 }
