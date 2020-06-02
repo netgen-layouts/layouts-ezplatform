@@ -1,7 +1,15 @@
+parameters:
+    netgen_layouts.ezplatform.context.provider.allowed_routes:
+        - !php/const eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter::URL_ALIAS_ROUTE_NAME
+        # For eZ Platform content preview support
+        - _ezpublishPreviewContent
+
 services:
     netgen_layouts.ezplatform.context.provider:
         class: Netgen\Layouts\Ez\Context\ContextProvider
         arguments:
             - "@request_stack"
+            - "@ezpublish.api.service.content"
+            - "%netgen_layouts.ezplatform.context.provider.allowed_routes%"
         tags:
             - { name: netgen_layouts.context_provider }
