@@ -28,14 +28,14 @@ use const PHP_INT_MAX;
  */
 final class ContentSearchHandler implements QueryTypeHandlerInterface
 {
-    use Traits\ParentLocationTrait;
-    use Traits\SortTrait;
-    use Traits\QueryTypeFilterTrait;
-    use Traits\MainLocationFilterTrait;
-    use Traits\CurrentLocationFilterTrait;
     use Traits\ContentTypeFilterTrait;
-    use Traits\SectionFilterTrait;
+    use Traits\CurrentLocationFilterTrait;
+    use Traits\MainLocationFilterTrait;
     use Traits\ObjectStateFilterTrait;
+    use Traits\ParentLocationTrait;
+    use Traits\QueryTypeFilterTrait;
+    use Traits\SectionFilterTrait;
+    use Traits\SortTrait;
 
     /**
      * @var \eZ\Publish\API\Repository\SearchService
