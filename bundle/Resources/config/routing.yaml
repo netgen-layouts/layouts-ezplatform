@@ -2,3 +2,5 @@ nglayouts_ezadmin_location_layouts:
     path: /nglayouts/ezadmin/layouts/{locationId}
     controller: netgen_layouts.ezplatform.admin.controller.location_layouts
     methods:  [GET]
+    requirements:
+        locationId: \d+

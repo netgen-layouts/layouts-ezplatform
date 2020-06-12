@@ -60,6 +60,7 @@ services:
             - "@event_dispatcher"
             - "@eZ\\Publish\\API\\Repository\\PermissionResolver"
             - "@security.authorization_checker"
+            - "@router"
         tags:
             - { name: ezplatform.tab, group: location-view }
 
