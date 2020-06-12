@@ -9,6 +9,8 @@ use eZ\Publish\API\Repository\PermissionResolver;
 use EzSystems\EzPlatformAdminUi\Tab\AbstractEventDispatchingTab;
 use EzSystems\EzPlatformAdminUi\Tab\ConditionalTabInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Twig\Environment;
 
@@ -25,6 +27,11 @@ final class LayoutsTab extends AbstractEventDispatchingTab implements Conditiona
     private $authorizationChecker;
 
     /**
+     * @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface
+     */
+    private $urlGenerator;
+
+    /**
      * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
      */
     public function __construct(
@@ -32,12 +39,14 @@ final class LayoutsTab extends AbstractEventDispatchingTab implements Conditiona
         $translator,
         EventDispatcherInterface $eventDispatcher,
         PermissionResolver $permissionResolver,
-        AuthorizationCheckerInterface $authorizationChecker
+        AuthorizationCheckerInterface $authorizationChecker,
+        UrlGeneratorInterface $urlGenerator
     ) {
         parent::__construct($twig, $translator, $eventDispatcher);
 
         $this->permissionResolver = $permissionResolver;
         $this->authorizationChecker = $authorizationChecker;
+        $this->urlGenerator = $urlGenerator;
     }
 
     public function getIdentifier(): string
@@ -55,6 +64,13 @@ final class LayoutsTab extends AbstractEventDispatchingTab implements Conditiona
      */
     public function evaluate(array $parameters): bool
     {
+        try {
+            // @deprecated Check for route existence for BC when upgrading
+            $this->urlGenerator->generate('nglayouts_ezadmin_location_layouts', ['locationId' => 2]);
+        } catch (RouteNotFoundException $e) {
+            return false;
+        }
+
         try {
             return $this->permissionResolver->hasAccess('nglayouts', 'editor') !== false;
         } catch (InvalidArgumentException $e) {
