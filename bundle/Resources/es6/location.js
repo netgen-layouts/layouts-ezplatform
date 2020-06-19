@@ -213,6 +213,13 @@ $(document).ready(function () {
     });
   };
 
+  /* save current location ID to local storage when opening Netgen Layouts edit interface */
+  $(document).on('click', '.js-open-ngl', function (e) {
+    localStorage.setItem('ngl_referrer', window.location.href);
+    e.currentTarget.dataset.valueId !== undefined && localStorage.setItem('ngl_referrer_value_id', e.currentTarget.dataset.valueId);
+    e.currentTarget.dataset.valueType !== undefined && localStorage.setItem('ngl_referrer_value_type', e.currentTarget.dataset.valueType);
+  });
+
   $('.mapped-layouts-box').each(function () {
     return new LayoutsBox(this);
   });
