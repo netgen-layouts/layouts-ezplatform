@@ -12,7 +12,6 @@ services:
         parent: netgen_layouts.ezplatform.admin.controller.base
         arguments:
             - "@ezpublish.api.service.content"
-            - "@ezpublish.api.service.location"
             - "@netgen_layouts.layout.resolver"
             - "@netgen_layouts.ezplatform.admin.related_layouts_loader"
 

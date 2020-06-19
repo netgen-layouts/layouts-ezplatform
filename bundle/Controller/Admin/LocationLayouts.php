@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Netgen\Bundle\LayoutsEzPlatformBundle\Controller\Admin;
 
 use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\Core\MVC\Symfony\View\ContentView;
 use Netgen\Layouts\Ez\AdminUI\RelatedLayoutsLoader;
@@ -22,11 +20,6 @@ final class LocationLayouts extends Controller
     private $contentService;
 
     /**
-     * @var \eZ\Publish\API\Repository\LocationService
-     */
-    private $locationService;
-
-    /**
      * @var \Netgen\Layouts\Layout\Resolver\LayoutResolverInterface
      */
     private $layoutResolver;
@@ -38,12 +31,10 @@ final class LocationLayouts extends Controller
 
     public function __construct(
         ContentService $contentService,
-        LocationService $locationService,
         LayoutResolverInterface $layoutResolver,
         RelatedLayoutsLoader $relatedLayoutsLoader
     ) {
         $this->contentService = $contentService;
-        $this->locationService = $locationService;
         $this->layoutResolver = $layoutResolver;
         $this->relatedLayoutsLoader = $relatedLayoutsLoader;
     }
@@ -51,12 +42,9 @@ final class LocationLayouts extends Controller
     /**
      * Renders a template that shows all layouts applied to provided location.
      */
-    public function __invoke(int $locationId): Response
+    public function __invoke(Location $location): Response
     {
-        $location = $this->locationService->loadLocation($locationId);
-        $content = $this->contentService->loadContent($location->contentInfo->id);
-
-        $request = $this->createRequest($content, $location);
+        $request = $this->createRequest($location);
 
         return $this->render(
             '@ezdesign/content/tab/nglayouts/location_layouts.html.twig',
@@ -87,13 +75,15 @@ final class LocationLayouts extends Controller
     /**
      * Creates the request used for fetching the mappings applied to provided content and location.
      */
-    private function createRequest(Content $content, Location $location): Request
+    private function createRequest(Location $location): Request
     {
         $request = Request::create('');
 
         $contentView = new ContentView();
         $contentView->setLocation($location);
-        $contentView->setContent($content);
+        $contentView->setContent(
+            $this->contentService->loadContent($location->contentInfo->id)
+        );
 
         $request->attributes->set('view', $contentView);
 
