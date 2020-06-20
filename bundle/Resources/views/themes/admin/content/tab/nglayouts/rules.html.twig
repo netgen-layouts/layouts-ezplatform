@@ -1,5 +1,9 @@
 {% trans_default_domain 'nglayouts_ezadminui' %}
 
+{#
+    Using "@ezdesign/parts/table_header.html.twig" template and "headerText"
+    variable is deprecated, it comes from eZ Platform 2.5
+#}
 {% include ['@ezdesign/ui/table_header.html.twig', '@ezdesign/parts/table_header.html.twig'] with {
     'header_text': 'rules.title'|trans,
     'headerText': 'rules.title'|trans
