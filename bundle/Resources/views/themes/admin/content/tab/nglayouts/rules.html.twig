@@ -1,6 +1,7 @@
 {% trans_default_domain 'nglayouts_ezadminui' %}
 
-{% include '@ezdesign/parts/table_header.html.twig' with {
+{% include ['@ezdesign/ui/table_header.html.twig', '@ezdesign/parts/table_header.html.twig'] with {
+    'header_text': 'rules.title'|trans,
     'headerText': 'rules.title'|trans
 } %}
 
