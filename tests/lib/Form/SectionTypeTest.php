@@ -156,7 +156,6 @@ final class SectionTypeTest extends FormTestCase
     private function configureSectionService(): void
     {
         $this->sectionServiceMock
-            ->expects(self::at(0))
             ->method('loadSections')
             ->willReturn(
                 [

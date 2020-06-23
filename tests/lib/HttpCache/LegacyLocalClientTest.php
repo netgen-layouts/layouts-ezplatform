@@ -45,7 +45,6 @@ final class LegacyLocalClientTest extends TestCase
         $purgeRequest->headers->set('key', implode(' ', $tags));
 
         $this->requestAwarePurgerMock
-            ->expects(self::at(0))
             ->method('purgeByRequest')
             ->with(self::equalTo($purgeRequest));
 

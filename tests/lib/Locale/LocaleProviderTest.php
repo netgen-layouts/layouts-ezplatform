@@ -68,16 +68,12 @@ final class LocaleProviderTest extends TestCase
             );
 
         $this->localeConverterMock
-            ->expects(self::at(0))
             ->method('convertToPOSIX')
-            ->with(self::identicalTo('eng-GB'))
-            ->willReturn('en');
-
-        $this->localeConverterMock
-            ->expects(self::at(1))
-            ->method('convertToPOSIX')
-            ->with(self::identicalTo('cro-HR'))
-            ->willReturn('hr');
+            ->withConsecutive(
+                [self::identicalTo('eng-GB')],
+                [self::identicalTo('cro-HR')]
+            )
+            ->willReturnOnConsecutiveCalls('en', 'hr');
 
         $availableLocales = $this->localeProvider->getAvailableLocales();
 
@@ -102,7 +98,6 @@ final class LocaleProviderTest extends TestCase
             );
 
         $this->localeConverterMock
-            ->expects(self::at(0))
             ->method('convertToPOSIX')
             ->with(self::identicalTo('unknown'))
             ->willReturn(null);
@@ -119,7 +114,6 @@ final class LocaleProviderTest extends TestCase
     public function testGetRequestLocales(): void
     {
         $this->configResolverMock
-            ->expects(self::at(0))
             ->method('getParameter')
             ->with(self::identicalTo('languages'))
             ->willReturn(['eng-GB', 'ger-DE', 'unknown', 'cro-HR']);
@@ -137,16 +131,12 @@ final class LocaleProviderTest extends TestCase
             );
 
         $this->localeConverterMock
-            ->expects(self::at(0))
             ->method('convertToPOSIX')
-            ->with(self::identicalTo('eng-GB'))
-            ->willReturn('en');
-
-        $this->localeConverterMock
-            ->expects(self::at(1))
-            ->method('convertToPOSIX')
-            ->with(self::identicalTo('cro-HR'))
-            ->willReturn('hr');
+            ->withConsecutive(
+                [self::identicalTo('eng-GB')],
+                [self::identicalTo('cro-HR')]
+            )
+            ->willReturnOnConsecutiveCalls('en', 'hr');
 
         $requestLocales = $this->localeProvider->getRequestLocales(Request::create(''));
 
@@ -160,7 +150,6 @@ final class LocaleProviderTest extends TestCase
     public function testGetRequestLocalesWithInvalidPosixLocale(): void
     {
         $this->configResolverMock
-            ->expects(self::at(0))
             ->method('getParameter')
             ->with(self::identicalTo('languages'))
             ->willReturn(['eng-GB']);
@@ -176,7 +165,6 @@ final class LocaleProviderTest extends TestCase
             );
 
         $this->localeConverterMock
-            ->expects(self::at(0))
             ->method('convertToPOSIX')
             ->with(self::identicalTo('eng-GB'))
             ->willReturn(null);
@@ -193,7 +181,6 @@ final class LocaleProviderTest extends TestCase
     public function testGetRequestLocalesWithNonExistingPosixLocale(): void
     {
         $this->configResolverMock
-            ->expects(self::at(0))
             ->method('getParameter')
             ->with(self::identicalTo('languages'))
             ->willReturn(['eng-GB']);
@@ -209,7 +196,6 @@ final class LocaleProviderTest extends TestCase
             );
 
         $this->localeConverterMock
-            ->expects(self::at(0))
             ->method('convertToPOSIX')
             ->with(self::identicalTo('eng-GB'))
             ->willReturn('unknown');

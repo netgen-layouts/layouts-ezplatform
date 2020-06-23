@@ -307,25 +307,30 @@ final class TagsTypeTest extends TestCase
      */
     public function testValidation($values, bool $required, bool $isValid): void
     {
+        $args = [];
+        $returns = [];
+
         if ($values !== null) {
             foreach ($values as $i => $value) {
                 if ($value !== null) {
-                    $this->tagsServiceMock
-                        ->expects(self::at($i))
-                        ->method('loadTag')
-                        ->with(self::identicalTo($value))
-                        ->willReturnCallback(
-                            static function () use ($value): Tag {
-                                if (!is_int($value) || $value <= 0) {
-                                    throw new NotFoundException('tag', $value);
-                                }
-
-                                return new Tag(['id' => $value]);
+                    $args[] = [self::identicalTo($value)];
+                    $returns[] = self::returnCallback(
+                        static function () use ($value): Tag {
+                            if (!is_int($value) || $value <= 0) {
+                                throw new NotFoundException('tag', $value);
                             }
-                        );
+
+                            return new Tag(['id' => $value]);
+                        }
+                    );
                 }
             }
         }
+
+        $this->tagsServiceMock
+            ->method('loadTag')
+            ->withConsecutive(...$args)
+            ->willReturnOnConsecutiveCalls(...$returns);
 
         $parameter = $this->getParameterDefinition(['min' => 1, 'max' => 3], $required);
         $validator = Validation::createValidatorBuilder()

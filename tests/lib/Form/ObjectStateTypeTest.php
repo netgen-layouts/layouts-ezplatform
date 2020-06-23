@@ -107,15 +107,16 @@ final class ObjectStateTypeTest extends FormTestCase
         $objectStateGroup3 = new ObjectStateGroup(['identifier' => 'third', 'names' => ['eng-GB' => 'Third'], 'mainLanguageCode' => 'eng-GB']);
 
         $this->objectStateServiceMock
-            ->expects(self::at(0))
             ->method('loadObjectStateGroups')
             ->willReturn([$objectStateGroup1, $objectStateGroup2, $objectStateGroup3]);
 
         $this->objectStateServiceMock
-            ->expects(self::at(1))
             ->method('loadObjectStates')
-            ->with(self::identicalTo($objectStateGroup1))
-            ->willReturn(
+            ->withConsecutive(
+                [self::identicalTo($objectStateGroup1)],
+                [self::identicalTo($objectStateGroup2)]
+            )
+            ->willReturnOnConsecutiveCalls(
                 [
                     new ObjectState(
                         [
@@ -131,14 +132,7 @@ final class ObjectStateTypeTest extends FormTestCase
                             'mainLanguageCode' => 'eng-GB',
                         ]
                     ),
-                ]
-            );
-
-        $this->objectStateServiceMock
-            ->expects(self::at(2))
-            ->method('loadObjectStates')
-            ->with(self::identicalTo($objectStateGroup2))
-            ->willReturn(
+                ],
                 [
                     new ObjectState(
                         [

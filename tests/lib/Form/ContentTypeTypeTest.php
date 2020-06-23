@@ -107,15 +107,16 @@ final class ContentTypeTypeTest extends FormTestCase
         $contentTypeGroup3 = new ContentTypeGroup(['identifier' => 'Group3']);
 
         $this->contentTypeServiceMock
-            ->expects(self::at(0))
             ->method('loadContentTypeGroups')
             ->willReturn([$contentTypeGroup1, $contentTypeGroup2, $contentTypeGroup3]);
 
         $this->contentTypeServiceMock
-            ->expects(self::at(1))
             ->method('loadContentTypes')
-            ->with(self::identicalTo($contentTypeGroup1))
-            ->willReturn(
+            ->withConsecutive(
+                [self::identicalTo($contentTypeGroup1)],
+                [self::identicalTo($contentTypeGroup2)]
+            )
+            ->willReturnOnConsecutiveCalls(
                 [
                     new ContentType(
                         [
@@ -131,14 +132,7 @@ final class ContentTypeTypeTest extends FormTestCase
                             'mainLanguageCode' => 'eng-GB',
                         ]
                     ),
-                ]
-            );
-
-        $this->contentTypeServiceMock
-            ->expects(self::at(2))
-            ->method('loadContentTypes')
-            ->with(self::identicalTo($contentTypeGroup2))
-            ->willReturn(
+                ],
                 [
                     new ContentType(
                         [

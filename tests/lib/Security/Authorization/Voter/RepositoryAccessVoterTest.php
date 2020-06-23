@@ -57,18 +57,23 @@ final class RepositoryAccessVoterTest extends TestCase
     {
         $token = $this->createMock(TokenInterface::class);
 
-        $i = 0;
+        $args = [];
+        $returns = [];
+
         foreach ($repoAccess as $function => $hasAccess) {
-            $this->accessDecisionManagerMock
-                ->expects(self::at($i++))
-                ->method('decide')
-                ->with(
-                    self::identicalTo($token),
-                    self::equalTo([new Attribute('nglayouts', $function)]),
-                    self::isNull()
-                )
-                ->willReturn($hasAccess);
+            $args[] = [
+                self::identicalTo($token),
+                self::equalTo([new Attribute('nglayouts', $function)]),
+                self::isNull(),
+            ];
+
+            $returns[] = $hasAccess;
         }
+
+        $this->accessDecisionManagerMock
+            ->method('decide')
+            ->withConsecutive(...$args)
+            ->willReturnOnConsecutiveCalls(...$returns);
 
         $result = $this->voter->vote($token, null, [$attribute]);
 

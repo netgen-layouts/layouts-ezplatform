@@ -173,29 +173,34 @@ final class SectionTypeTest extends TestCase
      */
     public function testValidation($value, bool $required, bool $isValid): void
     {
+        $args = [];
+        $returns = [];
         $options = [];
+
         if ($value !== null) {
             $options = ['multiple' => is_array($value)];
             foreach ((array) $value as $index => $identifier) {
-                $this->sectionServiceMock
-                    ->expects(self::at($index))
-                    ->method('loadSectionByIdentifier')
-                    ->with(self::identicalTo($identifier))
-                    ->willReturnCallback(
-                        static function () use ($identifier): EzSection {
-                            if (!is_string($identifier) || !in_array($identifier, ['media', 'standard'], true)) {
-                                throw new NotFoundException('content type', $identifier);
-                            }
-
-                            return new EzSection(
-                                [
-                                    'identifier' => $identifier,
-                                ]
-                            );
+                $args[] = [self::identicalTo($identifier)];
+                $returns[] = self::returnCallback(
+                    static function () use ($identifier): EzSection {
+                        if (!is_string($identifier) || !in_array($identifier, ['media', 'standard'], true)) {
+                            throw new NotFoundException('content type', $identifier);
                         }
-                    );
+
+                        return new EzSection(
+                            [
+                                'identifier' => $identifier,
+                            ]
+                        );
+                    }
+                );
             }
         }
+
+        $this->sectionServiceMock
+            ->method('loadSectionByIdentifier')
+            ->withConsecutive(...$args)
+            ->willReturnOnConsecutiveCalls(...$returns);
 
         $parameter = $this->getParameterDefinition($options, $required);
         $validator = Validation::createValidatorBuilder()

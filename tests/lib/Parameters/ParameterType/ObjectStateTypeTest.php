@@ -169,15 +169,16 @@ final class ObjectStateTypeTest extends TestCase
         $group2 = new ObjectStateGroup(['identifier' => 'group2']);
 
         $this->objectStateServiceMock
-            ->expects(self::at(0))
             ->method('loadObjectStateGroups')
             ->willReturn([$group1, $group2]);
 
         $this->objectStateServiceMock
-            ->expects(self::at(1))
             ->method('loadObjectStates')
-            ->with(self::identicalTo($group1))
-            ->willReturn(
+            ->withConsecutive(
+                [self::identicalTo($group1)],
+                [self::identicalTo($group2)]
+            )
+            ->willReturnOnConsecutiveCalls(
                 [
                     new EzObjectState(
                         [
@@ -189,14 +190,9 @@ final class ObjectStateTypeTest extends TestCase
                             'identifier' => 'state2',
                         ]
                     ),
-                ]
+                ],
+                []
             );
-
-        $this->objectStateServiceMock
-            ->expects(self::at(2))
-            ->method('loadObjectStates')
-            ->with(self::identicalTo($group2))
-            ->willReturn([]);
 
         $options = $value !== null ? ['multiple' => is_array($value)] : [];
         $parameter = $this->getParameterDefinition($options, $required);

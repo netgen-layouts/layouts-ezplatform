@@ -61,13 +61,11 @@ final class PageLayoutResolverTest extends TestCase
             ->willReturn($request);
 
         $this->configResolverMock
-            ->expects(self::at(0))
             ->method('hasParameter')
             ->with(self::identicalTo('page_layout'))
             ->willReturn(true);
 
         $this->configResolverMock
-            ->expects(self::at(1))
             ->method('getParameter')
             ->with(self::identicalTo('page_layout'))
             ->willReturn('resolved_layout.html.twig');
@@ -88,13 +86,11 @@ final class PageLayoutResolverTest extends TestCase
             ->willReturn($request);
 
         $this->configResolverMock
-            ->expects(self::at(0))
             ->method('hasParameter')
             ->with(self::identicalTo('page_layout'))
             ->willReturn(false);
 
         $this->configResolverMock
-            ->expects(self::at(1))
             ->method('getParameter')
             ->with(self::identicalTo('pagelayout'))
             ->willReturn('resolved_layout.html.twig');
