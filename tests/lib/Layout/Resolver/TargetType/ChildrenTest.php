@@ -11,6 +11,7 @@ use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface;
 use Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children;
 use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
+use Netgen\Layouts\Ez\Utils\RemoteIdConverter;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
@@ -58,7 +59,10 @@ final class ChildrenTest extends TestCase
             ->method('getLocationService')
             ->willReturn($this->locationServiceMock);
 
-        $this->targetType = new Children($this->contentExtractorMock);
+        $this->targetType = new Children(
+            $this->contentExtractorMock,
+            new RemoteIdConverter($this->repositoryMock)
+        );
     }
 
     /**
@@ -104,7 +108,7 @@ final class ChildrenTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate(42, $this->targetType->getConstraints());
-        self::assertNotCount(0, $errors);
+        self::assertCount(0, $errors);
     }
 
     /**
@@ -145,5 +149,61 @@ final class ChildrenTest extends TestCase
             ->willReturn(null);
 
         self::assertNull($this->targetType->provideValue($request));
+    }
+
+    /**
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children::export
+     */
+    public function testExport(): void
+    {
+        $this->locationServiceMock
+            ->expects(self::once())
+            ->method('loadLocation')
+            ->with(self::identicalTo(42))
+            ->willReturn(new Location(['remoteId' => 'abc']));
+
+        self::assertSame('abc', $this->targetType->export(42));
+    }
+
+    /**
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children::export
+     */
+    public function testExportWithInvalidValue(): void
+    {
+        $this->locationServiceMock
+            ->expects(self::once())
+            ->method('loadLocation')
+            ->with(self::identicalTo(42))
+            ->willThrowException(new NotFoundException('location', 42));
+
+        self::assertNull($this->targetType->export(42));
+    }
+
+    /**
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children::import
+     */
+    public function testImport(): void
+    {
+        $this->locationServiceMock
+            ->expects(self::once())
+            ->method('loadLocationByRemoteId')
+            ->with(self::identicalTo('abc'))
+            ->willReturn(new Location(['id' => 42]));
+
+        self::assertSame(42, $this->targetType->import('abc'));
+    }
+
+    /**
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children::import
+     */
+    public function testImportWithInvalidValue(): void
+    {
+        $this->locationServiceMock
+            ->expects(self::once())
+            ->method('loadLocationByRemoteId')
+            ->with(self::identicalTo('abc'))
+            ->willThrowException(new NotFoundException('location', 'abc'));
+
+        self::assertSame(0, $this->targetType->import('abc'));
     }
 }

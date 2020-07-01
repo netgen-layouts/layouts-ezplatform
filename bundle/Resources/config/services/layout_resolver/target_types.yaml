@@ -3,6 +3,7 @@ services:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetType\Location
         arguments:
             - "@netgen_layouts.ezplatform.content_extractor"
+            - "@netgen_layouts.ezplatform.utils.remote_id_converter"
         tags:
             - { name: netgen_layouts.target_type, priority: 140 }
 
@@ -10,6 +11,7 @@ services:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content
         arguments:
             - "@netgen_layouts.ezplatform.content_extractor"
+            - "@netgen_layouts.ezplatform.utils.remote_id_converter"
         tags:
             - { name: netgen_layouts.target_type, priority: 150 }
 
@@ -17,6 +19,7 @@ services:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children
         arguments:
             - "@netgen_layouts.ezplatform.content_extractor"
+            - "@netgen_layouts.ezplatform.utils.remote_id_converter"
         tags:
             - { name: netgen_layouts.target_type, priority: 120 }
 
@@ -24,6 +27,7 @@ services:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetType\Subtree
         arguments:
             - "@netgen_layouts.ezplatform.content_extractor"
+            - "@netgen_layouts.ezplatform.utils.remote_id_converter"
         tags:
             - { name: netgen_layouts.target_type, priority: 130 }
 

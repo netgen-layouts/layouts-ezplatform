@@ -13,6 +13,7 @@ use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface;
 use Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content;
 use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
+use Netgen\Layouts\Ez\Utils\RemoteIdConverter;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
@@ -60,7 +61,10 @@ final class ContentTest extends TestCase
             ->method('getContentService')
             ->willReturn($this->contentServiceMock);
 
-        $this->targetType = new Content($this->contentExtractorMock);
+        $this->targetType = new Content(
+            $this->contentExtractorMock,
+            new RemoteIdConverter($this->repositoryMock)
+        );
     }
 
     /**
@@ -107,7 +111,7 @@ final class ContentTest extends TestCase
             ->getValidator();
 
         $errors = $validator->validate(42, $this->targetType->getConstraints());
-        self::assertNotCount(0, $errors);
+        self::assertCount(0, $errors);
     }
 
     /**
@@ -154,5 +158,61 @@ final class ContentTest extends TestCase
             ->willReturn(null);
 
         self::assertNull($this->targetType->provideValue($request));
+    }
+
+    /**
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content::export
+     */
+    public function testExport(): void
+    {
+        $this->contentServiceMock
+            ->expects(self::once())
+            ->method('loadContentInfo')
+            ->with(self::identicalTo(42))
+            ->willReturn(new ContentInfo(['remoteId' => 'abc']));
+
+        self::assertSame('abc', $this->targetType->export(42));
+    }
+
+    /**
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content::export
+     */
+    public function testExportWithInvalidValue(): void
+    {
+        $this->contentServiceMock
+            ->expects(self::once())
+            ->method('loadContentInfo')
+            ->with(self::identicalTo(42))
+            ->willThrowException(new NotFoundException('content', 42));
+
+        self::assertNull($this->targetType->export(42));
+    }
+
+    /**
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content::import
+     */
+    public function testImport(): void
+    {
+        $this->contentServiceMock
+            ->expects(self::once())
+            ->method('loadContentInfoByRemoteId')
+            ->with(self::identicalTo('abc'))
+            ->willReturn(new ContentInfo(['id' => 42]));
+
+        self::assertSame(42, $this->targetType->import('abc'));
+    }
+
+    /**
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content::import
+     */
+    public function testImportWithInvalidValue(): void
+    {
+        $this->contentServiceMock
+            ->expects(self::once())
+            ->method('loadContentInfoByRemoteId')
+            ->with(self::identicalTo('abc'))
+            ->willThrowException(new NotFoundException('content', 'abc'));
+
+        self::assertSame(0, $this->targetType->import('abc'));
     }
 }
