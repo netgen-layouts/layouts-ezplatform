@@ -29,3 +29,8 @@ services:
             - "@security.access.decision_manager"
         tags:
             - { name: security.voter, priority: 0 }
+
+    netgen_layouts.ezplatform.utils.remote_id_converter:
+        class: Netgen\Layouts\Ez\Utils\RemoteIdConverter
+        arguments:
+            - "@ezpublish.api.repository"
