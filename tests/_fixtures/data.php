@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 return [
     'nglayouts_rule' => [
-        ['id' => 1, 'status' => 1, 'uuid' => '33921687-9f7e-4e01-9ac9-2c1ab419d12a', 'layout_id' => 11, 'comment' => ''],
-        ['id' => 2, 'status' => 0, 'uuid' => '8ac28caf-3ca1-4860-abf0-d567f817f671', 'layout_id' => 12, 'comment' => ''],
-        ['id' => 3, 'status' => 1, 'uuid' => '29c4f0e2-4af4-48a8-aa47-cc52c39717b7', 'layout_id' => 13, 'comment' => ''],
-        ['id' => 4, 'status' => 1, 'uuid' => 'b70ec854-7236-4d79-bbf2-247244f6331e', 'layout_id' => 14, 'comment' => ''],
-        ['id' => 5, 'status' => 1, 'uuid' => 'c40177b4-7032-42a2-83c5-f7d894061ce2', 'layout_id' => null, 'comment' => ''],
-        ['id' => 6, 'status' => 1, 'uuid' => '4fc5d561-b1b3-46b9-a7ab-46e2c4e70fea', 'layout_id' => 16, 'comment' => ''],
-        ['id' => 7, 'status' => 1, 'uuid' => '04157961-0e48-47c8-b1e9-d2f37c4b2de9', 'layout_id' => 17, 'comment' => ''],
-        ['id' => 8, 'status' => 1, 'uuid' => '697e7e47-d807-4ab8-9b2b-da6ce6d0d06d', 'layout_id' => 1, 'comment' => ''],
-        ['id' => 9, 'status' => 1, 'uuid' => 'a8e22201-e890-41d6-823a-e3dbb54796b4', 'layout_id' => 19, 'comment' => ''],
-        ['id' => 10, 'status' => 1, 'uuid' => '9073b475-6fd2-41f8-991a-df3acd229e20', 'layout_id' => 20, 'comment' => ''],
-        ['id' => 11, 'status' => 1, 'uuid' => '0f088e4b-8e89-4cf8-afb3-414af98742ef', 'layout_id' => 21, 'comment' => ''],
+        ['id' => 1, 'status' => 1, 'uuid' => '33921687-9f7e-4e01-9ac9-2c1ab419d12a', 'layout_uuid' => '7f453afa-fba8-44d9-8751-f15e41234d11', 'comment' => ''],
+        ['id' => 2, 'status' => 0, 'uuid' => '8ac28caf-3ca1-4860-abf0-d567f817f671', 'layout_uuid' => '0eae9199-1e79-4e59-870d-b397dc6a69f9', 'comment' => ''],
+        ['id' => 3, 'status' => 1, 'uuid' => '29c4f0e2-4af4-48a8-aa47-cc52c39717b7', 'layout_uuid' => '8818e594-d461-454b-88cb-34212c2aced1', 'comment' => ''],
+        ['id' => 4, 'status' => 1, 'uuid' => 'b70ec854-7236-4d79-bbf2-247244f6331e', 'layout_uuid' => 'f72151e1-2af5-4ba0-988e-5f1625f3f1a6', 'comment' => ''],
+        ['id' => 5, 'status' => 1, 'uuid' => 'c40177b4-7032-42a2-83c5-f7d894061ce2', 'layout_uuid' => null, 'comment' => ''],
+        ['id' => 6, 'status' => 1, 'uuid' => '4fc5d561-b1b3-46b9-a7ab-46e2c4e70fea', 'layout_uuid' => '96f71116-1a13-413c-854c-db13e4281b87', 'comment' => ''],
+        ['id' => 7, 'status' => 1, 'uuid' => '04157961-0e48-47c8-b1e9-d2f37c4b2de9', 'layout_uuid' => 'bef60724-54e9-4457-9739-7a21d27a3902', 'comment' => ''],
+        ['id' => 8, 'status' => 1, 'uuid' => '697e7e47-d807-4ab8-9b2b-da6ce6d0d06d', 'layout_uuid' => '81168ed3-86f9-55ea-b153-101f96f2c136', 'comment' => ''],
+        ['id' => 9, 'status' => 1, 'uuid' => 'a8e22201-e890-41d6-823a-e3dbb54796b4', 'layout_uuid' => '00e1885a-5054-4b56-8dc7-1181297d7112', 'comment' => ''],
+        ['id' => 10, 'status' => 1, 'uuid' => '9073b475-6fd2-41f8-991a-df3acd229e20', 'layout_uuid' => 'ce8c0a39-588c-4f28-be01-0e158b38950', 'comment' => ''],
+        ['id' => 11, 'status' => 1, 'uuid' => '0f088e4b-8e89-4cf8-afb3-414af98742ef', 'layout_uuid' => '532d2a67-6d9f-4026-b17e-8ac02b30cbb', 'comment' => ''],
     ],
     'nglayouts_rule_data' => [
         ['rule_id' => 1, 'enabled' => 1, 'priority' => 10],
