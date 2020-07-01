@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ez\Layout\Resolver\TargetType;
 
-use Netgen\Layouts\Layout\Resolver\TargetTypeInterface;
+use Netgen\Layouts\Layout\Resolver\TargetType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
 use function is_string;
 
-class SemanticPathInfo implements TargetTypeInterface
+class SemanticPathInfo extends TargetType
 {
     public static function getType(): string
     {

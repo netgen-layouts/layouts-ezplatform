@@ -7,14 +7,14 @@ namespace Netgen\Layouts\Ez\Layout\Resolver\ConditionType;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface;
 use Netgen\Layouts\Ez\Validator\Constraint as EzConstraints;
-use Netgen\Layouts\Layout\Resolver\ConditionTypeInterface;
+use Netgen\Layouts\Layout\Resolver\ConditionType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
 use function count;
 use function in_array;
 use function is_array;
 
-final class ContentType implements ConditionTypeInterface
+final class ContentType extends ConditionType
 {
     /**
      * @var \Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface

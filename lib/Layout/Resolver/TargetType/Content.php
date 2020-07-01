@@ -7,11 +7,11 @@ namespace Netgen\Layouts\Ez\Layout\Resolver\TargetType;
 use eZ\Publish\API\Repository\Values\Content\Content as APIContent;
 use Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface;
 use Netgen\Layouts\Ez\Validator\Constraint as EzConstraints;
-use Netgen\Layouts\Layout\Resolver\TargetTypeInterface;
+use Netgen\Layouts\Layout\Resolver\TargetType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
 
-final class Content implements TargetTypeInterface
+final class Content extends TargetType
 {
     /**
      * @var \Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface
