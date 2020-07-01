@@ -27,6 +27,10 @@ parameters:
             message: '#Call to function is_array\(\) with array\<.+\> will always evaluate to true.#'
             path: lib/Validator/
 
+        -
+            message: "#Casting to int something that's already int.#"
+            path: lib/Utils/RemoteIdConverter.php
+
         - '#EzSystems\\PlatformHttpCacheBundle\\RequestAwarePurger#'
 
         # Disable errors about missing value types in various vendor classes
