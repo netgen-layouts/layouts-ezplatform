@@ -6,16 +6,22 @@ namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\DependencyInjection\Compil
 
 use EzSystems\PlatformHttpCacheBundle\PurgeClient\LocalPurgeClient;
 use EzSystems\PlatformHttpCacheBundle\PurgeClient\VarnishPurgeClient;
-use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
+use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractContainerBuilderTestCase;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\ContainerBuilderHasAliasConstraint;
 use Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass;
 use stdClass;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 
-final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
+final class ConfigureHttpCachePassTest extends AbstractContainerBuilderTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->container->addCompilerPass(new ConfigureHttpCachePass());
+    }
+
     /**
      * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
      * @dataProvider processDataProvider
@@ -64,14 +70,6 @@ final class ConfigureHttpCachePassTest extends AbstractCompilerPassTestCase
         $this->compile();
 
         self::assertInstanceOf(FrozenParameterBag::class, $this->container->getParameterBag());
-    }
-
-    /**
-     * Register the compiler pass under test.
-     */
-    protected function registerCompilerPass(ContainerBuilder $container): void
-    {
-        $container->addCompilerPass(new ConfigureHttpCachePass());
     }
 
     /**

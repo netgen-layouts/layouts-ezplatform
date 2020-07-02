@@ -4,13 +4,19 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\DependencyInjection\CompilerPass\View;
 
-use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
+use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractContainerBuilderTestCase;
 use Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 
-final class DefaultViewTemplatesPassTest extends AbstractCompilerPassTestCase
+final class DefaultViewTemplatesPassTest extends AbstractContainerBuilderTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->container->addCompilerPass(new DefaultViewTemplatesPass());
+    }
+
     /**
      * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass::process
      */
@@ -153,13 +159,5 @@ final class DefaultViewTemplatesPassTest extends AbstractCompilerPassTestCase
         $this->compile();
 
         self::assertInstanceOf(FrozenParameterBag::class, $this->container->getParameterBag());
-    }
-
-    /**
-     * Register the compiler pass under test.
-     */
-    protected function registerCompilerPass(ContainerBuilder $container): void
-    {
-        $container->addCompilerPass(new DefaultViewTemplatesPass());
     }
 }
