@@ -27,7 +27,7 @@ final class ObjectStateValidator extends ConstraintValidator
     private $repository;
 
     /**
-     * @var array<string, string[]>|null
+     * @var array<string, string[]>
      */
     private $stateIdentifiers;
 
@@ -109,7 +109,7 @@ final class ObjectStateValidator extends ConstraintValidator
      */
     private function loadStateIdentifiers(): array
     {
-        if ($this->stateIdentifiers === null) {
+        if (!isset($this->stateIdentifiers)) {
             $this->stateIdentifiers = $this->repository->sudo(
                 static function (Repository $repository): array {
                     $stateIdentifiers = [];
