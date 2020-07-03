@@ -21,7 +21,7 @@ use Symfony\Component\Validator\Validation;
 final class ContentTest extends TestCase
 {
     /**
-     * @var \eZ\Publish\API\Repository\Repository&\PHPUnit\Framework\MockObject\MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository
      */
     private $repositoryMock;
 

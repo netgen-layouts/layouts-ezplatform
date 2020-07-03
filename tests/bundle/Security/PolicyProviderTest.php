@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 final class PolicyProviderTest extends TestCase
 {
     /**
-     * @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ConfigBuilderInterface&\PHPUnit\Framework\MockObject\MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ConfigBuilderInterface
      */
     private $configBuilderMock;
 

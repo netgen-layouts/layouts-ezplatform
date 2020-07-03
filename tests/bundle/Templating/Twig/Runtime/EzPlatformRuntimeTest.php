@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
 final class EzPlatformRuntimeTest extends TestCase
 {
     /**
-     * @var \eZ\Publish\API\Repository\Repository&\PHPUnit\Framework\MockObject\MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository
      */
     private $repositoryMock;
 

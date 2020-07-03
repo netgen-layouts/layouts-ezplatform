@@ -24,7 +24,7 @@ final class LocationTypeTest extends TestCase
     use ParameterTypeTestTrait;
 
     /**
-     * @var \eZ\Publish\API\Repository\Repository&\PHPUnit\Framework\MockObject\MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository
      */
     private $repositoryMock;
 
