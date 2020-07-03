@@ -70,6 +70,11 @@ final class MainMenuBuilderListener implements EventSubscriberInterface
             ->setLabel('menu.main_menu.shared_layouts')
             ->setExtra('translation_domain', 'nglayouts_admin');
 
+        $layouts
+            ->addChild('transfer', ['route' => 'nglayouts_admin_transfer_index'])
+            ->setLabel('menu.main_menu.transfer')
+            ->setExtra('translation_domain', 'nglayouts_admin');
+
         $menu->reorderChildren($menuOrder);
     }
 
