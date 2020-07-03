@@ -27,7 +27,7 @@ final class ObjectStateValidator extends ConstraintValidator
     private $repository;
 
     /**
-     * @var array<string, string[]>
+     * @var array<string, string[]>|null
      */
     private $stateIdentifiers;
 
