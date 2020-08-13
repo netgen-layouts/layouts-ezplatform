@@ -1,0 +1,2 @@
+services:
+    Netgen\Layouts\Ez\ContentProvider\ContentProviderInterface: "@netgen_layouts.ezplatform.content_provider"
