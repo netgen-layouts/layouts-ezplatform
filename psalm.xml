@@ -20,6 +20,7 @@
         <UndefinedInterfaceMethod>
             <errorLevel type="suppress">
                 <referencedMethod name="Symfony\Component\Security\Core\Role\RoleHierarchyInterface::getReachableRoles" />
+                <referencedMethod name="Doctrine\DBAL\Driver\ResultStatement::fetchAllAssociative" />
             </errorLevel>
         </UndefinedInterfaceMethod>
 
@@ -36,13 +37,6 @@
         </MissingDependency>
 
         <!-- Doctrine DBAL -->
-
-        <TooManyArguments>
-            <errorLevel type="suppress">
-                <referencedFunction name="Doctrine\DBAL\Query\Expression\ExpressionBuilder::andX" />
-                <referencedFunction name="Doctrine\DBAL\Query\Expression\ExpressionBuilder::orX" />
-            </errorLevel>
-        </TooManyArguments>
 
         <ImplicitToStringCast>
             <errorLevel type="suppress">

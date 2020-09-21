@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ez\AdminUI;
 
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\FetchMode;
 use Doctrine\DBAL\Types\Types;
 use eZ\Publish\API\Repository\Values\Content\Location;
 use Netgen\Layouts\API\Service\LayoutService;
@@ -50,7 +49,7 @@ final class RelatedLayoutsLoader
                 'ci',
                 'nglayouts_block_collection',
                 'bc',
-                $query->expr()->andX(
+                $query->expr()->and(
                     $query->expr()->eq('bc.collection_id', 'ci.collection_id'),
                     $query->expr()->eq('bc.collection_status', 'ci.status')
                 )
@@ -59,7 +58,7 @@ final class RelatedLayoutsLoader
                 'bc',
                 'nglayouts_block',
                 'b',
-                $query->expr()->andX(
+                $query->expr()->and(
                     $query->expr()->eq('b.id', 'bc.block_id'),
                     $query->expr()->eq('b.status', 'bc.block_status')
                 )
@@ -68,19 +67,19 @@ final class RelatedLayoutsLoader
                 'b',
                 'nglayouts_layout',
                 'l',
-                $query->expr()->andX(
+                $query->expr()->and(
                     $query->expr()->eq('l.id', 'b.layout_id'),
                     $query->expr()->eq('l.status', 'b.status')
                 )
             )
             ->where(
-                $query->expr()->andX(
-                    $query->expr()->orX(
-                        $query->expr()->andX(
+                $query->expr()->and(
+                    $query->expr()->or(
+                        $query->expr()->and(
                             $query->expr()->eq('ci.value_type', ':content_value_type'),
                             $query->expr()->eq('ci.value', ':content_id')
                         ),
-                        $query->expr()->andX(
+                        $query->expr()->and(
                             $query->expr()->eq('ci.value_type', ':location_value_type'),
                             $query->expr()->eq('ci.value', ':location_id')
                         )
@@ -99,7 +98,7 @@ final class RelatedLayoutsLoader
             function (array $dataRow): Layout {
                 return $this->layoutService->loadLayout(Uuid::fromString($dataRow['uuid']));
             },
-            $query->execute()->fetchAll(FetchMode::ASSOCIATIVE)
+            $query->execute()->fetchAllAssociative()
         );
     }
 }
