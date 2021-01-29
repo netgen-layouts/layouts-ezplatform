@@ -68,8 +68,8 @@ final class ContentTypeType extends AbstractType
             $contentTypes = $this->contentTypeService->loadContentTypes($group);
             foreach ($contentTypes as $contentType) {
                 if (
-                    is_array($configuredGroups[$group->identifier]) &&
-                    !in_array($contentType->identifier, $configuredGroups[$group->identifier], true)
+                    is_array($configuredGroups[$group->identifier])
+                    && !in_array($contentType->identifier, $configuredGroups[$group->identifier], true)
                 ) {
                     continue;
                 }

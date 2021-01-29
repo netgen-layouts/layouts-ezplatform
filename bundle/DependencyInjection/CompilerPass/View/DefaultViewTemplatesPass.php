@@ -17,10 +17,9 @@ final class DefaultViewTemplatesPass implements CompilerPassInterface
             return;
         }
 
-        $scopes = array_merge(
-            ['default'],
-            $container->getParameter('ezpublish.siteaccess.list')
-        );
+        /** @var string[] $siteAccessList */
+        $siteAccessList = $container->getParameter('ezpublish.siteaccess.list');
+        $scopes = array_merge(['default'], $siteAccessList);
 
         foreach ($scopes as $scope) {
             $scopeParam = "netgen_layouts.{$scope}.view";
@@ -28,6 +27,7 @@ final class DefaultViewTemplatesPass implements CompilerPassInterface
                 continue;
             }
 
+            /** @var array<string, array>|null $scopeRules */
             $scopeRules = $container->getParameter($scopeParam);
             $scopeRules = $this->updateRules($container, $scopeRules);
             $container->setParameter($scopeParam, $scopeRules);
@@ -45,6 +45,7 @@ final class DefaultViewTemplatesPass implements CompilerPassInterface
     {
         $allRules = is_array($allRules) ? $allRules : [];
 
+        /** @var array<string, mixed[]> $defaultTemplates */
         $defaultTemplates = $container->getParameter('netgen_layouts.default_view_templates');
 
         foreach ($defaultTemplates as $viewName => $viewTemplates) {

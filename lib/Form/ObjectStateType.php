@@ -69,8 +69,8 @@ final class ObjectStateType extends AbstractType
 
             foreach ($objectStates as $objectState) {
                 if (
-                    is_array($configuredGroups[$group->identifier]) &&
-                    !in_array($objectState->identifier, $configuredGroups[$group->identifier], true)
+                    is_array($configuredGroups[$group->identifier])
+                    && !in_array($objectState->identifier, $configuredGroups[$group->identifier], true)
                 ) {
                     continue;
                 }

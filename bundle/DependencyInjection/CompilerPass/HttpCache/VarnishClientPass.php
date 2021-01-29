@@ -13,8 +13,8 @@ final class VarnishClientPass implements CompilerPassInterface
     public function process(ContainerBuilder $container): void
     {
         if (
-            !$container->has('netgen_layouts.http_cache.client.varnish') ||
-            !$container->has('netgen_layouts.ezplatform.http_cache.varnish.host_header_provider')
+            !$container->has('netgen_layouts.http_cache.client.varnish')
+            || !$container->has('netgen_layouts.ezplatform.http_cache.varnish.host_header_provider')
         ) {
             return;
         }

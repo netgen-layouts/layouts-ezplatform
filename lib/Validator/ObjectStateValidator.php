@@ -83,15 +83,15 @@ final class ObjectStateValidator extends ConstraintValidator
         }
 
         if (
-            !array_key_exists($value[0], $constraint->allowedStates) ||
-            $constraint->allowedStates[$value[0]] === true
+            !array_key_exists($value[0], $constraint->allowedStates)
+            || $constraint->allowedStates[$value[0]] === true
         ) {
             return;
         }
 
         if (
-            is_array($constraint->allowedStates[$value[0]]) &&
-            in_array($value[1], $constraint->allowedStates[$value[0]], true)
+            is_array($constraint->allowedStates[$value[0]])
+            && in_array($value[1], $constraint->allowedStates[$value[0]], true)
         ) {
             return;
         }

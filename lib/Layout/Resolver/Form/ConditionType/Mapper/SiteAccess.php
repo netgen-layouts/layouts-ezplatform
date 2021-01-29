@@ -21,8 +21,7 @@ final class SiteAccess extends Mapper
     public function __construct(array $siteAccessList)
     {
         // We want the array to have the same list for keys as well as values
-        $siteAccessList = array_combine($siteAccessList, $siteAccessList);
-        $this->siteAccessList = $siteAccessList !== false ? $siteAccessList : [];
+        $this->siteAccessList = array_combine($siteAccessList, $siteAccessList);
     }
 
     public function getFormType(): string

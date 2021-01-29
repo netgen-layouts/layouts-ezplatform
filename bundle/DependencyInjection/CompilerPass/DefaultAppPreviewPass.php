@@ -25,10 +25,9 @@ final class DefaultAppPreviewPass implements CompilerPassInterface
             'params' => [],
         ];
 
-        $scopes = array_merge(
-            ['default'],
-            $container->getParameter('ezpublish.siteaccess.list')
-        );
+        /** @var string[] $siteAccessList */
+        $siteAccessList = $container->getParameter('ezpublish.siteaccess.list');
+        $scopes = array_merge(['default'], $siteAccessList);
 
         foreach ($scopes as $scope) {
             $scopeParams = [
@@ -41,6 +40,7 @@ final class DefaultAppPreviewPass implements CompilerPassInterface
                     continue;
                 }
 
+                /** @var array<string, array>|null $scopeRules */
                 $scopeRules = $container->getParameter($scopeParam);
                 $scopeRules = $this->addDefaultPreviewRule($scopeRules, $defaultRule);
                 $container->setParameter($scopeParam, $scopeRules);

@@ -80,15 +80,15 @@ final class ContentTypeValidator extends ConstraintValidator
 
         foreach ($groupIdentifiers as $groupIdentifier) {
             if (
-                !array_key_exists($groupIdentifier, $constraint->allowedTypes) ||
-                $constraint->allowedTypes[$groupIdentifier] === true
+                !array_key_exists($groupIdentifier, $constraint->allowedTypes)
+                || $constraint->allowedTypes[$groupIdentifier] === true
             ) {
                 return;
             }
 
             if (
-                is_array($constraint->allowedTypes[$groupIdentifier]) &&
-                in_array($contentType->identifier, $constraint->allowedTypes[$groupIdentifier], true)
+                is_array($constraint->allowedTypes[$groupIdentifier])
+                && in_array($contentType->identifier, $constraint->allowedTypes[$groupIdentifier], true)
             ) {
                 return;
             }

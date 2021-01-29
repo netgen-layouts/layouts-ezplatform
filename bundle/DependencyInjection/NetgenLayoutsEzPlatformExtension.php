@@ -16,9 +16,8 @@ use Symfony\Component\DependencyInjection\Loader\GlobFileLoader;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Yaml\Yaml;
-use function array_keys;
+use function array_key_exists;
 use function file_get_contents;
-use function in_array;
 use function interface_exists;
 
 final class NetgenLayoutsEzPlatformExtension extends Extension implements PrependExtensionInterface
@@ -42,17 +41,18 @@ final class NetgenLayoutsEzPlatformExtension extends Extension implements Prepen
         $loader->load('default_settings.yaml');
         $loader->load('services/**/*.yaml', 'glob');
 
-        $activatedBundles = array_keys($container->getParameter('kernel.bundles'));
+        /** @var array<string, string> $activatedBundles */
+        $activatedBundles = $container->getParameter('kernel.bundles');
 
-        if (!in_array('NetgenLayoutsEnterpriseEzPlatformBundle', $activatedBundles, true)) {
+        if (!array_key_exists('NetgenLayoutsEnterpriseEzPlatformBundle', $activatedBundles)) {
             $loader->load('enterprise/services.yaml');
         }
 
-        if (in_array('EzPlatformAdminUiBundle', $activatedBundles, true)) {
+        if (array_key_exists('EzPlatformAdminUiBundle', $activatedBundles)) {
             $loader->load('admin/services.yaml');
         }
 
-        if (in_array('NetgenTagsBundle', $activatedBundles, true)) {
+        if (array_key_exists('NetgenTagsBundle', $activatedBundles)) {
             $loader->load('eztags/services.yaml');
         }
 

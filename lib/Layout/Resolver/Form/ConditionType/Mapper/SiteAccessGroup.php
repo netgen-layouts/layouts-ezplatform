@@ -24,8 +24,7 @@ final class SiteAccessGroup extends Mapper
         $siteAccessGroupList = array_keys($siteAccessGroupList);
 
         // We want the array to have the same list for keys as well as values
-        $siteAccessGroupList = array_combine($siteAccessGroupList, $siteAccessGroupList);
-        $this->siteAccessGroupList = $siteAccessGroupList !== false ? $siteAccessGroupList : [];
+        $this->siteAccessGroupList = array_combine($siteAccessGroupList, $siteAccessGroupList);
     }
 
     public function getFormType(): string
