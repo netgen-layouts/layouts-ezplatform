@@ -12,14 +12,14 @@
     "require": {
         "netgen/layouts-core": "~1.3.0",
         "netgen/content-browser-ezplatform": "^1.3",
-        "ezsystems/ezplatform-admin-ui": "^1.5 || ^2.0",
-        "ezsystems/ezplatform-http-cache": "^1.0 || ^2.0"
+        "ezsystems/ezplatform-admin-ui": "^1.5 || ^2.3",
+        "ezsystems/ezplatform-http-cache": "^1.0 || ^2.3"
     },
     "require-dev": {
         "netgen/layouts-coding-standard": "^1.0",
         "phpunit/phpunit": "^9.3",
-        "symfony/phpunit-bridge": "^5.0",
-        "symfony/var-dumper": "^3.4 || ^5.0",
+        "symfony/phpunit-bridge": "^5.2",
+        "symfony/var-dumper": "^3.4 || ^5.2",
         "phpstan/phpstan": "^0.12",
         "phpstan/phpstan-strict-rules": "^0.12",
         "phpstan/phpstan-phpunit": "^0.12",
