@@ -29,7 +29,7 @@ final class ObjectStateValidator extends ConstraintValidator
     /**
      * @var array<string, string[]>
      */
-    private $stateIdentifiers;
+    private $stateIdentifiers = [];
 
     public function __construct(Repository $repository)
     {
@@ -109,7 +109,7 @@ final class ObjectStateValidator extends ConstraintValidator
      */
     private function loadStateIdentifiers(): array
     {
-        if (!isset($this->stateIdentifiers)) {
+        if ($this->stateIdentifiers === []) {
             $this->stateIdentifiers = $this->repository->sudo(
                 static function (Repository $repository): array {
                     $stateIdentifiers = [];
