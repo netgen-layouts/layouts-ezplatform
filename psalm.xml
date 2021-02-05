@@ -23,18 +23,6 @@
             </errorLevel>
         </UndefinedInterfaceMethod>
 
-        <ArgumentTypeCoercion>
-            <errorLevel type="suppress">
-                <file name="lib/Security/Authorization/Voter/RepositoryAccessVoter.php" />
-            </errorLevel>
-        </ArgumentTypeCoercion>
-
-        <MissingDependency>
-            <errorLevel type="suppress">
-                <file name="bundle/EventListener/Admin/SetPageLayoutListener.php" />
-            </errorLevel>
-        </MissingDependency>
-
         <!-- Doctrine DBAL -->
 
         <ImplicitToStringCast>
