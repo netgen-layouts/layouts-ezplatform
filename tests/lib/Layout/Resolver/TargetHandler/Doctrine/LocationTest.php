@@ -6,6 +6,8 @@ namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\TargetHandler\Doctrine;
 
 use Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Location;
 use Netgen\Layouts\Persistence\Doctrine\QueryHandler\TargetHandlerInterface;
+use Netgen\Layouts\Persistence\Values\LayoutResolver\RuleGroup;
+use Netgen\Layouts\Persistence\Values\Value;
 use Netgen\Layouts\Tests\Layout\Resolver\TargetHandler\Doctrine\AbstractTargetHandlerTest;
 
 final class LocationTest extends AbstractTargetHandlerTest
@@ -15,7 +17,11 @@ final class LocationTest extends AbstractTargetHandlerTest
      */
     public function testMatchRules(): void
     {
-        $rules = $this->handler->matchRules($this->getTargetIdentifier(), 72);
+        $rules = $this->handler->matchRules(
+            $this->handler->loadRuleGroup(RuleGroup::ROOT_UUID, Value::STATUS_PUBLISHED),
+            $this->getTargetIdentifier(),
+            72
+        );
 
         self::assertCount(1, $rules);
         self::assertSame(1, $rules[0]->id);
