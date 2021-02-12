@@ -35,15 +35,9 @@ final class RepositoryAccessVoter extends Voter
         'ROLE_NGLAYOUTS_API' => 'api',
     ];
 
-    /**
-     * @var \Symfony\Component\Security\Core\Role\RoleHierarchyInterface
-     */
-    private $roleHierarchy;
+    private RoleHierarchyInterface $roleHierarchy;
 
-    /**
-     * @var \Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface
-     */
-    private $accessDecisionManager;
+    private AccessDecisionManagerInterface $accessDecisionManager;
 
     public function __construct(
         RoleHierarchyInterface $roleHierarchy,

@@ -14,10 +14,7 @@ use function in_array;
 
 final class SectionType extends AbstractType
 {
-    /**
-     * @var \eZ\Publish\API\Repository\SectionService
-     */
-    private $sectionService;
+    private SectionService $sectionService;
 
     public function __construct(SectionService $sectionService)
     {

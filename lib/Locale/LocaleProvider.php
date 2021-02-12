@@ -20,20 +20,11 @@ use function is_array;
  */
 final class LocaleProvider implements LocaleProviderInterface
 {
-    /**
-     * @var \eZ\Publish\API\Repository\LanguageService
-     */
-    private $languageService;
+    private LanguageService $languageService;
 
-    /**
-     * @var \eZ\Publish\Core\MVC\Symfony\Locale\LocaleConverterInterface
-     */
-    private $localeConverter;
+    private LocaleConverterInterface $localeConverter;
 
-    /**
-     * @var \eZ\Publish\Core\MVC\ConfigResolverInterface
-     */
-    private $configResolver;
+    private ConfigResolverInterface $configResolver;
 
     public function __construct(
         LanguageService $languageService,

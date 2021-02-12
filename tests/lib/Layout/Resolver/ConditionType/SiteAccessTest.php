@@ -13,10 +13,7 @@ use Symfony\Component\Validator\Validation;
 
 final class SiteAccessTest extends TestCase
 {
-    /**
-     * @var \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccess
-     */
-    private $conditionType;
+    private SiteAccess $conditionType;
 
     protected function setUp(): void
     {

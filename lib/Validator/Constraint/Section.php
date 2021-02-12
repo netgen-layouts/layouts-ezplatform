@@ -8,15 +8,9 @@ use Symfony\Component\Validator\Constraint;
 
 final class Section extends Constraint
 {
-    /**
-     * @var string
-     */
-    public $message = 'netgen_layouts.ezplatform.section.section_not_found';
+    public string $message = 'netgen_layouts.ezplatform.section.section_not_found';
 
-    /**
-     * @var string
-     */
-    public $notAllowedMessage = 'netgen_layouts.ezplatform.section.section_not_allowed';
+    public string $notAllowedMessage = 'netgen_layouts.ezplatform.section.section_not_allowed';
 
     /**
      * If not empty, the constraint will validate only if section identifier
@@ -24,7 +18,7 @@ final class Section extends Constraint
      *
      * @var string[]
      */
-    public $allowedSections = [];
+    public array $allowedSections = [];
 
     public function validatedBy(): string
     {

@@ -13,21 +13,16 @@ use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
 use Netgen\Layouts\Ez\Validator\Constraint\Location;
 use Netgen\Layouts\Ez\Validator\LocationValidator;
 use Netgen\Layouts\Tests\TestCase\ValidatorTestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 final class LocationValidatorTest extends ValidatorTestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $repositoryMock;
+    private MockObject $repositoryMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $locationServiceMock;
+    private MockObject $locationServiceMock;
 
     protected function setUp(): void
     {

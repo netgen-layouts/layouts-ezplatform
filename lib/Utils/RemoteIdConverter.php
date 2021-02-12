@@ -11,10 +11,7 @@ use eZ\Publish\API\Repository\Values\Content\Location;
 
 final class RemoteIdConverter
 {
-    /**
-     * @var \eZ\Publish\API\Repository\Repository
-     */
-    private $repository;
+    private Repository $repository;
 
     public function __construct(Repository $repository)
     {

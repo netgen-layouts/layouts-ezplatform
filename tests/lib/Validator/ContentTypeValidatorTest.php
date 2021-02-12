@@ -12,6 +12,7 @@ use eZ\Publish\Core\Repository\Values\ContentType\ContentTypeGroup;
 use Netgen\Layouts\Ez\Validator\Constraint\ContentType;
 use Netgen\Layouts\Ez\Validator\ContentTypeValidator;
 use Netgen\Layouts\Tests\TestCase\ValidatorTestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -19,15 +20,9 @@ use function array_map;
 
 final class ContentTypeValidatorTest extends ValidatorTestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $repositoryMock;
+    private MockObject $repositoryMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentTypeServiceMock;
+    private MockObject $contentTypeServiceMock;
 
     protected function setUp(): void
     {
@@ -121,18 +116,6 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
         $this->expectExceptionMessageMatches('/^Expected argument of type "string", "int(eger)?" given$/');
 
         $this->assertValid(true, 42);
-    }
-
-    /**
-     * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::validate
-     */
-    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidAllowedTypes(): void
-    {
-        $this->expectException(UnexpectedTypeException::class);
-        $this->expectExceptionMessageMatches('/^Expected argument of type "array", "int(eger)?" given$/');
-
-        $this->constraint->allowedTypes = 42;
-        $this->assertValid(true, 'article');
     }
 
     public function validateDataProvider(): array

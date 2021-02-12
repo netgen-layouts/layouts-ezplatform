@@ -13,10 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ContentMapperTest extends TestCase
 {
-    /**
-     * @var \Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentMapper
-     */
-    private $mapper;
+    private ContentMapper $mapper;
 
     protected function setUp(): void
     {

@@ -14,7 +14,7 @@ final class SiteAccessGroup extends Mapper
     /**
      * @var array<string, string>
      */
-    private $siteAccessGroupList;
+    private array $siteAccessGroupList;
 
     /**
      * @param array<string, string[]> $siteAccessGroupList

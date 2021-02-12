@@ -14,6 +14,7 @@ use Netgen\Layouts\Ez\Parameters\ParameterType\ContentType;
 use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\Layouts\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
 use Symfony\Component\Validator\Validation;
@@ -23,19 +24,13 @@ final class ContentTypeTest extends TestCase
 {
     use ParameterTypeTestTrait;
     /**
-     * @var \eZ\Publish\API\Repository\Repository&\PHPUnit\Framework\MockObject\MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository
      */
-    private $repositoryMock;
+    private MockObject $repositoryMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentServiceMock;
+    private MockObject $contentServiceMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentTypeServiceMock;
+    private MockObject $contentTypeServiceMock;
 
     protected function setUp(): void
     {

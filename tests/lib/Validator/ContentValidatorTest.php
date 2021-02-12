@@ -13,26 +13,18 @@ use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
 use Netgen\Layouts\Ez\Validator\Constraint\Content;
 use Netgen\Layouts\Ez\Validator\ContentValidator;
 use Netgen\Layouts\Tests\TestCase\ValidatorTestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 final class ContentValidatorTest extends ValidatorTestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $repositoryMock;
+    private MockObject $repositoryMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentServiceMock;
+    private MockObject $contentServiceMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentTypeServiceMock;
+    private MockObject $contentTypeServiceMock;
 
     protected function setUp(): void
     {

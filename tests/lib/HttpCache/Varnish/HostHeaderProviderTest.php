@@ -6,19 +6,14 @@ namespace Netgen\Layouts\Ez\Tests\HttpCache\Varnish;
 
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use Netgen\Layouts\Ez\HttpCache\Varnish\HostHeaderProvider;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class HostHeaderProviderTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $configResolverMock;
+    private MockObject $configResolverMock;
 
-    /**
-     * @var \Netgen\Layouts\Ez\HttpCache\Varnish\HostHeaderProvider
-     */
-    private $hostHeaderProvider;
+    private HostHeaderProvider $hostHeaderProvider;
 
     protected function setUp(): void
     {

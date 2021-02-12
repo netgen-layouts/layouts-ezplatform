@@ -10,10 +10,7 @@ use Throwable;
 
 final class LocationValueLoader implements ValueLoaderInterface
 {
-    /**
-     * @var \eZ\Publish\API\Repository\LocationService
-     */
-    private $locationService;
+    private LocationService $locationService;
 
     public function __construct(LocationService $locationService)
     {

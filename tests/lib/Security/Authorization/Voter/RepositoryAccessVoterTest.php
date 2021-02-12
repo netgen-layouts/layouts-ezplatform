@@ -7,6 +7,7 @@ namespace Netgen\Layouts\Ez\Tests\Security\Authorization\Voter;
 use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute;
 use Netgen\Layouts\Ez\Security\Authorization\Voter\RepositoryAccessVoter;
 use Netgen\Layouts\Ez\Security\Role\RoleHierarchy;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
@@ -14,15 +15,9 @@ use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 
 final class RepositoryAccessVoterTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $accessDecisionManagerMock;
+    private MockObject $accessDecisionManagerMock;
 
-    /**
-     * @var \Netgen\Layouts\Ez\Security\Authorization\Voter\RepositoryAccessVoter
-     */
-    private $voter;
+    private RepositoryAccessVoter $voter;
 
     protected function setUp(): void
     {

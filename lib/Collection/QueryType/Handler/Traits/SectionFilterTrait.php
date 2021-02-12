@@ -15,10 +15,7 @@ use function count;
 
 trait SectionFilterTrait
 {
-    /**
-     * @var \eZ\Publish\SPI\Persistence\Content\Section\Handler
-     */
-    private $sectionHandler;
+    private Handler $sectionHandler;
 
     /**
      * Sets the section handler used by the trait.

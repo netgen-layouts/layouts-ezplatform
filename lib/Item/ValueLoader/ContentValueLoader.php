@@ -10,10 +10,7 @@ use Throwable;
 
 final class ContentValueLoader implements ValueLoaderInterface
 {
-    /**
-     * @var \eZ\Publish\API\Repository\ContentService
-     */
-    private $contentService;
+    private ContentService $contentService;
 
     public function __construct(ContentService $contentService)
     {

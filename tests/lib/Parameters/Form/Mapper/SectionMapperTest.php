@@ -12,10 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 final class SectionMapperTest extends TestCase
 {
-    /**
-     * @var \Netgen\Layouts\Ez\Parameters\Form\Mapper\SectionMapper
-     */
-    private $mapper;
+    private SectionMapper $mapper;
 
     protected function setUp(): void
     {

@@ -15,15 +15,9 @@ use Throwable;
 
 trait ParentLocationTrait
 {
-    /**
-     * @var \Netgen\Layouts\Ez\ContentProvider\ContentProviderInterface
-     */
-    private $contentProvider;
+    private ContentProviderInterface $contentProvider;
 
-    /**
-     * @var \eZ\Publish\API\Repository\LocationService
-     */
-    private $locationService;
+    private LocationService $locationService;
 
     /**
      * Sets the content provider used by the trait.

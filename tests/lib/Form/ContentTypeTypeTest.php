@@ -9,16 +9,14 @@ use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentTypeGroup;
 use Netgen\Layouts\Ez\Form\ContentTypeType;
 use Netgen\Layouts\Tests\TestCase\FormTestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class ContentTypeTypeTest extends FormTestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentTypeServiceMock;
+    private MockObject $contentTypeServiceMock;
 
     /**
      * @covers \Netgen\Layouts\Ez\Form\ContentTypeType::__construct

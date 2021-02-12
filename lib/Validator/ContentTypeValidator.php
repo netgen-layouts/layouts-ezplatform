@@ -24,10 +24,7 @@ use function is_string;
  */
 final class ContentTypeValidator extends ConstraintValidator
 {
-    /**
-     * @var \eZ\Publish\API\Repository\Repository
-     */
-    private $repository;
+    private Repository $repository;
 
     public function __construct(Repository $repository)
     {
@@ -46,10 +43,6 @@ final class ContentTypeValidator extends ConstraintValidator
 
         if (!is_string($value)) {
             throw new UnexpectedTypeException($value, 'string');
-        }
-
-        if (!is_array($constraint->allowedTypes)) {
-            throw new UnexpectedTypeException($constraint->allowedTypes, 'array');
         }
 
         try {
@@ -74,7 +67,7 @@ final class ContentTypeValidator extends ConstraintValidator
             $contentType->getContentTypeGroups()
         );
 
-        if (count($constraint->allowedTypes ?? []) === 0) {
+        if (count($constraint->allowedTypes) === 0) {
             return;
         }
 

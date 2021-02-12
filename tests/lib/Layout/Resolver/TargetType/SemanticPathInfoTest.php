@@ -11,10 +11,7 @@ use Symfony\Component\Validator\Validation;
 
 final class SemanticPathInfoTest extends TestCase
 {
-    /**
-     * @var \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfo
-     */
-    private $targetType;
+    private SemanticPathInfo $targetType;
 
     protected function setUp(): void
     {

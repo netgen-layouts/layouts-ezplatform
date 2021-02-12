@@ -12,10 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ObjectStateMapperTest extends TestCase
 {
-    /**
-     * @var \Netgen\Layouts\Ez\Parameters\Form\Mapper\ObjectStateMapper
-     */
-    private $mapper;
+    private ObjectStateMapper $mapper;
 
     protected function setUp(): void
     {

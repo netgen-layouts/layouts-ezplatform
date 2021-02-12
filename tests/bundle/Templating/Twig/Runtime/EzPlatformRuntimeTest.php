@@ -15,34 +15,23 @@ use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
 use Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class EzPlatformRuntimeTest extends TestCase
 {
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository
+     * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository,
      */
-    private $repositoryMock;
+    private MockObject $repositoryMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentServiceMock;
+    private MockObject $contentServiceMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $locationServiceMock;
+    private MockObject $locationServiceMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentTypeServiceMock;
+    private MockObject $contentTypeServiceMock;
 
-    /**
-     * @var \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime
-     */
-    private $runtime;
+    private EzPlatformRuntime $runtime;
 
     protected function setUp(): void
     {

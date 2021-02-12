@@ -11,29 +11,18 @@ use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\Layouts\Ez\Utils\RemoteIdConverter;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class RemoteIdConverterTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $locationServiceMock;
+    private MockObject $locationServiceMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentServiceMock;
+    private MockObject $contentServiceMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $repositoryMock;
+    private MockObject $repositoryMock;
 
-    /**
-     * @var \Netgen\Layouts\Ez\Utils\RemoteIdConverter
-     */
-    private $converter;
+    private RemoteIdConverter $converter;
 
     protected function setUp(): void
     {

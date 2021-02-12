@@ -12,6 +12,7 @@ use Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface;
 use Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children;
 use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Ez\Utils\RemoteIdConverter;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
@@ -21,22 +22,13 @@ final class ChildrenTest extends TestCase
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository
      */
-    private $repositoryMock;
+    private MockObject $repositoryMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentExtractorMock;
+    private MockObject $contentExtractorMock;
 
-    /**
-     * @var \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children
-     */
-    private $targetType;
+    private Children $targetType;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $locationServiceMock;
+    private MockObject $locationServiceMock;
 
     protected function setUp(): void
     {

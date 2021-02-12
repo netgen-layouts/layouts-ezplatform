@@ -13,10 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 final class LocationValueConverterTest extends TestCase
 {
-    /**
-     * @var \Netgen\Layouts\Ez\Item\ValueConverter\LocationValueConverter
-     */
-    private $valueConverter;
+    private LocationValueConverter $valueConverter;
 
     protected function setUp(): void
     {

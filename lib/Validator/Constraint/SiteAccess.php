@@ -8,10 +8,7 @@ use Symfony\Component\Validator\Constraint;
 
 final class SiteAccess extends Constraint
 {
-    /**
-     * @var string
-     */
-    public $message = 'netgen_layouts.ezplatform.site_access.site_access_not_found';
+    public string $message = 'netgen_layouts.ezplatform.site_access.site_access_not_found';
 
     public function validatedBy(): string
     {

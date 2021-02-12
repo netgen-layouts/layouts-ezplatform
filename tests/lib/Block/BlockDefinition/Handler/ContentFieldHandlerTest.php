@@ -10,19 +10,14 @@ use Netgen\Layouts\API\Values\Block\Block;
 use Netgen\Layouts\Block\DynamicParameters;
 use Netgen\Layouts\Ez\Block\BlockDefinition\Handler\ContentFieldHandler;
 use Netgen\Layouts\Ez\ContentProvider\ContentProviderInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class ContentFieldHandlerTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentProviderMock;
+    private MockObject $contentProviderMock;
 
-    /**
-     * @var \Netgen\Layouts\Ez\Block\BlockDefinition\Handler\ContentFieldHandler
-     */
-    private $handler;
+    private ContentFieldHandler $handler;
 
     protected function setUp(): void
     {

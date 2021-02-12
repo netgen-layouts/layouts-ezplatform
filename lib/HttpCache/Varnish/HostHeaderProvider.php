@@ -9,10 +9,7 @@ use Netgen\Layouts\HttpCache\Varnish\HostHeaderProviderInterface;
 
 final class HostHeaderProvider implements HostHeaderProviderInterface
 {
-    /**
-     * @var \eZ\Publish\Core\MVC\ConfigResolverInterface
-     */
-    private $configResolver;
+    private ConfigResolverInterface $configResolver;
 
     public function __construct(ConfigResolverInterface $configResolver)
     {

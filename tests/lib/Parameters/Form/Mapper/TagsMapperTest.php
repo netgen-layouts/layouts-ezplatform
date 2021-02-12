@@ -13,10 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 final class TagsMapperTest extends TestCase
 {
-    /**
-     * @var \Netgen\Layouts\Ez\Parameters\Form\Mapper\TagsMapper
-     */
-    private $mapper;
+    private TagsMapper $mapper;
 
     protected function setUp(): void
     {

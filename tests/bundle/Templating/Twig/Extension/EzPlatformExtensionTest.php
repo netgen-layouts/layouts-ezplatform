@@ -10,10 +10,7 @@ use Twig\TwigFunction;
 
 final class EzPlatformExtensionTest extends TestCase
 {
-    /**
-     * @var \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Extension\EzPlatformExtension
-     */
-    private $extension;
+    private EzPlatformExtension $extension;
 
     protected function setUp(): void
     {

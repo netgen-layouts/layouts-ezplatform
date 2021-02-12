@@ -13,7 +13,7 @@ final class SiteAccess extends Mapper
     /**
      * @var string[]
      */
-    private $siteAccessList;
+    private array $siteAccessList;
 
     /**
      * @param string[] $siteAccessList

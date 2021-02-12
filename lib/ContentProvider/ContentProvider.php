@@ -15,15 +15,9 @@ use Netgen\Layouts\Context\Context;
  */
 final class ContentProvider implements ContentProviderInterface
 {
-    /**
-     * @var \eZ\Publish\API\Repository\LocationService
-     */
-    private $locationService;
+    private LocationService $locationService;
 
-    /**
-     * @var \Netgen\Layouts\Context\Context
-     */
-    private $context;
+    private Context $context;
 
     public function __construct(LocationService $locationService, Context $context)
     {

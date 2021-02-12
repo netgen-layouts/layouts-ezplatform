@@ -9,24 +9,16 @@ use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\Layouts\Context\Context;
 use Netgen\Layouts\Ez\ContentProvider\ContentProvider;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class ContentProviderTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $locationServiceMock;
+    private MockObject $locationServiceMock;
 
-    /**
-     * @var \Netgen\Layouts\Context\Context
-     */
-    private $context;
+    private Context $context;
 
-    /**
-     * @var \Netgen\Layouts\Ez\ContentProvider\ContentProvider
-     */
-    private $contentProvider;
+    private ContentProvider $contentProvider;
 
     protected function setUp(): void
     {

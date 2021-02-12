@@ -37,15 +37,9 @@ final class ContentSearchHandler implements QueryTypeHandlerInterface
     use Traits\SectionFilterTrait;
     use Traits\SortTrait;
 
-    /**
-     * @var \eZ\Publish\API\Repository\SearchService
-     */
-    private $searchService;
+    private SearchService $searchService;
 
-    /**
-     * @var \eZ\Publish\Core\MVC\ConfigResolverInterface
-     */
-    private $configResolver;
+    private ConfigResolverInterface $configResolver;
 
     public function __construct(
         LocationService $locationService,

@@ -14,10 +14,7 @@ use function is_array;
 
 final class ContentTypeType extends AbstractType
 {
-    /**
-     * @var \eZ\Publish\API\Repository\ContentTypeService
-     */
-    private $contentTypeService;
+    private ContentTypeService $contentTypeService;
 
     public function __construct(ContentTypeService $contentTypeService)
     {

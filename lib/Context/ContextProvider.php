@@ -13,20 +13,14 @@ use function in_array;
 
 final class ContextProvider implements ContextProviderInterface
 {
-    /**
-     * @var \Symfony\Component\HttpFoundation\RequestStack
-     */
-    private $requestStack;
+    private RequestStack $requestStack;
 
-    /**
-     * @var \eZ\Publish\API\Repository\ContentService
-     */
-    private $contentService;
+    private ContentService $contentService;
 
     /**
      * @var string[]
      */
-    private $allowedRoutes;
+    private array $allowedRoutes;
 
     /**
      * @param string[] $allowedRoutes

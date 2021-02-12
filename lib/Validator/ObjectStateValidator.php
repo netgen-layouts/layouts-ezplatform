@@ -21,15 +21,12 @@ use function is_string;
  */
 final class ObjectStateValidator extends ConstraintValidator
 {
-    /**
-     * @var \eZ\Publish\API\Repository\Repository
-     */
-    private $repository;
+    private Repository $repository;
 
     /**
      * @var array<string, string[]>
      */
-    private $stateIdentifiers = [];
+    private array $stateIdentifiers = [];
 
     public function __construct(Repository $repository)
     {
@@ -44,10 +41,6 @@ final class ObjectStateValidator extends ConstraintValidator
 
         if (!$constraint instanceof ObjectState) {
             throw new UnexpectedTypeException($constraint, ObjectState::class);
-        }
-
-        if (!is_array($constraint->allowedStates)) {
-            throw new UnexpectedTypeException($constraint->allowedStates, 'array');
         }
 
         if (!is_string($value)) {
@@ -78,7 +71,7 @@ final class ObjectStateValidator extends ConstraintValidator
             return;
         }
 
-        if (count($constraint->allowedStates ?? []) === 0) {
+        if (count($constraint->allowedStates) === 0) {
             return;
         }
 

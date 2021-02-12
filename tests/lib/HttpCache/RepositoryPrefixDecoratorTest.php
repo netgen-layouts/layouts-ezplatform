@@ -7,24 +7,16 @@ namespace Netgen\Layouts\Ez\Tests\HttpCache;
 use EzSystems\PlatformHttpCacheBundle\RepositoryTagPrefix;
 use Netgen\Layouts\Ez\HttpCache\RepositoryPrefixDecorator;
 use Netgen\Layouts\HttpCache\ClientInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class RepositoryPrefixDecoratorTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $clientMock;
+    private MockObject $clientMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $repositoryTagPrefixMock;
+    private MockObject $repositoryTagPrefixMock;
 
-    /**
-     * @var \Netgen\Layouts\Ez\HttpCache\RepositoryPrefixDecorator
-     */
-    private $repositoryPrefixDecorator;
+    private RepositoryPrefixDecorator $repositoryPrefixDecorator;
 
     protected function setUp(): void
     {

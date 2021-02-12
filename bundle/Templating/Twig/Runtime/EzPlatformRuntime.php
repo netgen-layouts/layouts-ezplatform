@@ -13,10 +13,7 @@ use function array_shift;
 
 final class EzPlatformRuntime
 {
-    /**
-     * @var \eZ\Publish\API\Repository\Repository
-     */
-    private $repository;
+    private Repository $repository;
 
     public function __construct(Repository $repository)
     {

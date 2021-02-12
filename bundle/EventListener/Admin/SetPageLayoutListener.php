@@ -14,20 +14,14 @@ use function in_array;
 
 final class SetPageLayoutListener implements EventSubscriberInterface
 {
-    /**
-     * @var \Symfony\Component\HttpFoundation\RequestStack
-     */
-    private $requestStack;
+    private RequestStack $requestStack;
 
     /**
      * @var array<string, string[]>
      */
-    private $groupsBySiteAccess;
+    private array $groupsBySiteAccess;
 
-    /**
-     * @var string
-     */
-    private $pageLayoutTemplate;
+    private string $pageLayoutTemplate;
 
     /**
      * @param array<string, string[]> $groupsBySiteAccess

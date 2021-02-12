@@ -15,15 +15,9 @@ use function array_map;
 
 final class RelatedLayoutsLoader
 {
-    /**
-     * @var \Netgen\Layouts\API\Service\LayoutService
-     */
-    private $layoutService;
+    private LayoutService $layoutService;
 
-    /**
-     * @var \Doctrine\DBAL\Connection
-     */
-    private $databaseConnection;
+    private Connection $databaseConnection;
 
     public function __construct(LayoutService $layoutService, Connection $databaseConnection)
     {

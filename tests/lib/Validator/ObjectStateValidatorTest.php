@@ -11,21 +11,16 @@ use eZ\Publish\Core\Repository\Values\ObjectState\ObjectStateGroup;
 use Netgen\Layouts\Ez\Validator\Constraint\ObjectState;
 use Netgen\Layouts\Ez\Validator\ObjectStateValidator;
 use Netgen\Layouts\Tests\TestCase\ValidatorTestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 final class ObjectStateValidatorTest extends ValidatorTestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $repositoryMock;
+    private MockObject $repositoryMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $objectStateServiceMock;
+    private MockObject $objectStateServiceMock;
 
     protected function setUp(): void
     {
@@ -138,18 +133,6 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
         $this->expectExceptionMessage('Expected argument of type "string with "|" delimiter", "string" given');
 
         $this->assertValid(true, 'state');
-    }
-
-    /**
-     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::validate
-     */
-    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidAllowedStates(): void
-    {
-        $this->expectException(UnexpectedTypeException::class);
-        $this->expectExceptionMessageMatches('/^Expected argument of type "array", "int(eger)?" given$/');
-
-        $this->constraint->allowedStates = 42;
-        $this->assertValid(true, 'group1|state1');
     }
 
     public function validateDataProvider(): array

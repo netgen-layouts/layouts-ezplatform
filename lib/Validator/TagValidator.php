@@ -17,10 +17,7 @@ use function is_scalar;
  */
 final class TagValidator extends ConstraintValidator
 {
-    /**
-     * @var \Netgen\TagsBundle\API\Repository\TagsService
-     */
-    private $tagsService;
+    private TagsService $tagsService;
 
     public function __construct(TagsService $tagsService)
     {

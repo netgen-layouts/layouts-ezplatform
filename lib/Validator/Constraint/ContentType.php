@@ -8,15 +8,9 @@ use Symfony\Component\Validator\Constraint;
 
 final class ContentType extends Constraint
 {
-    /**
-     * @var string
-     */
-    public $message = 'netgen_layouts.ezplatform.content_type.content_type_not_found';
+    public string $message = 'netgen_layouts.ezplatform.content_type.content_type_not_found';
 
-    /**
-     * @var string
-     */
-    public $notAllowedMessage = 'netgen_layouts.ezplatform.content_type.content_type_not_allowed';
+    public string $notAllowedMessage = 'netgen_layouts.ezplatform.content_type.content_type_not_allowed';
 
     /**
      * If not empty, the constraint will validate only if content type identifier
@@ -24,7 +18,7 @@ final class ContentType extends Constraint
      *
      * @var array<string, mixed>
      */
-    public $allowedTypes = [];
+    public array $allowedTypes = [];
 
     public function validatedBy(): string
     {

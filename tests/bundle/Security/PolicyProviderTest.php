@@ -6,6 +6,7 @@ namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\Security;
 
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ConfigBuilderInterface;
 use Netgen\Bundle\LayoutsEzPlatformBundle\Security\PolicyProvider;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class PolicyProviderTest extends TestCase
@@ -13,12 +14,9 @@ final class PolicyProviderTest extends TestCase
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ConfigBuilderInterface
      */
-    private $configBuilderMock;
+    private MockObject $configBuilderMock;
 
-    /**
-     * @var \Netgen\Bundle\LayoutsEzPlatformBundle\Security\PolicyProvider
-     */
-    private $policyProvider;
+    private PolicyProvider $policyProvider;
 
     protected function setUp(): void
     {

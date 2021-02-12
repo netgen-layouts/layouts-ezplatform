@@ -20,10 +20,7 @@ use function is_scalar;
  */
 final class ContentValidator extends ConstraintValidator
 {
-    /**
-     * @var \eZ\Publish\API\Repository\Repository
-     */
-    private $repository;
+    private Repository $repository;
 
     public function __construct(Repository $repository)
     {
@@ -52,7 +49,7 @@ final class ContentValidator extends ConstraintValidator
                 }
             );
 
-            if (count($constraint->allowedTypes ?? []) > 0) {
+            if (count($constraint->allowedTypes) > 0) {
                 $contentType = $this->repository->getContentTypeService()->loadContentType(
                     $contentInfo->contentTypeId
                 );

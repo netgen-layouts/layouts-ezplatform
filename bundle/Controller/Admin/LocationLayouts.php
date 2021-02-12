@@ -14,20 +14,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class LocationLayouts extends Controller
 {
-    /**
-     * @var \eZ\Publish\API\Repository\ContentService
-     */
-    private $contentService;
+    private ContentService $contentService;
 
-    /**
-     * @var \Netgen\Layouts\Layout\Resolver\LayoutResolverInterface
-     */
-    private $layoutResolver;
+    private LayoutResolverInterface $layoutResolver;
 
-    /**
-     * @var \Netgen\Layouts\Ez\AdminUI\RelatedLayoutsLoader
-     */
-    private $relatedLayoutsLoader;
+    private RelatedLayoutsLoader $relatedLayoutsLoader;
 
     public function __construct(
         ContentService $contentService,

@@ -9,31 +9,20 @@ use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use Netgen\Layouts\Context\Context;
 use Netgen\Layouts\Ez\Context\ContextProvider;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 final class ContextProviderTest extends TestCase
 {
-    /**
-     * @var \Symfony\Component\HttpFoundation\RequestStack
-     */
-    private $requestStack;
+    private RequestStack $requestStack;
 
-    /**
-     * @var \Netgen\Layouts\Context\Context
-     */
-    private $context;
+    private Context $context;
 
-    /**
-     * @var \Netgen\Layouts\Ez\Context\ContextProvider
-     */
-    private $contextProvider;
+    private ContextProvider $contextProvider;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentServiceMock;
+    private MockObject $contentServiceMock;
 
     protected function setUp(): void
     {

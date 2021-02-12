@@ -9,19 +9,14 @@ use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use Netgen\Layouts\Ez\Item\ValueLoader\LocationValueLoader;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class LocationValueLoaderTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $locationServiceMock;
+    private MockObject $locationServiceMock;
 
-    /**
-     * @var \Netgen\Layouts\Ez\Item\ValueLoader\LocationValueLoader
-     */
-    private $valueLoader;
+    private LocationValueLoader $valueLoader;
 
     protected function setUp(): void
     {

@@ -10,16 +10,14 @@ use Netgen\Layouts\Ez\Validator\TagValidator;
 use Netgen\Layouts\Tests\TestCase\ValidatorTestCase;
 use Netgen\TagsBundle\API\Repository\Values\Tags\Tag as APITag;
 use Netgen\TagsBundle\Core\Repository\TagsService;
+use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 final class TagValidatorTest extends ValidatorTestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $tagsServiceMock;
+    private MockObject $tagsServiceMock;
 
     protected function setUp(): void
     {

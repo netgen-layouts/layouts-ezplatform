@@ -12,10 +12,7 @@ use function implode;
 
 final class LegacyLocalClient implements ClientInterface
 {
-    /**
-     * @var \EzSystems\PlatformHttpCacheBundle\RequestAwarePurger
-     */
-    private $requestAwarePurger;
+    private RequestAwarePurger $requestAwarePurger;
 
     public function __construct(RequestAwarePurger $requestAwarePurger)
     {

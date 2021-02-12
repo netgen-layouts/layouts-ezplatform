@@ -24,10 +24,6 @@ parameters:
             path: lib/Security/Authorization/Voter/RepositoryAccessVoter.php
 
         -
-            message: '#Call to function is_array\(\) with array\<.+\> will always evaluate to true.#'
-            path: lib/Validator/
-
-        -
             message: "#Casting to int something that's already int.#"
             path: lib/Utils/RemoteIdConverter.php
 

@@ -7,31 +7,20 @@ namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\Templating;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use Netgen\Bundle\LayoutsBundle\Templating\PageLayoutResolverInterface;
 use Netgen\Bundle\LayoutsEzPlatformBundle\Templating\PageLayoutResolver;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 final class PageLayoutResolverTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $innerResolverMock;
+    private MockObject $innerResolverMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $configResolverMock;
+    private MockObject$configResolverMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $requestStackMock;
+    private MockObject $requestStackMock;
 
-    /**
-     * @var \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\PageLayoutResolver
-     */
-    private $resolver;
+    private PageLayoutResolver $resolver;
 
     protected function setUp(): void
     {

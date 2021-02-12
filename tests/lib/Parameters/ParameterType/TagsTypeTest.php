@@ -10,6 +10,7 @@ use Netgen\Layouts\Ez\Tests\Validator\TagsServiceValidatorFactory;
 use Netgen\Layouts\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use Netgen\TagsBundle\API\Repository\Values\Tags\Tag;
 use Netgen\TagsBundle\Core\Repository\TagsService;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
 use Symfony\Component\Validator\Validation;
@@ -20,9 +21,9 @@ final class TagsTypeTest extends TestCase
     use ParameterTypeTestTrait;
 
     /**
-     * @var \Netgen\TagsBundle\API\Repository\TagsService&\PHPUnit\Framework\MockObject\MockObject
+     * @var \PHPUnit\Framework\MockObject\MockObject&\Netgen\TagsBundle\API\Repository\TagsService
      */
-    private $tagsServiceMock;
+    private MockObject $tagsServiceMock;
 
     protected function setUp(): void
     {

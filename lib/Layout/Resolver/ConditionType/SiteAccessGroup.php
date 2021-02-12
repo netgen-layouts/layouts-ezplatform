@@ -18,7 +18,7 @@ final class SiteAccessGroup extends ConditionType
     /**
      * @var array<string, string[]>
      */
-    private $groupsBySiteAccess;
+    private array $groupsBySiteAccess;
 
     /**
      * @param array<string, string[]> $groupsBySiteAccess

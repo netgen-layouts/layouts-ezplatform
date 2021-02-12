@@ -13,7 +13,6 @@ use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use function count;
 use function in_array;
-use function is_array;
 use function is_string;
 
 /**
@@ -21,10 +20,7 @@ use function is_string;
  */
 final class SectionValidator extends ConstraintValidator
 {
-    /**
-     * @var \eZ\Publish\API\Repository\Repository
-     */
-    private $repository;
+    private Repository $repository;
 
     public function __construct(Repository $repository)
     {
@@ -45,10 +41,6 @@ final class SectionValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, 'string');
         }
 
-        if (!is_array($constraint->allowedSections)) {
-            throw new UnexpectedTypeException($constraint->allowedSections, 'array');
-        }
-
         try {
             $this->repository->sudo(
                 static function (Repository $repository) use ($value): APISection {
@@ -63,7 +55,7 @@ final class SectionValidator extends ConstraintValidator
             return;
         }
 
-        if (count($constraint->allowedSections ?? []) === 0) {
+        if (count($constraint->allowedSections) === 0) {
             return;
         }
 

@@ -15,10 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 final class RequestContentExtractorTest extends TestCase
 {
-    /**
-     * @var \Netgen\Layouts\Ez\ContentProvider\RequestContentExtractor
-     */
-    private $contentExtractor;
+    private RequestContentExtractor $contentExtractor;
 
     protected function setUp(): void
     {

@@ -17,10 +17,7 @@ use Netgen\Layouts\Parameters\ParameterType;
  */
 final class ContentFieldHandler extends BlockDefinitionHandler
 {
-    /**
-     * @var \Netgen\Layouts\Ez\ContentProvider\ContentProviderInterface
-     */
-    private $contentProvider;
+    private ContentProviderInterface $contentProvider;
 
     public function __construct(ContentProviderInterface $contentProvider)
     {

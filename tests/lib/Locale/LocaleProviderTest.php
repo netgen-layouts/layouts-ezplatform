@@ -9,6 +9,7 @@ use eZ\Publish\API\Repository\Values\Content\Language;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use eZ\Publish\Core\MVC\Symfony\Locale\LocaleConverterInterface;
 use Netgen\Layouts\Ez\Locale\LocaleProvider;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use function array_keys;
@@ -16,25 +17,13 @@ use function array_values;
 
 final class LocaleProviderTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $languageServiceMock;
+    private MockObject $languageServiceMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $localeConverterMock;
+    private MockObject $localeConverterMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $configResolverMock;
+    private MockObject $configResolverMock;
 
-    /**
-     * @var \Netgen\Layouts\Ez\Locale\LocaleProvider
-     */
-    private $localeProvider;
+    private LocaleProvider $localeProvider;
 
     protected function setUp(): void
     {

@@ -14,15 +14,9 @@ use Symfony\Component\Validator\Constraints;
 
 final class Subtree extends TargetType
 {
-    /**
-     * @var \Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface
-     */
-    private $contentExtractor;
+    private ContentExtractorInterface $contentExtractor;
 
-    /**
-     * @var \Netgen\Layouts\Ez\Utils\RemoteIdConverter
-     */
-    private $remoteIdConverter;
+    private RemoteIdConverter $remoteIdConverter;
 
     public function __construct(ContentExtractorInterface $contentExtractor, RemoteIdConverter $remoteIdConverter)
     {

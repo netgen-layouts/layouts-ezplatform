@@ -6,6 +6,7 @@ namespace Netgen\Layouts\Ez\Tests\HttpCache;
 
 use EzSystems\PlatformHttpCacheBundle\RequestAwarePurger;
 use Netgen\Layouts\Ez\HttpCache\LegacyLocalClient;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use function implode;
@@ -13,15 +14,9 @@ use function interface_exists;
 
 final class LegacyLocalClientTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $requestAwarePurgerMock;
+    private MockObject $requestAwarePurgerMock;
 
-    /**
-     * @var \Netgen\Layouts\Ez\HttpCache\LegacyLocalClient
-     */
-    private $client;
+    private LegacyLocalClient $client;
 
     protected function setUp(): void
     {

@@ -10,15 +10,9 @@ use function array_map;
 
 final class RepositoryPrefixDecorator implements ClientInterface
 {
-    /**
-     * @var \Netgen\Layouts\HttpCache\ClientInterface
-     */
-    private $innerClient;
+    private ClientInterface $innerClient;
 
-    /**
-     * @var \EzSystems\PlatformHttpCacheBundle\RepositoryTagPrefix
-     */
-    private $prefixService;
+    private RepositoryTagPrefix $prefixService;
 
     public function __construct(ClientInterface $innerClient, RepositoryTagPrefix $prefixService)
     {

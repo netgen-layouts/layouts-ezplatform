@@ -17,15 +17,12 @@ use Symfony\Component\Validator\ConstraintValidatorInterface;
 
 final class RepositoryValidatorFactory implements ConstraintValidatorFactoryInterface
 {
-    /**
-     * @var \Symfony\Component\Validator\ConstraintValidatorFactoryInterface
-     */
-    private $baseValidatorFactory;
+    private ConstraintValidatorFactory $baseValidatorFactory;
 
     /**
      * @var array<string, \Symfony\Component\Validator\ConstraintValidatorInterface>
      */
-    private $validators;
+    private array $validators;
 
     public function __construct(Repository $repository)
     {

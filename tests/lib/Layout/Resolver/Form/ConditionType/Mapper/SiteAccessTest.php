@@ -10,10 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 final class SiteAccessTest extends TestCase
 {
-    /**
-     * @var \Netgen\Layouts\Layout\Resolver\Form\ConditionType\MapperInterface
-     */
-    private $mapper;
+    private SiteAccess $mapper;
 
     protected function setUp(): void
     {

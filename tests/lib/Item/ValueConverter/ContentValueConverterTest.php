@@ -11,24 +11,16 @@ use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class ContentValueConverterTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $locationServiceMock;
+    private MockObject $locationServiceMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentServiceMock;
+    private MockObject $contentServiceMock;
 
-    /**
-     * @var \Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter
-     */
-    private $valueConverter;
+    private ContentValueConverter $valueConverter;
 
     protected function setUp(): void
     {

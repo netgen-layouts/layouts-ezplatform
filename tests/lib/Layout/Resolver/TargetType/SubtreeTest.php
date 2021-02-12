@@ -12,6 +12,7 @@ use Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface;
 use Netgen\Layouts\Ez\Layout\Resolver\TargetType\Subtree;
 use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Ez\Utils\RemoteIdConverter;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
@@ -21,22 +22,13 @@ final class SubtreeTest extends TestCase
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository
      */
-    private $repositoryMock;
+    private MockObject $repositoryMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentExtractorMock;
+    private MockObject $contentExtractorMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $locationServiceMock;
+    private MockObject $locationServiceMock;
 
-    /**
-     * @var \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Subtree
-     */
-    private $targetType;
+    private Subtree $targetType;
 
     protected function setUp(): void
     {

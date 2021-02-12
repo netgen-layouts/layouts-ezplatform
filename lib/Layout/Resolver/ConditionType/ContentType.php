@@ -16,10 +16,7 @@ use function is_array;
 
 final class ContentType extends ConditionType
 {
-    /**
-     * @var \Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface
-     */
-    private $contentExtractor;
+    private ContentExtractorInterface $contentExtractor;
 
     public function __construct(ContentExtractorInterface $contentExtractor)
     {

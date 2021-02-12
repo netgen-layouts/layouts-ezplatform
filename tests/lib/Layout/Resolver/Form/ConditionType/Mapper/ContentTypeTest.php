@@ -10,10 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ContentTypeTest extends TestCase
 {
-    /**
-     * @var \Netgen\Layouts\Layout\Resolver\Form\ConditionType\MapperInterface
-     */
-    private $mapper;
+    private ContentType $mapper;
 
     protected function setUp(): void
     {

@@ -28,20 +28,11 @@ abstract class ConfigurationNodeTest extends TestCase
         'design' => 'standard',
     ];
 
-    /**
-     * @var \Netgen\Bundle\LayoutsBundle\DependencyInjection\NetgenLayoutsExtension
-     */
-    protected $extension;
+    protected NetgenLayoutsExtension $extension;
 
-    /**
-     * @var \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\ExtensionPlugin
-     */
-    protected $plugin;
+    protected ExtensionPlugin $plugin;
 
-    /**
-     * @var \Matthias\SymfonyConfigTest\Partial\PartialProcessor
-     */
-    protected $partialProcessor;
+    protected PartialProcessor $partialProcessor;
 
     protected function setUp(): void
     {

@@ -10,10 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 final class SubtreeTest extends TestCase
 {
-    /**
-     * @var \Netgen\Layouts\Layout\Resolver\Form\TargetType\MapperInterface
-     */
-    private $mapper;
+    private Subtree $mapper;
 
     protected function setUp(): void
     {

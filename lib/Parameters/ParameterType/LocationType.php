@@ -18,10 +18,7 @@ use Symfony\Component\Validator\Constraints;
  */
 final class LocationType extends ParameterType
 {
-    /**
-     * @var \eZ\Publish\API\Repository\Repository
-     */
-    private $repository;
+    private Repository $repository;
 
     public function __construct(Repository $repository)
     {

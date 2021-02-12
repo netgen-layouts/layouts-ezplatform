@@ -18,10 +18,8 @@ trait ContentTypeFilterTrait
 {
     /**
      * @deprecated: Unused property, will be removed in 2.0
-     *
-     * @var \eZ\Publish\SPI\Persistence\Content\Type\Handler
      */
-    private $contentTypeHandler;
+    private Handler $contentTypeHandler;
 
     /**
      * Sets the content type handler used by the trait.

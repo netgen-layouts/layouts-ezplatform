@@ -14,10 +14,7 @@ use function is_array;
 
 final class ObjectStateType extends AbstractType
 {
-    /**
-     * @var \eZ\Publish\API\Repository\ObjectStateService
-     */
-    private $objectStateService;
+    private ObjectStateService $objectStateService;
 
     public function __construct(ObjectStateService $objectStateService)
     {

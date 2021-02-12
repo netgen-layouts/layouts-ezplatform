@@ -8,19 +8,14 @@ use Exception;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use Netgen\Layouts\Ez\Item\ValueLoader\ContentValueLoader;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class ContentValueLoaderTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentServiceMock;
+    private MockObject $contentServiceMock;
 
-    /**
-     * @var \Netgen\Layouts\Ez\Item\ValueLoader\ContentValueLoader
-     */
-    private $valueLoader;
+    private ContentValueLoader $valueLoader;
 
     protected function setUp(): void
     {

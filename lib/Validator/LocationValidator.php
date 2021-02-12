@@ -20,10 +20,7 @@ use function is_scalar;
  */
 final class LocationValidator extends ConstraintValidator
 {
-    /**
-     * @var \eZ\Publish\API\Repository\Repository
-     */
-    private $repository;
+    private Repository $repository;
 
     public function __construct(Repository $repository)
     {
@@ -52,7 +49,7 @@ final class LocationValidator extends ConstraintValidator
                 }
             );
 
-            if (count($constraint->allowedTypes ?? []) > 0) {
+            if (count($constraint->allowedTypes) > 0) {
                 $contentType = $location->getContent()->getContentType();
 
                 if (!in_array($contentType->identifier, $constraint->allowedTypes, true)) {

@@ -12,6 +12,7 @@ use eZ\Publish\Core\Repository\Values\ContentType\ContentType as EzContentType;
 use Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface;
 use Netgen\Layouts\Ez\Layout\Resolver\ConditionType\ContentType;
 use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
@@ -21,22 +22,13 @@ final class ContentTypeTest extends TestCase
     /**
      * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository
      */
-    private $repositoryMock;
+    private MockObject $repositoryMock;
 
-    /**
-     * @var \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\ContentType
-     */
-    private $conditionType;
+    private ContentType $conditionType;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentExtractorMock;
+    private MockObject $contentExtractorMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $contentTypeServiceMock;
+    private MockObject $contentTypeServiceMock;
 
     protected function setUp(): void
     {

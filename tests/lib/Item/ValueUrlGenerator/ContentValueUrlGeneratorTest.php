@@ -7,20 +7,15 @@ namespace Netgen\Layouts\Ez\Tests\Item\ValueUrlGenerator;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use Netgen\Layouts\Ez\Item\ValueUrlGenerator\ContentValueUrlGenerator;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class ContentValueUrlGeneratorTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $urlGeneratorMock;
+    private MockObject $urlGeneratorMock;
 
-    /**
-     * @var \Netgen\Layouts\Ez\Item\ValueUrlGenerator\ContentValueUrlGenerator
-     */
-    private $urlGenerator;
+    private ContentValueUrlGenerator $urlGenerator;
 
     protected function setUp(): void
     {

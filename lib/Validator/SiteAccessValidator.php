@@ -19,7 +19,7 @@ final class SiteAccessValidator extends ConstraintValidator
     /**
      * @var string[]
      */
-    private $siteAccessList;
+    private array $siteAccessList;
 
     /**
      * @param string[] $siteAccessList

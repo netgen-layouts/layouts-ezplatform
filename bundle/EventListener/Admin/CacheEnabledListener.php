@@ -14,10 +14,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 final class CacheEnabledListener implements EventSubscriberInterface
 {
-    /**
-     * @var \Netgen\Layouts\HttpCache\ClientInterface
-     */
-    private $httpCacheClient;
+    private ClientInterface $httpCacheClient;
 
     public function __construct(ClientInterface $httpCacheClient)
     {

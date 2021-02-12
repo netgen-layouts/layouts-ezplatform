@@ -12,10 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ContentTypeMapperTest extends TestCase
 {
-    /**
-     * @var \Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentTypeMapper
-     */
-    private $mapper;
+    private ContentTypeMapper $mapper;
 
     protected function setUp(): void
     {

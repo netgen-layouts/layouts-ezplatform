@@ -11,10 +11,7 @@ use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
 final class Configuration extends SiteAccessConfiguration
 {
-    /**
-     * @var \Symfony\Component\DependencyInjection\Extension\ExtensionInterface
-     */
-    private $extension;
+    private ExtensionInterface $extension;
 
     public function __construct(ExtensionInterface $extension)
     {

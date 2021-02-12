@@ -6,21 +6,16 @@ namespace Netgen\Layouts\Ez\Tests\HttpCache;
 
 use EzSystems\PlatformHttpCacheBundle\RequestAwarePurger;
 use Netgen\Layouts\Ez\HttpCache\LocalClient;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Toflar\Psr6HttpCacheStore\Psr6StoreInterface;
 use function interface_exists;
 
 final class LocalClientTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $cacheStoreMock;
+    private MockObject $cacheStoreMock;
 
-    /**
-     * @var \Netgen\Layouts\Ez\HttpCache\LocalClient
-     */
-    private $client;
+    private LocalClient $client;
 
     protected function setUp(): void
     {

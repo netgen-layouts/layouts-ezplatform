@@ -13,10 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 final class LocationMapperTest extends TestCase
 {
-    /**
-     * @var \Netgen\Layouts\Ez\Parameters\Form\Mapper\LocationMapper
-     */
-    private $mapper;
+    private LocationMapper $mapper;
 
     protected function setUp(): void
     {

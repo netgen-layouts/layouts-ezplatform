@@ -8,24 +8,16 @@ use eZ\Publish\Core\MVC\ConfigResolverInterface;
 use Netgen\Bundle\LayoutsBundle\Configuration\ConfigurationInterface;
 use Netgen\Bundle\LayoutsBundle\Exception\ConfigurationException;
 use Netgen\Bundle\LayoutsEzPlatformBundle\Configuration\ConfigResolverConfiguration;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 final class ConfigResolverConfigurationTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $configResolverMock;
+    private MockObject $configResolverMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $fallbackConfigurationMock;
+    private MockObject $fallbackConfigurationMock;
 
-    /**
-     * @var \Netgen\Bundle\LayoutsEzPlatformBundle\Configuration\ConfigResolverConfiguration
-     */
-    private $configuration;
+    private ConfigResolverConfiguration $configuration;
 
     protected function setUp(): void
     {

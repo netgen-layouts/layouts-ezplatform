@@ -10,10 +10,7 @@ use Twig\TwigFunction;
 
 final class EzPlatformBCExtension extends AbstractExtension
 {
-    /**
-     * @var \eZ\Publish\Core\MVC\Symfony\Templating\Twig\Extension\ContentExtension
-     */
-    private $contentExtension;
+    private ContentExtension $contentExtension;
 
     public function __construct(ContentExtension $contentExtension)
     {

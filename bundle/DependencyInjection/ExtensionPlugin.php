@@ -27,15 +27,9 @@ final class ExtensionPlugin extends BaseExtensionPlugin
         'design',
     ];
 
-    /**
-     * @var \Symfony\Component\DependencyInjection\ContainerBuilder
-     */
-    private $container;
+    private ContainerBuilder $container;
 
-    /**
-     * @var \Symfony\Component\DependencyInjection\Extension\ExtensionInterface
-     */
-    private $extension;
+    private ExtensionInterface $extension;
 
     public function __construct(ContainerBuilder $container, ExtensionInterface $extension)
     {

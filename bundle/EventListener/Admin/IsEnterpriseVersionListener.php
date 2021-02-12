@@ -16,7 +16,7 @@ final class IsEnterpriseVersionListener implements EventSubscriberInterface
     /**
      * @var array<string, class-string>
      */
-    private $activatedBundles;
+    private array $activatedBundles;
 
     /**
      * @param array<string, class-string> $activatedBundles

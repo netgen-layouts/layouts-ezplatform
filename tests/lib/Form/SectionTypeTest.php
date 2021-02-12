@@ -8,6 +8,7 @@ use eZ\Publish\API\Repository\SectionService;
 use eZ\Publish\API\Repository\Values\Content\Section;
 use Netgen\Layouts\Ez\Form\SectionType;
 use Netgen\Layouts\Tests\TestCase\FormTestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
@@ -15,10 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class SectionTypeTest extends FormTestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $sectionServiceMock;
+    private MockObject $sectionServiceMock;
 
     /**
      * @covers \Netgen\Layouts\Ez\Form\SectionType::__construct

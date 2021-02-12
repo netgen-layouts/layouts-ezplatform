@@ -19,15 +19,9 @@ use Netgen\Bundle\LayoutsBundle\Exception\ConfigurationException;
  */
 class ConfigResolverConfiguration implements ConfigurationInterface
 {
-    /**
-     * @var \eZ\Publish\Core\MVC\ConfigResolverInterface
-     */
-    private $configResolver;
+    private ConfigResolverInterface $configResolver;
 
-    /**
-     * @var \Netgen\Bundle\LayoutsBundle\Configuration\ConfigurationInterface
-     */
-    private $fallbackConfiguration;
+    private ConfigurationInterface $fallbackConfiguration;
 
     public function __construct(
         ConfigResolverInterface $configResolver,

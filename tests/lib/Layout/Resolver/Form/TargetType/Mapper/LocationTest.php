@@ -10,10 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 final class LocationTest extends TestCase
 {
-    /**
-     * @var \Netgen\Layouts\Layout\Resolver\Form\TargetType\MapperInterface
-     */
-    private $mapper;
+    private Location $mapper;
 
     protected function setUp(): void
     {

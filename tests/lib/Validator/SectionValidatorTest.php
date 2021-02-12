@@ -11,21 +11,16 @@ use eZ\Publish\Core\Repository\Repository;
 use Netgen\Layouts\Ez\Validator\Constraint\Section;
 use Netgen\Layouts\Ez\Validator\SectionValidator;
 use Netgen\Layouts\Tests\TestCase\ValidatorTestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 final class SectionValidatorTest extends ValidatorTestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $repositoryMock;
+    private MockObject $repositoryMock;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
-     */
-    private $sectionServiceMock;
+    private MockObject $sectionServiceMock;
 
     protected function setUp(): void
     {
@@ -108,18 +103,6 @@ final class SectionValidatorTest extends ValidatorTestCase
         $this->expectExceptionMessageMatches('/^Expected argument of type "string", "int(eger)?" given$/');
 
         $this->assertValid(true, 42);
-    }
-
-    /**
-     * @covers \Netgen\Layouts\Ez\Validator\SectionValidator::validate
-     */
-    public function testValidateThrowsUnexpectedTypeExceptionWithInvalidAllowedSections(): void
-    {
-        $this->expectException(UnexpectedTypeException::class);
-        $this->expectExceptionMessageMatches('/^Expected argument of type "array", "int(eger)?" given$/');
-
-        $this->constraint->allowedSections = 42;
-        $this->assertValid(true, 'media');
     }
 
     public function validateDataProvider(): array

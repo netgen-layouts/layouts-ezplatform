@@ -14,15 +14,9 @@ use Netgen\Layouts\Item\ValueConverterInterface;
  */
 final class ContentValueConverter implements ValueConverterInterface
 {
-    /**
-     * @var \eZ\Publish\API\Repository\LocationService
-     */
-    private $locationService;
+    private LocationService $locationService;
 
-    /**
-     * @var \eZ\Publish\API\Repository\ContentService
-     */
-    private $contentService;
+    private ContentService $contentService;
 
     public function __construct(
         LocationService $locationService,

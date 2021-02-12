@@ -16,10 +16,7 @@ use function explode;
 
 trait ObjectStateFilterTrait
 {
-    /**
-     * @var \eZ\Publish\SPI\Persistence\Content\ObjectState\Handler
-     */
-    private $objectStateHandler;
+    private Handler $objectStateHandler;
 
     /**
      * Sets the objectState handler used by the trait.

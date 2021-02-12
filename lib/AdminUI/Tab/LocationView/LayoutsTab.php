@@ -16,20 +16,11 @@ use Twig\Environment;
 
 final class LayoutsTab extends AbstractEventDispatchingTab implements ConditionalTabInterface
 {
-    /**
-     * @var \eZ\Publish\API\Repository\PermissionResolver
-     */
-    private $permissionResolver;
+    private PermissionResolver $permissionResolver;
 
-    /**
-     * @var \Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface
-     */
-    private $authorizationChecker;
+    private AuthorizationCheckerInterface $authorizationChecker;
 
-    /**
-     * @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface
-     */
-    private $urlGenerator;
+    private UrlGeneratorInterface $urlGenerator;
 
     /**
      * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
