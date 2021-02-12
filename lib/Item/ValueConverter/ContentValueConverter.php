@@ -36,12 +36,12 @@ final class ContentValueConverter implements ValueConverterInterface
         return 'ezcontent';
     }
 
-    public function getId(object $object)
+    public function getId(object $object): int
     {
-        return $object->id;
+        return (int) $object->id;
     }
 
-    public function getRemoteId(object $object)
+    public function getRemoteId(object $object): string
     {
         return $object->remoteId;
     }
@@ -60,7 +60,7 @@ final class ContentValueConverter implements ValueConverterInterface
         return !$mainLocation->invisible;
     }
 
-    public function getObject(object $object): object
+    public function getObject(object $object): ContentInfo
     {
         return $object;
     }

@@ -39,19 +39,19 @@ final class Location extends TargetType
         ];
     }
 
-    public function provideValue(Request $request)
+    public function provideValue(Request $request): ?int
     {
         $location = $this->contentExtractor->extractLocation($request);
 
-        return $location instanceof APILocation ? $location->id : null;
+        return $location instanceof APILocation ? (int) $location->id : null;
     }
 
-    public function export($value)
+    public function export($value): ?string
     {
         return $this->remoteIdConverter->toLocationRemoteId((int) $value);
     }
 
-    public function import($value)
+    public function import($value): ?int
     {
         return $this->remoteIdConverter->toLocationId((string) $value) ?? 0;
     }

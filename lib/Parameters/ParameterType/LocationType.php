@@ -41,12 +41,12 @@ final class LocationType extends ParameterType
         $optionsResolver->setAllowedTypes('allowed_types', 'string[]');
     }
 
-    public function fromHash(ParameterDefinition $parameterDefinition, $value)
+    public function fromHash(ParameterDefinition $parameterDefinition, $value): ?int
     {
         return $value !== null ? (int) $value : null;
     }
 
-    public function export(ParameterDefinition $parameterDefinition, $value)
+    public function export(ParameterDefinition $parameterDefinition, $value): ?string
     {
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
@@ -60,7 +60,7 @@ final class LocationType extends ParameterType
         }
     }
 
-    public function import(ParameterDefinition $parameterDefinition, $value)
+    public function import(ParameterDefinition $parameterDefinition, $value): ?int
     {
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
@@ -68,7 +68,7 @@ final class LocationType extends ParameterType
                 static fn (Repository $repository): Location => $repository->getLocationService()->loadLocationByRemoteId((string) $value)
             );
 
-            return $location->id;
+            return (int) $location->id;
         } catch (NotFoundException $e) {
             return null;
         }

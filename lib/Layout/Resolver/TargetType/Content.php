@@ -39,19 +39,19 @@ final class Content extends TargetType
         ];
     }
 
-    public function provideValue(Request $request)
+    public function provideValue(Request $request): ?int
     {
         $content = $this->contentExtractor->extractContent($request);
 
-        return $content instanceof APIContent ? $content->id : null;
+        return $content instanceof APIContent ? (int) $content->id : null;
     }
 
-    public function export($value)
+    public function export($value): ?string
     {
         return $this->remoteIdConverter->toContentRemoteId((int) $value);
     }
 
-    public function import($value)
+    public function import($value): ?int
     {
         return $this->remoteIdConverter->toContentId((string) $value) ?? 0;
     }

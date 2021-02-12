@@ -41,12 +41,12 @@ final class ContentType extends ParameterType
         $optionsResolver->setAllowedTypes('allowed_types', 'string[]');
     }
 
-    public function fromHash(ParameterDefinition $parameterDefinition, $value)
+    public function fromHash(ParameterDefinition $parameterDefinition, $value): ?int
     {
         return $value !== null ? (int) $value : null;
     }
 
-    public function export(ParameterDefinition $parameterDefinition, $value)
+    public function export(ParameterDefinition $parameterDefinition, $value): ?string
     {
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
@@ -60,7 +60,7 @@ final class ContentType extends ParameterType
         }
     }
 
-    public function import(ParameterDefinition $parameterDefinition, $value)
+    public function import(ParameterDefinition $parameterDefinition, $value): ?int
     {
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
@@ -68,7 +68,7 @@ final class ContentType extends ParameterType
                 static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfoByRemoteId((string) $value)
             );
 
-            return $contentInfo->id;
+            return (int) $contentInfo->id;
         } catch (NotFoundException $e) {
             return null;
         }

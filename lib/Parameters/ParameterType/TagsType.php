@@ -76,7 +76,7 @@ final class TagsType extends ParameterType
         return is_array($value) ? array_map('intval', $value) : $value;
     }
 
-    public function export(ParameterDefinition $parameterDefinition, $value)
+    public function export(ParameterDefinition $parameterDefinition, $value): ?string
     {
         try {
             /** @var \Netgen\TagsBundle\API\Repository\Values\Tags\Tag $tag */
@@ -90,7 +90,7 @@ final class TagsType extends ParameterType
         }
     }
 
-    public function import(ParameterDefinition $parameterDefinition, $value)
+    public function import(ParameterDefinition $parameterDefinition, $value): ?int
     {
         try {
             /** @var \Netgen\TagsBundle\API\Repository\Values\Tags\Tag $tag */
@@ -98,7 +98,7 @@ final class TagsType extends ParameterType
                 static fn (TagsService $tagsService): Tag => $tagsService->loadTagByRemoteId((string) $value)
             );
 
-            return $tag->id;
+            return (int) $tag->id;
         } catch (NotFoundException $e) {
             return null;
         }

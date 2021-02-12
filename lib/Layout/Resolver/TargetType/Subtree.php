@@ -39,19 +39,22 @@ final class Subtree extends TargetType
         ];
     }
 
-    public function provideValue(Request $request)
+    /**
+     * @return int[]|null
+     */
+    public function provideValue(Request $request): ?array
     {
         $location = $this->contentExtractor->extractLocation($request);
 
         return $location instanceof APILocation ? $location->path : null;
     }
 
-    public function export($value)
+    public function export($value): ?string
     {
         return $this->remoteIdConverter->toLocationRemoteId((int) $value);
     }
 
-    public function import($value)
+    public function import($value): ?int
     {
         return $this->remoteIdConverter->toLocationId((string) $value) ?? 0;
     }

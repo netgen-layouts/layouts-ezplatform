@@ -24,7 +24,7 @@ class SemanticPathInfo extends TargetType
         ];
     }
 
-    public function provideValue(Request $request)
+    public function provideValue(Request $request): ?string
     {
         if (!$request->attributes->has('semanticPathinfo')) {
             return null;

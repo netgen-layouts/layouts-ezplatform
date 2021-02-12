@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ez\Item\ValueLoader;
 
 use eZ\Publish\API\Repository\ContentService;
+use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use Netgen\Layouts\Item\ValueLoaderInterface;
 use Throwable;
 
@@ -17,7 +18,7 @@ final class ContentValueLoader implements ValueLoaderInterface
         $this->contentService = $contentService;
     }
 
-    public function load($id): ?object
+    public function load($id): ?ContentInfo
     {
         try {
             $contentInfo = $this->contentService->loadContentInfo((int) $id);
@@ -32,7 +33,7 @@ final class ContentValueLoader implements ValueLoaderInterface
         return $contentInfo;
     }
 
-    public function loadByRemoteId($remoteId): ?object
+    public function loadByRemoteId($remoteId): ?ContentInfo
     {
         try {
             $contentInfo = $this->contentService->loadContentInfoByRemoteId((string) $remoteId);

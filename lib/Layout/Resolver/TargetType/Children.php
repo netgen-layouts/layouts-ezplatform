@@ -39,19 +39,19 @@ final class Children extends TargetType
         ];
     }
 
-    public function provideValue(Request $request)
+    public function provideValue(Request $request): ?int
     {
         $location = $this->contentExtractor->extractLocation($request);
 
-        return $location instanceof APILocation ? $location->parentLocationId : null;
+        return $location instanceof APILocation ? (int) $location->parentLocationId : null;
     }
 
-    public function export($value)
+    public function export($value): ?string
     {
         return $this->remoteIdConverter->toLocationRemoteId((int) $value);
     }
 
-    public function import($value)
+    public function import($value): ?int
     {
         return $this->remoteIdConverter->toLocationId((string) $value) ?? 0;
     }

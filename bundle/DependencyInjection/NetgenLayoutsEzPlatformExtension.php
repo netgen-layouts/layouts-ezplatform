@@ -90,7 +90,7 @@ final class NetgenLayoutsEzPlatformExtension extends Extension implements Prepen
     /**
      * @param mixed[] $config
      */
-    public function getConfiguration(array $config, ContainerBuilder $container): ?ConfigurationInterface
+    public function getConfiguration(array $config, ContainerBuilder $container): ConfigurationInterface
     {
         return new Configuration($this);
     }
