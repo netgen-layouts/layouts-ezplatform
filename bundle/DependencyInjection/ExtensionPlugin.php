@@ -14,7 +14,6 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use function array_keys;
-use function array_merge;
 use function implode;
 use function in_array;
 use function is_array;
@@ -95,7 +94,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
             $newConfigs[] = ['system' => ['default' => $config]];
         }
 
-        return array_merge($prependConfigs, $newConfigs);
+        return [...$prependConfigs, ...$newConfigs];
     }
 
     public function addConfiguration(ArrayNodeDefinition $rootNode): void
