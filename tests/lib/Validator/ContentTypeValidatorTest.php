@@ -50,13 +50,11 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
                     [
                         'identifier' => $identifier,
                         'contentTypeGroups' => array_map(
-                            static function (string $group): ContentTypeGroup {
-                                return new ContentTypeGroup(
-                                    [
-                                        'identifier' => $group,
-                                    ]
-                                );
-                            },
+                            static fn (string $group): ContentTypeGroup => new ContentTypeGroup(
+                                [
+                                    'identifier' => $group,
+                                ]
+                            ),
                             $groups
                         ),
                     ]
@@ -142,9 +140,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                function (callable $callback) {
-                    return $callback($this->repositoryMock);
-                }
+                fn (callable $callback) => $callback($this->repositoryMock)
             );
 
         $this->repositoryMock

@@ -25,9 +25,7 @@ final class RepositoryPrefixDecorator implements ClientInterface
         $prefix = $this->prefixService->getRepositoryPrefix();
 
         $tags = array_map(
-            static function (string $tag) use ($prefix): string {
-                return $prefix . $tag;
-            },
+            static fn (string $tag): string => $prefix . $tag,
             $tags
         );
 

@@ -89,9 +89,7 @@ final class RelatedLayoutsLoader
             ->setParameter('location_id', $location->id, Types::INTEGER);
 
         return array_map(
-            function (array $dataRow): Layout {
-                return $this->layoutService->loadLayout(Uuid::fromString($dataRow['uuid']));
-            },
+            fn (array $dataRow): Layout => $this->layoutService->loadLayout(Uuid::fromString($dataRow['uuid'])),
             $query->execute()->fetchAllAssociative()
         );
     }

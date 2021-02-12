@@ -48,9 +48,7 @@ final class ContentTypeValidator extends ConstraintValidator
         try {
             /** @var \eZ\Publish\API\Repository\Values\ContentType\ContentType $contentType */
             $contentType = $this->repository->sudo(
-                static function (Repository $repository) use ($value): APIContentType {
-                    return $repository->getContentTypeService()->loadContentTypeByIdentifier($value);
-                }
+                static fn (Repository $repository): APIContentType => $repository->getContentTypeService()->loadContentTypeByIdentifier($value)
             );
         } catch (NotFoundException $e) {
             $this->context->buildViolation($constraint->message)
@@ -61,9 +59,7 @@ final class ContentTypeValidator extends ConstraintValidator
         }
 
         $groupIdentifiers = array_map(
-            static function (ContentTypeGroup $group): string {
-                return $group->identifier;
-            },
+            static fn (ContentTypeGroup $group): string => $group->identifier,
             $contentType->getContentTypeGroups()
         );
 

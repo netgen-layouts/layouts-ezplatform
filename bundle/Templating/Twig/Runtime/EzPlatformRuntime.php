@@ -84,9 +84,7 @@ final class EzPlatformRuntime
     private function loadContent(int $contentId): Content
     {
         return $this->repository->sudo(
-            static function (Repository $repository) use ($contentId): Content {
-                return $repository->getContentService()->loadContent($contentId);
-            }
+            static fn (Repository $repository): Content => $repository->getContentService()->loadContent($contentId)
         );
     }
 
@@ -96,9 +94,7 @@ final class EzPlatformRuntime
     private function loadLocation(int $locationId): Location
     {
         return $this->repository->sudo(
-            static function (Repository $repository) use ($locationId): Location {
-                return $repository->getLocationService()->loadLocation($locationId);
-            }
+            static fn (Repository $repository): Location => $repository->getLocationService()->loadLocation($locationId)
         );
     }
 
@@ -108,9 +104,7 @@ final class EzPlatformRuntime
     private function loadContentType(string $identifier): ContentType
     {
         return $this->repository->sudo(
-            static function (Repository $repository) use ($identifier): ContentType {
-                return $repository->getContentTypeService()->loadContentTypeByIdentifier($identifier);
-            }
+            static fn (Repository $repository): ContentType => $repository->getContentTypeService()->loadContentTypeByIdentifier($identifier)
         );
     }
 }

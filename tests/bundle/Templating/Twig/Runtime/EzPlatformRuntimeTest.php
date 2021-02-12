@@ -116,18 +116,16 @@ final class EzPlatformRuntimeTest extends TestCase
             ->expects(self::any())
             ->method('loadContentTypeByIdentifier')
             ->willReturnCallback(
-                static function (string $identifier): ContentType {
-                    return new ContentType(
-                        [
-                            'identifier' => $identifier,
-                            'names' => [
-                                'eng-GB' => 'English content type ' . $identifier,
-                                'cro-HR' => 'Content type ' . $identifier,
-                            ],
-                            'mainLanguageCode' => 'cro-HR',
-                        ]
-                    );
-                }
+                static fn (string $identifier): ContentType => new ContentType(
+                    [
+                        'identifier' => $identifier,
+                        'names' => [
+                            'eng-GB' => 'English content type ' . $identifier,
+                            'cro-HR' => 'Content type ' . $identifier,
+                        ],
+                        'mainLanguageCode' => 'cro-HR',
+                    ]
+                )
             );
 
         self::assertSame('Content type some_type', $this->runtime->getContentTypeName('some_type'));
@@ -145,18 +143,16 @@ final class EzPlatformRuntimeTest extends TestCase
             ->expects(self::any())
             ->method('loadContentTypeByIdentifier')
             ->willReturnCallback(
-                static function (string $identifier): ContentType {
-                    return new ContentType(
-                        [
-                            'identifier' => $identifier,
-                            'names' => [
-                                'eng-GB' => 'English content type ' . $identifier,
-                                'cro-HR' => 'Content type ' . $identifier,
-                            ],
-                            'mainLanguageCode' => 'eng-GB',
-                        ]
-                    );
-                }
+                static fn (string $identifier): ContentType => new ContentType(
+                    [
+                        'identifier' => $identifier,
+                        'names' => [
+                            'eng-GB' => 'English content type ' . $identifier,
+                            'cro-HR' => 'Content type ' . $identifier,
+                        ],
+                        'mainLanguageCode' => 'eng-GB',
+                    ]
+                )
             );
 
         self::assertSame('English content type some_type', $this->runtime->getContentTypeName('some_type'));
@@ -198,9 +194,7 @@ final class EzPlatformRuntimeTest extends TestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                function (callable $callback) {
-                    return $callback($this->repositoryMock);
-                }
+                fn (callable $callback) => $callback($this->repositoryMock)
             );
 
         $this->repositoryMock
@@ -225,36 +219,32 @@ final class EzPlatformRuntimeTest extends TestCase
             ->expects(self::any())
             ->method('loadLocation')
             ->willReturnCallback(
-                static function ($locationId): Location {
-                    return new Location(
-                        [
-                            'path' => [1, 2, 42, 84],
-                            'contentInfo' => new ContentInfo(
-                                [
-                                    'id' => $locationId + 100,
-                                ]
-                            ),
-                        ]
-                    );
-                }
+                static fn ($locationId): Location => new Location(
+                    [
+                        'path' => [1, 2, 42, 84],
+                        'contentInfo' => new ContentInfo(
+                            [
+                                'id' => $locationId + 100,
+                            ]
+                        ),
+                    ]
+                )
             );
 
         $this->contentServiceMock
             ->expects(self::any())
             ->method('loadContent')
             ->willReturnCallback(
-                static function ($contentId): Content {
-                    return new Content(
-                        [
-                            'versionInfo' => new VersionInfo(
-                                [
-                                    'prioritizedNameLanguageCode' => 'eng-GB',
-                                    'names' => ['eng-GB' => 'Content name ' . $contentId],
-                                ]
-                            ),
-                        ]
-                    );
-                }
+                static fn ($contentId): Content => new Content(
+                    [
+                        'versionInfo' => new VersionInfo(
+                            [
+                                'prioritizedNameLanguageCode' => 'eng-GB',
+                                'names' => ['eng-GB' => 'Content name ' . $contentId],
+                            ]
+                        ),
+                    ]
+                )
             );
     }
 }

@@ -94,9 +94,7 @@ final class ContentSearchHandler implements QueryTypeHandlerInterface
         );
 
         return array_map(
-            static function (SearchHit $searchHit): ValueObject {
-                return $searchHit->valueObject;
-            },
+            static fn (SearchHit $searchHit): ValueObject => $searchHit->valueObject,
             $searchResult->searchHits
         );
     }
@@ -150,9 +148,7 @@ final class ContentSearchHandler implements QueryTypeHandlerInterface
 
         $criteria = array_filter(
             $criteria,
-            static function ($criterion): bool {
-                return $criterion instanceof Criterion;
-            }
+            static fn ($criterion): bool => $criterion instanceof Criterion
         );
 
         $locationQuery->filter = new Criterion\LogicalAnd($criteria);

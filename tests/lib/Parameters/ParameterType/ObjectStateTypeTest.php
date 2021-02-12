@@ -39,9 +39,7 @@ final class ObjectStateTypeTest extends TestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                function (callable $callback) {
-                    return $callback($this->repositoryMock);
-                }
+                fn (callable $callback) => $callback($this->repositoryMock)
             );
 
         $this->repositoryMock

@@ -32,9 +32,7 @@ final class ContentValueConverterTest extends TestCase
             ->method('loadLocation')
             ->with(self::isType('int'))
             ->willReturnCallback(
-                static function ($id): Location {
-                    return new Location(['id' => $id, 'invisible' => false]);
-                }
+                static fn ($id): Location => new Location(['id' => $id, 'invisible' => false])
             );
 
         $this->contentServiceMock

@@ -51,9 +51,7 @@ final class ContentType extends ParameterType
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
-                static function (Repository $repository) use ($value): ContentInfo {
-                    return $repository->getContentService()->loadContentInfo((int) $value);
-                }
+                static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfo((int) $value)
             );
 
             return $contentInfo->remoteId;
@@ -67,9 +65,7 @@ final class ContentType extends ParameterType
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
-                static function (Repository $repository) use ($value): ContentInfo {
-                    return $repository->getContentService()->loadContentInfoByRemoteId((string) $value);
-                }
+                static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfoByRemoteId((string) $value)
             );
 
             return $contentInfo->id;

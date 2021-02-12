@@ -44,9 +44,7 @@ final class ContentValidator extends ConstraintValidator
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
-                static function (Repository $repository) use ($value): ContentInfo {
-                    return $repository->getContentService()->loadContentInfo((int) $value);
-                }
+                static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfo((int) $value)
             );
 
             if (count($constraint->allowedTypes) > 0) {

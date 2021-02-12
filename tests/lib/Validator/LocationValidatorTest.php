@@ -136,9 +136,7 @@ final class LocationValidatorTest extends ValidatorTestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                function (callable $callback) {
-                    return $callback($this->repositoryMock);
-                }
+                fn (callable $callback) => $callback($this->repositoryMock)
             );
         $this->repositoryMock
             ->expects(self::any())

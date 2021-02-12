@@ -43,9 +43,7 @@ final class SectionValidator extends ConstraintValidator
 
         try {
             $this->repository->sudo(
-                static function (Repository $repository) use ($value): APISection {
-                    return $repository->getSectionService()->loadSectionByIdentifier($value);
-                }
+                static fn (Repository $repository): APISection => $repository->getSectionService()->loadSectionByIdentifier($value)
             );
         } catch (NotFoundException $e) {
             $this->context->buildViolation($constraint->message)

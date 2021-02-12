@@ -7,6 +7,7 @@ namespace Netgen\Layouts\Ez\Validator;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use Netgen\Layouts\Ez\Validator\Constraint\Tag;
 use Netgen\TagsBundle\API\Repository\TagsService;
+use Netgen\TagsBundle\API\Repository\Values\Tags\Tag as APITag;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -41,9 +42,7 @@ final class TagValidator extends ConstraintValidator
         if (!$constraint->allowInvalid) {
             try {
                 $this->tagsService->sudo(
-                    static function (TagsService $tagsService) use ($value): void {
-                        $tagsService->loadTag((int) $value);
-                    }
+                    static fn (TagsService $tagsService): APITag => $tagsService->loadTag((int) $value)
                 );
             } catch (NotFoundException $e) {
                 $this->context->buildViolation($constraint->message)

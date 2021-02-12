@@ -47,16 +47,12 @@ final class TagsType extends ParameterType
 
         $optionsResolver->setAllowedValues(
             'min',
-            static function (?int $value): bool {
-                return $value === null || $value > 0;
-            }
+            static fn (?int $value): bool => $value === null || $value > 0
         );
 
         $optionsResolver->setAllowedValues(
             'max',
-            static function (?int $value): bool {
-                return $value === null || $value > 0;
-            }
+            static fn (?int $value): bool => $value === null || $value > 0
         );
 
         $optionsResolver->setNormalizer(
@@ -85,9 +81,7 @@ final class TagsType extends ParameterType
         try {
             /** @var \Netgen\TagsBundle\API\Repository\Values\Tags\Tag $tag */
             $tag = $this->tagsService->sudo(
-                static function (TagsService $tagsService) use ($value): Tag {
-                    return $tagsService->loadTag((int) $value);
-                }
+                static fn (TagsService $tagsService): Tag => $tagsService->loadTag((int) $value)
             );
 
             return $tag->remoteId;
@@ -101,9 +95,7 @@ final class TagsType extends ParameterType
         try {
             /** @var \Netgen\TagsBundle\API\Repository\Values\Tags\Tag $tag */
             $tag = $this->tagsService->sudo(
-                static function (TagsService $tagsService) use ($value): Tag {
-                    return $tagsService->loadTagByRemoteId((string) $value);
-                }
+                static fn (TagsService $tagsService): Tag => $tagsService->loadTagByRemoteId((string) $value)
             );
 
             return $tag->id;

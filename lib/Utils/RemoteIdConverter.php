@@ -23,9 +23,7 @@ final class RemoteIdConverter
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
             $location = $this->repository->sudo(
-                static function (Repository $repository) use ($remoteId): Location {
-                    return $repository->getLocationService()->loadLocationByRemoteId($remoteId);
-                }
+                static fn (Repository $repository): Location => $repository->getLocationService()->loadLocationByRemoteId($remoteId)
             );
 
             return (int) $location->id;
@@ -39,9 +37,7 @@ final class RemoteIdConverter
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
             $location = $this->repository->sudo(
-                static function (Repository $repository) use ($id): Location {
-                    return $repository->getLocationService()->loadLocation($id);
-                }
+                static fn (Repository $repository): Location => $repository->getLocationService()->loadLocation($id)
             );
 
             return $location->remoteId;
@@ -55,9 +51,7 @@ final class RemoteIdConverter
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
-                static function (Repository $repository) use ($remoteId): ContentInfo {
-                    return $repository->getContentService()->loadContentInfoByRemoteId($remoteId);
-                }
+                static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfoByRemoteId($remoteId)
             );
 
             return $contentInfo->id;
@@ -71,9 +65,7 @@ final class RemoteIdConverter
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
-                static function (Repository $repository) use ($id): ContentInfo {
-                    return $repository->getContentService()->loadContentInfo($id);
-                }
+                static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfo($id)
             );
 
             return $contentInfo->remoteId;
