@@ -1,5 +1,7 @@
 includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor/phpstan/phpstan-symfony/rules.neon
 
 parameters:
     dynamicConstantNames:
@@ -30,4 +32,3 @@ parameters:
         # Disable errors about missing value types in various vendor classes
 
         - '#no value type specified in iterable type Knp\\Menu\\ItemInterface.#'
-        - '#Method .+Listener::getSubscribedEvents\(\) return type has no value type specified in iterable type array.#'
