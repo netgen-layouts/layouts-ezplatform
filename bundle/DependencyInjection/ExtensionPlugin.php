@@ -192,11 +192,9 @@ final class ExtensionPlugin extends BaseExtensionPlugin
             }
 
             foreach (array_keys($scopeConfig['view']) as $viewName) {
-                if (isset($config['system']['default']['view'][$viewName])) {
-                    foreach ($config['system']['default']['view'][$viewName] as $context => $defaultRules) {
-                        $config['system'][$scope]['view'][$viewName][$context] ??= [];
-                        $config['system'][$scope]['view'][$viewName][$context] += $defaultRules;
-                    }
+                foreach (($config['system']['default']['view'][$viewName] ?? []) as $context => $defaultRules) {
+                    $config['system'][$scope]['view'][$viewName][$context] ??= [];
+                    $config['system'][$scope]['view'][$viewName][$context] += $defaultRules;
                 }
             }
         }
