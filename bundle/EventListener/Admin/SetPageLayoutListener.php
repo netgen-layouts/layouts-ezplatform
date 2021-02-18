@@ -57,11 +57,7 @@ final class SetPageLayoutListener implements EventSubscriberInterface
         }
 
         $siteAccess = $currentRequest->attributes->get('siteaccess')->name;
-        if (!isset($this->groupsBySiteAccess[$siteAccess])) {
-            return;
-        }
-
-        if (!in_array(EzPlatformAdminUiBundle::ADMIN_GROUP_NAME, $this->groupsBySiteAccess[$siteAccess], true)) {
+        if (!in_array(EzPlatformAdminUiBundle::ADMIN_GROUP_NAME, $this->groupsBySiteAccess[$siteAccess] ?? [], true)) {
             return;
         }
 

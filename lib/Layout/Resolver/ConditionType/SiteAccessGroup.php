@@ -60,11 +60,6 @@ final class SiteAccessGroup extends ConditionType
             return false;
         }
 
-        // We skip the check if siteaccess is not part of any group
-        if (!isset($this->groupsBySiteAccess[$siteAccess->name])) {
-            return false;
-        }
-
-        return count(array_intersect($value, $this->groupsBySiteAccess[$siteAccess->name])) > 0;
+        return count(array_intersect($value, $this->groupsBySiteAccess[$siteAccess->name] ?? [])) > 0;
     }
 }
