@@ -28,7 +28,3 @@ parameters:
         - "#Casting to int something that's already int.#"
 
         - '#EzSystems\\PlatformHttpCacheBundle\\RequestAwarePurger#'
-
-        # Disable errors about missing value types in various vendor classes
-
-        - '#no value type specified in iterable type Knp\\Menu\\ItemInterface.#'
