@@ -1,6 +1,6 @@
-{% trans_default_domain 'nglayouts_ezadminui' %}
-
 {% import '@NetgenLayoutsAdmin/admin/macros.html.twig' as macros %}
+
+{% trans_default_domain 'nglayouts_ezadminui' %}
 
 {% set can_edit = is_granted('ROLE_NGLAYOUTS_EDITOR') or is_granted('nglayouts:layout:edit', layout) %}
 {% set can_clear_cache = is_granted('ROLE_NGLAYOUTS_ADMIN') or is_granted('nglayouts:layout:clear_cache', layout) %}
