@@ -148,7 +148,7 @@ final class ContentSearchHandler implements QueryTypeHandlerInterface
 
         $criteria = array_filter(
             $criteria,
-            static fn ($criterion): bool => $criterion instanceof Criterion
+            static fn (?Criterion $criterion): bool => $criterion instanceof Criterion
         );
 
         $locationQuery->filter = new Criterion\LogicalAnd($criteria);
