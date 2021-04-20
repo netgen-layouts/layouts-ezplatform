@@ -24,7 +24,7 @@ final class DefaultAppPreviewPass implements CompilerPassInterface
             'params' => [],
         ];
 
-        /** @var string[] $siteAccessList */
+        /** @var array<int, string> $siteAccessList */
         $siteAccessList = $container->getParameter('ezpublish.siteaccess.list');
         $scopes = [...['default'], ...$siteAccessList];
 

@@ -16,7 +16,7 @@ final class DefaultViewTemplatesPass implements CompilerPassInterface
             return;
         }
 
-        /** @var string[] $siteAccessList */
+        /** @var array<int, string> $siteAccessList */
         $siteAccessList = $container->getParameter('ezpublish.siteaccess.list');
         $scopes = [...['default'], ...$siteAccessList];
 

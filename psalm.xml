@@ -23,6 +23,12 @@
             </errorLevel>
         </UndefinedInterfaceMethod>
 
+        <DuplicateArrayKey>
+            <errorLevel type="suppress">
+                <file name="bundle/DependencyInjection/ExtensionPlugin.php" />
+            </errorLevel>
+        </DuplicateArrayKey>
+
         <!-- Doctrine DBAL -->
 
         <ImplicitToStringCast>
