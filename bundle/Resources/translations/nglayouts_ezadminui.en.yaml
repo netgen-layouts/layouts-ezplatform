@@ -1,4 +1,4 @@
-rules.title: 'List of layout mappings applied to this location/content, ordered by priority'
+rules.title: 'List of layout mappings directly applied to this location/content'
 rules.no_rules: 'No mappings'
 rules.mapped_layout: 'Mapped layout'
 rules.targets: 'Targets'
