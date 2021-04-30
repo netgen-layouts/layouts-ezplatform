@@ -11,6 +11,7 @@ use Netgen\Layouts\Tests\TestCase\FormTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -87,6 +88,15 @@ final class SectionTypeTest extends FormTestCase
         );
 
         $form->submit($submittedData);
+
+        if (Kernel::VERSION_ID >= 50204) {
+            self::assertTrue($form->isSynchronized());
+            self::assertSame([], $form->getData());
+
+            return;
+        }
+
+        // @deprecated Symfony 3.4 behaviour
 
         self::assertFalse($form->isSynchronized());
         self::assertNull($form->getData());
