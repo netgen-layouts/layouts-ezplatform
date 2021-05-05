@@ -25,7 +25,7 @@ trait CurrentLocationFilterTrait
             [
                 'default_value' => true,
                 'groups' => $groups,
-            ]
+            ],
         );
     }
 
@@ -39,7 +39,7 @@ trait CurrentLocationFilterTrait
         }
 
         return new Criterion\LogicalNot(
-            new Criterion\LocationId($location->id)
+            new Criterion\LocationId($location->id),
         );
     }
 }

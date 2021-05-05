@@ -32,7 +32,7 @@ final class ContentValueConverterTest extends TestCase
             ->method('loadLocation')
             ->with(self::isType('int'))
             ->willReturnCallback(
-                static fn ($id): Location => new Location(['id' => $id, 'invisible' => false])
+                static fn ($id): Location => new Location(['id' => $id, 'invisible' => false]),
             );
 
         $this->contentServiceMock
@@ -46,15 +46,15 @@ final class ContentValueConverterTest extends TestCase
                             [
                                 'prioritizedNameLanguageCode' => 'eng-GB',
                                 'names' => ['eng-GB' => 'Cool name'],
-                            ]
+                            ],
                         ),
-                    ]
-                )
+                    ],
+                ),
             );
 
         $this->valueConverter = new ContentValueConverter(
             $this->locationServiceMock,
-            $this->contentServiceMock
+            $this->contentServiceMock,
         );
     }
 
@@ -76,8 +76,8 @@ final class ContentValueConverterTest extends TestCase
         self::assertSame(
             'ezcontent',
             $this->valueConverter->getValueType(
-                new ContentInfo()
-            )
+                new ContentInfo(),
+            ),
         );
     }
 
@@ -89,8 +89,8 @@ final class ContentValueConverterTest extends TestCase
         self::assertSame(
             24,
             $this->valueConverter->getId(
-                new ContentInfo(['id' => 24, 'mainLocationId' => 42])
-            )
+                new ContentInfo(['id' => 24, 'mainLocationId' => 42]),
+            ),
         );
     }
 
@@ -102,8 +102,8 @@ final class ContentValueConverterTest extends TestCase
         self::assertSame(
             'abc',
             $this->valueConverter->getRemoteId(
-                new ContentInfo(['remoteId' => 'abc'])
-            )
+                new ContentInfo(['remoteId' => 'abc']),
+            ),
         );
     }
 
@@ -115,8 +115,8 @@ final class ContentValueConverterTest extends TestCase
         self::assertSame(
             'Cool name',
             $this->valueConverter->getName(
-                new ContentInfo(['mainLocationId' => 42])
-            )
+                new ContentInfo(['mainLocationId' => 42]),
+            ),
         );
     }
 
@@ -127,8 +127,8 @@ final class ContentValueConverterTest extends TestCase
     {
         self::assertTrue(
             $this->valueConverter->getIsVisible(
-                new ContentInfo(['mainLocationId' => 42])
-            )
+                new ContentInfo(['mainLocationId' => 42]),
+            ),
         );
     }
 

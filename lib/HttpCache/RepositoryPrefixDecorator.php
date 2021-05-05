@@ -26,7 +26,7 @@ final class RepositoryPrefixDecorator implements ClientInterface
 
         $tags = array_map(
             static fn (string $tag): string => $prefix . $tag,
-            $tags
+            $tags,
         );
 
         $this->innerClient->purge($tags);

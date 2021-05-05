@@ -35,7 +35,7 @@ class ConfigResolverConfiguration implements ConfigurationInterface
     {
         $hasParam = $this->configResolver->hasParameter(
             $parameterName,
-            ConfigurationInterface::PARAMETER_NAMESPACE
+            ConfigurationInterface::PARAMETER_NAMESPACE,
         );
 
         if (!$hasParam) {
@@ -54,12 +54,12 @@ class ConfigResolverConfiguration implements ConfigurationInterface
         if (
             $this->configResolver->hasParameter(
                 $parameterName,
-                ConfigurationInterface::PARAMETER_NAMESPACE
+                ConfigurationInterface::PARAMETER_NAMESPACE,
             )
         ) {
             return $this->configResolver->getParameter(
                 $parameterName,
-                ConfigurationInterface::PARAMETER_NAMESPACE
+                ConfigurationInterface::PARAMETER_NAMESPACE,
             );
         }
 

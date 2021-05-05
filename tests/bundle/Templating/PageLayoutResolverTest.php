@@ -32,7 +32,7 @@ final class PageLayoutResolverTest extends TestCase
             $this->innerResolverMock,
             $this->configResolverMock,
             $this->requestStackMock,
-            'fallback_layout.html.twig'
+            'fallback_layout.html.twig',
         );
     }
 

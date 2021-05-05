@@ -47,7 +47,7 @@ final class IsEnterpriseVersionListener implements EventSubscriberInterface
 
         $event->addParameter(
             'is_enterprise',
-            array_key_exists('NetgenLayoutsEnterpriseBundle', $this->activatedBundles)
+            array_key_exists('NetgenLayoutsEnterpriseBundle', $this->activatedBundles),
         );
     }
 }

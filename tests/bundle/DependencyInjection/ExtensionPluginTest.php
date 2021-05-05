@@ -24,7 +24,7 @@ final class ExtensionPluginTest extends AbstractExtensionTestCase
         $extension->prepend($this->container);
 
         $config = array_merge(
-            ...$this->container->getExtensionConfig('netgen_layouts')
+            ...$this->container->getExtensionConfig('netgen_layouts'),
         );
 
         self::assertArrayHasKey('block_type_groups', $config);
@@ -36,7 +36,7 @@ final class ExtensionPluginTest extends AbstractExtensionTestCase
                     'ezcontent_field',
                 ],
             ],
-            $config['block_type_groups']['placeholders']
+            $config['block_type_groups']['placeholders'],
         );
     }
 

@@ -60,7 +60,7 @@ final class LocaleProvider implements LocaleProviderInterface
     {
         $requestLocales = [];
         $languages = $this->languageService->loadLanguageListByCode(
-            $this->configResolver->getParameter('languages')
+            $this->configResolver->getParameter('languages'),
         );
 
         foreach ($languages as $language) {

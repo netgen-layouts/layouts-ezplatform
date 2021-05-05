@@ -42,7 +42,7 @@ final class CacheEnabledListener implements EventSubscriberInterface
 
         $event->addParameter(
             'http_cache_enabled',
-            !$this->httpCacheClient instanceof NullClient
+            !$this->httpCacheClient instanceof NullClient,
         );
     }
 }

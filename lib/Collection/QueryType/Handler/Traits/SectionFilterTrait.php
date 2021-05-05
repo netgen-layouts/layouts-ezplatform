@@ -37,7 +37,7 @@ trait SectionFilterTrait
             ParameterType\Compound\BooleanType::class,
             [
                 'groups' => $groups,
-            ]
+            ],
         );
 
         $builder->get('filter_by_section')->add(
@@ -46,7 +46,7 @@ trait SectionFilterTrait
             [
                 'multiple' => true,
                 'groups' => $groups,
-            ]
+            ],
         );
     }
 

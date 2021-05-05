@@ -69,7 +69,7 @@ final class SectionType extends ParameterType
             new Constraints\All(
                 [
                     'constraints' => $sectionConstraints,
-                ]
+                ],
             ),
         ];
     }

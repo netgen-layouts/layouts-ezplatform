@@ -51,7 +51,7 @@ final class ContentType extends ParameterType
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
-                static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfo((int) $value)
+                static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfo((int) $value),
             );
 
             return $contentInfo->remoteId;
@@ -65,7 +65,7 @@ final class ContentType extends ParameterType
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
-                static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfoByRemoteId((string) $value)
+                static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfoByRemoteId((string) $value),
             );
 
             return (int) $contentInfo->id;
@@ -85,7 +85,7 @@ final class ContentType extends ParameterType
                 [
                     'allowInvalid' => $options['allow_invalid'],
                     'allowedTypes' => $options['allowed_types'],
-                ]
+                ],
             ),
         ];
     }

@@ -23,7 +23,7 @@ final class VarnishClientPass implements CompilerPassInterface
 
         $varnishClient->replaceArgument(
             1,
-            new Reference('netgen_layouts.ezplatform.http_cache.varnish.host_header_provider')
+            new Reference('netgen_layouts.ezplatform.http_cache.varnish.host_header_provider'),
         );
     }
 }

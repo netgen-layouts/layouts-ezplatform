@@ -39,7 +39,7 @@ final class ContentType extends ConditionType
                         new Constraints\Type(['type' => 'string']),
                         new EzConstraints\ContentType(),
                     ],
-                ]
+                ],
             ),
         ];
     }

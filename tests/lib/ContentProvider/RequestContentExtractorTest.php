@@ -34,11 +34,11 @@ final class RequestContentExtractorTest extends TestCase
                         'contentInfo' => new ContentInfo(
                             [
                                 'id' => 42,
-                            ]
+                            ],
                         ),
-                    ]
+                    ],
                 ),
-            ]
+            ],
         );
 
         $contentView = new ContentView();

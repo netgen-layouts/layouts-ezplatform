@@ -37,8 +37,8 @@ final class LocationValueConverterTest extends TestCase
         self::assertSame(
             'ezlocation',
             $this->valueConverter->getValueType(
-                new Location()
-            )
+                new Location(),
+            ),
         );
     }
 
@@ -50,8 +50,8 @@ final class LocationValueConverterTest extends TestCase
         self::assertSame(
             24,
             $this->valueConverter->getId(
-                new Location(['id' => 24])
-            )
+                new Location(['id' => 24]),
+            ),
         );
     }
 
@@ -63,8 +63,8 @@ final class LocationValueConverterTest extends TestCase
         self::assertSame(
             'abc',
             $this->valueConverter->getRemoteId(
-                new Location(['remoteId' => 'abc'])
-            )
+                new Location(['remoteId' => 'abc']),
+            ),
         );
     }
 
@@ -84,13 +84,13 @@ final class LocationValueConverterTest extends TestCase
                                     [
                                         'prioritizedNameLanguageCode' => 'cro-HR',
                                         'names' => ['cro-HR' => 'Cool name'],
-                                    ]
+                                    ],
                                 ),
-                            ]
+                            ],
                         ),
-                    ]
-                )
-            )
+                    ],
+                ),
+            ),
         );
     }
 
@@ -101,8 +101,8 @@ final class LocationValueConverterTest extends TestCase
     {
         self::assertTrue(
             $this->valueConverter->getIsVisible(
-                new Location(['invisible' => false])
-            )
+                new Location(['invisible' => false]),
+            ),
         );
     }
 

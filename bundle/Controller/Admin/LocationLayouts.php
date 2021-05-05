@@ -51,7 +51,7 @@ final class LocationLayouts extends Controller
                 'rules' => $rules,
                 'related_layouts' => $this->relatedLayoutsLoader->loadRelatedLayouts($location),
                 'location' => $location,
-            ]
+            ],
         );
     }
 
@@ -81,7 +81,7 @@ final class LocationLayouts extends Controller
         $contentView = new ContentView();
         $contentView->setLocation($location);
         $contentView->setContent(
-            $this->contentService->loadContent($location->contentInfo->id)
+            $this->contentService->loadContent($location->contentInfo->id),
         );
 
         $request->attributes->set('view', $contentView);

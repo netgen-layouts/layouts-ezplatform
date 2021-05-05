@@ -69,7 +69,7 @@ final class ObjectStateType extends ParameterType
             new Constraints\All(
                 [
                     'constraints' => $objectStateConstraints,
-                ]
+                ],
             ),
         ];
     }

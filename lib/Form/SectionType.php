@@ -31,7 +31,7 @@ final class SectionType extends AbstractType
 
         $resolver->setDefault(
             'choices',
-            fn (Options $options): array => $this->getSections($options)
+            fn (Options $options): array => $this->getSections($options),
         );
 
         $resolver->setDefault('choice_translation_domain', false);

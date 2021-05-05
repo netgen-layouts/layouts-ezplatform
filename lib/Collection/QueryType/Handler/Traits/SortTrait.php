@@ -53,7 +53,7 @@ trait SortTrait
                 'required' => true,
                 'options' => $sortTypes,
                 'groups' => $groups,
-            ]
+            ],
         );
 
         $builder->add(
@@ -66,7 +66,7 @@ trait SortTrait
                     'Ascending' => LocationQuery::SORT_ASC,
                 ],
                 'groups' => $groups,
-            ]
+            ],
         );
     }
 

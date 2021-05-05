@@ -43,7 +43,7 @@ final class ContentTest extends TestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                fn (callable $callback) => $callback($this->repositoryMock)
+                fn (callable $callback) => $callback($this->repositoryMock),
             );
 
         $this->repositoryMock
@@ -53,7 +53,7 @@ final class ContentTest extends TestCase
 
         $this->targetType = new Content(
             $this->contentExtractorMock,
-            new RemoteIdConverter($this->repositoryMock)
+            new RemoteIdConverter($this->repositoryMock),
         );
     }
 
@@ -116,11 +116,11 @@ final class ContentTest extends TestCase
                         'contentInfo' => new ContentInfo(
                             [
                                 'id' => 42,
-                            ]
+                            ],
                         ),
-                    ]
+                    ],
                 ),
-            ]
+            ],
         );
 
         $request = Request::create('/');

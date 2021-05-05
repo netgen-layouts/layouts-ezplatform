@@ -37,7 +37,7 @@ final class ContentTypeTypeTest extends FormTestCase
                     'Group1' => ['article'],
                     'Group3' => false,
                 ],
-            ]
+            ],
         );
 
         $form->submit($submittedData);
@@ -72,7 +72,7 @@ final class ContentTypeTypeTest extends FormTestCase
                     'Group1' => ['article'],
                     'Group3' => false,
                 ],
-            ]
+            ],
         );
 
         self::assertFalse($options['choice_translation_domain']);
@@ -85,7 +85,7 @@ final class ContentTypeTypeTest extends FormTestCase
                     'Image' => 'image',
                 ],
             ],
-            $options['choices']
+            $options['choices'],
         );
     }
 
@@ -94,7 +94,7 @@ final class ContentTypeTypeTest extends FormTestCase
         $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
 
         return new ContentTypeType(
-            $this->contentTypeServiceMock
+            $this->contentTypeServiceMock,
         );
     }
 
@@ -112,7 +112,7 @@ final class ContentTypeTypeTest extends FormTestCase
             ->method('loadContentTypes')
             ->withConsecutive(
                 [self::identicalTo($contentTypeGroup1)],
-                [self::identicalTo($contentTypeGroup2)]
+                [self::identicalTo($contentTypeGroup2)],
             )
             ->willReturnOnConsecutiveCalls(
                 [
@@ -121,14 +121,14 @@ final class ContentTypeTypeTest extends FormTestCase
                             'identifier' => 'article',
                             'names' => ['eng-GB' => 'Article'],
                             'mainLanguageCode' => 'eng-GB',
-                        ]
+                        ],
                     ),
                     new ContentType(
                         [
                             'identifier' => 'news',
                             'names' => ['eng-GB' => 'News'],
                             'mainLanguageCode' => 'eng-GB',
-                        ]
+                        ],
                     ),
                 ],
                 [
@@ -137,9 +137,9 @@ final class ContentTypeTypeTest extends FormTestCase
                             'identifier' => 'image',
                             'names' => ['eng-GB' => 'Image'],
                             'mainLanguageCode' => 'eng-GB',
-                        ]
+                        ],
                     ),
-                ]
+                ],
             );
     }
 }

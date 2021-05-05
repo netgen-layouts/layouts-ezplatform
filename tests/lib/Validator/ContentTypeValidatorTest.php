@@ -53,12 +53,12 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
                             static fn (string $group): ContentTypeGroup => new ContentTypeGroup(
                                 [
                                     'identifier' => $group,
-                                ]
+                                ],
                             ),
-                            $groups
+                            $groups,
                         ),
-                    ]
-                )
+                    ],
+                ),
             );
 
         $this->constraint->allowedTypes = $allowedTypes;
@@ -140,7 +140,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                fn (callable $callback) => $callback($this->repositoryMock)
+                fn (callable $callback) => $callback($this->repositoryMock),
             );
 
         $this->repositoryMock

@@ -225,8 +225,8 @@ final class TagsTypeTest extends TestCase
             $convertedValue,
             $this->type->fromHash(
                 $this->getParameterDefinition(),
-                $value
-            )
+                $value,
+            ),
         );
     }
 
@@ -322,7 +322,7 @@ final class TagsTypeTest extends TestCase
                             }
 
                             return new Tag(['id' => $value]);
-                        }
+                        },
                     );
                 }
             }

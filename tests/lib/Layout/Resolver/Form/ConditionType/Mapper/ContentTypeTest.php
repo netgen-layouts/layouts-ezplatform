@@ -34,7 +34,7 @@ final class ContentTypeTest extends TestCase
             [
                 'multiple' => true,
             ],
-            $this->mapper->getFormOptions()
+            $this->mapper->getFormOptions(),
         );
     }
 }

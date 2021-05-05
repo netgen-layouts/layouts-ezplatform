@@ -18,7 +18,7 @@ final class PolicyProvider implements PolicyProviderInterface
                     'editor' => null,
                     'api' => null,
                 ],
-            ]
+            ],
         );
     }
 }

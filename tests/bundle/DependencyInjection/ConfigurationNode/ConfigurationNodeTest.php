@@ -108,8 +108,8 @@ abstract class ConfigurationNodeTest extends TestCase
             $this->partialProcessor->processConfiguration(
                 $this->getConfiguration(),
                 null,
-                $this->plugin->preProcessConfiguration($config)
-            )
+                $this->plugin->preProcessConfiguration($config),
+            ),
         );
     }
 }

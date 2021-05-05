@@ -312,26 +312,26 @@ final class ViewNodeTest extends ConfigurationNodeTest
         // Default scope should only have block_two and block_one
         self::assertSame(
             ['block_two', 'block_one'],
-            array_keys($processedConfig['system']['default']['view']['block_view']['context'])
+            array_keys($processedConfig['system']['default']['view']['block_view']['context']),
         );
 
         // But only "cro" siteaccess aware one should have all
         // with block_three having priority because it comes from siteaccess scope
         self::assertSame(
             ['block_three', 'block_two', 'block_one'],
-            array_keys($processedConfig['system']['cro']['view']['block_view']['context'])
+            array_keys($processedConfig['system']['cro']['view']['block_view']['context']),
         );
 
         // Rule in "default" scope needs to have the original value
         self::assertSame(
             'block.html.twig',
-            $processedConfig['system']['default']['view']['block_view']['context']['block_two']['template']
+            $processedConfig['system']['default']['view']['block_view']['context']['block_two']['template'],
         );
 
         // Rule in "cro" scope needs to override existing rule in default scope
         self::assertSame(
             'block2.html.twig',
-            $processedConfig['system']['cro']['view']['block_view']['context']['block_two']['template']
+            $processedConfig['system']['cro']['view']['block_view']['context']['block_two']['template'],
         );
     }
 
@@ -397,7 +397,7 @@ final class ViewNodeTest extends ConfigurationNodeTest
         // but rule from system node (block_three) should be first
         self::assertSame(
             ['block_three', 'block_two', 'block_one'],
-            array_keys($processedConfig['system']['default']['view']['block_view']['context'])
+            array_keys($processedConfig['system']['default']['view']['block_view']['context']),
         );
     }
 
@@ -581,8 +581,8 @@ final class ViewNodeTest extends ConfigurationNodeTest
             $this->partialProcessor->processConfiguration(
                 $this->getConfiguration(),
                 null,
-                $this->plugin->preProcessConfiguration($config)
-            )
+                $this->plugin->preProcessConfiguration($config),
+            ),
         );
 
         self::assertSame($expectedConfig['system']['default'], $config['system']['default']);

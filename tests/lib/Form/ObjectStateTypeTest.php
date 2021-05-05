@@ -37,7 +37,7 @@ final class ObjectStateTypeTest extends FormTestCase
                     'ez_lock' => ['locked'],
                     'third' => false,
                 ],
-            ]
+            ],
         );
 
         $form->submit($submittedData);
@@ -72,7 +72,7 @@ final class ObjectStateTypeTest extends FormTestCase
                     'ez_lock' => ['locked'],
                     'third' => false,
                 ],
-            ]
+            ],
         );
 
         self::assertFalse($options['choice_translation_domain']);
@@ -85,7 +85,7 @@ final class ObjectStateTypeTest extends FormTestCase
                     'Other' => 'other|other',
                 ],
             ],
-            $options['choices']
+            $options['choices'],
         );
     }
 
@@ -94,7 +94,7 @@ final class ObjectStateTypeTest extends FormTestCase
         $this->objectStateServiceMock = $this->createMock(ObjectStateService::class);
 
         return new ObjectStateType(
-            $this->objectStateServiceMock
+            $this->objectStateServiceMock,
         );
     }
 
@@ -112,7 +112,7 @@ final class ObjectStateTypeTest extends FormTestCase
             ->method('loadObjectStates')
             ->withConsecutive(
                 [self::identicalTo($objectStateGroup1)],
-                [self::identicalTo($objectStateGroup2)]
+                [self::identicalTo($objectStateGroup2)],
             )
             ->willReturnOnConsecutiveCalls(
                 [
@@ -121,14 +121,14 @@ final class ObjectStateTypeTest extends FormTestCase
                             'identifier' => 'locked',
                             'names' => ['eng-GB' => 'Locked'],
                             'mainLanguageCode' => 'eng-GB',
-                        ]
+                        ],
                     ),
                     new ObjectState(
                         [
                             'identifier' => 'unlocked',
                             'names' => ['eng-GB' => 'Unlocked'],
                             'mainLanguageCode' => 'eng-GB',
-                        ]
+                        ],
                     ),
                 ],
                 [
@@ -137,9 +137,9 @@ final class ObjectStateTypeTest extends FormTestCase
                             'identifier' => 'other',
                             'names' => ['eng-GB' => 'Other'],
                             'mainLanguageCode' => 'eng-GB',
-                        ]
+                        ],
                     ),
-                ]
+                ],
             );
     }
 }

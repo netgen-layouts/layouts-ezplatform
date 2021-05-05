@@ -18,7 +18,7 @@ final class SiteAccessGroupTest extends TestCase
             [
                 'frontend' => ['eng'],
                 'backend' => ['admin'],
-            ]
+            ],
         );
     }
 
@@ -43,7 +43,7 @@ final class SiteAccessGroupTest extends TestCase
                 'multiple' => true,
                 'expanded' => true,
             ],
-            $this->mapper->getFormOptions()
+            $this->mapper->getFormOptions(),
         );
     }
 }

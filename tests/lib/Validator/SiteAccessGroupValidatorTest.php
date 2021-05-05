@@ -68,7 +68,7 @@ final class SiteAccessGroupValidatorTest extends ValidatorTestCase
             [
                 'frontend' => ['eng'],
                 'backend' => ['admin'],
-            ]
+            ],
         );
     }
 }

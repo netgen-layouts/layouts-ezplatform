@@ -41,8 +41,8 @@ final class PolicyProviderTest extends TestCase
                             'editor' => null,
                             'api' => null,
                         ],
-                    ]
-                )
+                    ],
+                ),
             );
 
         $this->policyProvider->addPolicies($this->configBuilderMock);

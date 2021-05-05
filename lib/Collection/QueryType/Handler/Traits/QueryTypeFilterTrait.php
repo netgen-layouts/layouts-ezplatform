@@ -29,7 +29,7 @@ trait QueryTypeFilterTrait
                     'Tree' => 'tree',
                 ],
                 'groups' => $groups,
-            ]
+            ],
         );
     }
 
@@ -44,7 +44,7 @@ trait QueryTypeFilterTrait
 
         return new Criterion\Location\Depth(
             Criterion\Operator::EQ,
-            $parentLocation->depth + 1
+            $parentLocation->depth + 1,
         );
     }
 }

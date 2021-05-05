@@ -26,7 +26,7 @@ final class ConfigResolverConfigurationTest extends TestCase
 
         $this->configuration = new ConfigResolverConfiguration(
             $this->configResolverMock,
-            $this->fallbackConfigurationMock
+            $this->fallbackConfigurationMock,
         );
     }
 

@@ -32,7 +32,7 @@ final class VarnishClientPassTest extends AbstractContainerBuilderTestCase
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
             'netgen_layouts.http_cache.client.varnish',
             1,
-            new Reference('netgen_layouts.ezplatform.http_cache.varnish.host_header_provider')
+            new Reference('netgen_layouts.ezplatform.http_cache.varnish.host_header_provider'),
         );
     }
 
@@ -59,7 +59,7 @@ final class VarnishClientPassTest extends AbstractContainerBuilderTestCase
 
         $this->assertContainerBuilderHasServiceDefinitionWithArgument(
             'netgen_layouts.http_cache.client.varnish',
-            1
+            1,
         );
     }
 

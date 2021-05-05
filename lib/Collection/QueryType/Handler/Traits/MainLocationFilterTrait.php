@@ -24,7 +24,7 @@ trait MainLocationFilterTrait
             [
                 'default_value' => true,
                 'groups' => $groups,
-            ]
+            ],
         );
     }
 
@@ -38,7 +38,7 @@ trait MainLocationFilterTrait
         }
 
         return new Criterion\Location\IsMainLocation(
-            Criterion\Location\IsMainLocation::MAIN
+            Criterion\Location\IsMainLocation::MAIN,
         );
     }
 }

@@ -47,9 +47,9 @@ final class TagsMapperTest extends TestCase
                             'min' => 3,
                             'max' => 6,
                         ],
-                    ]
-                )
-            )
+                    ],
+                ),
+            ),
         );
     }
 }

@@ -40,8 +40,8 @@ final class LocationMapperTest extends TestCase
                     'options' => [
                         'allowed_types' => ['user', 'image'],
                     ],
-                ]
-            )
+                ],
+            ),
         );
 
         self::assertSame(
@@ -51,7 +51,7 @@ final class LocationMapperTest extends TestCase
                     'allowed_content_types' => ['user', 'image'],
                 ],
             ],
-            $mappedOptions
+            $mappedOptions,
         );
     }
 
@@ -67,15 +67,15 @@ final class LocationMapperTest extends TestCase
                     'options' => [
                         'allowed_types' => [],
                     ],
-                ]
-            )
+                ],
+            ),
         );
 
         self::assertSame(
             [
                 'item_type' => 'ezlocation',
             ],
-            $mappedOptions
+            $mappedOptions,
         );
     }
 }

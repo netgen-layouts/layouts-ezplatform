@@ -41,7 +41,7 @@ final class ContentTypeTest extends TestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                fn (callable $callback) => $callback($this->repositoryMock)
+                fn (callable $callback) => $callback($this->repositoryMock),
             );
 
         $this->repositoryMock
@@ -50,7 +50,7 @@ final class ContentTypeTest extends TestCase
             ->willReturn($this->contentTypeServiceMock);
 
         $this->conditionType = new ContentType(
-            $this->contentExtractorMock
+            $this->contentExtractorMock,
         );
     }
 
@@ -117,9 +117,9 @@ final class ContentTypeTest extends TestCase
                 'contentType' => new EzContentType(
                     [
                         'identifier' => 'article',
-                    ]
+                    ],
                 ),
-            ]
+            ],
         );
 
         $this->contentExtractorMock

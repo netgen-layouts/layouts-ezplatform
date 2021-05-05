@@ -25,7 +25,7 @@ final class EzPlatformBCExtension extends AbstractExtension
         return [
             new TwigFunction(
                 'nglayouts_ez_field_is_empty',
-                [$this->contentExtension, 'isFieldEmpty']
+                [$this->contentExtension, 'isFieldEmpty'],
             ),
         ];
     }

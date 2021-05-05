@@ -45,9 +45,9 @@ final class ContentTypeMapperTest extends TestCase
                             'multiple' => true,
                             'types' => [42],
                         ],
-                    ]
-                )
-            )
+                    ],
+                ),
+            ),
         );
     }
 }

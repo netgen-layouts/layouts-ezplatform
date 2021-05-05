@@ -55,7 +55,7 @@ final class ContextProvider implements ContextProviderInterface
             $currentContentId = $currentRequest->attributes->get('contentId');
             if ($currentContentId !== null) {
                 $currentLocationId = $this->contentService->loadContentInfo(
-                    (int) $currentContentId
+                    (int) $currentContentId,
                 )->mainLocationId;
             }
         }

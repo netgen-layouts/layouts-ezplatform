@@ -23,7 +23,7 @@ final class RemoteIdConverter
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
             $location = $this->repository->sudo(
-                static fn (Repository $repository): Location => $repository->getLocationService()->loadLocationByRemoteId($remoteId)
+                static fn (Repository $repository): Location => $repository->getLocationService()->loadLocationByRemoteId($remoteId),
             );
 
             return (int) $location->id;
@@ -37,7 +37,7 @@ final class RemoteIdConverter
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
             $location = $this->repository->sudo(
-                static fn (Repository $repository): Location => $repository->getLocationService()->loadLocation($id)
+                static fn (Repository $repository): Location => $repository->getLocationService()->loadLocation($id),
             );
 
             return $location->remoteId;
@@ -51,7 +51,7 @@ final class RemoteIdConverter
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
-                static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfoByRemoteId($remoteId)
+                static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfoByRemoteId($remoteId),
             );
 
             return $contentInfo->id;
@@ -65,7 +65,7 @@ final class RemoteIdConverter
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
-                static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfo($id)
+                static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfo($id),
             );
 
             return $contentInfo->remoteId;

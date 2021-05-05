@@ -214,8 +214,8 @@ final class ExtensionPlugin extends BaseExtensionPlugin
                 sprintf(
                     'Design "%s" does not exist. Available designs are: %s',
                     $currentDesign,
-                    implode(', ', $designList)
-                )
+                    implode(', ', $designList),
+                ),
             );
         }
     }

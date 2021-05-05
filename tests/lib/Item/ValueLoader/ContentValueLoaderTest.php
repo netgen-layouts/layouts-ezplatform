@@ -35,7 +35,7 @@ final class ContentValueLoaderTest extends TestCase
                 'id' => 52,
                 'published' => true,
                 'mainLocationId' => 42,
-            ]
+            ],
         );
 
         $this->contentServiceMock
@@ -75,8 +75,8 @@ final class ContentValueLoaderTest extends TestCase
                     [
                         'published' => false,
                         'mainLocationId' => 42,
-                    ]
-                )
+                    ],
+                ),
             );
 
         self::assertNull($this->valueLoader->load(52));
@@ -95,8 +95,8 @@ final class ContentValueLoaderTest extends TestCase
                 new ContentInfo(
                     [
                         'published' => true,
-                    ]
-                )
+                    ],
+                ),
             );
 
         self::assertNull($this->valueLoader->load(52));
@@ -112,7 +112,7 @@ final class ContentValueLoaderTest extends TestCase
                 'remoteId' => 'abc',
                 'published' => true,
                 'mainLocationId' => 42,
-            ]
+            ],
         );
 
         $this->contentServiceMock
@@ -152,8 +152,8 @@ final class ContentValueLoaderTest extends TestCase
                     [
                         'published' => false,
                         'mainLocationId' => 42,
-                    ]
-                )
+                    ],
+                ),
             );
 
         self::assertNull($this->valueLoader->loadByRemoteId('abc'));
@@ -172,8 +172,8 @@ final class ContentValueLoaderTest extends TestCase
                 new ContentInfo(
                     [
                         'published' => true,
-                    ]
-                )
+                    ],
+                ),
             );
 
         self::assertNull($this->valueLoader->loadByRemoteId('abc'));

@@ -25,7 +25,7 @@ final class SiteAccessGroupTest extends TestCase
                 'admin' => [
                     'backend',
                 ],
-            ]
+            ],
         );
     }
 

@@ -27,7 +27,7 @@ final class ContentProviderTest extends TestCase
 
         $this->contentProvider = new ContentProvider(
             $this->locationServiceMock,
-            $this->context
+            $this->context,
         );
     }
 
@@ -42,7 +42,7 @@ final class ContentProviderTest extends TestCase
         $location = new Location(
             [
                 'content' => $content,
-            ]
+            ],
         );
 
         $this->context->set('ez_location_id', 42);

@@ -20,7 +20,7 @@ final class SubtreeTest extends AbstractTargetHandlerTest
         $rules = $this->handler->matchRules(
             $this->handler->loadRuleGroup(RuleGroup::ROOT_UUID, Value::STATUS_PUBLISHED),
             $this->getTargetIdentifier(),
-            [1, 2, 42]
+            [1, 2, 42],
         );
 
         self::assertCount(1, $rules);

@@ -34,7 +34,7 @@ final class ChildrenTest extends TestCase
             [
                 'item_type' => 'ezlocation',
             ],
-            $this->mapper->getFormOptions()
+            $this->mapper->getFormOptions(),
         );
     }
 }

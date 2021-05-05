@@ -51,7 +51,7 @@ final class ContentProvider implements ContentProviderInterface
         }
 
         return $this->locationService->loadLocation(
-            (int) $this->context->get('ez_location_id')
+            (int) $this->context->get('ez_location_id'),
         );
     }
 }

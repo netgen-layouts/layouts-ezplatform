@@ -45,8 +45,8 @@ final class RelatedLayoutsLoader
                 'bc',
                 $query->expr()->and(
                     $query->expr()->eq('bc.collection_id', 'ci.collection_id'),
-                    $query->expr()->eq('bc.collection_status', 'ci.status')
-                )
+                    $query->expr()->eq('bc.collection_status', 'ci.status'),
+                ),
             )
             ->innerJoin(
                 'bc',
@@ -54,8 +54,8 @@ final class RelatedLayoutsLoader
                 'b',
                 $query->expr()->and(
                     $query->expr()->eq('b.id', 'bc.block_id'),
-                    $query->expr()->eq('b.status', 'bc.block_status')
-                )
+                    $query->expr()->eq('b.status', 'bc.block_status'),
+                ),
             )
             ->innerJoin(
                 'b',
@@ -63,23 +63,23 @@ final class RelatedLayoutsLoader
                 'l',
                 $query->expr()->and(
                     $query->expr()->eq('l.id', 'b.layout_id'),
-                    $query->expr()->eq('l.status', 'b.status')
-                )
+                    $query->expr()->eq('l.status', 'b.status'),
+                ),
             )
             ->where(
                 $query->expr()->and(
                     $query->expr()->or(
                         $query->expr()->and(
                             $query->expr()->eq('ci.value_type', ':content_value_type'),
-                            $query->expr()->eq('ci.value', ':content_id')
+                            $query->expr()->eq('ci.value', ':content_id'),
                         ),
                         $query->expr()->and(
                             $query->expr()->eq('ci.value_type', ':location_value_type'),
-                            $query->expr()->eq('ci.value', ':location_id')
-                        )
+                            $query->expr()->eq('ci.value', ':location_id'),
+                        ),
                     ),
-                    $query->expr()->eq('ci.status', ':status')
-                )
+                    $query->expr()->eq('ci.status', ':status'),
+                ),
             )
             ->orderBy('l.name', 'ASC')
             ->setParameter('status', Value::STATUS_PUBLISHED, Types::INTEGER)
@@ -90,7 +90,7 @@ final class RelatedLayoutsLoader
 
         return array_map(
             fn (array $dataRow): Layout => $this->layoutService->loadLayout(Uuid::fromString($dataRow['uuid'])),
-            $query->execute()->fetchAllAssociative()
+            $query->execute()->fetchAllAssociative(),
         );
     }
 }

@@ -26,7 +26,7 @@ final class LocationValueUrlGenerator implements ValueUrlGeneratorInterface
             UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
             [
                 'locationId' => $object->id,
-            ]
+            ],
         );
     }
 }

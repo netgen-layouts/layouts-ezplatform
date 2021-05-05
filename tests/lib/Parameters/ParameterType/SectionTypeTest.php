@@ -41,7 +41,7 @@ final class SectionTypeTest extends TestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                fn (callable $callback) => $callback($this->repositoryMock)
+                fn (callable $callback) => $callback($this->repositoryMock),
             );
 
         $this->repositoryMock
@@ -186,9 +186,9 @@ final class SectionTypeTest extends TestCase
                         return new EzSection(
                             [
                                 'identifier' => $identifier,
-                            ]
+                            ],
                         );
-                    }
+                    },
                 );
             }
         }
@@ -245,10 +245,10 @@ final class SectionTypeTest extends TestCase
                 $this->getParameterDefinition(
                     [
                         'multiple' => $multiple,
-                    ]
+                    ],
                 ),
-                $value
-            )
+                $value,
+            ),
         );
     }
 

@@ -30,7 +30,7 @@ final class ValidatorFactory implements ConstraintValidatorFactoryInterface
                 [
                     'frontend' => ['eng'],
                     'backend' => ['admin'],
-                ]
+                ],
             ),
         ];
     }

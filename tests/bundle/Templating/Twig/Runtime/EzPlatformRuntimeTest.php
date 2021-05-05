@@ -38,7 +38,7 @@ final class EzPlatformRuntimeTest extends TestCase
         $this->prepareRepositoryMock();
 
         $this->runtime = new EzPlatformRuntime(
-            $this->repositoryMock
+            $this->repositoryMock,
         );
     }
 
@@ -84,7 +84,7 @@ final class EzPlatformRuntimeTest extends TestCase
                 'Content name 142',
                 'Content name 184',
             ],
-            $this->runtime->getLocationPath(22)
+            $this->runtime->getLocationPath(22),
         );
     }
 
@@ -124,8 +124,8 @@ final class EzPlatformRuntimeTest extends TestCase
                             'cro-HR' => 'Content type ' . $identifier,
                         ],
                         'mainLanguageCode' => 'cro-HR',
-                    ]
-                )
+                    ],
+                ),
             );
 
         self::assertSame('Content type some_type', $this->runtime->getContentTypeName('some_type'));
@@ -151,8 +151,8 @@ final class EzPlatformRuntimeTest extends TestCase
                             'cro-HR' => 'Content type ' . $identifier,
                         ],
                         'mainLanguageCode' => 'eng-GB',
-                    ]
-                )
+                    ],
+                ),
             );
 
         self::assertSame('English content type some_type', $this->runtime->getContentTypeName('some_type'));
@@ -186,7 +186,7 @@ final class EzPlatformRuntimeTest extends TestCase
                 'getContentService',
                 'getLocationService',
                 'getContentTypeService',
-            ]
+            ],
         );
 
         $this->repositoryMock
@@ -194,7 +194,7 @@ final class EzPlatformRuntimeTest extends TestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                fn (callable $callback) => $callback($this->repositoryMock)
+                fn (callable $callback) => $callback($this->repositoryMock),
             );
 
         $this->repositoryMock
@@ -225,10 +225,10 @@ final class EzPlatformRuntimeTest extends TestCase
                         'contentInfo' => new ContentInfo(
                             [
                                 'id' => $locationId + 100,
-                            ]
+                            ],
                         ),
-                    ]
-                )
+                    ],
+                ),
             );
 
         $this->contentServiceMock
@@ -241,10 +241,10 @@ final class EzPlatformRuntimeTest extends TestCase
                             [
                                 'prioritizedNameLanguageCode' => 'eng-GB',
                                 'names' => ['eng-GB' => 'Content name ' . $contentId],
-                            ]
+                            ],
                         ),
-                    ]
-                )
+                    ],
+                ),
             );
     }
 }

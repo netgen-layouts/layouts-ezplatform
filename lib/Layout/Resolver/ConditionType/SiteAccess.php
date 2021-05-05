@@ -31,7 +31,7 @@ final class SiteAccess extends ConditionType
                         new Constraints\Type(['type' => 'string']),
                         new EzConstraints\SiteAccess(),
                     ],
-                ]
+                ],
             ),
         ];
     }

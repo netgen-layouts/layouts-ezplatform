@@ -35,7 +35,7 @@ final class SectionTypeTest extends FormTestCase
             [
                 'multiple' => true,
                 'sections' => ['media'],
-            ]
+            ],
         );
 
         $form->submit($submittedData);
@@ -59,7 +59,7 @@ final class SectionTypeTest extends FormTestCase
             null,
             [
                 'multiple' => true,
-            ]
+            ],
         );
 
         $form->submit($submittedData);
@@ -84,7 +84,7 @@ final class SectionTypeTest extends FormTestCase
             [
                 'multiple' => true,
                 'sections' => ['standard'],
-            ]
+            ],
         );
 
         $form->submit($submittedData);
@@ -125,7 +125,7 @@ final class SectionTypeTest extends FormTestCase
         $options = $optionsResolver->resolve(
             [
                 'sections' => ['media'],
-            ]
+            ],
         );
 
         self::assertFalse($options['choice_translation_domain']);
@@ -148,7 +148,7 @@ final class SectionTypeTest extends FormTestCase
         $optionsResolver->resolve(
             [
                 'sections' => [42],
-            ]
+            ],
         );
     }
 
@@ -157,7 +157,7 @@ final class SectionTypeTest extends FormTestCase
         $this->sectionServiceMock = $this->createMock(SectionService::class);
 
         return new SectionType(
-            $this->sectionServiceMock
+            $this->sectionServiceMock,
         );
     }
 
@@ -171,9 +171,9 @@ final class SectionTypeTest extends FormTestCase
                         [
                             'identifier' => 'media',
                             'name' => 'Media',
-                        ]
+                        ],
                     ),
-                ]
+                ],
             );
     }
 }

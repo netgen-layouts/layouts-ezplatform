@@ -45,7 +45,7 @@ trait ContentTypeFilterTrait
             ParameterType\Compound\BooleanType::class,
             [
                 'groups' => $groups,
-            ]
+            ],
         );
 
         $builder->get('filter_by_content_type')->add(
@@ -54,7 +54,7 @@ trait ContentTypeFilterTrait
             [
                 'multiple' => true,
                 'groups' => $groups,
-            ]
+            ],
         );
 
         $builder->get('filter_by_content_type')->add(
@@ -67,7 +67,7 @@ trait ContentTypeFilterTrait
                     'Exclude content types' => 'exclude',
                 ],
                 'groups' => $groups,
-            ]
+            ],
         );
     }
 

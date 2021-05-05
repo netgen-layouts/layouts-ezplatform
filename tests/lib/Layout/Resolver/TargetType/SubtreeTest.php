@@ -41,7 +41,7 @@ final class SubtreeTest extends TestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                fn (callable $callback) => $callback($this->repositoryMock)
+                fn (callable $callback) => $callback($this->repositoryMock),
             );
 
         $this->repositoryMock
@@ -51,7 +51,7 @@ final class SubtreeTest extends TestCase
 
         $this->targetType = new Subtree(
             $this->contentExtractorMock,
-            new RemoteIdConverter($this->repositoryMock)
+            new RemoteIdConverter($this->repositoryMock),
         );
     }
 
@@ -110,7 +110,7 @@ final class SubtreeTest extends TestCase
         $location = new Location(
             [
                 'path' => [1, 2, 42],
-            ]
+            ],
         );
 
         $request = Request::create('/');

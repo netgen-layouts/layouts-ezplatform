@@ -26,7 +26,7 @@ final class ContentValueUrlGenerator implements ValueUrlGeneratorInterface
             UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
             [
                 'contentId' => $object->id,
-            ]
+            ],
         );
     }
 }

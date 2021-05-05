@@ -38,7 +38,7 @@ trait ObjectStateFilterTrait
             ParameterType\Compound\BooleanType::class,
             [
                 'groups' => $groups,
-            ]
+            ],
         );
 
         $builder->get('filter_by_object_state')->add(
@@ -47,7 +47,7 @@ trait ObjectStateFilterTrait
             [
                 'multiple' => true,
                 'groups' => $groups,
-            ]
+            ],
         );
     }
 

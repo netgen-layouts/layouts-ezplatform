@@ -126,7 +126,7 @@ final class ContentValidatorTest extends ValidatorTestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                fn (callable $callback) => $callback($this->repositoryMock)
+                fn (callable $callback) => $callback($this->repositoryMock),
             );
 
         $this->repositoryMock
@@ -145,7 +145,7 @@ final class ContentValidatorTest extends ValidatorTestCase
             ->willReturnCallback(
                 static fn (int $type): ContentType => $type === 24 ?
                     new ContentType(['identifier' => 'user']) :
-                    new ContentType(['identifier' => 'article'])
+                    new ContentType(['identifier' => 'article']),
             );
 
         return new ContentValidator($this->repositoryMock);

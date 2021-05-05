@@ -50,33 +50,33 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
             ->method('loadObjectStates')
             ->withConsecutive(
                 [self::identicalTo($group1)],
-                [self::identicalTo($group2)]
+                [self::identicalTo($group2)],
             )
             ->willReturnOnConsecutiveCalls(
                 [
                     new EzObjectState(
                         [
                             'identifier' => 'state1',
-                        ]
+                        ],
                     ),
                     new EzObjectState(
                         [
                             'identifier' => 'state2',
-                        ]
+                        ],
                     ),
                 ],
                 [
                     new EzObjectState(
                         [
                             'identifier' => 'state1',
-                        ]
+                        ],
                     ),
                     new EzObjectState(
                         [
                             'identifier' => 'state2',
-                        ]
+                        ],
                     ),
-                ]
+                ],
             );
 
         $this->constraint->allowedStates = $allowedStates;
@@ -169,7 +169,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                fn (callable $callback) => $callback($this->repositoryMock)
+                fn (callable $callback) => $callback($this->repositoryMock),
             );
 
         $this->repositoryMock

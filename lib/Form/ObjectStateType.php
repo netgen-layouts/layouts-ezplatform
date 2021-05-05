@@ -31,7 +31,7 @@ final class ObjectStateType extends AbstractType
 
         $resolver->setDefault(
             'choices',
-            fn (Options $options): array => $this->getObjectStates($options)
+            fn (Options $options): array => $this->getObjectStates($options),
         );
 
         $resolver->setDefault('choice_translation_domain', false);

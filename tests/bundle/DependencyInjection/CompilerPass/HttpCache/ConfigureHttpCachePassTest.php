@@ -37,7 +37,7 @@ final class ConfigureHttpCachePassTest extends AbstractContainerBuilderTestCase
             $this->assertContainerBuilderNotHasAlias('netgen_layouts.http_cache.client') :
             $this->assertContainerBuilderHasAlias(
                 'netgen_layouts.http_cache.client',
-                'netgen_layouts.ezplatform.http_cache.client.local'
+                'netgen_layouts.ezplatform.http_cache.client.local',
             );
     }
 
@@ -80,8 +80,8 @@ final class ConfigureHttpCachePassTest extends AbstractContainerBuilderTestCase
         self::assertThat(
             $this->container,
             self::logicalNot(
-                new ContainerBuilderHasAliasConstraint($aliasId)
-            )
+                new ContainerBuilderHasAliasConstraint($aliasId),
+            ),
         );
     }
 }

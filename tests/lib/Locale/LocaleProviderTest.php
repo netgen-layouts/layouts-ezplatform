@@ -34,7 +34,7 @@ final class LocaleProviderTest extends TestCase
         $this->localeProvider = new LocaleProvider(
             $this->languageServiceMock,
             $this->localeConverterMock,
-            $this->configResolverMock
+            $this->configResolverMock,
         );
     }
 
@@ -53,14 +53,14 @@ final class LocaleProviderTest extends TestCase
                     new Language(['languageCode' => 'eng-GB', 'enabled' => true]),
                     new Language(['languageCode' => 'ger-DE', 'enabled' => false]),
                     new Language(['languageCode' => 'cro-HR', 'enabled' => true]),
-                ]
+                ],
             );
 
         $this->localeConverterMock
             ->method('convertToPOSIX')
             ->withConsecutive(
                 [self::identicalTo('eng-GB')],
-                [self::identicalTo('cro-HR')]
+                [self::identicalTo('cro-HR')],
             )
             ->willReturnOnConsecutiveCalls('en', 'hr');
 
@@ -83,7 +83,7 @@ final class LocaleProviderTest extends TestCase
             ->willReturn(
                 [
                     new Language(['languageCode' => 'unknown', 'enabled' => true]),
-                ]
+                ],
             );
 
         $this->localeConverterMock
@@ -116,14 +116,14 @@ final class LocaleProviderTest extends TestCase
                     new Language(['languageCode' => 'eng-GB', 'enabled' => true]),
                     new Language(['languageCode' => 'ger-DE', 'enabled' => false]),
                     new Language(['languageCode' => 'cro-HR', 'enabled' => true]),
-                ]
+                ],
             );
 
         $this->localeConverterMock
             ->method('convertToPOSIX')
             ->withConsecutive(
                 [self::identicalTo('eng-GB')],
-                [self::identicalTo('cro-HR')]
+                [self::identicalTo('cro-HR')],
             )
             ->willReturnOnConsecutiveCalls('en', 'hr');
 
@@ -150,7 +150,7 @@ final class LocaleProviderTest extends TestCase
             ->willReturn(
                 [
                     new Language(['languageCode' => 'eng-GB', 'enabled' => true]),
-                ]
+                ],
             );
 
         $this->localeConverterMock
@@ -181,7 +181,7 @@ final class LocaleProviderTest extends TestCase
             ->willReturn(
                 [
                     new Language(['languageCode' => 'eng-GB', 'enabled' => true]),
-                ]
+                ],
             );
 
         $this->localeConverterMock

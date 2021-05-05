@@ -99,7 +99,7 @@ final class RepositoryAccessVoter extends Voter
         return $this->accessDecisionManager->decide(
             $token,
             [new Attribute(self::MODULE, $function)],
-            $subject
+            $subject,
         );
     }
 
@@ -118,7 +118,7 @@ final class RepositoryAccessVoter extends Voter
 
         return array_map(
             static fn (Role $role): string => $role->getRole() ?? '',
-            $this->roleHierarchy->getReachableRoles([new Role($attribute)])
+            $this->roleHierarchy->getReachableRoles([new Role($attribute)]),
         );
     }
 }

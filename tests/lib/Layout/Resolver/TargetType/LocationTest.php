@@ -41,7 +41,7 @@ final class LocationTest extends TestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                fn (callable $callback) => $callback($this->repositoryMock)
+                fn (callable $callback) => $callback($this->repositoryMock),
             );
 
         $this->repositoryMock
@@ -51,7 +51,7 @@ final class LocationTest extends TestCase
 
         $this->targetType = new Location(
             $this->contentExtractorMock,
-            new RemoteIdConverter($this->repositoryMock)
+            new RemoteIdConverter($this->repositoryMock),
         );
     }
 
@@ -110,7 +110,7 @@ final class LocationTest extends TestCase
         $location = new EzLocation(
             [
                 'id' => 42,
-            ]
+            ],
         );
 
         $request = Request::create('/');

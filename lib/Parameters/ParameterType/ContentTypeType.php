@@ -69,7 +69,7 @@ final class ContentTypeType extends ParameterType
             new Constraints\All(
                 [
                     'constraints' => $contentTypeConstraints,
-                ]
+                ],
             ),
         ];
     }

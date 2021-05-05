@@ -48,7 +48,7 @@ trait ParentLocationTrait
             [
                 'reverse' => true,
                 'groups' => $groups,
-            ]
+            ],
         );
 
         $builder->get('use_current_location')->add(
@@ -57,7 +57,7 @@ trait ParentLocationTrait
             [
                 'allow_invalid' => true,
                 'groups' => $groups,
-            ]
+            ],
         );
     }
 

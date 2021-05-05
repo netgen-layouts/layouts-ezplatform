@@ -34,7 +34,7 @@ final class ContextProviderTest extends TestCase
         $this->contextProvider = new ContextProvider(
             $this->requestStack,
             $this->contentServiceMock,
-            [UrlAliasRouter::URL_ALIAS_ROUTE_NAME]
+            [UrlAliasRouter::URL_ALIAS_ROUTE_NAME],
         );
     }
 
@@ -75,8 +75,8 @@ final class ContextProviderTest extends TestCase
                 new ContentInfo(
                     [
                         'mainLocationId' => 24,
-                    ]
-                )
+                    ],
+                ),
             );
 
         $this->contextProvider->provideContext($this->context);

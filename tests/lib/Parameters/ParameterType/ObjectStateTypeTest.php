@@ -39,7 +39,7 @@ final class ObjectStateTypeTest extends TestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                fn (callable $callback) => $callback($this->repositoryMock)
+                fn (callable $callback) => $callback($this->repositoryMock),
             );
 
         $this->repositoryMock
@@ -172,22 +172,22 @@ final class ObjectStateTypeTest extends TestCase
             ->method('loadObjectStates')
             ->withConsecutive(
                 [self::identicalTo($group1)],
-                [self::identicalTo($group2)]
+                [self::identicalTo($group2)],
             )
             ->willReturnOnConsecutiveCalls(
                 [
                     new EzObjectState(
                         [
                             'identifier' => 'state1',
-                        ]
+                        ],
                     ),
                     new EzObjectState(
                         [
                             'identifier' => 'state2',
-                        ]
+                        ],
                     ),
                 ],
-                []
+                [],
             );
 
         $options = $value !== null ? ['multiple' => is_array($value)] : [];
@@ -271,10 +271,10 @@ final class ObjectStateTypeTest extends TestCase
                 $this->getParameterDefinition(
                     [
                         'multiple' => $multiple,
-                    ]
+                    ],
                 ),
-                $value
-            )
+                $value,
+            ),
         );
     }
 

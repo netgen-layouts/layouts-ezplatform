@@ -34,8 +34,8 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
                     'Cache clearing in Netgen Layouts cannot be automatically configured since eZ Platform purge client is neither an instance of "%s" nor "%s". Use Netgen Layouts "%s" config to enable or disable HTTP cache clearing.',
                     VarnishPurgeClient::class,
                     LocalPurgeClient::class,
-                    'http_cache.invalidation.enabled'
-                )
+                    'http_cache.invalidation.enabled',
+                ),
             );
 
             return;
@@ -44,7 +44,7 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
         if (!is_a($purgeClientClass, VarnishPurgeClient::class, true)) {
             $container->setAlias(
                 self::SERVICE_NAME,
-                'netgen_layouts.ezplatform.http_cache.client.local'
+                'netgen_layouts.ezplatform.http_cache.client.local',
             );
         }
     }

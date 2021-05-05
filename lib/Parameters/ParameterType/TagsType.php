@@ -47,12 +47,12 @@ final class TagsType extends ParameterType
 
         $optionsResolver->setAllowedValues(
             'min',
-            static fn (?int $value): bool => $value === null || $value > 0
+            static fn (?int $value): bool => $value === null || $value > 0,
         );
 
         $optionsResolver->setAllowedValues(
             'max',
-            static fn (?int $value): bool => $value === null || $value > 0
+            static fn (?int $value): bool => $value === null || $value > 0,
         );
 
         $optionsResolver->setNormalizer(
@@ -67,7 +67,7 @@ final class TagsType extends ParameterType
                 }
 
                 return $value;
-            }
+            },
         );
     }
 
@@ -81,7 +81,7 @@ final class TagsType extends ParameterType
         try {
             /** @var \Netgen\TagsBundle\API\Repository\Values\Tags\Tag $tag */
             $tag = $this->tagsService->sudo(
-                static fn (TagsService $tagsService): Tag => $tagsService->loadTag((int) $value)
+                static fn (TagsService $tagsService): Tag => $tagsService->loadTag((int) $value),
             );
 
             return $tag->remoteId;
@@ -95,7 +95,7 @@ final class TagsType extends ParameterType
         try {
             /** @var \Netgen\TagsBundle\API\Repository\Values\Tags\Tag $tag */
             $tag = $this->tagsService->sudo(
-                static fn (TagsService $tagsService): Tag => $tagsService->loadTagByRemoteId((string) $value)
+                static fn (TagsService $tagsService): Tag => $tagsService->loadTagByRemoteId((string) $value),
             );
 
             return (int) $tag->id;
@@ -118,7 +118,7 @@ final class TagsType extends ParameterType
                         new Constraints\GreaterThan(['value' => 0]),
                         new EzConstraints\Tag(['allowInvalid' => $options['allow_invalid']]),
                     ],
-                ]
+                ],
             ),
         ];
 
@@ -127,7 +127,7 @@ final class TagsType extends ParameterType
                 [
                     'min' => $options['min'],
                     'max' => $options['max'],
-                ]
+                ],
             );
         }
 

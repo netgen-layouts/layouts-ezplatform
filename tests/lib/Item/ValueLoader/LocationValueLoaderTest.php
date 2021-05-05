@@ -37,9 +37,9 @@ final class LocationValueLoaderTest extends TestCase
                 'contentInfo' => new ContentInfo(
                     [
                         'published' => true,
-                    ]
+                    ],
                 ),
-            ]
+            ],
         );
 
         $this->locationServiceMock
@@ -80,10 +80,10 @@ final class LocationValueLoaderTest extends TestCase
                         'contentInfo' => new ContentInfo(
                             [
                                 'published' => false,
-                            ]
+                            ],
                         ),
-                    ]
-                )
+                    ],
+                ),
             );
 
         self::assertNull($this->valueLoader->load(52));
@@ -100,9 +100,9 @@ final class LocationValueLoaderTest extends TestCase
                 'contentInfo' => new ContentInfo(
                     [
                         'published' => true,
-                    ]
+                    ],
                 ),
-            ]
+            ],
         );
 
         $this->locationServiceMock
@@ -143,10 +143,10 @@ final class LocationValueLoaderTest extends TestCase
                         'contentInfo' => new ContentInfo(
                             [
                                 'published' => false,
-                            ]
+                            ],
                         ),
-                    ]
-                )
+                    ],
+                ),
             );
 
         self::assertNull($this->valueLoader->loadByRemoteId('abc'));

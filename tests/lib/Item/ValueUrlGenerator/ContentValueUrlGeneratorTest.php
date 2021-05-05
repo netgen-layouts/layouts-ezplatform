@@ -35,7 +35,7 @@ final class ContentValueUrlGeneratorTest extends TestCase
             ->method('generate')
             ->with(
                 self::identicalTo(UrlAliasRouter::URL_ALIAS_ROUTE_NAME),
-                self::identicalTo(['contentId' => 42])
+                self::identicalTo(['contentId' => 42]),
             )
             ->willReturn('/content/path');
 

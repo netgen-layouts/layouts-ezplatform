@@ -50,7 +50,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
 
         self::assertSame(
             '/the/answer',
-            $this->targetType->provideValue($request)
+            $this->targetType->provideValue($request),
         );
     }
 
@@ -64,7 +64,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
 
         self::assertSame(
             '/',
-            $this->targetType->provideValue($request)
+            $this->targetType->provideValue($request),
         );
     }
 

@@ -35,7 +35,7 @@ final class RemoteIdConverterTest extends TestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                fn (callable $callback) => $callback($this->repositoryMock)
+                fn (callable $callback) => $callback($this->repositoryMock),
             );
 
         $this->repositoryMock
@@ -49,7 +49,7 @@ final class RemoteIdConverterTest extends TestCase
             ->willReturn($this->contentServiceMock);
 
         $this->converter = new RemoteIdConverter(
-            $this->repositoryMock
+            $this->repositoryMock,
         );
     }
 

@@ -41,7 +41,7 @@ final class ContentTypeTypeTest extends TestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                fn (callable $callback) => $callback($this->repositoryMock)
+                fn (callable $callback) => $callback($this->repositoryMock),
             );
 
         $this->repositoryMock
@@ -180,9 +180,9 @@ final class ContentTypeTypeTest extends TestCase
                         return new EzContentType(
                             [
                                 'identifier' => $identifier,
-                            ]
+                            ],
                         );
-                    }
+                    },
                 );
             }
         }
@@ -239,10 +239,10 @@ final class ContentTypeTypeTest extends TestCase
                 $this->getParameterDefinition(
                     [
                         'multiple' => $multiple,
-                    ]
+                    ],
                 ),
-                $value
-            )
+                $value,
+            ),
         );
     }
 

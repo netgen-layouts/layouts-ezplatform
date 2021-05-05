@@ -90,12 +90,12 @@ final class ContentSearchHandler implements QueryTypeHandlerInterface
 
         $searchResult = $this->searchService->findLocations(
             $locationQuery,
-            ['languages' => $this->configResolver->getParameter('languages')]
+            ['languages' => $this->configResolver->getParameter('languages')],
         );
 
         return array_map(
             static fn (SearchHit $searchHit): ValueObject => $searchHit->valueObject,
-            $searchResult->searchHits
+            $searchResult->searchHits,
         );
     }
 
@@ -112,7 +112,7 @@ final class ContentSearchHandler implements QueryTypeHandlerInterface
 
         $searchResult = $this->searchService->findLocations(
             $locationQuery,
-            ['languages' => $this->configResolver->getParameter('languages')]
+            ['languages' => $this->configResolver->getParameter('languages')],
         );
 
         return $searchResult->totalCount ?? 0;
@@ -148,7 +148,7 @@ final class ContentSearchHandler implements QueryTypeHandlerInterface
 
         $criteria = array_filter(
             $criteria,
-            static fn (?Criterion $criterion): bool => $criterion instanceof Criterion
+            static fn (?Criterion $criterion): bool => $criterion instanceof Criterion,
         );
 
         $locationQuery->filter = new Criterion\LogicalAnd($criteria);

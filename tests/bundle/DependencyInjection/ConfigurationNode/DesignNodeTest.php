@@ -52,8 +52,8 @@ final class DesignNodeTest extends ConfigurationNodeTest
             $this->partialProcessor->processConfiguration(
                 $this->getConfiguration(),
                 null,
-                $this->plugin->preProcessConfiguration($config)
-            )
+                $this->plugin->preProcessConfiguration($config),
+            ),
         );
 
         self::assertSame('test1', $config['system']['default']['design']);
@@ -82,8 +82,8 @@ final class DesignNodeTest extends ConfigurationNodeTest
             $this->partialProcessor->processConfiguration(
                 $this->getConfiguration(),
                 null,
-                $this->plugin->preProcessConfiguration($config)
-            )
+                $this->plugin->preProcessConfiguration($config),
+            ),
         );
 
         self::assertSame('standard', $config['system']['default']['design']);
@@ -115,8 +115,8 @@ final class DesignNodeTest extends ConfigurationNodeTest
             $this->partialProcessor->processConfiguration(
                 $this->getConfiguration(),
                 null,
-                $this->plugin->preProcessConfiguration($config)
-            )
+                $this->plugin->preProcessConfiguration($config),
+            ),
         );
     }
 }

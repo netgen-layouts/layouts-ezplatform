@@ -25,7 +25,7 @@ final class RepositoryPrefixDecoratorTest extends TestCase
 
         $this->repositoryPrefixDecorator = new RepositoryPrefixDecorator(
             $this->clientMock,
-            $this->repositoryTagPrefixMock
+            $this->repositoryTagPrefixMock,
         );
     }
 

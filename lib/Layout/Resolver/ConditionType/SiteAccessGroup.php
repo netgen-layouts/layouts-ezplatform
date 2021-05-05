@@ -44,7 +44,7 @@ final class SiteAccessGroup extends ConditionType
                         new Constraints\Type(['type' => 'string']),
                         new EzConstraints\SiteAccessGroup(),
                     ],
-                ]
+                ],
             ),
         ];
     }

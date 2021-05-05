@@ -46,8 +46,8 @@ final class LocationValidatorTest extends ValidatorTestCase
                     [
                         'id' => 42,
                         'content' => new Content(['contentType' => new ContentType(['identifier' => 'user'])]),
-                    ]
-                )
+                    ],
+                ),
             );
 
         $this->assertValid(true, 42);
@@ -68,8 +68,8 @@ final class LocationValidatorTest extends ValidatorTestCase
                     [
                         'id' => 42,
                         'content' => new Content(['contentType' => new ContentType(['identifier' => 'article'])]),
-                    ]
-                )
+                    ],
+                ),
             );
 
         $this->assertValid(false, 42);
@@ -136,7 +136,7 @@ final class LocationValidatorTest extends ValidatorTestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                fn (callable $callback) => $callback($this->repositoryMock)
+                fn (callable $callback) => $callback($this->repositoryMock),
             );
         $this->repositoryMock
             ->expects(self::any())

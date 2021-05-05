@@ -31,7 +31,7 @@ final class ContentTypeType extends AbstractType
 
         $resolver->setDefault(
             'choices',
-            fn (Options $options): array => $this->getContentTypes($options)
+            fn (Options $options): array => $this->getContentTypes($options),
         );
 
         $resolver->setDefault('choice_translation_domain', false);

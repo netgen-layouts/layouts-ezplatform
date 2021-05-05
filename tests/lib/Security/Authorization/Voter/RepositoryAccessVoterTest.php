@@ -26,14 +26,14 @@ final class RepositoryAccessVoterTest extends TestCase
                 'ROLE_NGLAYOUTS_ADMIN' => [
                     'ROLE_NGLAYOUTS_EDITOR',
                 ],
-            ]
+            ],
         );
 
         $this->accessDecisionManagerMock = $this->createMock(AccessDecisionManagerInterface::class);
 
         $this->voter = new RepositoryAccessVoter(
             $roleHierarchy,
-            $this->accessDecisionManagerMock
+            $this->accessDecisionManagerMock,
         );
     }
 

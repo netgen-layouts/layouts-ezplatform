@@ -46,8 +46,8 @@ final class SectionValidatorTest extends ValidatorTestCase
                 new EzSection(
                     [
                         'identifier' => $identifier,
-                    ]
-                )
+                    ],
+                ),
             );
 
         $this->constraint->allowedSections = $allowedSections;
@@ -125,7 +125,7 @@ final class SectionValidatorTest extends ValidatorTestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                fn (callable $callback) => $callback($this->repositoryMock)
+                fn (callable $callback) => $callback($this->repositoryMock),
             );
 
         $this->repositoryMock

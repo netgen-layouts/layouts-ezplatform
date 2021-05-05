@@ -40,8 +40,8 @@ final class ContentMapperTest extends TestCase
                     'options' => [
                         'allowed_types' => ['user', 'image'],
                     ],
-                ]
-            )
+                ],
+            ),
         );
 
         self::assertSame(
@@ -51,7 +51,7 @@ final class ContentMapperTest extends TestCase
                     'allowed_content_types' => ['user', 'image'],
                 ],
             ],
-            $mappedOptions
+            $mappedOptions,
         );
     }
 
@@ -67,15 +67,15 @@ final class ContentMapperTest extends TestCase
                     'options' => [
                         'allowed_types' => [],
                     ],
-                ]
-            )
+                ],
+            ),
         );
 
         self::assertSame(
             [
                 'item_type' => 'ezcontent',
             ],
-            $mappedOptions
+            $mappedOptions,
         );
     }
 }

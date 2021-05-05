@@ -41,7 +41,7 @@ final class LocationTypeTest extends TestCase
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
-                fn (callable $callback) => $callback($this->repositoryMock)
+                fn (callable $callback) => $callback($this->repositoryMock),
             );
 
         $this->repositoryMock
@@ -252,11 +252,11 @@ final class LocationTypeTest extends TestCase
                                 'content' => new Content(
                                     [
                                         'contentType' => new ContentType(['identifier' => $type]),
-                                    ]
+                                    ],
                                 ),
-                            ]
+                            ],
                         );
-                    }
+                    },
                 );
         }
 
@@ -307,8 +307,8 @@ final class LocationTypeTest extends TestCase
             $convertedValue,
             $this->type->fromHash(
                 $this->getParameterDefinition(),
-                $value
-            )
+                $value,
+            ),
         );
     }
 

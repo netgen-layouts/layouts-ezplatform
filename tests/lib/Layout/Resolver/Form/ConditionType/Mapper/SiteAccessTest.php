@@ -38,7 +38,7 @@ final class SiteAccessTest extends TestCase
                 'multiple' => true,
                 'expanded' => true,
             ],
-            $this->mapper->getFormOptions()
+            $this->mapper->getFormOptions(),
         );
     }
 }

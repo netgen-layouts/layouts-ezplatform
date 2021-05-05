@@ -18,7 +18,7 @@ final class DefaultAppPreviewPass implements CompilerPassInterface
 
         $defaultRule = [
             'template' => $container->getParameter(
-                'netgen_layouts.app.ezplatform.item_preview_template'
+                'netgen_layouts.app.ezplatform.item_preview_template',
             ),
             'match' => [],
             'params' => [],

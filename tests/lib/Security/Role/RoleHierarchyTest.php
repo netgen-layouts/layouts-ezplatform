@@ -33,7 +33,7 @@ final class RoleHierarchyTest extends TestCase
                 'ROLE_NGLAYOUTS_EDITOR' => [
                     'ROLE_NGLAYOUTS_API',
                 ],
-            ]
+            ],
         );
 
         /** @var \Symfony\Component\Security\Core\Role\Role[] $reachableRoles */
@@ -68,7 +68,7 @@ final class RoleHierarchyTest extends TestCase
                 'ROLE_NGLAYOUTS_EDITOR' => [
                     'ROLE_NGLAYOUTS_API',
                 ],
-            ]
+            ],
         );
 
         $reachableRoles = $role->getReachableRoleNames([$startingRole]);

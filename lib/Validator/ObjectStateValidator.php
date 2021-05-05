@@ -118,7 +118,7 @@ final class ObjectStateValidator extends ConstraintValidator
                     }
 
                     return $stateIdentifiers;
-                }
+                },
             );
         }
 

@@ -34,7 +34,7 @@ final class ContentTest extends TestCase
             [
                 'item_type' => 'ezcontent',
             ],
-            $this->mapper->getFormOptions()
+            $this->mapper->getFormOptions(),
         );
     }
 }

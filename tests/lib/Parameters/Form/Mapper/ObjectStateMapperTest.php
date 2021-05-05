@@ -45,9 +45,9 @@ final class ObjectStateMapperTest extends TestCase
                             'multiple' => true,
                             'states' => [42],
                         ],
-                    ]
-                )
-            )
+                    ],
+                ),
+            ),
         );
     }
 }

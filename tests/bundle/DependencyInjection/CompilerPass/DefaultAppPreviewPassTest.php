@@ -26,7 +26,7 @@ final class DefaultAppPreviewPassTest extends AbstractContainerBuilderTestCase
         $this->container->setParameter('ezpublish.siteaccess.list', ['cro']);
         $this->container->setParameter(
             'netgen_layouts.app.ezplatform.item_preview_template',
-            'default.html.twig'
+            'default.html.twig',
         );
 
         $this->container->setParameter(
@@ -37,7 +37,7 @@ final class DefaultAppPreviewPassTest extends AbstractContainerBuilderTestCase
                         'template' => 'article.html.twig',
                     ],
                 ],
-            ]
+            ],
         );
 
         $this->container->setParameter(
@@ -53,7 +53,7 @@ final class DefaultAppPreviewPassTest extends AbstractContainerBuilderTestCase
                         'template' => 'nglayouts_article.html.twig',
                     ],
                 ],
-            ]
+            ],
         );
 
         $this->compile();
@@ -73,7 +73,7 @@ final class DefaultAppPreviewPassTest extends AbstractContainerBuilderTestCase
                         'params' => [],
                     ],
                 ],
-            ]
+            ],
         );
 
         $this->assertContainerBuilderHasParameter(
@@ -94,7 +94,7 @@ final class DefaultAppPreviewPassTest extends AbstractContainerBuilderTestCase
                         'params' => [],
                     ],
                 ],
-            ]
+            ],
         );
 
         self::assertFalse($this->container->hasParameter('netgen_layouts.default.location_view'));
