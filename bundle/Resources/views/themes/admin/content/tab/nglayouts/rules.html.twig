@@ -5,8 +5,15 @@
     variable is deprecated, it comes from eZ Platform 2.5
 #}
 {% include ['@ezdesign/ui/table_header.html.twig', '@ezdesign/parts/table_header.html.twig'] with {
+    'ground': 'title-direct-rules',
     'header_text': 'rules.title'|trans,
     'headerText': 'rules.title'|trans
+} %}
+
+{% include ['@ezdesign/ui/table_header.html.twig', '@ezdesign/parts/table_header.html.twig'] with {
+    'ground': 'title-all-rules',
+    'header_text': 'rules.title_all_rules'|trans,
+    'headerText': 'rules.title_all_rules'|trans
 } %}
 
 <div class="bg-white p-3 mb-5">

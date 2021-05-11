@@ -222,8 +222,14 @@ $(document).ready(function () {
   $(document).on('change', '.rules-checkbox', function () {
     if (this.checked) {
       $('.rule-non-direct').show();
+
+      $('.title-direct-rules').hide();
+      $('.title-all-rules').css('display', 'flex');
     } else {
       $('.rule-non-direct').hide();
+
+      $('.title-direct-rules').css('display', 'flex');
+      $('.title-all-rules').hide();
     }
   });
 
