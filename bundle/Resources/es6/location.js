@@ -196,7 +196,6 @@ $(document).ready(function () {
   LayoutsBox.prototype.getLayouts = function () {
     if (this.fetchedLayouts) return;
     const self = this;
-
     $.ajax({
       type: 'GET',
       url: this.url,
@@ -218,6 +217,18 @@ $(document).ready(function () {
     localStorage.setItem('ngl_referrer', window.location.href);
     e.currentTarget.dataset.valueId !== undefined && localStorage.setItem('ngl_referrer_value_id', e.currentTarget.dataset.valueId);
     e.currentTarget.dataset.valueType !== undefined && localStorage.setItem('ngl_referrer_value_type', e.currentTarget.dataset.valueType);
+  });
+
+  $(document).on('change', '.rules-checkbox', function () {
+    if (this.checked) {
+      $('.rule-non-direct').each(function () {
+        $(this).show();
+      });
+    } else {
+      $('.rule-non-direct').each(function () {
+        $(this).hide();
+      });
+    }
   });
 
   $('.mapped-layouts-box').each(function () {
