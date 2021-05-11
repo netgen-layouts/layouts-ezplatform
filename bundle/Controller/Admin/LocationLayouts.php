@@ -49,7 +49,7 @@ final class LocationLayouts extends Controller
             '@ezdesign/content/tab/nglayouts/location_layouts.html.twig',
             [
                 'rules' => $rules,
-                'rules_on_on_one' => $rulesOneOnOne,
+                'rules_one_on_one' => $rulesOneOnOne,
                 'related_layouts' => $this->relatedLayoutsLoader->loadRelatedLayouts($location),
                 'location' => $location,
             ],
