@@ -38,17 +38,18 @@ final class LocationLayouts extends Controller
     {
         $request = $this->createRequest($location);
 
-        $rules = [];
-        foreach ($this->layoutResolver->resolveRules($request, ['ez_content_type']) as $rule) {
-            if ($this->isRuleOneOnOne($location, $rule)) {
-                $rules[] = $rule;
-            }
+        $rules = $this->layoutResolver->resolveRules($request, ['ez_content_type']);
+        $rulesOneOnOne = [];
+
+        foreach ($rules as $rule) {
+            $rulesOneOnOne[$rule->getId()->toString()] = $this->isRuleOneOnOne($location, $rule);
         }
 
         return $this->render(
             '@ezdesign/content/tab/nglayouts/location_layouts.html.twig',
             [
                 'rules' => $rules,
+                'rules_on_on_one' => $rulesOneOnOne,
                 'related_layouts' => $this->relatedLayoutsLoader->loadRelatedLayouts($location),
                 'location' => $location,
             ],
