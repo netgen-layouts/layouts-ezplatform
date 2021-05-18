@@ -109,11 +109,11 @@
     }
     .layout-item {
         background:#fff;
-        box-shadow:0 1px 2px hsla(0, 0, 0, .3);
-        font-size:12px;
-        line-height:1.5;
-        margin:0 0 10px;
+        display: flex;
+        position: relative;
+        color: #666666;
         min-height: 60px;
+        border-bottom: 1px solid #e3e3e3;
         p {
             font-size:inherit;
             margin:2px 0;
@@ -144,6 +144,12 @@
         }
         .layout-dropdown {
             padding: 0;
+        }
+
+        &:hover {
+            .layout-dropdown {
+                visibility: visible;
+            }
         }
     }
     .layout-list-head {
@@ -185,6 +191,7 @@
         padding: 0;
         align-items: stretch;
         width: 60px;
+        visibility: hidden;
         > button {
             height: 100%;
             border: 0;
@@ -193,17 +200,21 @@
             padding: 0 0 .5em;
             transition: background .25s;
             outline: none;
+            color: #3671E7;
             &:hover {
                 background: #e5e5e5;
             }
         }
         .dropdown-menu {
-            background: #404040;
             border: 0;
             border-radius: 0;
-            color: #fff;
             margin: 0;
             padding: .5em 0;
+            text-align: right;
+            background: #fff;
+            color: #000;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            list-style-type: none;
             text-align: right;
             > li {
                 &:hover {
@@ -222,10 +233,11 @@
                 line-height: 1.42857143;
                 white-space: nowrap;
                 border: none;
-                background: transparent;
+                background: white;
                 font-size: .813rem;
+                color: #3671E7;
                 &:hover {
-                    background: rgba(#fff, .05);
+                    text-decoration: underline;
                 }
                 .note {
                     display: block;
@@ -234,10 +246,7 @@
             }
         }
         &.show {
-            button {
-                background: #404040;
-                color: #fff;
-            }
+            visibility: visible;
         }
     }
 }
