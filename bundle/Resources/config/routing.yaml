@@ -4,3 +4,13 @@ nglayouts_ezadmin_location_layouts:
     methods:  [GET]
     requirements:
         locationId: \d+
+
+nglayouts_ezadmin_layout_wizard:
+    path: /nglayouts/ezadmin/layouts/{locationId}/wizard
+    controller: netgen_layouts.ezplatform.admin.controller.layout_wizard
+    methods:  [GET, POST]
+
+nglayouts_ezadmin_layout_wizard_callback:
+    path: /nglayouts/ezadmin/layouts/{locationId}/wizard/callback
+    controller: netgen_layouts.ezplatform.admin.controller.layout_wizard_callback
+    methods:  [GET]

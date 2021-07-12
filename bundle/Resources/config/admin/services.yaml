@@ -15,6 +15,22 @@ services:
             - "@netgen_layouts.layout.resolver"
             - "@netgen_layouts.ezplatform.admin.related_layouts_loader"
 
+    netgen_layouts.ezplatform.admin.controller.layout_wizard:
+        class: Netgen\Bundle\LayoutsEzPlatformBundle\Controller\Admin\LayoutWizard
+        public: true
+        parent: netgen_layouts.ezplatform.admin.controller.base
+        arguments:
+            - "@netgen_layouts.api.service.layout"
+            - "@netgen_layouts.layout.registry.layout_type"
+
+    netgen_layouts.ezplatform.admin.controller.layout_wizard_callback:
+        class: Netgen\Bundle\LayoutsEzPlatformBundle\Controller\Admin\LayoutWizardCallback
+        public: true
+        parent: netgen_layouts.ezplatform.admin.controller.base
+        arguments:
+            - "@netgen_layouts.api.service.layout"
+            - "@netgen_layouts.api.service.layout_resolver"
+
     netgen_layouts.ezplatform.event_listener.admin.main_menu_builder:
         class: Netgen\Bundle\LayoutsEzPlatformBundle\EventListener\Admin\MainMenuBuilderListener
         arguments:

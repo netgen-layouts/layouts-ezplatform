@@ -20,3 +20,8 @@ layouts.cache_clear.submit: 'Clear cache'
 layouts.layout.clear_block_caches: 'Clear block caches'
 layouts.layout.clear_block_caches.note: 'Clears ESI and AJAX block caches'
 layouts.layout.clear_cache: 'Clear layout cache'
+
+layout_wizard.title: 'Create location-based mapping for "%locationName%"'
+layout_wizard.rule_group.button: 'Choose'
+layout_wizard.button.cancel: 'Discard'
+layout_wizard.button.save: 'Save mapping & edit layout'
