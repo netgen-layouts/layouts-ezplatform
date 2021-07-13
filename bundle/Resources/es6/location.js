@@ -1,8 +1,9 @@
 import $ from 'jquery';
+import NlModal from './NlModal';
 
 /* eslint-disable prefer-arrow-callback */
 /* eslint-disable func-names */
-$(document).ready(function () {
+$(function () {
   /* edit layout box */
   function LayoutMapped(el, layouts) {
     this.$el = $(el);
@@ -212,11 +213,73 @@ $(document).ready(function () {
     });
   };
 
+  const submitModal = (url, modal, method, csrf, body, afterSuccess, afterError) => {
+    fetch(url, {
+      method,
+      credentials: 'same-origin',
+      headers: {
+        'X-CSRF-Token': csrf,
+      },
+      body,
+    }).then((response) => {
+      if (!response.ok) {
+        return response.text().then((data) => {
+          modal.insertModalHtml(data);
+          if (afterError) afterError();
+          throw new Error(`HTTP error, status ${response.status}`);
+        });
+      }
+      return response.text();
+    }).then((data) => {
+      // eslint-disable-next-line dot-notation
+      const layoutUrl = JSON.parse(data)['layout_url'];
+      // eslint-disable-next-line dot-notation
+      const returnUrl = JSON.parse(data)['return_url'];
+      window.localStorage.setItem('ngl_referrer', returnUrl);
+      window.location.replace(layoutUrl);
+      modal.close();
+      // if (afterSuccess) afterSuccess(data);
+      return true;
+    }).catch((error) => {
+      console.log(error); // eslint-disable-line no-console
+    });
+  };
+
   /* save current location ID to local storage when opening Netgen Layouts edit interface */
   $(document).on('click', '.js-open-ngl', function (e) {
     localStorage.setItem('ngl_referrer', window.location.href);
     e.currentTarget.dataset.valueId !== undefined && localStorage.setItem('ngl_referrer_value_id', e.currentTarget.dataset.valueId);
     e.currentTarget.dataset.valueType !== undefined && localStorage.setItem('ngl_referrer_value_type', e.currentTarget.dataset.valueType);
+  });
+
+  $(document).on('click', '.js-direct-mapping', function () {
+    const layoutId = document.querySelector('.mapped-layouts-box').dataset.url.split('/').pop();
+    const apiUrl = `${window.location.origin}/${window.location.pathname.split('/')[1]}`;
+    const baseUrl = `${apiUrl}/ngadmin/layouts`;
+    const url = `${baseUrl}/${layoutId}/wizard`;
+    const modal = new NlModal({
+      preload: true,
+      autoClose: false,
+    });
+    const formAction = (ev) => {
+      ev.preventDefault();
+      modal.loadingStart();
+      const formEl = modal.el.getElementsByTagName('FORM')[0];
+      const afterSuccess = () => {};
+      submitModal(url, modal, 'POST', this.csrf, new URLSearchParams(new FormData(formEl)), afterSuccess);
+    };
+    fetch(url, {
+      method: 'GET',
+    }).then((response) => {
+      if (!response.ok) throw new Error(`HTTP error, status ${response.status}`);
+      return response.text();
+    }).then((data) => {
+      modal.insertModalHtml(data);
+      modal.disableForm();
+      modal.el.addEventListener('apply', formAction);
+    }).catch((error) => {
+      console.log(error); // eslint-disable-line no-console
+    });
   });
 
   $(document).on('change', '.rules-checkbox', function () {
