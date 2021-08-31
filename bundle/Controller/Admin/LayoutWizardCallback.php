@@ -35,7 +35,7 @@ final class LayoutWizardCallback extends Controller
      */
     public function __invoke(Location $location, Request $request): RedirectResponse
     {
-        $wizardId = sprintf('_layouts_ezplatform_wizard/%s', $request->query->get('wizardId', ''));
+        $wizardId = sprintf('_layouts_ezplatform_wizard/%s', (string) $request->query->get('wizardId', ''));
         if (!$request->getSession()->has($wizardId)) {
             throw new BadRequestHttpException();
         }

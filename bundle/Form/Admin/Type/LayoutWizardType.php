@@ -15,6 +15,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
 use function array_key_first;
+use function count;
 
 final class LayoutWizardType extends AbstractType
 {
@@ -73,7 +74,7 @@ final class LayoutWizardType extends AbstractType
                 'choice_label' => 'name',
                 'choice_translation_domain' => false,
                 'expanded' => true,
-                'data' => $layoutTypes[array_key_first($layoutTypes)],
+                'data' => count($layoutTypes) > 0 ? $layoutTypes[array_key_first($layoutTypes)] : null,
                 'constraints' => [
                     new Constraints\NotBlank(),
                 ],
