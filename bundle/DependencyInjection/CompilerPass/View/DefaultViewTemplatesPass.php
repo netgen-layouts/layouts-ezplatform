@@ -26,7 +26,7 @@ final class DefaultViewTemplatesPass implements CompilerPassInterface
                 continue;
             }
 
-            /** @var array<string, array>|null $scopeRules */
+            /** @var array<string, mixed[]>|null $scopeRules */
             $scopeRules = $container->getParameter($scopeParam);
             $scopeRules = $this->updateRules($container, $scopeRules);
             $container->setParameter($scopeParam, $scopeRules);
