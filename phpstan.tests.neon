@@ -12,7 +12,6 @@ parameters:
 
     ignoreErrors:
         - '#Symfony\\Component\\Security\\Core\\Role\\Role#'
-        - '#EzSystems\\PlatformHttpCacheBundle\\RequestAwarePurger#'
 
         - '#Call to an undefined method Netgen\\Layouts\\Ez\\Security\\Role\\RoleHierarchy::getReachableRoles\(\).#'
 
