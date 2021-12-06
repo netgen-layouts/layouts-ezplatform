@@ -58,6 +58,10 @@ export default class NlModal {
       window.addEventListener('keydown', this.onKeyDown);
     }
 
+    checkForm() {
+        this.el.querySelector('#layout_wizard_action_0').checked ? this.disableForm() : this.enableForm();
+      }
+
     handleCheckbox(id) {
       Object.keys(this.modalGroups).forEach((key) => this.modalGroups[key].handleCheckbox(id));
       // id === null ? this.moveButton.disabled = true : this.moveButton.disabled = false;
@@ -158,8 +162,6 @@ export default class NlModal {
         this.el.querySelector('#layout_wizard_layout').previousElementSibling.style.display = 'none';
         this.el.querySelector('#layout_wizard_layout_type').style.display = 'flex';
         this.el.querySelector('#layout_wizard_layout_type').previousElementSibling.style.display = 'block';
-        // eslint-disable-next-line no-param-reassign, no-return-assign
-        document.getElementsByName('layout_wizard[layout_type]').forEach((el) => el.disabled = false);
       }
 
       enableForm() {
@@ -167,8 +169,6 @@ export default class NlModal {
         this.el.querySelector('#layout_wizard_layout').previousElementSibling.style.display = 'block';
         this.el.querySelector('#layout_wizard_layout_type').style.display = 'none';
         this.el.querySelector('#layout_wizard_layout_type').previousElementSibling.style.display = 'none';
-        // eslint-disable-next-line no-param-reassign, no-return-assign
-        document.getElementsByName('layout_wizard[layout_type]').forEach((el) => el.disabled = true);
       }
 
     setupEvents() {

@@ -225,6 +225,7 @@ $(function () {
       if (!response.ok) {
         return response.text().then((data) => {
           modal.insertModalHtml(data);
+          modal.checkForm();
           if (afterError) afterError();
           throw new Error(`HTTP error, status ${response.status}`);
         });

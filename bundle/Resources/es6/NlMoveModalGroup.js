@@ -15,6 +15,8 @@ export default class NlMoveModalGroup {
 
       this.disabled = disabled;
 
+      this.disabled = !this.data.permissions.mapping.edit;
+
       this.apiUrl = `${window.location.origin}${document.querySelector('meta[name=nglayouts-admin-base-path]').getAttribute('content')}`;
 
       this.modalGroups = {};
@@ -122,7 +124,7 @@ export default class NlMoveModalGroup {
       this.el.addEventListener('click', (e) => {
         if (e.target.closest('.js-group-title')) {
           e.stopPropagation();
-          if (this.depth !== 2) {
+          if (this.depth !== 2 && this.data.has_children) {
             this.el.classList.toggle('show-body');
             if (this.el.classList.contains('show-body')) {
               this.loadContent();
