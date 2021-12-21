@@ -42,7 +42,15 @@ final class LayoutWizardType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefault('translation_domain', 'nglayouts_ezadminui_forms');
+        $resolver->setDefaults(
+            [
+                'translation_domain' => 'nglayouts_ezadminui_forms',
+                'validation_groups' => static fn (FormInterface $form): array => [
+                    'Default',
+                    $form->get('action')->getData(),
+                ],
+            ],
+        );
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -77,7 +85,7 @@ final class LayoutWizardType extends AbstractType
                 'expanded' => true,
                 'data' => count($layoutTypes) > 0 ? $layoutTypes[array_key_first($layoutTypes)] : null,
                 'constraints' => [
-                    new Constraints\NotBlank(),
+                    new Constraints\NotBlank(['groups' => [self::ACTION_TYPE_NEW_LAYOUT]]),
                 ],
             ],
         );
