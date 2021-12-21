@@ -22,6 +22,12 @@ layouts.layout.clear_block_caches: 'Clear block caches'
 layouts.layout.clear_block_caches.note: 'Clears ESI and AJAX block caches'
 layouts.layout.clear_cache: 'Clear layout cache'
 
+layouts.rule.delete_rule: 'Delete mapping'
+layouts.rule.delete_rule.title: 'Delete mapping and layout'
+layouts.rule.delete_rule.question: 'Are you sure you wish to delete the mapping and layout?'
+layouts.rule.delete_rule.cancel: 'Cancel'
+layouts.rule.delete_rule.submit: 'Delete mapping'
+
 layout_wizard.title: 'Create location-based mapping for "%locationName%"'
 layout_wizard.rule_group.button: 'Choose'
 layout_wizard.button.cancel: 'Discard'

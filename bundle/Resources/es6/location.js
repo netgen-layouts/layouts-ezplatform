@@ -255,7 +255,7 @@ $(function () {
   $(document).on('click', '.js-direct-mapping', function () {
     const layoutId = document.querySelector('.mapped-layouts-box').dataset.url.split('/').pop();
     const apiUrl = `${window.location.origin}/${window.location.pathname.split('/')[1]}`;
-    const baseUrl = `${apiUrl}/ngadmin/layouts`;
+    const baseUrl = `${apiUrl}/nglayouts/ezadmin/layouts`;
     const url = `${baseUrl}/${layoutId}/wizard`;
     const modal = new NlModal({
       preload: true,
