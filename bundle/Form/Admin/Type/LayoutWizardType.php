@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Netgen\Bundle\LayoutsEzPlatformBundle\Form\Admin\Type;
 
 use Netgen\Layouts\API\Service\LayoutService;
+use Netgen\Layouts\API\Values\Layout\Layout;
 use Netgen\Layouts\Layout\Registry\LayoutTypeRegistry;
 use Netgen\Layouts\Validator\Constraint\LayoutName;
 use Symfony\Component\Form\AbstractType;
@@ -86,7 +87,9 @@ final class LayoutWizardType extends AbstractType
             Type\ChoiceType::class,
             [
                 'label' => 'layout_wizard.layout',
-                'choices' => $this->layoutService->loadAllLayouts(),
+                'choices' => $this->layoutService->loadAllLayouts()->filter(
+                    static fn (Layout $layout): bool => !$layout->isShared(),
+                ),
                 'choice_value' => 'id',
                 'choice_label' => 'name',
             ],
