@@ -64,7 +64,13 @@ final class LayoutWizardCallback extends Controller
         $this->layoutResolverService->addTarget($rule, $targetCreateStruct);
         $this->layoutResolverService->publishRule($rule);
 
-        return $this->redirectToRoute(UrlAliasRouter::URL_ALIAS_ROUTE_NAME, ['locationId' => $location->id]);
+        return $this->redirectToRoute(
+            UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
+            [
+                'locationId' => $location->id,
+                '_fragment' => 'ez-tab-location-view-netgen_layouts',
+            ],
+        );
     }
 
     public function checkPermissions(): void
