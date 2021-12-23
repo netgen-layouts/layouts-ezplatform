@@ -41,10 +41,16 @@ final class LayoutWizardCallback extends Controller
         }
 
         $wizardData = $request->getSession()->get($wizardId);
-
         $layoutId = Uuid::fromString($wizardData['layout']);
+
         if (!$this->layoutService->layoutExists($layoutId, Layout::STATUS_PUBLISHED)) {
-            return $this->redirectToRoute(UrlAliasRouter::URL_ALIAS_ROUTE_NAME, ['locationId' => $location->id]);
+            return $this->redirectToRoute(
+                UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
+                [
+                    'locationId' => $location->id,
+                    '_fragment' => 'ez-tab-location-view-netgen_layouts',
+                ],
+            );
         }
 
         $ruleGroupId = $wizardData['rule_group'] ?? RuleGroup::ROOT_UUID;
