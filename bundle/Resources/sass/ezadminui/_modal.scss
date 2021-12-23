@@ -137,10 +137,11 @@
 
         .choose-group-div {
             display: flex;
+            align-items: center;
             margin-bottom: 1em;
 
             .chosen-group {
-                margin-right: 2rem;
+                margin: 0 2rem 0 0;
             }
         }
 
