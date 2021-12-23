@@ -181,6 +181,7 @@ export default class NlModal {
           this.cancel(e);
         } else if (e.target.closest('.choose-group')) {
           e.preventDefault();
+          window.removeEventListener('keydown', this.onKeyDown);
           // eslint-disable-next-line no-unused-vars
           const modal = new NlModal({
             preload: true,
@@ -216,6 +217,11 @@ export default class NlModal {
       this.el.dispatchEvent(new Event('cancel'));
       this.destroy();
       window.removeEventListener('keydown', this.onKeyDown);
+      this.parentModal && this.parentModal.childClosed();
+    }
+
+    childClosed() {
+        window.addEventListener('keydown', this.onKeyDown);
     }
 
     deleteSetup() {

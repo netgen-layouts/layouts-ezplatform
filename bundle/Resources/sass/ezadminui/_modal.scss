@@ -101,6 +101,10 @@
                     width: 290px;
                 }
             }
+
+            .group-title {
+                width: 100%;
+            }
         }
         .nl-modal-head {
             padding:15px 35px 15px 15px;
@@ -133,6 +137,7 @@
 
         .choose-group-div {
             display: flex;
+            margin-bottom: 1em;
 
             .chosen-group {
                 margin-right: 2rem;
