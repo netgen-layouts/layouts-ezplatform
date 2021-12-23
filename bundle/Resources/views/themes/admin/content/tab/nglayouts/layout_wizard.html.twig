@@ -1,0 +1,69 @@
+{% extends '@NetgenLayoutsAdmin/form/modal.html.twig' %}
+
+{% form_theme form '@NetgenLayoutsAdmin/form/theme/nglayouts.html.twig' %}
+{% form_theme form.layout_type _self %}
+
+{% if form.rule_group is defined %}
+    {% form_theme form.rule_group _self %}
+{% endif %}
+
+{% trans_default_domain 'nglayouts_ezadminui' %}
+
+{% block header %}
+    {{ 'layout_wizard.title'|trans({'%locationName%': location.contentInfo.name}) }}
+{% endblock %}
+
+{% block _layout_wizard_layout_type_widget %}
+    <div {{ block('widget_container_attributes') }}>
+    {%- for child in form %}
+        <div class="layout-type-item">
+            {{- form_widget(child) -}}
+            {{- form_label(child) -}}
+        </div>
+    {% endfor -%}
+    </div>
+{% endblock %}
+
+{% block _layout_wizard_layout_type_entry_label %}
+    <label for="{{ id }}" class="required">
+        <i class="icon" {% if form.vars.layout_type.icon is not null %}style="background-image:url({{ asset(form.vars.layout_type.icon) }})"{% endif %}></i>
+        {{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}
+    </label>
+{% endblock %}
+
+{% block _layout_wizard_rule_group_row %}
+    <div class="row-input">
+        {{- form_label(form) -}}
+        {{- form_widget(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+{% endblock %}
+
+{% block _layout_wizard_rule_group_widget %}
+    <div class="choose-group-div">
+        {{ block('hidden_widget') }}
+        <p class="chosen-group">
+            {% if value is not empty %}{{ nglayouts_rule_group_name(value) }}{% endif %}
+        </p>
+        <button type="button" class="nl-btn nl-btn-primary choose-group">{{ 'layout_wizard.rule_group.button'|trans }}</button>
+    </div>
+{% endblock %}
+
+{% block children %}
+    {{ form_row(form.action) }}
+    {{ form_row(form.layout_type, {attr: {class: 'layout-type'}}) }}
+    {{ form_row(form.layout) }}
+    {{ form_row(form.layout_name) }}
+    {{ form_row(form.layout_description) }}
+
+    {% if form.rule_group is defined %}
+        {{ form_row(form.rule_group) }}
+    {% endif %}
+
+    {{ form_row(form.activate_rule) }}
+{% endblock %}
+
+{% block buttons %}
+    <button class="nl-btn action-cancel">{{ 'layout_wizard.button.cancel'|trans }}</button>
+    <button type="submit" class="nl-btn nl-btn-primary action-apply">{{ 'layout_wizard.button.save'|trans }}</button>
+{% endblock %}

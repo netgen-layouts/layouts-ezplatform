@@ -4,9 +4,10 @@
 
 {% set can_edit = is_granted('ROLE_NGLAYOUTS_EDITOR') or is_granted('nglayouts:layout:edit', rule.layout) %}
 {% set can_clear_cache = is_granted('ROLE_NGLAYOUTS_ADMIN') or is_granted('nglayouts:layout:clear_cache', rule.layout) %}
+{% set can_delete = is_granted('ROLE_NGLAYOUTS_ADMIN') or is_granted('nglayouts:mapping:delete', { rule_group: rule.ruleGroupId.toString }) %}
 {% set parent_groups = nglayouts_parent_rule_groups(rule)|slice(1) %}
 
-<li class="layout-list-item" data-layout-id="{{ rule.layout.id.toString }}">
+<li class="layout-list-item" data-layout-id="{{ rule.layout.id.toString }}" data-rule-id="{{ rule.id.toString }}">
     <div class="layout-item">
         <div class="layout-name">
             <p class="groups">{{ parent_groups|map(group => group.name)|join(' / ') }}</p>
@@ -55,8 +56,13 @@
                 <button id="layout-{{ rule.layout.id.toString }}-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">…</button>
                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="layout-{{ rule.layout.id.toString }}-dropdown">
                     <li><button {% if not http_cache_enabled %}disabled="disabled"{% endif %} class="js-clear-layout-cache">{{ 'layouts.layout.clear_cache'|trans }}</button></li>
+
                     {% if is_enterprise %}
                         <li><button {% if not http_cache_enabled %}disabled="disabled"{% endif %} class="js-clear-block-caches">{{ 'layouts.layout.clear_block_caches'|trans }} <span class="note">{{ 'layouts.layout.clear_block_caches.note'|trans }}</span></button></li>
+                    {% endif %}
+
+                    {% if can_delete %}
+                        <li><button class="js-rule-delete">{{ 'layouts.rule.delete_rule'|trans }}</button></li>
                     {% endif %}
                 </ul>
             </div>
@@ -81,6 +87,30 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'layouts.cache_clear.cancel'|trans }}</button>
                         <button type="button" class="btn btn-primary js-modal-confirm">{{ 'layouts.cache_clear.submit'|trans }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if can_delete %}
+        <div class="modal fade ngmodal layout-delete-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{ 'layouts.rule.delete_rule.title'|trans }}</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <svg class="ez-icon ez-icon--medium" aria-hidden="true">
+                                <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#discard"></use>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{ 'layouts.rule.delete_rule.question'|trans }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'layouts.rule.delete_rule.cancel'|trans }}</button>
+                        <button type="button" class="btn btn-primary js-modal-confirm">{{ 'layouts.rule.delete_rule.submit'|trans }}</button>
                     </div>
                 </div>
             </div>

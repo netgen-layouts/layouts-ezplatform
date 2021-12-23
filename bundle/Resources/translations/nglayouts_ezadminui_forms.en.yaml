@@ -1,0 +1,8 @@
+layout_wizard.action.new_layout: 'Apply a fresh new layout to this location'
+layout_wizard.action.copy_layout: 'Duplicate existing layout and apply it'
+layout_wizard.layout_type: 'Fresh new layout type'
+layout_wizard.layout: 'Choose existing layout'
+layout_wizard.layout_name: 'New layout name'
+layout_wizard.layout_description: 'New layout description'
+layout_wizard.rule_group: 'Choose mapping group'
+layout_wizard.activate_rule: 'Activate mapping immediately after layout is published'

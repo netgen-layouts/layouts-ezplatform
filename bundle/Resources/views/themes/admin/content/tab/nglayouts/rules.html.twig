@@ -37,6 +37,10 @@
         <div class="show-all-rules">
             <label><input type="checkbox" name="show-all-rules" class="rules-checkbox" /> {{ 'rules.show_all_rules'|trans }}</label>
         </div>
+
+        <div>
+            <button class="btn btn-primary js-direct-mapping">{{ 'rules.create_new_direct_rule'|trans }}</button>
+        </div>
     {% else %}
         <p>{{ 'rules.no_rules'|trans }}</p>
     {% endif %}
