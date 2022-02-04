@@ -17,7 +17,7 @@ parameters:
         - '#Symfony\\Component\\Security\\Core\\Role\\Role#'
 
         # Doctrine DBAL
-        - '#Cannot call method fetchAllAssociative\(\) on Doctrine\\DBAL\\ForwardCompatibility\\DriverStatement\|int#'
+        - '#Cannot call method fetchAllAssociative\(\) on Doctrine\\DBAL\\ForwardCompatibility\\Result\|int#'
         - '#expects string\|null, Doctrine\\DBAL\\Query\\Expression\\CompositeExpression given#'
 
         # eZ Platform

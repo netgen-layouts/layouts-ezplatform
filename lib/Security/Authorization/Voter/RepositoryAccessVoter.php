@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
-use Symfony\Component\Security\Core\Role\Role;
+use Symfony\Component\Security\Core\Role\Role as SymfonyRole;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 use function array_map;
 use function is_string;
@@ -117,7 +117,7 @@ final class RepositoryAccessVoter extends Voter
         }
 
         return array_map(
-            static fn (Role $role): string => $role->getRole() ?? '',
+            static fn (SymfonyRole $role): string => $role->getRole(),
             $this->roleHierarchy->getReachableRoles([new Role($attribute)]),
         );
     }
