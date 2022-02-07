@@ -29,6 +29,38 @@
             </errorLevel>
         </DuplicateArrayKey>
 
+        <UndefinedMethod>
+            <errorLevel type="suppress">
+                <referencedMethod name="Symfony\Component\Security\Core\Role\Role::getRole" />
+            </errorLevel>
+        </UndefinedMethod>
+
+        <InternalClass>
+            <errorLevel type="suppress">
+                <referencedClass name="Symfony\Component\Security\Core\Role\Role" />
+            </errorLevel>
+        </InternalClass>
+
+        <TooManyArguments>
+            <errorLevel type="suppress">
+                <referencedFunction name="Symfony\Component\Security\Core\Role\Role::__construct" />
+            </errorLevel>
+        </TooManyArguments>
+
+        <InternalMethod>
+            <errorLevel type="suppress">
+                <file name="lib/Security/Authorization/Voter/RepositoryAccessVoter.php" />
+                <referencedMethod name="Symfony\Component\Security\Core\Role\Role::__construct" />
+            </errorLevel>
+        </InternalMethod>
+
+        <InaccessibleMethod>
+            <errorLevel type="suppress">
+                <file name="lib/Security/Authorization/Voter/RepositoryAccessVoter.php" />
+                <referencedMethod name="Symfony\Component\Security\Core\Role\Role::__construct" />
+            </errorLevel>
+        </InaccessibleMethod>
+
         <!-- Doctrine DBAL -->
 
         <ImplicitToStringCast>
