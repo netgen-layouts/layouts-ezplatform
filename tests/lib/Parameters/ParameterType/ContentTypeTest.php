@@ -23,7 +23,8 @@ use function is_int;
 final class ContentTypeTest extends TestCase
 {
     use ParameterTypeTestTrait;
-    /**
+
+/**
      * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository
      */
     private MockObject $repositoryMock;
