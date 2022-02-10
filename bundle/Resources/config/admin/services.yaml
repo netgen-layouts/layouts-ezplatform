@@ -65,7 +65,7 @@ services:
     netgen_layouts.ezplatform.event_listener.admin.is_enterprise_version:
         class: Netgen\Bundle\LayoutsEzPlatformBundle\EventListener\Admin\IsEnterpriseVersionListener
         arguments:
-            - "%kernel.bundles%"
+            - "%netgen_layouts.ezplatform.is_enterprise%"
         tags:
             - { name: kernel.event_subscriber }
 
