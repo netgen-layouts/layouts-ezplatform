@@ -44,9 +44,10 @@ final class NetgenLayoutsEzPlatformExtension extends Extension implements Prepen
         /** @var array<string, string> $activatedBundles */
         $activatedBundles = $container->getParameter('kernel.bundles');
 
-        if (array_key_exists('NetgenLayoutsEnterpriseBundle', $activatedBundles)) {
-            $container->setParameter('netgen_layouts.ezplatform.is_enterprise', true);
-        }
+        $container->setParameter(
+            'netgen_layouts.ezplatform.is_enterprise',
+            array_key_exists('NetgenLayoutsEnterpriseBundle', $activatedBundles),
+        );
 
         if (!array_key_exists('NetgenLayoutsEnterpriseEzPlatformBundle', $activatedBundles)) {
             $loader->load('enterprise/services.yaml');
