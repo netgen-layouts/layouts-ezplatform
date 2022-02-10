@@ -9,21 +9,14 @@ use Netgen\Layouts\Event\LayoutsEvents;
 use Netgen\Layouts\View\View\LayoutViewInterface;
 use Netgen\Layouts\View\View\RuleViewInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use function array_key_exists;
 
 final class IsEnterpriseVersionListener implements EventSubscriberInterface
 {
-    /**
-     * @var array<string, class-string>
-     */
-    private array $activatedBundles;
+    private bool $isEnterpriseVersion;
 
-    /**
-     * @param array<string, class-string> $activatedBundles
-     */
-    public function __construct(array $activatedBundles)
+    public function __construct(bool $isEnterpriseVersion)
     {
-        $this->activatedBundles = $activatedBundles;
+        $this->isEnterpriseVersion = $isEnterpriseVersion;
     }
 
     public static function getSubscribedEvents(): array
@@ -45,9 +38,6 @@ final class IsEnterpriseVersionListener implements EventSubscriberInterface
             return;
         }
 
-        $event->addParameter(
-            'is_enterprise',
-            array_key_exists('NetgenLayoutsEnterpriseBundle', $this->activatedBundles),
-        );
+        $event->addParameter('is_enterprise', $this->isEnterpriseVersion);
     }
 }
