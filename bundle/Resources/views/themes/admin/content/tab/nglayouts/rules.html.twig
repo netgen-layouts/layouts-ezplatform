@@ -17,6 +17,12 @@
 } %}
 
 <div class="bg-white p-3 mb-5">
+    <div class="direct-mapping-notice">
+        <button class="btn btn-primary js-direct-mapping">
+            {{ 'rules.create_new_direct_rule'|trans }}
+        </button>
+        <p class="direct-mapping-button-sub">{{ 'rules.create_new_direct_rule.subtitle'|trans }}</p>
+    </div>
     {% if rules is not empty %}
         <ul class="layout-list">
             <li class="layout-list-head">
@@ -36,10 +42,6 @@
 
         <div class="show-all-rules">
             <label><input type="checkbox" name="show-all-rules" class="rules-checkbox" /> {{ 'rules.show_all_rules'|trans }}</label>
-        </div>
-
-        <div>
-            <button class="btn btn-primary js-direct-mapping">{{ 'rules.create_new_direct_rule'|trans }}</button>
         </div>
     {% else %}
         <p>{{ 'rules.no_rules'|trans }}</p>
