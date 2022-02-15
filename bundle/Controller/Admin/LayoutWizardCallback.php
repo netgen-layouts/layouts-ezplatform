@@ -14,7 +14,6 @@ use Netgen\Layouts\Ez\Layout\Resolver\TargetType\Location as LocationTargetType;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use function count;
 use function sprintf;
 
