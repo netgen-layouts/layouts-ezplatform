@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Validator;
+namespace Netgen\Layouts\Ibexa\Tests\Validator;
 
-use Netgen\Layouts\Ez\Validator\TagValidator;
+use Netgen\Layouts\Ibexa\Validator\TagValidator;
 use Netgen\TagsBundle\API\Repository\TagsService;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorFactory;
@@ -25,7 +25,7 @@ final class TagsServiceValidatorFactory implements ConstraintValidatorFactoryInt
         $this->baseValidatorFactory = new ConstraintValidatorFactory();
 
         $this->validators = [
-            'nglayouts_ez_tags' => new TagValidator($tagsService),
+            'nglayouts_netgen_tags' => new TagValidator($tagsService),
         ];
     }
 

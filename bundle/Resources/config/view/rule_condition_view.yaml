@@ -1,15 +1,15 @@
 view:
     rule_condition_view:
         value:
-            ez_site_access:
-                template: "@NetgenLayoutsEzPlatform/admin/layout_resolver/condition/value/ez_site_access.html.twig"
+            ibexa_site_access:
+                template: "@NetgenLayoutsIbexa/admin/layout_resolver/condition/value/ibexa_site_access.html.twig"
                 match:
-                    rule_condition\type: ez_site_access
-            ez_site_access_group:
-                template: "@NetgenLayoutsEzPlatform/admin/layout_resolver/condition/value/ez_site_access_group.html.twig"
+                    rule_condition\type: ibexa_site_access
+            ibexa_site_access_group:
+                template: "@NetgenLayoutsIbexa/admin/layout_resolver/condition/value/ibexa_site_access_group.html.twig"
                 match:
-                    rule_condition\type: ez_site_access_group
-            ez_content_type:
-                template: "@NetgenLayoutsEzPlatform/admin/layout_resolver/condition/value/ez_content_type.html.twig"
+                    rule_condition\type: ibexa_site_access_group
+            ibexa_content_type:
+                template: "@NetgenLayoutsIbexa/admin/layout_resolver/condition/value/ibexa_content_type.html.twig"
                 match:
-                    rule_condition\type: ez_content_type
+                    rule_condition\type: ibexa_content_type

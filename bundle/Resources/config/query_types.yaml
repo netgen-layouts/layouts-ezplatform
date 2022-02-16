@@ -1,3 +1,3 @@
 query_types:
-    ezcontent_search:
-        name: 'eZ Platform'
+    ibexa_content_search:
+        name: 'Ibexa'

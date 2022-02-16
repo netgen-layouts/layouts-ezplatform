@@ -1,13 +1,13 @@
 {{ render(
     controller(
-        'ez_content:viewAction', {
+        'ibexa_content:viewAction', {
             'contentId': item.object.id,
             'locationId': item.object.mainLocationId,
             'viewType': view_type,
             'layout': false,
             'params': {
                 'nglayouts_item': item,
-            }|merge(ezparams|default({}))
+            }|merge(ibexa_params|default({}))
         }
     )
 ) }}

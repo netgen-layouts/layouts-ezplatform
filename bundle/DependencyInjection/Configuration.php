@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection;
+namespace Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection;
 
-use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\Configuration as SiteAccessConfiguration;
-use Netgen\Layouts\Utils\BackwardsCompatibility\TreeBuilder;
-use Symfony\Component\Config\Definition\Builder\TreeBuilder as BaseTreeBuilder;
+use Ibexa\Bundle\Core\DependencyInjection\Configuration\SiteAccessAware\Configuration as SiteAccessConfiguration;
+use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
 final class Configuration extends SiteAccessConfiguration
@@ -18,7 +17,7 @@ final class Configuration extends SiteAccessConfiguration
         $this->extension = $extension;
     }
 
-    public function getConfigTreeBuilder(): BaseTreeBuilder
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         return new TreeBuilder($this->extension->getAlias());
     }

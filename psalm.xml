@@ -75,25 +75,11 @@
             </errorLevel>
         </PossiblyInvalidMethodCall>
 
-        <!-- eZ Platform -->
-
-        <UndefinedDocblockClass>
-            <errorLevel type="suppress">
-                <referencedClass name="EzSystems\PlatformHttpCacheBundle\RequestAwarePurger" />
-            </errorLevel>
-        </UndefinedDocblockClass>
-
-        <UndefinedClass>
-            <errorLevel type="suppress">
-                <referencedClass name="EzSystems\PlatformHttpCacheBundle\RequestAwarePurger" />
-                <referencedClass name="eZ\Publish\SPI\FieldType\Nameable" />
-                <referencedClass name="Symfony\Component\Security\Core\Role\Role" />
-            </errorLevel>
-        </UndefinedClass>
+        <!-- Ibexa Platform -->
 
         <InternalMethod>
             <errorLevel type="suppress">
-                <referencedMethod name="EzSystems\PlatformHttpCacheBundle\RepositoryTagPrefix::getRepositoryPrefix" />
+                <referencedMethod name="Ibexa\HttpCache\RepositoryTagPrefix::getRepositoryPrefix" />
             </errorLevel>
         </InternalMethod>
     </issueHandlers>

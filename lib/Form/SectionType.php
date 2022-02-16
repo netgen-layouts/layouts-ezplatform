@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Form;
+namespace Netgen\Layouts\Ibexa\Form;
 
-use eZ\Publish\API\Repository\SectionService;
+use Ibexa\Contracts\Core\Repository\SectionService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\Options;
@@ -43,7 +43,7 @@ final class SectionType extends AbstractType
     }
 
     /**
-     * Returns the allowed sections from eZ Platform.
+     * Returns the allowed sections from Ibexa Platform.
      *
      * @return array<string, string>
      */
@@ -51,7 +51,7 @@ final class SectionType extends AbstractType
     {
         $allSections = [];
 
-        /** @var \eZ\Publish\API\Repository\Values\Content\Section[] $sections */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Section[] $sections */
         $sections = $this->sectionService->loadSections();
         $configuredSections = $options['sections'];
 

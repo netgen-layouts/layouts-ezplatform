@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Layout\Resolver\TargetType;
+namespace Netgen\Layouts\Ibexa\Layout\Resolver\TargetType;
 
 use Netgen\Layouts\Layout\Resolver\TargetType;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +13,7 @@ class SemanticPathInfo extends TargetType
 {
     public static function getType(): string
     {
-        return 'ez_semantic_path_info';
+        return 'ibexa_semantic_path_info';
     }
 
     public function getConstraints(): array

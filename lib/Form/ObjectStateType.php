@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Form;
+namespace Netgen\Layouts\Ibexa\Form;
 
-use eZ\Publish\API\Repository\ObjectStateService;
+use Ibexa\Contracts\Core\Repository\ObjectStateService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\Options;
@@ -43,7 +43,7 @@ final class ObjectStateType extends AbstractType
     }
 
     /**
-     * Returns the allowed content states from eZ Platform.
+     * Returns the allowed content states from Ibexa Platform.
      *
      * @return array<string, string[]>
      */

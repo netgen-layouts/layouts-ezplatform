@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\Templating;
+namespace Netgen\Bundle\LayoutsIbexaBundle\Templating;
 
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Netgen\Bundle\LayoutsBundle\Templating\PageLayoutResolverInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
- * This is the eZ Platform specific page layout resolver
+ * This is the Ibexa Platform specific page layout resolver
  * which provides the pagelayout by reading it from the pagelayout
- * configuration of eZ Platform. Meaning, Netgen Layouts will
- * automatically use the pagelayout configured inside eZ Platform.
+ * configuration of Ibexa Platform. Meaning, Netgen Layouts will
+ * automatically use the pagelayout configured inside Ibexa Platform.
  */
 final class PageLayoutResolver implements PageLayoutResolverInterface
 {
@@ -48,8 +48,6 @@ final class PageLayoutResolver implements PageLayoutResolverInterface
             return $this->baseViewLayout;
         }
 
-        return $this->configResolver->hasParameter('page_layout') ?
-            $this->configResolver->getParameter('page_layout') :
-            $this->configResolver->getParameter('pagelayout');
+        return $this->configResolver->getParameter('page_layout');
     }
 }

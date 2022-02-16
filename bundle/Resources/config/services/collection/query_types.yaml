@@ -1,12 +1,12 @@
 services:
-    netgen_layouts.ezplatform.collection.query_type_handler.content_search:
-        class: Netgen\Layouts\Ez\Collection\QueryType\Handler\ContentSearchHandler
+    netgen_layouts.ibexa.collection.query_type_handler.content_search:
+        class: Netgen\Layouts\Ibexa\Collection\QueryType\Handler\ContentSearchHandler
         arguments:
-            - "@ezpublish.api.service.location"
-            - "@netgen_layouts.ezplatform.search_service"
-            - "@ezpublish.spi.persistence.section_handler"
-            - "@ezpublish.spi.persistence.object_state_handler"
-            - "@netgen_layouts.ezplatform.content_provider"
-            - "@ezpublish.config.resolver"
+            - "@ibexa.api.service.location"
+            - "@netgen_layouts.ibexa.search_service"
+            - "@Ibexa\\Contracts\\Core\\Persistence\\Content\\Section\\Handler"
+            - "@Ibexa\\Contracts\\Core\\Persistence\\Content\\ObjectState\\Handler"
+            - "@netgen_layouts.ibexa.content_provider"
+            - "@ibexa.config.resolver"
         tags:
-            - { name: netgen_layouts.query_type_handler, type: ezcontent_search }
+            - { name: netgen_layouts.query_type_handler, type: ibexa_content_search }

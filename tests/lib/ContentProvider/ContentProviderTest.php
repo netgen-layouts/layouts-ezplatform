@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\ContentProvider;
+namespace Netgen\Layouts\Ibexa\Tests\ContentProvider;
 
-use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\Core\Repository\Values\Content\Content;
-use eZ\Publish\Core\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Core\Repository\Values\Content\Content;
+use Ibexa\Core\Repository\Values\Content\Location;
 use Netgen\Layouts\Context\Context;
-use Netgen\Layouts\Ez\ContentProvider\ContentProvider;
+use Netgen\Layouts\Ibexa\ContentProvider\ContentProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -32,9 +32,9 @@ final class ContentProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\ContentProvider\ContentProvider::__construct
-     * @covers \Netgen\Layouts\Ez\ContentProvider\ContentProvider::loadLocation
-     * @covers \Netgen\Layouts\Ez\ContentProvider\ContentProvider::provideContent
+     * @covers \Netgen\Layouts\Ibexa\ContentProvider\ContentProvider::__construct
+     * @covers \Netgen\Layouts\Ibexa\ContentProvider\ContentProvider::loadLocation
+     * @covers \Netgen\Layouts\Ibexa\ContentProvider\ContentProvider::provideContent
      */
     public function testProvideContent(): void
     {
@@ -45,7 +45,7 @@ final class ContentProviderTest extends TestCase
             ],
         );
 
-        $this->context->set('ez_location_id', 42);
+        $this->context->set('ibexa_location_id', 42);
 
         $this->locationServiceMock
             ->expects(self::once())
@@ -57,8 +57,8 @@ final class ContentProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\ContentProvider\ContentProvider::loadLocation
-     * @covers \Netgen\Layouts\Ez\ContentProvider\ContentProvider::provideContent
+     * @covers \Netgen\Layouts\Ibexa\ContentProvider\ContentProvider::loadLocation
+     * @covers \Netgen\Layouts\Ibexa\ContentProvider\ContentProvider::provideContent
      */
     public function testProvideContentWithoutContent(): void
     {
@@ -70,14 +70,14 @@ final class ContentProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\ContentProvider\ContentProvider::loadLocation
-     * @covers \Netgen\Layouts\Ez\ContentProvider\ContentProvider::provideLocation
+     * @covers \Netgen\Layouts\Ibexa\ContentProvider\ContentProvider::loadLocation
+     * @covers \Netgen\Layouts\Ibexa\ContentProvider\ContentProvider::provideLocation
      */
     public function testProvideLocation(): void
     {
         $location = new Location();
 
-        $this->context->set('ez_location_id', 42);
+        $this->context->set('ibexa_location_id', 42);
 
         $this->locationServiceMock
             ->expects(self::once())
@@ -89,8 +89,8 @@ final class ContentProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\ContentProvider\ContentProvider::loadLocation
-     * @covers \Netgen\Layouts\Ez\ContentProvider\ContentProvider::provideLocation
+     * @covers \Netgen\Layouts\Ibexa\ContentProvider\ContentProvider::loadLocation
+     * @covers \Netgen\Layouts\Ibexa\ContentProvider\ContentProvider::provideLocation
      */
     public function testProvideLocationWithoutLocation(): void
     {

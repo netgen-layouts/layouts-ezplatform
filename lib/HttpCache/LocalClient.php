@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\HttpCache;
+namespace Netgen\Layouts\Ibexa\HttpCache;
 
 use Netgen\Layouts\HttpCache\ClientInterface;
 use Toflar\Psr6HttpCacheStore\Psr6StoreInterface;

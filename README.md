@@ -1,4 +1,4 @@
-# Netgen Layouts & eZ Platform integration
+# Netgen Layouts & Ibexa Platform integration
 
 ## Installation instructions
 

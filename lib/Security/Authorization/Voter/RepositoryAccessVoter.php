@@ -2,32 +2,29 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Security\Authorization\Voter;
+namespace Netgen\Layouts\Ibexa\Security\Authorization\Voter;
 
-use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute;
-use Symfony\Component\HttpKernel\Kernel;
+use Ibexa\Core\MVC\Symfony\Security\Authorization\Attribute;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
-use Symfony\Component\Security\Core\Role\Role as SymfonyRole;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
-use function array_map;
 use function is_string;
 use function str_starts_with;
 
 /**
  * Votes on Netgen Layouts attributes (ROLE_NGLAYOUTS_*) by matching corresponding access
- * rights in eZ Platform Repository.
+ * rights in Ibexa Platform Repository.
  */
 final class RepositoryAccessVoter extends Voter
 {
     /**
-     * Identifier of the eZ Platform module used for creating Netgen Layouts permissions.
+     * Identifier of the Ibexa Platform module used for creating Netgen Layouts permissions.
      */
     private const MODULE = 'nglayouts';
 
     /**
-     * Map of supported attributes to corresponding functions in the eZ Platform module.
+     * Map of supported attributes to corresponding functions in the Ibexa Platform module.
      */
     private const ATTRIBUTE_TO_POLICY_MAP = [
         'ROLE_NGLAYOUTS_ADMIN' => 'admin',
@@ -112,13 +109,6 @@ final class RepositoryAccessVoter extends Voter
      */
     private function getReachableAttributes($attribute): array
     {
-        if (Kernel::VERSION_ID >= 40400) {
-            return $this->roleHierarchy->getReachableRoleNames([$attribute]);
-        }
-
-        return array_map(
-            static fn (SymfonyRole $role): string => $role->getRole(),
-            $this->roleHierarchy->getReachableRoles([new Role($attribute)]),
-        );
+        return $this->roleHierarchy->getReachableRoleNames([$attribute]);
     }
 }

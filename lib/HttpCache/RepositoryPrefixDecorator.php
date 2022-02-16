@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\HttpCache;
+namespace Netgen\Layouts\Ibexa\HttpCache;
 
-use EzSystems\PlatformHttpCacheBundle\RepositoryTagPrefix;
+use Ibexa\HttpCache\RepositoryTagPrefix;
 use Netgen\Layouts\HttpCache\ClientInterface;
 use function array_map;
 

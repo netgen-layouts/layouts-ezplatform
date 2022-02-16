@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\ContentProvider;
+namespace Netgen\Layouts\Ibexa\Tests\ContentProvider;
 
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use eZ\Publish\Core\MVC\Symfony\View\ContentView;
-use eZ\Publish\Core\Repository\Values\Content\Content;
-use eZ\Publish\Core\Repository\Values\Content\Location;
-use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
-use Netgen\Layouts\Ez\ContentProvider\RequestContentExtractor;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\Core\MVC\Symfony\View\ContentView;
+use Ibexa\Core\Repository\Values\Content\Content;
+use Ibexa\Core\Repository\Values\Content\Location;
+use Ibexa\Core\Repository\Values\Content\VersionInfo;
+use Netgen\Layouts\Ibexa\ContentProvider\RequestContentExtractor;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -23,7 +23,7 @@ final class RequestContentExtractorTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\ContentProvider\RequestContentExtractor::extractContent
+     * @covers \Netgen\Layouts\Ibexa\ContentProvider\RequestContentExtractor::extractContent
      */
     public function testProvideContent(): void
     {
@@ -51,7 +51,7 @@ final class RequestContentExtractorTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\ContentProvider\RequestContentExtractor::extractContent
+     * @covers \Netgen\Layouts\Ibexa\ContentProvider\RequestContentExtractor::extractContent
      */
     public function testProvideContentWithoutContentView(): void
     {
@@ -62,7 +62,7 @@ final class RequestContentExtractorTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\ContentProvider\RequestContentExtractor::extractLocation
+     * @covers \Netgen\Layouts\Ibexa\ContentProvider\RequestContentExtractor::extractLocation
      */
     public function testProvideLocation(): void
     {
@@ -77,7 +77,7 @@ final class RequestContentExtractorTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\ContentProvider\RequestContentExtractor::extractLocation
+     * @covers \Netgen\Layouts\Ibexa\ContentProvider\RequestContentExtractor::extractLocation
      */
     public function testProvideLocationWithoutLocationView(): void
     {

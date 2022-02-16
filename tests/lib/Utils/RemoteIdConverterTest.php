@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Utils;
+namespace Netgen\Layouts\Ibexa\Tests\Utils;
 
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use eZ\Publish\Core\Repository\Repository;
-use eZ\Publish\Core\Repository\Values\Content\Location;
-use Netgen\Layouts\Ez\Utils\RemoteIdConverter;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Core\Repository\Repository;
+use Ibexa\Core\Repository\Values\Content\Location;
+use Netgen\Layouts\Ibexa\Utils\RemoteIdConverter;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -54,7 +54,7 @@ final class RemoteIdConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Utils\RemoteIdConverter::toLocationId
+     * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::toLocationId
      */
     public function testToLocationId(): void
     {
@@ -68,7 +68,7 @@ final class RemoteIdConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Utils\RemoteIdConverter::toLocationId
+     * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::toLocationId
      */
     public function testToLocationIdWithNonExistentRemoteId(): void
     {
@@ -82,7 +82,7 @@ final class RemoteIdConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Utils\RemoteIdConverter::toLocationRemoteId
+     * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::toLocationRemoteId
      */
     public function testToLocationRemoteId(): void
     {
@@ -96,7 +96,7 @@ final class RemoteIdConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Utils\RemoteIdConverter::toLocationRemoteId
+     * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::toLocationRemoteId
      */
     public function testToLocationRemoteIdWithNonExistentId(): void
     {
@@ -110,7 +110,7 @@ final class RemoteIdConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Utils\RemoteIdConverter::toContentId
+     * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::toContentId
      */
     public function testToContentId(): void
     {
@@ -124,7 +124,7 @@ final class RemoteIdConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Utils\RemoteIdConverter::toContentId
+     * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::toContentId
      */
     public function testToContentIdWithNonExistentRemoteId(): void
     {
@@ -138,7 +138,7 @@ final class RemoteIdConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Utils\RemoteIdConverter::toContentRemoteId
+     * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::toContentRemoteId
      */
     public function testToContentRemoteId(): void
     {
@@ -152,7 +152,7 @@ final class RemoteIdConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Utils\RemoteIdConverter::toContentRemoteId
+     * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::toContentRemoteId
      */
     public function testToContentRemoteIdWithNonExistentId(): void
     {

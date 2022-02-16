@@ -7,8 +7,7 @@
     content block.
 #}
 
-{# "@EzPlatformAdminUi/layout.html.twig" template is deprecated, it comes from eZ Platform 2.5 #}
-{% embed ['@EzPlatformAdminUi/layout.html.twig', '@ezdesign/ui/layout.html.twig'] %}
+{% embed '@ibexadesign/ui/layout.html.twig' %}
     {% trans_default_domain 'nglayouts_admin' %}
 
     {% block title %}{{ title|raw }}{% endblock %}

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\TargetType;
+namespace Netgen\Layouts\Ibexa\Tests\Layout\Resolver\TargetType;
 
-use Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix;
+use Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfoPrefix;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
@@ -19,17 +19,17 @@ final class SemanticPathInfoPrefixTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::getType
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfoPrefix::getType
      */
     public function testGetType(): void
     {
-        self::assertSame('ez_semantic_path_info_prefix', $this->targetType::getType());
+        self::assertSame('ibexa_semantic_path_info_prefix', $this->targetType::getType());
     }
 
     /**
      * @param mixed $value
      *
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::getConstraints
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfoPrefix::getConstraints
      * @dataProvider validationDataProvider
      */
     public function testValidation($value, bool $isValid): void
@@ -41,7 +41,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::provideValue
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfoPrefix::provideValue
      */
     public function testProvideValue(): void
     {
@@ -55,7 +55,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::provideValue
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfoPrefix::provideValue
      */
     public function testProvideValueWithEmptySemanticPathInfo(): void
     {
@@ -69,7 +69,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfoPrefix::provideValue
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfoPrefix::provideValue
      */
     public function testProvideValueWithNoSemanticPathInfo(): void
     {

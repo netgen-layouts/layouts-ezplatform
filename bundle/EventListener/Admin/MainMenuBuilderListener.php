@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\EventListener\Admin;
+namespace Netgen\Bundle\LayoutsIbexaBundle\EventListener\Admin;
 
-use EzSystems\EzPlatformAdminUi\Menu\Event\ConfigureMenuEvent;
-use EzSystems\EzPlatformAdminUi\Menu\MainMenuBuilder;
+use Ibexa\AdminUi\Menu\Event\ConfigureMenuEvent;
+use Ibexa\AdminUi\Menu\MainMenuBuilder;
 use Knp\Menu\ItemInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -29,7 +29,7 @@ final class MainMenuBuilderListener implements EventSubscriberInterface
     }
 
     /**
-     * This method adds Netgen Layouts menu items to eZ Platform admin interface.
+     * This method adds Netgen Layouts menu items to Ibexa Platform admin interface.
      */
     public function onMainMenuBuild(ConfigureMenuEvent $event): void
     {
@@ -41,7 +41,7 @@ final class MainMenuBuilderListener implements EventSubscriberInterface
     }
 
     /**
-     * Adds the Netgen Layouts submenu to eZ Platform admin interface.
+     * Adds the Netgen Layouts submenu to Ibexa Platform admin interface.
      */
     private function addLayoutsSubMenu(ItemInterface $menu): void
     {

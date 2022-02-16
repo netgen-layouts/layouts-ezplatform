@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Form;
+namespace Netgen\Layouts\Ibexa\Tests\Form;
 
-use eZ\Publish\API\Repository\ObjectStateService;
-use eZ\Publish\Core\Repository\Values\ObjectState\ObjectState;
-use eZ\Publish\Core\Repository\Values\ObjectState\ObjectStateGroup;
-use Netgen\Layouts\Ez\Form\ObjectStateType;
+use Ibexa\Contracts\Core\Repository\ObjectStateService;
+use Ibexa\Core\Repository\Values\ObjectState\ObjectState;
+use Ibexa\Core\Repository\Values\ObjectState\ObjectStateGroup;
+use Netgen\Layouts\Ibexa\Form\ObjectStateType;
 use Netgen\Layouts\Tests\TestCase\FormTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -19,14 +19,14 @@ final class ObjectStateTypeTest extends FormTestCase
     private MockObject $objectStateServiceMock;
 
     /**
-     * @covers \Netgen\Layouts\Ez\Form\ObjectStateType::__construct
-     * @covers \Netgen\Layouts\Ez\Form\ObjectStateType::getObjectStates
+     * @covers \Netgen\Layouts\Ibexa\Form\ObjectStateType::__construct
+     * @covers \Netgen\Layouts\Ibexa\Form\ObjectStateType::getObjectStates
      */
     public function testSubmitValidData(): void
     {
         $this->configureObjectStateService();
 
-        $submittedData = ['ez_lock|locked'];
+        $submittedData = ['ibexa_lock|locked'];
 
         $form = $this->factory->create(
             ObjectStateType::class,
@@ -34,7 +34,7 @@ final class ObjectStateTypeTest extends FormTestCase
             [
                 'multiple' => true,
                 'states' => [
-                    'ez_lock' => ['locked'],
+                    'ibexa_lock' => ['locked'],
                     'third' => false,
                 ],
             ],
@@ -47,7 +47,7 @@ final class ObjectStateTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Form\ObjectStateType::getParent
+     * @covers \Netgen\Layouts\Ibexa\Form\ObjectStateType::getParent
      */
     public function testGetParent(): void
     {
@@ -55,8 +55,8 @@ final class ObjectStateTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Form\ObjectStateType::configureOptions
-     * @covers \Netgen\Layouts\Ez\Form\ObjectStateType::getObjectStates
+     * @covers \Netgen\Layouts\Ibexa\Form\ObjectStateType::configureOptions
+     * @covers \Netgen\Layouts\Ibexa\Form\ObjectStateType::getObjectStates
      */
     public function testConfigureOptions(): void
     {
@@ -69,7 +69,7 @@ final class ObjectStateTypeTest extends FormTestCase
         $options = $optionsResolver->resolve(
             [
                 'states' => [
-                    'ez_lock' => ['locked'],
+                    'ibexa_lock' => ['locked'],
                     'third' => false,
                 ],
             ],
@@ -79,7 +79,7 @@ final class ObjectStateTypeTest extends FormTestCase
         self::assertSame(
             [
                 'Lock' => [
-                    'Locked' => 'ez_lock|locked',
+                    'Locked' => 'ibexa_lock|locked',
                 ],
                 'Other' => [
                     'Other' => 'other|other',
@@ -100,7 +100,7 @@ final class ObjectStateTypeTest extends FormTestCase
 
     private function configureObjectStateService(): void
     {
-        $objectStateGroup1 = new ObjectStateGroup(['identifier' => 'ez_lock', 'names' => ['eng-GB' => 'Lock'], 'mainLanguageCode' => 'eng-GB']);
+        $objectStateGroup1 = new ObjectStateGroup(['identifier' => 'ibexa_lock', 'names' => ['eng-GB' => 'Lock'], 'mainLanguageCode' => 'eng-GB']);
         $objectStateGroup2 = new ObjectStateGroup(['identifier' => 'other', 'names' => ['eng-GB' => 'Other'], 'mainLanguageCode' => 'eng-GB']);
         $objectStateGroup3 = new ObjectStateGroup(['identifier' => 'third', 'names' => ['eng-GB' => 'Third'], 'mainLanguageCode' => 'eng-GB']);
 

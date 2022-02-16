@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Parameters\ParameterType;
+namespace Netgen\Layouts\Ibexa\Tests\Parameters\ParameterType;
 
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use Netgen\Layouts\Ez\Parameters\ParameterType\TagsType;
-use Netgen\Layouts\Ez\Tests\Validator\TagsServiceValidatorFactory;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
+use Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType;
+use Netgen\Layouts\Ibexa\Tests\Validator\TagsServiceValidatorFactory;
 use Netgen\Layouts\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use Netgen\TagsBundle\API\Repository\Values\Tags\Tag;
 use Netgen\TagsBundle\Core\Repository\TagsService;
@@ -33,19 +33,19 @@ final class TagsTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::__construct
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::getIdentifier
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::__construct
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::getIdentifier
      */
     public function testGetIdentifier(): void
     {
-        self::assertSame('ez_tags', $this->type::getIdentifier());
+        self::assertSame('netgen_tags', $this->type::getIdentifier());
     }
 
     /**
      * @param array<string, mixed> $options
      * @param array<string, mixed> $resolvedOptions
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::configureOptions
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::configureOptions
      * @dataProvider validOptionsDataProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
@@ -57,7 +57,7 @@ final class TagsTypeTest extends TestCase
     /**
      * @param array<string, mixed> $options
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::configureOptions
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::configureOptions
      * @dataProvider invalidOptionsDataProvider
      */
     public function testInvalidOptions(array $options): void
@@ -216,7 +216,7 @@ final class TagsTypeTest extends TestCase
      * @param mixed $value
      * @param mixed $convertedValue
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::fromHash
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::fromHash
      * @dataProvider fromHashDataProvider
      */
     public function testFromHash($value, $convertedValue): void
@@ -245,7 +245,7 @@ final class TagsTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::export
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::export
      */
     public function testExport(): void
     {
@@ -259,7 +259,7 @@ final class TagsTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::export
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::export
      */
     public function testExportWithNonExistingTag(): void
     {
@@ -273,7 +273,7 @@ final class TagsTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::import
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::import
      */
     public function testImport(): void
     {
@@ -287,7 +287,7 @@ final class TagsTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::import
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::import
      */
     public function testImportWithNonExistingTag(): void
     {
@@ -303,7 +303,7 @@ final class TagsTypeTest extends TestCase
     /**
      * @param mixed $values
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::getValueConstraints
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::getValueConstraints
      * @dataProvider validationDataProvider
      */
     public function testValidation($values, bool $required, bool $isValid): void

@@ -8,23 +8,13 @@ parameters:
         - Symfony\Component\HttpKernel\Kernel::VERSION_ID
 
     ignoreErrors:
-        # Symfony
-
-        -
-            message: '#Call to an undefined method Symfony\\Component\\Security\\Core\\Role\\RoleHierarchyInterface::getReachableRoles\(\).#'
-            path: lib/Security/Authorization/Voter/RepositoryAccessVoter.php
-
-        - '#Symfony\\Component\\Security\\Core\\Role\\Role#'
-
         # Doctrine DBAL
         - '#Cannot call method fetchAllAssociative\(\) on Doctrine\\DBAL\\ForwardCompatibility\\Result\|int#'
         - '#expects string\|null, Doctrine\\DBAL\\Query\\Expression\\CompositeExpression given#'
 
-        # eZ Platform
+        # Ibexa Platform
         -
             message: '#Call to function is_string\(\) with string will always evaluate to true.#'
             path: lib/Security/Authorization/Voter/RepositoryAccessVoter.php
 
         - "#Casting to (int|string) something that's already (int|string).#"
-
-        - '#EzSystems\\PlatformHttpCacheBundle\\RequestAwarePurger#'

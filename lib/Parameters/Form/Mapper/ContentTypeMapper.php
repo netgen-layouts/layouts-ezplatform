@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Parameters\Form\Mapper;
+namespace Netgen\Layouts\Ibexa\Parameters\Form\Mapper;
 
-use Netgen\Layouts\Ez\Form\ContentTypeType;
+use Netgen\Layouts\Ibexa\Form\ContentTypeType;
 use Netgen\Layouts\Parameters\Form\Mapper;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 

@@ -1,49 +1,49 @@
 services:
-    netgen_layouts.ezplatform.validator.location:
-        class: Netgen\Layouts\Ez\Validator\LocationValidator
+    netgen_layouts.ibexa.validator.location:
+        class: Netgen\Layouts\Ibexa\Validator\LocationValidator
         arguments:
-            - "@ezpublish.api.repository"
+            - "@ibexa.api.repository"
         tags:
-            - { name: validator.constraint_validator, alias: nglayouts_ez_location }
+            - { name: validator.constraint_validator, alias: nglayouts_ibexa_location }
 
-    netgen_layouts.ezplatform.validator.content:
-        class: Netgen\Layouts\Ez\Validator\ContentValidator
+    netgen_layouts.ibexa.validator.content:
+        class: Netgen\Layouts\Ibexa\Validator\ContentValidator
         arguments:
-            - "@ezpublish.api.repository"
+            - "@ibexa.api.repository"
         tags:
-            - { name: validator.constraint_validator, alias: nglayouts_ez_content }
+            - { name: validator.constraint_validator, alias: nglayouts_ibexa_content }
 
-    netgen_layouts.ezplatform.validator.site_access:
-        class: Netgen\Layouts\Ez\Validator\SiteAccessValidator
+    netgen_layouts.ibexa.validator.site_access:
+        class: Netgen\Layouts\Ibexa\Validator\SiteAccessValidator
         arguments:
-            - "%ezpublish.siteaccess.list%"
+            - "%ibexa.site_access.list%"
         tags:
-            - { name: validator.constraint_validator, alias: nglayouts_ez_site_access }
+            - { name: validator.constraint_validator, alias: nglayouts_ibexa_site_access }
 
-    netgen_layouts.ezplatform.validator.site_access_group:
-        class: Netgen\Layouts\Ez\Validator\SiteAccessGroupValidator
+    netgen_layouts.ibexa.validator.site_access_group:
+        class: Netgen\Layouts\Ibexa\Validator\SiteAccessGroupValidator
         arguments:
-            - "%ezpublish.siteaccess.groups%"
+            - "%ibexa.site_access.groups%"
         tags:
-            - { name: validator.constraint_validator, alias: nglayouts_ez_site_access_group }
+            - { name: validator.constraint_validator, alias: nglayouts_ibexa_site_access_group }
 
-    netgen_layouts.ezplatform.validator.content_type:
-        class: Netgen\Layouts\Ez\Validator\ContentTypeValidator
+    netgen_layouts.ibexa.validator.content_type:
+        class: Netgen\Layouts\Ibexa\Validator\ContentTypeValidator
         arguments:
-            - "@ezpublish.api.repository"
+            - "@ibexa.api.repository"
         tags:
-            - { name: validator.constraint_validator, alias: nglayouts_ez_content_type }
+            - { name: validator.constraint_validator, alias: nglayouts_ibexa_content_type }
 
-    netgen_layouts.ezplatform.validator.section:
-        class: Netgen\Layouts\Ez\Validator\SectionValidator
+    netgen_layouts.ibexa.validator.section:
+        class: Netgen\Layouts\Ibexa\Validator\SectionValidator
         arguments:
-            - "@ezpublish.api.repository"
+            - "@ibexa.api.repository"
         tags:
-            - { name: validator.constraint_validator, alias: nglayouts_ez_section }
+            - { name: validator.constraint_validator, alias: nglayouts_ibexa_section }
 
-    netgen_layouts.ezplatform.validator.object_state:
-        class: Netgen\Layouts\Ez\Validator\ObjectStateValidator
+    netgen_layouts.ibexa.validator.object_state:
+        class: Netgen\Layouts\Ibexa\Validator\ObjectStateValidator
         arguments:
-            - "@ezpublish.api.repository"
+            - "@ibexa.api.repository"
         tags:
-            - { name: validator.constraint_validator, alias: nglayouts_ez_object_state }
+            - { name: validator.constraint_validator, alias: nglayouts_ibexa_object_state }

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\Controller\Admin;
+namespace Netgen\Bundle\LayoutsIbexaBundle\Controller\Admin;
 
-use eZ\Publish\API\Repository\Values\Content\Location;
-use Netgen\Bundle\LayoutsEzPlatformBundle\Form\Admin\Type\LayoutWizardType;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Netgen\Bundle\LayoutsIbexaBundle\Form\Admin\Type\LayoutWizardType;
 use Netgen\Layouts\API\Service\LayoutService;
 use Netgen\Layouts\API\Values\Layout\Layout;
 use Netgen\Layouts\Layout\Registry\LayoutTypeRegistry;
@@ -40,7 +40,7 @@ final class LayoutWizard extends Controller
             null,
             [
                 'action' => $this->generateUrl(
-                    'nglayouts_ezadmin_layout_wizard',
+                    'nglayouts_ibexa_admin_layout_wizard',
                     [
                         'locationId' => $location->id,
                     ],
@@ -65,10 +65,10 @@ final class LayoutWizard extends Controller
             }
 
             $wizardId = hash('sha256', random_bytes(32));
-            $request->getSession()->set(sprintf('_layouts_ezplatform_wizard/%s', $wizardId), $wizardData);
+            $request->getSession()->set(sprintf('_layouts_ibexa_wizard/%s', $wizardId), $wizardData);
 
             $returnUrl = $this->generateUrl(
-                'nglayouts_ezadmin_layout_wizard_callback',
+                'nglayouts_ibexa_admin_layout_wizard_callback',
                 [
                     'locationId' => $location->id,
                     'wizardId' => $wizardId,
@@ -93,7 +93,7 @@ final class LayoutWizard extends Controller
         }
 
         return $this->render(
-            '@ezdesign/content/tab/nglayouts/layout_wizard.html.twig',
+            '@ibexadesign/content/tab/nglayouts/layout_wizard.html.twig',
             [
                 'location' => $location,
                 'form' => $form->createView(),

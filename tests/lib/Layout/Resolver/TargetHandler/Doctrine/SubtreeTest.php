@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\TargetHandler\Doctrine;
+namespace Netgen\Layouts\Ibexa\Tests\Layout\Resolver\TargetHandler\Doctrine;
 
-use Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Subtree;
+use Netgen\Layouts\Ibexa\Layout\Resolver\TargetHandler\Doctrine\Subtree;
 use Netgen\Layouts\Persistence\Doctrine\QueryHandler\TargetHandlerInterface;
 use Netgen\Layouts\Persistence\Values\LayoutResolver\RuleGroup;
 use Netgen\Layouts\Persistence\Values\Value;
@@ -13,7 +13,7 @@ use Netgen\Layouts\Tests\Layout\Resolver\TargetHandler\Doctrine\AbstractTargetHa
 final class SubtreeTest extends AbstractTargetHandlerTest
 {
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Subtree::handleQuery
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetHandler\Doctrine\Subtree::handleQuery
      */
     public function testMatchRules(): void
     {
@@ -29,7 +29,7 @@ final class SubtreeTest extends AbstractTargetHandlerTest
 
     protected function getTargetIdentifier(): string
     {
-        return 'ez_subtree';
+        return 'ibexa_subtree';
     }
 
     protected function getTargetHandler(): TargetHandlerInterface

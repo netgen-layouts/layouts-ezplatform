@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Block\BlockDefinition\Integration;
+namespace Netgen\Layouts\Ibexa\Tests\Block\BlockDefinition\Integration;
 
 use Netgen\Layouts\Block\BlockDefinition\BlockDefinitionHandlerInterface;
-use Netgen\Layouts\Ez\Block\BlockDefinition\Handler\ContentFieldHandler;
-use Netgen\Layouts\Ez\ContentProvider\ContentProviderInterface;
+use Netgen\Layouts\Ibexa\Block\BlockDefinition\Handler\ContentFieldHandler;
+use Netgen\Layouts\Ibexa\ContentProvider\ContentProviderInterface;
 use Netgen\Layouts\Tests\Block\BlockDefinition\Integration\BlockTest;
 
 abstract class ContentFieldTest extends BlockTest

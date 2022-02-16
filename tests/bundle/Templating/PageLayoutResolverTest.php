@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\Templating;
+namespace Netgen\Bundle\LayoutsIbexaBundle\Tests\Templating;
 
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Netgen\Bundle\LayoutsBundle\Templating\PageLayoutResolverInterface;
-use Netgen\Bundle\LayoutsEzPlatformBundle\Templating\PageLayoutResolver;
+use Netgen\Bundle\LayoutsIbexaBundle\Templating\PageLayoutResolver;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,8 +37,8 @@ final class PageLayoutResolverTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\PageLayoutResolver::__construct
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\PageLayoutResolver::resolvePageLayout
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\PageLayoutResolver::__construct
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\PageLayoutResolver::resolvePageLayout
      */
     public function testResolvePageLayout(): void
     {
@@ -63,32 +63,7 @@ final class PageLayoutResolverTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\PageLayoutResolver::resolvePageLayout
-     */
-    public function testResolvePageLayoutWithLegacyPagelayout(): void
-    {
-        $request = Request::create('/');
-
-        $this->requestStackMock
-            ->expects(self::once())
-            ->method('getCurrentRequest')
-            ->willReturn($request);
-
-        $this->configResolverMock
-            ->method('hasParameter')
-            ->with(self::identicalTo('page_layout'))
-            ->willReturn(false);
-
-        $this->configResolverMock
-            ->method('getParameter')
-            ->with(self::identicalTo('pagelayout'))
-            ->willReturn('resolved_layout.html.twig');
-
-        self::assertSame('resolved_layout.html.twig', $this->resolver->resolvePageLayout());
-    }
-
-    /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\PageLayoutResolver::resolvePageLayout
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\PageLayoutResolver::resolvePageLayout
      */
     public function testResolvePageLayoutWitNoRequest(): void
     {
@@ -114,7 +89,7 @@ final class PageLayoutResolverTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\PageLayoutResolver::resolvePageLayout
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\PageLayoutResolver::resolvePageLayout
      */
     public function testResolvePageLayoutWithDisabledLayout(): void
     {

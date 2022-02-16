@@ -2,16 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Form;
+namespace Netgen\Layouts\Ibexa\Tests\Form;
 
-use eZ\Publish\API\Repository\SectionService;
-use eZ\Publish\API\Repository\Values\Content\Section;
-use Netgen\Layouts\Ez\Form\SectionType;
+use Ibexa\Contracts\Core\Repository\SectionService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Section;
+use Netgen\Layouts\Ibexa\Form\SectionType;
 use Netgen\Layouts\Tests\TestCase\FormTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormTypeInterface;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,8 +19,8 @@ final class SectionTypeTest extends FormTestCase
     private MockObject $sectionServiceMock;
 
     /**
-     * @covers \Netgen\Layouts\Ez\Form\SectionType::__construct
-     * @covers \Netgen\Layouts\Ez\Form\SectionType::getSections
+     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::__construct
+     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::getSections
      */
     public function testSubmitValidData(): void
     {
@@ -45,8 +44,8 @@ final class SectionTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Form\SectionType::__construct
-     * @covers \Netgen\Layouts\Ez\Form\SectionType::getSections
+     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::__construct
+     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::getSections
      */
     public function testSubmitValidDataWithAllSectionsAllowed(): void
     {
@@ -69,8 +68,8 @@ final class SectionTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Form\SectionType::__construct
-     * @covers \Netgen\Layouts\Ez\Form\SectionType::getSections
+     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::__construct
+     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::getSections
      */
     public function testSubmitNonAllowedSections(): void
     {
@@ -89,21 +88,12 @@ final class SectionTypeTest extends FormTestCase
 
         $form->submit($submittedData);
 
-        if (Kernel::VERSION_ID >= 50204) {
-            self::assertTrue($form->isSynchronized());
-            self::assertSame([], $form->getData());
-
-            return;
-        }
-
-        // @deprecated Symfony 3.4 behaviour
-
-        self::assertFalse($form->isSynchronized());
-        self::assertNull($form->getData());
+        self::assertTrue($form->isSynchronized());
+        self::assertSame([], $form->getData());
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Form\SectionType::getParent
+     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::getParent
      */
     public function testGetParent(): void
     {
@@ -111,8 +101,8 @@ final class SectionTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Form\SectionType::configureOptions
-     * @covers \Netgen\Layouts\Ez\Form\SectionType::getSections
+     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::configureOptions
+     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::getSections
      */
     public function testConfigureOptions(): void
     {
@@ -133,8 +123,8 @@ final class SectionTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Form\SectionType::configureOptions
-     * @covers \Netgen\Layouts\Ez\Form\SectionType::getSections
+     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::configureOptions
+     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::getSections
      */
     public function testConfigureOptionsWithInvalidSection(): void
     {

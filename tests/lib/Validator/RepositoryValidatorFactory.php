@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Validator;
+namespace Netgen\Layouts\Ibexa\Tests\Validator;
 
-use eZ\Publish\API\Repository\Repository;
-use Netgen\Layouts\Ez\Validator\ContentTypeValidator;
-use Netgen\Layouts\Ez\Validator\ContentValidator;
-use Netgen\Layouts\Ez\Validator\LocationValidator;
-use Netgen\Layouts\Ez\Validator\ObjectStateValidator;
-use Netgen\Layouts\Ez\Validator\SectionValidator;
+use Ibexa\Contracts\Core\Repository\Repository;
+use Netgen\Layouts\Ibexa\Validator\ContentTypeValidator;
+use Netgen\Layouts\Ibexa\Validator\ContentValidator;
+use Netgen\Layouts\Ibexa\Validator\LocationValidator;
+use Netgen\Layouts\Ibexa\Validator\ObjectStateValidator;
+use Netgen\Layouts\Ibexa\Validator\SectionValidator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidatorFactory;
 use Symfony\Component\Validator\ConstraintValidatorFactoryInterface;
@@ -29,11 +29,11 @@ final class RepositoryValidatorFactory implements ConstraintValidatorFactoryInte
         $this->baseValidatorFactory = new ConstraintValidatorFactory();
 
         $this->validators = [
-            'nglayouts_ez_location' => new LocationValidator($repository),
-            'nglayouts_ez_content' => new ContentValidator($repository),
-            'nglayouts_ez_content_type' => new ContentTypeValidator($repository),
-            'nglayouts_ez_section' => new SectionValidator($repository),
-            'nglayouts_ez_object_state' => new ObjectStateValidator($repository),
+            'nglayouts_ibexa_location' => new LocationValidator($repository),
+            'nglayouts_ibexa_content' => new ContentValidator($repository),
+            'nglayouts_ibexa_content_type' => new ContentTypeValidator($repository),
+            'nglayouts_ibexa_section' => new SectionValidator($repository),
+            'nglayouts_ibexa_object_state' => new ObjectStateValidator($repository),
         ];
     }
 

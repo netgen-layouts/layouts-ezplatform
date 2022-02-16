@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\TargetType;
+namespace Netgen\Layouts\Ibexa\Tests\Layout\Resolver\TargetType;
 
-use Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfo;
+use Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfo;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
@@ -19,17 +19,17 @@ final class SemanticPathInfoTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfo::getType
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfo::getType
      */
     public function testGetType(): void
     {
-        self::assertSame('ez_semantic_path_info', $this->targetType::getType());
+        self::assertSame('ibexa_semantic_path_info', $this->targetType::getType());
     }
 
     /**
      * @param mixed $value
      *
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfo::getConstraints
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfo::getConstraints
      * @dataProvider validationDataProvider
      */
     public function testValidation($value, bool $isValid): void
@@ -41,7 +41,7 @@ final class SemanticPathInfoTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfo::provideValue
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfo::provideValue
      */
     public function testProvideValue(): void
     {
@@ -55,7 +55,7 @@ final class SemanticPathInfoTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfo::provideValue
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfo::provideValue
      */
     public function testProvideValueWithEmptySemanticPathInfo(): void
     {
@@ -69,7 +69,7 @@ final class SemanticPathInfoTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\SemanticPathInfo::provideValue
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfo::provideValue
      */
     public function testProvideValueWithNoSemanticPathInfo(): void
     {

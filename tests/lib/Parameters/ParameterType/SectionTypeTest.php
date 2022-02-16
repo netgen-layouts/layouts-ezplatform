@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Parameters\ParameterType;
+namespace Netgen\Layouts\Ibexa\Tests\Parameters\ParameterType;
 
-use eZ\Publish\API\Repository\SectionService;
-use eZ\Publish\API\Repository\Values\Content\Section as EzSection;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use eZ\Publish\Core\Repository\Repository;
-use Netgen\Layouts\Ez\Parameters\ParameterType\SectionType;
-use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
+use Ibexa\Contracts\Core\Repository\SectionService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Section as IbexaSection;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Core\Repository\Repository;
+use Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType;
+use Netgen\Layouts\Ibexa\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\Layouts\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -25,7 +25,7 @@ final class SectionTypeTest extends TestCase
     use ParameterTypeTestTrait;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository
+     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\Repository
      */
     private MockObject $repositoryMock;
 
@@ -53,18 +53,18 @@ final class SectionTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::getIdentifier
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType::getIdentifier
      */
     public function testGetIdentifier(): void
     {
-        self::assertSame('ez_section', $this->type::getIdentifier());
+        self::assertSame('ibexa_section', $this->type::getIdentifier());
     }
 
     /**
      * @param array<string, mixed> $options
      * @param array<string, mixed> $resolvedOptions
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::configureOptions
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType::configureOptions
      * @dataProvider validOptionsDataProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
@@ -76,7 +76,7 @@ final class SectionTypeTest extends TestCase
     /**
      * @param array<string, mixed> $options
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::configureOptions
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType::configureOptions
      * @dataProvider invalidOptionsDataProvider
      */
     public function testInvalidOptions(array $options): void
@@ -164,7 +164,7 @@ final class SectionTypeTest extends TestCase
     /**
      * @param mixed $value
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::getValueConstraints
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType::getValueConstraints
      * @dataProvider validationDataProvider
      */
     public function testValidation($value, bool $required, bool $isValid): void
@@ -178,12 +178,12 @@ final class SectionTypeTest extends TestCase
             foreach ((array) $value as $index => $identifier) {
                 $args[] = [self::identicalTo($identifier)];
                 $returns[] = self::returnCallback(
-                    static function () use ($identifier): EzSection {
+                    static function () use ($identifier): IbexaSection {
                         if (!is_string($identifier) || !in_array($identifier, ['media', 'standard'], true)) {
                             throw new NotFoundException('content type', $identifier);
                         }
 
-                        return new EzSection(
+                        return new IbexaSection(
                             [
                                 'identifier' => $identifier,
                             ],
@@ -234,7 +234,7 @@ final class SectionTypeTest extends TestCase
      * @param mixed $value
      * @param mixed $convertedValue
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::fromHash
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType::fromHash
      * @dataProvider fromHashDataProvider
      */
     public function testFromHash($value, $convertedValue, bool $multiple): void
@@ -301,7 +301,7 @@ final class SectionTypeTest extends TestCase
     /**
      * @param mixed $value
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::isValueEmpty
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType::isValueEmpty
      * @dataProvider emptyDataProvider
      */
     public function testIsValueEmpty($value, bool $isEmpty): void

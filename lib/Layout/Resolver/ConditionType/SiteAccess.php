@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Layout\Resolver\ConditionType;
+namespace Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType;
 
-use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzSiteAccess;
-use Netgen\Layouts\Ez\Validator\Constraint as EzConstraints;
+use Ibexa\Core\MVC\Symfony\SiteAccess as IbexaSiteAccess;
+use Netgen\Layouts\Ibexa\Validator\Constraint as IbexaConstraints;
 use Netgen\Layouts\Layout\Resolver\ConditionType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
@@ -17,7 +17,7 @@ final class SiteAccess extends ConditionType
 {
     public static function getType(): string
     {
-        return 'ez_site_access';
+        return 'ibexa_site_access';
     }
 
     public function getConstraints(): array
@@ -29,7 +29,7 @@ final class SiteAccess extends ConditionType
                 [
                     'constraints' => [
                         new Constraints\Type(['type' => 'string']),
-                        new EzConstraints\SiteAccess(),
+                        new IbexaConstraints\SiteAccess(),
                     ],
                 ],
             ),
@@ -39,7 +39,7 @@ final class SiteAccess extends ConditionType
     public function matches(Request $request, $value): bool
     {
         $siteAccess = $request->attributes->get('siteaccess');
-        if (!$siteAccess instanceof EzSiteAccess) {
+        if (!$siteAccess instanceof IbexaSiteAccess) {
             return false;
         }
 

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Collection\QueryType\Handler\Traits;
+namespace Netgen\Layouts\Ibexa\Collection\QueryType\Handler\Traits;
 
-use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\API\Repository\Values\Content\Location;
-use Netgen\Layouts\Ez\ContentProvider\ContentProviderInterface;
-use Netgen\Layouts\Ez\Parameters\ParameterType as EzParameterType;
+use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Netgen\Layouts\Ibexa\ContentProvider\ContentProviderInterface;
+use Netgen\Layouts\Ibexa\Parameters\ParameterType as IbexaParameterType;
 use Netgen\Layouts\Parameters\ParameterBuilderInterface;
 use Netgen\Layouts\Parameters\ParameterCollectionInterface;
 use Netgen\Layouts\Parameters\ParameterType;
@@ -53,7 +53,7 @@ trait ParentLocationTrait
 
         $builder->get('use_current_location')->add(
             'parent_location_id',
-            EzParameterType\LocationType::class,
+            IbexaParameterType\LocationType::class,
             [
                 'allow_invalid' => true,
                 'groups' => $groups,

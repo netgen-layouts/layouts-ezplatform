@@ -1,6 +1,6 @@
 block_definitions:
-    ezcontent_field:
-        name: 'eZ content field'
+    ibexa_content_field:
+        name: 'Ibexa content field'
         view_types:
-            ezcontent_field:
-                name: 'eZ content field'
+            ibexa_content_field:
+                name: 'Ibexa content field'

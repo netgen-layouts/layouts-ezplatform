@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Parameters\ParameterType;
+namespace Netgen\Layouts\Ibexa\Tests\Parameters\ParameterType;
 
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use eZ\Publish\Core\Repository\Repository;
-use eZ\Publish\Core\Repository\Values\ContentType\ContentType as EzContentType;
-use Netgen\Layouts\Ez\Parameters\ParameterType\ContentType;
-use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Core\Repository\Repository;
+use Ibexa\Core\Repository\Values\ContentType\ContentType as IbexaContentType;
+use Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType;
+use Netgen\Layouts\Ibexa\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\Layouts\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -25,7 +25,7 @@ final class ContentTypeTest extends TestCase
     use ParameterTypeTestTrait;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository
+     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\Repository
      */
     private MockObject $repositoryMock;
 
@@ -62,16 +62,16 @@ final class ContentTypeTest extends TestCase
             ->expects(self::any())
             ->method('loadContentType')
             ->willReturnCallback(
-                static function (int $type): EzContentType {
+                static function (int $type): IbexaContentType {
                     if ($type === 24) {
-                        return new EzContentType(['identifier' => 'user']);
+                        return new IbexaContentType(['identifier' => 'user']);
                     }
 
                     if ($type === 42) {
-                        return new EzContentType(['identifier' => 'image']);
+                        return new IbexaContentType(['identifier' => 'image']);
                     }
 
-                    return new EzContentType(['identifier' => 'article']);
+                    return new IbexaContentType(['identifier' => 'article']);
                 },
             );
 
@@ -79,19 +79,19 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::__construct
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::getIdentifier
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::__construct
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::getIdentifier
      */
     public function testGetIdentifier(): void
     {
-        self::assertSame('ez_content', $this->type::getIdentifier());
+        self::assertSame('ibexa_content', $this->type::getIdentifier());
     }
 
     /**
      * @param array<string, mixed> $options
      * @param array<string, mixed> $resolvedOptions
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::configureOptions
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::configureOptions
      * @dataProvider validOptionsDataProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
@@ -103,7 +103,7 @@ final class ContentTypeTest extends TestCase
     /**
      * @param array<string, mixed> $options
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::configureOptions
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::configureOptions
      * @dataProvider invalidOptionsDataProvider
      */
     public function testInvalidOptions(array $options): void
@@ -198,7 +198,7 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::export
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::export
      */
     public function testExport(): void
     {
@@ -212,7 +212,7 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::export
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::export
      */
     public function testExportWithNonExistingContent(): void
     {
@@ -226,7 +226,7 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::import
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::import
      */
     public function testImport(): void
     {
@@ -240,7 +240,7 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::import
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::import
      */
     public function testImportWithNonExistingContent(): void
     {
@@ -256,7 +256,7 @@ final class ContentTypeTest extends TestCase
     /**
      * @param mixed $value
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::getValueConstraints
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::getValueConstraints
      * @dataProvider validationDataProvider
      */
     public function testValidation($value, int $type, bool $required, bool $isValid): void
@@ -315,7 +315,7 @@ final class ContentTypeTest extends TestCase
      * @param mixed $value
      * @param mixed $convertedValue
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::fromHash
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::fromHash
      * @dataProvider fromHashDataProvider
      */
     public function testFromHash($value, $convertedValue): void
@@ -350,7 +350,7 @@ final class ContentTypeTest extends TestCase
     /**
      * @param mixed $value
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::isValueEmpty
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::isValueEmpty
      * @dataProvider emptyDataProvider
      */
     public function testIsValueEmpty($value, bool $isEmpty): void

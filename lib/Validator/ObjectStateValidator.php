@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Validator;
+namespace Netgen\Layouts\Ibexa\Validator;
 
-use eZ\Publish\API\Repository\Repository;
-use Netgen\Layouts\Ez\Validator\Constraint\ObjectState;
+use Ibexa\Contracts\Core\Repository\Repository;
+use Netgen\Layouts\Ibexa\Validator\Constraint\ObjectState;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -17,7 +17,7 @@ use function is_array;
 use function is_string;
 
 /**
- * Validates if the provided value is an identifier of a valid object state in eZ Platform.
+ * Validates if the provided value is an identifier of a valid object state in Ibexa Platform.
  */
 final class ObjectStateValidator extends ConstraintValidator
 {

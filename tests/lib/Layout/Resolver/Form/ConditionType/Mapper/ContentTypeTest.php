@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\Form\ConditionType\Mapper;
+namespace Netgen\Layouts\Ibexa\Tests\Layout\Resolver\Form\ConditionType\Mapper;
 
-use Netgen\Layouts\Ez\Form\ContentTypeType;
-use Netgen\Layouts\Ez\Layout\Resolver\Form\ConditionType\Mapper\ContentType;
+use Netgen\Layouts\Ibexa\Form\ContentTypeType;
+use Netgen\Layouts\Ibexa\Layout\Resolver\Form\ConditionType\Mapper\ContentType;
 use PHPUnit\Framework\TestCase;
 
 final class ContentTypeTest extends TestCase
@@ -18,7 +18,7 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\Form\ConditionType\Mapper\ContentType::getFormType
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\Form\ConditionType\Mapper\ContentType::getFormType
      */
     public function testGetFormType(): void
     {
@@ -26,7 +26,7 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\Form\ConditionType\Mapper\ContentType::getFormOptions
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\Form\ConditionType\Mapper\ContentType::getFormOptions
      */
     public function testGetFormOptions(): void
     {

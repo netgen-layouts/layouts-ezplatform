@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\DependencyInjection;
+namespace Netgen\Bundle\LayoutsIbexaBundle\Tests\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Netgen\Bundle\LayoutsBundle\DependencyInjection\NetgenLayoutsExtension;
-use Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\ExtensionPlugin;
-use Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\NetgenLayoutsEzPlatformExtension;
+use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin;
+use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\NetgenLayoutsIbexaExtension;
 use function array_merge;
 
 final class ExtensionPluginTest extends AbstractExtensionTestCase
 {
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\ExtensionPlugin::__construct
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\ExtensionPlugin::appendConfigurationFiles
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::__construct
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::appendConfigurationFiles
      */
     public function testAppendFromPlugin(): void
     {
@@ -33,7 +33,7 @@ final class ExtensionPluginTest extends AbstractExtensionTestCase
         self::assertSame(
             [
                 'block_types' => [
-                    'ezcontent_field',
+                    'ibexa_content_field',
                 ],
             ],
             $config['block_type_groups']['placeholders'],
@@ -42,6 +42,6 @@ final class ExtensionPluginTest extends AbstractExtensionTestCase
 
     protected function getContainerExtensions(): array
     {
-        return [new NetgenLayoutsEzPlatformExtension()];
+        return [new NetgenLayoutsIbexaExtension()];
     }
 }

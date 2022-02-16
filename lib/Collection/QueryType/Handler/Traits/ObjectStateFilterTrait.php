@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Collection\QueryType\Handler\Traits;
+namespace Netgen\Layouts\Ibexa\Collection\QueryType\Handler\Traits;
 
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
-use eZ\Publish\SPI\Persistence\Content\ObjectState\Handler;
-use Netgen\Layouts\Ez\Parameters\ParameterType as EzParameterType;
+use Ibexa\Contracts\Core\Persistence\Content\ObjectState\Handler;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Netgen\Layouts\Ibexa\Parameters\ParameterType as IbexaParameterType;
 use Netgen\Layouts\Parameters\ParameterBuilderInterface;
 use Netgen\Layouts\Parameters\ParameterCollectionInterface;
 use Netgen\Layouts\Parameters\ParameterType;
@@ -43,7 +43,7 @@ trait ObjectStateFilterTrait
 
         $builder->get('filter_by_object_state')->add(
             'object_states',
-            EzParameterType\ObjectStateType::class,
+            IbexaParameterType\ObjectStateType::class,
             [
                 'multiple' => true,
                 'groups' => $groups,

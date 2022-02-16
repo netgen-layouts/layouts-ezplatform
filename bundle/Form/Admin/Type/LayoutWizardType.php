@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\Form\Admin\Type;
+namespace Netgen\Bundle\LayoutsIbexaBundle\Form\Admin\Type;
 
 use Netgen\Layouts\API\Service\LayoutService;
 use Netgen\Layouts\API\Values\Layout\Layout;
@@ -16,7 +16,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use function array_key_first;
 use function count;
 
@@ -46,7 +45,7 @@ final class LayoutWizardType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'translation_domain' => 'nglayouts_ezadminui_forms',
+                'translation_domain' => 'nglayouts_ibexa_admin_forms',
                 'validation_groups' => static fn (FormInterface $form): array => [
                     'Default',
                     $form->get('action')->getData(),
@@ -140,16 +139,10 @@ final class LayoutWizardType extends AbstractType
                     'error_bubbling' => false,
                     'constraints' => [
                         new Constraints\NotBlank(),
-                        // @deprecated Replace with AtLeastOneOf when support for old Symfony versions is gone
-                        new Constraints\Callback(
+                        new Constraints\AtLeastOneOf(
                             [
-                                'callback' => static function ($value, ExecutionContextInterface $context): void {
-                                    if (!Uuid::isValid($value)) {
-                                        $context->buildViolation('This is not a valid UUID.')
-                                            ->atPath('rule_group')
-                                            ->addViolation();
-                                    }
-                                },
+                                new Constraints\EqualTo(Uuid::NIL),
+                                new Constraints\Uuid(),
                             ],
                         ),
                     ],

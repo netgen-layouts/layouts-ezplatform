@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\View;
+namespace Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\View;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -12,12 +12,12 @@ final class DefaultViewTemplatesPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
-        if (!$container->hasParameter('ezpublish.siteaccess.list')) {
+        if (!$container->hasParameter('ibexa.site_access.list')) {
             return;
         }
 
         /** @var array<int, string> $siteAccessList */
-        $siteAccessList = $container->getParameter('ezpublish.siteaccess.list');
+        $siteAccessList = $container->getParameter('ibexa.site_access.list');
         $scopes = [...['default'], ...$siteAccessList];
 
         foreach ($scopes as $scope) {

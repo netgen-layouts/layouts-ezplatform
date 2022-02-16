@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Validator;
+namespace Netgen\Layouts\Ibexa\Tests\Validator;
 
-use eZ\Publish\API\Repository\ObjectStateService;
-use eZ\Publish\Core\Repository\Repository;
-use eZ\Publish\Core\Repository\Values\ObjectState\ObjectState as EzObjectState;
-use eZ\Publish\Core\Repository\Values\ObjectState\ObjectStateGroup;
-use Netgen\Layouts\Ez\Validator\Constraint\ObjectState;
-use Netgen\Layouts\Ez\Validator\ObjectStateValidator;
+use Ibexa\Contracts\Core\Repository\ObjectStateService;
+use Ibexa\Core\Repository\Repository;
+use Ibexa\Core\Repository\Values\ObjectState\ObjectState as IbexaObjectState;
+use Ibexa\Core\Repository\Values\ObjectState\ObjectStateGroup;
+use Netgen\Layouts\Ibexa\Validator\Constraint\ObjectState;
+use Netgen\Layouts\Ibexa\Validator\ObjectStateValidator;
 use Netgen\Layouts\Tests\TestCase\ValidatorTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -32,9 +32,9 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
     /**
      * @param string[] $allowedStates
      *
-     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::__construct
-     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::loadStateIdentifiers
-     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\ObjectStateValidator::__construct
+     * @covers \Netgen\Layouts\Ibexa\Validator\ObjectStateValidator::loadStateIdentifiers
+     * @covers \Netgen\Layouts\Ibexa\Validator\ObjectStateValidator::validate
      * @dataProvider validateDataProvider
      */
     public function testValidate(string $identifier, array $allowedStates, bool $isValid): void
@@ -54,24 +54,24 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
             )
             ->willReturnOnConsecutiveCalls(
                 [
-                    new EzObjectState(
+                    new IbexaObjectState(
                         [
                             'identifier' => 'state1',
                         ],
                     ),
-                    new EzObjectState(
+                    new IbexaObjectState(
                         [
                             'identifier' => 'state2',
                         ],
                     ),
                 ],
                 [
-                    new EzObjectState(
+                    new IbexaObjectState(
                         [
                             'identifier' => 'state1',
                         ],
                     ),
-                    new EzObjectState(
+                    new IbexaObjectState(
                         [
                             'identifier' => 'state2',
                         ],
@@ -84,9 +84,9 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::__construct
-     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::loadStateIdentifiers
-     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\ObjectStateValidator::__construct
+     * @covers \Netgen\Layouts\Ibexa\Validator\ObjectStateValidator::loadStateIdentifiers
+     * @covers \Netgen\Layouts\Ibexa\Validator\ObjectStateValidator::validate
      */
     public function testValidateNull(): void
     {
@@ -102,19 +102,19 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\ObjectStateValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->expectException(UnexpectedTypeException::class);
-        $this->expectExceptionMessage('Expected argument of type "Netgen\\Layouts\\Ez\\Validator\\Constraint\\ObjectState", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
+        $this->expectExceptionMessage('Expected argument of type "Netgen\\Layouts\\Ibexa\\Validator\\Constraint\\ObjectState", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
 
         $this->constraint = new NotBlank();
         $this->assertValid(true, 'value');
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\ObjectStateValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
@@ -125,7 +125,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\ObjectStateValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValueFormat(): void
     {

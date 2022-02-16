@@ -200,7 +200,7 @@ $(function () {
     this.$content = this.$el.find('.layouts-box-content');
     this.$loader = this.$el.find('.layout-loading');
     this.fetchedLayouts = false;
-    this.$toggleBtn = $('a[href^="#ez-tab-location-view-netgen_layouts"]');
+    this.$toggleBtn = $('a[href^="#ibexa-tab-location-view-netgen_layouts"]');
     this.url = el.dataset.url;
     this.setupEvents();
     this.$el.is(':visible') && this.getLayouts();
@@ -298,7 +298,7 @@ $(function () {
   $(document).on('click', '.js-direct-mapping', function () {
     const layoutId = document.querySelector('.mapped-layouts-box').dataset.url.split('/').pop();
     const apiUrl = `${window.location.origin}/${window.location.pathname.split('/')[1]}`;
-    const baseUrl = `${apiUrl}/nglayouts/ezadmin/layouts`;
+    const baseUrl = `${apiUrl}/nglayouts/ibexa/admin/layouts`;
     const url = `${baseUrl}/${layoutId}/wizard`;
     const modal = new NlModal({
       preload: true,

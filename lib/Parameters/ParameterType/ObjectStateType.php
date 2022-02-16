@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Parameters\ParameterType;
+namespace Netgen\Layouts\Ibexa\Parameters\ParameterType;
 
-use Netgen\Layouts\Ez\Validator\Constraint as EzConstraints;
+use Netgen\Layouts\Ibexa\Validator\Constraint as IbexaConstraints;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\Layouts\Parameters\ParameterType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,13 +13,13 @@ use function array_values;
 use function is_array;
 
 /**
- * Parameter type used to store and validate an identifier of a object state in eZ Platform.
+ * Parameter type used to store and validate an identifier of a object state in Ibexa Platform.
  */
 final class ObjectStateType extends ParameterType
 {
     public static function getIdentifier(): string
     {
-        return 'ez_object_state';
+        return 'ibexa_object_state';
     }
 
     public function configureOptions(OptionsResolver $optionsResolver): void
@@ -57,7 +57,7 @@ final class ObjectStateType extends ParameterType
 
         $objectStateConstraints = [
             new Constraints\Type(['type' => 'string']),
-            new EzConstraints\ObjectState(['allowedStates' => $parameterDefinition->getOption('states')]),
+            new IbexaConstraints\ObjectState(['allowedStates' => $parameterDefinition->getOption('states')]),
         ];
 
         if ($options['multiple'] === false) {

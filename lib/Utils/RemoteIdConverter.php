@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Utils;
+namespace Netgen\Layouts\Ibexa\Utils;
 
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\Repository;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use eZ\Publish\API\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Repository;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 
 final class RemoteIdConverter
 {
@@ -21,7 +21,7 @@ final class RemoteIdConverter
     public function toLocationId(string $remoteId): ?int
     {
         try {
-            /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
+            /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location $location */
             $location = $this->repository->sudo(
                 static fn (Repository $repository): Location => $repository->getLocationService()->loadLocationByRemoteId($remoteId),
             );
@@ -35,7 +35,7 @@ final class RemoteIdConverter
     public function toLocationRemoteId(int $id): ?string
     {
         try {
-            /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
+            /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location $location */
             $location = $this->repository->sudo(
                 static fn (Repository $repository): Location => $repository->getLocationService()->loadLocation($id),
             );
@@ -49,7 +49,7 @@ final class RemoteIdConverter
     public function toContentId(string $remoteId): ?int
     {
         try {
-            /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
+            /** @var \Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
                 static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfoByRemoteId($remoteId),
             );
@@ -63,7 +63,7 @@ final class RemoteIdConverter
     public function toContentRemoteId(int $id): ?string
     {
         try {
-            /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
+            /** @var \Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
                 static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfo($id),
             );

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\ConditionType;
+namespace Netgen\Layouts\Ibexa\Tests\Layout\Resolver\ConditionType;
 
-use eZ\Publish\Core\MVC\Symfony\SiteAccess as EzSiteAccess;
-use Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccess;
-use Netgen\Layouts\Ez\Tests\Validator\ValidatorFactory;
+use Ibexa\Core\MVC\Symfony\SiteAccess as IbexaSiteAccess;
+use Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\SiteAccess;
+use Netgen\Layouts\Ibexa\Tests\Validator\ValidatorFactory;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
@@ -21,17 +21,17 @@ final class SiteAccessTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccess::getType
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\SiteAccess::getType
      */
     public function testGetType(): void
     {
-        self::assertSame('ez_site_access', $this->conditionType::getType());
+        self::assertSame('ibexa_site_access', $this->conditionType::getType());
     }
 
     /**
      * @param mixed $value
      *
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccess::getConstraints
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\SiteAccess::getConstraints
      * @dataProvider validationDataProvider
      */
     public function testValidation($value, bool $isValid): void
@@ -45,7 +45,7 @@ final class SiteAccessTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccess::matches
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\SiteAccess::matches
      *
      * @param mixed $value
      *
@@ -54,13 +54,13 @@ final class SiteAccessTest extends TestCase
     public function testMatches($value, bool $matches): void
     {
         $request = Request::create('/');
-        $request->attributes->set('siteaccess', new EzSiteAccess('eng'));
+        $request->attributes->set('siteaccess', new IbexaSiteAccess('eng'));
 
         self::assertSame($matches, $this->conditionType->matches($request, $value));
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccess::matches
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\SiteAccess::matches
      */
     public function testMatchesWithNoSiteAccess(): void
     {

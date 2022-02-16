@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Item\ValueConverter;
+namespace Netgen\Layouts\Ibexa\Tests\Item\ValueConverter;
 
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use eZ\Publish\Core\Repository\Values\Content\Content;
-use eZ\Publish\Core\Repository\Values\Content\Location;
-use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
-use Netgen\Layouts\Ez\Item\ValueConverter\LocationValueConverter;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\Core\Repository\Values\Content\Content;
+use Ibexa\Core\Repository\Values\Content\Location;
+use Ibexa\Core\Repository\Values\Content\VersionInfo;
+use Netgen\Layouts\Ibexa\Item\ValueConverter\LocationValueConverter;
 use PHPUnit\Framework\TestCase;
 
 final class LocationValueConverterTest extends TestCase
@@ -21,7 +21,7 @@ final class LocationValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\LocationValueConverter::supports
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\LocationValueConverter::supports
      */
     public function testSupports(): void
     {
@@ -30,12 +30,12 @@ final class LocationValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\LocationValueConverter::getValueType
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\LocationValueConverter::getValueType
      */
     public function testGetValueType(): void
     {
         self::assertSame(
-            'ezlocation',
+            'ibexa_location',
             $this->valueConverter->getValueType(
                 new Location(),
             ),
@@ -43,7 +43,7 @@ final class LocationValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\LocationValueConverter::getId
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\LocationValueConverter::getId
      */
     public function testGetId(): void
     {
@@ -56,7 +56,7 @@ final class LocationValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\LocationValueConverter::getRemoteId
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\LocationValueConverter::getRemoteId
      */
     public function testGetRemoteId(): void
     {
@@ -69,7 +69,7 @@ final class LocationValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\LocationValueConverter::getName
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\LocationValueConverter::getName
      */
     public function testGetName(): void
     {
@@ -95,7 +95,7 @@ final class LocationValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\LocationValueConverter::getIsVisible
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\LocationValueConverter::getIsVisible
      */
     public function testGetIsVisible(): void
     {
@@ -107,7 +107,7 @@ final class LocationValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\LocationValueConverter::getObject
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\LocationValueConverter::getObject
      */
     public function testGetObject(): void
     {

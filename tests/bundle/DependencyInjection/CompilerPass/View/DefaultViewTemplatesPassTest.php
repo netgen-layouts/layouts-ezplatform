@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\DependencyInjection\CompilerPass\View;
+namespace Netgen\Bundle\LayoutsIbexaBundle\Tests\DependencyInjection\CompilerPass\View;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractContainerBuilderTestCase;
-use Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass;
+use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 
 final class DefaultViewTemplatesPassTest extends AbstractContainerBuilderTestCase
@@ -18,11 +18,11 @@ final class DefaultViewTemplatesPassTest extends AbstractContainerBuilderTestCas
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass::process
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass::process
      */
     public function testProcess(): void
     {
-        $this->container->setParameter('ezpublish.siteaccess.list', ['cro', 'eng']);
+        $this->container->setParameter('ibexa.site_access.list', ['cro', 'eng']);
 
         $this->container->setParameter(
             'netgen_layouts.default.view',
@@ -152,7 +152,7 @@ final class DefaultViewTemplatesPassTest extends AbstractContainerBuilderTestCas
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass::process
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass::process
      */
     public function testProcessWithEmptyContainer(): void
     {

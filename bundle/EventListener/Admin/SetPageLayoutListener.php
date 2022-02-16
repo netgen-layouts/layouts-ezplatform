@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\EventListener\Admin;
+namespace Netgen\Bundle\LayoutsIbexaBundle\EventListener\Admin;
 
-use EzSystems\EzPlatformAdminUiBundle\EzPlatformAdminUiBundle;
+use Ibexa\Bundle\AdminUi\IbexaAdminUiBundle;
 use Netgen\Bundle\LayoutsAdminBundle\Event\AdminMatchEvent;
 use Netgen\Bundle\LayoutsAdminBundle\Event\LayoutsAdminEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -57,7 +57,7 @@ final class SetPageLayoutListener implements EventSubscriberInterface
         }
 
         $siteAccess = $currentRequest->attributes->get('siteaccess')->name;
-        if (!in_array(EzPlatformAdminUiBundle::ADMIN_GROUP_NAME, $this->groupsBySiteAccess[$siteAccess] ?? [], true)) {
+        if (!in_array(IbexaAdminUiBundle::ADMIN_GROUP_NAME, $this->groupsBySiteAccess[$siteAccess] ?? [], true)) {
             return;
         }
 

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Security\Authorization\Voter;
+namespace Netgen\Layouts\Ibexa\Tests\Security\Authorization\Voter;
 
-use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute;
-use Netgen\Layouts\Ez\Security\Authorization\Voter\RepositoryAccessVoter;
-use Netgen\Layouts\Ez\Security\Role\RoleHierarchy;
+use Ibexa\Core\MVC\Symfony\Security\Authorization\Attribute;
+use Netgen\Layouts\Ibexa\Security\Authorization\Voter\RepositoryAccessVoter;
+use Netgen\Layouts\Ibexa\Security\Role\RoleHierarchy;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -40,11 +40,11 @@ final class RepositoryAccessVoterTest extends TestCase
     /**
      * @param array<string, bool> $repoAccess
      *
-     * @covers \Netgen\Layouts\Ez\Security\Authorization\Voter\RepositoryAccessVoter::__construct
-     * @covers \Netgen\Layouts\Ez\Security\Authorization\Voter\RepositoryAccessVoter::getReachableAttributes
-     * @covers \Netgen\Layouts\Ez\Security\Authorization\Voter\RepositoryAccessVoter::supports
-     * @covers \Netgen\Layouts\Ez\Security\Authorization\Voter\RepositoryAccessVoter::vote
-     * @covers \Netgen\Layouts\Ez\Security\Authorization\Voter\RepositoryAccessVoter::voteOnAttribute
+     * @covers \Netgen\Layouts\Ibexa\Security\Authorization\Voter\RepositoryAccessVoter::__construct
+     * @covers \Netgen\Layouts\Ibexa\Security\Authorization\Voter\RepositoryAccessVoter::getReachableAttributes
+     * @covers \Netgen\Layouts\Ibexa\Security\Authorization\Voter\RepositoryAccessVoter::supports
+     * @covers \Netgen\Layouts\Ibexa\Security\Authorization\Voter\RepositoryAccessVoter::vote
+     * @covers \Netgen\Layouts\Ibexa\Security\Authorization\Voter\RepositoryAccessVoter::voteOnAttribute
      *
      * @dataProvider voteDataProvider
      */
@@ -78,11 +78,11 @@ final class RepositoryAccessVoterTest extends TestCase
     public function voteDataProvider(): array
     {
         return [
-            // Only matches admin eZ function
+            // Only matches admin Ibexa function
             ['ROLE_NGLAYOUTS_ADMIN', ['admin' => true], VoterInterface::ACCESS_GRANTED],
             ['ROLE_NGLAYOUTS_ADMIN', ['admin' => false], VoterInterface::ACCESS_DENIED],
 
-            // Matches both admin and editor eZ functions
+            // Matches both admin and editor Ibexa functions
             ['ROLE_NGLAYOUTS_EDITOR', ['editor' => true], VoterInterface::ACCESS_GRANTED],
             ['ROLE_NGLAYOUTS_EDITOR', ['editor' => false, 'admin' => true], VoterInterface::ACCESS_GRANTED],
             ['ROLE_NGLAYOUTS_EDITOR', ['editor' => false, 'admin' => false], VoterInterface::ACCESS_DENIED],

@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Validator\Constraint;
+namespace Netgen\Layouts\Ibexa\Tests\Validator\Constraint;
 
-use Netgen\Layouts\Ez\Validator\Constraint\Tag;
+use Netgen\Layouts\Ibexa\Validator\Constraint\Tag;
 use PHPUnit\Framework\TestCase;
 
 final class TagTest extends TestCase
 {
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\Constraint\Tag::validatedBy
+     * @covers \Netgen\Layouts\Ibexa\Validator\Constraint\Tag::validatedBy
      */
     public function testValidatedBy(): void
     {
         $constraint = new Tag();
-        self::assertSame('nglayouts_ez_tags', $constraint->validatedBy());
+        self::assertSame('nglayouts_netgen_tags', $constraint->validatedBy());
     }
 }

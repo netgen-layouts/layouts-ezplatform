@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\Controller\Admin;
+namespace Netgen\Bundle\LayoutsIbexaBundle\Controller\Admin;
 
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\Values\Content\Location;
-use eZ\Publish\Core\MVC\Symfony\View\ContentView;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Ibexa\Core\MVC\Symfony\View\ContentView;
 use Netgen\Layouts\API\Values\LayoutResolver\Rule;
-use Netgen\Layouts\Ez\AdminUI\RelatedLayoutsLoader;
+use Netgen\Layouts\Ibexa\AdminUI\RelatedLayoutsLoader;
 use Netgen\Layouts\Layout\Resolver\LayoutResolverInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,7 +38,7 @@ final class LocationLayouts extends Controller
     {
         $request = $this->createRequest($location);
 
-        $rules = $this->layoutResolver->resolveRules($request, ['ez_content_type']);
+        $rules = $this->layoutResolver->resolveRules($request, ['ibexa_content_type']);
         $rulesOneOnOne = [];
 
         foreach ($rules as $rule) {
@@ -46,7 +46,7 @@ final class LocationLayouts extends Controller
         }
 
         return $this->render(
-            '@ezdesign/content/tab/nglayouts/location_layouts.html.twig',
+            '@ibexadesign/content/tab/nglayouts/location_layouts.html.twig',
             [
                 'rules' => $rules,
                 'rules_one_on_one' => $rulesOneOnOne,
@@ -102,7 +102,7 @@ final class LocationLayouts extends Controller
         /** @var \Netgen\Layouts\API\Values\LayoutResolver\Target $target */
         $target = $rule->getTargets()[0];
 
-        if ($target->getTargetType()::getType() !== 'ez_location') {
+        if ($target->getTargetType()::getType() !== 'ibexa_location') {
             return false;
         }
 

@@ -1,19 +1,19 @@
 services:
-    netgen_layouts.ezplatform.layout_resolver.condition_type.site_access:
-        class: Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccess
+    netgen_layouts.ibexa.layout_resolver.condition_type.site_access:
+        class: Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\SiteAccess
         tags:
             - { name: netgen_layouts.condition_type }
 
-    netgen_layouts.ezplatform.layout_resolver.condition_type.site_access_group:
-        class: Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccessGroup
+    netgen_layouts.ibexa.layout_resolver.condition_type.site_access_group:
+        class: Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\SiteAccessGroup
         arguments:
-            - "%ezpublish.siteaccess.groups_by_siteaccess%"
+            - "%ibexa.site_access.groups_by_site_access%"
         tags:
             - { name: netgen_layouts.condition_type }
 
-    netgen_layouts.ezplatform.layout_resolver.condition_type.content_type:
-        class: Netgen\Layouts\Ez\Layout\Resolver\ConditionType\ContentType
+    netgen_layouts.ibexa.layout_resolver.condition_type.content_type:
+        class: Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\ContentType
         arguments:
-            - "@netgen_layouts.ezplatform.content_extractor"
+            - "@netgen_layouts.ibexa.content_extractor"
         tags:
             - { name: netgen_layouts.condition_type }

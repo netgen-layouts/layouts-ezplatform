@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Security\Authorization\Voter;
+namespace Netgen\Layouts\Ibexa\Security\Authorization\Voter;
 
 use Symfony\Component\Security\Core\Role\Role as BaseRole;
 

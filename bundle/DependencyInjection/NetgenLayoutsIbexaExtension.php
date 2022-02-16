@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection;
+namespace Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection;
 
-use eZ\Publish\SPI\FieldType\Nameable;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\DelegatingLoader;
@@ -18,9 +17,8 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Yaml\Yaml;
 use function array_key_exists;
 use function file_get_contents;
-use function interface_exists;
 
-final class NetgenLayoutsEzPlatformExtension extends Extension implements PrependExtensionInterface
+final class NetgenLayoutsIbexaExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * @param mixed[] $configs
@@ -45,28 +43,17 @@ final class NetgenLayoutsEzPlatformExtension extends Extension implements Prepen
         $activatedBundles = $container->getParameter('kernel.bundles');
 
         $container->setParameter(
-            'netgen_layouts.ezplatform.is_enterprise',
+            'netgen_layouts.ibexa.is_enterprise',
             array_key_exists('NetgenLayoutsEnterpriseBundle', $activatedBundles),
         );
 
-        if (!array_key_exists('NetgenLayoutsEnterpriseEzPlatformBundle', $activatedBundles)) {
+        if (!array_key_exists('NetgenLayoutsEnterpriseIbexaBundle', $activatedBundles)) {
             $loader->load('enterprise/services.yaml');
         }
 
-        if (array_key_exists('EzPlatformAdminUiBundle', $activatedBundles)) {
-            $loader->load('admin/services.yaml');
-        }
-
         if (array_key_exists('NetgenTagsBundle', $activatedBundles)) {
-            $loader->load('eztags/services.yaml');
+            $loader->load('netgen_tags/services.yaml');
         }
-
-        $loader->load(
-            // Nameable interface for field types does not exist in eZ Platform v3
-            interface_exists(Nameable::class) ?
-                'ezplatform_v2/http_cache.yaml' :
-                'ezplatform_v3/http_cache.yaml',
-        );
     }
 
     public function prepend(ContainerBuilder $container): void
@@ -81,7 +68,7 @@ final class NetgenLayoutsEzPlatformExtension extends Extension implements Prepen
             'view/rule_target_view.yaml' => 'netgen_layouts',
             'view/rule_view.yaml' => 'netgen_layouts',
             'view/layout_view.yaml' => 'netgen_layouts',
-            'ezplatform/image.yaml' => 'ezpublish',
+            'ibexa/image.yaml' => 'ibexa',
         ];
 
         foreach ($prependConfigs as $configFile => $prependConfig) {

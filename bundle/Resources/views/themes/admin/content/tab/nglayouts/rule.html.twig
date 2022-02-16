@@ -1,6 +1,6 @@
 {% import '@NetgenLayoutsAdmin/admin/macros.html.twig' as macros %}
 
-{% trans_default_domain 'nglayouts_ezadminui' %}
+{% trans_default_domain 'nglayouts_ibexa_admin' %}
 
 {% set can_edit = is_granted('ROLE_NGLAYOUTS_EDITOR') or is_granted('nglayouts:layout:edit', rule.layout) %}
 {% set can_clear_cache = is_granted('ROLE_NGLAYOUTS_ADMIN') or is_granted('nglayouts:layout:clear_cache', rule.layout) %}
@@ -21,7 +21,7 @@
 
             <ul>
                 {% for target in rule.targets %}
-                    <li {% if rule_count == 1 and rule.targets|length == 1 and (target_type == 'ez_location' or target_type == 'ez_content') %}class="unique"{% endif %}>
+                    <li {% if rule_count == 1 and rule.targets|length == 1 and (target_type == 'ibexa_location' or target_type == 'ibexa_content') %}class="unique"{% endif %}>
                         {{ nglayouts_render_rule_target(target, {}, 'value') }}
                     </li>
                 {% endfor %}
@@ -47,7 +47,7 @@
 
         {% if can_edit %}
             <div class="layout-actions">
-                <a href="{{ macros.layout_path(rule.layout.id.toString) }}" class="btn btn-primary btn-sm js-open-ngl" data-value-id="{{location.id}}" data-value-type="ezlocation">{{ 'layouts.edit_layout'|trans }}</a>
+                <a href="{{ macros.layout_path(rule.layout.id.toString) }}" class="btn btn-primary btn-sm js-open-ngl" data-value-id="{{location.id}}" data-value-type="ibexa_location">{{ 'layouts.edit_layout'|trans }}</a>
             </div>
         {% endif %}
 
@@ -76,8 +76,8 @@
                     <div class="modal-header">
                         <h5 class="modal-title">{{ 'layouts.cache.layout.title'|trans({}, 'nglayouts_admin') }}: <strong>{{ rule.layout.name }}</strong></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <svg class="ez-icon ez-icon--medium" aria-hidden="true">
-                                <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#discard"></use>
+                            <svg class="ibexa-icon ibexa-icon--medium" aria-hidden="true">
+                                <use xlink:href="{{ asset('bundles/ibexaadminui/img/ibexa-icons.svg') }}#discard"></use>
                             </svg>
                         </button>
                     </div>
@@ -100,8 +100,8 @@
                     <div class="modal-header">
                         <h4 class="modal-title">{{ 'layouts.rule.delete_rule.title'|trans }}</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <svg class="ez-icon ez-icon--medium" aria-hidden="true">
-                                <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#discard"></use>
+                            <svg class="ibexa-icon ibexa-icon--medium" aria-hidden="true">
+                                <use xlink:href="{{ asset('bundles/ibexaadminui/img/ibexa-icons.svg') }}#discard"></use>
                             </svg>
                         </button>
                     </div>
