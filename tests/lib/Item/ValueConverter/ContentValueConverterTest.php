@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Item\ValueConverter;
+namespace Netgen\Layouts\Ibexa\Tests\Item\ValueConverter;
 
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use eZ\Publish\Core\Repository\Values\Content\Content;
-use eZ\Publish\Core\Repository\Values\Content\Location;
-use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
-use Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\Core\Repository\Values\Content\Content;
+use Ibexa\Core\Repository\Values\Content\Location;
+use Ibexa\Core\Repository\Values\Content\VersionInfo;
+use Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -59,8 +59,8 @@ final class ContentValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter::__construct
-     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter::supports
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter::__construct
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter::supports
      */
     public function testSupports(): void
     {
@@ -69,12 +69,12 @@ final class ContentValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter::getValueType
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter::getValueType
      */
     public function testGetValueType(): void
     {
         self::assertSame(
-            'ezcontent',
+            'ibexa_content',
             $this->valueConverter->getValueType(
                 new ContentInfo(),
             ),
@@ -82,7 +82,7 @@ final class ContentValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter::getId
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter::getId
      */
     public function testGetId(): void
     {
@@ -95,7 +95,7 @@ final class ContentValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter::getRemoteId
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter::getRemoteId
      */
     public function testGetRemoteId(): void
     {
@@ -108,7 +108,7 @@ final class ContentValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter::getName
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter::getName
      */
     public function testGetName(): void
     {
@@ -121,7 +121,7 @@ final class ContentValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter::getIsVisible
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter::getIsVisible
      */
     public function testGetIsVisible(): void
     {
@@ -133,7 +133,7 @@ final class ContentValueConverterTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter::getObject
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter::getObject
      */
     public function testGetObject(): void
     {

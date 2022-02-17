@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Parameters\ParameterType;
+namespace Netgen\Layouts\Ibexa\Tests\Parameters\ParameterType;
 
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use eZ\Publish\Core\Repository\Repository;
-use eZ\Publish\Core\Repository\Values\ContentType\ContentType as EzContentType;
-use Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType;
-use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Core\Repository\Repository;
+use Ibexa\Core\Repository\Values\ContentType\ContentType as IbexaContentType;
+use Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentTypeType;
+use Netgen\Layouts\Ibexa\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\Layouts\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -25,7 +25,7 @@ final class ContentTypeTypeTest extends TestCase
     use ParameterTypeTestTrait;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository
+     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\Repository
      */
     private MockObject $repositoryMock;
 
@@ -53,18 +53,18 @@ final class ContentTypeTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType::getIdentifier
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentTypeType::getIdentifier
      */
     public function testGetIdentifier(): void
     {
-        self::assertSame('ez_content_type', $this->type::getIdentifier());
+        self::assertSame('ibexa_content_type', $this->type::getIdentifier());
     }
 
     /**
      * @param array<string, mixed> $options
      * @param array<string, mixed> $resolvedOptions
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType::configureOptions
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentTypeType::configureOptions
      * @dataProvider validOptionsDataProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
@@ -76,7 +76,7 @@ final class ContentTypeTypeTest extends TestCase
     /**
      * @param array<string, mixed> $options
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType::configureOptions
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentTypeType::configureOptions
      * @dataProvider invalidOptionsDataProvider
      */
     public function testInvalidOptions(array $options): void
@@ -158,7 +158,7 @@ final class ContentTypeTypeTest extends TestCase
     /**
      * @param mixed $value
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType::getValueConstraints
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentTypeType::getValueConstraints
      * @dataProvider validationDataProvider
      */
     public function testValidation($value, bool $required, bool $isValid): void
@@ -172,12 +172,12 @@ final class ContentTypeTypeTest extends TestCase
             foreach ((array) $value as $index => $identifier) {
                 $args[] = [self::identicalTo($identifier)];
                 $returns[] = self::returnCallback(
-                    static function () use ($identifier): EzContentType {
+                    static function () use ($identifier): IbexaContentType {
                         if (!is_string($identifier) || !in_array($identifier, ['article', 'news'], true)) {
                             throw new NotFoundException('content type', $identifier);
                         }
 
-                        return new EzContentType(
+                        return new IbexaContentType(
                             [
                                 'identifier' => $identifier,
                             ],
@@ -228,7 +228,7 @@ final class ContentTypeTypeTest extends TestCase
      * @param mixed $value
      * @param mixed $convertedValue
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType::fromHash
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentTypeType::fromHash
      * @dataProvider fromHashDataProvider
      */
     public function testFromHash($value, $convertedValue, bool $multiple): void
@@ -295,7 +295,7 @@ final class ContentTypeTypeTest extends TestCase
     /**
      * @param mixed $value
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType::isValueEmpty
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentTypeType::isValueEmpty
      * @dataProvider emptyDataProvider
      */
     public function testIsValueEmpty($value, bool $isEmpty): void

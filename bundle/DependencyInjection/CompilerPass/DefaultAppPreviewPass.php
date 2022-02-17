@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass;
+namespace Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -12,26 +12,26 @@ final class DefaultAppPreviewPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
-        if (!$container->hasParameter('ezpublish.siteaccess.list')) {
+        if (!$container->hasParameter('ibexa.site_access.list')) {
             return;
         }
 
         $defaultRule = [
             'template' => $container->getParameter(
-                'netgen_layouts.app.ezplatform.item_preview_template',
+                'netgen_layouts.app.ibexa.item_preview_template',
             ),
             'match' => [],
             'params' => [],
         ];
 
         /** @var array<int, string> $siteAccessList */
-        $siteAccessList = $container->getParameter('ezpublish.siteaccess.list');
+        $siteAccessList = $container->getParameter('ibexa.site_access.list');
         $scopes = [...['default'], ...$siteAccessList];
 
         foreach ($scopes as $scope) {
             $scopeParams = [
-                "ezsettings.{$scope}.content_view",
-                "ezsettings.{$scope}.location_view",
+                "ibexa.site_access.config.{$scope}.content_view",
+                "ibexa.site_access.config.{$scope}.location_view",
             ];
 
             foreach ($scopeParams as $scopeParam) {
@@ -48,7 +48,7 @@ final class DefaultAppPreviewPass implements CompilerPassInterface
     }
 
     /**
-     * Adds the default eZ content preview template to default scope as a fallback
+     * Adds the default Ibexa content preview template to default scope as a fallback
      * when no preview rules are defined.
      *
      * @param array<string, mixed[]>|null $scopeRules

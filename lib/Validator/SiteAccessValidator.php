@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Validator;
+namespace Netgen\Layouts\Ibexa\Validator;
 
-use Netgen\Layouts\Ez\Validator\Constraint\SiteAccess;
+use Netgen\Layouts\Ibexa\Validator\Constraint\SiteAccess;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -12,7 +12,7 @@ use function in_array;
 use function is_string;
 
 /**
- * Validates if the provided value is a valid eZ Platform siteaccess.
+ * Validates if the provided value is a valid Ibexa Platform siteaccess.
  */
 final class SiteAccessValidator extends ConstraintValidator
 {

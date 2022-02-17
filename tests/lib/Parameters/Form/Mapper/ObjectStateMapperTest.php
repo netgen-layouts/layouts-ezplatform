@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Parameters\Form\Mapper;
+namespace Netgen\Layouts\Ibexa\Tests\Parameters\Form\Mapper;
 
-use Netgen\Layouts\Ez\Form\ObjectStateType;
-use Netgen\Layouts\Ez\Parameters\Form\Mapper\ObjectStateMapper;
-use Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType as ParameterType;
+use Netgen\Layouts\Ibexa\Form\ObjectStateType;
+use Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ObjectStateMapper;
+use Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType as ParameterType;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use PHPUnit\Framework\TestCase;
 
@@ -20,7 +20,7 @@ final class ObjectStateMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\Form\Mapper\ObjectStateMapper::getFormType
+     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ObjectStateMapper::getFormType
      */
     public function testGetFormType(): void
     {
@@ -28,7 +28,7 @@ final class ObjectStateMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\Form\Mapper\ObjectStateMapper::mapOptions
+     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ObjectStateMapper::mapOptions
      */
     public function testMapOptions(): void
     {

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\ConditionType;
+namespace Netgen\Layouts\Ibexa\Tests\Layout\Resolver\ConditionType;
 
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use eZ\Publish\Core\Repository\Repository;
-use eZ\Publish\Core\Repository\Values\Content\Content;
-use eZ\Publish\Core\Repository\Values\ContentType\ContentType as EzContentType;
-use Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface;
-use Netgen\Layouts\Ez\Layout\Resolver\ConditionType\ContentType;
-use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Core\Repository\Repository;
+use Ibexa\Core\Repository\Values\Content\Content;
+use Ibexa\Core\Repository\Values\ContentType\ContentType as IbexaContentType;
+use Netgen\Layouts\Ibexa\ContentProvider\ContentExtractorInterface;
+use Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\ContentType;
+use Netgen\Layouts\Ibexa\Tests\Validator\RepositoryValidatorFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Validation;
 final class ContentTypeTest extends TestCase
 {
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository
+     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\Repository
      */
     private MockObject $repositoryMock;
 
@@ -55,16 +55,16 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\ContentType::__construct
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\ContentType::getType
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\ContentType::__construct
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\ContentType::getType
      */
     public function testGetType(): void
     {
-        self::assertSame('ez_content_type', $this->conditionType::getType());
+        self::assertSame('ibexa_content_type', $this->conditionType::getType());
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\ContentType::getConstraints
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\ContentType::getConstraints
      */
     public function testValidation(): void
     {
@@ -72,7 +72,7 @@ final class ContentTypeTest extends TestCase
             ->expects(self::once())
             ->method('loadContentTypeByIdentifier')
             ->with(self::identicalTo('identifier'))
-            ->willReturn(new EzContentType());
+            ->willReturn(new IbexaContentType());
 
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new RepositoryValidatorFactory($this->repositoryMock))
@@ -83,7 +83,7 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\ContentType::getConstraints
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\ContentType::getConstraints
      */
     public function testValidationWithInvalidValue(): void
     {
@@ -102,7 +102,7 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\ContentType::matches
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\ContentType::matches
      *
      * @param mixed $value
      *
@@ -114,7 +114,7 @@ final class ContentTypeTest extends TestCase
 
         $content = new Content(
             [
-                'contentType' => new EzContentType(
+                'contentType' => new IbexaContentType(
                     [
                         'identifier' => 'article',
                     ],
@@ -132,7 +132,7 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\ContentType::matches
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\ContentType::matches
      */
     public function testMatchesWithNoContent(): void
     {

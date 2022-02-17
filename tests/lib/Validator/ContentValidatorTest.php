@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Validator;
+namespace Netgen\Layouts\Ibexa\Tests\Validator;
 
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use eZ\Publish\Core\Repository\Repository;
-use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
-use Netgen\Layouts\Ez\Validator\Constraint\Content;
-use Netgen\Layouts\Ez\Validator\ContentValidator;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Core\Repository\Repository;
+use Ibexa\Core\Repository\Values\ContentType\ContentType;
+use Netgen\Layouts\Ibexa\Validator\Constraint\Content;
+use Netgen\Layouts\Ibexa\Validator\ContentValidator;
 use Netgen\Layouts\Tests\TestCase\ValidatorTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -34,8 +34,8 @@ final class ContentValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\ContentValidator::__construct
-     * @covers \Netgen\Layouts\Ez\Validator\ContentValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\ContentValidator::__construct
+     * @covers \Netgen\Layouts\Ibexa\Validator\ContentValidator::validate
      */
     public function testValidateValid(): void
     {
@@ -49,8 +49,8 @@ final class ContentValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\ContentValidator::__construct
-     * @covers \Netgen\Layouts\Ez\Validator\ContentValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\ContentValidator::__construct
+     * @covers \Netgen\Layouts\Ibexa\Validator\ContentValidator::validate
      */
     public function testValidateInvalidWithWrongType(): void
     {
@@ -64,8 +64,8 @@ final class ContentValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\ContentValidator::__construct
-     * @covers \Netgen\Layouts\Ez\Validator\ContentValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\ContentValidator::__construct
+     * @covers \Netgen\Layouts\Ibexa\Validator\ContentValidator::validate
      */
     public function testValidateInvalidWithNonExistingContent(): void
     {
@@ -79,8 +79,8 @@ final class ContentValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\ContentValidator::__construct
-     * @covers \Netgen\Layouts\Ez\Validator\ContentValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\ContentValidator::__construct
+     * @covers \Netgen\Layouts\Ibexa\Validator\ContentValidator::validate
      */
     public function testValidateNull(): void
     {
@@ -92,19 +92,19 @@ final class ContentValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\ContentValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\ContentValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->expectException(UnexpectedTypeException::class);
-        $this->expectExceptionMessage('Expected argument of type "Netgen\\Layouts\\Ez\\Validator\\Constraint\\Content", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
+        $this->expectExceptionMessage('Expected argument of type "Netgen\\Layouts\\Ibexa\\Validator\\Constraint\\Content", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
 
         $this->constraint = new NotBlank();
         $this->assertValid(true, 'value');
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\ContentValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\ContentValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {

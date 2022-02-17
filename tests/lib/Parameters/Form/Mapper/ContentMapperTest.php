@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Parameters\Form\Mapper;
+namespace Netgen\Layouts\Ibexa\Tests\Parameters\Form\Mapper;
 
-use eZ\Publish\API\Repository\Repository;
+use Ibexa\Contracts\Core\Repository\Repository;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
-use Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentMapper;
-use Netgen\Layouts\Ez\Parameters\ParameterType\ContentType as ParameterType;
+use Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ContentMapper;
+use Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType as ParameterType;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use PHPUnit\Framework\TestCase;
 
@@ -21,7 +21,7 @@ final class ContentMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentMapper::getFormType
+     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ContentMapper::getFormType
      */
     public function testGetFormType(): void
     {
@@ -29,7 +29,7 @@ final class ContentMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentMapper::mapOptions
+     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ContentMapper::mapOptions
      */
     public function testMapOptions(): void
     {
@@ -46,7 +46,7 @@ final class ContentMapperTest extends TestCase
 
         self::assertSame(
             [
-                'item_type' => 'ezcontent',
+                'item_type' => 'ibexa_content',
                 'custom_params' => [
                     'allowed_content_types' => ['user', 'image'],
                 ],
@@ -56,7 +56,7 @@ final class ContentMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentMapper::mapOptions
+     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ContentMapper::mapOptions
      */
     public function testMapOptionsEmptyAllowedTypes(): void
     {
@@ -73,7 +73,7 @@ final class ContentMapperTest extends TestCase
 
         self::assertSame(
             [
-                'item_type' => 'ezcontent',
+                'item_type' => 'ibexa_content',
             ],
             $mappedOptions,
         );

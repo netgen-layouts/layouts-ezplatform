@@ -1,19 +1,13 @@
-{% trans_default_domain 'nglayouts_ezadminui' %}
+{% trans_default_domain 'nglayouts_ibexa_admin' %}
 
-{#
-    Using "@ezdesign/parts/table_header.html.twig" template and "headerText"
-    variable is deprecated, it comes from eZ Platform 2.5
-#}
-{% include ['@ezdesign/ui/table_header.html.twig', '@ezdesign/parts/table_header.html.twig'] with {
+{% include '@ibexadesign/ui/table_header.html.twig' with {
     'ground': 'title-direct-rules',
-    'header_text': 'rules.title'|trans,
-    'headerText': 'rules.title'|trans
+    'header_text': 'rules.title'|trans
 } %}
 
-{% include ['@ezdesign/ui/table_header.html.twig', '@ezdesign/parts/table_header.html.twig'] with {
+{% include '@ibexadesign/ui/table_header.html.twig' with {
     'ground': 'title-all-rules',
-    'header_text': 'rules.title_all_rules'|trans,
-    'headerText': 'rules.title_all_rules'|trans
+    'header_text': 'rules.title_all_rules'|trans
 } %}
 
 <div class="bg-white p-3 mb-5">
@@ -35,7 +29,7 @@
 
             {% for rule in rules %}
                 <div class="rule{% if not (rules_one_on_one[rule.id.toString] ?? false) %} rule-non-direct{% endif %}">
-                    {{ nglayouts_render_rule(rule, { location: location }, 'ezadminui') }}
+                    {{ nglayouts_render_rule(rule, { location: location }, 'ibexa_admin') }}
                 </div>
             {% endfor %}
         </ul>

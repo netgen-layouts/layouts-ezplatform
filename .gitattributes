@@ -1,2 +1,3 @@
-**/css/admin/style.css binary -merge
-**/css/admin/*.css.map binary -merge
+**/css/ibexa/admin/style.css binary -merge
+**/css/ibexa/admin/*.css.map binary -merge
+**/js/ibexa/admin/app.js binary -merge

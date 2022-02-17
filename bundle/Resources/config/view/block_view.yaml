@@ -1,13 +1,13 @@
 view:
     block_view:
         default:
-            ezcontent_field:
-                template: "@nglayouts/block/ezcontent_field.html.twig"
+            ibexa_content_field:
+                template: "@nglayouts/block/ibexa_content_field.html.twig"
                 match:
-                    block\definition: ezcontent_field
-                    block\view_type: ezcontent_field
+                    block\definition: ibexa_content_field
+                    block\view_type: ibexa_content_field
         app:
-            ezcontent_field:
-                template: "@NetgenLayoutsEzPlatform/app/block/ezcontent_field.html.twig"
+            ibexa_content_field:
+                template: "@NetgenLayoutsIbexa/app/block/ibexa_content_field.html.twig"
                 match:
-                    block\definition: ezcontent_field
+                    block\definition: ibexa_content_field

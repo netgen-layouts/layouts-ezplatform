@@ -1,12 +1,17 @@
 services:
-    netgen_layouts.ezplatform.http_cache.repository_prefix_decorator_client:
-        class: Netgen\Layouts\Ez\HttpCache\RepositoryPrefixDecorator
+    netgen_layouts.ibexa.http_cache.repository_prefix_decorator_client:
+        class: Netgen\Layouts\Ibexa\HttpCache\RepositoryPrefixDecorator
         decorates: netgen_layouts.http_cache.client
         arguments:
-            - "@netgen_layouts.ezplatform.http_cache.repository_prefix_decorator_client.inner"
-            - "@ezplatform.http_cache.repository_tag_prefix"
+            - "@netgen_layouts.ibexa.http_cache.repository_prefix_decorator_client.inner"
+            - "@Ibexa\\HttpCache\\RepositoryTagPrefix"
 
-    netgen_layouts.ezplatform.http_cache.varnish.host_header_provider:
-        class: Netgen\Layouts\Ez\HttpCache\Varnish\HostHeaderProvider
+    netgen_layouts.ibexa.http_cache.varnish.host_header_provider:
+        class: Netgen\Layouts\Ibexa\HttpCache\Varnish\HostHeaderProvider
         arguments:
-            - "@ezpublish.config.resolver"
+            - "@ibexa.config.resolver"
+
+    netgen_layouts.ibexa.http_cache.client.local:
+        class: Netgen\Layouts\Ibexa\HttpCache\LocalClient
+        arguments:
+            - "@Toflar\\Psr6HttpCacheStore\\Psr6Store"

@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\Configuration;
+namespace Netgen\Bundle\LayoutsIbexaBundle\Configuration;
 
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Netgen\Bundle\LayoutsBundle\Configuration\ConfigurationInterface;
 use Netgen\Bundle\LayoutsBundle\Exception\ConfigurationException;
 
 /**
- * Implementation of ConfigurationInterface that uses eZ Platform
+ * Implementation of ConfigurationInterface that uses Ibexa Platform
  * config resolver to retrieve parameters from the container.
  *
  * This means that the returned values will be the ones defined
- * in the current eZ Platform scope of the request.
+ * in the current Ibexa Platform scope of the request.
  *
  * @final
  */

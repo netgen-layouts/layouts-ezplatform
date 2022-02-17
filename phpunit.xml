@@ -14,10 +14,10 @@
     </php>
 
     <testsuites>
-        <testsuite name="Netgen\Layouts\Ez">
+        <testsuite name="Netgen\Layouts\Ibexa">
             <directory>tests/lib</directory>
         </testsuite>
-        <testsuite name="Netgen\Bundle\LayoutsEzPlatformBundle">
+        <testsuite name="Netgen\Bundle\LayoutsIbexaBundle">
             <directory>tests/bundle</directory>
         </testsuite>
     </testsuites>
@@ -28,10 +28,9 @@
             <directory suffix=".php">bundle</directory>
         </include>
         <exclude>
-            <directory>bundle/ezpublish_legacy</directory>
             <directory>bundle/Resources</directory>
-            <file>bundle/NetgenLayoutsEzPlatformBundle.php</file>
-            <file>bundle/DependencyInjection/NetgenLayoutsEzPlatformExtension.php</file>
+            <file>bundle/NetgenLayoutsIbexaBundle.php</file>
+            <file>bundle/DependencyInjection/NetgenLayoutsIbexaExtension.php</file>
         </exclude>
     </coverage>
 </phpunit>

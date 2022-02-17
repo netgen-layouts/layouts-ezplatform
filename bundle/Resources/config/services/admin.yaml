@@ -1,0 +1,103 @@
+services:
+    netgen_layouts.ibexa.admin.controller.base:
+        class: Netgen\Bundle\LayoutsIbexaBundle\Controller\Admin\Controller
+        abstract: true
+        calls:
+            - [setContainer, ["@service_container"]]
+            - [checkPermissions]
+
+    netgen_layouts.ibexa.admin.controller.location_layouts:
+        class: Netgen\Bundle\LayoutsIbexaBundle\Controller\Admin\LocationLayouts
+        public: true
+        parent: netgen_layouts.ibexa.admin.controller.base
+        arguments:
+            - "@ibexa.api.service.content"
+            - "@netgen_layouts.layout.resolver"
+            - "@netgen_layouts.ibexa.admin.related_layouts_loader"
+
+    netgen_layouts.ibexa.admin.controller.layout_wizard:
+        class: Netgen\Bundle\LayoutsIbexaBundle\Controller\Admin\LayoutWizard
+        public: true
+        parent: netgen_layouts.ibexa.admin.controller.base
+        arguments:
+            - "@netgen_layouts.api.service.layout"
+            - "@netgen_layouts.layout.registry.layout_type"
+
+    netgen_layouts.ibexa.admin.controller.layout_wizard_callback:
+        class: Netgen\Bundle\LayoutsIbexaBundle\Controller\Admin\LayoutWizardCallback
+        public: true
+        parent: netgen_layouts.ibexa.admin.controller.base
+        arguments:
+            - "@netgen_layouts.api.service.layout"
+            - "@netgen_layouts.api.service.layout_resolver"
+
+    netgen_layouts.ibexa.admin.controller.delete_rule:
+        class: Netgen\Bundle\LayoutsIbexaBundle\Controller\Admin\DeleteRule
+        public: true
+        parent: netgen_layouts.ibexa.admin.controller.base
+        arguments:
+            - "@netgen_layouts.api.service.layout"
+            - "@netgen_layouts.api.service.layout_resolver"
+
+    netgen_layouts.ibexa.event_listener.admin.main_menu_builder:
+        class: Netgen\Bundle\LayoutsIbexaBundle\EventListener\Admin\MainMenuBuilderListener
+        arguments:
+            - "@security.authorization_checker"
+        tags:
+            - { name: kernel.event_subscriber }
+
+    netgen_layouts.ibexa.event_listener.admin.set_page_layout:
+        class: Netgen\Bundle\LayoutsIbexaBundle\EventListener\Admin\SetPageLayoutListener
+        arguments:
+            - "@request_stack"
+            - "%ibexa.site_access.groups_by_site_access%"
+            - "%netgen_layouts.ibexa.admin.pagelayout%"
+        tags:
+            - { name: kernel.event_subscriber }
+
+    netgen_layouts.ibexa.event_listener.admin.cache_enabled:
+        class: Netgen\Bundle\LayoutsIbexaBundle\EventListener\Admin\CacheEnabledListener
+        arguments:
+            - "@netgen_layouts.http_cache.client"
+        tags:
+            - { name: kernel.event_subscriber }
+
+    netgen_layouts.ibexa.event_listener.admin.is_enterprise_version:
+        class: Netgen\Bundle\LayoutsIbexaBundle\EventListener\Admin\IsEnterpriseVersionListener
+        arguments:
+            - "%netgen_layouts.ibexa.is_enterprise%"
+        tags:
+            - { name: kernel.event_subscriber }
+
+    netgen_layouts.ibexa.admin.related_layouts_loader:
+        class: Netgen\Layouts\Ibexa\AdminUI\RelatedLayoutsLoader
+        arguments:
+            - "@netgen_layouts.api.service.layout"
+            - "@database_connection"
+
+    netgen_layouts.ibexa.admin.tab.location_view.layouts:
+        class: Netgen\Layouts\Ibexa\AdminUI\Tab\LocationView\LayoutsTab
+        arguments:
+            - "@twig"
+            - "@translator"
+            - "@event_dispatcher"
+            - "@Ibexa\\Contracts\\Core\\Repository\\PermissionService"
+            - "@security.authorization_checker"
+        tags:
+            - { name: ibexa.admin_ui.tab, group: location-view }
+
+    netgen_layouts.ibexa.admin.component.stylesheets:
+         parent: Ibexa\AdminUi\Component\TwigComponent
+         arguments:
+             - "@twig"
+             - "@@ibexadesign/nglayouts/stylesheets.html.twig"
+         tags:
+             - { name: ibexa.admin_ui.component, group: stylesheet-head }
+
+    netgen_layouts.ibexa.admin.component.javascripts:
+         parent: Ibexa\AdminUi\Component\TwigComponent
+         arguments:
+             - "@twig"
+             - "@@ibexadesign/nglayouts/javascripts.html.twig"
+         tags:
+             - { name: ibexa.admin_ui.component, group: script-body }

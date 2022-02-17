@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Validator\Constraint;
+namespace Netgen\Layouts\Ibexa\Validator\Constraint;
 
 use Symfony\Component\Validator\Constraint;
 
 final class Location extends Constraint
 {
-    public string $message = 'netgen_layouts.ezplatform.location.location_not_found';
+    public string $message = 'netgen_layouts.ibexa.location.location_not_found';
 
-    public string $typeNotAllowedMessage = 'netgen_layouts.ezplatform.location.type_not_allowed';
+    public string $typeNotAllowedMessage = 'netgen_layouts.ibexa.location.type_not_allowed';
 
     /**
      * If set to true, the constraint will accept values for non existing locations.
@@ -26,6 +26,6 @@ final class Location extends Constraint
 
     public function validatedBy(): string
     {
-        return 'nglayouts_ez_location';
+        return 'nglayouts_ibexa_location';
     }
 }

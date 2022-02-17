@@ -1,41 +1,41 @@
 services:
-    netgen_layouts.ezplatform.item.value_converter.location:
-        class: Netgen\Layouts\Ez\Item\ValueConverter\LocationValueConverter
+    netgen_layouts.ibexa.item.value_converter.location:
+        class: Netgen\Layouts\Ibexa\Item\ValueConverter\LocationValueConverter
         tags:
             - { name: netgen_layouts.cms_value_converter }
 
-    netgen_layouts.ezplatform.item.value_converter.content:
-        class: Netgen\Layouts\Ez\Item\ValueConverter\ContentValueConverter
+    netgen_layouts.ibexa.item.value_converter.content:
+        class: Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter
         arguments:
-            - "@ezpublish.api.service.location"
-            - "@ezpublish.api.service.content"
+            - "@ibexa.api.service.location"
+            - "@ibexa.api.service.content"
         tags:
             - { name: netgen_layouts.cms_value_converter }
 
-    netgen_layouts.ezplatform.item.value_loader.location:
-        class: Netgen\Layouts\Ez\Item\ValueLoader\LocationValueLoader
+    netgen_layouts.ibexa.item.value_loader.location:
+        class: Netgen\Layouts\Ibexa\Item\ValueLoader\LocationValueLoader
         arguments:
-            - "@ezpublish.api.service.location"
+            - "@ibexa.api.service.location"
         tags:
-            - { name: netgen_layouts.cms_value_loader, value_type: ezlocation }
+            - { name: netgen_layouts.cms_value_loader, value_type: ibexa_location }
 
-    netgen_layouts.ezplatform.item.value_loader.content:
-        class: Netgen\Layouts\Ez\Item\ValueLoader\ContentValueLoader
+    netgen_layouts.ibexa.item.value_loader.content:
+        class: Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader
         arguments:
-            - "@ezpublish.api.service.content"
+            - "@ibexa.api.service.content"
         tags:
-            - { name: netgen_layouts.cms_value_loader, value_type: ezcontent }
+            - { name: netgen_layouts.cms_value_loader, value_type: ibexa_content }
 
-    netgen_layouts.ezplatform.item.value_url_generator.location:
-        class: Netgen\Layouts\Ez\Item\ValueUrlGenerator\LocationValueUrlGenerator
+    netgen_layouts.ibexa.item.value_url_generator.location:
+        class: Netgen\Layouts\Ibexa\Item\ValueUrlGenerator\LocationValueUrlGenerator
         arguments:
             - "@router"
         tags:
-            - { name: netgen_layouts.cms_value_url_generator, value_type: ezlocation }
+            - { name: netgen_layouts.cms_value_url_generator, value_type: ibexa_location }
 
-    netgen_layouts.ezplatform.item.value_url_generator.content:
-        class: Netgen\Layouts\Ez\Item\ValueUrlGenerator\ContentValueUrlGenerator
+    netgen_layouts.ibexa.item.value_url_generator.content:
+        class: Netgen\Layouts\Ibexa\Item\ValueUrlGenerator\ContentValueUrlGenerator
         arguments:
             - "@router"
         tags:
-            - { name: netgen_layouts.cms_value_url_generator, value_type: ezcontent }
+            - { name: netgen_layouts.cms_value_url_generator, value_type: ibexa_content }

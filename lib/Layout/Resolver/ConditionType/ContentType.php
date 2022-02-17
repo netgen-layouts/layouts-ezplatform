@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Layout\Resolver\ConditionType;
+namespace Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType;
 
-use eZ\Publish\API\Repository\Values\Content\Content;
-use Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface;
-use Netgen\Layouts\Ez\Validator\Constraint as EzConstraints;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Netgen\Layouts\Ibexa\ContentProvider\ContentExtractorInterface;
+use Netgen\Layouts\Ibexa\Validator\Constraint as IbexaConstraints;
 use Netgen\Layouts\Layout\Resolver\ConditionType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
@@ -25,7 +25,7 @@ final class ContentType extends ConditionType
 
     public static function getType(): string
     {
-        return 'ez_content_type';
+        return 'ibexa_content_type';
     }
 
     public function getConstraints(): array
@@ -37,7 +37,7 @@ final class ContentType extends ConditionType
                 [
                     'constraints' => [
                         new Constraints\Type(['type' => 'string']),
-                        new EzConstraints\ContentType(),
+                        new IbexaConstraints\ContentType(),
                     ],
                 ],
             ),

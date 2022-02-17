@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Parameters\Form\Mapper;
+namespace Netgen\Layouts\Ibexa\Parameters\Form\Mapper;
 
 use Netgen\ContentBrowser\Form\Type\ContentBrowserMultipleType;
 use Netgen\Layouts\Parameters\Form\Mapper;
@@ -18,7 +18,7 @@ final class TagsMapper extends Mapper
     public function mapOptions(ParameterDefinition $parameterDefinition): array
     {
         return [
-            'item_type' => 'eztags',
+            'item_type' => 'netgen_tags',
             'min' => $parameterDefinition->getOption('min'),
             'max' => $parameterDefinition->getOption('max'),
         ];

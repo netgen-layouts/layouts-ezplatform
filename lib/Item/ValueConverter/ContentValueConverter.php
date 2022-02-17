@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Item\ValueConverter;
+namespace Netgen\Layouts\Ibexa\Item\ValueConverter;
 
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Netgen\Layouts\Item\ValueConverterInterface;
 
 /**
- * @implements \Netgen\Layouts\Item\ValueConverterInterface<\eZ\Publish\API\Repository\Values\Content\ContentInfo>
+ * @implements \Netgen\Layouts\Item\ValueConverterInterface<\Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo>
  */
 final class ContentValueConverter implements ValueConverterInterface
 {
@@ -33,7 +33,7 @@ final class ContentValueConverter implements ValueConverterInterface
 
     public function getValueType(object $object): string
     {
-        return 'ezcontent';
+        return 'ibexa_content';
     }
 
     public function getId(object $object): int

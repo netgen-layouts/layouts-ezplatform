@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\TargetType;
+namespace Netgen\Layouts\Ibexa\Tests\Layout\Resolver\TargetType;
 
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use eZ\Publish\Core\Repository\Repository;
-use eZ\Publish\Core\Repository\Values\Content\Content as EzContent;
-use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
-use Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface;
-use Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content;
-use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
-use Netgen\Layouts\Ez\Utils\RemoteIdConverter;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Core\Repository\Repository;
+use Ibexa\Core\Repository\Values\Content\Content as IbexaContent;
+use Ibexa\Core\Repository\Values\Content\VersionInfo;
+use Netgen\Layouts\Ibexa\ContentProvider\ContentExtractorInterface;
+use Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content;
+use Netgen\Layouts\Ibexa\Tests\Validator\RepositoryValidatorFactory;
+use Netgen\Layouts\Ibexa\Utils\RemoteIdConverter;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Validation;
 final class ContentTest extends TestCase
 {
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository
+     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\Repository
      */
     private MockObject $repositoryMock;
 
@@ -58,16 +58,16 @@ final class ContentTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content::__construct
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content::getType
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::__construct
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::getType
      */
     public function testGetType(): void
     {
-        self::assertSame('ez_content', $this->targetType::getType());
+        self::assertSame('ibexa_content', $this->targetType::getType());
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content::getConstraints
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::getConstraints
      */
     public function testValidation(): void
     {
@@ -86,7 +86,7 @@ final class ContentTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content::getConstraints
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::getConstraints
      */
     public function testValidationWithInvalidValue(): void
     {
@@ -105,11 +105,11 @@ final class ContentTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content::provideValue
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::provideValue
      */
     public function testProvideValue(): void
     {
-        $content = new EzContent(
+        $content = new IbexaContent(
             [
                 'versionInfo' => new VersionInfo(
                     [
@@ -135,7 +135,7 @@ final class ContentTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content::provideValue
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::provideValue
      */
     public function testProvideValueWithNoContent(): void
     {
@@ -151,7 +151,7 @@ final class ContentTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content::export
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::export
      */
     public function testExport(): void
     {
@@ -165,7 +165,7 @@ final class ContentTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content::export
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::export
      */
     public function testExportWithInvalidValue(): void
     {
@@ -179,7 +179,7 @@ final class ContentTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content::import
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::import
      */
     public function testImport(): void
     {
@@ -193,7 +193,7 @@ final class ContentTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content::import
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::import
      */
     public function testImportWithInvalidValue(): void
     {

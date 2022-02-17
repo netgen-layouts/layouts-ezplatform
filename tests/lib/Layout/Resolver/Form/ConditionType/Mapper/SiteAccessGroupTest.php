@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\Form\ConditionType\Mapper;
+namespace Netgen\Layouts\Ibexa\Tests\Layout\Resolver\Form\ConditionType\Mapper;
 
-use Netgen\Layouts\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccessGroup;
+use Netgen\Layouts\Ibexa\Layout\Resolver\Form\ConditionType\Mapper\SiteAccessGroup;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
@@ -23,8 +23,8 @@ final class SiteAccessGroupTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccessGroup::__construct
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccessGroup::getFormType
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\Form\ConditionType\Mapper\SiteAccessGroup::__construct
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\Form\ConditionType\Mapper\SiteAccessGroup::getFormType
      */
     public function testGetFormType(): void
     {
@@ -32,7 +32,7 @@ final class SiteAccessGroupTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccessGroup::getFormOptions
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\Form\ConditionType\Mapper\SiteAccessGroup::getFormOptions
      */
     public function testGetFormOptions(): void
     {

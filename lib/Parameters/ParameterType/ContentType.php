@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Parameters\ParameterType;
+namespace Netgen\Layouts\Ibexa\Parameters\ParameterType;
 
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\Repository;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use Netgen\Layouts\Ez\Validator\Constraint as EzConstraints;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Repository;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Netgen\Layouts\Ibexa\Validator\Constraint as IbexaConstraints;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\Layouts\Parameters\ParameterType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
 
 /**
- * Parameter type used to store and validate an ID of a content in eZ Platform.
+ * Parameter type used to store and validate an ID of a content in Ibexa Platform.
  */
 final class ContentType extends ParameterType
 {
@@ -27,7 +27,7 @@ final class ContentType extends ParameterType
 
     public static function getIdentifier(): string
     {
-        return 'ez_content';
+        return 'ibexa_content';
     }
 
     public function configureOptions(OptionsResolver $optionsResolver): void
@@ -49,7 +49,7 @@ final class ContentType extends ParameterType
     public function export(ParameterDefinition $parameterDefinition, $value): ?string
     {
         try {
-            /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
+            /** @var \Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
                 static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfo((int) $value),
             );
@@ -63,7 +63,7 @@ final class ContentType extends ParameterType
     public function import(ParameterDefinition $parameterDefinition, $value): ?int
     {
         try {
-            /** @var \eZ\Publish\API\Repository\Values\Content\ContentInfo $contentInfo */
+            /** @var \Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
                 static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfoByRemoteId((string) $value),
             );
@@ -81,7 +81,7 @@ final class ContentType extends ParameterType
         return [
             new Constraints\Type(['type' => 'numeric']),
             new Constraints\GreaterThan(['value' => 0]),
-            new EzConstraints\Content(
+            new IbexaConstraints\Content(
                 [
                     'allowInvalid' => $options['allow_invalid'],
                     'allowedTypes' => $options['allowed_types'],

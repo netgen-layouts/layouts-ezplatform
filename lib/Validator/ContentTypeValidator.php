@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Validator;
+namespace Netgen\Layouts\Ibexa\Validator;
 
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\Repository;
-use eZ\Publish\API\Repository\Values\ContentType\ContentType as APIContentType;
-use eZ\Publish\API\Repository\Values\ContentType\ContentTypeGroup;
-use Netgen\Layouts\Ez\Validator\Constraint\ContentType;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Repository;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType as APIContentType;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeGroup;
+use Netgen\Layouts\Ibexa\Validator\Constraint\ContentType;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -20,7 +20,7 @@ use function is_array;
 use function is_string;
 
 /**
- * Validates if the provided value is an identifier of a valid content type in eZ Platform.
+ * Validates if the provided value is an identifier of a valid content type in Ibexa Platform.
  */
 final class ContentTypeValidator extends ConstraintValidator
 {
@@ -46,7 +46,7 @@ final class ContentTypeValidator extends ConstraintValidator
         }
 
         try {
-            /** @var \eZ\Publish\API\Repository\Values\ContentType\ContentType $contentType */
+            /** @var \Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType $contentType */
             $contentType = $this->repository->sudo(
                 static fn (Repository $repository): APIContentType => $repository->getContentTypeService()->loadContentTypeByIdentifier($value),
             );

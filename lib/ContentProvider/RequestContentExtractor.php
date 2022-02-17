@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\ContentProvider;
+namespace Netgen\Layouts\Ibexa\ContentProvider;
 
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\API\Repository\Values\Content\Location;
-use eZ\Publish\Core\MVC\Symfony\View\ContentValueView;
-use eZ\Publish\Core\MVC\Symfony\View\LocationValueView;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Ibexa\Core\MVC\Symfony\View\ContentValueView;
+use Ibexa\Core\MVC\Symfony\View\LocationValueView;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class used to extract content and location from provided request in eZ Platform.
+ * Class used to extract content and location from provided request in Ibexa Platform.
  */
 final class RequestContentExtractor implements ContentExtractorInterface
 {

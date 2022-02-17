@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\HttpCache\Varnish;
+namespace Netgen\Layouts\Ibexa\Tests\HttpCache\Varnish;
 
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use Netgen\Layouts\Ez\HttpCache\Varnish\HostHeaderProvider;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
+use Netgen\Layouts\Ibexa\HttpCache\Varnish\HostHeaderProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -22,8 +22,8 @@ final class HostHeaderProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\HttpCache\Varnish\HostHeaderProvider::__construct
-     * @covers \Netgen\Layouts\Ez\HttpCache\Varnish\HostHeaderProvider::provideHostHeader
+     * @covers \Netgen\Layouts\Ibexa\HttpCache\Varnish\HostHeaderProvider::__construct
+     * @covers \Netgen\Layouts\Ibexa\HttpCache\Varnish\HostHeaderProvider::provideHostHeader
      */
     public function testProvideHostHeader(): void
     {

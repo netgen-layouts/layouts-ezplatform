@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\Form\ConditionType\Mapper;
+namespace Netgen\Layouts\Ibexa\Tests\Layout\Resolver\Form\ConditionType\Mapper;
 
-use Netgen\Layouts\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess;
+use Netgen\Layouts\Ibexa\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
@@ -18,8 +18,8 @@ final class SiteAccessTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess::__construct
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess::getFormType
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess::__construct
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess::getFormType
      */
     public function testGetFormType(): void
     {
@@ -27,7 +27,7 @@ final class SiteAccessTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess::getFormOptions
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\Form\ConditionType\Mapper\SiteAccess::getFormOptions
      */
     public function testGetFormOptions(): void
     {

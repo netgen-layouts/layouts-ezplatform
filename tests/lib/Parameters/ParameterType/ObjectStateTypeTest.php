@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Parameters\ParameterType;
+namespace Netgen\Layouts\Ibexa\Tests\Parameters\ParameterType;
 
-use eZ\Publish\API\Repository\ObjectStateService;
-use eZ\Publish\Core\Repository\Repository;
-use eZ\Publish\Core\Repository\Values\ObjectState\ObjectState as EzObjectState;
-use eZ\Publish\Core\Repository\Values\ObjectState\ObjectStateGroup;
-use Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType;
-use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
+use Ibexa\Contracts\Core\Repository\ObjectStateService;
+use Ibexa\Core\Repository\Repository;
+use Ibexa\Core\Repository\Values\ObjectState\ObjectState as IbexaObjectState;
+use Ibexa\Core\Repository\Values\ObjectState\ObjectStateGroup;
+use Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType;
+use Netgen\Layouts\Ibexa\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\Layouts\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -23,7 +23,7 @@ final class ObjectStateTypeTest extends TestCase
     use ParameterTypeTestTrait;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository
+     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\Repository
      */
     private MockObject $repositoryMock;
 
@@ -51,18 +51,18 @@ final class ObjectStateTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::getIdentifier
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType::getIdentifier
      */
     public function testGetIdentifier(): void
     {
-        self::assertSame('ez_object_state', $this->type::getIdentifier());
+        self::assertSame('ibexa_object_state', $this->type::getIdentifier());
     }
 
     /**
      * @param array<string, mixed> $options
      * @param array<string, mixed> $resolvedOptions
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::configureOptions
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType::configureOptions
      * @dataProvider validOptionsDataProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
@@ -74,7 +74,7 @@ final class ObjectStateTypeTest extends TestCase
     /**
      * @param array<string, mixed> $options
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::configureOptions
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType::configureOptions
      * @dataProvider invalidOptionsDataProvider
      */
     public function testInvalidOptions(array $options): void
@@ -156,7 +156,7 @@ final class ObjectStateTypeTest extends TestCase
     /**
      * @param mixed $value
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::getValueConstraints
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType::getValueConstraints
      * @dataProvider validationDataProvider
      */
     public function testValidation($value, bool $required, bool $isValid): void
@@ -176,12 +176,12 @@ final class ObjectStateTypeTest extends TestCase
             )
             ->willReturnOnConsecutiveCalls(
                 [
-                    new EzObjectState(
+                    new IbexaObjectState(
                         [
                             'identifier' => 'state1',
                         ],
                     ),
-                    new EzObjectState(
+                    new IbexaObjectState(
                         [
                             'identifier' => 'state2',
                         ],
@@ -203,7 +203,7 @@ final class ObjectStateTypeTest extends TestCase
     /**
      * @param mixed $value
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::getValueConstraints
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType::getValueConstraints
      * @dataProvider validationWithEmptyValuesDataProvider
      */
     public function testValidationWithEmptyValues($value, bool $required, bool $isValid): void
@@ -260,7 +260,7 @@ final class ObjectStateTypeTest extends TestCase
      * @param mixed $value
      * @param mixed $convertedValue
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::fromHash
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType::fromHash
      * @dataProvider fromHashDataProvider
      */
     public function testFromHash($value, $convertedValue, bool $multiple): void
@@ -327,7 +327,7 @@ final class ObjectStateTypeTest extends TestCase
     /**
      * @param mixed $value
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::isValueEmpty
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType::isValueEmpty
      * @dataProvider emptyDataProvider
      */
     public function testIsValueEmpty($value, bool $isEmpty): void

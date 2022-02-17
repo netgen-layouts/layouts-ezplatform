@@ -1,23 +1,23 @@
-nglayouts_ezadmin_location_layouts:
-    path: /nglayouts/ezadmin/layouts/{locationId}
-    controller: netgen_layouts.ezplatform.admin.controller.location_layouts
+nglayouts_ibexa_admin_location_layouts:
+    path: /nglayouts/ibexa/admin/layouts/{locationId}
+    controller: netgen_layouts.ibexa.admin.controller.location_layouts
     methods:  [GET]
     requirements:
         locationId: \d+
 
-nglayouts_ezadmin_layout_wizard:
-    path: /nglayouts/ezadmin/layouts/{locationId}/wizard
-    controller: netgen_layouts.ezplatform.admin.controller.layout_wizard
+nglayouts_ibexa_admin_layout_wizard:
+    path: /nglayouts/ibexa/admin/layouts/{locationId}/wizard
+    controller: netgen_layouts.ibexa.admin.controller.layout_wizard
     methods:  [GET, POST]
 
-nglayouts_ezadmin_layout_wizard_callback:
-    path: /nglayouts/ezadmin/layouts/{locationId}/wizard/callback
-    controller: netgen_layouts.ezplatform.admin.controller.layout_wizard_callback
+nglayouts_ibexa_admin_layout_wizard_callback:
+    path: /nglayouts/ibexa/admin/layouts/{locationId}/wizard/callback
+    controller: netgen_layouts.ibexa.admin.controller.layout_wizard_callback
     methods:  [GET]
 
-nglayouts_ezadmin_delete_rule:
-    path: /nglayouts/ezadmin/layouts/rules/{ruleId}/delete
-    controller: netgen_layouts.ezplatform.admin.controller.delete_rule
+nglayouts_ibexa_admin_delete_rule:
+    path: /nglayouts/ibexa/admin/layouts/rules/{ruleId}/delete
+    controller: netgen_layouts.ibexa.admin.controller.delete_rule
     methods:  [DELETE]
     defaults:
         _nglayouts_status: published

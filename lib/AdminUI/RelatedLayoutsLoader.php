@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\AdminUI;
+namespace Netgen\Layouts\Ibexa\AdminUI;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Types\Types;
-use eZ\Publish\API\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Netgen\Layouts\API\Service\LayoutService;
 use Netgen\Layouts\API\Values\Layout\Layout;
 use Netgen\Layouts\API\Values\Value;
@@ -83,8 +83,8 @@ final class RelatedLayoutsLoader
             )
             ->orderBy('l.name', 'ASC')
             ->setParameter('status', Value::STATUS_PUBLISHED, Types::INTEGER)
-            ->setParameter('content_value_type', 'ezcontent', Types::STRING)
-            ->setParameter('location_value_type', 'ezlocation', Types::STRING)
+            ->setParameter('content_value_type', 'ibexa_content', Types::STRING)
+            ->setParameter('location_value_type', 'ibexa_location', Types::STRING)
             ->setParameter('content_id', $location->contentInfo->id, Types::INTEGER)
             ->setParameter('location_id', $location->id, Types::INTEGER);
 

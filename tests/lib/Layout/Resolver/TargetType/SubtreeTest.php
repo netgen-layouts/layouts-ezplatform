@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\TargetType;
+namespace Netgen\Layouts\Ibexa\Tests\Layout\Resolver\TargetType;
 
-use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use eZ\Publish\Core\Repository\Repository;
-use eZ\Publish\Core\Repository\Values\Content\Location;
-use Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface;
-use Netgen\Layouts\Ez\Layout\Resolver\TargetType\Subtree;
-use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
-use Netgen\Layouts\Ez\Utils\RemoteIdConverter;
+use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Core\Repository\Repository;
+use Ibexa\Core\Repository\Values\Content\Location;
+use Netgen\Layouts\Ibexa\ContentProvider\ContentExtractorInterface;
+use Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree;
+use Netgen\Layouts\Ibexa\Tests\Validator\RepositoryValidatorFactory;
+use Netgen\Layouts\Ibexa\Utils\RemoteIdConverter;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Validation;
 final class SubtreeTest extends TestCase
 {
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository
+     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\Repository
      */
     private MockObject $repositoryMock;
 
@@ -56,15 +56,15 @@ final class SubtreeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Subtree::getType
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::getType
      */
     public function testGetType(): void
     {
-        self::assertSame('ez_subtree', $this->targetType::getType());
+        self::assertSame('ibexa_subtree', $this->targetType::getType());
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Subtree::getConstraints
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::getConstraints
      */
     public function testValidation(): void
     {
@@ -83,7 +83,7 @@ final class SubtreeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Subtree::getConstraints
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::getConstraints
      */
     public function testValidationWithInvalidValue(): void
     {
@@ -102,8 +102,8 @@ final class SubtreeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Subtree::__construct
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Subtree::provideValue
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::__construct
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::provideValue
      */
     public function testProvideValue(): void
     {
@@ -125,8 +125,8 @@ final class SubtreeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Subtree::__construct
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Subtree::provideValue
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::__construct
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::provideValue
      */
     public function testProvideValueWithNoLocation(): void
     {
@@ -142,7 +142,7 @@ final class SubtreeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Subtree::export
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::export
      */
     public function testExport(): void
     {
@@ -156,7 +156,7 @@ final class SubtreeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Subtree::export
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::export
      */
     public function testExportWithInvalidValue(): void
     {
@@ -170,7 +170,7 @@ final class SubtreeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Subtree::import
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::import
      */
     public function testImport(): void
     {
@@ -184,7 +184,7 @@ final class SubtreeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Subtree::import
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::import
      */
     public function testImportWithInvalidValue(): void
     {

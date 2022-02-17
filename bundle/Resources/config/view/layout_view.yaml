@@ -1,6 +1,6 @@
 view:
     layout_view:
-        ezadminui:
+        ibexa_admin:
             layout:
-                template: "@ezdesign/content/tab/nglayouts/layout.html.twig"
+                template: "@ibexadesign/content/tab/nglayouts/layout.html.twig"
                 match: ~

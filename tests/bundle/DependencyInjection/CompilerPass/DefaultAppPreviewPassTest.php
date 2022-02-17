@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\DependencyInjection\CompilerPass;
+namespace Netgen\Bundle\LayoutsIbexaBundle\Tests\DependencyInjection\CompilerPass;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractContainerBuilderTestCase;
-use Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\DefaultAppPreviewPass;
+use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\DefaultAppPreviewPass;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 
 final class DefaultAppPreviewPassTest extends AbstractContainerBuilderTestCase
@@ -18,19 +18,19 @@ final class DefaultAppPreviewPassTest extends AbstractContainerBuilderTestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\DefaultAppPreviewPass::addDefaultPreviewRule
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\DefaultAppPreviewPass::process
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\DefaultAppPreviewPass::addDefaultPreviewRule
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\DefaultAppPreviewPass::process
      */
     public function testProcess(): void
     {
-        $this->container->setParameter('ezpublish.siteaccess.list', ['cro']);
+        $this->container->setParameter('ibexa.site_access.list', ['cro']);
         $this->container->setParameter(
-            'netgen_layouts.app.ezplatform.item_preview_template',
+            'netgen_layouts.app.ibexa.item_preview_template',
             'default.html.twig',
         );
 
         $this->container->setParameter(
-            'ezsettings.default.content_view',
+            'ibexa.site_access.config.default.content_view',
             [
                 'full' => [
                     'article' => [
@@ -41,7 +41,7 @@ final class DefaultAppPreviewPassTest extends AbstractContainerBuilderTestCase
         );
 
         $this->container->setParameter(
-            'ezsettings.cro.location_view',
+            'ibexa.site_access.config.cro.location_view',
             [
                 'full' => [
                     'article' => [
@@ -59,7 +59,7 @@ final class DefaultAppPreviewPassTest extends AbstractContainerBuilderTestCase
         $this->compile();
 
         $this->assertContainerBuilderHasParameter(
-            'ezsettings.default.content_view',
+            'ibexa.site_access.config.default.content_view',
             [
                 'full' => [
                     'article' => [
@@ -77,7 +77,7 @@ final class DefaultAppPreviewPassTest extends AbstractContainerBuilderTestCase
         );
 
         $this->assertContainerBuilderHasParameter(
-            'ezsettings.cro.location_view',
+            'ibexa.site_access.config.cro.location_view',
             [
                 'full' => [
                     'article' => [
@@ -102,7 +102,7 @@ final class DefaultAppPreviewPassTest extends AbstractContainerBuilderTestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\DefaultAppPreviewPass::process
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\DefaultAppPreviewPass::process
      */
     public function testProcessWithEmptyContainer(): void
     {

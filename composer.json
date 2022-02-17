@@ -1,6 +1,6 @@
 {
-    "name": "netgen/layouts-ezplatform",
-    "description": "Netgen Layouts & eZ Platform integration",
+    "name": "netgen/layouts-ibexa",
+    "description": "Netgen Layouts & Ibexa Platform integration",
     "license": "GPL-2.0-only",
     "type": "symfony-bundle",
     "authors": [
@@ -11,9 +11,10 @@
     ],
     "require": {
         "netgen/layouts-core": "~1.4.0",
-        "netgen/content-browser-ezplatform": "^1.4",
-        "ezsystems/ezplatform-admin-ui": "^1.5 || ^2.3",
-        "ezsystems/ezplatform-http-cache": "^1.0 || ^2.3"
+        "netgen/content-browser-ibexa": "^1.4",
+        "ibexa/core": "^4.0",
+        "ibexa/admin-ui": "^4.0",
+        "ibexa/http-cache": "^4.0"
     },
     "require-dev": {
         "netgen/layouts-coding-standard": "^1.0 || ^2.0",
@@ -27,10 +28,10 @@
         "vimeo/psalm": "^4.7",
         "matthiasnoback/symfony-dependency-injection-test": "^4.2",
         "matthiasnoback/symfony-config-test": "^4.2",
-        "netgen/tagsbundle": "^3.4 || ^4.0"
+        "netgen/tagsbundle": "^5.0"
     },
     "suggest": {
-        "netgen/layouts-ezplatform-site-api": "Integrate Netgen Layouts with eZ Platform Site API to boost your site-building productivity with eZ Platform"
+        "netgen/layouts-ibexa-site-api": "Integrate Netgen Layouts with Ibexa Platform Site API to boost your site-building productivity with Ibexa Platform"
     },
     "scripts": {
         "test": "@php vendor/bin/phpunit --colors=always",
@@ -41,15 +42,15 @@
     },
     "autoload": {
         "psr-4": {
-            "Netgen\\Layouts\\Ez\\": "lib/",
-            "Netgen\\Bundle\\LayoutsEzPlatformBundle\\": "bundle/"
+            "Netgen\\Layouts\\Ibexa\\": "lib/",
+            "Netgen\\Bundle\\LayoutsIbexaBundle\\": "bundle/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Netgen\\Layouts\\Tests\\": "vendor/netgen/layouts-core/tests/lib/",
-            "Netgen\\Layouts\\Ez\\Tests\\": "tests/lib/",
-            "Netgen\\Bundle\\LayoutsEzPlatformBundle\\Tests\\": "tests/bundle/"
+            "Netgen\\Layouts\\Ibexa\\Tests\\": "tests/lib/",
+            "Netgen\\Bundle\\LayoutsIbexaBundle\\Tests\\": "tests/bundle/"
         }
     },
     "minimum-stability": "dev",

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Item\ValueLoader;
+namespace Netgen\Layouts\Ibexa\Tests\Item\ValueLoader;
 
 use Exception;
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use Netgen\Layouts\Ez\Item\ValueLoader\ContentValueLoader;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -25,8 +25,8 @@ final class ContentValueLoaderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueLoader\ContentValueLoader::__construct
-     * @covers \Netgen\Layouts\Ez\Item\ValueLoader\ContentValueLoader::load
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader::__construct
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader::load
      */
     public function testLoad(): void
     {
@@ -48,7 +48,7 @@ final class ContentValueLoaderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueLoader\ContentValueLoader::load
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader::load
      */
     public function testLoadWithNoContent(): void
     {
@@ -62,7 +62,7 @@ final class ContentValueLoaderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueLoader\ContentValueLoader::load
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader::load
      */
     public function testLoadWithNonPublishedContent(): void
     {
@@ -83,7 +83,7 @@ final class ContentValueLoaderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueLoader\ContentValueLoader::load
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader::load
      */
     public function testLoadWithNoMainLocation(): void
     {
@@ -103,7 +103,7 @@ final class ContentValueLoaderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueLoader\ContentValueLoader::loadByRemoteId
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader::loadByRemoteId
      */
     public function testLoadByRemoteId(): void
     {
@@ -125,7 +125,7 @@ final class ContentValueLoaderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueLoader\ContentValueLoader::loadByRemoteId
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader::loadByRemoteId
      */
     public function testLoadByRemoteIdWithNoContent(): void
     {
@@ -139,7 +139,7 @@ final class ContentValueLoaderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueLoader\ContentValueLoader::loadByRemoteId
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader::loadByRemoteId
      */
     public function testLoadByRemoteIdWithNonPublishedContent(): void
     {
@@ -160,7 +160,7 @@ final class ContentValueLoaderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Item\ValueLoader\ContentValueLoader::loadByRemoteId
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader::loadByRemoteId
      */
     public function testLoadByRemoteIdWithNoMainLocation(): void
     {

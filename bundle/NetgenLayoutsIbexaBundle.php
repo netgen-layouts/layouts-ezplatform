@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle;
+namespace Netgen\Bundle\LayoutsIbexaBundle;
 
-use Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass;
-use Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\ExtensionPlugin;
-use Netgen\Bundle\LayoutsEzPlatformBundle\Security\PolicyProvider;
+use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass;
+use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin;
+use Netgen\Bundle\LayoutsIbexaBundle\Security\PolicyProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use function interface_exists;
 
-final class NetgenLayoutsEzPlatformBundle extends Bundle
+final class NetgenLayoutsIbexaBundle extends Bundle
 {
     public function build(ContainerBuilder $container): void
     {
@@ -25,9 +25,9 @@ final class NetgenLayoutsEzPlatformBundle extends Bundle
         $container->addCompilerPass(new CompilerPass\HttpCache\VarnishClientPass());
 
         if (!interface_exists('Netgen\Layouts\Enterprise\API\Service\RoleService')) {
-            /** @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\EzPublishCoreExtension $ezCoreExtension */
-            $ezCoreExtension = $container->getExtension('ezpublish');
-            $ezCoreExtension->addPolicyProvider(new PolicyProvider());
+            /** @var \Ibexa\Bundle\Core\DependencyInjection\IbexaCoreExtension $ibexaCoreExtension */
+            $ibexaCoreExtension = $container->getExtension('ibexa');
+            $ibexaCoreExtension->addPolicyProvider(new PolicyProvider());
         }
     }
 }

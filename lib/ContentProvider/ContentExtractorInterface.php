@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\ContentProvider;
+namespace Netgen\Layouts\Ibexa\ContentProvider;
 
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\API\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Symfony\Component\HttpFoundation\Request;
 
 interface ContentExtractorInterface
 {
     /**
-     * Extracts the eZ Platform content object from provided request.
+     * Extracts the Ibexa Platform content object from provided request.
      */
     public function extractContent(Request $request): ?Content;
 
     /**
-     * Extracts the eZ Platform location object from provided request.
+     * Extracts the Ibexa Platform location object from provided request.
      */
     public function extractLocation(Request $request): ?Location;
 }

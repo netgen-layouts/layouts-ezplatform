@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Context;
+namespace Netgen\Layouts\Ibexa\Context;
 
-use eZ\Publish\API\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\ContentService;
 use Netgen\Layouts\Context\Context;
 use Netgen\Layouts\Context\ContextProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -64,6 +64,6 @@ final class ContextProvider implements ContextProviderInterface
             return;
         }
 
-        $context->set('ez_location_id', (int) $currentLocationId);
+        $context->set('ibexa_location_id', (int) $currentLocationId);
     }
 }

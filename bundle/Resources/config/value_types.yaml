@@ -1,6 +1,6 @@
 value_types:
-    ezlocation:
-        name: 'eZ location'
-    ezcontent:
+    ibexa_location:
+        name: 'Ibexa location'
+    ibexa_content:
         enabled: false
-        name: 'eZ content'
+        name: 'Ibexa content'

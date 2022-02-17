@@ -1,30 +1,23 @@
 services:
-    netgen_layouts.ezplatform.templating.pagelayout_resolver:
-        class: Netgen\Bundle\LayoutsEzPlatformBundle\Templating\PageLayoutResolver
+    netgen_layouts.ibexa.templating.pagelayout_resolver:
+        class: Netgen\Bundle\LayoutsIbexaBundle\Templating\PageLayoutResolver
         arguments:
             - "@netgen_layouts.templating.pagelayout_resolver.default"
-            - "@ezpublish.config.resolver"
+            - "@ibexa.config.resolver"
             - "@request_stack"
-            - "%ezpublish.content_view.viewbase_layout%"
+            - "%ibexa.content_view.viewbase_layout%"
 
     netgen_layouts.templating.pagelayout_resolver:
-        alias: netgen_layouts.ezplatform.templating.pagelayout_resolver
+        alias: netgen_layouts.ibexa.templating.pagelayout_resolver
 
-    netgen_layouts.ezplatform.templating.twig.extension.ez_platform:
-        class: Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Extension\EzPlatformExtension
+    netgen_layouts.ibexa.templating.twig.extension.ibexa:
+        class: Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Extension\IbexaExtension
         tags:
             - { name: twig.extension }
 
-    netgen_layouts.ezplatform.templating.twig.extension.ez_platform_bc:
-        class: Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Extension\EzPlatformBCExtension
+    netgen_layouts.ibexa.templating.twig.runtime.ibexa:
+        class: Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime
         arguments:
-            - "@ezpublish.twig.extension.content"
-        tags:
-            - { name: twig.extension }
-
-    netgen_layouts.ezplatform.templating.twig.runtime.ez_platform:
-        class: Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime
-        arguments:
-            - "@ezpublish.api.repository"
+            - "@ibexa.api.repository"
         tags:
             - { name: twig.runtime }

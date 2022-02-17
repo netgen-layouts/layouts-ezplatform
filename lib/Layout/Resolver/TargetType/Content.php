@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Layout\Resolver\TargetType;
+namespace Netgen\Layouts\Ibexa\Layout\Resolver\TargetType;
 
-use eZ\Publish\API\Repository\Values\Content\Content as APIContent;
-use Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface;
-use Netgen\Layouts\Ez\Utils\RemoteIdConverter;
-use Netgen\Layouts\Ez\Validator\Constraint as EzConstraints;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content as IbexaContent;
+use Netgen\Layouts\Ibexa\ContentProvider\ContentExtractorInterface;
+use Netgen\Layouts\Ibexa\Utils\RemoteIdConverter;
+use Netgen\Layouts\Ibexa\Validator\Constraint as IbexaConstraints;
 use Netgen\Layouts\Layout\Resolver\TargetType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
@@ -26,7 +26,7 @@ final class Content extends TargetType
 
     public static function getType(): string
     {
-        return 'ez_content';
+        return 'ibexa_content';
     }
 
     public function getConstraints(): array
@@ -35,7 +35,7 @@ final class Content extends TargetType
             new Constraints\NotBlank(),
             new Constraints\Type(['type' => 'numeric']),
             new Constraints\GreaterThanOrEqual(['value' => 0]),
-            new EzConstraints\Content(['allowInvalid' => true]),
+            new IbexaConstraints\Content(['allowInvalid' => true]),
         ];
     }
 
@@ -43,7 +43,7 @@ final class Content extends TargetType
     {
         $content = $this->contentExtractor->extractContent($request);
 
-        return $content instanceof APIContent ? (int) $content->id : null;
+        return $content instanceof IbexaContent ? (int) $content->id : null;
     }
 
     public function export($value): ?string

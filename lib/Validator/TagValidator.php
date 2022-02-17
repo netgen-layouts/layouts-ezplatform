@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Validator;
+namespace Netgen\Layouts\Ibexa\Validator;
 
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use Netgen\Layouts\Ez\Validator\Constraint\Tag;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Netgen\Layouts\Ibexa\Validator\Constraint\Tag;
 use Netgen\TagsBundle\API\Repository\TagsService;
 use Netgen\TagsBundle\API\Repository\Values\Tags\Tag as APITag;
 use Symfony\Component\Validator\Constraint;

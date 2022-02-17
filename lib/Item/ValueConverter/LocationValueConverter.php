@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Item\ValueConverter;
+namespace Netgen\Layouts\Ibexa\Item\ValueConverter;
 
-use eZ\Publish\API\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Netgen\Layouts\Item\ValueConverterInterface;
 
 /**
- * @implements \Netgen\Layouts\Item\ValueConverterInterface<\eZ\Publish\API\Repository\Values\Content\Location>
+ * @implements \Netgen\Layouts\Item\ValueConverterInterface<\Ibexa\Contracts\Core\Repository\Values\Content\Location>
  */
 final class LocationValueConverter implements ValueConverterInterface
 {
@@ -19,7 +19,7 @@ final class LocationValueConverter implements ValueConverterInterface
 
     public function getValueType(object $object): string
     {
-        return 'ezlocation';
+        return 'ibexa_location';
     }
 
     public function getId(object $object): int

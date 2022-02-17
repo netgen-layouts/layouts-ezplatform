@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Block\BlockDefinition\Handler;
+namespace Netgen\Layouts\Ibexa\Tests\Block\BlockDefinition\Handler;
 
-use eZ\Publish\Core\Repository\Values\Content\Content;
-use eZ\Publish\Core\Repository\Values\Content\Location;
+use Ibexa\Core\Repository\Values\Content\Content;
+use Ibexa\Core\Repository\Values\Content\Location;
 use Netgen\Layouts\API\Values\Block\Block;
 use Netgen\Layouts\Block\DynamicParameters;
-use Netgen\Layouts\Ez\Block\BlockDefinition\Handler\ContentFieldHandler;
-use Netgen\Layouts\Ez\ContentProvider\ContentProviderInterface;
+use Netgen\Layouts\Ibexa\Block\BlockDefinition\Handler\ContentFieldHandler;
+use Netgen\Layouts\Ibexa\ContentProvider\ContentProviderInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -27,7 +27,7 @@ final class ContentFieldHandlerTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Block\BlockDefinition\Handler\ContentFieldHandler::isContextual
+     * @covers \Netgen\Layouts\Ibexa\Block\BlockDefinition\Handler\ContentFieldHandler::isContextual
      */
     public function testIsContextual(): void
     {
@@ -35,8 +35,8 @@ final class ContentFieldHandlerTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Block\BlockDefinition\Handler\ContentFieldHandler::__construct
-     * @covers \Netgen\Layouts\Ez\Block\BlockDefinition\Handler\ContentFieldHandler::getDynamicParameters
+     * @covers \Netgen\Layouts\Ibexa\Block\BlockDefinition\Handler\ContentFieldHandler::__construct
+     * @covers \Netgen\Layouts\Ibexa\Block\BlockDefinition\Handler\ContentFieldHandler::getDynamicParameters
      */
     public function testGetDynamicParameters(): void
     {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\HttpCache;
+namespace Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\HttpCache;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -14,7 +14,7 @@ final class VarnishClientPass implements CompilerPassInterface
     {
         if (
             !$container->has('netgen_layouts.http_cache.client.varnish')
-            || !$container->has('netgen_layouts.ezplatform.http_cache.varnish.host_header_provider')
+            || !$container->has('netgen_layouts.ibexa.http_cache.varnish.host_header_provider')
         ) {
             return;
         }
@@ -23,7 +23,7 @@ final class VarnishClientPass implements CompilerPassInterface
 
         $varnishClient->replaceArgument(
             1,
-            new Reference('netgen_layouts.ezplatform.http_cache.varnish.host_header_provider'),
+            new Reference('netgen_layouts.ibexa.http_cache.varnish.host_header_provider'),
         );
     }
 }

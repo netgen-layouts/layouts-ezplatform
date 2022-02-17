@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Validator;
+namespace Netgen\Layouts\Ibexa\Tests\Validator;
 
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use eZ\Publish\Core\Repository\Repository;
-use eZ\Publish\Core\Repository\Values\ContentType\ContentType as EzContentType;
-use eZ\Publish\Core\Repository\Values\ContentType\ContentTypeGroup;
-use Netgen\Layouts\Ez\Validator\Constraint\ContentType;
-use Netgen\Layouts\Ez\Validator\ContentTypeValidator;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Core\Repository\Repository;
+use Ibexa\Core\Repository\Values\ContentType\ContentType as IbexaContentType;
+use Ibexa\Core\Repository\Values\ContentType\ContentTypeGroup;
+use Netgen\Layouts\Ibexa\Validator\Constraint\ContentType;
+use Netgen\Layouts\Ibexa\Validator\ContentTypeValidator;
 use Netgen\Layouts\Tests\TestCase\ValidatorTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -35,8 +35,8 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
      * @param string[] $groups
      * @param string[] $allowedTypes
      *
-     * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::__construct
-     * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\ContentTypeValidator::__construct
+     * @covers \Netgen\Layouts\Ibexa\Validator\ContentTypeValidator::validate
      * @dataProvider  validateDataProvider
      */
     public function testValidate(string $identifier, array $groups, array $allowedTypes, bool $isValid): void
@@ -46,7 +46,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
             ->method('loadContentTypeByIdentifier')
             ->with(self::identicalTo($identifier))
             ->willReturn(
-                new EzContentType(
+                new IbexaContentType(
                     [
                         'identifier' => $identifier,
                         'contentTypeGroups' => array_map(
@@ -66,8 +66,8 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::__construct
-     * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\ContentTypeValidator::__construct
+     * @covers \Netgen\Layouts\Ibexa\Validator\ContentTypeValidator::validate
      */
     public function testValidateNull(): void
     {
@@ -79,8 +79,8 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::__construct
-     * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\ContentTypeValidator::__construct
+     * @covers \Netgen\Layouts\Ibexa\Validator\ContentTypeValidator::validate
      */
     public function testValidateInvalid(): void
     {
@@ -94,19 +94,19 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\ContentTypeValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->expectException(UnexpectedTypeException::class);
-        $this->expectExceptionMessage('Expected argument of type "Netgen\\Layouts\\Ez\\Validator\\Constraint\\ContentType", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
+        $this->expectExceptionMessage('Expected argument of type "Netgen\\Layouts\\Ibexa\\Validator\\Constraint\\ContentType", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
 
         $this->constraint = new NotBlank();
         $this->assertValid(true, 'value');
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\ContentTypeValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\ContentTypeValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {

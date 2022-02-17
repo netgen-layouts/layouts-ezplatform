@@ -1,54 +1,54 @@
 services:
-    netgen_layouts.ezplatform.parameters.parameter_type.location:
-        class: Netgen\Layouts\Ez\Parameters\ParameterType\LocationType
+    netgen_layouts.ibexa.parameters.parameter_type.location:
+        class: Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType
         arguments:
-            - "@ezpublish.api.repository"
+            - "@ibexa.api.repository"
         tags:
             - { name: netgen_layouts.parameter_type }
 
-    netgen_layouts.ezplatform.parameters.parameter_type.content:
-        class: Netgen\Layouts\Ez\Parameters\ParameterType\ContentType
+    netgen_layouts.ibexa.parameters.parameter_type.content:
+        class: Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType
         arguments:
-            - "@ezpublish.api.repository"
+            - "@ibexa.api.repository"
         tags:
             - { name: netgen_layouts.parameter_type }
 
-    netgen_layouts.ezplatform.parameters.parameter_type.content_type:
-        class: Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType
+    netgen_layouts.ibexa.parameters.parameter_type.content_type:
+        class: Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentTypeType
         tags:
             - { name: netgen_layouts.parameter_type }
 
-    netgen_layouts.ezplatform.parameters.parameter_type.section:
-        class: Netgen\Layouts\Ez\Parameters\ParameterType\SectionType
+    netgen_layouts.ibexa.parameters.parameter_type.section:
+        class: Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType
         tags:
             - { name: netgen_layouts.parameter_type }
 
-    netgen_layouts.ezplatform.parameters.parameter_type.object_state:
-        class: Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType
+    netgen_layouts.ibexa.parameters.parameter_type.object_state:
+        class: Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType
         tags:
             - { name: netgen_layouts.parameter_type }
 
-    netgen_layouts.ezplatform.parameters.form_mapper.location:
-        class: Netgen\Layouts\Ez\Parameters\Form\Mapper\LocationMapper
+    netgen_layouts.ibexa.parameters.form_mapper.location:
+        class: Netgen\Layouts\Ibexa\Parameters\Form\Mapper\LocationMapper
         tags:
-            - { name: netgen_layouts.parameter_type.form_mapper, type: ez_location }
+            - { name: netgen_layouts.parameter_type.form_mapper, type: ibexa_location }
 
-    netgen_layouts.ezplatform.parameters.form_mapper.content:
-        class: Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentMapper
+    netgen_layouts.ibexa.parameters.form_mapper.content:
+        class: Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ContentMapper
         tags:
-            - { name: netgen_layouts.parameter_type.form_mapper, type: ez_content }
+            - { name: netgen_layouts.parameter_type.form_mapper, type: ibexa_content }
 
-    netgen_layouts.ezplatform.parameters.form_mapper.content_type:
-        class: Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentTypeMapper
+    netgen_layouts.ibexa.parameters.form_mapper.content_type:
+        class: Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ContentTypeMapper
         tags:
-            - { name: netgen_layouts.parameter_type.form_mapper, type: ez_content_type }
+            - { name: netgen_layouts.parameter_type.form_mapper, type: ibexa_content_type }
 
-    netgen_layouts.ezplatform.parameters.form_mapper.section:
-        class: Netgen\Layouts\Ez\Parameters\Form\Mapper\SectionMapper
+    netgen_layouts.ibexa.parameters.form_mapper.section:
+        class: Netgen\Layouts\Ibexa\Parameters\Form\Mapper\SectionMapper
         tags:
-            - { name: netgen_layouts.parameter_type.form_mapper, type: ez_section }
+            - { name: netgen_layouts.parameter_type.form_mapper, type: ibexa_section }
 
-    netgen_layouts.ezplatform.parameters.form_mapper.object_state:
-        class: Netgen\Layouts\Ez\Parameters\Form\Mapper\ObjectStateMapper
+    netgen_layouts.ibexa.parameters.form_mapper.object_state:
+        class: Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ObjectStateMapper
         tags:
-            - { name: netgen_layouts.parameter_type.form_mapper, type: ez_object_state }
+            - { name: netgen_layouts.parameter_type.form_mapper, type: ibexa_object_state }

@@ -2,28 +2,28 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Collection\QueryType\Handler;
+namespace Netgen\Layouts\Ibexa\Collection\QueryType\Handler;
 
-use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\API\Repository\SearchService;
-use eZ\Publish\API\Repository\Values\Content\Location;
-use eZ\Publish\API\Repository\Values\Content\LocationQuery;
-use eZ\Publish\API\Repository\Values\Content\Query\Criterion;
-use eZ\Publish\API\Repository\Values\Content\Search\SearchHit;
-use eZ\Publish\API\Repository\Values\ValueObject;
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use eZ\Publish\SPI\Persistence\Content\ObjectState\Handler as ObjectStateHandler;
-use eZ\Publish\SPI\Persistence\Content\Section\Handler as SectionHandler;
+use Ibexa\Contracts\Core\Persistence\Content\ObjectState\Handler as ObjectStateHandler;
+use Ibexa\Contracts\Core\Persistence\Content\Section\Handler as SectionHandler;
+use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Contracts\Core\Repository\SearchService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\Content\LocationQuery;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\Criterion;
+use Ibexa\Contracts\Core\Repository\Values\Content\Search\SearchHit;
+use Ibexa\Contracts\Core\Repository\Values\ValueObject;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Netgen\Layouts\API\Values\Collection\Query;
 use Netgen\Layouts\Collection\QueryType\QueryTypeHandlerInterface;
-use Netgen\Layouts\Ez\ContentProvider\ContentProviderInterface;
+use Netgen\Layouts\Ibexa\ContentProvider\ContentProviderInterface;
 use Netgen\Layouts\Parameters\ParameterBuilderInterface;
 use function array_filter;
 use function array_map;
 use const PHP_INT_MAX;
 
 /**
- * Handler for a query which retrieves the eZ locations from the repository
+ * Handler for a query which retrieves the Ibexa locations from the repository
  * based on parameters provided in the query.
  */
 final class ContentSearchHandler implements QueryTypeHandlerInterface

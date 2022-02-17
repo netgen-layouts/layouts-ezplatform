@@ -1,6 +1,6 @@
 {% import '@NetgenLayoutsAdmin/admin/macros.html.twig' as macros %}
 
-{% trans_default_domain 'nglayouts_ezadminui' %}
+{% trans_default_domain 'nglayouts_ibexa_admin' %}
 
 {% set can_edit = is_granted('ROLE_NGLAYOUTS_EDITOR') or is_granted('nglayouts:layout:edit', layout) %}
 {% set can_clear_cache = is_granted('ROLE_NGLAYOUTS_ADMIN') or is_granted('nglayouts:layout:clear_cache', layout) %}
@@ -37,8 +37,8 @@
                     <div class="modal-header">
                         <h5 class="modal-title">{{ 'layouts.cache.layout.title'|trans({}, 'nglayouts_admin') }}: <strong>{{ layout.name }}</strong></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <svg class="ez-icon ez-icon--medium" aria-hidden="true">
-                                <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#discard"></use>
+                            <svg class="ibexa-icon ibexa-icon--medium" aria-hidden="true">
+                                <use xlink:href="{{ asset('bundles/ibexaadminui/img/ibexa-icons.svg') }}#discard"></use>
                             </svg>
                         </button>
                     </div>

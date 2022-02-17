@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\TargetHandler\Doctrine;
+namespace Netgen\Layouts\Ibexa\Tests\Layout\Resolver\TargetHandler\Doctrine;
 
-use Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Location;
+use Netgen\Layouts\Ibexa\Layout\Resolver\TargetHandler\Doctrine\Location;
 use Netgen\Layouts\Persistence\Doctrine\QueryHandler\TargetHandlerInterface;
 use Netgen\Layouts\Persistence\Values\LayoutResolver\RuleGroup;
 use Netgen\Layouts\Persistence\Values\Value;
@@ -13,7 +13,7 @@ use Netgen\Layouts\Tests\Layout\Resolver\TargetHandler\Doctrine\AbstractTargetHa
 final class LocationTest extends AbstractTargetHandlerTest
 {
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine\Location::handleQuery
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetHandler\Doctrine\Location::handleQuery
      */
     public function testMatchRules(): void
     {
@@ -29,7 +29,7 @@ final class LocationTest extends AbstractTargetHandlerTest
 
     protected function getTargetIdentifier(): string
     {
-        return 'ez_location';
+        return 'ibexa_location';
     }
 
     protected function getTargetHandler(): TargetHandlerInterface

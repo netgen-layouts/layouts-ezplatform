@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Parameters\Form\Mapper;
+namespace Netgen\Layouts\Ibexa\Tests\Parameters\Form\Mapper;
 
 use Netgen\ContentBrowser\Form\Type\ContentBrowserMultipleType;
-use Netgen\Layouts\Ez\Parameters\Form\Mapper\TagsMapper;
-use Netgen\Layouts\Ez\Parameters\ParameterType\TagsType as ParameterType;
+use Netgen\Layouts\Ibexa\Parameters\Form\Mapper\TagsMapper;
+use Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType as ParameterType;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\TagsBundle\API\Repository\TagsService;
 use PHPUnit\Framework\TestCase;
@@ -21,7 +21,7 @@ final class TagsMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\Form\Mapper\TagsMapper::getFormType
+     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\TagsMapper::getFormType
      */
     public function testGetFormType(): void
     {
@@ -29,13 +29,13 @@ final class TagsMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\Form\Mapper\TagsMapper::mapOptions
+     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\TagsMapper::mapOptions
      */
     public function testMapOptions(): void
     {
         self::assertSame(
             [
-                'item_type' => 'eztags',
+                'item_type' => 'netgen_tags',
                 'min' => 3,
                 'max' => 6,
             ],

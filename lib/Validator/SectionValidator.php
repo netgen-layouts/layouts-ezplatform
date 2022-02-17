@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Validator;
+namespace Netgen\Layouts\Ibexa\Validator;
 
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\Repository;
-use eZ\Publish\API\Repository\Values\Content\Section as APISection;
-use Netgen\Layouts\Ez\Validator\Constraint\Section;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Repository;
+use Ibexa\Contracts\Core\Repository\Values\Content\Section as APISection;
+use Netgen\Layouts\Ibexa\Validator\Constraint\Section;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -16,7 +16,7 @@ use function in_array;
 use function is_string;
 
 /**
- * Validates if the provided value is an identifier of a valid section in eZ Platform.
+ * Validates if the provided value is an identifier of a valid section in Ibexa Platform.
  */
 final class SectionValidator extends ConstraintValidator
 {

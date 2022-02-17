@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Item\ValueLoader;
+namespace Netgen\Layouts\Ibexa\Item\ValueLoader;
 
-use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\API\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Netgen\Layouts\Item\ValueLoaderInterface;
 use Throwable;
 

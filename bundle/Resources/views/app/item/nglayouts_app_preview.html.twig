@@ -1,6 +1,5 @@
-{# We should use ez_field_is_empty function, but it does not exist on eZ kernel 7.5 #}
-{% if content.fields.image is defined and not nglayouts_ez_field_is_empty(content, 'image') %}
-    {% set image_alias = ez_image_alias(ez_field(content, 'image'), content.versionInfo, 'nglayouts_app_preview') %}
+{% if content.fields.image is defined and not ibexa_field_is_empty(content, 'image') %}
+    {% set image_alias = ibexa_image_alias(ibexa_field(content, 'image'), content.versionInfo, 'nglayouts_app_preview') %}
 
     {% if image_alias %}
         <div class="image">

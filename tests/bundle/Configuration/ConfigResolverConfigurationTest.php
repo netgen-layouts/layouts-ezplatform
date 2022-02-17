@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\Configuration;
+namespace Netgen\Bundle\LayoutsIbexaBundle\Tests\Configuration;
 
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Netgen\Bundle\LayoutsBundle\Configuration\ConfigurationInterface;
 use Netgen\Bundle\LayoutsBundle\Exception\ConfigurationException;
-use Netgen\Bundle\LayoutsEzPlatformBundle\Configuration\ConfigResolverConfiguration;
+use Netgen\Bundle\LayoutsIbexaBundle\Configuration\ConfigResolverConfiguration;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -31,8 +31,8 @@ final class ConfigResolverConfigurationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Configuration\ConfigResolverConfiguration::__construct
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Configuration\ConfigResolverConfiguration::hasParameter
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Configuration\ConfigResolverConfiguration::__construct
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Configuration\ConfigResolverConfiguration::hasParameter
      */
     public function testHasParameter(): void
     {
@@ -50,7 +50,7 @@ final class ConfigResolverConfigurationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Configuration\ConfigResolverConfiguration::hasParameter
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Configuration\ConfigResolverConfiguration::hasParameter
      */
     public function testHasParameterWithNoParameter(): void
     {
@@ -70,7 +70,7 @@ final class ConfigResolverConfigurationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Configuration\ConfigResolverConfiguration::hasParameter
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Configuration\ConfigResolverConfiguration::hasParameter
      */
     public function testHasParameterWithNoFallbackParameter(): void
     {
@@ -90,7 +90,7 @@ final class ConfigResolverConfigurationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Configuration\ConfigResolverConfiguration::getParameter
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Configuration\ConfigResolverConfiguration::getParameter
      */
     public function testGetParameter(): void
     {
@@ -114,7 +114,7 @@ final class ConfigResolverConfigurationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Configuration\ConfigResolverConfiguration::getParameter
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Configuration\ConfigResolverConfiguration::getParameter
      */
     public function testGetFallbackParameter(): void
     {
@@ -144,7 +144,7 @@ final class ConfigResolverConfigurationTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Configuration\ConfigResolverConfiguration::getParameter
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Configuration\ConfigResolverConfiguration::getParameter
      */
     public function testGetParameterThrowsConfigurationException(): void
     {

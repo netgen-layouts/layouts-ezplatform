@@ -1,12 +1,7 @@
-{% trans_default_domain 'nglayouts_ezadminui' %}
+{% trans_default_domain 'nglayouts_ibexa_admin' %}
 
-{#
-    Using "@ezdesign/parts/table_header.html.twig" template and "headerText"
-    variable is deprecated, it comes from eZ Platform 2.5
-#}
-{% include ['@ezdesign/ui/table_header.html.twig', '@ezdesign/parts/table_header.html.twig'] with {
-    'header_text': 'related_layouts.title'|trans,
-    'headerText': 'related_layouts.title'|trans
+{% include '@ibexadesign/ui/table_header.html.twig' with {
+    'header_text': 'related_layouts.title'|trans
 } %}
 
 <div class="bg-white p-3 mb-5">
@@ -21,7 +16,7 @@
             </li>
 
             {% for related_layout in related_layouts %}
-                {{ nglayouts_render_layout(related_layout, {}, 'ezadminui') }}
+                {{ nglayouts_render_layout(related_layout, {}, 'ibexa_admin') }}
             {% endfor %}
         </ul>
     {% else %}

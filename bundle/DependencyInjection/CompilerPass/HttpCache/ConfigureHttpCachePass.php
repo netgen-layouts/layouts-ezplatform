@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\HttpCache;
+namespace Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\HttpCache;
 
-use EzSystems\PlatformHttpCacheBundle\PurgeClient\LocalPurgeClient;
-use EzSystems\PlatformHttpCacheBundle\PurgeClient\VarnishPurgeClient;
+use Ibexa\HttpCache\PurgeClient\LocalPurgeClient;
+use Ibexa\HttpCache\PurgeClient\VarnishPurgeClient;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use function is_a;
@@ -17,11 +17,11 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
 
     public function process(ContainerBuilder $container): void
     {
-        if (!$container->has(self::SERVICE_NAME) || !$container->has('ezplatform.http_cache.purge_client_internal')) {
+        if (!$container->has(self::SERVICE_NAME) || !$container->has('ibexa.http_cache.purge_client_internal')) {
             return;
         }
 
-        $purgeClient = $container->findDefinition('ezplatform.http_cache.purge_client_internal');
+        $purgeClient = $container->findDefinition('ibexa.http_cache.purge_client_internal');
         $purgeClientClass = $container->getParameterBag()->resolveValue($purgeClient->getClass());
 
         if (
@@ -31,7 +31,7 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
             $container->log(
                 $this,
                 sprintf(
-                    'Cache clearing in Netgen Layouts cannot be automatically configured since eZ Platform purge client is neither an instance of "%s" nor "%s". Use Netgen Layouts "%s" config to enable or disable HTTP cache clearing.',
+                    'Cache clearing in Netgen Layouts cannot be automatically configured since Ibexa Platform purge client is neither an instance of "%s" nor "%s". Use Netgen Layouts "%s" config to enable or disable HTTP cache clearing.',
                     VarnishPurgeClient::class,
                     LocalPurgeClient::class,
                     'http_cache.invalidation.enabled',
@@ -44,7 +44,7 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
         if (!is_a($purgeClientClass, VarnishPurgeClient::class, true)) {
             $container->setAlias(
                 self::SERVICE_NAME,
-                'netgen_layouts.ezplatform.http_cache.client.local',
+                'netgen_layouts.ibexa.http_cache.client.local',
             );
         }
     }

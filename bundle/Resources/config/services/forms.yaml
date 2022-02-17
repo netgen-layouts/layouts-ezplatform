@@ -1,30 +1,30 @@
 services:
-    netgen_layouts.ezplatform.form.content_type:
-        class: Netgen\Layouts\Ez\Form\ContentTypeType
+    netgen_layouts.ibexa.form.content_type:
+        class: Netgen\Layouts\Ibexa\Form\ContentTypeType
         arguments:
-            - "@ezpublish.api.service.content_type"
+            - "@ibexa.api.service.content_type"
         tags:
             - { name: form.type }
 
-    netgen_layouts.ezplatform.form.section:
-        class: Netgen\Layouts\Ez\Form\SectionType
+    netgen_layouts.ibexa.form.section:
+        class: Netgen\Layouts\Ibexa\Form\SectionType
         arguments:
-            - "@ezpublish.api.service.section"
+            - "@ibexa.api.service.section"
         tags:
             - { name: form.type }
 
-    netgen_layouts.ezplatform.form.object_state:
-        class: Netgen\Layouts\Ez\Form\ObjectStateType
+    netgen_layouts.ibexa.form.object_state:
+        class: Netgen\Layouts\Ibexa\Form\ObjectStateType
         arguments:
-            - "@ezpublish.api.service.object_state"
+            - "@ibexa.api.service.object_state"
         tags:
             - { name: form.type }
 
-    netgen_layouts.ezplatform.form.admin.layout_wizard:
-        class: Netgen\Bundle\LayoutsEzPlatformBundle\Form\Admin\Type\LayoutWizardType
+    netgen_layouts.ibexa.form.admin.layout_wizard:
+        class: Netgen\Bundle\LayoutsIbexaBundle\Form\Admin\Type\LayoutWizardType
         arguments:
             - "@netgen_layouts.api.service.layout"
             - "@netgen_layouts.layout.registry.layout_type"
-            - "%netgen_layouts.ezplatform.is_enterprise%"
+            - "%netgen_layouts.ibexa.is_enterprise%"
         tags:
             - { name: form.type }

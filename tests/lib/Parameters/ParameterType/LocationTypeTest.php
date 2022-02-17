@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Parameters\ParameterType;
+namespace Netgen\Layouts\Ibexa\Tests\Parameters\ParameterType;
 
-use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use eZ\Publish\Core\Repository\Repository;
-use eZ\Publish\Core\Repository\Values\Content\Content;
-use eZ\Publish\Core\Repository\Values\Content\Location;
-use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
-use Netgen\Layouts\Ez\Parameters\ParameterType\LocationType;
-use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
+use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Core\Repository\Repository;
+use Ibexa\Core\Repository\Values\Content\Content;
+use Ibexa\Core\Repository\Values\Content\Location;
+use Ibexa\Core\Repository\Values\ContentType\ContentType;
+use Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType;
+use Netgen\Layouts\Ibexa\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\Layouts\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -25,7 +25,7 @@ final class LocationTypeTest extends TestCase
     use ParameterTypeTestTrait;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository
+     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\Repository
      */
     private MockObject $repositoryMock;
 
@@ -53,19 +53,19 @@ final class LocationTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::__construct
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::getIdentifier
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::__construct
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::getIdentifier
      */
     public function testGetIdentifier(): void
     {
-        self::assertSame('ez_location', $this->type::getIdentifier());
+        self::assertSame('ibexa_location', $this->type::getIdentifier());
     }
 
     /**
      * @param array<string, mixed> $options
      * @param array<string, mixed> $resolvedOptions
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::configureOptions
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::configureOptions
      * @dataProvider validOptionsDataProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
@@ -77,7 +77,7 @@ final class LocationTypeTest extends TestCase
     /**
      * @param array<string, mixed> $options
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::configureOptions
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::configureOptions
      * @dataProvider invalidOptionsDataProvider
      */
     public function testInvalidOptions(array $options): void
@@ -172,7 +172,7 @@ final class LocationTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::export
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::export
      */
     public function testExport(): void
     {
@@ -186,7 +186,7 @@ final class LocationTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::export
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::export
      */
     public function testExportWithNonExistingLocation(): void
     {
@@ -200,7 +200,7 @@ final class LocationTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::import
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::import
      */
     public function testImport(): void
     {
@@ -214,7 +214,7 @@ final class LocationTypeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::import
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::import
      */
     public function testImportWithNonExistingLocation(): void
     {
@@ -230,7 +230,7 @@ final class LocationTypeTest extends TestCase
     /**
      * @param mixed $value
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::getValueConstraints
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::getValueConstraints
      * @dataProvider validationDataProvider
      */
     public function testValidation($value, string $type, bool $required, bool $isValid): void
@@ -298,7 +298,7 @@ final class LocationTypeTest extends TestCase
      * @param mixed $value
      * @param mixed $convertedValue
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::fromHash
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::fromHash
      * @dataProvider fromHashDataProvider
      */
     public function testFromHash($value, $convertedValue): void
@@ -333,7 +333,7 @@ final class LocationTypeTest extends TestCase
     /**
      * @param mixed $value
      *
-     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\LocationType::isValueEmpty
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::isValueEmpty
      * @dataProvider emptyDataProvider
      */
     public function testIsValueEmpty($value, bool $isEmpty): void

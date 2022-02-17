@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Validator\Constraint;
+namespace Netgen\Layouts\Ibexa\Tests\Validator\Constraint;
 
-use Netgen\Layouts\Ez\Validator\Constraint\ObjectState;
+use Netgen\Layouts\Ibexa\Validator\Constraint\ObjectState;
 use PHPUnit\Framework\TestCase;
 
 final class ObjectStateTest extends TestCase
 {
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\Constraint\ObjectState::validatedBy
+     * @covers \Netgen\Layouts\Ibexa\Validator\Constraint\ObjectState::validatedBy
      */
     public function testValidatedBy(): void
     {
         $constraint = new ObjectState();
-        self::assertSame('nglayouts_ez_object_state', $constraint->validatedBy());
+        self::assertSame('nglayouts_ibexa_object_state', $constraint->validatedBy());
     }
 }

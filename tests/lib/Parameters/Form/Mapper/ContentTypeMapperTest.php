@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Parameters\Form\Mapper;
+namespace Netgen\Layouts\Ibexa\Tests\Parameters\Form\Mapper;
 
-use Netgen\Layouts\Ez\Form\ContentTypeType;
-use Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentTypeMapper;
-use Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType as ParameterType;
+use Netgen\Layouts\Ibexa\Form\ContentTypeType;
+use Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ContentTypeMapper;
+use Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentTypeType as ParameterType;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use PHPUnit\Framework\TestCase;
 
@@ -20,7 +20,7 @@ final class ContentTypeMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentTypeMapper::getFormType
+     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ContentTypeMapper::getFormType
      */
     public function testGetFormType(): void
     {
@@ -28,7 +28,7 @@ final class ContentTypeMapperTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentTypeMapper::mapOptions
+     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ContentTypeMapper::mapOptions
      */
     public function testMapOptions(): void
     {

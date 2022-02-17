@@ -57,7 +57,7 @@ module.exports = (env, argv) => {
     entry: `${resourcesPath}/es6/app.js`,
     output: {
       path: path.resolve(__dirname, `${resourcesPath}/${buildPath}`),
-      filename: 'js/ezadminui/app.js',
+      filename: 'js/ibexa/admin/app.js',
     },
     devtool: isEnvDevelopment ? 'cheap-module-source-map' : '',
     resolve: {
@@ -153,7 +153,7 @@ module.exports = (env, argv) => {
         cleanOnceBeforeBuildPatterns: ['**/*', '!images', '!dev', '!images/**', '!dev/**'],
       }),
       new MiniCssExtractPlugin({
-        filename: 'css/ezadminui/style.css',
+        filename: 'css/ibexa/admin/style.css',
       }),
     ],
   };

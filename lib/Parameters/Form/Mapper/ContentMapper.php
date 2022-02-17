@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Parameters\Form\Mapper;
+namespace Netgen\Layouts\Ibexa\Parameters\Form\Mapper;
 
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 use Netgen\Layouts\Parameters\Form\Mapper;
@@ -19,7 +19,7 @@ final class ContentMapper extends Mapper
     public function mapOptions(ParameterDefinition $parameterDefinition): array
     {
         $options = [
-            'item_type' => 'ezcontent',
+            'item_type' => 'ibexa_content',
         ];
 
         $allowedTypes = $parameterDefinition->getOption('allowed_types') ?? [];

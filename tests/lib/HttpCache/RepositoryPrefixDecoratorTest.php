@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\HttpCache;
+namespace Netgen\Layouts\Ibexa\Tests\HttpCache;
 
-use EzSystems\PlatformHttpCacheBundle\RepositoryTagPrefix;
-use Netgen\Layouts\Ez\HttpCache\RepositoryPrefixDecorator;
+use Ibexa\HttpCache\RepositoryTagPrefix;
 use Netgen\Layouts\HttpCache\ClientInterface;
+use Netgen\Layouts\Ibexa\HttpCache\RepositoryPrefixDecorator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -30,8 +30,8 @@ final class RepositoryPrefixDecoratorTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\HttpCache\RepositoryPrefixDecorator::__construct
-     * @covers \Netgen\Layouts\Ez\HttpCache\RepositoryPrefixDecorator::purge
+     * @covers \Netgen\Layouts\Ibexa\HttpCache\RepositoryPrefixDecorator::__construct
+     * @covers \Netgen\Layouts\Ibexa\HttpCache\RepositoryPrefixDecorator::purge
      */
     public function testPurge(): void
     {
@@ -49,8 +49,8 @@ final class RepositoryPrefixDecoratorTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\HttpCache\RepositoryPrefixDecorator::__construct
-     * @covers \Netgen\Layouts\Ez\HttpCache\RepositoryPrefixDecorator::commit
+     * @covers \Netgen\Layouts\Ibexa\HttpCache\RepositoryPrefixDecorator::__construct
+     * @covers \Netgen\Layouts\Ibexa\HttpCache\RepositoryPrefixDecorator::commit
      */
     public function testCommit(): void
     {

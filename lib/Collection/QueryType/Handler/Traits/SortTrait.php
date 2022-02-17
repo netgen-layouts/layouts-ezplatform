@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Collection\QueryType\Handler\Traits;
+namespace Netgen\Layouts\Ibexa\Collection\QueryType\Handler\Traits;
 
-use eZ\Publish\API\Repository\Values\Content\Location;
-use eZ\Publish\API\Repository\Values\Content\LocationQuery;
-use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\Values\Content\LocationQuery;
+use Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause;
 use Netgen\Layouts\Parameters\ParameterBuilderInterface;
 use Netgen\Layouts\Parameters\ParameterCollectionInterface;
 use Netgen\Layouts\Parameters\ParameterType;
@@ -27,7 +27,7 @@ trait SortTrait
     ];
 
     /**
-     * Builds the parameters for sorting eZ content.
+     * Builds the parameters for sorting Ibexa content.
      *
      * @param string[] $groups
      * @param string[] $allowedSortTypes
@@ -71,9 +71,9 @@ trait SortTrait
     }
 
     /**
-     * Returns the clauses for sorting eZ content.
+     * Returns the clauses for sorting Ibexa content.
      *
-     * @return \eZ\Publish\API\Repository\Values\Content\Query\SortClause[]
+     * @return \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause[]
      */
     private function getSortClauses(ParameterCollectionInterface $parameterCollection, ?Location $parentLocation = null): array
     {
@@ -84,7 +84,7 @@ trait SortTrait
             return $parentLocation->getSortClauses();
         }
 
-        /** @var \eZ\Publish\API\Repository\Values\Content\Query\SortClause $sortClause */
+        /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Query\SortClause $sortClause */
         $sortClause = new self::$sortClauses[$sortType]($sortDirection);
 
         return [$sortClause];

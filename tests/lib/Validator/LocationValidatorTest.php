@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Validator;
+namespace Netgen\Layouts\Ibexa\Tests\Validator;
 
-use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use eZ\Publish\Core\Repository\Repository;
-use eZ\Publish\Core\Repository\Values\Content\Content;
-use eZ\Publish\Core\Repository\Values\Content\Location as EzLocation;
-use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
-use Netgen\Layouts\Ez\Validator\Constraint\Location;
-use Netgen\Layouts\Ez\Validator\LocationValidator;
+use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Core\Repository\Repository;
+use Ibexa\Core\Repository\Values\Content\Content;
+use Ibexa\Core\Repository\Values\Content\Location as IbexaLocation;
+use Ibexa\Core\Repository\Values\ContentType\ContentType;
+use Netgen\Layouts\Ibexa\Validator\Constraint\Location;
+use Netgen\Layouts\Ibexa\Validator\LocationValidator;
 use Netgen\Layouts\Tests\TestCase\ValidatorTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -32,8 +32,8 @@ final class LocationValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\LocationValidator::__construct
-     * @covers \Netgen\Layouts\Ez\Validator\LocationValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::__construct
+     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::validate
      */
     public function testValidateValid(): void
     {
@@ -42,7 +42,7 @@ final class LocationValidatorTest extends ValidatorTestCase
             ->method('loadLocation')
             ->with(self::identicalTo(42))
             ->willReturn(
-                new EzLocation(
+                new IbexaLocation(
                     [
                         'id' => 42,
                         'content' => new Content(['contentType' => new ContentType(['identifier' => 'user'])]),
@@ -54,8 +54,8 @@ final class LocationValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\LocationValidator::__construct
-     * @covers \Netgen\Layouts\Ez\Validator\LocationValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::__construct
+     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::validate
      */
     public function testValidateInvalidWithWrongType(): void
     {
@@ -64,7 +64,7 @@ final class LocationValidatorTest extends ValidatorTestCase
             ->method('loadLocation')
             ->with(self::identicalTo(42))
             ->willReturn(
-                new EzLocation(
+                new IbexaLocation(
                     [
                         'id' => 42,
                         'content' => new Content(['contentType' => new ContentType(['identifier' => 'article'])]),
@@ -76,8 +76,8 @@ final class LocationValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\LocationValidator::__construct
-     * @covers \Netgen\Layouts\Ez\Validator\LocationValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::__construct
+     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::validate
      */
     public function testValidateInvalidWithNonExistingLocation(): void
     {
@@ -91,8 +91,8 @@ final class LocationValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\LocationValidator::__construct
-     * @covers \Netgen\Layouts\Ez\Validator\LocationValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::__construct
+     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::validate
      */
     public function testValidateNull(): void
     {
@@ -104,19 +104,19 @@ final class LocationValidatorTest extends ValidatorTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\LocationValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->expectException(UnexpectedTypeException::class);
-        $this->expectExceptionMessage('Expected argument of type "Netgen\\Layouts\\Ez\\Validator\\Constraint\\Location", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
+        $this->expectExceptionMessage('Expected argument of type "Netgen\\Layouts\\Ibexa\\Validator\\Constraint\\Location", "Symfony\\Component\\Validator\\Constraints\\NotBlank" given');
 
         $this->constraint = new NotBlank();
         $this->assertValid(true, 'value');
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Validator\LocationValidator::validate
+     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::validate
      */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {

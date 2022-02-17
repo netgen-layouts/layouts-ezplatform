@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\DependencyInjection\CompilerPass\HttpCache;
+namespace Netgen\Bundle\LayoutsIbexaBundle\Tests\DependencyInjection\CompilerPass\HttpCache;
 
-use EzSystems\PlatformHttpCacheBundle\PurgeClient\LocalPurgeClient;
-use EzSystems\PlatformHttpCacheBundle\PurgeClient\VarnishPurgeClient;
+use Ibexa\HttpCache\PurgeClient\LocalPurgeClient;
+use Ibexa\HttpCache\PurgeClient\VarnishPurgeClient;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractContainerBuilderTestCase;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\ContainerBuilderHasAliasConstraint;
-use Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass;
+use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass;
 use stdClass;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
@@ -23,13 +23,13 @@ final class ConfigureHttpCachePassTest extends AbstractContainerBuilderTestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
      * @dataProvider processDataProvider
      */
     public function testProcess(string $definitionClass, bool $clientEnabled): void
     {
         $this->setDefinition('netgen_layouts.http_cache.client', new Definition());
-        $this->setDefinition('ezplatform.http_cache.purge_client_internal', new Definition($definitionClass));
+        $this->setDefinition('ibexa.http_cache.purge_client_internal', new Definition($definitionClass));
 
         $this->compile();
 
@@ -37,17 +37,17 @@ final class ConfigureHttpCachePassTest extends AbstractContainerBuilderTestCase
             $this->assertContainerBuilderNotHasAlias('netgen_layouts.http_cache.client') :
             $this->assertContainerBuilderHasAlias(
                 'netgen_layouts.http_cache.client',
-                'netgen_layouts.ezplatform.http_cache.client.local',
+                'netgen_layouts.ibexa.http_cache.client.local',
             );
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
      */
     public function testProcessWithNoSupportedClient(): void
     {
         $this->setDefinition('netgen_layouts.http_cache.client', new Definition());
-        $this->setDefinition('ezplatform.http_cache.purge_client_internal', new Definition(stdClass::class));
+        $this->setDefinition('ibexa.http_cache.purge_client_internal', new Definition(stdClass::class));
 
         $this->compile();
 
@@ -63,7 +63,7 @@ final class ConfigureHttpCachePassTest extends AbstractContainerBuilderTestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
      */
     public function testProcessWithEmptyContainer(): void
     {

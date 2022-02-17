@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Form;
+namespace Netgen\Layouts\Ibexa\Tests\Form;
 
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
-use eZ\Publish\Core\Repository\Values\ContentType\ContentTypeGroup;
-use Netgen\Layouts\Ez\Form\ContentTypeType;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Core\Repository\Values\ContentType\ContentTypeGroup;
+use Netgen\Layouts\Ibexa\Form\ContentTypeType;
 use Netgen\Layouts\Tests\TestCase\FormTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -19,8 +19,8 @@ final class ContentTypeTypeTest extends FormTestCase
     private MockObject $contentTypeServiceMock;
 
     /**
-     * @covers \Netgen\Layouts\Ez\Form\ContentTypeType::__construct
-     * @covers \Netgen\Layouts\Ez\Form\ContentTypeType::getContentTypes
+     * @covers \Netgen\Layouts\Ibexa\Form\ContentTypeType::__construct
+     * @covers \Netgen\Layouts\Ibexa\Form\ContentTypeType::getContentTypes
      */
     public function testSubmitValidData(): void
     {
@@ -47,7 +47,7 @@ final class ContentTypeTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Form\ContentTypeType::getParent
+     * @covers \Netgen\Layouts\Ibexa\Form\ContentTypeType::getParent
      */
     public function testGetParent(): void
     {
@@ -55,8 +55,8 @@ final class ContentTypeTypeTest extends FormTestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Form\ContentTypeType::configureOptions
-     * @covers \Netgen\Layouts\Ez\Form\ContentTypeType::getContentTypes
+     * @covers \Netgen\Layouts\Ibexa\Form\ContentTypeType::configureOptions
+     * @covers \Netgen\Layouts\Ibexa\Form\ContentTypeType::getContentTypes
      */
     public function testConfigureOptions(): void
     {

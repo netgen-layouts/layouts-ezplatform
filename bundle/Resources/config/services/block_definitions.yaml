@@ -1,7 +1,7 @@
 services:
-    netgen_layouts.ezplatform.block.block_definition_handler.content_field:
-        class: Netgen\Layouts\Ez\Block\BlockDefinition\Handler\ContentFieldHandler
+    netgen_layouts.ibexa.block.block_definition_handler.content_field:
+        class: Netgen\Layouts\Ibexa\Block\BlockDefinition\Handler\ContentFieldHandler
         arguments:
-            - "@netgen_layouts.ezplatform.content_provider"
+            - "@netgen_layouts.ibexa.content_provider"
         tags:
-            - { name: netgen_layouts.block_definition_handler, identifier: ezcontent_field }
+            - { name: netgen_layouts.block_definition_handler, identifier: ibexa_content_field }

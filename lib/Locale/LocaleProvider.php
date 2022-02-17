@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Locale;
+namespace Netgen\Layouts\Ibexa\Locale;
 
-use eZ\Publish\API\Repository\LanguageService;
-use eZ\Publish\API\Repository\Values\Content\Language;
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use eZ\Publish\Core\MVC\Symfony\Locale\LocaleConverterInterface;
+use Ibexa\Contracts\Core\Repository\LanguageService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Language;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
+use Ibexa\Core\MVC\Symfony\Locale\LocaleConverterInterface;
 use Netgen\Layouts\Locale\LocaleProviderInterface;
-use Netgen\Layouts\Utils\BackwardsCompatibility\Locales;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Intl\Locales;
 use function asort;
 use function is_array;
 
 /**
- * eZ Platform specific locale provider that provides the existing locales
- * by reading them from eZ Platform database.
+ * Ibexa Platform specific locale provider that provides the existing locales
+ * by reading them from Ibexa Platform database.
  */
 final class LocaleProvider implements LocaleProviderInterface
 {
@@ -77,7 +77,7 @@ final class LocaleProvider implements LocaleProviderInterface
     }
 
     /**
-     * Returns the array with POSIX locale code and name for provided eZ Platform language.
+     * Returns the array with POSIX locale code and name for provided Ibexa Platform language.
      *
      * If POSIX locale does not exist or if language is not enabled, null will be returned.
      *

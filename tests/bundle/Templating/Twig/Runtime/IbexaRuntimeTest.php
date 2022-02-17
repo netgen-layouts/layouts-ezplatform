@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\Templating\Twig\Runtime;
+namespace Netgen\Bundle\LayoutsIbexaBundle\Tests\Templating\Twig\Runtime;
 
 use Exception;
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\ContentTypeService;
-use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use eZ\Publish\Core\Repository\Repository;
-use eZ\Publish\Core\Repository\Values\Content\Content;
-use eZ\Publish\Core\Repository\Values\Content\Location;
-use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
-use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
-use Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\ContentTypeService;
+use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\Core\Repository\Repository;
+use Ibexa\Core\Repository\Values\Content\Content;
+use Ibexa\Core\Repository\Values\Content\Location;
+use Ibexa\Core\Repository\Values\Content\VersionInfo;
+use Ibexa\Core\Repository\Values\ContentType\ContentType;
+use Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-final class EzPlatformRuntimeTest extends TestCase
+final class IbexaRuntimeTest extends TestCase
 {
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository,
+     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\Repository,
      */
     private MockObject $repositoryMock;
 
@@ -31,21 +31,21 @@ final class EzPlatformRuntimeTest extends TestCase
 
     private MockObject $contentTypeServiceMock;
 
-    private EzPlatformRuntime $runtime;
+    private IbexaRuntime $runtime;
 
     protected function setUp(): void
     {
         $this->prepareRepositoryMock();
 
-        $this->runtime = new EzPlatformRuntime(
+        $this->runtime = new IbexaRuntime(
             $this->repositoryMock,
         );
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::__construct
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::getContentName
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadContent
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::__construct
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getContentName
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContent
      */
     public function testGetContentName(): void
     {
@@ -55,8 +55,8 @@ final class EzPlatformRuntimeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::getContentName
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadContent
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getContentName
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContent
      */
     public function testGetContentNameWithException(): void
     {
@@ -70,9 +70,9 @@ final class EzPlatformRuntimeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::getLocationPath
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadContent
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadLocation
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getLocationPath
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContent
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadLocation
      */
     public function testGetLocationPath(): void
     {
@@ -89,9 +89,9 @@ final class EzPlatformRuntimeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::getLocationPath
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadContent
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadLocation
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getLocationPath
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContent
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadLocation
      */
     public function testGetLocationPathWithException(): void
     {
@@ -105,8 +105,8 @@ final class EzPlatformRuntimeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::getContentTypeName
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadContentType
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getContentTypeName
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContentType
      */
     public function testGetContentTypeName(): void
     {
@@ -132,8 +132,8 @@ final class EzPlatformRuntimeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::getContentTypeName
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadContentType
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getContentTypeName
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContentType
      */
     public function testGetContentTypeNameWithNoTranslatedName(): void
     {
@@ -159,8 +159,8 @@ final class EzPlatformRuntimeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::getContentTypeName
-     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadContentType
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getContentTypeName
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContentType
      */
     public function testGetContentTypeNameWithException(): void
     {

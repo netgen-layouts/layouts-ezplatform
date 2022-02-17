@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Validator;
+namespace Netgen\Layouts\Ibexa\Validator;
 
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use eZ\Publish\API\Repository\Repository;
-use eZ\Publish\API\Repository\Values\Content\Location as EzLocation;
-use Netgen\Layouts\Ez\Validator\Constraint\Location;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Ibexa\Contracts\Core\Repository\Repository;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location as IbexaLocation;
+use Netgen\Layouts\Ibexa\Validator\Constraint\Location;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
@@ -16,7 +16,7 @@ use function in_array;
 use function is_scalar;
 
 /**
- * Validates if the provided value is an ID of a valid location in eZ Platform.
+ * Validates if the provided value is an ID of a valid location in Ibexa Platform.
  */
 final class LocationValidator extends ConstraintValidator
 {
@@ -42,9 +42,9 @@ final class LocationValidator extends ConstraintValidator
         }
 
         try {
-            /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
+            /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location $location */
             $location = $this->repository->sudo(
-                static fn (Repository $repository): EzLocation => $repository->getLocationService()->loadLocation((int) $value),
+                static fn (Repository $repository): IbexaLocation => $repository->getLocationService()->loadLocation((int) $value),
             );
 
             if (count($constraint->allowedTypes) > 0) {

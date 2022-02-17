@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Security\Role;
+namespace Netgen\Layouts\Ibexa\Security\Role;
 
 use Symfony\Component\Security\Core\Role\RoleHierarchy as BaseRoleHierarchy;
 

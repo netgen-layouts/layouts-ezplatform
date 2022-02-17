@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\HttpCache\Varnish;
+namespace Netgen\Layouts\Ibexa\HttpCache\Varnish;
 
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Netgen\Layouts\HttpCache\Varnish\HostHeaderProviderInterface;
 
 final class HostHeaderProvider implements HostHeaderProviderInterface

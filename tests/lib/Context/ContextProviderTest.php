@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Context;
+namespace Netgen\Layouts\Ibexa\Tests\Context;
 
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
+use Ibexa\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use Netgen\Layouts\Context\Context;
-use Netgen\Layouts\Ez\Context\ContextProvider;
+use Netgen\Layouts\Ibexa\Context\ContextProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,8 +39,8 @@ final class ContextProviderTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::__construct
-     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::provideContext
+     * @covers \Netgen\Layouts\Ibexa\Context\ContextProvider::__construct
+     * @covers \Netgen\Layouts\Ibexa\Context\ContextProvider::provideContext
      */
     public function testProvideContextWithLocationId(): void
     {
@@ -52,12 +52,12 @@ final class ContextProviderTest extends TestCase
 
         $this->contextProvider->provideContext($this->context);
 
-        self::assertTrue($this->context->has('ez_location_id'));
-        self::assertSame(42, $this->context->get('ez_location_id'));
+        self::assertTrue($this->context->has('ibexa_location_id'));
+        self::assertSame(42, $this->context->get('ibexa_location_id'));
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::provideContext
+     * @covers \Netgen\Layouts\Ibexa\Context\ContextProvider::provideContext
      */
     public function testProvideContextWithContentId(): void
     {
@@ -81,12 +81,12 @@ final class ContextProviderTest extends TestCase
 
         $this->contextProvider->provideContext($this->context);
 
-        self::assertTrue($this->context->has('ez_location_id'));
-        self::assertSame(24, $this->context->get('ez_location_id'));
+        self::assertTrue($this->context->has('ibexa_location_id'));
+        self::assertSame(24, $this->context->get('ibexa_location_id'));
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::provideContext
+     * @covers \Netgen\Layouts\Ibexa\Context\ContextProvider::provideContext
      */
     public function testProvideContextWithNoLocationIdAndContentId(): void
     {
@@ -97,11 +97,11 @@ final class ContextProviderTest extends TestCase
 
         $this->contextProvider->provideContext($this->context);
 
-        self::assertFalse($this->context->has('ez_location_id'));
+        self::assertFalse($this->context->has('ibexa_location_id'));
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::provideContext
+     * @covers \Netgen\Layouts\Ibexa\Context\ContextProvider::provideContext
      */
     public function testProvideContextWithInvalidRoute(): void
     {
@@ -112,16 +112,16 @@ final class ContextProviderTest extends TestCase
 
         $this->contextProvider->provideContext($this->context);
 
-        self::assertFalse($this->context->has('ez_location_id'));
+        self::assertFalse($this->context->has('ibexa_location_id'));
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Context\ContextProvider::provideContext
+     * @covers \Netgen\Layouts\Ibexa\Context\ContextProvider::provideContext
      */
     public function testProvideContextWithNoRequest(): void
     {
         $this->contextProvider->provideContext($this->context);
 
-        self::assertFalse($this->context->has('ez_location_id'));
+        self::assertFalse($this->context->has('ibexa_location_id'));
     }
 }

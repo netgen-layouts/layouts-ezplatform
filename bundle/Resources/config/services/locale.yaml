@@ -1,10 +1,10 @@
 services:
     netgen_layouts.locale.provider:
-        alias: netgen_layouts.ezplatform.locale.provider
+        alias: netgen_layouts.ibexa.locale.provider
 
-    netgen_layouts.ezplatform.locale.provider:
-        class: Netgen\Layouts\Ez\Locale\LocaleProvider
+    netgen_layouts.ibexa.locale.provider:
+        class: Netgen\Layouts\Ibexa\Locale\LocaleProvider
         arguments:
-            - "@ezpublish.api.service.language"
-            - "@ezpublish.locale.converter"
-            - "@ezpublish.config.resolver"
+            - "@ibexa.api.service.language"
+            - "@Ibexa\\Core\\MVC\\Symfony\\Locale\\LocaleConverter"
+            - "@ibexa.config.resolver"

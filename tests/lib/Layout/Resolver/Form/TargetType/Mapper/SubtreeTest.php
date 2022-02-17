@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\Form\TargetType\Mapper;
+namespace Netgen\Layouts\Ibexa\Tests\Layout\Resolver\Form\TargetType\Mapper;
 
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
-use Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Subtree;
+use Netgen\Layouts\Ibexa\Layout\Resolver\Form\TargetType\Mapper\Subtree;
 use PHPUnit\Framework\TestCase;
 
 final class SubtreeTest extends TestCase
@@ -18,7 +18,7 @@ final class SubtreeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Subtree::getFormType
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\Form\TargetType\Mapper\Subtree::getFormType
      */
     public function testGetFormType(): void
     {
@@ -26,13 +26,13 @@ final class SubtreeTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Subtree::getFormOptions
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\Form\TargetType\Mapper\Subtree::getFormOptions
      */
     public function testGetFormOptions(): void
     {
         self::assertSame(
             [
-                'item_type' => 'ezlocation',
+                'item_type' => 'ibexa_location',
             ],
             $this->mapper->getFormOptions(),
         );

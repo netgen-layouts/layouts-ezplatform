@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Layout\Resolver\TargetHandler\Doctrine;
+namespace Netgen\Layouts\Ibexa\Layout\Resolver\TargetHandler\Doctrine;
 
 use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\DBAL\Types\Types;

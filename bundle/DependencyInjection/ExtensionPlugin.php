@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection;
+namespace Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection;
 
-use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ConfigurationProcessor;
-use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ContextualizerInterface;
+use Ibexa\Bundle\Core\DependencyInjection\Configuration\SiteAccessAware\ConfigurationProcessor;
+use Ibexa\Bundle\Core\DependencyInjection\Configuration\SiteAccessAware\ContextualizerInterface;
 use Netgen\Bundle\LayoutsBundle\DependencyInjection\ConfigurationNode\DesignNode;
 use Netgen\Bundle\LayoutsBundle\DependencyInjection\ConfigurationNode\ViewNode;
 use Netgen\Bundle\LayoutsBundle\DependencyInjection\ExtensionPlugin as BaseExtensionPlugin;
@@ -39,7 +39,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
     /**
      * Pre-processes the configuration before it is resolved.
      *
-     * The point of the preprocessor is to generate eZ Platform siteaccess aware
+     * The point of the preprocessor is to generate Ibexa Platform siteaccess aware
      * configuration for every key that is available in self::SITEACCCESS_AWARE_SETTINGS.
      *
      * With this, the following:
@@ -110,7 +110,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
     /**
      * Post-processes the resolved configuration.
      *
-     * The postprocessor calls eZ Platform mapConfigArray and mapSettings methods from siteaccess aware
+     * The postprocessor calls Ibexa Platform mapConfigArray and mapSettings methods from siteaccess aware
      * configuration processor as per documentation, to make the configuration correctly apply to all
      * siteaccesses.
      *
@@ -164,7 +164,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
     }
 
     /**
-     * Ugly hack to support semantic view config. The problem is, eZ semantic config
+     * Ugly hack to support semantic view config. The problem is, Ibexa semantic config
      * supports only merging arrays up to second level, but in view config we have three.
      *
      * view:
@@ -173,7 +173,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
      *             config1: ...
      *             config2: ...
      *
-     * So instead of merging view.block_view.context, eZ merges view.block_view, thus loosing
+     * So instead of merging view.block_view.context, Ibexa merges view.block_view, thus loosing
      * a good deal of config.
      *
      * This iterates over all default view configs for each view and context, and merges

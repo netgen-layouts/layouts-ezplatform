@@ -1,15 +1,15 @@
 parameters:
-    netgen_layouts.ezplatform.context.provider.allowed_routes:
-        - !php/const eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter::URL_ALIAS_ROUTE_NAME
-        # For eZ Platform content preview support
-        - _ezpublishPreviewContent
+    netgen_layouts.ibexa.context.provider.allowed_routes:
+        - !php/const Ibexa\Core\MVC\Symfony\Routing\UrlAliasRouter::URL_ALIAS_ROUTE_NAME
+        # For Ibexa Platform content preview support
+        - ibexa.version.preview
 
 services:
-    netgen_layouts.ezplatform.context.provider:
-        class: Netgen\Layouts\Ez\Context\ContextProvider
+    netgen_layouts.ibexa.context.provider:
+        class: Netgen\Layouts\Ibexa\Context\ContextProvider
         arguments:
             - "@request_stack"
-            - "@ezpublish.api.service.content"
-            - "%netgen_layouts.ezplatform.context.provider.allowed_routes%"
+            - "@ibexa.api.service.content"
+            - "%netgen_layouts.ibexa.context.provider.allowed_routes%"
         tags:
             - { name: netgen_layouts.context_provider }

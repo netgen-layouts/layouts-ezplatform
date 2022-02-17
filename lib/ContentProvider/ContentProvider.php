@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\ContentProvider;
+namespace Netgen\Layouts\Ibexa\ContentProvider;
 
-use eZ\Publish\API\Repository\LocationService;
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\API\Repository\Values\Content\Location;
+use Ibexa\Contracts\Core\Repository\LocationService;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Netgen\Layouts\Context\Context;
 
 /**
- * Provides the eZ Platform content and location objects from the
+ * Provides the Ibexa Platform content and location objects from the
  * current context.
  */
 final class ContentProvider implements ContentProviderInterface
@@ -41,17 +41,17 @@ final class ContentProvider implements ContentProviderInterface
     }
 
     /**
-     * Loads the location from the eZ Platform API by using the location ID
+     * Loads the location from the Ibexa Platform API by using the location ID
      * stored in the context.
      */
     private function loadLocation(): ?Location
     {
-        if (!$this->context->has('ez_location_id')) {
+        if (!$this->context->has('ibexa_location_id')) {
             return null;
         }
 
         return $this->locationService->loadLocation(
-            (int) $this->context->get('ez_location_id'),
+            (int) $this->context->get('ibexa_location_id'),
         );
     }
 }

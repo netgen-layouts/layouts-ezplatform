@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Parameters\ParameterType;
+namespace Netgen\Layouts\Ibexa\Parameters\ParameterType;
 
-use Netgen\Layouts\Ez\Validator\Constraint as EzConstraints;
+use Netgen\Layouts\Ibexa\Validator\Constraint as IbexaConstraints;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\Layouts\Parameters\ParameterType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,13 +13,13 @@ use function array_values;
 use function is_array;
 
 /**
- * Parameter type used to store and validate an identifier of a section in eZ Platform.
+ * Parameter type used to store and validate an identifier of a section in Ibexa Platform.
  */
 final class SectionType extends ParameterType
 {
     public static function getIdentifier(): string
     {
-        return 'ez_section';
+        return 'ibexa_section';
     }
 
     public function configureOptions(OptionsResolver $optionsResolver): void
@@ -57,7 +57,7 @@ final class SectionType extends ParameterType
 
         $sectionConstraints = [
             new Constraints\Type(['type' => 'string']),
-            new EzConstraints\Section(['allowedSections' => $parameterDefinition->getOption('sections')]),
+            new IbexaConstraints\Section(['allowedSections' => $parameterDefinition->getOption('sections')]),
         ];
 
         if ($options['multiple'] === false) {

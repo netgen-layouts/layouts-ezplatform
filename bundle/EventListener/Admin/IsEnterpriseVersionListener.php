@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Bundle\LayoutsEzPlatformBundle\EventListener\Admin;
+namespace Netgen\Bundle\LayoutsIbexaBundle\EventListener\Admin;
 
 use Netgen\Layouts\Event\CollectViewParametersEvent;
 use Netgen\Layouts\Event\LayoutsEvents;
@@ -34,7 +34,7 @@ final class IsEnterpriseVersionListener implements EventSubscriberInterface
             return;
         }
 
-        if ($view->getContext() !== 'ezadminui') {
+        if ($view->getContext() !== 'ibexa_admin') {
             return;
         }
 

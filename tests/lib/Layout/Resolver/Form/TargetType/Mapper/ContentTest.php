@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Tests\Layout\Resolver\Form\TargetType\Mapper;
+namespace Netgen\Layouts\Ibexa\Tests\Layout\Resolver\Form\TargetType\Mapper;
 
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
-use Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Content;
+use Netgen\Layouts\Ibexa\Layout\Resolver\Form\TargetType\Mapper\Content;
 use PHPUnit\Framework\TestCase;
 
 final class ContentTest extends TestCase
@@ -18,7 +18,7 @@ final class ContentTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Content::getFormType
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\Form\TargetType\Mapper\Content::getFormType
      */
     public function testGetFormType(): void
     {
@@ -26,13 +26,13 @@ final class ContentTest extends TestCase
     }
 
     /**
-     * @covers \Netgen\Layouts\Ez\Layout\Resolver\Form\TargetType\Mapper\Content::getFormOptions
+     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\Form\TargetType\Mapper\Content::getFormOptions
      */
     public function testGetFormOptions(): void
     {
         self::assertSame(
             [
-                'item_type' => 'ezcontent',
+                'item_type' => 'ibexa_content',
             ],
             $this->mapper->getFormOptions(),
         );

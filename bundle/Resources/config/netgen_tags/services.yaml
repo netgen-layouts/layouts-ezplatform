@@ -1,0 +1,19 @@
+services:
+    netgen_layouts.ibexa.parameters.parameter_type.tags:
+        class: Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType
+        arguments:
+            - "@eztags.api.service.tags"
+        tags:
+            - { name: netgen_layouts.parameter_type }
+
+    netgen_layouts.ibexa.parameters.form_mapper.tags:
+        class: Netgen\Layouts\Ibexa\Parameters\Form\Mapper\TagsMapper
+        tags:
+            - { name: netgen_layouts.parameter_type.form_mapper, type: netgen_tags }
+
+    netgen_layouts.ibexa.validator.tags:
+        class: Netgen\Layouts\Ibexa\Validator\TagValidator
+        arguments:
+            - "@eztags.api.service.tags"
+        tags:
+            - { name: validator.constraint_validator, alias: nglayouts_netgen_tags }

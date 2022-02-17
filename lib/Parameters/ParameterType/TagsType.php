@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Netgen\Layouts\Ez\Parameters\ParameterType;
+namespace Netgen\Layouts\Ibexa\Parameters\ParameterType;
 
-use eZ\Publish\API\Repository\Exceptions\NotFoundException;
-use Netgen\Layouts\Ez\Validator\Constraint as EzConstraints;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
+use Netgen\Layouts\Ibexa\Validator\Constraint as IbexaConstraints;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\Layouts\Parameters\ParameterType;
 use Netgen\TagsBundle\API\Repository\TagsService;
@@ -30,7 +30,7 @@ final class TagsType extends ParameterType
 
     public static function getIdentifier(): string
     {
-        return 'ez_tags';
+        return 'netgen_tags';
     }
 
     public function configureOptions(OptionsResolver $optionsResolver): void
@@ -116,7 +116,7 @@ final class TagsType extends ParameterType
                         new Constraints\NotBlank(),
                         new Constraints\Type(['type' => 'numeric']),
                         new Constraints\GreaterThan(['value' => 0]),
-                        new EzConstraints\Tag(['allowInvalid' => $options['allow_invalid']]),
+                        new IbexaConstraints\Tag(['allowInvalid' => $options['allow_invalid']]),
                     ],
                 ],
             ),

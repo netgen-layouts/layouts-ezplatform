@@ -10,10 +10,9 @@
     {% set content = block.dynamicParameter('content') %}
 
     {% if field_identifier is not empty and content.fields[field_identifier] is defined %}
-        {% block ezcontent_field %}
-            {# We should use ez_field_is_empty function, but it does not exist on eZ kernel 7.5 #}
-            {% if not nglayouts_ez_field_is_empty(content, field_identifier) %}
-                {{ ez_render_field(content, field_identifier) }}
+        {% block ibexa_content_field %}
+            {% if not ibexa_field_is_empty(content, field_identifier) %}
+                {{ ibexa_render_field(content, field_identifier) }}
             {% endif %}
         {% endblock %}
     {% endif %}
