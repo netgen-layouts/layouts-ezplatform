@@ -41,7 +41,7 @@
         </ul>
 
         <div class="show-all-rules">
-            <label><input type="checkbox" name="show-all-rules" class="rules-checkbox" /> {{ 'rules.show_all_rules'|trans }}</label>
+            <label><input type="checkbox" name="show-all-rules" class="rules-checkbox"{% if rules_one_on_one is empty %} checked="checked"{% endif %} /> {{ 'rules.show_all_rules'|trans }}</label>
         </div>
     {% else %}
         <p>{{ 'rules.no_rules'|trans }}</p>
