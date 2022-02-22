@@ -79,7 +79,7 @@ $(function () {
     const self = this;
     $.ajax({
       type: 'DELETE',
-      url: `/ngadmin/layouts/rules/${this.ruleId}/delete`,
+      url: `/nglayouts/ibexa/admin/layouts/rules/${this.ruleId}/delete`,
       headers: {
         'X-CSRF-Token': this.layouts.csrf,
       },
@@ -329,13 +329,13 @@ $(function () {
     if (this.checked) {
       $('.rule-non-direct').show();
 
-      $('.title-direct-rules').hide();
-      $('.title-all-rules').css('display', 'flex');
+      $('.direct-rules-container').hide();
+      $('.all-rules-container').css('display', 'block');
     } else {
       $('.rule-non-direct').hide();
 
-      $('.title-direct-rules').css('display', 'flex');
-      $('.title-all-rules').hide();
+      $('.direct-rules-container').css('display', 'block');
+      $('.all-rules-container').hide();
     }
   });
 
