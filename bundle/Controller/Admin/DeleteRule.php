@@ -27,17 +27,19 @@ final class DeleteRule extends Controller
      */
     public function __invoke(Rule $rule, Request $request): Response
     {
-        $this->denyAccessUnlessGranted(
-            'nglayouts:mapping:delete',
-            ['ruleGroup', $rule->getRuleGroupId()->toString()],
-        );
+        if (!$this->isGranted('ROLE_NGLAYOUTS_ADMIN')) {
+            $this->denyAccessUnlessGranted(
+                'nglayouts:mapping:delete',
+                ['ruleGroup', $rule->getRuleGroupId()->toString()],
+            );
+        }
 
         $layout = $rule->getLayout();
 
         if (
             $layout !== null
             && $this->layoutResolverService->getRuleCountForLayout($layout) === 1
-            && $this->isGranted('nglayouts:layout:delete')
+            && ($this->isGranted('ROLE_NGLAYOUTS_ADMIN') || $this->isGranted('nglayouts:layout:delete'))
         ) {
             $this->layoutService->deleteLayout($layout);
         }
@@ -49,13 +51,5 @@ final class DeleteRule extends Controller
 
     public function checkPermissions(): void
     {
-        if ($this->isGranted('ROLE_NGLAYOUTS_ADMIN')) {
-            return;
-        }
-
-        $exception = $this->createAccessDeniedException();
-        $exception->setAttributes('ROLE_NGLAYOUTS_ADMIN');
-
-        throw $exception;
     }
 }

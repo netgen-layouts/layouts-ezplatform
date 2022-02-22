@@ -79,7 +79,7 @@ $(function () {
     const self = this;
     $.ajax({
       type: 'DELETE',
-      url: `/ngadmin/layouts/rules/${this.ruleId}/delete`,
+      url: `/nglayouts/ezadmin/layouts/rules/${this.ruleId}/delete`,
       headers: {
         'X-CSRF-Token': this.layouts.csrf,
       },
