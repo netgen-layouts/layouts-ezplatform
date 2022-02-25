@@ -9,6 +9,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
+use function is_string;
 use function str_starts_with;
 
 /**
@@ -72,17 +73,19 @@ final class RepositoryAccessVoter extends Voter
     }
 
     /**
+     * @param string $attribute
      * @param mixed $subject
      */
-    protected function supports(string $attribute, $subject): bool
+    protected function supports($attribute, $subject): bool
     {
-        return str_starts_with($attribute, 'ROLE_NGLAYOUTS_');
+        return is_string($attribute) && str_starts_with($attribute, 'ROLE_NGLAYOUTS_');
     }
 
     /**
+     * @param string $attribute
      * @param mixed $subject
      */
-    protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
+    protected function voteOnAttribute($attribute, $subject, TokenInterface $token): bool
     {
         if (!isset(self::ATTRIBUTE_TO_POLICY_MAP[$attribute])) {
             return false;
