@@ -1,25 +1,27 @@
 {% trans_default_domain 'nglayouts_ibexa_admin' %}
 
-{% include '@ibexadesign/ui/table_header.html.twig' with {
-    'header_text': 'related_layouts.title'|trans
-} %}
+<section class="ibexa-view-rawcontentview">
+    <div class="ibexa-raw-content-title">
+        <h3>{{ 'related_layouts.title'|trans }}</h3>
+    </div>
 
-<div class="bg-white p-3 mb-5">
-    {% if related_layouts is not empty %}
-        <ul class="layout-list">
-            <li class="layout-list-head">
-                <div class="layout-name">{{ 'related_layouts.layout_name'|trans }}</div>
-                <div class="layout-description">{{ 'related_layouts.description'|trans }}</div>
-                <div class="layout-modified">{{ 'related_layouts.modified'|trans }}</div>
-                <div class="layout-actions"></div>
-                <div class="layout-dropdown"></div>
-            </li>
+    <div class="bg-white p-3 mb-5">
+        {% if related_layouts is not empty %}
+            <ul class="layout-list">
+                <li class="layout-list-head">
+                    <div class="layout-name">{{ 'related_layouts.layout_name'|trans }}</div>
+                    <div class="layout-description">{{ 'related_layouts.description'|trans }}</div>
+                    <div class="layout-modified">{{ 'related_layouts.modified'|trans }}</div>
+                    <div class="layout-actions"></div>
+                    <div class="layout-dropdown"></div>
+                </li>
 
-            {% for related_layout in related_layouts %}
-                {{ nglayouts_render_layout(related_layout, {}, 'ibexa_admin') }}
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>{{ 'related_layouts.no_related_layouts'|trans }}</p>
-    {% endif %}
-</div>
+                {% for related_layout in related_layouts %}
+                    {{ nglayouts_render_layout(related_layout, {}, 'ibexa_admin') }}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>{{ 'related_layouts.no_related_layouts'|trans }}</p>
+        {% endif %}
+    </div>
+</section>

@@ -1,47 +1,51 @@
 {% trans_default_domain 'nglayouts_ibexa_admin' %}
 
-<div class="direct-rules-container" {% if rules_one_on_one is empty %} style="display: none"{% endif %}>
-    {% include '@ibexadesign/ui/table_header.html.twig' with {
-        'ground': 'title-direct-rules',
-        'header_text': 'rules.title'|trans
-    } %}
-</div>
+<section class="ibexa-view-rawcontentview">
+    <div class="ibexa-raw-content-title">
+        <h3>{{ 'rules.title'|trans }}</h3>
+        {#<h3>{{ 'rules.title_all_rules'|trans }}</h3>#}
 
-<div class="all-rules-container" {% if rules_one_on_one is empty %} style="display: block"{% endif %}>
-    {% include '@ibexadesign/ui/table_header.html.twig' with {
-        'ground': 'title-all-rules',
-        'header_text': 'rules.title_all_rules'|trans
-    } %}
-</div>
-
-<div class="bg-white p-3 mb-5">
-    <div class="direct-mapping-notice">
-        <button class="btn btn-primary js-direct-mapping">
-            {{ 'rules.create_new_direct_rule'|trans }}
-        </button>
-        <p class="direct-mapping-button-sub">{{ 'rules.create_new_direct_rule.subtitle'|trans }}</p>
+        {% block extras %}
+            <button
+                type="button"
+                class="btn ibexa-btn ibexa-btn--tertiary ibexa-btn--small ibexa-btn--prevented js-direct-mapping"
+            >
+                <svg class="ibexa-icon ibexa-icon--small ibexa-icon--create">
+                    <use xlink:href="{{ ibexa_icon_path('create') }}"></use>
+                </svg>
+                <span class="ibexa-btn__label">
+                    {{ 'rules.create_new_direct_rule'|trans }}
+                </span>
+            </button>
+            {#<p class="direct-mapping-button-sub">{{ 'rules.create_new_direct_rule.subtitle'|trans }}</p>#}
+        {% endblock %}
     </div>
-    {% if rules is not empty %}
-        <ul class="layout-list">
-            <li class="layout-list-head">
-                <div class="layout-name">{{ 'rules.mapped_layout'|trans }}</div>
-                <div class="layout-target">{{ 'rules.targets'|trans }}</div>
-                <div class="layout-conditions">{{ 'rules.conditions'|trans }}</div>
-                <div class="layout-actions"></div>
-                <div class="layout-dropdown"></div>
-            </li>
 
-            {% for rule in rules %}
-                <div class="rule{% if not (rules_one_on_one[rule.id.toString] ?? false) %} rule-non-direct{% endif %}" {% if rules_one_on_one is empty %} style="display: block"{% endif %}>
-                    {{ nglayouts_render_rule(rule, { location: location }, 'ibexa_admin') }}
+    <div class="ibexa-content-preview">
+        <div class="bg-white p-3 mb-5">
+            {% if rules is not empty %}
+                <ul class="layout-list">
+                    <li class="layout-list-head">
+                        <div class="layout-name">{{ 'rules.mapped_layout'|trans }}</div>
+                        <div class="layout-target">{{ 'rules.targets'|trans }}</div>
+                        <div class="layout-conditions">{{ 'rules.conditions'|trans }}</div>
+                        <div class="layout-actions"></div>
+                        <div class="layout-dropdown"></div>
+                    </li>
+
+                    {% for rule in rules %}
+                        <div class="rule{% if not (rules_one_on_one[rule.id.toString] ?? false) %} rule-non-direct{% endif %}" {% if rules_one_on_one is empty %} style="display: block"{% endif %}>
+                            {{ nglayouts_render_rule(rule, { location: location }, 'ibexa_admin') }}
+                        </div>
+                    {% endfor %}
+                </ul>
+
+                <div class="show-all-rules">
+                    <label><input type="checkbox" name="show-all-rules" class="rules-checkbox" {% if rules_one_on_one is empty %} checked="checked" {% endif %} /> {{ 'rules.show_all_rules'|trans }}</label>
                 </div>
-            {% endfor %}
-        </ul>
-
-        <div class="show-all-rules">
-            <label><input type="checkbox" name="show-all-rules" class="rules-checkbox" {% if rules_one_on_one is empty %} checked="checked" {% endif %} /> {{ 'rules.show_all_rules'|trans }}</label>
+            {% else %}
+                <p>{{ 'rules.no_rules'|trans }}</p>
+            {% endif %}
         </div>
-    {% else %}
-        <p>{{ 'rules.no_rules'|trans }}</p>
-    {% endif %}
-</div>
+    </div>
+</section>
