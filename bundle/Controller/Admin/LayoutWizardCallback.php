@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Netgen\Bundle\LayoutsIbexaBundle\Controller\Admin;
 
 use Ibexa\Contracts\Core\Repository\Values\Content\Location;
-use Ibexa\Core\MVC\Symfony\Routing\UrlAliasRouter;
+use Ibexa\Core\MVC\Symfony\Routing\Generator\UrlAliasGenerator;
 use Netgen\Layouts\API\Service\LayoutResolverService;
 use Netgen\Layouts\API\Service\LayoutService;
 use Netgen\Layouts\API\Values\Layout\Layout;
@@ -38,8 +38,9 @@ final class LayoutWizardCallback extends Controller
         $wizardId = sprintf('_layouts_ibexa_wizard/%s', (string) $request->query->get('wizardId', ''));
         if (!$request->getSession()->has($wizardId)) {
             return $this->redirectToRoute(
-                UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
+                UrlAliasGenerator::INTERNAL_CONTENT_VIEW_ROUTE,
                 [
+                    'contentId' => $location->contentId,
                     'locationId' => $location->id,
                     '_fragment' => 'ibexa-tab-location-view-netgen_layouts',
                 ],
@@ -53,8 +54,9 @@ final class LayoutWizardCallback extends Controller
 
         if (!$this->layoutService->layoutExists($layoutId, Layout::STATUS_PUBLISHED)) {
             return $this->redirectToRoute(
-                UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
+                UrlAliasGenerator::INTERNAL_CONTENT_VIEW_ROUTE,
                 [
+                    'contentId' => $location->contentId,
                     'locationId' => $location->id,
                     '_fragment' => 'ibexa-tab-location-view-netgen_layouts',
                 ],
@@ -84,8 +86,9 @@ final class LayoutWizardCallback extends Controller
         $this->layoutResolverService->publishRule($rule);
 
         return $this->redirectToRoute(
-            UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
+            UrlAliasGenerator::INTERNAL_CONTENT_VIEW_ROUTE,
             [
+                'contentId' => $location->contentId,
                 'locationId' => $location->id,
                 '_fragment' => 'ibexa-tab-location-view-netgen_layouts',
             ],
