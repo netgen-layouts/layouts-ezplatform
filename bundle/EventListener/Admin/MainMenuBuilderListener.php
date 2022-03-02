@@ -50,7 +50,12 @@ final class MainMenuBuilderListener implements EventSubscriberInterface
         $layouts = $menu
             ->addChild('nglayouts')
             ->setLabel('menu.main_menu.header')
-            ->setExtra('translation_domain', 'nglayouts_admin');
+            ->setExtra('translation_domain', 'nglayouts_admin')
+            ->setExtra('bottom_item', true)
+            ->setExtra('icon', 'landing_page')
+            ->setExtra('orderNumber', 150)
+            ->setAttribute('data-tooltip-placement', 'right')
+            ->setAttribute('data-tooltip-extra-class', 'ibexa-tooltip--info-neon');
 
         $layouts
             ->addChild('layout_resolver', ['route' => 'nglayouts_admin_layout_resolver_index'])
