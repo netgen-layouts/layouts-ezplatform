@@ -6,7 +6,7 @@ namespace Netgen\Layouts\Ibexa\AdminUI\Tab\LocationView;
 
 use Ibexa\Contracts\AdminUi\Tab\AbstractEventDispatchingTab;
 use Ibexa\Contracts\AdminUi\Tab\ConditionalTabInterface;
-use Ibexa\Contracts\Core\Exception\InvalidArgumentException;
+use Ibexa\Contracts\Core\Repository\Exceptions\InvalidArgumentException;
 use Ibexa\Contracts\Core\Repository\PermissionService;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
