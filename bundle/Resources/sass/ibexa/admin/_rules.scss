@@ -1,5 +1,7 @@
 #rules {
     visibility: hidden;
+    display: flex;
+    flex-direction: column;
     input[type='checkbox'] {
         position: absolute;
         left: -9999em;
@@ -84,7 +86,7 @@
     display: flex;
     font-size: 12px;
     color: hsl(0, 0, 34);
-    padding: 0 0 2px;
+    padding: 6px 2px;
     .nl-rules-head-wrapper {
         flex: 1;
         display: flex;
@@ -120,10 +122,12 @@
     align-items: center;
     position: relative;
     z-index: 1000;
+    padding: 6px 2px;
 
     .selected-items, .selected-items-text {
         font-size: 13px;
         line-height: inherit;
+        margin-bottom: 0;
     }
 
     .selected-items-text {
@@ -150,8 +154,8 @@
 
     .js-check-all {
         margin-right: auto;
-        padding-left: 20px;
-        padding-top: 5px;
+        padding-left: 14px;
+        padding-top: 9px;
 
         label {
             opacity: 1;
@@ -2033,12 +2037,10 @@
 
 .nl-rules {
     overflow-y: auto;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 164px;
-    bottom: $gutter * 1.5;
-    padding: 6px $gutter * 1.5 $gutter * 4 $gutter * 1.5;
+    padding: 0;
+    position: relative;
+    top: 0 !important;
+    padding: 6px 2px;
     .nl-rule-between {
         text-align: center;
         margin: .75em 0;
