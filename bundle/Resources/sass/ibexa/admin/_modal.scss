@@ -20,7 +20,7 @@
         transform:translate(-50%, -50%);
         background:#fff;
         border-radius:$modalBorderRadius;
-        width:800px;
+        width:600px;
         max-width:98%;
         max-height:98%;
         display:flex;
@@ -52,7 +52,6 @@
             }
         }
         .nl-modal-body {
-            padding:35px 80px;
             overflow-y:auto;
             font-size: 16px;
 
@@ -71,35 +70,6 @@
             input[type="radio"] {
                 float: left;
                 margin-right: 16px;
-            }
-
-            .row-input {
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: space-between;
-
-                &:first-child {
-                    input[type="radio"] {
-                        width: auto;
-                    }
-                    label[for="layout_wizard_action_1"] {
-                        display: inline;
-                    }
-                    #layout_wizard_action_1 {
-                        margin-bottom: 24px;
-                    }
-                }
-
-                &.error-input {
-                    input {
-                        border: 1px solid red;
-                    }
-                }
-
-                select, input, textarea {
-                    width: 290px;
-                }
             }
 
             .group-title {
