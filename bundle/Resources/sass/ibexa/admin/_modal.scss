@@ -17,6 +17,14 @@
     form[name="layout_wizard"] {
         .nl-modal {
             width: 800px !important;
+
+            .nl-modal-body {
+                .row-input:first-child {
+                    input[type="radio"] {
+                        margin-top: 4px;
+                    }
+                }
+            }
         }
         .row-input {
             display: flex;

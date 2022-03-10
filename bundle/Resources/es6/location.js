@@ -342,4 +342,20 @@ $(function () {
   $('.mapped-layouts-box').each(function () {
     return new LayoutsBox(this);
   });
+
+  $(document).on('click', '.layout-dropdown', (e) => {
+    const wrapper = $(e.target).parent();
+    const isOpen = wrapper.hasClass('show');
+    $('.dropdown-menu').removeClass('show');
+    $('.layout-dropdown').removeClass('show');
+    isOpen ? wrapper.removeClass('show') : wrapper.addClass('show');
+    isOpen ? wrapper.find('.dropdown-menu').removeClass('show') : wrapper.find('.dropdown-menu').addClass('show');
+  });
+
+  $(document).on('click', (e) => {
+    if ($(e.target).closest('.dropdown-menu').length === 0 && $(e.target).closest('.layout-dropdown').length === 0) {
+      $('.dropdown-menu').removeClass('show');
+      $('.layout-dropdown').removeClass('show');
+    }
+  });
 });
