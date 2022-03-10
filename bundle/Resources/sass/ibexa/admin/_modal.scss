@@ -446,6 +446,21 @@
         }
     }
 }
+.modal {
+    .modal-header {
+        .close {
+            border: 0;
+            background: none;
+            box-shadow: none;
+            border-radius: 0px;
+            line-height: 1;
+        }
+    }
+    .modal-footer {
+        padding: 6px;
+    }
+}
+
 @keyframes maskFadeIn {
     from {
         opacity:0;
