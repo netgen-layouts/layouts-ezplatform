@@ -213,6 +213,13 @@
             box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
             list-style-type: none;
             text-align: right;
+
+            &.show {
+                position: absolute;
+                transform: translate3d(-117px, 76px, 0px);
+                top: 0px;
+                left: 0px; 
+            }
             > li {
                 &:hover {
                     background: transparent;
@@ -364,5 +371,11 @@
     }
     .all-rules-container {
         display: none;
+    }
+}
+
+.ng-layouts-app {
+    .layouts-content {
+        padding-bottom: 15px !important;
     }
 }

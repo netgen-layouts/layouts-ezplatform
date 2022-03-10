@@ -13,6 +13,53 @@
     * {
         box-sizing:border-box;
     }
+
+    form[name="layout_wizard"] {
+        .nl-modal {
+            width: 800px !important;
+
+            .nl-modal-body {
+                padding: 35px 80px;
+                .row-input:first-child {
+                    input[type="radio"] {
+                        margin-top: 4px;
+                    }
+                }
+            }
+        }
+        .row-input {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+
+            &:first-child {
+                input[type="radio"] {
+                    width: auto;
+                }
+                label[for="layout_wizard_action_1"] {
+                    display: inline;
+                }
+                #layout_wizard_action_1 {
+                    margin-bottom: 24px;
+                }
+            }
+
+            &.error-input {
+                input {
+                    border: 1px solid red;
+                }
+            }
+
+            select, input, textarea {
+                width: 290px;
+            }
+        }
+        label {
+            margin-bottom: 24px;
+        }
+    }
+    
     .nl-modal {
         position:absolute;
         top:50%;
@@ -20,7 +67,7 @@
         transform:translate(-50%, -50%);
         background:#fff;
         border-radius:$modalBorderRadius;
-        width:800px;
+        width:500px;
         max-width:98%;
         max-height:98%;
         display:flex;
@@ -52,7 +99,6 @@
             }
         }
         .nl-modal-body {
-            padding:35px 80px;
             overflow-y:auto;
             font-size: 16px;
 
@@ -71,35 +117,6 @@
             input[type="radio"] {
                 float: left;
                 margin-right: 16px;
-            }
-
-            .row-input {
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: space-between;
-
-                &:first-child {
-                    input[type="radio"] {
-                        width: auto;
-                    }
-                    label[for="layout_wizard_action_1"] {
-                        display: inline;
-                    }
-                    #layout_wizard_action_1 {
-                        margin-bottom: 24px;
-                    }
-                }
-
-                &.error-input {
-                    input {
-                        border: 1px solid red;
-                    }
-                }
-
-                select, input, textarea {
-                    width: 290px;
-                }
             }
 
             .group-title {
@@ -278,7 +295,6 @@
             font-weight:normal;
             font-size:14px;
             margin:0 0 4px;
-            margin-bottom: 24px;
         }
         input[type="text"],
         input[type="number"],
@@ -430,6 +446,21 @@
         }
     }
 }
+.modal {
+    .modal-header {
+        .close {
+            border: 0;
+            background: none;
+            box-shadow: none;
+            border-radius: 0px;
+            line-height: 1;
+        }
+    }
+    .modal-footer {
+        padding: 6px;
+    }
+}
+
 @keyframes maskFadeIn {
     from {
         opacity:0;
