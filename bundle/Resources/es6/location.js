@@ -201,6 +201,7 @@ $(function () {
     this.$loader = this.$el.find('.layout-loading');
     this.fetchedLayouts = false;
     this.$toggleBtn = $('a[href^="#ibexa-tab-location-view-netgen_layouts"]');
+    this.$tabButton = $('[data-tab-link-id="ibexa-tab-label-location-view-netgen_layouts"]');
     this.url = el.dataset.url;
     this.setupEvents();
     this.$el.is(':visible') && this.getLayouts();
@@ -208,6 +209,7 @@ $(function () {
 
   LayoutsBox.prototype.setupEvents = function () {
     this.$toggleBtn.on('click', this.getLayouts.bind(this));
+    this.$tabButton.on('click', this.getLayouts.bind(this));
   };
 
   LayoutsBox.prototype.initLayouts = function () {
