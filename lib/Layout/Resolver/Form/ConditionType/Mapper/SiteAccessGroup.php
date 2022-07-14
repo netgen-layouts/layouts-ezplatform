@@ -6,6 +6,7 @@ namespace Netgen\Layouts\Ibexa\Layout\Resolver\Form\ConditionType\Mapper;
 
 use Netgen\Layouts\Layout\Resolver\Form\ConditionType\Mapper;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 use function array_combine;
 use function array_keys;
 

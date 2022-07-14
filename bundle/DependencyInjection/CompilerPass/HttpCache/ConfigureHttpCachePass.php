@@ -8,6 +8,7 @@ use Ibexa\HttpCache\PurgeClient\LocalPurgeClient;
 use Ibexa\HttpCache\PurgeClient\VarnishPurgeClient;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+
 use function is_a;
 use function sprintf;
 

@@ -14,6 +14,7 @@ use Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Location as LocationTargetTy
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+
 use function count;
 use function max;
 use function sprintf;

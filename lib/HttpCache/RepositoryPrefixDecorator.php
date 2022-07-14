@@ -6,6 +6,7 @@ namespace Netgen\Layouts\Ibexa\HttpCache;
 
 use Ibexa\HttpCache\RepositoryTagPrefix;
 use Netgen\Layouts\HttpCache\ClientInterface;
+
 use function array_map;
 
 final class RepositoryPrefixDecorator implements ClientInterface

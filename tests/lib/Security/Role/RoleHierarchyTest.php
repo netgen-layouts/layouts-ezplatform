@@ -6,6 +6,7 @@ namespace Netgen\Layouts\Ibexa\Tests\Security\Role;
 
 use Netgen\Layouts\Ibexa\Security\Role\RoleHierarchy;
 use PHPUnit\Framework\TestCase;
+
 use function count;
 
 final class RoleHierarchyTest extends TestCase

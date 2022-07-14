@@ -9,6 +9,7 @@ use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin;
 use Netgen\Bundle\LayoutsIbexaBundle\Security\PolicyProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+
 use function interface_exists;
 
 final class NetgenLayoutsIbexaBundle extends Bundle

@@ -7,6 +7,7 @@ namespace Netgen\Layouts\Ibexa\Parameters\Form\Mapper;
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 use Netgen\Layouts\Parameters\Form\Mapper;
 use Netgen\Layouts\Parameters\ParameterDefinition;
+
 use function count;
 
 final class ContentMapper extends Mapper

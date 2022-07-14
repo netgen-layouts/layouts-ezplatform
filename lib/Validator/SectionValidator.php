@@ -11,6 +11,7 @@ use Netgen\Layouts\Ibexa\Validator\Constraint\Section;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
+
 use function count;
 use function in_array;
 use function is_string;

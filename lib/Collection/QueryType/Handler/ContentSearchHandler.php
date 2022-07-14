@@ -18,8 +18,10 @@ use Netgen\Layouts\API\Values\Collection\Query;
 use Netgen\Layouts\Collection\QueryType\QueryTypeHandlerInterface;
 use Netgen\Layouts\Ibexa\ContentProvider\ContentProviderInterface;
 use Netgen\Layouts\Parameters\ParameterBuilderInterface;
+
 use function array_filter;
 use function array_map;
+
 use const PHP_INT_MAX;
 
 /**

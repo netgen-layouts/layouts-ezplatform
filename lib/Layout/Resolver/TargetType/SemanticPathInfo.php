@@ -7,6 +7,7 @@ namespace Netgen\Layouts\Ibexa\Layout\Resolver\TargetType;
 use Netgen\Layouts\Layout\Resolver\TargetType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints;
+
 use function is_string;
 
 class SemanticPathInfo extends TargetType

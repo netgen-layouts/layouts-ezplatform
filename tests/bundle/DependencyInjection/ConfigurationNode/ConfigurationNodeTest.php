@@ -12,6 +12,7 @@ use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+
 use function array_key_exists;
 use function ksort;
 

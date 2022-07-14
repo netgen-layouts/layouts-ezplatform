@@ -9,6 +9,7 @@ use Netgen\Layouts\Context\Context;
 use Netgen\Layouts\Context\ContextProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+
 use function in_array;
 
 final class ContextProvider implements ContextProviderInterface

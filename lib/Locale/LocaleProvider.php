@@ -11,6 +11,7 @@ use Ibexa\Core\MVC\Symfony\Locale\LocaleConverterInterface;
 use Netgen\Layouts\Locale\LocaleProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Intl\Locales;
+
 use function asort;
 use function is_array;
 

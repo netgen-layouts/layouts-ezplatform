@@ -8,6 +8,7 @@ use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Netgen\Bundle\LayoutsBundle\DependencyInjection\NetgenLayoutsExtension;
 use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin;
 use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\NetgenLayoutsIbexaExtension;
+
 use function array_merge;
 
 final class ExtensionPluginTest extends AbstractExtensionTestCase

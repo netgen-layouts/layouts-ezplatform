@@ -6,6 +6,7 @@ namespace Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\View
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+
 use function is_array;
 
 final class DefaultViewTemplatesPass implements CompilerPassInterface
