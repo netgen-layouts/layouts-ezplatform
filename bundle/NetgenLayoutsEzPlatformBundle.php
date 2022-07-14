@@ -9,6 +9,7 @@ use Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\ExtensionPlugin;
 use Netgen\Bundle\LayoutsEzPlatformBundle\Security\PolicyProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+
 use function interface_exists;
 
 final class NetgenLayoutsEzPlatformBundle extends Bundle

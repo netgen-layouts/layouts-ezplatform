@@ -8,6 +8,7 @@ use Netgen\Layouts\Ez\Security\Role\RoleHierarchy;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Security\Core\Role\Role;
+
 use function count;
 
 final class RoleHierarchyTest extends TestCase

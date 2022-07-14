@@ -10,6 +10,7 @@ use eZ\Publish\API\Repository\Values\Content\Query\SortClause;
 use Netgen\Layouts\Parameters\ParameterBuilderInterface;
 use Netgen\Layouts\Parameters\ParameterCollectionInterface;
 use Netgen\Layouts\Parameters\ParameterType;
+
 use function array_intersect;
 use function count;
 

@@ -12,6 +12,7 @@ use Netgen\Layouts\Ez\Validator\Constraint\ContentType;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
+
 use function array_key_exists;
 use function array_map;
 use function count;

@@ -9,6 +9,7 @@ use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\Location;
 use eZ\Publish\API\Repository\Values\ContentType\ContentType;
 use Throwable;
+
 use function array_shift;
 
 final class EzPlatformRuntime

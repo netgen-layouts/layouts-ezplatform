@@ -8,6 +8,7 @@ use EzSystems\PlatformHttpCacheBundle\PurgeClient\LocalPurgeClient;
 use EzSystems\PlatformHttpCacheBundle\PurgeClient\VarnishPurgeClient;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+
 use function is_a;
 use function sprintf;
 

@@ -9,6 +9,7 @@ use Netgen\Layouts\Ez\HttpCache\LegacyLocalClient;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
+
 use function implode;
 use function interface_exists;
 

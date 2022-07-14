@@ -12,6 +12,7 @@ use Netgen\Layouts\Ez\Locale\LocaleProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
+
 use function array_keys;
 use function array_values;
 

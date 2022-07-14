@@ -11,6 +11,7 @@ use eZ\Publish\Core\MVC\Symfony\Locale\LocaleConverterInterface;
 use Netgen\Layouts\Locale\LocaleProviderInterface;
 use Netgen\Layouts\Utils\BackwardsCompatibility\Locales;
 use Symfony\Component\HttpFoundation\Request;
+
 use function asort;
 use function is_array;
 
