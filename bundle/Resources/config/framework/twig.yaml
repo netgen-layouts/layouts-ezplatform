@@ -1,0 +1,2 @@
+form_themes:
+    - "@NetgenLayoutsEzPlatform/form/form_div_layout.html.twig"

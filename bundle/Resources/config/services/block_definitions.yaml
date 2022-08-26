@@ -5,3 +5,18 @@ services:
             - "@netgen_layouts.ezplatform.content_provider"
         tags:
             - { name: netgen_layouts.block_definition_handler, identifier: ezcontent_field }
+
+    netgen_layouts.ezplatform.block.block_definition_handler.component:
+        class: Netgen\Layouts\Ez\Block\BlockDefinition\Handler\ComponentHandler
+        tags:
+            - { name: netgen_layouts.block_definition_handler, identifier: ezcomponent }
+
+    netgen_layouts.ezplatform.block.block_definition.config_provider.ezplatform:
+        class: Netgen\Layouts\Ez\Block\BlockDefinition\Configuration\Provider\EzPlatformConfigProvider
+        arguments:
+            - "@ezpublish.config.resolver"
+            - "%ezpublish.siteaccess.groups_by_siteaccess%"
+            - "content_type_identifier"
+            - "content_view"
+        tags:
+            - { name: netgen_layouts.block_definition.config_provider, identifier: ezplatform }

@@ -1,5 +1,7 @@
 block.ezcontent_field.field_identifier: 'Field identifier'
 
+block.ezcomponent.content: 'Content'
+
 query.ezcontent_search.use_current_location: 'Use current location as parent'
 query.ezcontent_search.parent_location_id: 'Parent location'
 query.ezcontent_search.sort_direction: 'Sort direction'

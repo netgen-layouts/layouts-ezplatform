@@ -4,3 +4,10 @@ block_definitions:
         view_types:
             ezcontent_field:
                 name: 'eZ content field'
+
+    ezcomponent:
+        name: 'eZ component'
+        config_provider: ezplatform
+        view_types:
+            standard:
+                name: 'Standard'

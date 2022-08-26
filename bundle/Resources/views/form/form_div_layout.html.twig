@@ -1,0 +1,8 @@
+{# Form theme for "content" parameter from "ezcomponent" block definition #}
+{%- block _full_edit_parameters_ezcomponent_content_widget -%}
+    {% set custom_params = custom_params|merge({
+        allowed_content_types: [form.parent['content_type_identifier'].vars.value]
+    }) %}
+
+{{ block('ngcb_widget') }}
+{%- endblock -%}

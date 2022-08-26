@@ -1,3 +1,7 @@
 block_type_groups:
     placeholders:
         block_types: [ezcontent_field]
+
+    components:
+        name: 'Components'
+        block_types: [ezcomponent]

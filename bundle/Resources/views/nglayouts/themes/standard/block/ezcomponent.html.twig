@@ -1,0 +1,15 @@
+{% extends '@nglayouts/block/block.html.twig' %}
+
+{% block content %}
+    {% if not block.parameter('content').empty %}
+        {{ render(
+            controller(
+                'ez_content:viewAction', {
+                    'contentId': block.parameter('content').value,
+                    'viewType': block.viewType,
+                    'layout': false
+                }
+            )
+        ) }}
+    {% endif %}
+{% endblock %}
