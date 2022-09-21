@@ -3,7 +3,7 @@ services:
         class: Netgen\Bundle\LayoutsIbexaBundle\Controller\Admin\Controller
         abstract: true
         calls:
-            - [setContainer, ["@service_container"]]
+            - [setContainer, ["@Psr\\Container\\ContainerInterface"]]
             - [checkPermissions]
 
     netgen_layouts.ibexa.admin.controller.location_layouts:
@@ -14,6 +14,8 @@ services:
             - "@ibexa.api.service.content"
             - "@netgen_layouts.layout.resolver"
             - "@netgen_layouts.ibexa.admin.related_layouts_loader"
+        tags:
+            - { name: container.service_subscriber }
 
     netgen_layouts.ibexa.admin.controller.layout_wizard:
         class: Netgen\Bundle\LayoutsIbexaBundle\Controller\Admin\LayoutWizard
@@ -22,6 +24,8 @@ services:
         arguments:
             - "@netgen_layouts.api.service.layout"
             - "@netgen_layouts.layout.registry.layout_type"
+        tags:
+            - { name: container.service_subscriber }
 
     netgen_layouts.ibexa.admin.controller.layout_wizard_callback:
         class: Netgen\Bundle\LayoutsIbexaBundle\Controller\Admin\LayoutWizardCallback
@@ -30,6 +34,8 @@ services:
         arguments:
             - "@netgen_layouts.api.service.layout"
             - "@netgen_layouts.api.service.layout_resolver"
+        tags:
+            - { name: container.service_subscriber }
 
     netgen_layouts.ibexa.admin.controller.delete_rule:
         class: Netgen\Bundle\LayoutsIbexaBundle\Controller\Admin\DeleteRule
@@ -38,6 +44,8 @@ services:
         arguments:
             - "@netgen_layouts.api.service.layout"
             - "@netgen_layouts.api.service.layout_resolver"
+        tags:
+            - { name: container.service_subscriber }
 
     netgen_layouts.ibexa.event_listener.admin.main_menu_builder:
         class: Netgen\Bundle\LayoutsIbexaBundle\EventListener\Admin\MainMenuBuilderListener
