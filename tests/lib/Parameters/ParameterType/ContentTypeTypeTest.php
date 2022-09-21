@@ -66,6 +66,7 @@ final class ContentTypeTypeTest extends TestCase
      * @param array<string, mixed> $resolvedOptions
      *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentTypeType::configureOptions
+     *
      * @dataProvider validOptionsDataProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
@@ -78,6 +79,7 @@ final class ContentTypeTypeTest extends TestCase
      * @param array<string, mixed> $options
      *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentTypeType::configureOptions
+     *
      * @dataProvider invalidOptionsDataProvider
      */
     public function testInvalidOptions(array $options): void
@@ -160,6 +162,7 @@ final class ContentTypeTypeTest extends TestCase
      * @param mixed $value
      *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentTypeType::getValueConstraints
+     *
      * @dataProvider validationDataProvider
      */
     public function testValidation($value, bool $required, bool $isValid): void
@@ -230,6 +233,7 @@ final class ContentTypeTypeTest extends TestCase
      * @param mixed $convertedValue
      *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentTypeType::fromHash
+     *
      * @dataProvider fromHashDataProvider
      */
     public function testFromHash($value, $convertedValue, bool $multiple): void
@@ -297,6 +301,7 @@ final class ContentTypeTypeTest extends TestCase
      * @param mixed $value
      *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentTypeType::isValueEmpty
+     *
      * @dataProvider emptyDataProvider
      */
     public function testIsValueEmpty($value, bool $isEmpty): void

@@ -38,6 +38,7 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
      *
      * @covers \Netgen\Layouts\Ibexa\Validator\ContentTypeValidator::__construct
      * @covers \Netgen\Layouts\Ibexa\Validator\ContentTypeValidator::validate
+     *
      * @dataProvider  validateDataProvider
      */
     public function testValidate(string $identifier, array $groups, array $allowedTypes, bool $isValid): void

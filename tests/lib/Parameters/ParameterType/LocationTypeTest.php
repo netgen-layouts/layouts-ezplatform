@@ -67,6 +67,7 @@ final class LocationTypeTest extends TestCase
      * @param array<string, mixed> $resolvedOptions
      *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::configureOptions
+     *
      * @dataProvider validOptionsDataProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
@@ -79,6 +80,7 @@ final class LocationTypeTest extends TestCase
      * @param array<string, mixed> $options
      *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::configureOptions
+     *
      * @dataProvider invalidOptionsDataProvider
      */
     public function testInvalidOptions(array $options): void
@@ -232,6 +234,7 @@ final class LocationTypeTest extends TestCase
      * @param mixed $value
      *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::getValueConstraints
+     *
      * @dataProvider validationDataProvider
      */
     public function testValidation($value, string $type, bool $required, bool $isValid): void
@@ -300,6 +303,7 @@ final class LocationTypeTest extends TestCase
      * @param mixed $convertedValue
      *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::fromHash
+     *
      * @dataProvider fromHashDataProvider
      */
     public function testFromHash($value, $convertedValue): void
@@ -335,6 +339,7 @@ final class LocationTypeTest extends TestCase
      * @param mixed $value
      *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::isValueEmpty
+     *
      * @dataProvider emptyDataProvider
      */
     public function testIsValueEmpty($value, bool $isEmpty): void

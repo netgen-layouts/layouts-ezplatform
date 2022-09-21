@@ -30,6 +30,7 @@ final class SemanticPathInfoTest extends TestCase
      * @param mixed $value
      *
      * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfo::getConstraints
+     *
      * @dataProvider validationDataProvider
      */
     public function testValidation($value, bool $isValid): void
