@@ -6,15 +6,19 @@
 
 {% block content %}
     {% if not block.parameter('content').empty %}
-        {{ render(
-            controller(
-                'ez_content:viewAction', {
-                    'contentId': block.parameter('content').value,
-                    'viewType': 'nglayouts_app_preview',
-                    'layout': false
-                }
-            )
-        ) }}
+        <div class="list-row">
+            <div class="list-item">
+                {{ render(
+                    controller(
+                        'ez_content:viewAction', {
+                            'contentId': block.parameter('content').value,
+                            'viewType': 'nglayouts_app_preview',
+                            'layout': false
+                        }
+                    )
+                ) }}
+            </div>
+        </div>
     {% else %}
         {{ macros.notice('block.notice.empty_ezcomponent'|trans) }}
     {% endif %}
