@@ -1,3 +1,4 @@
 block.notice.empty_ezcontent_field: 'This block is not configured yet. Please define the eZ content field identifier which will be used to render the block.'
+block.notice.empty_ezcomponent: 'This block is not configured yet. Please define the eZ content which will be used to render the block.'
 
 block.info.ezcontent_field: 'eZ content field with identifier "%field%" will be rendered here.'

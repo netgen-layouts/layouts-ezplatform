@@ -1,14 +1,10 @@
 {% extends '@NetgenLayoutsAdmin/app/block/block.html.twig' %}
 
+{% import '@NetgenLayoutsAdmin/app/parts/macros.html.twig' as macros %}
+
+{% trans_default_domain 'nglayouts_app' %}
+
 {% block content %}
-    <p>
-        Block view: {{ block.viewType }}
-
-        {% if not block.parameter('content').empty %}
-            Content ID: {{ block.parameter('content').value }}
-        {% endif %}
-    </p>
-
     {% if not block.parameter('content').empty %}
         {{ render(
             controller(
@@ -19,5 +15,7 @@
                 }
             )
         ) }}
+    {% else %}
+        {{ macros.notice('block.notice.empty_ezcomponent'|trans) }}
     {% endif %}
 {% endblock %}
