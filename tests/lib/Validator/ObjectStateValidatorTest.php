@@ -35,6 +35,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
      * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::__construct
      * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::loadStateIdentifiers
      * @covers \Netgen\Layouts\Ez\Validator\ObjectStateValidator::validate
+     *
      * @dataProvider validateDataProvider
      */
     public function testValidate(string $identifier, array $allowedStates, bool $isValid): void

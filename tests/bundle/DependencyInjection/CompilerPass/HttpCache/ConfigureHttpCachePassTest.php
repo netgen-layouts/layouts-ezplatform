@@ -24,6 +24,7 @@ final class ConfigureHttpCachePassTest extends AbstractContainerBuilderTestCase
 
     /**
      * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
+     *
      * @dataProvider processDataProvider
      */
     public function testProcess(string $definitionClass, bool $clientEnabled): void

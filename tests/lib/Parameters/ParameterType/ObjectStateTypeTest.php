@@ -64,6 +64,7 @@ final class ObjectStateTypeTest extends TestCase
      * @param array<string, mixed> $resolvedOptions
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::configureOptions
+     *
      * @dataProvider validOptionsDataProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
@@ -76,6 +77,7 @@ final class ObjectStateTypeTest extends TestCase
      * @param array<string, mixed> $options
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::configureOptions
+     *
      * @dataProvider invalidOptionsDataProvider
      */
     public function testInvalidOptions(array $options): void
@@ -158,6 +160,7 @@ final class ObjectStateTypeTest extends TestCase
      * @param mixed $value
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::getValueConstraints
+     *
      * @dataProvider validationDataProvider
      */
     public function testValidation($value, bool $required, bool $isValid): void
@@ -205,6 +208,7 @@ final class ObjectStateTypeTest extends TestCase
      * @param mixed $value
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::getValueConstraints
+     *
      * @dataProvider validationWithEmptyValuesDataProvider
      */
     public function testValidationWithEmptyValues($value, bool $required, bool $isValid): void
@@ -262,6 +266,7 @@ final class ObjectStateTypeTest extends TestCase
      * @param mixed $convertedValue
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::fromHash
+     *
      * @dataProvider fromHashDataProvider
      */
     public function testFromHash($value, $convertedValue, bool $multiple): void
@@ -329,6 +334,7 @@ final class ObjectStateTypeTest extends TestCase
      * @param mixed $value
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ObjectStateType::isValueEmpty
+     *
      * @dataProvider emptyDataProvider
      */
     public function testIsValueEmpty($value, bool $isEmpty): void

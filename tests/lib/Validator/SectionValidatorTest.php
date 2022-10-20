@@ -34,6 +34,7 @@ final class SectionValidatorTest extends ValidatorTestCase
      *
      * @covers \Netgen\Layouts\Ez\Validator\SectionValidator::__construct
      * @covers \Netgen\Layouts\Ez\Validator\SectionValidator::validate
+     *
      * @dataProvider  validateDataProvider
      */
     public function testValidate(string $identifier, array $allowedSections, bool $isValid): void

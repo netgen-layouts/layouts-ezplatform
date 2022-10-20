@@ -47,6 +47,7 @@ final class TagsTypeTest extends TestCase
      * @param array<string, mixed> $resolvedOptions
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::configureOptions
+     *
      * @dataProvider validOptionsDataProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
@@ -59,6 +60,7 @@ final class TagsTypeTest extends TestCase
      * @param array<string, mixed> $options
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::configureOptions
+     *
      * @dataProvider invalidOptionsDataProvider
      */
     public function testInvalidOptions(array $options): void
@@ -218,6 +220,7 @@ final class TagsTypeTest extends TestCase
      * @param mixed $convertedValue
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::fromHash
+     *
      * @dataProvider fromHashDataProvider
      */
     public function testFromHash($value, $convertedValue): void
@@ -305,6 +308,7 @@ final class TagsTypeTest extends TestCase
      * @param mixed $values
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\TagsType::getValueConstraints
+     *
      * @dataProvider validationDataProvider
      */
     public function testValidation($values, bool $required, bool $isValid): void

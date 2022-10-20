@@ -32,6 +32,7 @@ final class SiteAccessTest extends TestCase
      * @param mixed $value
      *
      * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccess::getConstraints
+     *
      * @dataProvider validationDataProvider
      */
     public function testValidation($value, bool $isValid): void

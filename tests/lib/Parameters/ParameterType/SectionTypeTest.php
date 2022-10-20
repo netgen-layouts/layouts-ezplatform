@@ -66,6 +66,7 @@ final class SectionTypeTest extends TestCase
      * @param array<string, mixed> $resolvedOptions
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::configureOptions
+     *
      * @dataProvider validOptionsDataProvider
      */
     public function testValidOptions(array $options, array $resolvedOptions): void
@@ -78,6 +79,7 @@ final class SectionTypeTest extends TestCase
      * @param array<string, mixed> $options
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::configureOptions
+     *
      * @dataProvider invalidOptionsDataProvider
      */
     public function testInvalidOptions(array $options): void
@@ -166,6 +168,7 @@ final class SectionTypeTest extends TestCase
      * @param mixed $value
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::getValueConstraints
+     *
      * @dataProvider validationDataProvider
      */
     public function testValidation($value, bool $required, bool $isValid): void
@@ -236,6 +239,7 @@ final class SectionTypeTest extends TestCase
      * @param mixed $convertedValue
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::fromHash
+     *
      * @dataProvider fromHashDataProvider
      */
     public function testFromHash($value, $convertedValue, bool $multiple): void
@@ -303,6 +307,7 @@ final class SectionTypeTest extends TestCase
      * @param mixed $value
      *
      * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\SectionType::isValueEmpty
+     *
      * @dataProvider emptyDataProvider
      */
     public function testIsValueEmpty($value, bool $isEmpty): void

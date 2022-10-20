@@ -23,6 +23,7 @@ final class SiteAccessGroupValidatorTest extends ValidatorTestCase
     /**
      * @covers \Netgen\Layouts\Ez\Validator\SiteAccessGroupValidator::__construct
      * @covers \Netgen\Layouts\Ez\Validator\SiteAccessGroupValidator::validate
+     *
      * @dataProvider validateDataProvider
      */
     public function testValidate(?string $identifier, bool $isValid): void

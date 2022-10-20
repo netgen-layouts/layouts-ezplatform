@@ -42,6 +42,7 @@ final class SiteAccessGroupTest extends TestCase
      * @param mixed $value
      *
      * @covers \Netgen\Layouts\Ez\Layout\Resolver\ConditionType\SiteAccessGroup::getConstraints
+     *
      * @dataProvider validationDataProvider
      */
     public function testValidation($value, bool $isValid): void
