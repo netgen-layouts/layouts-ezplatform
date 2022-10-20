@@ -35,6 +35,11 @@ final class EzPlatformConfigProvider implements ConfigProviderInterface
 
     private string $configResolverParameterName;
 
+    /**
+     * @var array<string, \Netgen\Layouts\Block\BlockDefinition\Configuration\ViewType[]>
+     */
+    private array $viewTypes;
+
     public function __construct(
         ConfigResolverInterface $configResolver,
         array $groupsBySiteAccess,
@@ -88,7 +93,9 @@ final class EzPlatformConfigProvider implements ConfigProviderInterface
 
         sort($validViews);
 
-        return $this->buildViewTypes($validViews, $validParameters);
+        $this->viewTypes[$block->getId()->toString()] ??= $this->buildViewTypes($validViews, $validParameters);
+
+        return $this->viewTypes[$block->getId()->toString()];
     }
 
     /**
