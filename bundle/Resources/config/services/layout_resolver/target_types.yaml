@@ -1,8 +1,19 @@
 services:
+    netgen_layouts.ezplatform.layout_resolver.value_object_provider.location:
+        class: Netgen\Layouts\Ez\Layout\Resolver\ValueObjectProvider\LocationProvider
+        arguments:
+            - "@ezpublish.api.repository"
+
+    netgen_layouts.ezplatform.layout_resolver.value_object_provider.content:
+        class: Netgen\Layouts\Ez\Layout\Resolver\ValueObjectProvider\ContentProvider
+        arguments:
+            - "@ezpublish.api.repository"
+
     netgen_layouts.ezplatform.layout_resolver.target_type.location:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetType\Location
         arguments:
             - "@netgen_layouts.ezplatform.content_extractor"
+            - "@netgen_layouts.ezplatform.layout_resolver.value_object_provider.location"
             - "@netgen_layouts.ezplatform.utils.remote_id_converter"
         tags:
             - { name: netgen_layouts.target_type, priority: 140 }
@@ -11,6 +22,7 @@ services:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content
         arguments:
             - "@netgen_layouts.ezplatform.content_extractor"
+            - "@netgen_layouts.ezplatform.layout_resolver.value_object_provider.content"
             - "@netgen_layouts.ezplatform.utils.remote_id_converter"
         tags:
             - { name: netgen_layouts.target_type, priority: 150 }
@@ -19,6 +31,7 @@ services:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children
         arguments:
             - "@netgen_layouts.ezplatform.content_extractor"
+            - "@netgen_layouts.ezplatform.layout_resolver.value_object_provider.location"
             - "@netgen_layouts.ezplatform.utils.remote_id_converter"
         tags:
             - { name: netgen_layouts.target_type, priority: 120 }
@@ -27,6 +40,7 @@ services:
         class: Netgen\Layouts\Ez\Layout\Resolver\TargetType\Subtree
         arguments:
             - "@netgen_layouts.ezplatform.content_extractor"
+            - "@netgen_layouts.ezplatform.layout_resolver.value_object_provider.location"
             - "@netgen_layouts.ezplatform.utils.remote_id_converter"
         tags:
             - { name: netgen_layouts.target_type, priority: 130 }

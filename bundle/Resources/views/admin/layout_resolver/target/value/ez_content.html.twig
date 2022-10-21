@@ -1,3 +1,7 @@
-{% set content_name = nglayouts_ez_content_name(target.value) %}
+{% if target.valueObject != null %}
+    {% set path = nglayouts_ez_content_path(target.valueObject) %}
 
-{{ content_name != null ? content_name : '(INVALID CONTENT)' }}
+    {{ path != null ? path|join(' / ') : '(INVALID CONTENT)' }}
+{% else %}
+    {{ '(INVALID CONTENT)' }}
+{% endif %}
