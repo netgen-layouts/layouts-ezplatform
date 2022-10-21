@@ -10,19 +10,23 @@ use eZ\Publish\API\Repository\Values\Content\Location;
 use Netgen\Layouts\Ez\Validator\Constraint as EzConstraints;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\Layouts\Parameters\ParameterType;
+use Netgen\Layouts\Parameters\ValueObjectProviderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
 
 /**
  * Parameter type used to store and validate an ID of a location in eZ Platform.
  */
-final class LocationType extends ParameterType
+final class LocationType extends ParameterType implements ValueObjectProviderInterface
 {
     private Repository $repository;
 
-    public function __construct(Repository $repository)
+    private ValueObjectProviderInterface $valueObjectProvider;
+
+    public function __construct(Repository $repository, ValueObjectProviderInterface $valueObjectProvider)
     {
         $this->repository = $repository;
+        $this->valueObjectProvider = $valueObjectProvider;
     }
 
     public static function getIdentifier(): string
@@ -72,6 +76,11 @@ final class LocationType extends ParameterType
         } catch (NotFoundException $e) {
             return null;
         }
+    }
+
+    public function getValueObject($value): ?object
+    {
+        return $this->valueObjectProvider->getValueObject($value);
     }
 
     protected function getValueConstraints(ParameterDefinition $parameterDefinition, $value): array

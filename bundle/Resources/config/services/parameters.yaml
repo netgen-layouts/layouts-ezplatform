@@ -3,15 +3,27 @@ services:
         class: Netgen\Layouts\Ez\Parameters\ParameterType\LocationType
         arguments:
             - "@ezpublish.api.repository"
+            - "@netgen_layouts.ezplatform.parameters.value_object_provider.location"
         tags:
             - { name: netgen_layouts.parameter_type }
+
+    netgen_layouts.ezplatform.parameters.value_object_provider.location:
+        class: Netgen\Layouts\Ez\Parameters\ValueObjectProvider\LocationProvider
+        arguments:
+            - "@ezpublish.api.repository"
 
     netgen_layouts.ezplatform.parameters.parameter_type.content:
         class: Netgen\Layouts\Ez\Parameters\ParameterType\ContentType
         arguments:
             - "@ezpublish.api.repository"
+            - "@netgen_layouts.ezplatform.parameters.value_object_provider.content"
         tags:
             - { name: netgen_layouts.parameter_type }
+
+    netgen_layouts.ezplatform.parameters.value_object_provider.content:
+        class: Netgen\Layouts\Ez\Parameters\ValueObjectProvider\ContentProvider
+        arguments:
+            - "@ezpublish.api.repository"
 
     netgen_layouts.ezplatform.parameters.parameter_type.content_type:
         class: Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType
