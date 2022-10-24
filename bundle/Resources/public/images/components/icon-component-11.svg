@@ -1,0 +1,16 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1" height="1" transform="matrix(-1 0 0 1 7 18)" fill="#919191"/>
+<rect x="25" y="18" width="1" height="1" fill="#919191"/>
+<rect width="1" height="1" transform="matrix(-1 0 0 1 8 18)" fill="#919191"/>
+<rect x="24" y="18" width="1" height="1" fill="#919191"/>
+<rect width="1" height="1" transform="matrix(-1 0 0 1 7 19)" fill="#919191"/>
+<rect width="2" height="1" transform="matrix(-1 0 0 1 11 18)" fill="#919191"/>
+<rect width="2" height="1" transform="matrix(-1 0 0 1 15 18)" fill="#919191"/>
+<rect width="1" height="2" transform="matrix(-1 0 0 1 7 21)" fill="#919191"/>
+<rect width="1" height="2" transform="matrix(-1 0 0 1 26 21)" fill="#919191"/>
+<rect width="2" height="1" transform="matrix(-1 0 0 1 19 18)" fill="#919191"/>
+<rect width="2" height="1" transform="matrix(-1 0 0 1 23 18)" fill="#919191"/>
+<rect x="25" y="19" width="1" height="1" fill="#919191"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M6 10H26V16H6V10ZM8 12H19V14H8V12ZM24 12H21V14H24V12Z" fill="#919191"/>
+<rect x="3" y="7" width="26" height="18" stroke="#919191" stroke-width="2"/>
+</svg>
