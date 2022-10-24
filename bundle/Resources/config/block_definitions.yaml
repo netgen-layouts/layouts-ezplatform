@@ -7,7 +7,7 @@ block_definitions:
 
     ezcomponent:
         name: 'eZ component'
-        icon: '/bundles/netgenlayoutsezplatform/images/icon-component-generic.svg'
+        icon: '/bundles/netgenlayoutsezplatform/images/components/icon-component-generic.svg'
         config_provider: ezplatform
         view_types:
             standard:
