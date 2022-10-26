@@ -4,5 +4,11 @@
         allowed_content_types: [form.parent['content_type_identifier'].vars.value]
     }) %}
 
-{{ block('ngcb_widget') }}
+    {% set post_input_browse %}
+        {% if form.vars.item is not empty %}
+            <a class="btn btn-link-white" href="{{ path(form.vars.item.location) }}" target="_blank">Edit</a>
+        {% endif %}
+    {% endset %}
+
+    {{ block('ngcb_widget') }}
 {%- endblock -%}
