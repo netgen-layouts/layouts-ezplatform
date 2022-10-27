@@ -13,7 +13,10 @@
                         'ez_content:viewAction', {
                             'contentId': block.parameter('content').value,
                             'viewType': 'nglayouts_app_preview',
-                            'layout': false
+                            'layout': false,
+                            'params': {
+                                'block': block,
+                            }
                         }
                     )
                 ) }}

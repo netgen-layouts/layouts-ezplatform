@@ -7,7 +7,10 @@
                 'ez_content:viewAction', {
                     'contentId': block.parameter('content').value,
                     'viewType': block.viewType,
-                    'layout': false
+                    'layout': false,
+                    'params': {
+                        'block': block,
+                    }|merge(ezparams|default({}))
                 }
             )
         ) }}
