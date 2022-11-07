@@ -61,6 +61,7 @@ final class NetgenLayoutsIbexaExtension extends Extension implements PrependExte
     {
         $prependConfigs = [
             'block_definitions.yaml' => 'netgen_layouts',
+            'block_types.yaml' => 'netgen_layouts',
             'query_types.yaml' => 'netgen_layouts',
             'value_types.yaml' => 'netgen_layouts',
             'view/block_view.yaml' => 'netgen_layouts',
@@ -70,6 +71,7 @@ final class NetgenLayoutsIbexaExtension extends Extension implements PrependExte
             'view/rule_view.yaml' => 'netgen_layouts',
             'view/layout_view.yaml' => 'netgen_layouts',
             'ibexa/image.yaml' => 'ibexa',
+            'framework/twig.yaml' => 'twig',
         ];
 
         foreach ($prependConfigs as $configFile => $prependConfig) {

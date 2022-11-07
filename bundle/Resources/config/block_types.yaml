@@ -1,0 +1,3 @@
+block_types:
+    ibexa_component:
+        enabled: false

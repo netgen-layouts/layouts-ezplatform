@@ -1,0 +1,14 @@
+{# Form theme for "content" parameter from "ibexa_component" block definition #}
+{%- block _full_edit_parameters_ibexa_component_content_widget -%}
+    {% set custom_params = custom_params|merge({
+        allowed_content_types: [form.parent['content_type_identifier'].vars.value]
+    }) %}
+
+    {% set post_input_browse %}
+        {% if form.vars.item is not empty %}
+            <a class="btn btn-link-white" href="{{ ibexa_path(form.vars.item.location) }}" target="_blank">Edit</a>
+        {% endif %}
+    {% endset %}
+
+    {{ block('ngcb_widget') }}
+{%- endblock -%}

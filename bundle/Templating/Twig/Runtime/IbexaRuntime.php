@@ -40,14 +40,16 @@ final class IbexaRuntime
     /**
      * Returns the location path.
      *
-     * @param int|string $locationId
+     * @param int|string|\Ibexa\Contracts\Core\Repository\Values\Content\Location $location
      *
      * @return string[]
      */
-    public function getLocationPath($locationId): array
+    public function getLocationPath($location): array
     {
         try {
-            $location = $this->loadLocation((int) $locationId);
+            if (!$location instanceof Location) {
+                $location = $this->loadLocation((int) $location);
+            }
 
             $locationPath = $location->path;
             array_shift($locationPath);
@@ -60,6 +62,26 @@ final class IbexaRuntime
             }
 
             return $translatedNames;
+        } catch (Throwable $t) {
+            return [];
+        }
+    }
+
+    /**
+     * Returns the main location path for provided content.
+     *
+     * @param int|string|\Ibexa\Contracts\Core\Repository\Values\Content\Content $content
+     *
+     * @return string[]
+     */
+    public function getContentPath($content): array
+    {
+        try {
+            if (!$content instanceof Content) {
+                $content = $this->loadContent((int) $content);
+            }
+
+            return $this->getLocationPath($content->contentInfo->mainLocationId);
         } catch (Throwable $t) {
             return [];
         }

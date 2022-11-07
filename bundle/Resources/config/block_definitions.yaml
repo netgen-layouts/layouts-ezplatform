@@ -4,3 +4,11 @@ block_definitions:
         view_types:
             ibexa_content_field:
                 name: 'Ibexa content field'
+
+    ibexa_component:
+        name: 'Ibexa component'
+        icon: '/bundles/netgenlayoutsibexa/images/components/icon-component-generic.svg'
+        config_provider: ibexa
+        view_types:
+            standard:
+                name: 'Standard'

@@ -5,3 +5,18 @@ services:
             - "@netgen_layouts.ibexa.content_provider"
         tags:
             - { name: netgen_layouts.block_definition_handler, identifier: ibexa_content_field }
+
+    netgen_layouts.ibexa.block.block_definition_handler.component:
+        class: Netgen\Layouts\Ibexa\Block\BlockDefinition\Handler\ComponentHandler
+        tags:
+            - { name: netgen_layouts.block_definition_handler, identifier: ibexa_component }
+
+    netgen_layouts.ibexa.block.block_definition.config_provider.ibexa:
+        class: Netgen\Layouts\Ibexa\Block\BlockDefinition\Configuration\Provider\IbexaConfigProvider
+        arguments:
+            - "@ibexa.config.resolver"
+            - "%ibexa.site_access.groups_by_site_access%"
+            - "content_type_identifier"
+            - "content_view"
+        tags:
+            - { name: netgen_layouts.block_definition.config_provider, identifier: ibexa }

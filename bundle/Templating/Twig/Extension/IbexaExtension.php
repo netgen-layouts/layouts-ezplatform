@@ -25,6 +25,10 @@ final class IbexaExtension extends AbstractExtension
                 [IbexaRuntime::class, 'getLocationPath'],
             ),
             new TwigFunction(
+                'nglayouts_ibexa_content_path',
+                [IbexaRuntime::class, 'getContentPath'],
+            ),
+            new TwigFunction(
                 'nglayouts_ibexa_content_type_name',
                 [IbexaRuntime::class, 'getContentTypeName'],
             ),

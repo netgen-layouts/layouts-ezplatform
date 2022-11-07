@@ -6,8 +6,16 @@ view:
                 match:
                     block\definition: ibexa_content_field
                     block\view_type: ibexa_content_field
+            ibexa_component:
+                template: "@nglayouts/block/ibexa_component.html.twig"
+                match:
+                    block\definition: ibexa_component
         app:
             ibexa_content_field:
                 template: "@NetgenLayoutsIbexa/app/block/ibexa_content_field.html.twig"
                 match:
                     block\definition: ibexa_content_field
+            ibexa_component:
+                template: "@NetgenLayoutsIbexa/app/block/ibexa_component.html.twig"
+                match:
+                    block\definition: ibexa_component
