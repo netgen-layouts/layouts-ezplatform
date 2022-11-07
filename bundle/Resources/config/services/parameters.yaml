@@ -1,15 +1,27 @@
 services:
+    netgen_layouts.ibexa.parameters.value_object_provider.location:
+        class: Netgen\Layouts\Ez\Parameters\ValueObjectProvider\LocationProvider
+        arguments:
+            - "@ibexa.api.repository"
+
     netgen_layouts.ibexa.parameters.parameter_type.location:
         class: Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType
         arguments:
             - "@ibexa.api.repository"
+            - "@netgen_layouts.ibexa.parameters.value_object_provider.location"
         tags:
             - { name: netgen_layouts.parameter_type }
+
+    netgen_layouts.ibexa.parameters.value_object_provider.content:
+        class: Netgen\Layouts\Ez\Parameters\ValueObjectProvider\ContentProvider
+        arguments:
+            - "@ibexa.api.repository"
 
     netgen_layouts.ibexa.parameters.parameter_type.content:
         class: Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType
         arguments:
             - "@ibexa.api.repository"
+            - "@netgen_layouts.ibexa.parameters.value_object_provider.content"
         tags:
             - { name: netgen_layouts.parameter_type }
 
