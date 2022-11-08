@@ -8,7 +8,7 @@
     {% set field_identifier = block.parameter('field_identifier') %}
 
     {% if not field_identifier.empty %}
-        {{ macros.info('block.info.ibexa_content_field'|trans({ '%field%': field_identifier.value }), 'icon-ez_content_field') }}
+        {{ macros.info('block.info.ibexa_content_field'|trans({ '%field%': field_identifier.value }), 'icon-ibexa_content_field') }}
     {% else %}
         {{ macros.notice('block.notice.empty_ibexa_content_field'|trans) }}
     {% endif %}
