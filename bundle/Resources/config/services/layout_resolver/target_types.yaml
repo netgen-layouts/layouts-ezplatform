@@ -16,7 +16,7 @@ services:
             - "@netgen_layouts.ibexa.layout_resolver.value_object_provider.location"
             - "@netgen_layouts.ibexa.utils.remote_id_converter"
         tags:
-            - { name: netgen_layouts.target_type, priority: 140 }
+            - { name: netgen_layouts.target_type, priority: 150 }
 
     netgen_layouts.ibexa.layout_resolver.target_type.content:
         class: Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content
@@ -25,7 +25,7 @@ services:
             - "@netgen_layouts.ibexa.layout_resolver.value_object_provider.content"
             - "@netgen_layouts.ibexa.utils.remote_id_converter"
         tags:
-            - { name: netgen_layouts.target_type, priority: 150 }
+            - { name: netgen_layouts.target_type, priority: 140 }
 
     netgen_layouts.ibexa.layout_resolver.target_type.children:
         class: Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Children
