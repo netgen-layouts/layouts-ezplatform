@@ -15,6 +15,11 @@ nglayouts_ezadmin_layout_wizard_callback:
     controller: netgen_layouts.ezplatform.admin.controller.layout_wizard_callback
     methods:  [GET]
 
+nglayouts_ezadmin_create_content:
+    path: /nglayouts/ezadmin/layouts/content/create/{contentTypeIdentifier}/{languageCode}/{parentLocationId}
+    controller: netgen_layouts.ezplatform.admin.controller.create_content
+    methods:  [GET]
+
 nglayouts_ezadmin_delete_rule:
     path: /nglayouts/ezadmin/layouts/rules/{ruleId}/delete
     controller: netgen_layouts.ezplatform.admin.controller.delete_rule
