@@ -37,6 +37,14 @@ services:
         tags:
             - { name: container.service_subscriber }
 
+    netgen_layouts.ibexa.admin.controller.create_content:
+        class: Netgen\Bundle\LayoutsIbexaBundle\Controller\Admin\CreateContent
+        public: true
+        parent: netgen_layouts.ibexa.admin.controller.base
+        arguments:
+            - "@ibexa.api.service.location"
+            - "@ibexa.api.service.content_type"
+
     netgen_layouts.ibexa.admin.controller.delete_rule:
         class: Netgen\Bundle\LayoutsIbexaBundle\Controller\Admin\DeleteRule
         public: true

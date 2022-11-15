@@ -15,6 +15,11 @@ nglayouts_ibexa_admin_layout_wizard_callback:
     controller: netgen_layouts.ibexa.admin.controller.layout_wizard_callback
     methods:  [GET]
 
+nglayouts_ibexa_admin_create_content:
+    path: /nglayouts/ibexa/admin/layouts/content/create/{contentTypeIdentifier}/{languageCode}/{parentLocationId}
+    controller: netgen_layouts.ibexa.admin.controller.create_content
+    methods:  [GET]
+
 nglayouts_ibexa_admin_delete_rule:
     path: /nglayouts/ibexa/admin/layouts/rules/{ruleId}/delete
     controller: netgen_layouts.ibexa.admin.controller.delete_rule

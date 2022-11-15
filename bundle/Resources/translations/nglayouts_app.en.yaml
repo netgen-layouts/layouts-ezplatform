@@ -2,3 +2,6 @@ block.notice.empty_ibexa_content_field: 'This block is not configured yet. Pleas
 block.notice.empty_ibexa_component: 'This block is not configured yet. Please define the Ibexa content which will be used to render the block.'
 
 block.info.ibexa_content_field: 'Ibexa content field with identifier "%field%" will be rendered here.'
+
+block.ibexa_component.edit_content: 'Edit'
+block.ibexa_component.create_content: '+ Create new'
