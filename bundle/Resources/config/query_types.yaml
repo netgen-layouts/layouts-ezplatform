@@ -1,3 +1,4 @@
 query_types:
     ezcontent_search:
         name: 'eZ Platform'
+        priority: 1000
