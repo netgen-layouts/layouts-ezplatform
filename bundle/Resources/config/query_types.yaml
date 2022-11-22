@@ -1,3 +1,4 @@
 query_types:
     ibexa_content_search:
         name: 'Ibexa'
+        priority: 1000
