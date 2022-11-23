@@ -46,7 +46,7 @@
             width:800px;
             .nl-modal-body {
                 padding:35px 80px;
-    
+
                 #delete-verification {
                     display: block;
                     margin: 0 0 1em;
@@ -58,13 +58,13 @@
                     border: 1px solid #b3b3b3;
                     background: #fff;
                 }
-    
+
                 .row-input {
                     display: flex;
                     flex-wrap: wrap;
                     align-items: center;
                     justify-content: space-between;
-    
+
                     &:first-child {
                         input[type="radio"] {
                             width: auto;
@@ -76,13 +76,13 @@
                             margin-bottom: 24px;
                         }
                     }
-    
+
                     &.error-input {
                         input {
                             border: 1px solid red;
                         }
                     }
-    
+
                     select, input, textarea {
                         width: 290px;
                     }
@@ -100,11 +100,11 @@
                     color:red;
                 }
             }
-    
+
             #layout_wizard_action {
                 width: 100%;
             }
-    
+
             .layout-type {
                 display: none;
                 margin: 0 -1%;
@@ -112,16 +112,16 @@
                 max-height: 20rem;
                 overflow-y: auto;
                 width: 100%;
-    
+
                 .layout-type-item {
                     margin: 0 1% 1em;
                     flex: 1;
-    
+
                     input[type='radio'] {
                         position: absolute;
                         left: -9999em;
                         visibility: hidden;
-    
+
                         +label {
                             font-size: .875em;
                             font-weight: normal;
@@ -131,7 +131,7 @@
                             padding: 0;
                             margin: 0;
                             display: block;
-    
+
                             .icon {
                                 content: '';
                                 display: block;
@@ -145,14 +145,14 @@
                                 position: relative;
                             }
                         }
-    
+
                         &:checked {
                             +label {
                                 color: #2a72ef;
-    
+
                                 .icon {
                                     border-color: #2a72ef;
-    
+
                                     &:after {
                                         font-family: 'Material Icons';
                                         vertical-align: text-bottom;
@@ -186,15 +186,15 @@
                                 }
                             }
                         }
-    
+
                         &:disabled {
                             + label {
                                 color: #999999;
-    
+
                                 .icon {
                                     border-color: #999999;
                                     cursor: not-allowed;
-    
+
                                     &::after {
                                         display: none;
                                     }

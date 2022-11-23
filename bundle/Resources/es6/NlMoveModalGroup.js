@@ -92,11 +92,11 @@ export default class NlMoveModalGroup {
                     </span>
                     <span class="icon-group-disabled">
                         <div class="disabled-tooltip">Group disabled</div>
-                    </span> 
+                    </span>
                     <p>${name}</p>
                 </div>
             </div>
-  
+
             <div class="nl-group-body">
                 <div class="nl-grid">
                     <div class="nl-group-list col-xs12"></div>
