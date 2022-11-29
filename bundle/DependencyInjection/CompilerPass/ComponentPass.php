@@ -42,6 +42,11 @@ final class ComponentPass implements CompilerPassInterface
             );
         }
 
+        unset($blockTypes['ezcomponent']);
+        unset($blockDefinitions['ezcomponent']);
+
+        $container->removeDefinition('netgen_layouts.ezplatform.block.block_definition_handler.component');
+
         $container->setParameter('netgen_layouts.block_types', $blockTypes);
         $container->setParameter('netgen_layouts.block_definitions', $blockDefinitions);
     }
