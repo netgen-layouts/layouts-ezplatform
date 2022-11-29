@@ -42,6 +42,11 @@ final class ComponentPass implements CompilerPassInterface
             );
         }
 
+        unset($blockTypes['ibexa_component']);
+        unset($blockDefinitions['ibexa_component']);
+
+        $container->removeDefinition('netgen_layouts.ibexa.block.block_definition_handler.component');
+
         $container->setParameter('netgen_layouts.block_types', $blockTypes);
         $container->setParameter('netgen_layouts.block_definitions', $blockDefinitions);
     }
