@@ -21,12 +21,9 @@ final class LocationProvider implements ValueObjectProviderInterface
     public function getValueObject($value): ?object
     {
         try {
-            /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location $location */
-            $location = $this->repository->sudo(
+            return $this->repository->sudo(
                 static fn (Repository $repository): Location => $repository->getLocationService()->loadLocation((int) $value),
             );
-
-            return $location;
         } catch (NotFoundException $e) {
             return null;
         }

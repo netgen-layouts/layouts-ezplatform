@@ -21,12 +21,12 @@ final class ContentProvider implements ValueObjectProviderInterface
     public function getValueObject($value): ?object
     {
         try {
-            /** @var \Ibexa\Contracts\Core\epository\Values\Content\Content $content */
+            /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Content $content */
             $content = $this->repository->sudo(
                 static fn (Repository $repository): Content => $repository->getContentService()->loadContent((int) $value),
             );
 
-            return $content;
+            return $content->contentInfo->mainLocationId !== null ? $content : null;
         } catch (NotFoundException $e) {
             return null;
         }
