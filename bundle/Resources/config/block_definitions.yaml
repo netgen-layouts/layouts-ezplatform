@@ -8,6 +8,7 @@ block_definitions:
     ezcomponent:
         name: 'eZ component'
         icon: '/bundles/netgenlayoutsezplatform/images/components/icon-component-generic.svg'
+        enabled: false
         config_provider: ezplatform
         view_types:
             standard:

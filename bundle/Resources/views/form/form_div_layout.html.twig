@@ -2,7 +2,7 @@
 
 
 {# Form theme for "content" parameter from "ezcomponent" block definition #}
-{%- block _full_edit_parameters_ezcomponent_content_widget -%}
+{%- block ezcomponent_content_widget -%}
     {% set parent_locations = ezpublish.configResolver.parameter('ezcomponent.parent_locations', 'netgen_layouts') %}
     {% set default_parent_location = ezpublish.configResolver.parameter('ezcomponent.default_parent_location', 'netgen_layouts') %}
 

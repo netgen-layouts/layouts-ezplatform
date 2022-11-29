@@ -26,6 +26,7 @@ final class ComponentHandler extends BlockDefinitionHandler
             'content',
             EzParameterType\ContentType::class,
             [
+                'label' => 'block.ezcomponent.content',
                 'allow_invalid' => true,
             ],
         );

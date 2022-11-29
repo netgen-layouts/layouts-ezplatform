@@ -9,7 +9,7 @@ view:
             ezcomponent:
                 template: "@nglayouts/block/ezcomponent.html.twig"
                 match:
-                    block\definition: ezcomponent
+                    block\definition\prefix: ezcomponent
         app:
             ezcontent_field:
                 template: "@NetgenLayoutsEzPlatform/app/block/ezcontent_field.html.twig"
@@ -18,4 +18,4 @@ view:
             ezcomponent:
                 template: "@NetgenLayoutsEzPlatform/app/block/ezcomponent.html.twig"
                 match:
-                    block\definition: ezcomponent
+                    block\definition\prefix: ezcomponent
