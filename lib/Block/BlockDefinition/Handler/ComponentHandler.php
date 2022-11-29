@@ -26,6 +26,7 @@ final class ComponentHandler extends BlockDefinitionHandler
             'content',
             IbexaParameterType\ContentType::class,
             [
+                'label' => 'block.ibexa_component.content',
                 'allow_invalid' => true,
             ],
         );

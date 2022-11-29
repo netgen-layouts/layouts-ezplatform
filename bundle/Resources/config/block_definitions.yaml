@@ -8,6 +8,7 @@ block_definitions:
     ibexa_component:
         name: 'Ibexa component'
         icon: '/bundles/netgenlayoutsibexa/images/components/icon-component-generic.svg'
+        enabled: false
         config_provider: ibexa
         view_types:
             standard:

@@ -20,6 +20,11 @@ services:
         tags:
             - { name: form.type }
 
+    netgen_layouts.ibexa.form.extension.component_content:
+        class: Netgen\Layouts\Ibexa\Form\Extension\ComponentContentExtension
+        tags:
+            - { name: form.type_extension, extended_type: Netgen\ContentBrowser\Form\Type\ContentBrowserType }
+
     netgen_layouts.ibexa.form.admin.layout_wizard:
         class: Netgen\Bundle\LayoutsIbexaBundle\Form\Admin\Type\LayoutWizardType
         arguments:

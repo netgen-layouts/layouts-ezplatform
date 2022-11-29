@@ -7,6 +7,7 @@ namespace Netgen\Bundle\LayoutsIbexaBundle;
 use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass;
 use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin;
 use Netgen\Bundle\LayoutsIbexaBundle\Security\PolicyProvider;
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -21,6 +22,7 @@ final class NetgenLayoutsIbexaBundle extends Bundle
         $layoutsExtension->addPlugin(new ExtensionPlugin($container, $layoutsExtension));
 
         $container->addCompilerPass(new CompilerPass\View\DefaultViewTemplatesPass());
+        $container->addCompilerPass(new CompilerPass\ComponentPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 1000);
         $container->addCompilerPass(new CompilerPass\DefaultAppPreviewPass());
         $container->addCompilerPass(new CompilerPass\HttpCache\ConfigureHttpCachePass());
         $container->addCompilerPass(new CompilerPass\HttpCache\VarnishClientPass());
