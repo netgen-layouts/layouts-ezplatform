@@ -129,7 +129,8 @@ final class ExtensionPlugin extends BaseExtensionPlugin
         $processor->mapConfig(
             $config,
             static function ($config, $scope, ContextualizerInterface $c): void {
-                $c->setContextualParameter('ibexa_component.parent_locations', $scope, $config['ibexa_component']['parent_locations']);
+                $c->setContextualParameter('ezcomponent.parent_locations', $scope, $config['ezcomponent']['parent_locations']);
+                $c->setContextualParameter('ezcomponent.default_parent_location', $scope, $config['ezcomponent']['default_parent_location']);
             },
         );
 
