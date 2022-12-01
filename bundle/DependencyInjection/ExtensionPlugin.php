@@ -9,6 +9,7 @@ use Ibexa\Bundle\Core\DependencyInjection\Configuration\SiteAccessAware\Contextu
 use Netgen\Bundle\LayoutsBundle\DependencyInjection\ConfigurationNode\DesignNode;
 use Netgen\Bundle\LayoutsBundle\DependencyInjection\ConfigurationNode\ViewNode;
 use Netgen\Bundle\LayoutsBundle\DependencyInjection\ExtensionPlugin as BaseExtensionPlugin;
+use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ConfigurationNode\ComponentNode;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -124,6 +125,14 @@ final class ExtensionPlugin extends BaseExtensionPlugin
         $config = $this->fixUpViewConfig($config);
 
         $processor = new ConfigurationProcessor($this->container, $this->extension->getAlias());
+
+        $processor->mapConfig(
+            $config,
+            static function ($config, $scope, ContextualizerInterface $c): void {
+                $c->setContextualParameter('ibexa_component.parent_locations', $scope, $config['ibexa_component']['parent_locations']);
+            },
+        );
+
         foreach (array_keys($config) as $key) {
             if ($key === 'system' || !in_array($key, self::SITEACCCESS_AWARE_SETTINGS, true)) {
                 continue;
@@ -161,6 +170,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
         return [
             new ViewNode(),
             new DesignNode(),
+            new ComponentNode(),
         ];
     }
 
