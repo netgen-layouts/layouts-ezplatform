@@ -1,5 +1,3 @@
 parameters:
     netgen_layouts.app.ibexa.item_preview_template: '@@NetgenLayoutsIbexa/app/item/nglayouts_app_preview.html.twig'
     netgen_layouts.ibexa.admin.pagelayout: '@@NetgenLayoutsIbexa/admin/pagelayout.html.twig'
-
-    netgen_layouts.default.ibexa_component.default_parent_location: 2

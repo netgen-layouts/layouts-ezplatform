@@ -130,6 +130,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
             $config,
             static function ($config, $scope, ContextualizerInterface $c): void {
                 $c->setContextualParameter('ibexa_component.parent_locations', $scope, $config['ibexa_component']['parent_locations']);
+                $c->setContextualParameter('ibexa_component.default_parent_location', $scope, $config['ibexa_component']['default_parent_location']);
             },
         );
 

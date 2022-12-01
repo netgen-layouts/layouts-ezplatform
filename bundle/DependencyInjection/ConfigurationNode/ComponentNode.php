@@ -18,6 +18,9 @@ final class ComponentNode implements ConfigurationNodeInterface
         $node
             ->addDefaultsIfNotSet()
             ->children()
+                ->integerNode('default_parent_location')
+                    ->defaultValue(2)
+                ->end()
                 ->arrayNode('parent_locations')
                     ->prototype('scalar')->end()
                 ->end()
