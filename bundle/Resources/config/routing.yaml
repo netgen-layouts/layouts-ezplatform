@@ -16,7 +16,7 @@ nglayouts_ezadmin_layout_wizard_callback:
     methods:  [GET]
 
 nglayouts_ezadmin_create_content:
-    path: /nglayouts/ezadmin/layouts/content/create/{contentTypeIdentifier}/{languageCode}/{parentLocationId}
+    path: /nglayouts/ezadmin/blocks/{blockId}/create-content/{contentTypeIdentifier}/{languageCode}/{parentLocationId}
     controller: netgen_layouts.ezplatform.admin.controller.create_content
     methods:  [GET]
 
