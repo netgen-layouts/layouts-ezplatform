@@ -6,6 +6,7 @@ namespace Netgen\Bundle\LayoutsEzPlatformBundle\Controller\Admin;
 
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\LocationService;
+use Netgen\Layouts\API\Values\Block\Block;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -28,7 +29,7 @@ final class CreateContent extends Controller
      *
      * @param int|string $parentLocationId
      */
-    public function __invoke(Request $request, string $contentTypeIdentifier, string $languageCode, $parentLocationId): Response
+    public function __invoke(Request $request, Block $block, string $contentTypeIdentifier, string $languageCode, $parentLocationId): Response
     {
         $location = $this->locationService->loadLocation((int) $parentLocationId);
         $contentType = $this->contentTypeService->loadContentTypeByIdentifier($contentTypeIdentifier);
@@ -39,6 +40,7 @@ final class CreateContent extends Controller
                 'contentTypeIdentifier' => $contentType->identifier,
                 'language' => $languageCode,
                 'parentLocationId' => $location->id,
+                '_fragment' => 'ngl-component/' . $block->getId()->toString(),
             ],
         );
     }

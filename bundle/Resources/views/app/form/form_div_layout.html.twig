@@ -19,6 +19,7 @@
         {% else %}
             {% set link_name = 'block.ezcomponent.create_content'|trans %}
             {% set link_url = path('nglayouts_ezadmin_create_content', {
+                blockId: form.parent.parent.vars.block.id.toString(),
                 contentTypeIdentifier: content_type_identifier,
                 languageCode: ezpublish.configResolver.parameter('languages').0,
                 parentLocationId: parent_locations[content_type_identifier] ?? default_parent_location
