@@ -33,10 +33,10 @@ final class CreateContent extends Controller
         $contentType = $this->contentTypeService->loadContentTypeByIdentifier($contentTypeIdentifier);
 
         return $this->redirectToRoute(
-            'ibexa.content.create_no_draft',
+            'ibexa.content.create.proxy',
             [
                 'contentTypeIdentifier' => $contentType->identifier,
-                'language' => $languageCode,
+                'languageCode' => $languageCode,
                 'parentLocationId' => $location->id,
                 '_fragment' => 'ngl-component/' . $block->getId()->toString(),
             ],
