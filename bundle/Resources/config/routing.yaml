@@ -28,6 +28,8 @@ nglayouts_ezadmin_connect_component_content:
     methods:  [POST]
     requirements:
         contentId: \d+
+    defaults:
+        _nglayouts_status: draft
 
 nglayouts_ezadmin_delete_rule:
     path: /nglayouts/ezadmin/layouts/rules/{ruleId}/delete
