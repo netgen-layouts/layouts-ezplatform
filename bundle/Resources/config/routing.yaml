@@ -16,11 +16,18 @@ nglayouts_ezadmin_layout_wizard_callback:
     methods:  [GET]
 
 nglayouts_ezadmin_create_content:
-    path: /nglayouts/ezadmin/blocks/{blockId}/create-content/{contentTypeIdentifier}/{languageCode}/{parentLocationId}
+    path: /nglayouts/ezadmin/blocks/{blockId}/{locale}/create-content/{contentTypeIdentifier}/{languageCode}/{parentLocationId}
     controller: netgen_layouts.ezplatform.admin.controller.create_content
     methods:  [GET]
     requirements:
         parentLocationId: \d+
+
+nglayouts_ezadmin_connect_component_content:
+    path: /nglayouts/ezadmin/blocks/{blockId}/{locale}/connect-component-content/{contentId}
+    controller: netgen_layouts.ezplatform.admin.controller.connect_component_content
+    methods:  [POST]
+    requirements:
+        contentId: \d+
 
 nglayouts_ezadmin_delete_rule:
     path: /nglayouts/ezadmin/layouts/rules/{ruleId}/delete

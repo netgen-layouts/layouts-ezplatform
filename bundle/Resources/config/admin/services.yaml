@@ -39,6 +39,14 @@ services:
             - "@ezpublish.api.service.location"
             - "@ezpublish.api.service.content_type"
 
+    netgen_layouts.ezplatform.admin.controller.connect_component_content:
+        class: Netgen\Bundle\LayoutsEzPlatformBundle\Controller\Admin\ConnectComponentContent
+        public: true
+        parent: netgen_layouts.ezplatform.admin.controller.base
+        arguments:
+            - "@netgen_layouts.api.service.block"
+            - "@ezpublish.api.service.content"
+
     netgen_layouts.ezplatform.admin.controller.delete_rule:
         class: Netgen\Bundle\LayoutsEzPlatformBundle\Controller\Admin\DeleteRule
         public: true
