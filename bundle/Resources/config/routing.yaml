@@ -28,6 +28,8 @@ nglayouts_ibexa_admin_connect_component_content:
     methods:  [POST]
     requirements:
         contentId: \d+
+    defaults:
+        _nglayouts_status: draft
 
 nglayouts_ibexa_admin_delete_rule:
     path: /nglayouts/ibexa/admin/layouts/rules/{ruleId}/delete

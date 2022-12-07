@@ -37,21 +37,15 @@ final class ConnectComponentContent extends Controller
         }
 
         try {
-            $blockDraft = $this->blockService->loadBlockDraft($block->getId(), [$block->getLocale()]);
-        } catch (NotFoundException $e) {
-            throw new BadRequestHttpException();
-        }
-
-        try {
             $content = $this->contentService->loadContent($contentId);
         } catch (IbexaNotFoundException|UnauthorizedException $e) {
             throw new BadRequestHttpException();
         }
 
-        $blockUpdateStruct = $this->blockService->newBlockUpdateStruct($blockDraft->getLocale(), $blockDraft);
+        $blockUpdateStruct = $this->blockService->newBlockUpdateStruct($block->getLocale());
         $blockUpdateStruct->setParameterValue('content', $content->id);
 
-        $this->blockService->updateBlock($blockDraft, $blockUpdateStruct);
+        $this->blockService->updateBlock($block, $blockUpdateStruct);
 
         return new Response();
     }
