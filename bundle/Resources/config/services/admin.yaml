@@ -45,6 +45,14 @@ services:
             - "@ibexa.api.service.location"
             - "@ibexa.api.service.content_type"
 
+    netgen_layouts.ibexa.admin.controller.connect_component_content:
+        class: Netgen\Bundle\LayoutsIbexaBundle\Controller\Admin\ConnectComponentContent
+        public: true
+        parent: netgen_layouts.ibexa.admin.controller.base
+        arguments:
+            - "@netgen_layouts.api.service.block"
+            - "@ibexa.api.service.content"
+
     netgen_layouts.ibexa.admin.controller.delete_rule:
         class: Netgen\Bundle\LayoutsIbexaBundle\Controller\Admin\DeleteRule
         public: true

@@ -16,9 +16,11 @@
             {% set link_name = 'block.ibexa_component.edit_content'|trans %}
             {% set link_url = ibexa_path(form.vars.item.location) %}
         {% else %}
+            {% set block = form.parent.parent.vars.block %}
             {% set link_name = 'block.ibexa_component.create_content'|trans %}
             {% set link_url = path('nglayouts_ibexa_admin_create_content', {
-                blockId: form.parent.parent.vars.block.id.toString(),
+                blockId: block.id.toString,
+                locale: block.locale,
                 contentTypeIdentifier: content_type_identifier,
                 languageCode: ibexa.configResolver.parameter('languages').0,
                 parentLocationId: start_location

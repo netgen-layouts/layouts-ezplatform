@@ -38,7 +38,7 @@ final class CreateContent extends Controller
                 'contentTypeIdentifier' => $contentType->identifier,
                 'languageCode' => $languageCode,
                 'parentLocationId' => $location->id,
-                '_fragment' => 'ngl-component/' . $block->getId()->toString(),
+                '_fragment' => 'ngl-component/' . $block->getId()->toString() . '/' . $block->getLocale(),
             ],
         );
     }

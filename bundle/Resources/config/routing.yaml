@@ -16,11 +16,18 @@ nglayouts_ibexa_admin_layout_wizard_callback:
     methods:  [GET]
 
 nglayouts_ibexa_admin_create_content:
-    path: /nglayouts/ibexa/admin/blocks/{blockId}/create-content/{contentTypeIdentifier}/{languageCode}/{parentLocationId}
+    path: /nglayouts/ibexa/admin/blocks/{blockId}/{locale}/create-content/{contentTypeIdentifier}/{languageCode}/{parentLocationId}
     controller: netgen_layouts.ibexa.admin.controller.create_content
     methods:  [GET]
     requirements:
         parentLocationId: \d+
+
+nglayouts_ibexa_admin_connect_component_content:
+    path: /nglayouts/ibexa/admin/blocks/{blockId}/{locale}/connect-component-content/{contentId}
+    controller: netgen_layouts.ibexa.admin.controller.connect_component_content
+    methods:  [POST]
+    requirements:
+        contentId: \d+
 
 nglayouts_ibexa_admin_delete_rule:
     path: /nglayouts/ibexa/admin/layouts/rules/{ruleId}/delete
