@@ -1,2 +1,2 @@
 form_themes:
-    - "@NetgenLayoutsIbexa/form/form_div_layout.html.twig"
+    - "@NetgenLayoutsIbexa/app/form/form_div_layout.html.twig"
