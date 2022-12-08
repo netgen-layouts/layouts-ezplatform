@@ -1,6 +1,7 @@
 block_definitions:
     ezcontent_field:
         name: 'eZ content field'
+        icon: '/bundles/netgenlayoutsezplatform/images/blocks/icon-ezcontent_field.svg'
         view_types:
             ezcontent_field:
                 name: 'eZ content field'
