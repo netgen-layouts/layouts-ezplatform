@@ -1,6 +1,7 @@
 block_definitions:
     ibexa_content_field:
         name: 'Ibexa content field'
+        icon: '/bundles/netgenlayoutsibexa/images/blocks/icon-ibexa_content_field.svg'
         view_types:
             ibexa_content_field:
                 name: 'Ibexa content field'
