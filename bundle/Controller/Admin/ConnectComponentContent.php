@@ -9,7 +9,6 @@ use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException as IbexaNotFoun
 use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Netgen\Layouts\API\Service\BlockService;
 use Netgen\Layouts\API\Values\Block\Block;
-use Netgen\Layouts\Exception\NotFoundException;
 use Netgen\Layouts\Ibexa\Block\BlockDefinition\Handler\ComponentHandler;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

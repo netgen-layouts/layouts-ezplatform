@@ -82,5 +82,13 @@
                 <referencedMethod name="Ibexa\HttpCache\RepositoryTagPrefix::getRepositoryPrefix" />
             </errorLevel>
         </InternalMethod>
+
+        <!-- Symfony -->
+
+        <PossiblyUndefinedMethod>
+            <errorLevel type="suppress">
+                <referencedMethod name="Symfony\Component\Config\Definition\Builder\NodeDefinition::addDefaultsIfNotSet" />
+            </errorLevel>
+        </PossiblyUndefinedMethod>
     </issueHandlers>
 </psalm>
