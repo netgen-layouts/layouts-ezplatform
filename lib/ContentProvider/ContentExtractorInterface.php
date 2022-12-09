@@ -11,12 +11,12 @@ use Symfony\Component\HttpFoundation\Request;
 interface ContentExtractorInterface
 {
     /**
-     * Extracts the Ibexa Platform content object from provided request.
+     * Extracts the Ibexa CMS content object from provided request.
      */
     public function extractContent(Request $request): ?Content;
 
     /**
-     * Extracts the Ibexa Platform location object from provided request.
+     * Extracts the Ibexa CMS location object from provided request.
      */
     public function extractLocation(Request $request): ?Location;
 }

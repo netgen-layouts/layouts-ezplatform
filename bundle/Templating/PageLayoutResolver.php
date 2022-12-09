@@ -10,10 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
- * This is the Ibexa Platform specific page layout resolver
+ * This is the Ibexa CMS specific page layout resolver
  * which provides the pagelayout by reading it from the pagelayout
- * configuration of Ibexa Platform. Meaning, Netgen Layouts will
- * automatically use the pagelayout configured inside Ibexa Platform.
+ * configuration of Ibexa CMS. Meaning, Netgen Layouts will
+ * automatically use the pagelayout configured inside Ibexa CMS.
  */
 final class PageLayoutResolver implements PageLayoutResolverInterface
 {

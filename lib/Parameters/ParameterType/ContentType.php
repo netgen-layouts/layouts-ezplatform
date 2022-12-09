@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
 
 /**
- * Parameter type used to store and validate an ID of a content in Ibexa Platform.
+ * Parameter type used to store and validate an ID of a content in Ibexa CMS.
  */
 final class ContentType extends ParameterType implements ValueObjectProviderInterface
 {

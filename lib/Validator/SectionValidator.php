@@ -17,7 +17,7 @@ use function in_array;
 use function is_string;
 
 /**
- * Validates if the provided value is an identifier of a valid section in Ibexa Platform.
+ * Validates if the provided value is an identifier of a valid section in Ibexa CMS.
  */
 final class SectionValidator extends ConstraintValidator
 {

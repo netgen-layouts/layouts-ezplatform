@@ -1,5 +1,5 @@
 services:
-    # Alias to Ibexa Platform search service, allowing for replacement
+    # Alias to Ibexa CMS search service, allowing for replacement
     # of search service with other implementations system wide
 
     netgen_layouts.ibexa.search_service:

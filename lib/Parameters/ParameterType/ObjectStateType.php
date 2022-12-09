@@ -14,7 +14,7 @@ use function array_values;
 use function is_array;
 
 /**
- * Parameter type used to store and validate an identifier of a object state in Ibexa Platform.
+ * Parameter type used to store and validate an identifier of a object state in Ibexa CMS.
  */
 final class ObjectStateType extends ParameterType
 {

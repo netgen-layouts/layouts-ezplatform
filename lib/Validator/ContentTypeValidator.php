@@ -21,7 +21,7 @@ use function is_array;
 use function is_string;
 
 /**
- * Validates if the provided value is an identifier of a valid content type in Ibexa Platform.
+ * Validates if the provided value is an identifier of a valid content type in Ibexa CMS.
  */
 final class ContentTypeValidator extends ConstraintValidator
 {

@@ -11,7 +11,7 @@ use Ibexa\Core\MVC\Symfony\View\LocationValueView;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class used to extract content and location from provided request in Ibexa Platform.
+ * Class used to extract content and location from provided request in Ibexa CMS.
  */
 final class RequestContentExtractor implements ContentExtractorInterface
 {

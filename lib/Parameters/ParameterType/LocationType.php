@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints;
 
 /**
- * Parameter type used to store and validate an ID of a location in Ibexa Platform.
+ * Parameter type used to store and validate an ID of a location in Ibexa CMS.
  */
 final class LocationType extends ParameterType implements ValueObjectProviderInterface
 {

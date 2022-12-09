@@ -30,7 +30,7 @@ final class MainMenuBuilderListener implements EventSubscriberInterface
     }
 
     /**
-     * This method adds Netgen Layouts menu items to Ibexa Platform admin interface.
+     * This method adds Netgen Layouts menu items to Ibexa CMS admin interface.
      */
     public function onMainMenuBuild(ConfigureMenuEvent $event): void
     {
@@ -42,7 +42,7 @@ final class MainMenuBuilderListener implements EventSubscriberInterface
     }
 
     /**
-     * Adds the Netgen Layouts submenu to Ibexa Platform admin interface.
+     * Adds the Netgen Layouts submenu to Ibexa CMS admin interface.
      */
     private function addLayoutsSubMenu(ItemInterface $menu): void
     {

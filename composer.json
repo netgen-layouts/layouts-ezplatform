@@ -1,6 +1,6 @@
 {
     "name": "netgen/layouts-ibexa",
-    "description": "Netgen Layouts & Ibexa Platform integration",
+    "description": "Netgen Layouts & Ibexa CMS integration",
     "license": "GPL-2.0-only",
     "type": "symfony-bundle",
     "authors": [
@@ -31,7 +31,7 @@
         "netgen/tagsbundle": "^5.0"
     },
     "suggest": {
-        "netgen/layouts-ibexa-site-api": "Integrate Netgen Layouts with Ibexa Platform Site API to boost your site-building productivity with Ibexa Platform"
+        "netgen/layouts-ibexa-site-api": "Integrate Netgen Layouts with Ibexa CMS Site API to boost your site-building productivity with Ibexa CMS"
     },
     "scripts": {
         "test": "@php vendor/bin/phpunit --colors=always",

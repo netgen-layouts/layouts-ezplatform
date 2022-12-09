@@ -13,7 +13,7 @@ use Netgen\Layouts\Parameters\ParameterType;
 
 /**
  * Block definition handler for a block which renders a field specified by the parameter
- * from currently rendered Ibexa Platform content.
+ * from currently rendered Ibexa CMS content.
  */
 final class ContentFieldHandler extends BlockDefinitionHandler
 {

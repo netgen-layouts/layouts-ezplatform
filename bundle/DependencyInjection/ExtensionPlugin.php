@@ -41,7 +41,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
     /**
      * Pre-processes the configuration before it is resolved.
      *
-     * The point of the preprocessor is to generate Ibexa Platform siteaccess aware
+     * The point of the preprocessor is to generate Ibexa CMS siteaccess aware
      * configuration for every key that is available in self::SITEACCCESS_AWARE_SETTINGS.
      *
      * With this, the following:
@@ -112,7 +112,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
     /**
      * Post-processes the resolved configuration.
      *
-     * The postprocessor calls Ibexa Platform mapConfigArray and mapSettings methods from siteaccess aware
+     * The postprocessor calls Ibexa CMS mapConfigArray and mapSettings methods from siteaccess aware
      * configuration processor as per documentation, to make the configuration correctly apply to all
      * siteaccesses.
      *

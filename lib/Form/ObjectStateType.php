@@ -44,7 +44,7 @@ final class ObjectStateType extends AbstractType
     }
 
     /**
-     * Returns the allowed content states from Ibexa Platform.
+     * Returns the allowed content states from Ibexa CMS.
      *
      * @return array<string, string[]>
      */

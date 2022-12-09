@@ -9,11 +9,11 @@ use Netgen\Bundle\LayoutsBundle\Configuration\ConfigurationInterface;
 use Netgen\Bundle\LayoutsBundle\Exception\ConfigurationException;
 
 /**
- * Implementation of ConfigurationInterface that uses Ibexa Platform
+ * Implementation of ConfigurationInterface that uses Ibexa CMS
  * config resolver to retrieve parameters from the container.
  *
  * This means that the returned values will be the ones defined
- * in the current Ibexa Platform scope of the request.
+ * in the current Ibexa CMS scope of the request.
  *
  * @final
  */

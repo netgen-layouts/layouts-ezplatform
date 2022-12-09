@@ -75,7 +75,7 @@
             </errorLevel>
         </PossiblyInvalidMethodCall>
 
-        <!-- Ibexa Platform -->
+        <!-- Ibexa CMS -->
 
         <InternalMethod>
             <errorLevel type="suppress">

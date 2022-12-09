@@ -16,8 +16,8 @@ use function asort;
 use function is_array;
 
 /**
- * Ibexa Platform specific locale provider that provides the existing locales
- * by reading them from Ibexa Platform database.
+ * Ibexa CMS specific locale provider that provides the existing locales
+ * by reading them from Ibexa CMS database.
  */
 final class LocaleProvider implements LocaleProviderInterface
 {
@@ -78,7 +78,7 @@ final class LocaleProvider implements LocaleProviderInterface
     }
 
     /**
-     * Returns the array with POSIX locale code and name for provided Ibexa Platform language.
+     * Returns the array with POSIX locale code and name for provided Ibexa CMS language.
      *
      * If POSIX locale does not exist or if language is not enabled, null will be returned.
      *

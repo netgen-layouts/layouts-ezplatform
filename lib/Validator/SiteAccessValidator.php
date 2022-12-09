@@ -13,7 +13,7 @@ use function in_array;
 use function is_string;
 
 /**
- * Validates if the provided value is a valid Ibexa Platform siteaccess.
+ * Validates if the provided value is a valid Ibexa CMS siteaccess.
  */
 final class SiteAccessValidator extends ConstraintValidator
 {

@@ -44,7 +44,7 @@ final class SectionType extends AbstractType
     }
 
     /**
-     * Returns the allowed sections from Ibexa Platform.
+     * Returns the allowed sections from Ibexa CMS.
      *
      * @return array<string, string>
      */

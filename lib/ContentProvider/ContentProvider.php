@@ -10,7 +10,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Location;
 use Netgen\Layouts\Context\Context;
 
 /**
- * Provides the Ibexa Platform content and location objects from the
+ * Provides the Ibexa CMS content and location objects from the
  * current context.
  */
 final class ContentProvider implements ContentProviderInterface
@@ -41,7 +41,7 @@ final class ContentProvider implements ContentProviderInterface
     }
 
     /**
-     * Loads the location from the Ibexa Platform API by using the location ID
+     * Loads the location from the Ibexa CMS API by using the location ID
      * stored in the context.
      */
     private function loadLocation(): ?Location

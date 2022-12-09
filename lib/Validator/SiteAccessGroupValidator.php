@@ -14,7 +14,7 @@ use function in_array;
 use function is_string;
 
 /**
- * Validates if the provided value is a valid Ibexa Platform siteaccess group.
+ * Validates if the provided value is a valid Ibexa CMS siteaccess group.
  */
 final class SiteAccessGroupValidator extends ConstraintValidator
 {

@@ -44,7 +44,7 @@ final class ContentTypeType extends AbstractType
     }
 
     /**
-     * Returns the allowed content types from Ibexa Platform.
+     * Returns the allowed content types from Ibexa CMS.
      *
      * @return array<string, string[]>
      */

@@ -1,4 +1,4 @@
-# Netgen Layouts & Ibexa Platform integration
+# Netgen Layouts & Ibexa CMS integration
 
 ## Installation instructions
 

@@ -1,7 +1,7 @@
 parameters:
     netgen_layouts.ibexa.context.provider.allowed_routes:
         - !php/const Ibexa\Core\MVC\Symfony\Routing\UrlAliasRouter::URL_ALIAS_ROUTE_NAME
-        # For Ibexa Platform content preview support
+        # For Ibexa CMS content preview support
         - ibexa.version.preview
 
 services:

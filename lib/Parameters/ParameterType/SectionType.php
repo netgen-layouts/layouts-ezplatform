@@ -14,7 +14,7 @@ use function array_values;
 use function is_array;
 
 /**
- * Parameter type used to store and validate an identifier of a section in Ibexa Platform.
+ * Parameter type used to store and validate an identifier of a section in Ibexa CMS.
  */
 final class SectionType extends ParameterType
 {

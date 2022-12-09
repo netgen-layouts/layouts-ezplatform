@@ -17,7 +17,7 @@ use function in_array;
 use function is_scalar;
 
 /**
- * Validates if the provided value is an ID of a valid content in Ibexa Platform.
+ * Validates if the provided value is an ID of a valid content in Ibexa CMS.
  */
 final class ContentValidator extends ConstraintValidator
 {

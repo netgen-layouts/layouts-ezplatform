@@ -15,17 +15,17 @@ use function str_starts_with;
 
 /**
  * Votes on Netgen Layouts attributes (ROLE_NGLAYOUTS_*) by matching corresponding access
- * rights in Ibexa Platform Repository.
+ * rights in Ibexa CMS Repository.
  */
 final class RepositoryAccessVoter extends Voter
 {
     /**
-     * Identifier of the Ibexa Platform module used for creating Netgen Layouts permissions.
+     * Identifier of the Ibexa CMS module used for creating Netgen Layouts permissions.
      */
     private const MODULE = 'nglayouts';
 
     /**
-     * Map of supported attributes to corresponding functions in the Ibexa Platform module.
+     * Map of supported attributes to corresponding functions in the Ibexa CMS module.
      */
     private const ATTRIBUTE_TO_POLICY_MAP = [
         'ROLE_NGLAYOUTS_ADMIN' => 'admin',

@@ -32,7 +32,7 @@ final class ConfigureHttpCachePass implements CompilerPassInterface
             $container->log(
                 $this,
                 sprintf(
-                    'Cache clearing in Netgen Layouts cannot be automatically configured since Ibexa Platform purge client is neither an instance of "%s" nor "%s". Use Netgen Layouts "%s" config to enable or disable HTTP cache clearing.',
+                    'Cache clearing in Netgen Layouts cannot be automatically configured since Ibexa CMS purge client is neither an instance of "%s" nor "%s". Use Netgen Layouts "%s" config to enable or disable HTTP cache clearing.',
                     VarnishPurgeClient::class,
                     LocalPurgeClient::class,
                     'http_cache.invalidation.enabled',

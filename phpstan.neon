@@ -12,7 +12,7 @@ parameters:
         - '#Cannot call method fetchAllAssociative\(\) on Doctrine\\DBAL\\ForwardCompatibility\\Result\|int#'
         - '#expects string\|null, Doctrine\\DBAL\\Query\\Expression\\CompositeExpression given#'
 
-        # Ibexa Platform
+        # Ibexa CMS
         -
             message: '#Call to function is_string\(\) with string will always evaluate to true.#'
             path: lib/Security/Authorization/Voter/RepositoryAccessVoter.php

@@ -18,7 +18,7 @@ use function is_array;
 use function is_string;
 
 /**
- * Validates if the provided value is an identifier of a valid object state in Ibexa Platform.
+ * Validates if the provided value is an identifier of a valid object state in Ibexa CMS.
  */
 final class ObjectStateValidator extends ConstraintValidator
 {
