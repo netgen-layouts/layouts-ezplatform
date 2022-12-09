@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Netgen\Bundle\LayoutsIbexaBundle\Controller\Admin;
 
 use Ibexa\Contracts\Core\Repository\ContentService;
-use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException as IbexaNotFoundException;
+use Ibexa\Contracts\Core\Repository\Exceptions\NotFoundException;
 use Ibexa\Contracts\Core\Repository\Exceptions\UnauthorizedException;
 use Netgen\Layouts\API\Service\BlockService;
 use Netgen\Layouts\API\Values\Block\Block;
@@ -37,7 +37,7 @@ final class ConnectComponentContent extends Controller
 
         try {
             $content = $this->contentService->loadContent($contentId);
-        } catch (IbexaNotFoundException|UnauthorizedException $e) {
+        } catch (NotFoundException|UnauthorizedException $e) {
             throw new BadRequestHttpException();
         }
 
