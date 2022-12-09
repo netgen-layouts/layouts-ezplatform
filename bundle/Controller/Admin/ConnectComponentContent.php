@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Netgen\Bundle\LayoutsEzPlatformBundle\Controller\Admin;
 
 use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\Exceptions\NotFoundException as EzNotFoundException;
+use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Exceptions\UnauthorizedException;
 use Netgen\Layouts\API\Service\BlockService;
 use Netgen\Layouts\API\Values\Block\Block;
@@ -37,7 +37,7 @@ final class ConnectComponentContent extends Controller
 
         try {
             $content = $this->contentService->loadContent($contentId);
-        } catch (EzNotFoundException|UnauthorizedException $e) {
+        } catch (NotFoundException|UnauthorizedException $e) {
             throw new BadRequestHttpException();
         }
 
