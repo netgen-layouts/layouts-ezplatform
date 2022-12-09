@@ -81,7 +81,7 @@ final class EzPlatformRuntime
                 $content = $this->loadContent((int) $content);
             }
 
-            return $this->getLocationPath($content->contentInfo->mainLocationId);
+            return $this->getLocationPath((int) $content->contentInfo->mainLocationId);
         } catch (Throwable $t) {
             return [];
         }

@@ -29,6 +29,9 @@ final class EzPlatformConfigProvider implements ConfigProviderInterface
 {
     private ConfigResolverInterface $configResolver;
 
+    /**
+     * @var array<string, string[]>
+     */
     private array $groupsBySiteAccess;
 
     private string $parameterName;
@@ -40,6 +43,9 @@ final class EzPlatformConfigProvider implements ConfigProviderInterface
      */
     private array $viewTypes;
 
+    /**
+     * @param array<string, string[]> $groupsBySiteAccess
+     */
     public function __construct(
         ConfigResolverInterface $configResolver,
         array $groupsBySiteAccess,
@@ -138,6 +144,6 @@ final class EzPlatformConfigProvider implements ConfigProviderInterface
      */
     private function humanize(string $text): string
     {
-        return ucwords(mb_strtolower(trim(preg_replace(['/([A-Z])/', '/[_\s]+/'], ['_$1', ' '], $text))));
+        return ucwords(mb_strtolower(trim(preg_replace(['/([A-Z])/', '/[_\s]+/'], ['_$1', ' '], $text) ?? '')));
     }
 }

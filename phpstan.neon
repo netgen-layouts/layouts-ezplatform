@@ -28,3 +28,5 @@ parameters:
         - "#Casting to (int|string) something that's already (int|string).#"
 
         - '#EzSystems\\PlatformHttpCacheBundle\\RequestAwarePurger#'
+
+        - '#Parameter \#2 \$validParameters of method Netgen\\Layouts\\Ez\\Block\\BlockDefinition\\Configuration\\Provider\\EzPlatformConfigProvider::buildViewTypes#'

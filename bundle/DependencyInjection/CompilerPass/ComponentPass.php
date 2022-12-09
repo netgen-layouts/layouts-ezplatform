@@ -13,7 +13,10 @@ final class ComponentPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
+        /** @var array<string, mixed[]> $blockTypes */
         $blockTypes = $container->getParameter('netgen_layouts.block_types');
+
+        /** @var array<string, mixed[]> $blockDefinitions */
         $blockDefinitions = $container->getParameter('netgen_layouts.block_definitions');
 
         foreach ($blockTypes as $identifier => $blockType) {
