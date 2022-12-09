@@ -23,7 +23,7 @@ final class LocationProvider implements ValueObjectProviderInterface
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\Location $location */
             $location = $this->repository->sudo(
-                static fn (Repository $repository): Location => $repository->getLocationService()->loadLocation((string) $value),
+                static fn (Repository $repository): Location => $repository->getLocationService()->loadLocation((int) $value),
             );
 
             return $location;
