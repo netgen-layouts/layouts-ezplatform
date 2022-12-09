@@ -26,7 +26,7 @@ final class ContentProvider implements ValueObjectProviderInterface
                 static fn (Repository $repository): Content => $repository->getContentService()->loadContent((int) $value),
             );
 
-            return $content;
+            return $content->contentInfo->mainLocationId !== null ? $content : null;
         } catch (NotFoundException $e) {
             return null;
         }

@@ -9,7 +9,6 @@ use eZ\Publish\API\Repository\Exceptions\NotFoundException as EzNotFoundExceptio
 use eZ\Publish\API\Repository\Exceptions\UnauthorizedException;
 use Netgen\Layouts\API\Service\BlockService;
 use Netgen\Layouts\API\Values\Block\Block;
-use Netgen\Layouts\Exception\NotFoundException;
 use Netgen\Layouts\Ez\Block\BlockDefinition\Handler\ComponentHandler;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
