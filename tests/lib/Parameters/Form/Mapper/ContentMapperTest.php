@@ -9,6 +9,7 @@ use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 use Netgen\Layouts\Ez\Parameters\Form\Mapper\ContentMapper;
 use Netgen\Layouts\Ez\Parameters\ParameterType\ContentType as ParameterType;
 use Netgen\Layouts\Parameters\ParameterDefinition;
+use Netgen\Layouts\Parameters\ValueObjectProviderInterface;
 use PHPUnit\Framework\TestCase;
 
 final class ContentMapperTest extends TestCase
@@ -36,7 +37,10 @@ final class ContentMapperTest extends TestCase
         $mappedOptions = $this->mapper->mapOptions(
             ParameterDefinition::fromArray(
                 [
-                    'type' => new ParameterType($this->createMock(Repository::class)),
+                    'type' => new ParameterType(
+                        $this->createMock(Repository::class),
+                        $this->createMock(ValueObjectProviderInterface::class)
+                    ),
                     'options' => [
                         'allowed_types' => ['user', 'image'],
                     ],
@@ -63,7 +67,10 @@ final class ContentMapperTest extends TestCase
         $mappedOptions = $this->mapper->mapOptions(
             ParameterDefinition::fromArray(
                 [
-                    'type' => new ParameterType($this->createMock(Repository::class)),
+                    'type' => new ParameterType(
+                        $this->createMock(Repository::class),
+                        $this->createMock(ValueObjectProviderInterface::class)
+                    ),
                     'options' => [
                         'allowed_types' => [],
                     ],

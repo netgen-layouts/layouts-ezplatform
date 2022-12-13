@@ -14,6 +14,7 @@ use Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface;
 use Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content;
 use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Ez\Utils\RemoteIdConverter;
+use Netgen\Layouts\Layout\Resolver\ValueObjectProviderInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,11 +31,14 @@ final class ContentTest extends TestCase
 
     private MockObject $contentExtractorMock;
 
+    private MockObject $valueObjectProvider;
+
     private Content $targetType;
 
     protected function setUp(): void
     {
         $this->contentExtractorMock = $this->createMock(ContentExtractorInterface::class);
+        $this->valueObjectProviderMock = $this->createMock(ValueObjectProviderInterface::class);
         $this->contentServiceMock = $this->createMock(ContentService::class);
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentService']);
 
@@ -53,6 +57,7 @@ final class ContentTest extends TestCase
 
         $this->targetType = new Content(
             $this->contentExtractorMock,
+            $this->valueObjectProviderMock,
             new RemoteIdConverter($this->repositoryMock),
         );
     }
@@ -148,6 +153,22 @@ final class ContentTest extends TestCase
             ->willReturn(null);
 
         self::assertNull($this->targetType->provideValue($request));
+    }
+
+    /**
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Content::getValueObject
+     */
+    public function testGetValueObject(): void
+    {
+        $content = new EzContent();
+
+        $this->valueObjectProviderMock
+            ->expects(self::once())
+            ->method('getValueObject')
+            ->with(self::identicalTo(42))
+            ->willReturn($content);
+
+        self::assertSame($content, $this->targetType->getValueObject(42));
     }
 
     /**

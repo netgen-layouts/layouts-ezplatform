@@ -7,12 +7,14 @@ namespace Netgen\Layouts\Ez\Tests\Parameters\ParameterType;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
+use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentType as EzContentType;
 use Netgen\Layouts\Ez\Parameters\ParameterType\ContentType;
 use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Parameters\ParameterDefinition;
+use Netgen\Layouts\Parameters\ValueObjectProviderInterface;
 use Netgen\Layouts\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -30,6 +32,8 @@ final class ContentTypeTest extends TestCase
      */
     private MockObject $repositoryMock;
 
+    private MockObject $valueObjectProvider;
+
     private MockObject $contentServiceMock;
 
     private MockObject $contentTypeServiceMock;
@@ -40,6 +44,7 @@ final class ContentTypeTest extends TestCase
         $this->contentTypeServiceMock = $this->createMock(ContentTypeService::class);
 
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentService', 'getContentTypeService']);
+        $this->valueObjectProviderMock = $this->createMock(ValueObjectProviderInterface::class);
 
         $this->repositoryMock
             ->expects(self::any())
@@ -76,7 +81,7 @@ final class ContentTypeTest extends TestCase
                 },
             );
 
-        $this->type = new ContentType($this->repositoryMock);
+        $this->type = new ContentType($this->repositoryMock, $this->valueObjectProviderMock);
     }
 
     /**
@@ -373,5 +378,24 @@ final class ContentTypeTest extends TestCase
             [null, true],
             [new ContentInfo(), false],
         ];
+    }
+
+    /**
+     * @covers \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType::getValueObject
+     */
+    public function testGetValueObject(): void
+    {
+        $content = new Content();
+
+        $this->valueObjectProviderMock
+            ->expects(self::once())
+            ->method('getValueObject')
+            ->with(self::identicalTo(42))
+            ->willReturn($content);
+
+        /** @var \Netgen\Layouts\Ez\Parameters\ParameterType\ContentType $type */
+        $type = $this->type;
+
+        self::assertSame($content, $type->getValueObject(42));
     }
 }

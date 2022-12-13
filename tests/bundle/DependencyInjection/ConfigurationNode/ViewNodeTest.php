@@ -236,6 +236,10 @@ final class ViewNodeTest extends ConfigurationNodeTest
         ];
 
         $expectedConfig['system']['cro']['design'] = 'standard';
+        $expectedConfig['system']['cro']['ezcomponent'] = [
+            'default_parent_location' => 2,
+            'parent_locations' => [],
+        ];
 
         self::assertInjectedConfigurationEqual($expectedConfig, $config);
     }

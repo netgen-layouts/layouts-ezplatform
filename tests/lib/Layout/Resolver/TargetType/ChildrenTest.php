@@ -12,6 +12,7 @@ use Netgen\Layouts\Ez\ContentProvider\ContentExtractorInterface;
 use Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children;
 use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Ez\Utils\RemoteIdConverter;
+use Netgen\Layouts\Layout\Resolver\ValueObjectProviderInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,6 +27,8 @@ final class ChildrenTest extends TestCase
 
     private MockObject $contentExtractorMock;
 
+    private MockObject $valueObjectProviderMock;
+
     private Children $targetType;
 
     private MockObject $locationServiceMock;
@@ -33,6 +36,7 @@ final class ChildrenTest extends TestCase
     protected function setUp(): void
     {
         $this->contentExtractorMock = $this->createMock(ContentExtractorInterface::class);
+        $this->valueObjectProviderMock = $this->createMock(ValueObjectProviderInterface::class);
         $this->locationServiceMock = $this->createMock(LocationService::class);
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService']);
 
@@ -51,6 +55,7 @@ final class ChildrenTest extends TestCase
 
         $this->targetType = new Children(
             $this->contentExtractorMock,
+            $this->valueObjectProviderMock,
             new RemoteIdConverter($this->repositoryMock),
         );
     }
@@ -139,6 +144,22 @@ final class ChildrenTest extends TestCase
             ->willReturn(null);
 
         self::assertNull($this->targetType->provideValue($request));
+    }
+
+    /**
+     * @covers \Netgen\Layouts\Ez\Layout\Resolver\TargetType\Children::getValueObject
+     */
+    public function testGetValueObject(): void
+    {
+        $location = new Location();
+
+        $this->valueObjectProviderMock
+            ->expects(self::once())
+            ->method('getValueObject')
+            ->with(self::identicalTo(42))
+            ->willReturn($location);
+
+        self::assertSame($location, $this->targetType->getValueObject(42));
     }
 
     /**
