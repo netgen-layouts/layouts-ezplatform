@@ -13,6 +13,7 @@ use Ibexa\Core\Repository\Values\ContentType\ContentType;
 use Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType;
 use Netgen\Layouts\Ibexa\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Parameters\ParameterDefinition;
+use Netgen\Layouts\Parameters\ValueObjectProviderInterface;
 use Netgen\Layouts\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -30,12 +31,16 @@ final class LocationTypeTest extends TestCase
      */
     private MockObject $repositoryMock;
 
+    private MockObject $valueObjectProviderMock;
+
     private MockObject $locationServiceMock;
 
     protected function setUp(): void
     {
         $this->locationServiceMock = $this->createMock(LocationService::class);
+
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService']);
+        $this->valueObjectProviderMock = $this->createMock(ValueObjectProviderInterface::class);
 
         $this->repositoryMock
             ->expects(self::any())
@@ -50,7 +55,7 @@ final class LocationTypeTest extends TestCase
             ->method('getLocationService')
             ->willReturn($this->locationServiceMock);
 
-        $this->type = new LocationType($this->repositoryMock);
+        $this->type = new LocationType($this->repositoryMock, $this->valueObjectProviderMock);
     }
 
     /**
@@ -356,5 +361,24 @@ final class LocationTypeTest extends TestCase
             [null, true],
             [new Location(), false],
         ];
+    }
+
+    /**
+     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::getValueObject
+     */
+    public function testGetValueObject(): void
+    {
+        $location = new Location();
+
+        $this->valueObjectProviderMock
+            ->expects(self::once())
+            ->method('getValueObject')
+            ->with(self::identicalTo(42))
+            ->willReturn($location);
+
+        /** @var \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType $type */
+        $type = $this->type;
+
+        self::assertSame($location, $type->getValueObject(42));
     }
 }

@@ -21,12 +21,21 @@ abstract class ConfigurationNodeTest extends TestCase
     use ConfigurationTestCaseTrait;
 
     /**
-     * Default config here is used because config test library can't test against
+     * Default configs here are used because config test library can't test against
      * two or more config tree parts.
      */
+    private const DEFAULT_CONFIG = [
+        'view' => [],
+        'design' => 'standard',
+    ];
+
     private const DEFAULT_SYSTEM_CONFIG = [
         'view' => [],
         'design' => 'standard',
+        'ibexa_component' => [
+            'default_parent_location' => 2,
+            'parent_locations' => [],
+        ],
     ];
 
     protected NetgenLayoutsExtension $extension;
@@ -93,7 +102,7 @@ abstract class ConfigurationNodeTest extends TestCase
             'system' => [
                 'default' => $expectedConfig + self::DEFAULT_SYSTEM_CONFIG,
             ],
-        ] + self::DEFAULT_SYSTEM_CONFIG;
+        ] + self::DEFAULT_CONFIG;
     }
 
     /**
