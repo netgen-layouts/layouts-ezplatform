@@ -31,7 +31,7 @@ final class LocationTypeTest extends TestCase
      */
     private MockObject $repositoryMock;
 
-    private MockObject $valueObjectProvider;
+    private MockObject $valueObjectProviderMock;
 
     private MockObject $locationServiceMock;
 

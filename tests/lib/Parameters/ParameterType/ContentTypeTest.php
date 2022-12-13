@@ -7,9 +7,9 @@ namespace Netgen\Layouts\Ez\Tests\Parameters\ParameterType;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\ContentTypeService;
 use eZ\Publish\API\Repository\Values\Content\ContentInfo;
-use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Repository;
+use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentType as EzContentType;
 use Netgen\Layouts\Ez\Parameters\ParameterType\ContentType;
 use Netgen\Layouts\Ez\Tests\Validator\RepositoryValidatorFactory;
@@ -32,7 +32,7 @@ final class ContentTypeTest extends TestCase
      */
     private MockObject $repositoryMock;
 
-    private MockObject $valueObjectProvider;
+    private MockObject $valueObjectProviderMock;
 
     private MockObject $contentServiceMock;
 

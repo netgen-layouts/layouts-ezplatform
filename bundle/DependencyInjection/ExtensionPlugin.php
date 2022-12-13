@@ -87,6 +87,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
                 $newConfigs[$index] = $config;
             }
 
+            /** @var string $configName */
             foreach (array_keys($config) as $configName) {
                 if (!in_array($configName, self::SITEACCCESS_AWARE_SETTINGS, true)) {
                     unset($config[$configName]);

@@ -31,7 +31,7 @@ final class ContentTest extends TestCase
 
     private MockObject $contentExtractorMock;
 
-    private MockObject $valueObjectProvider;
+    private MockObject $valueObjectProviderMock;
 
     private Content $targetType;
 

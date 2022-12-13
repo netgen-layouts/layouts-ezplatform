@@ -39,7 +39,7 @@ final class LocationMapperTest extends TestCase
                 [
                     'type' => new ParameterType(
                         $this->createMock(Repository::class),
-                        $this->createMock(ValueObjectProviderInterface::class)
+                        $this->createMock(ValueObjectProviderInterface::class),
                     ),
                     'options' => [
                         'allowed_types' => ['user', 'image'],
@@ -69,7 +69,7 @@ final class LocationMapperTest extends TestCase
                 [
                     'type' => new ParameterType(
                         $this->createMock(Repository::class),
-                        $this->createMock(ValueObjectProviderInterface::class)
+                        $this->createMock(ValueObjectProviderInterface::class),
                     ),
                     'options' => [
                         'allowed_types' => [],
