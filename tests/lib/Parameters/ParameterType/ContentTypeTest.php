@@ -9,6 +9,7 @@ use Ibexa\Contracts\Core\Repository\ContentTypeService;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Core\Base\Exceptions\NotFoundException;
 use Ibexa\Core\Repository\Repository;
+use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\ContentType\ContentType as IbexaContentType;
 use Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType;
 use Netgen\Layouts\Ibexa\Tests\Validator\RepositoryValidatorFactory;

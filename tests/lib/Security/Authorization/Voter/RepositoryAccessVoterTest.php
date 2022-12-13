@@ -41,7 +41,6 @@ final class RepositoryAccessVoterTest extends TestCase
      * @param array<string, bool> $repoAccess
      *
      * @covers \Netgen\Layouts\Ibexa\Security\Authorization\Voter\RepositoryAccessVoter::__construct
-     * @covers \Netgen\Layouts\Ibexa\Security\Authorization\Voter\RepositoryAccessVoter::getReachableAttributes
      * @covers \Netgen\Layouts\Ibexa\Security\Authorization\Voter\RepositoryAccessVoter::supports
      * @covers \Netgen\Layouts\Ibexa\Security\Authorization\Voter\RepositoryAccessVoter::vote
      * @covers \Netgen\Layouts\Ibexa\Security\Authorization\Voter\RepositoryAccessVoter::voteOnAttribute
