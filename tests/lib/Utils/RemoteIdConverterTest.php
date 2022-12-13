@@ -54,6 +54,7 @@ final class RemoteIdConverterTest extends TestCase
     }
 
     /**
+     * @covers \Netgen\Layouts\Ez\Utils\RemoteIdConverter::__construct
      * @covers \Netgen\Layouts\Ez\Utils\RemoteIdConverter::toLocationId
      */
     public function testToLocationId(): void

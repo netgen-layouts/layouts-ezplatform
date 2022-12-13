@@ -18,7 +18,9 @@ final class DefaultViewTemplatesPassTest extends AbstractContainerBuilderTestCas
     }
 
     /**
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass::addDefaultRule
      * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass::process
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\CompilerPass\View\DefaultViewTemplatesPass::updateRules
      */
     public function testProcess(): void
     {

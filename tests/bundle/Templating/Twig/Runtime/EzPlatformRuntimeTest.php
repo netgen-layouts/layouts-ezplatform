@@ -105,6 +105,43 @@ final class EzPlatformRuntimeTest extends TestCase
     }
 
     /**
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::getContentPath
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::getLocationPath
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadContent
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadLocation
+     */
+    public function testGetContentPath(): void
+    {
+        $this->mockServices();
+
+        self::assertSame(
+            [
+                'Content name 102',
+                'Content name 142',
+                'Content name 184',
+            ],
+            $this->runtime->getContentPath(122),
+        );
+    }
+
+    /**
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::getContentPath
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::getLocationPath
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadContent
+     * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadLocation
+     */
+    public function testGetContentPathWithException(): void
+    {
+        $this->contentServiceMock
+            ->expects(self::once())
+            ->method('loadContent')
+            ->with(self::identicalTo(22))
+            ->willThrowException(new Exception());
+
+        self::assertSame([], $this->runtime->getContentPath(22));
+    }
+
+    /**
      * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::getContentTypeName
      * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\Templating\Twig\Runtime\EzPlatformRuntime::loadContentType
      */
@@ -239,6 +276,11 @@ final class EzPlatformRuntimeTest extends TestCase
                     [
                         'versionInfo' => new VersionInfo(
                             [
+                                'contentInfo' => new ContentInfo(
+                                    [
+                                        'mainLocationId' => $contentId - 100,
+                                    ],
+                                ),
                                 'prioritizedNameLanguageCode' => 'eng-GB',
                                 'names' => ['eng-GB' => 'Content name ' . $contentId],
                             ],
