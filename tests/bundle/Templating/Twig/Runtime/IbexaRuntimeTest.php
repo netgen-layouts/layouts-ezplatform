@@ -105,6 +105,43 @@ final class IbexaRuntimeTest extends TestCase
     }
 
     /**
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getContentPath
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getLocationPath
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContent
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadLocation
+     */
+    public function testGetContentPath(): void
+    {
+        $this->mockServices();
+
+        self::assertSame(
+            [
+                'Content name 102',
+                'Content name 142',
+                'Content name 184',
+            ],
+            $this->runtime->getContentPath(122),
+        );
+    }
+
+    /**
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getContentPath
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getLocationPath
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContent
+     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadLocation
+     */
+    public function testGetContentPathWithException(): void
+    {
+        $this->contentServiceMock
+            ->expects(self::once())
+            ->method('loadContent')
+            ->with(self::identicalTo(22))
+            ->willThrowException(new Exception());
+
+        self::assertSame([], $this->runtime->getContentPath(22));
+    }
+
+    /**
      * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getContentTypeName
      * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContentType
      */
@@ -239,6 +276,11 @@ final class IbexaRuntimeTest extends TestCase
                     [
                         'versionInfo' => new VersionInfo(
                             [
+                                'contentInfo' => new ContentInfo(
+                                    [
+                                        'mainLocationId' => $contentId - 100,
+                                    ],
+                                ),
                                 'prioritizedNameLanguageCode' => 'eng-GB',
                                 'names' => ['eng-GB' => 'Content name ' . $contentId],
                             ],

@@ -54,6 +54,7 @@ final class RemoteIdConverterTest extends TestCase
     }
 
     /**
+     * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::__construct
      * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::toLocationId
      */
     public function testToLocationId(): void

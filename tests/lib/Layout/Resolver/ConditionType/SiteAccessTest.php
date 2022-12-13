@@ -7,6 +7,7 @@ namespace Netgen\Layouts\Ibexa\Tests\Layout\Resolver\ConditionType;
 use Ibexa\Core\MVC\Symfony\SiteAccess as IbexaSiteAccess;
 use Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\SiteAccess;
 use Netgen\Layouts\Ibexa\Tests\Validator\ValidatorFactory;
+use Netgen\Layouts\Tests\TestCase\ValidatorFactory as BaseValidatorFactory;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
@@ -38,7 +39,7 @@ final class SiteAccessTest extends TestCase
     public function testValidation($value, bool $isValid): void
     {
         $validator = Validation::createValidatorBuilder()
-            ->setConstraintValidatorFactory(new ValidatorFactory())
+            ->setConstraintValidatorFactory(new ValidatorFactory($this, new BaseValidatorFactory($this)))
             ->getValidator();
 
         $errors = $validator->validate($value, $this->conditionType->getConstraints());
