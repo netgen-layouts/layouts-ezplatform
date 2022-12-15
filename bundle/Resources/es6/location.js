@@ -96,7 +96,7 @@ $(function () {
         const $resp = $(xhr.responseText);
         self.$layoutDeleteModal.find('.modal-body').prepend($resp.find('.errors'));
         self.deleteModalStopLoading();
-        console.log(xhr, 'Error deleting:', xhr.statusText);
+        console.log(xhr, 'Error deleting:', xhr.statusText); // eslint-disable-line no-console
       },
     });
   };
