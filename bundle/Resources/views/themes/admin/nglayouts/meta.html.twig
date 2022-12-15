@@ -1,0 +1,8 @@
+{% if app.request.attributes.has('content') %}
+    {% set content = app.request.attributes.get('content') %}
+
+    {% if content.versionInfo.published %}
+        <meta name="nglayouts-content-id" content="{{ content.id }}">
+        <meta name="nglayouts-location-id" content="{{ content.contentInfo.mainLocationId }}">
+    {% endif %}
+{% endif %}

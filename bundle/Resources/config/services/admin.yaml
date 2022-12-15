@@ -125,3 +125,11 @@ services:
              - "@@ibexadesign/nglayouts/javascripts.html.twig"
          tags:
              - { name: ibexa.admin_ui.component, group: script-body }
+
+    netgen_layouts.ibexa.admin.component.meta:
+         parent: Ibexa\AdminUi\Component\TwigComponent
+         arguments:
+             - "@twig"
+             - "@@ibexadesign/nglayouts/meta.html.twig"
+         tags:
+             - { name: ibexa.admin_ui.component, group: script-head }
