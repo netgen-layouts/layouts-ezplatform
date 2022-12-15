@@ -118,3 +118,11 @@ services:
              - "@@ezdesign/nglayouts/javascripts.html.twig"
          tags:
              - { name: ezplatform.admin_ui.component, group: script-body }
+
+    netgen_layouts.ezplatform.admin.component.meta:
+         parent: EzSystems\EzPlatformAdminUi\Component\TwigComponent
+         arguments:
+             - "@twig"
+             - "@@ezdesign/nglayouts/meta.html.twig"
+         tags:
+             - { name: ezplatform.admin_ui.component, group: script-head }
