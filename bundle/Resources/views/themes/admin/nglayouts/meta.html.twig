@@ -1,8 +1,10 @@
 {% if app.request.attributes.has('content') %}
     {% set content = app.request.attributes.get('content') %}
 
-    {% if content.versionInfo.published %}
-        <meta name="nglayouts-content-id" content="{{ content.id }}">
-        <meta name="nglayouts-location-id" content="{{ content.contentInfo.mainLocationId }}">
+    <meta name="nglayouts-content-id" content="{{ content.id }}">
+    <meta name="nglayouts-location-id" content="{{ content.contentInfo.mainLocationId }}">
+
+    {% if content.versionInfo.draft and content.versionInfo.versionNo == 1 %}
+        <meta name="nglayouts-is-new-draft" content="true">
     {% endif %}
 {% endif %}
