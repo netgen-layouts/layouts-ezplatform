@@ -35,8 +35,8 @@ const connectBlockAndContent = async () => {
     const urlHash = window.location.hash;
 
     const isDraftElement = document.querySelector('[name="nglayouts-is-new-draft"]');
-    const isDraftAttribute = isDraftElement.getAttribute('content');
-    const isNewDraft = (isDraftAttribute === 'true');
+    const isDraftAttribute = isDraftElement && isDraftElement.getAttribute('content');
+    const isNewDraft = (isDraftAttribute && isDraftAttribute === 'true');
 
     if (isNewDraft) {
         saveDataToLocalStorage(urlPathname, urlHash);
