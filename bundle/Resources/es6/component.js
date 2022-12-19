@@ -4,7 +4,9 @@ const handlePostRequest = async (id) => {
 
     const { blockId, contentId, locale } = JSON.parse(data);
 
-    const nglayoutsBasePath = document.querySelector('[name="nglayouts-base-path"]').getAttribute('content');
+    const nglayoutsBasePathElement = document.querySelector('[name="nglayouts-base-path"]');
+    const nglayoutsBasePath = nglayoutsBasePathElement && nglayoutsBasePathElement.getAttribute('content');
+
     const url = `${nglayoutsBasePath}ibexa/admin/blocks/${blockId}/${locale}/connect-component-content/${contentId}`;
     const bc = new BroadcastChannel('publish_content');
 
@@ -41,7 +43,10 @@ const connectBlockAndContent = async () => {
     if (isNewDraft) {
         saveDataToLocalStorage(urlPathname, urlHash);
     } else {
-        const contentId = document.querySelector('[name="nglayouts-content-id"]').getAttribute('content');
+        const contentIdElement = document.querySelector('[name="nglayouts-content-id"]');
+        const contentId = contentIdElement && contentIdElement.getAttribute('content');
+
+        if (!contentId) return;
 
         handlePostRequest(contentId);
     }
