@@ -3,7 +3,7 @@ block.notice.empty_ezcomponent: 'This block is not configured yet. Please define
 
 block.info.ezcontent_field: 'eZ content field with identifier "%field%" will be rendered here.'
 
-block.ngcb.edit_content: 'Edit'
+block.ngcb.view_in_cms: 'View in CMS'
 
 block.ezcomponent.edit_content: 'Edit'
 block.ezcomponent.create_content: '+ Create new'
