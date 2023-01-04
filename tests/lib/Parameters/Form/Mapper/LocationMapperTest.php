@@ -51,6 +51,7 @@ final class LocationMapperTest extends TestCase
         self::assertSame(
             [
                 'item_type' => 'ibexa_location',
+                'block_prefix' => 'ngcb_ibexa_location',
                 'custom_params' => [
                     'allowed_content_types' => ['user', 'image'],
                 ],
@@ -81,6 +82,7 @@ final class LocationMapperTest extends TestCase
         self::assertSame(
             [
                 'item_type' => 'ibexa_location',
+                'block_prefix' => 'ngcb_ibexa_location',
             ],
             $mappedOptions,
         );

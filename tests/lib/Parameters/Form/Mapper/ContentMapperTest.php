@@ -51,6 +51,7 @@ final class ContentMapperTest extends TestCase
         self::assertSame(
             [
                 'item_type' => 'ibexa_content',
+                'block_prefix' => 'ngcb_ibexa_content',
                 'custom_params' => [
                     'allowed_content_types' => ['user', 'image'],
                 ],
@@ -81,6 +82,7 @@ final class ContentMapperTest extends TestCase
         self::assertSame(
             [
                 'item_type' => 'ibexa_content',
+                'block_prefix' => 'ngcb_ibexa_content',
             ],
             $mappedOptions,
         );
