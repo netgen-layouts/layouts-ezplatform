@@ -1,5 +1,21 @@
 {% trans_default_domain 'nglayouts_app' %}
 
+{%- block ngcb_ezcontent_widget -%}
+    {% if form.vars.item is not empty %}
+        {% set post_input_browse %}
+        <a class="add-items add-items-btn" href="{{ path(form.vars.item.location) }}" target="_blank" style="display: block">
+            {{ 'block.ngcb.edit_content'|trans }}
+        </a>
+        {% endset %}
+    {% endif %}
+
+    {{ block('ngcb_widget') }}
+{%- endblock -%}
+
+{%- block ngcb_ezlocation_widget -%}
+    {{ block('ngcb_ezcontent_widget') }}
+{%- endblock -%}
+
 {# Form theme for "content" parameter from "ezcomponent" block definition #}
 {%- block ezcomponent_content_widget -%}
     {% set parent_locations = ezpublish.configResolver.parameter('ezcomponent.parent_locations', 'netgen_layouts') %}

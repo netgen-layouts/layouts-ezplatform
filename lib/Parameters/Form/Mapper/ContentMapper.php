@@ -21,6 +21,7 @@ final class ContentMapper extends Mapper
     {
         $options = [
             'item_type' => 'ezcontent',
+            'block_prefix' => 'ngcb_ezcontent',
         ];
 
         $allowedTypes = $parameterDefinition->getOption('allowed_types') ?? [];

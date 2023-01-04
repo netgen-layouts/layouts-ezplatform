@@ -21,6 +21,7 @@ final class LocationMapper extends Mapper
     {
         $options = [
             'item_type' => 'ezlocation',
+            'block_prefix' => 'ngcb_ezlocation',
         ];
 
         $allowedTypes = $parameterDefinition->getOption('allowed_types') ?? [];
