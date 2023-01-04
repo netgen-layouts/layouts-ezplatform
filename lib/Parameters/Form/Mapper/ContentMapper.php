@@ -21,6 +21,7 @@ final class ContentMapper extends Mapper
     {
         $options = [
             'item_type' => 'ibexa_content',
+            'block_prefix' => 'ngcb_ibexa_content',
         ];
 
         $allowedTypes = $parameterDefinition->getOption('allowed_types') ?? [];

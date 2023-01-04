@@ -21,6 +21,7 @@ final class LocationMapper extends Mapper
     {
         $options = [
             'item_type' => 'ibexa_location',
+            'block_prefix' => 'ngcb_ibexa_location',
         ];
 
         $allowedTypes = $parameterDefinition->getOption('allowed_types') ?? [];
