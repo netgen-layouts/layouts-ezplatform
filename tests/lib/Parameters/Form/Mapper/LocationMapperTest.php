@@ -51,6 +51,7 @@ final class LocationMapperTest extends TestCase
         self::assertSame(
             [
                 'item_type' => 'ezlocation',
+                'block_prefix' => 'ngcb_ezlocation',
                 'custom_params' => [
                     'allowed_content_types' => ['user', 'image'],
                 ],
@@ -81,6 +82,7 @@ final class LocationMapperTest extends TestCase
         self::assertSame(
             [
                 'item_type' => 'ezlocation',
+                'block_prefix' => 'ngcb_ezlocation',
             ],
             $mappedOptions,
         );

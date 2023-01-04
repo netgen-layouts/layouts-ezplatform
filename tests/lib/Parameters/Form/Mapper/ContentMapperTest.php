@@ -51,6 +51,7 @@ final class ContentMapperTest extends TestCase
         self::assertSame(
             [
                 'item_type' => 'ezcontent',
+                'block_prefix' => 'ngcb_ezcontent',
                 'custom_params' => [
                     'allowed_content_types' => ['user', 'image'],
                 ],
@@ -81,6 +82,7 @@ final class ContentMapperTest extends TestCase
         self::assertSame(
             [
                 'item_type' => 'ezcontent',
+                'block_prefix' => 'ngcb_ezcontent',
             ],
             $mappedOptions,
         );
