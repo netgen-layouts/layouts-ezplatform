@@ -3,7 +3,7 @@ block.notice.empty_ibexa_component: 'This block is not configured yet. Please de
 
 block.info.ibexa_content_field: 'Ibexa content field with identifier "%field%" will be rendered here.'
 
-block.ngcb.edit_content: 'Edit'
+block.ngcb.view_in_cms: 'View in CMS'
 
 block.ibexa_component.edit_content: 'Edit'
 block.ibexa_component.create_content: '+ Create new'
