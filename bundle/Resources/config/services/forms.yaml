@@ -20,6 +20,11 @@ services:
         tags:
             - { name: form.type }
 
+    netgen_layouts.ezplatform.form.extension.block_prefix:
+        class: Netgen\Layouts\Ez\Form\Extension\BlockPrefixExtension
+        tags:
+            - { name: form.type_extension, extended_type: Netgen\ContentBrowser\Form\Type\ContentBrowserType }
+
     netgen_layouts.ezplatform.form.extension.component_content:
         class: Netgen\Layouts\Ez\Form\Extension\ComponentContentExtension
         tags:
