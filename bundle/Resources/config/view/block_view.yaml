@@ -12,10 +12,10 @@ view:
                     block\definition\prefix: ibexa_component
         app:
             ibexa_content_field:
-                template: "@NetgenLayoutsIbexa/app/block/ibexa_content_field.html.twig"
+                template: "@nglayouts_admin/app/block/ibexa_content_field.html.twig"
                 match:
                     block\definition: ibexa_content_field
             ibexa_component:
-                template: "@NetgenLayoutsIbexa/app/block/ibexa_component.html.twig"
+                template: "@nglayouts_admin/app/block/ibexa_component.html.twig"
                 match:
                     block\definition\prefix: ibexa_component

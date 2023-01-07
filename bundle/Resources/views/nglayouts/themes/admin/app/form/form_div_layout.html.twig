@@ -1,0 +1,34 @@
+{% trans_default_domain 'nglayouts_app' %}
+
+{# Form theme for "content" parameter from "ibexa_component" block definition #}
+{%- block ibexa_component_content_widget -%}
+    {% set parent_locations = ibexa.configResolver.parameter('ibexa_component.parent_locations', 'netgen_layouts') %}
+    {% set default_parent_location = ibexa.configResolver.parameter('ibexa_component.default_parent_location', 'netgen_layouts') %}
+    {% set content_type_identifier = form.parent['content_type_identifier'].vars.value %}
+    {% set start_location = parent_locations[content_type_identifier] ?? default_parent_location %}
+
+    {% set custom_params = custom_params|merge({
+        allowed_content_types: [content_type_identifier]
+    }) %}
+
+    {% set post_input_browse %}
+        {% if form.vars.item is not empty %}
+            {% set link_name = 'block.ibexa_component.edit_content'|trans %}
+            {% set link_url = ibexa_path(form.vars.item.location) %}
+        {% else %}
+            {% set block = form.parent.parent.vars.block %}
+            {% set link_name = 'block.ibexa_component.create_content'|trans %}
+            {% set link_url = path('nglayouts_ibexa_admin_create_content', {
+                blockId: block.id.toString,
+                locale: block.locale,
+                contentTypeIdentifier: content_type_identifier,
+                languageCode: ibexa.configResolver.parameter('languages').0,
+                parentLocationId: start_location
+            }) %}
+        {% endif %}
+
+        <a class="add-items add-items-btn" href="{{ link_url }}" target="_blank" style="display: block">{{ link_name }}</a>
+    {% endset %}
+
+    {{ block('ngcb_widget') }}
+{%- endblock -%}

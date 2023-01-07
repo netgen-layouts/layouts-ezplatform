@@ -20,10 +20,10 @@ view:
                     item\value_type: ibexa_location
         app:
             ibexa_content:
-                template: "@NetgenLayoutsIbexa/app/item/ibexa_content.html.twig"
+                template: "@nglayouts_admin/app/item/ibexa_content.html.twig"
                 match:
                     item\value_type: ibexa_content
             ibexa_location:
-                template: "@NetgenLayoutsIbexa/app/item/ibexa_location.html.twig"
+                template: "@nglayouts_admin/app/item/ibexa_location.html.twig"
                 match:
                     item\value_type: ibexa_location
