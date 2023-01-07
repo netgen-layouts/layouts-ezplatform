@@ -12,10 +12,10 @@ view:
                     block\definition\prefix: ezcomponent
         app:
             ezcontent_field:
-                template: "@NetgenLayoutsEzPlatform/app/block/ezcontent_field.html.twig"
+                template: "@nglayouts_admin/app/block/ezcontent_field.html.twig"
                 match:
                     block\definition: ezcontent_field
             ezcomponent:
-                template: "@NetgenLayoutsEzPlatform/app/block/ezcomponent.html.twig"
+                template: "@nglayouts_admin/app/block/ezcomponent.html.twig"
                 match:
                     block\definition\prefix: ezcomponent
