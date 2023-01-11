@@ -68,8 +68,8 @@ export default class NlModal {
     }
 
     loadContent() {
-    const basePath = document.querySelector('[name="ezadmin-base-path"]').getAttribute('content');
-    const apiUrl = `${window.location.origin}${basePath}`;
+      const basePath = document.querySelector('[name="ezadmin-base-path"]').getAttribute('content');
+      const apiUrl = `${window.location.origin}${basePath}`;
       const url = `${apiUrl}nglayouts/admin/api/mappings/groups/root`;
       [this.modalBody] = this.container.getElementsByClassName('nl-modal-body');
       // this.addModalGroup({ id: '00000000-0000-0000-0000-000000000000', name: 'root' });
