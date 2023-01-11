@@ -298,10 +298,11 @@ $(function () {
   });
 
   $(document).on('click', '.js-direct-mapping', function () {
-    const layoutId = document.querySelector('.mapped-layouts-box').dataset.url.split('/').pop();
-    const apiUrl = `${window.location.origin}/${window.location.pathname.split('/')[1]}`;
-    const baseUrl = `${apiUrl}/nglayouts/ibexa/admin/layouts`;
-    const url = `${baseUrl}/${layoutId}/wizard`;
+    const locationId = document.querySelector('.mapped-layouts-box').dataset.url.split('/').pop();
+    const basePath = document.querySelector('[name="ibexa-admin-base-path"]').getAttribute('content');
+    const apiUrl = `${window.location.origin}${basePath}`;
+    const baseUrl = `${apiUrl}nglayouts/ibexa/admin/layouts`;
+    const url = `${baseUrl}/${locationId}/wizard`;
     const modal = new NlModal({
       preload: true,
       autoClose: false,
