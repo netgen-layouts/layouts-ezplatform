@@ -26,6 +26,40 @@ final class ContentValueUrlGeneratorTest extends TestCase
 
     /**
      * @covers \Netgen\Layouts\Ibexa\Item\ValueUrlGenerator\ContentValueUrlGenerator::__construct
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueUrlGenerator\ContentValueUrlGenerator::generateDefaultUrl
+     */
+    public function testGenerateDefaultUrl(): void
+    {
+        $this->urlGeneratorMock
+            ->expects(self::once())
+            ->method('generate')
+            ->with(
+                self::identicalTo(UrlAliasRouter::URL_ALIAS_ROUTE_NAME),
+                self::identicalTo(['contentId' => 42]),
+            )
+            ->willReturn('/content/path');
+
+        self::assertSame('/content/path', $this->urlGenerator->generateDefaultUrl(new ContentInfo(['id' => 42])));
+    }
+
+    /**
+     * @covers \Netgen\Layouts\Ibexa\Item\ValueUrlGenerator\ContentValueUrlGenerator::generateAdminUrl
+     */
+    public function testGenerateAdminUrl(): void
+    {
+        $this->urlGeneratorMock
+            ->expects(self::once())
+            ->method('generate')
+            ->with(
+                self::identicalTo('ibexa.content.view'),
+                self::identicalTo(['contentId' => 42]),
+            )
+            ->willReturn('/admin/content/path');
+
+        self::assertSame('/admin/content/path', $this->urlGenerator->generateAdminUrl(new ContentInfo(['id' => 42])));
+    }
+
+    /**
      * @covers \Netgen\Layouts\Ibexa\Item\ValueUrlGenerator\ContentValueUrlGenerator::generate
      */
     public function testGenerate(): void
