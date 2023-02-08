@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ez\Tests\Security\Authorization\Voter;
 
-use eZ\Publish\Core\MVC\Symfony\Security\Authorization\Attribute;
 use Netgen\Layouts\Ez\Security\Authorization\Voter\RepositoryAccessVoter;
 use Netgen\Layouts\Ez\Security\Role\RoleHierarchy;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -12,6 +11,8 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
+
+use function count;
 
 final class RepositoryAccessVoterTest extends TestCase
 {
@@ -52,23 +53,17 @@ final class RepositoryAccessVoterTest extends TestCase
     {
         $token = $this->createMock(TokenInterface::class);
 
-        $args = [];
-        $returns = [];
-
-        foreach ($repoAccess as $function => $hasAccess) {
-            $args[] = [
-                self::identicalTo($token),
-                self::equalTo([new Attribute('nglayouts', $function)]),
-                self::isNull(),
-            ];
-
-            $returns[] = $hasAccess;
+        if (count($repoAccess) > 0) {
+            $this->accessDecisionManagerMock
+                ->method('decide')
+                ->with(
+                    self::identicalTo($token),
+                    self::isType('array'),
+                    self::isNull(),
+                )->willReturnCallback(
+                    static fn (TokenInterface $token, array $attributes) => $repoAccess[$attributes[0]->function],
+                );
         }
-
-        $this->accessDecisionManagerMock
-            ->method('decide')
-            ->withConsecutive(...$args)
-            ->willReturnOnConsecutiveCalls(...$returns);
 
         $result = $this->voter->vote($token, null, [$attribute]);
 

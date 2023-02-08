@@ -12,14 +12,14 @@ use Netgen\Layouts\Ez\Tests\Validator\ValidatorFactory;
 use Netgen\Layouts\Parameters\ParameterType;
 use Netgen\Layouts\Parameters\Registry\ParameterTypeRegistry;
 use Netgen\Layouts\Parameters\ValueObjectProviderInterface;
-use Netgen\Layouts\Tests\Block\BlockDefinition\Integration\BlockTest;
+use Netgen\Layouts\Tests\Block\BlockDefinition\Integration\BlockTestCase;
 use Netgen\Layouts\Tests\TestCase\ValidatorFactory as BaseValidatorFactory;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-abstract class ComponentTest extends BlockTest
+abstract class ComponentTestBase extends BlockTestCase
 {
-    public function parametersDataProvider(): array
+    public static function parametersDataProvider(): array
     {
         return [
             [
@@ -60,7 +60,7 @@ abstract class ComponentTest extends BlockTest
         ];
     }
 
-    public function invalidParametersDataProvider(): array
+    public static function invalidParametersDataProvider(): array
     {
         return [
             [
