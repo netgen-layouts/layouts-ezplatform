@@ -59,11 +59,12 @@ final class LocaleProviderTest extends TestCase
 
         $this->localeConverterMock
             ->method('convertToPOSIX')
-            ->withConsecutive(
-                [self::identicalTo('eng-GB')],
-                [self::identicalTo('cro-HR')],
-            )
-            ->willReturnOnConsecutiveCalls('en', 'hr');
+            ->willReturnMap(
+                [
+                    ['eng-GB', 'en'],
+                    ['cro-HR', 'hr'],
+                ],
+            );
 
         $availableLocales = $this->localeProvider->getAvailableLocales();
 
@@ -122,11 +123,12 @@ final class LocaleProviderTest extends TestCase
 
         $this->localeConverterMock
             ->method('convertToPOSIX')
-            ->withConsecutive(
-                [self::identicalTo('eng-GB')],
-                [self::identicalTo('cro-HR')],
-            )
-            ->willReturnOnConsecutiveCalls('en', 'hr');
+            ->willReturnMap(
+                [
+                    ['eng-GB', 'en'],
+                    ['cro-HR', 'hr'],
+                ],
+            );
 
         $requestLocales = $this->localeProvider->getRequestLocales(Request::create(''));
 

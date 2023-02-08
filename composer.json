@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "netgen/layouts-core": "~1.4.1",
+        "netgen/layouts-core": "~1.4.3",
         "netgen/content-browser-ibexa": "^1.4",
         "ibexa/core": "^4.3",
         "ibexa/admin-ui": "^4.3",

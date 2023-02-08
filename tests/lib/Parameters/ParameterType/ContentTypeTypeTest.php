@@ -17,9 +17,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
 use Symfony\Component\Validator\Validation;
 
-use function in_array;
 use function is_array;
-use function is_string;
 
 final class ContentTypeTypeTest extends TestCase
 {
@@ -167,34 +165,23 @@ final class ContentTypeTypeTest extends TestCase
      */
     public function testValidation($value, bool $required, bool $isValid): void
     {
-        $args = [];
-        $returns = [];
         $options = [];
 
         if ($value !== null) {
             $options = ['multiple' => is_array($value)];
-            foreach ((array) $value as $index => $identifier) {
-                $args[] = [self::identicalTo($identifier)];
-                $returns[] = self::returnCallback(
-                    static function () use ($identifier): IbexaContentType {
-                        if (!is_string($identifier) || !in_array($identifier, ['article', 'news'], true)) {
-                            throw new NotFoundException('content type', $identifier);
+
+            $this->contentTypeServiceMock
+                ->method('loadContentTypeByIdentifier')
+                ->willReturnCallback(
+                    static function (string $identifier): IbexaContentType {
+                        if ($identifier !== 'other') {
+                            return new IbexaContentType(['identifier' => $identifier]);
                         }
 
-                        return new IbexaContentType(
-                            [
-                                'identifier' => $identifier,
-                            ],
-                        );
+                        throw new NotFoundException('content type', $identifier);
                     },
                 );
-            }
         }
-
-        $this->contentTypeServiceMock
-            ->method('loadContentTypeByIdentifier')
-            ->withConsecutive(...$args)
-            ->willReturnOnConsecutiveCalls(...$returns);
 
         $parameter = $this->getParameterDefinition($options, $required);
         $validator = Validation::createValidatorBuilder()

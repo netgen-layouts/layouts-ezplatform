@@ -110,35 +110,41 @@ final class ObjectStateTypeTest extends FormTestCase
 
         $this->objectStateServiceMock
             ->method('loadObjectStates')
-            ->withConsecutive(
-                [self::identicalTo($objectStateGroup1)],
-                [self::identicalTo($objectStateGroup2)],
-            )
-            ->willReturnOnConsecutiveCalls(
+            ->willReturnMap(
                 [
-                    new ObjectState(
+                    [
+                        $objectStateGroup1,
+                        [],
                         [
-                            'identifier' => 'locked',
-                            'names' => ['eng-GB' => 'Locked'],
-                            'mainLanguageCode' => 'eng-GB',
+                            new ObjectState(
+                                [
+                                    'identifier' => 'locked',
+                                    'names' => ['eng-GB' => 'Locked'],
+                                    'mainLanguageCode' => 'eng-GB',
+                                ],
+                            ),
+                            new ObjectState(
+                                [
+                                    'identifier' => 'unlocked',
+                                    'names' => ['eng-GB' => 'Unlocked'],
+                                    'mainLanguageCode' => 'eng-GB',
+                                ],
+                            ),
                         ],
-                    ),
-                    new ObjectState(
+                    ],
+                    [
+                        $objectStateGroup2,
+                        [],
                         [
-                            'identifier' => 'unlocked',
-                            'names' => ['eng-GB' => 'Unlocked'],
-                            'mainLanguageCode' => 'eng-GB',
+                            new ObjectState(
+                                [
+                                    'identifier' => 'other',
+                                    'names' => ['eng-GB' => 'Other'],
+                                    'mainLanguageCode' => 'eng-GB',
+                                ],
+                            ),
                         ],
-                    ),
-                ],
-                [
-                    new ObjectState(
-                        [
-                            'identifier' => 'other',
-                            'names' => ['eng-GB' => 'Other'],
-                            'mainLanguageCode' => 'eng-GB',
-                        ],
-                    ),
+                    ],
                 ],
             );
     }

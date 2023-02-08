@@ -49,34 +49,40 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
 
         $this->objectStateServiceMock
             ->method('loadObjectStates')
-            ->withConsecutive(
-                [self::identicalTo($group1)],
-                [self::identicalTo($group2)],
-            )
-            ->willReturnOnConsecutiveCalls(
+            ->willReturnMap(
                 [
-                    new IbexaObjectState(
+                    [
+                        $group1,
+                        [],
                         [
-                            'identifier' => 'state1',
+                            new IbexaObjectState(
+                                [
+                                    'identifier' => 'state1',
+                                ],
+                            ),
+                            new IbexaObjectState(
+                                [
+                                    'identifier' => 'state2',
+                                ],
+                            ),
                         ],
-                    ),
-                    new IbexaObjectState(
+                    ],
+                    [
+                        $group2,
+                        [],
                         [
-                            'identifier' => 'state2',
+                            new IbexaObjectState(
+                                [
+                                    'identifier' => 'state1',
+                                ],
+                            ),
+                            new IbexaObjectState(
+                                [
+                                    'identifier' => 'state2',
+                                ],
+                            ),
                         ],
-                    ),
-                ],
-                [
-                    new IbexaObjectState(
-                        [
-                            'identifier' => 'state1',
-                        ],
-                    ),
-                    new IbexaObjectState(
-                        [
-                            'identifier' => 'state2',
-                        ],
-                    ),
+                    ],
                 ],
             );
 

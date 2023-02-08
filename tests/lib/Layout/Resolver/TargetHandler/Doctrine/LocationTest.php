@@ -8,9 +8,9 @@ use Netgen\Layouts\Ibexa\Layout\Resolver\TargetHandler\Doctrine\Location;
 use Netgen\Layouts\Persistence\Doctrine\QueryHandler\TargetHandlerInterface;
 use Netgen\Layouts\Persistence\Values\LayoutResolver\RuleGroup;
 use Netgen\Layouts\Persistence\Values\Value;
-use Netgen\Layouts\Tests\Layout\Resolver\TargetHandler\Doctrine\AbstractTargetHandlerTest;
+use Netgen\Layouts\Tests\Layout\Resolver\TargetHandler\Doctrine\TargetHandlerTestBase;
 
-final class LocationTest extends AbstractTargetHandlerTest
+final class LocationTest extends TargetHandlerTestBase
 {
     /**
      * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetHandler\Doctrine\Location::handleQuery

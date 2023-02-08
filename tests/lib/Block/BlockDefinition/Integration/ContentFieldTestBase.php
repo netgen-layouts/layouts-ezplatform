@@ -7,11 +7,11 @@ namespace Netgen\Layouts\Ibexa\Tests\Block\BlockDefinition\Integration;
 use Netgen\Layouts\Block\BlockDefinition\BlockDefinitionHandlerInterface;
 use Netgen\Layouts\Ibexa\Block\BlockDefinition\Handler\ContentFieldHandler;
 use Netgen\Layouts\Ibexa\ContentProvider\ContentProviderInterface;
-use Netgen\Layouts\Tests\Block\BlockDefinition\Integration\BlockTest;
+use Netgen\Layouts\Tests\Block\BlockDefinition\Integration\BlockTestCase;
 
-abstract class ContentFieldTest extends BlockTest
+abstract class ContentFieldTestBase extends BlockTestCase
 {
-    public function parametersDataProvider(): array
+    public static function parametersDataProvider(): array
     {
         return [
             [
@@ -53,7 +53,7 @@ abstract class ContentFieldTest extends BlockTest
         ];
     }
 
-    public function invalidParametersDataProvider(): array
+    public static function invalidParametersDataProvider(): array
     {
         return [
             [

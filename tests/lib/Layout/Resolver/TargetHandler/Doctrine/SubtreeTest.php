@@ -8,9 +8,9 @@ use Netgen\Layouts\Ibexa\Layout\Resolver\TargetHandler\Doctrine\Subtree;
 use Netgen\Layouts\Persistence\Doctrine\QueryHandler\TargetHandlerInterface;
 use Netgen\Layouts\Persistence\Values\LayoutResolver\RuleGroup;
 use Netgen\Layouts\Persistence\Values\Value;
-use Netgen\Layouts\Tests\Layout\Resolver\TargetHandler\Doctrine\AbstractTargetHandlerTest;
+use Netgen\Layouts\Tests\Layout\Resolver\TargetHandler\Doctrine\TargetHandlerTestBase;
 
-final class SubtreeTest extends AbstractTargetHandlerTest
+final class SubtreeTest extends TargetHandlerTestBase
 {
     /**
      * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetHandler\Doctrine\Subtree::handleQuery

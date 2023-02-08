@@ -17,9 +17,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
 use Symfony\Component\Validator\Validation;
 
-use function in_array;
 use function is_array;
-use function is_string;
 
 final class SectionTypeTest extends TestCase
 {
@@ -173,34 +171,23 @@ final class SectionTypeTest extends TestCase
      */
     public function testValidation($value, bool $required, bool $isValid): void
     {
-        $args = [];
-        $returns = [];
         $options = [];
 
         if ($value !== null) {
             $options = ['multiple' => is_array($value)];
-            foreach ((array) $value as $index => $identifier) {
-                $args[] = [self::identicalTo($identifier)];
-                $returns[] = self::returnCallback(
-                    static function () use ($identifier): IbexaSection {
-                        if (!is_string($identifier) || !in_array($identifier, ['media', 'standard'], true)) {
-                            throw new NotFoundException('content type', $identifier);
+
+            $this->sectionServiceMock
+                ->method('loadSectionByIdentifier')
+                ->willReturnCallback(
+                    static function (string $identifier): IbexaSection {
+                        if ($identifier !== 'other') {
+                            return new IbexaSection(['identifier' => $identifier]);
                         }
 
-                        return new IbexaSection(
-                            [
-                                'identifier' => $identifier,
-                            ],
-                        );
+                        throw new NotFoundException('section', $identifier);
                     },
                 );
-            }
         }
-
-        $this->sectionServiceMock
-            ->method('loadSectionByIdentifier')
-            ->withConsecutive(...$args)
-            ->willReturnOnConsecutiveCalls(...$returns);
 
         $parameter = $this->getParameterDefinition($options, $required);
         $validator = Validation::createValidatorBuilder()
