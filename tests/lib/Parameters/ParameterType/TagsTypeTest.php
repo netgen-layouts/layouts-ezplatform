@@ -331,12 +331,19 @@ final class TagsTypeTest extends TestCase
                     );
                 }
             }
-        }
 
-        $this->tagsServiceMock
-            ->method('loadTag')
-            ->withConsecutive(...$args)
-            ->willReturnOnConsecutiveCalls(...$returns);
+            $this->tagsServiceMock
+                ->method('loadTag')
+                ->willReturnCallback(
+                    static function (int $id): Tag {
+                        if ($id > 0) {
+                            return new Tag(['id' => $id]);
+                        }
+
+                        throw new NotFoundException('tag', $id);
+                    },
+                );
+        }
 
         $parameter = $this->getParameterDefinition(['min' => 1, 'max' => 3], $required);
         $validator = Validation::createValidatorBuilder()

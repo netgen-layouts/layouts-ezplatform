@@ -110,35 +110,41 @@ final class ContentTypeTypeTest extends FormTestCase
 
         $this->contentTypeServiceMock
             ->method('loadContentTypes')
-            ->withConsecutive(
-                [self::identicalTo($contentTypeGroup1)],
-                [self::identicalTo($contentTypeGroup2)],
-            )
-            ->willReturnOnConsecutiveCalls(
+            ->willReturnMap(
                 [
-                    new ContentType(
+                    [
+                        $contentTypeGroup1,
+                        [],
                         [
-                            'identifier' => 'article',
-                            'names' => ['eng-GB' => 'Article'],
-                            'mainLanguageCode' => 'eng-GB',
+                            new ContentType(
+                                [
+                                    'identifier' => 'article',
+                                    'names' => ['eng-GB' => 'Article'],
+                                    'mainLanguageCode' => 'eng-GB',
+                                ],
+                            ),
+                            new ContentType(
+                                [
+                                    'identifier' => 'news',
+                                    'names' => ['eng-GB' => 'News'],
+                                    'mainLanguageCode' => 'eng-GB',
+                                ],
+                            ),
                         ],
-                    ),
-                    new ContentType(
+                    ],
+                    [
+                        $contentTypeGroup2,
+                        [],
                         [
-                            'identifier' => 'news',
-                            'names' => ['eng-GB' => 'News'],
-                            'mainLanguageCode' => 'eng-GB',
+                            new ContentType(
+                                [
+                                    'identifier' => 'image',
+                                    'names' => ['eng-GB' => 'Image'],
+                                    'mainLanguageCode' => 'eng-GB',
+                                ],
+                            ),
                         ],
-                    ),
-                ],
-                [
-                    new ContentType(
-                        [
-                            'identifier' => 'image',
-                            'names' => ['eng-GB' => 'Image'],
-                            'mainLanguageCode' => 'eng-GB',
-                        ],
-                    ),
+                    ],
                 ],
             );
     }

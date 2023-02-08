@@ -49,34 +49,40 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
 
         $this->objectStateServiceMock
             ->method('loadObjectStates')
-            ->withConsecutive(
-                [self::identicalTo($group1)],
-                [self::identicalTo($group2)],
-            )
-            ->willReturnOnConsecutiveCalls(
+            ->willReturnMap(
                 [
-                    new EzObjectState(
+                    [
+                        $group1,
+                        [],
                         [
-                            'identifier' => 'state1',
+                            new EzObjectState(
+                                [
+                                    'identifier' => 'state1',
+                                ],
+                            ),
+                            new EzObjectState(
+                                [
+                                    'identifier' => 'state2',
+                                ],
+                            ),
                         ],
-                    ),
-                    new EzObjectState(
+                    ],
+                    [
+                        $group2,
+                        [],
                         [
-                            'identifier' => 'state2',
+                            new EzObjectState(
+                                [
+                                    'identifier' => 'state1',
+                                ],
+                            ),
+                            new EzObjectState(
+                                [
+                                    'identifier' => 'state2',
+                                ],
+                            ),
                         ],
-                    ),
-                ],
-                [
-                    new EzObjectState(
-                        [
-                            'identifier' => 'state1',
-                        ],
-                    ),
-                    new EzObjectState(
-                        [
-                            'identifier' => 'state2',
-                        ],
-                    ),
+                    ],
                 ],
             );
 
