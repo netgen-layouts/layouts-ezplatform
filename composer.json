@@ -30,6 +30,9 @@
         "matthiasnoback/symfony-config-test": "^4.3",
         "netgen/tagsbundle": "^5.0"
     },
+    "config": {
+        "allow-plugins": false
+    },
     "suggest": {
         "netgen/layouts-ibexa-site-api": "Integrate Netgen Layouts with Ibexa CMS Site API to boost your site-building productivity with Ibexa CMS"
     },
