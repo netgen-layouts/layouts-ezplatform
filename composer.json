@@ -29,6 +29,9 @@
         "matthiasnoback/symfony-config-test": "^4.2",
         "netgen/tagsbundle": "^3.4 || ^4.0"
     },
+    "config": {
+        "allow-plugins": false
+    },
     "suggest": {
         "netgen/layouts-ezplatform-site-api": "Integrate Netgen Layouts with eZ Platform Site API to boost your site-building productivity with eZ Platform"
     },
