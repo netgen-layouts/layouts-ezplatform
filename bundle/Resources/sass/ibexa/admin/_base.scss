@@ -55,3 +55,49 @@ body {
         position:static;
     }
 }
+
+.nl-export-checkbox {
+    > label {
+        opacity: 0.3;
+    }
+
+    input {
+        position: absolute;
+        pointer-events: all;
+        opacity: 0;
+        left: -9999em;
+        + label {
+            position: relative;
+            margin: 0;
+            padding-left: 1em;
+            padding-right: .5em;
+            cursor: pointer;
+            display: block;
+            min-height: 1em;
+            font-size: 24px;
+            &::before {
+                @extend %material-icons;
+                position: absolute;
+                font-size: 1em;
+                line-height: 1;
+                left: 0;
+                top: 0;
+                content: "check_box_outline_blank";
+            }
+        }
+        &:checked {
+            + label {
+                &::before {
+                    content: "check_box";
+                    color: $linkColor;
+                }
+            }
+        }
+        &:disabled {
+            + label {
+                opacity: .2;
+                cursor: not-allowed;
+            }
+        }
+    }
+}

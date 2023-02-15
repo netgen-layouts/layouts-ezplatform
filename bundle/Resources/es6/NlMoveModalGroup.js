@@ -65,7 +65,8 @@ export default class NlMoveModalGroup {
 
     addModalGroup(data) {
       const newModalGroupEl = document.createElement('div');
-      newModalGroupEl.className = 'nl-group nl-element';
+      const disabledClass = data.enabled ? '' : 'disabled';
+      newModalGroupEl.className = `nl-group nl-element ${disabledClass}`;
       newModalGroupEl.innerHTML = this.getGroupHtml(data.id, data.name);
       const newModalGroup = new NlMoveModalGroup(newModalGroupEl, data, this.modal, this.depth + 1, this.moving);
       this.modalGroups[data.id] = newModalGroup;
@@ -73,36 +74,36 @@ export default class NlMoveModalGroup {
 
     // eslint-disable-next-line class-methods-use-this
     getGroupHtml(id, name) {
-      return `
-        <div class="nl-group-content">
-            <div class="nl-group-head">
-                <div class="nl-rule-cell">
-                    <div class="nl-export-checkbox">
-                        <input type="checkbox" id="select${id}" classname="move-modal-group-select">
-                        <label for="select${id}"></label>
+        return `
+            <div class="nl-group-content">
+                <div class="nl-group-head">
+                    <div class="nl-rule-cell">
+                        <div class="nl-export-checkbox">
+                            <input type="checkbox" id="select${id}" classname="move-modal-group-select">
+                            <label for="select${id}"></label>
+                        </div>
+                    </div>
+                    <div class="nl-rule-cell group-title js-group-title">
+                        <span class="icon-group-open">
+                        </span>
+                        <span class="icon-group">
+                        </span>
+                        <span class="icon-group-disabled-open">
+                            <div class="disabled-tooltip">Group disabled</div>
+                        </span>
+                        <span class="icon-group-disabled">
+                            <div class="disabled-tooltip">Group disabled</div>
+                        </span>
+                        <p>${name}</p>
                     </div>
                 </div>
-                <div class="nl-rule-cell group-title js-group-title">
-                    <span class="icon-group-open">
-                    </span>
-                    <span class="icon-group">
-                    </span>
-                    <span class="icon-group-disabled-open">
-                        <div class="disabled-tooltip">Group disabled</div>
-                    </span>
-                    <span class="icon-group-disabled">
-                        <div class="disabled-tooltip">Group disabled</div>
-                    </span>
-                    <p>${name}</p>
-                </div>
-            </div>
 
-            <div class="nl-group-body">
-                <div class="nl-grid">
-                    <div class="nl-group-list col-xs12"></div>
+                <div class="nl-group-body">
+                    <div class="nl-grid">
+                        <div class="nl-group-list col-xs12"></div>
+                    </div>
                 </div>
-            </div>
-        </div>`;
+            </div>`;
     }
 
     handleCheckbox(id) {

@@ -122,7 +122,9 @@ module.exports = (env, argv) => {
               loader: require.resolve('file-loader'),
               exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
               options: {
-                name: 'media/[name].[ext]',
+                name: '[name].[ext]',
+                outputPath: 'css/ibexa/media/',
+                publicPath: '../media/'
               },
             },
           ],

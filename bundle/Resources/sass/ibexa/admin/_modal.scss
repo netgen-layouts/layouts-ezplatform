@@ -94,11 +94,15 @@
             background:transparent;
             text-decoration:none;
             @extend %material-icons !optional;
+            z-index: 1;
+            
             &::before {
+                @extend %material-icons !optional;
                 content:"clear";
             }
         }
         .nl-modal-body {
+            padding:25px 15px;
             overflow-y:auto;
             font-size: 16px;
 
@@ -130,6 +134,10 @@
             border-radius:$modalBorderRadius $modalBorderRadius 0 0;
             font-size:20px;
             min-height:58px;
+            position: relative;
+            display: flex;
+            padding-left: 15px;
+            align-items: center;
         }
         .nl-modal-actions {
             padding: 15px;
@@ -343,7 +351,7 @@
             height:auto;
             min-height:120px;
             padding-top:0.375em;
-            resize:vertical;
+            resize: vertical;
         }
         input[type="checkbox"] {
             position:absolute;
