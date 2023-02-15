@@ -1,5 +1,3 @@
-{% if app.request.attributes.get('_route') starts with 'nglayouts_admin' %}
-    {% include '@NetgenLayoutsAdmin/admin/javascripts.html.twig' %}
-{% endif %}
+{% include '@NetgenLayoutsAdmin/admin/javascripts.html.twig' %}
 
 <script src="{{ asset('bundles/netgenlayoutsezplatform/js/ezadminui/app.js') }}"></script>

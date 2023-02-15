@@ -1,5 +1,4 @@
-{% if app.request.attributes.get('_route') starts with 'nglayouts_admin' %}
-    {% include '@NetgenLayoutsAdmin/admin/stylesheets.html.twig' %}
-{% endif %}
+{% include '@NetgenLayoutsAdmin/admin/head.html.twig' %}
+{% include '@NetgenLayoutsAdmin/admin/stylesheets.html.twig' %}
 
 <link rel="stylesheet" href="{{ asset('bundles/netgenlayoutsezplatform/css/ezadminui/style.css') }}">
