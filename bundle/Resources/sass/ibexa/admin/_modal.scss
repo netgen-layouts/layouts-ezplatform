@@ -95,7 +95,7 @@
             text-decoration:none;
             @extend %material-icons !optional;
             z-index: 1;
-            
+
             &::before {
                 @extend %material-icons !optional;
                 content:"clear";
