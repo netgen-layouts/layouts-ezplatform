@@ -6,7 +6,7 @@ namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\DependencyInjection\Config
 
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
-final class DesignNodeTest extends ConfigurationNodeTest
+final class DesignNodeTest extends ConfigurationNodeTestBase
 {
     /**
      * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\ExtensionPlugin::addConfiguration

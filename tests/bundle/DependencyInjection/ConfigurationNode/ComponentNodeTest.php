@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\DependencyInjection\ConfigurationNode;
 
-final class ComponentNodeTest extends ConfigurationNodeTest
+final class ComponentNodeTest extends ConfigurationNodeTestBase
 {
     /**
      * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\ConfigurationNode\ComponentNode::getConfigurationNode

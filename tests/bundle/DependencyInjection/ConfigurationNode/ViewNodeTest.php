@@ -6,7 +6,7 @@ namespace Netgen\Bundle\LayoutsEzPlatformBundle\Tests\DependencyInjection\Config
 
 use function array_keys;
 
-final class ViewNodeTest extends ConfigurationNodeTest
+final class ViewNodeTest extends ConfigurationNodeTestBase
 {
     /**
      * @covers \Netgen\Bundle\LayoutsEzPlatformBundle\DependencyInjection\ExtensionPlugin::addConfiguration
