@@ -55,7 +55,7 @@ final class ConfigureHttpCachePassTest extends AbstractContainerBuilderTestCase
         $this->assertContainerBuilderNotHasAlias('netgen_layouts.http_cache.client');
     }
 
-    public function processDataProvider(): array
+    public static function processDataProvider(): array
     {
         return [
             [VarnishPurgeClient::class, true],

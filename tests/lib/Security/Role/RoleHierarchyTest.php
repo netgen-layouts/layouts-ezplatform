@@ -81,7 +81,7 @@ final class RoleHierarchyTest extends TestCase
         }
     }
 
-    public function getReachableRolesDataProvider(): array
+    public static function getReachableRolesDataProvider(): array
     {
         return [
             [

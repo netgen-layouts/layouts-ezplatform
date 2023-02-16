@@ -70,7 +70,7 @@ final class RepositoryAccessVoterTest extends TestCase
         self::assertSame($voteResult, $result);
     }
 
-    public function voteDataProvider(): array
+    public static function voteDataProvider(): array
     {
         return [
             // Only matches admin eZ function
