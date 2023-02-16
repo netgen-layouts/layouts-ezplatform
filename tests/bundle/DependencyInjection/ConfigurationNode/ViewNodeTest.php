@@ -6,7 +6,7 @@ namespace Netgen\Bundle\LayoutsIbexaBundle\Tests\DependencyInjection\Configurati
 
 use function array_keys;
 
-final class ViewNodeTest extends ConfigurationNodeTest
+final class ViewNodeTest extends ConfigurationNodeTestBase
 {
     /**
      * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::addConfiguration

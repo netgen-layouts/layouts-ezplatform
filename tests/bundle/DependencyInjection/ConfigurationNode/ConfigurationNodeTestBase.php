@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use function array_key_exists;
 use function ksort;
 
-abstract class ConfigurationNodeTest extends TestCase
+abstract class ConfigurationNodeTestBase extends TestCase
 {
     use ConfigurationTestCaseTrait;
 

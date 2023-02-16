@@ -90,7 +90,7 @@ final class ContentTypeTypeTest extends TestCase
     /**
      * Provider for testing valid parameter attributes.
      */
-    public function validOptionsDataProvider(): array
+    public static function validOptionsDataProvider(): array
     {
         return [
             [
@@ -142,7 +142,7 @@ final class ContentTypeTypeTest extends TestCase
     /**
      * Provider for testing invalid parameter attributes.
      */
-    public function invalidOptionsDataProvider(): array
+    public static function invalidOptionsDataProvider(): array
     {
         return [
             [
@@ -195,7 +195,7 @@ final class ContentTypeTypeTest extends TestCase
     /**
      * Provider for testing valid parameter values.
      */
-    public function validationDataProvider(): array
+    public static function validationDataProvider(): array
     {
         return [
             ['news', false, true],
@@ -238,7 +238,7 @@ final class ContentTypeTypeTest extends TestCase
         );
     }
 
-    public function fromHashDataProvider(): array
+    public static function fromHashDataProvider(): array
     {
         return [
             [
@@ -299,7 +299,7 @@ final class ContentTypeTypeTest extends TestCase
     /**
      * Provider for testing if the value is empty.
      */
-    public function emptyDataProvider(): array
+    public static function emptyDataProvider(): array
     {
         return [
             [null, true],
