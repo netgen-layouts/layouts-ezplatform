@@ -17,6 +17,3 @@ parameters:
 
         # Disable errors for various tests that verify arrays not having certain elements
         - '#Call to static method PHPUnit\\Framework\\Assert::assertArrayHasKey\(\)#'
-
-        # Disable errors about values inferred from iterable typehints
-        - '#Call to static method PHPUnit\\Framework\\Assert::assert\w+\(\) with .+ will always evaluate to true.#'
