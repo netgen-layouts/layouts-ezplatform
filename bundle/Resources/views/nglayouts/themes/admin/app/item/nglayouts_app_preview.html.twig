@@ -9,9 +9,17 @@
 {% endif %}
 
 <div class="name">
-    <p><a href="{{ nglayouts_item_path(nglayouts_item, 'admin') }}" target="_blank" rel="noopener noreferrer">{{ content.name }}</a></p>
+    {% if nglayouts_item is defined %}
+        <p><a href="{{ nglayouts_item_path(nglayouts_item, 'admin') }}" target="_blank" rel="noopener noreferrer">{{ content.name }}</a></p>
+    {% else %}
+        <p><a href="{{ ibexa_path(content) }}" target="_blank" rel="noopener noreferrer">{{ content.name }}</a></p>
+    {% endif %}
 </div>
 
 <div class="value-type">
-    <p>{{ nglayouts_value_type_name(nglayouts_item) }} ({{ content.contentType.name }})</p>
+    {% if nglayouts_item is defined %}
+        <p>{{ nglayouts_value_type_name(nglayouts_item) }} ({{ content.contentType.name }})</p>
+    {% else %}
+        <p>{{ content.contentType.name }}</p>
+    {% endif %}
 </div>
