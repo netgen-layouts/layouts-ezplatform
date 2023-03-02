@@ -297,9 +297,9 @@ $(function () {
 
   $(document).on('click', '.js-direct-mapping', function () {
     const locationId = document.querySelector('.mapped-layouts-box').dataset.url.split('/').pop();
-    const basePath = document.querySelector('[name="ezadmin-base-path"]').getAttribute('content');
+    const basePath = document.querySelector('[name="ezadmin-base-path"]').getAttribute('content').replace(/\/$/, '');
     const apiUrl = `${window.location.origin}${basePath}`;
-    const baseUrl = `${apiUrl}nglayouts/ezadmin/layouts`;
+    const baseUrl = `${apiUrl}/nglayouts/ezadmin/layouts`;
     const url = `${baseUrl}/${locationId}/wizard`;
     const modal = new NlModal({
       preload: true,
