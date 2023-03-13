@@ -21,14 +21,11 @@ use function is_scalar;
  */
 final class ContentValidator extends ConstraintValidator
 {
-    private Repository $repository;
-
-    public function __construct(Repository $repository)
+    public function __construct(private Repository $repository)
     {
-        $this->repository = $repository;
     }
 
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         if ($value === null) {
             return;
@@ -59,7 +56,7 @@ final class ContentValidator extends ConstraintValidator
                         ->addViolation();
                 }
             }
-        } catch (NotFoundException $e) {
+        } catch (NotFoundException) {
             if (!$constraint->allowInvalid) {
                 $this->context->buildViolation($constraint->message)
                     ->setParameter('%contentId%', (string) $value)

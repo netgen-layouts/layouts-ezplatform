@@ -15,20 +15,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class LocationLayouts extends Controller
 {
-    private ContentService $contentService;
-
-    private LayoutResolverInterface $layoutResolver;
-
-    private RelatedLayoutsLoader $relatedLayoutsLoader;
-
     public function __construct(
-        ContentService $contentService,
-        LayoutResolverInterface $layoutResolver,
-        RelatedLayoutsLoader $relatedLayoutsLoader
+        private ContentService $contentService,
+        private LayoutResolverInterface $layoutResolver,
+        private RelatedLayoutsLoader $relatedLayoutsLoader,
     ) {
-        $this->contentService = $contentService;
-        $this->layoutResolver = $layoutResolver;
-        $this->relatedLayoutsLoader = $relatedLayoutsLoader;
     }
 
     /**

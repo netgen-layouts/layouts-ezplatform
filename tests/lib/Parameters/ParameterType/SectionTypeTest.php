@@ -23,12 +23,9 @@ final class SectionTypeTest extends TestCase
 {
     use ParameterTypeTestTrait;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\Repository
-     */
-    private MockObject $repositoryMock;
+    private MockObject&Repository $repositoryMock;
 
-    private MockObject $sectionServiceMock;
+    private MockObject&SectionService $sectionServiceMock;
 
     protected function setUp(): void
     {
@@ -163,13 +160,11 @@ final class SectionTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType::getValueConstraints
      *
      * @dataProvider validationDataProvider
      */
-    public function testValidation($value, bool $required, bool $isValid): void
+    public function testValidation(mixed $value, bool $required, bool $isValid): void
     {
         $options = [];
 
@@ -179,12 +174,9 @@ final class SectionTypeTest extends TestCase
             $this->sectionServiceMock
                 ->method('loadSectionByIdentifier')
                 ->willReturnCallback(
-                    static function (string $identifier): IbexaSection {
-                        if ($identifier !== 'other') {
-                            return new IbexaSection(['identifier' => $identifier]);
-                        }
-
-                        throw new NotFoundException('section', $identifier);
+                    static fn (string $identifier): IbexaSection => match (true) {
+                        $identifier !== 'other' => new IbexaSection(['identifier' => $identifier]),
+                        default => throw new NotFoundException('section', $identifier),
                     },
                 );
         }
@@ -222,14 +214,11 @@ final class SectionTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     * @param mixed $convertedValue
-     *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType::fromHash
      *
      * @dataProvider fromHashDataProvider
      */
-    public function testFromHash($value, $convertedValue, bool $multiple): void
+    public function testFromHash(mixed $value, mixed $convertedValue, bool $multiple): void
     {
         self::assertSame(
             $convertedValue,
@@ -291,13 +280,11 @@ final class SectionTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType::isValueEmpty
      *
      * @dataProvider emptyDataProvider
      */
-    public function testIsValueEmpty($value, bool $isEmpty): void
+    public function testIsValueEmpty(mixed $value, bool $isEmpty): void
     {
         self::assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
     }

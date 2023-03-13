@@ -12,11 +12,8 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 final class IsEnterpriseVersionListener implements EventSubscriberInterface
 {
-    private bool $isEnterpriseVersion;
-
-    public function __construct(bool $isEnterpriseVersion)
+    public function __construct(private bool $isEnterpriseVersion)
     {
-        $this->isEnterpriseVersion = $isEnterpriseVersion;
     }
 
     public static function getSubscribedEvents(): array

@@ -9,11 +9,8 @@ use Toflar\Psr6HttpCacheStore\Psr6StoreInterface;
 
 final class LocalClient implements ClientInterface
 {
-    private Psr6StoreInterface $cacheStore;
-
-    public function __construct(Psr6StoreInterface $cacheStore)
+    public function __construct(private Psr6StoreInterface $cacheStore)
     {
-        $this->cacheStore = $cacheStore;
     }
 
     public function purge(array $tags): void

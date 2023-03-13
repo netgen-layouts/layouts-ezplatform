@@ -20,11 +20,11 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 final class ContentValidatorTest extends ValidatorTestCase
 {
-    private MockObject $repositoryMock;
+    private MockObject&Repository $repositoryMock;
 
-    private MockObject $contentServiceMock;
+    private MockObject&ContentService $contentServiceMock;
 
-    private MockObject $contentTypeServiceMock;
+    private MockObject&ContentTypeService $contentTypeServiceMock;
 
     protected function setUp(): void
     {

@@ -19,14 +19,8 @@ use Symfony\Component\Validator\Constraints;
  */
 final class LocationType extends ParameterType implements ValueObjectProviderInterface
 {
-    private Repository $repository;
-
-    private ValueObjectProviderInterface $valueObjectProvider;
-
-    public function __construct(Repository $repository, ValueObjectProviderInterface $valueObjectProvider)
+    public function __construct(private Repository $repository, private ValueObjectProviderInterface $valueObjectProvider)
     {
-        $this->repository = $repository;
-        $this->valueObjectProvider = $valueObjectProvider;
     }
 
     public static function getIdentifier(): string
@@ -45,12 +39,12 @@ final class LocationType extends ParameterType implements ValueObjectProviderInt
         $optionsResolver->setAllowedTypes('allowed_types', 'string[]');
     }
 
-    public function fromHash(ParameterDefinition $parameterDefinition, $value): ?int
+    public function fromHash(ParameterDefinition $parameterDefinition, mixed $value): ?int
     {
         return $value !== null ? (int) $value : null;
     }
 
-    public function export(ParameterDefinition $parameterDefinition, $value): ?string
+    public function export(ParameterDefinition $parameterDefinition, mixed $value): ?string
     {
         try {
             /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location $location */
@@ -59,12 +53,12 @@ final class LocationType extends ParameterType implements ValueObjectProviderInt
             );
 
             return $location->remoteId;
-        } catch (NotFoundException $e) {
+        } catch (NotFoundException) {
             return null;
         }
     }
 
-    public function import(ParameterDefinition $parameterDefinition, $value): ?int
+    public function import(ParameterDefinition $parameterDefinition, mixed $value): ?int
     {
         try {
             /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location $location */
@@ -73,17 +67,17 @@ final class LocationType extends ParameterType implements ValueObjectProviderInt
             );
 
             return (int) $location->id;
-        } catch (NotFoundException $e) {
+        } catch (NotFoundException) {
             return null;
         }
     }
 
-    public function getValueObject($value): ?object
+    public function getValueObject(mixed $value): ?object
     {
         return $this->valueObjectProvider->getValueObject($value);
     }
 
-    protected function getValueConstraints(ParameterDefinition $parameterDefinition, $value): array
+    protected function getValueConstraints(ParameterDefinition $parameterDefinition, mixed $value): array
     {
         $options = $parameterDefinition->getOptions();
 

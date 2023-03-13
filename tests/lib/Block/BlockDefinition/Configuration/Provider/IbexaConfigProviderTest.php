@@ -15,7 +15,7 @@ use Ramsey\Uuid\Uuid;
 
 final class IbexaConfigProviderTest extends TestCase
 {
-    private MockObject $configResolverMock;
+    private MockObject&ConfigResolverInterface $configResolverMock;
 
     private IbexaConfigProvider $configProvider;
 

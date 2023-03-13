@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 final class LocationValueLoaderTest extends TestCase
 {
-    private MockObject $locationServiceMock;
+    private MockObject&LocationService $locationServiceMock;
 
     private LocationValueLoader $valueLoader;
 

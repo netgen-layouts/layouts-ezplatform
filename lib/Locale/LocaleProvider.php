@@ -21,20 +21,11 @@ use function is_array;
  */
 final class LocaleProvider implements LocaleProviderInterface
 {
-    private LanguageService $languageService;
-
-    private LocaleConverterInterface $localeConverter;
-
-    private ConfigResolverInterface $configResolver;
-
     public function __construct(
-        LanguageService $languageService,
-        LocaleConverterInterface $localeConverter,
-        ConfigResolverInterface $configResolver
+        private LanguageService $languageService,
+        private LocaleConverterInterface $localeConverter,
+        private ConfigResolverInterface $configResolver,
     ) {
-        $this->languageService = $languageService;
-        $this->localeConverter = $localeConverter;
-        $this->configResolver = $configResolver;
     }
 
     public function getAvailableLocales(): array

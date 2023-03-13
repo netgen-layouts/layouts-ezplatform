@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ContentProviderTest extends TestCase
 {
-    private MockObject $locationServiceMock;
+    private MockObject&LocationService $locationServiceMock;
 
     private Context $context;
 

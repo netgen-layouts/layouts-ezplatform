@@ -20,16 +20,13 @@ use Symfony\Component\Validator\Validation;
 
 final class SubtreeTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\Repository
-     */
-    private MockObject $repositoryMock;
+    private MockObject&Repository $repositoryMock;
 
-    private MockObject $contentExtractorMock;
+    private MockObject&ContentExtractorInterface $contentExtractorMock;
 
-    private MockObject $valueObjectProviderMock;
+    private MockObject&ValueObjectProviderInterface $valueObjectProviderMock;
 
-    private MockObject $locationServiceMock;
+    private MockObject&LocationService $locationServiceMock;
 
     private Subtree $targetType;
 

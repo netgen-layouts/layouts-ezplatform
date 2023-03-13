@@ -16,9 +16,9 @@ use PHPUnit\Framework\TestCase;
 
 final class ContentProviderTest extends TestCase
 {
-    private MockObject $repositoryMock;
+    private MockObject&Repository $repositoryMock;
 
-    private MockObject $contentServiceMock;
+    private MockObject&ContentService $contentServiceMock;
 
     private ContentProvider $valueObjectProvider;
 

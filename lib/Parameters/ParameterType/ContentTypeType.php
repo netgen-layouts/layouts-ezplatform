@@ -34,7 +34,7 @@ final class ContentTypeType extends ParameterType
         $optionsResolver->setAllowedTypes('types', 'array');
     }
 
-    public function fromHash(ParameterDefinition $parameterDefinition, $value)
+    public function fromHash(ParameterDefinition $parameterDefinition, mixed $value)
     {
         if ($value === null || $value === []) {
             return null;
@@ -47,12 +47,12 @@ final class ContentTypeType extends ParameterType
         return is_array($value) ? array_values($value)[0] : $value;
     }
 
-    public function isValueEmpty(ParameterDefinition $parameterDefinition, $value): bool
+    public function isValueEmpty(ParameterDefinition $parameterDefinition, mixed $value): bool
     {
         return $value === null || $value === [];
     }
 
-    protected function getValueConstraints(ParameterDefinition $parameterDefinition, $value): array
+    protected function getValueConstraints(ParameterDefinition $parameterDefinition, mixed $value): array
     {
         $options = $parameterDefinition->getOptions();
 

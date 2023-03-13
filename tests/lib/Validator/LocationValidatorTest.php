@@ -20,9 +20,9 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 final class LocationValidatorTest extends ValidatorTestCase
 {
-    private MockObject $repositoryMock;
+    private MockObject&Repository $repositoryMock;
 
-    private MockObject $locationServiceMock;
+    private MockObject&LocationService $locationServiceMock;
 
     protected function setUp(): void
     {

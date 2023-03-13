@@ -17,11 +17,8 @@ use Netgen\Layouts\Parameters\ParameterType;
  */
 final class ContentFieldHandler extends BlockDefinitionHandler
 {
-    private ContentProviderInterface $contentProvider;
-
-    public function __construct(ContentProviderInterface $contentProvider)
+    public function __construct(private ContentProviderInterface $contentProvider)
     {
-        $this->contentProvider = $contentProvider;
     }
 
     public function buildParameters(ParameterBuilderInterface $builder): void

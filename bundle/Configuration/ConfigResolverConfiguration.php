@@ -19,16 +19,10 @@ use Netgen\Bundle\LayoutsBundle\Exception\ConfigurationException;
  */
 class ConfigResolverConfiguration implements ConfigurationInterface
 {
-    private ConfigResolverInterface $configResolver;
-
-    private ConfigurationInterface $fallbackConfiguration;
-
     public function __construct(
-        ConfigResolverInterface $configResolver,
-        ConfigurationInterface $fallbackConfiguration
+        private ConfigResolverInterface $configResolver,
+        private ConfigurationInterface $fallbackConfiguration,
     ) {
-        $this->configResolver = $configResolver;
-        $this->fallbackConfiguration = $fallbackConfiguration;
     }
 
     public function hasParameter(string $parameterName): bool

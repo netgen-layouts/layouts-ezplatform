@@ -97,7 +97,7 @@ trait ObjectStateFilterTrait
                 $stateGroup = $this->objectStateHandler->loadGroupByIdentifier($identifier[0]);
                 $objectState = $this->objectStateHandler->loadByIdentifier($identifier[1], $stateGroup->id);
                 $idList[(int) $stateGroup->id][] = (int) $objectState->id;
-            } catch (NotFoundException $e) {
+            } catch (NotFoundException) {
                 continue;
             }
         }

@@ -11,10 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 final class PolicyProviderTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Bundle\Core\DependencyInjection\Configuration\ConfigBuilderInterface
-     */
-    private MockObject $configBuilderMock;
+    private MockObject&ConfigBuilderInterface $configBuilderMock;
 
     private PolicyProvider $policyProvider;
 

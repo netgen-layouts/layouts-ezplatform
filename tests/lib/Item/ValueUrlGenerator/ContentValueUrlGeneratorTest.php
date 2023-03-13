@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class ContentValueUrlGeneratorTest extends TestCase
 {
-    private MockObject $urlGeneratorMock;
+    private MockObject&UrlGeneratorInterface $urlGeneratorMock;
 
     private ContentValueUrlGenerator $urlGenerator;
 

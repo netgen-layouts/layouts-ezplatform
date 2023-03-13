@@ -19,16 +19,13 @@ use Symfony\Component\Validator\Validation;
 
 final class ContentTypeTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\Repository
-     */
-    private MockObject $repositoryMock;
+    private MockObject&Repository $repositoryMock;
 
     private ContentType $conditionType;
 
-    private MockObject $contentExtractorMock;
+    private MockObject&ContentExtractorInterface $contentExtractorMock;
 
-    private MockObject $contentTypeServiceMock;
+    private MockObject&ContentTypeService $contentTypeServiceMock;
 
     protected function setUp(): void
     {
@@ -104,11 +101,9 @@ final class ContentTypeTest extends TestCase
     /**
      * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\ContentType::matches
      *
-     * @param mixed $value
-     *
      * @dataProvider matchesDataProvider
      */
-    public function testMatches($value, bool $matches): void
+    public function testMatches(mixed $value, bool $matches): void
     {
         $request = Request::create('/');
 

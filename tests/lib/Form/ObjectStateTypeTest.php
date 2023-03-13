@@ -16,7 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class ObjectStateTypeTest extends FormTestCase
 {
-    private MockObject $objectStateServiceMock;
+    private MockObject&ObjectStateService $objectStateServiceMock;
 
     /**
      * @covers \Netgen\Layouts\Ibexa\Form\ObjectStateType::__construct

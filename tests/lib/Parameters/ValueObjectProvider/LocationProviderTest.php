@@ -14,9 +14,9 @@ use PHPUnit\Framework\TestCase;
 
 final class LocationProviderTest extends TestCase
 {
-    private MockObject $repositoryMock;
+    private MockObject&Repository $repositoryMock;
 
-    private MockObject $locationServiceMock;
+    private MockObject&LocationService $locationServiceMock;
 
     private LocationProvider $valueObjectProvider;
 

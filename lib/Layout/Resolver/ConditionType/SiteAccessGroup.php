@@ -17,16 +17,10 @@ use function is_array;
 final class SiteAccessGroup extends ConditionType
 {
     /**
-     * @var array<string, string[]>
-     */
-    private array $groupsBySiteAccess;
-
-    /**
      * @param array<string, string[]> $groupsBySiteAccess
      */
-    public function __construct(array $groupsBySiteAccess)
+    public function __construct(private array $groupsBySiteAccess)
     {
-        $this->groupsBySiteAccess = $groupsBySiteAccess;
     }
 
     public static function getType(): string
@@ -50,7 +44,7 @@ final class SiteAccessGroup extends ConditionType
         ];
     }
 
-    public function matches(Request $request, $value): bool
+    public function matches(Request $request, mixed $value): bool
     {
         $siteAccess = $request->attributes->get('siteaccess');
         if (!$siteAccess instanceof IbexaSiteAccess) {

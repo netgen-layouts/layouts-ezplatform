@@ -11,14 +11,8 @@ use function array_map;
 
 final class RepositoryPrefixDecorator implements ClientInterface
 {
-    private ClientInterface $innerClient;
-
-    private RepositoryTagPrefix $prefixService;
-
-    public function __construct(ClientInterface $innerClient, RepositoryTagPrefix $prefixService)
+    public function __construct(private ClientInterface $innerClient, private RepositoryTagPrefix $prefixService)
     {
-        $this->innerClient = $innerClient;
-        $this->prefixService = $prefixService;
     }
 
     public function purge(array $tags): void

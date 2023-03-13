@@ -16,11 +16,11 @@ use PHPUnit\Framework\TestCase;
 
 final class RemoteIdConverterTest extends TestCase
 {
-    private MockObject $locationServiceMock;
+    private MockObject&LocationService $locationServiceMock;
 
-    private MockObject $contentServiceMock;
+    private MockObject&ContentService $contentServiceMock;
 
-    private MockObject $repositoryMock;
+    private MockObject&Repository $repositoryMock;
 
     private RemoteIdConverter $converter;
 

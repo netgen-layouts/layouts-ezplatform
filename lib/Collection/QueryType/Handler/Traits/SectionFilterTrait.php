@@ -83,7 +83,7 @@ trait SectionFilterTrait
             try {
                 $section = $this->sectionHandler->loadByIdentifier($identifier);
                 $idList[] = $section->id;
-            } catch (NotFoundException $e) {
+            } catch (NotFoundException) {
                 continue;
             }
         }

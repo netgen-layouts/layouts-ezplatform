@@ -15,20 +15,11 @@ use Symfony\Component\Validator\Constraints;
 
 final class Children extends TargetType implements ValueObjectProviderInterface
 {
-    private ContentExtractorInterface $contentExtractor;
-
-    private ValueObjectProviderInterface $valueObjectProvider;
-
-    private RemoteIdConverter $remoteIdConverter;
-
     public function __construct(
-        ContentExtractorInterface $contentExtractor,
-        ValueObjectProviderInterface $valueObjectProvider,
-        RemoteIdConverter $remoteIdConverter
+        private ContentExtractorInterface $contentExtractor,
+        private ValueObjectProviderInterface $valueObjectProvider,
+        private RemoteIdConverter $remoteIdConverter,
     ) {
-        $this->contentExtractor = $contentExtractor;
-        $this->valueObjectProvider = $valueObjectProvider;
-        $this->remoteIdConverter = $remoteIdConverter;
     }
 
     public static function getType(): string
@@ -53,17 +44,17 @@ final class Children extends TargetType implements ValueObjectProviderInterface
         return $location instanceof IbexaLocation ? (int) $location->parentLocationId : null;
     }
 
-    public function getValueObject($value): ?object
+    public function getValueObject(mixed $value): ?object
     {
         return $this->valueObjectProvider->getValueObject($value);
     }
 
-    public function export($value): ?string
+    public function export(mixed $value): ?string
     {
         return $this->remoteIdConverter->toLocationRemoteId((int) $value);
     }
 
-    public function import($value): ?int
+    public function import(mixed $value): ?int
     {
         return $this->remoteIdConverter->toLocationId((string) $value) ?? 0;
     }

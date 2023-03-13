@@ -17,11 +17,8 @@ use function is_array;
 
 final class ContentType extends ConditionType
 {
-    private ContentExtractorInterface $contentExtractor;
-
-    public function __construct(ContentExtractorInterface $contentExtractor)
+    public function __construct(private ContentExtractorInterface $contentExtractor)
     {
-        $this->contentExtractor = $contentExtractor;
     }
 
     public static function getType(): string
@@ -45,7 +42,7 @@ final class ContentType extends ConditionType
         ];
     }
 
-    public function matches(Request $request, $value): bool
+    public function matches(Request $request, mixed $value): bool
     {
         if (!is_array($value) || count($value) === 0) {
             return false;

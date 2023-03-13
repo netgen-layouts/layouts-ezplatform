@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ContentValueLoaderTest extends TestCase
 {
-    private MockObject $contentServiceMock;
+    private MockObject&ContentService $contentServiceMock;
 
     private ContentValueLoader $valueLoader;
 

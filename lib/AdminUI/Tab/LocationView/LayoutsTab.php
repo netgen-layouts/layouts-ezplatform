@@ -15,21 +15,14 @@ use Twig\Environment;
 
 final class LayoutsTab extends AbstractEventDispatchingTab implements ConditionalTabInterface
 {
-    private PermissionService $permissionService;
-
-    private AuthorizationCheckerInterface $authorizationChecker;
-
     public function __construct(
         Environment $twig,
         TranslatorInterface $translator,
         EventDispatcherInterface $eventDispatcher,
-        PermissionService $permissionService,
-        AuthorizationCheckerInterface $authorizationChecker
+        private PermissionService $permissionService,
+        private AuthorizationCheckerInterface $authorizationChecker,
     ) {
         parent::__construct($twig, $translator, $eventDispatcher);
-
-        $this->permissionService = $permissionService;
-        $this->authorizationChecker = $authorizationChecker;
     }
 
     public function getIdentifier(): string
@@ -49,7 +42,7 @@ final class LayoutsTab extends AbstractEventDispatchingTab implements Conditiona
     {
         try {
             return $this->permissionService->hasAccess('nglayouts', 'editor') !== false;
-        } catch (InvalidArgumentException $e) {
+        } catch (InvalidArgumentException) {
             // If nglayouts/editor permission does not exist (e.g. when using Netgen Layouts Enterprise)
             return $this->authorizationChecker->isGranted('nglayouts:ui:access');
         }

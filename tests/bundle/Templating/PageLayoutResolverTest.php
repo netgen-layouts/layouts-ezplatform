@@ -14,11 +14,11 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class PageLayoutResolverTest extends TestCase
 {
-    private MockObject $innerResolverMock;
+    private MockObject&PageLayoutResolverInterface $innerResolverMock;
 
-    private MockObject$configResolverMock;
+    private MockObject&ConfigResolverInterface $configResolverMock;
 
-    private MockObject $requestStackMock;
+    private MockObject&RequestStack $requestStackMock;
 
     private PageLayoutResolver $resolver;
 

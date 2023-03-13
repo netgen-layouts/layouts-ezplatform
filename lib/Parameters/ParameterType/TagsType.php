@@ -22,11 +22,8 @@ use function is_array;
  */
 final class TagsType extends ParameterType
 {
-    private TagsService $tagsService;
-
-    public function __construct(TagsService $tagsService)
+    public function __construct(private TagsService $tagsService)
     {
-        $this->tagsService = $tagsService;
     }
 
     public static function getIdentifier(): string
@@ -58,26 +55,20 @@ final class TagsType extends ParameterType
 
         $optionsResolver->setNormalizer(
             'max',
-            static function (Options $options, ?int $value): ?int {
-                if ($value === null || $options['min'] === null) {
-                    return $value;
-                }
-
-                if ($value < $options['min']) {
-                    return $options['min'];
-                }
-
-                return $value;
+            static fn (Options $options, ?int $value): ?int => match (true) {
+                $value === null || $options['min'] === null => $value,
+                $value < $options['min'] => $options['min'],
+                default => $value,
             },
         );
     }
 
-    public function fromHash(ParameterDefinition $parameterDefinition, $value)
+    public function fromHash(ParameterDefinition $parameterDefinition, mixed $value)
     {
         return is_array($value) ? array_map('intval', $value) : $value;
     }
 
-    public function export(ParameterDefinition $parameterDefinition, $value): ?string
+    public function export(ParameterDefinition $parameterDefinition, mixed $value): ?string
     {
         try {
             /** @var \Netgen\TagsBundle\API\Repository\Values\Tags\Tag $tag */
@@ -86,12 +77,12 @@ final class TagsType extends ParameterType
             );
 
             return $tag->remoteId;
-        } catch (NotFoundException $e) {
+        } catch (NotFoundException) {
             return null;
         }
     }
 
-    public function import(ParameterDefinition $parameterDefinition, $value): ?int
+    public function import(ParameterDefinition $parameterDefinition, mixed $value): ?int
     {
         try {
             /** @var \Netgen\TagsBundle\API\Repository\Values\Tags\Tag $tag */
@@ -100,12 +91,12 @@ final class TagsType extends ParameterType
             );
 
             return (int) $tag->id;
-        } catch (NotFoundException $e) {
+        } catch (NotFoundException) {
             return null;
         }
     }
 
-    protected function getValueConstraints(ParameterDefinition $parameterDefinition, $value): array
+    protected function getValueConstraints(ParameterDefinition $parameterDefinition, mixed $value): array
     {
         $options = $parameterDefinition->getOptions();
 

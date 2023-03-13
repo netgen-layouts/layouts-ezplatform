@@ -23,12 +23,9 @@ final class ContentTypeTypeTest extends TestCase
 {
     use ParameterTypeTestTrait;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\Repository
-     */
-    private MockObject $repositoryMock;
+    private MockObject&Repository $repositoryMock;
 
-    private MockObject $contentTypeServiceMock;
+    private MockObject&ContentTypeService $contentTypeServiceMock;
 
     protected function setUp(): void
     {
@@ -157,13 +154,11 @@ final class ContentTypeTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentTypeType::getValueConstraints
      *
      * @dataProvider validationDataProvider
      */
-    public function testValidation($value, bool $required, bool $isValid): void
+    public function testValidation(mixed $value, bool $required, bool $isValid): void
     {
         $options = [];
 
@@ -173,12 +168,9 @@ final class ContentTypeTypeTest extends TestCase
             $this->contentTypeServiceMock
                 ->method('loadContentTypeByIdentifier')
                 ->willReturnCallback(
-                    static function (string $identifier): IbexaContentType {
-                        if ($identifier !== 'other') {
-                            return new IbexaContentType(['identifier' => $identifier]);
-                        }
-
-                        throw new NotFoundException('content type', $identifier);
+                    static fn (string $identifier): IbexaContentType => match (true) {
+                        $identifier !== 'other' => new IbexaContentType(['identifier' => $identifier]),
+                        default => throw new NotFoundException('content type', $identifier),
                     },
                 );
         }
@@ -216,14 +208,11 @@ final class ContentTypeTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     * @param mixed $convertedValue
-     *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentTypeType::fromHash
      *
      * @dataProvider fromHashDataProvider
      */
-    public function testFromHash($value, $convertedValue, bool $multiple): void
+    public function testFromHash(mixed $value, mixed $convertedValue, bool $multiple): void
     {
         self::assertSame(
             $convertedValue,
@@ -285,13 +274,11 @@ final class ContentTypeTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentTypeType::isValueEmpty
      *
      * @dataProvider emptyDataProvider
      */
-    public function testIsValueEmpty($value, bool $isEmpty): void
+    public function testIsValueEmpty(mixed $value, bool $isEmpty): void
     {
         self::assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
     }

@@ -12,9 +12,9 @@ use PHPUnit\Framework\TestCase;
 
 final class RepositoryPrefixDecoratorTest extends TestCase
 {
-    private MockObject $clientMock;
+    private MockObject&ClientInterface $clientMock;
 
-    private MockObject $repositoryTagPrefixMock;
+    private MockObject&RepositoryTagPrefix $repositoryTagPrefixMock;
 
     private RepositoryPrefixDecorator $repositoryPrefixDecorator;
 

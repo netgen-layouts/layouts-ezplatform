@@ -12,14 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class DeleteRule extends Controller
 {
-    private LayoutService $layoutService;
-
-    private LayoutResolverService $layoutResolverService;
-
-    public function __construct(LayoutService $layoutService, LayoutResolverService $layoutResolverService)
+    public function __construct(private LayoutService $layoutService, private LayoutResolverService $layoutResolverService)
     {
-        $this->layoutService = $layoutService;
-        $this->layoutResolverService = $layoutResolverService;
     }
 
     /**

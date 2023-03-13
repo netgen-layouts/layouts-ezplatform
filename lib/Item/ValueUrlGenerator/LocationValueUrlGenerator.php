@@ -13,11 +13,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 final class LocationValueUrlGenerator implements ExtendedValueUrlGeneratorInterface
 {
-    private UrlGeneratorInterface $urlGenerator;
-
-    public function __construct(UrlGeneratorInterface $urlGenerator)
+    public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
-        $this->urlGenerator = $urlGenerator;
     }
 
     public function generateDefaultUrl(object $object): ?string

@@ -14,7 +14,6 @@ use Netgen\Layouts\Block\BlockDefinition\Configuration\ViewType;
 
 use function array_combine;
 use function array_map;
-use function array_merge;
 use function array_unique;
 use function array_values;
 use function in_array;
@@ -27,17 +26,6 @@ use function ucwords;
 
 final class IbexaConfigProvider implements ConfigProviderInterface
 {
-    private ConfigResolverInterface $configResolver;
-
-    /**
-     * @var array<string, string[]>
-     */
-    private array $groupsBySiteAccess;
-
-    private string $parameterName;
-
-    private string $configResolverParameterName;
-
     /**
      * @var array<string, \Netgen\Layouts\Block\BlockDefinition\Configuration\ViewType[]>
      */
@@ -47,15 +35,11 @@ final class IbexaConfigProvider implements ConfigProviderInterface
      * @param array<string, string[]> $groupsBySiteAccess
      */
     public function __construct(
-        ConfigResolverInterface $configResolver,
-        array $groupsBySiteAccess,
-        string $parameterName,
-        string $configResolverParameterName
+        private ConfigResolverInterface $configResolver,
+        private array $groupsBySiteAccess,
+        private string $parameterName,
+        private string $configResolverParameterName,
     ) {
-        $this->configResolver = $configResolver;
-        $this->groupsBySiteAccess = $groupsBySiteAccess;
-        $this->parameterName = $parameterName;
-        $this->configResolverParameterName = $configResolverParameterName;
     }
 
     public function provideViewTypes(?Block $block = null): array
@@ -86,11 +70,12 @@ final class IbexaConfigProvider implements ConfigProviderInterface
                     if (in_array($contentTypeIdentifier, $contentTypeMatch, true)) {
                         $validViews[$view] = $view;
                         $validParameters[$view] ??= null;
+                        $viewConfigValidParameters = $viewConfig['params']['valid_parameters'] ?? null;
 
-                        if (is_array($viewConfig['params']['valid_parameters'] ?? null)) {
+                        if (is_array($viewConfigValidParameters)) {
                             $validParameters[$view] = is_array($validParameters[$view]) ?
-                                array_merge($validParameters[$view], $viewConfig['params']['valid_parameters']) :
-                                $viewConfig['params']['valid_parameters'];
+                                [...$validParameters[$view], ...$viewConfigValidParameters] :
+                                $viewConfigValidParameters;
                         }
                     }
                 }

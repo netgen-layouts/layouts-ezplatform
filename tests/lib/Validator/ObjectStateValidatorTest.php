@@ -18,9 +18,9 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 final class ObjectStateValidatorTest extends ValidatorTestCase
 {
-    private MockObject $repositoryMock;
+    private MockObject&Repository $repositoryMock;
 
-    private MockObject $objectStateServiceMock;
+    private MockObject&ObjectStateService $objectStateServiceMock;
 
     protected function setUp(): void
     {

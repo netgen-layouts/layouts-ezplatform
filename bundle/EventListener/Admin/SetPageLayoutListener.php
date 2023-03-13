@@ -15,26 +15,14 @@ use function in_array;
 
 final class SetPageLayoutListener implements EventSubscriberInterface
 {
-    private RequestStack $requestStack;
-
-    /**
-     * @var array<string, string[]>
-     */
-    private array $groupsBySiteAccess;
-
-    private string $pageLayoutTemplate;
-
     /**
      * @param array<string, string[]> $groupsBySiteAccess
      */
     public function __construct(
-        RequestStack $requestStack,
-        array $groupsBySiteAccess,
-        string $pageLayoutTemplate
+        private RequestStack $requestStack,
+        private array $groupsBySiteAccess,
+        private string $pageLayoutTemplate,
     ) {
-        $this->requestStack = $requestStack;
-        $this->groupsBySiteAccess = $groupsBySiteAccess;
-        $this->pageLayoutTemplate = $pageLayoutTemplate;
     }
 
     public static function getSubscribedEvents(): array

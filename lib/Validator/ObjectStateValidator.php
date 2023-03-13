@@ -22,19 +22,16 @@ use function is_string;
  */
 final class ObjectStateValidator extends ConstraintValidator
 {
-    private Repository $repository;
-
     /**
      * @var array<string, string[]>
      */
     private array $stateIdentifiers = [];
 
-    public function __construct(Repository $repository)
+    public function __construct(private Repository $repository)
     {
-        $this->repository = $repository;
     }
 
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         if ($value === null) {
             return;

@@ -9,8 +9,7 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
-use function array_keys;
-use function in_array;
+use function array_key_exists;
 use function is_string;
 
 /**
@@ -19,19 +18,13 @@ use function is_string;
 final class SiteAccessGroupValidator extends ConstraintValidator
 {
     /**
-     * @var string[]
-     */
-    private array $siteAccessGroupList;
-
-    /**
      * @param array<string, string[]> $siteAccessGroupList
      */
-    public function __construct(array $siteAccessGroupList)
+    public function __construct(private array $siteAccessGroupList)
     {
-        $this->siteAccessGroupList = array_keys($siteAccessGroupList);
     }
 
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         if ($value === null) {
             return;
@@ -45,7 +38,7 @@ final class SiteAccessGroupValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, 'string');
         }
 
-        if (!in_array($value, $this->siteAccessGroupList, true)) {
+        if (!array_key_exists($value, $this->siteAccessGroupList)) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('%siteAccessGroup%', $value)
                 ->addViolation();

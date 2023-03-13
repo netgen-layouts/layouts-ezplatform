@@ -13,9 +13,9 @@ use PHPUnit\Framework\TestCase;
 
 final class ConfigResolverConfigurationTest extends TestCase
 {
-    private MockObject $configResolverMock;
+    private MockObject&ConfigResolverInterface $configResolverMock;
 
-    private MockObject $fallbackConfigurationMock;
+    private MockObject&ConfigurationInterface $fallbackConfigurationMock;
 
     private ConfigResolverConfiguration $configuration;
 

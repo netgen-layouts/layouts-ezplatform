@@ -25,14 +25,11 @@ use function is_string;
  */
 final class ContentTypeValidator extends ConstraintValidator
 {
-    private Repository $repository;
-
-    public function __construct(Repository $repository)
+    public function __construct(private Repository $repository)
     {
-        $this->repository = $repository;
     }
 
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         if ($value === null) {
             return;
@@ -51,7 +48,7 @@ final class ContentTypeValidator extends ConstraintValidator
             $contentType = $this->repository->sudo(
                 static fn (Repository $repository): APIContentType => $repository->getContentTypeService()->loadContentTypeByIdentifier($value),
             );
-        } catch (NotFoundException $e) {
+        } catch (NotFoundException) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('%identifier%', $value)
                 ->addViolation();

@@ -11,20 +11,17 @@ use Netgen\Layouts\Layout\Resolver\ValueObjectProviderInterface;
 
 final class LocationProvider implements ValueObjectProviderInterface
 {
-    private Repository $repository;
-
-    public function __construct(Repository $repository)
+    public function __construct(private Repository $repository)
     {
-        $this->repository = $repository;
     }
 
-    public function getValueObject($value): ?object
+    public function getValueObject(mixed $value): ?object
     {
         try {
             return $this->repository->sudo(
                 static fn (Repository $repository): Location => $repository->getLocationService()->loadLocation((int) $value),
             );
-        } catch (NotFoundException $e) {
+        } catch (NotFoundException) {
             return null;
         }
     }

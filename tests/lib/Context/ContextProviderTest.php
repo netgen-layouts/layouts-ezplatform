@@ -22,7 +22,7 @@ final class ContextProviderTest extends TestCase
 
     private ContextProvider $contextProvider;
 
-    private MockObject $contentServiceMock;
+    private MockObject&ContentService $contentServiceMock;
 
     protected function setUp(): void
     {

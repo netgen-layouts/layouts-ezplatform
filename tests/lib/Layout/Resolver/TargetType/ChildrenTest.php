@@ -20,18 +20,15 @@ use Symfony\Component\Validator\Validation;
 
 final class ChildrenTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\Repository
-     */
-    private MockObject $repositoryMock;
+    private MockObject&Repository $repositoryMock;
 
-    private MockObject $contentExtractorMock;
+    private MockObject&ContentExtractorInterface $contentExtractorMock;
 
-    private MockObject $valueObjectProviderMock;
+    private MockObject&ValueObjectProviderInterface $valueObjectProviderMock;
 
     private Children $targetType;
 
-    private MockObject $locationServiceMock;
+    private MockObject&LocationService $locationServiceMock;
 
     protected function setUp(): void
     {

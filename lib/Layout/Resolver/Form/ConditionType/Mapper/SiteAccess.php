@@ -12,17 +12,10 @@ use function array_combine;
 final class SiteAccess extends Mapper
 {
     /**
-     * @var string[]
-     */
-    private array $siteAccessList;
-
-    /**
      * @param string[] $siteAccessList
      */
-    public function __construct(array $siteAccessList)
+    public function __construct(private array $siteAccessList)
     {
-        // We want the array to have the same list for keys as well as values
-        $this->siteAccessList = array_combine($siteAccessList, $siteAccessList);
     }
 
     public function getFormType(): string
@@ -33,7 +26,7 @@ final class SiteAccess extends Mapper
     public function getFormOptions(): array
     {
         return [
-            'choices' => $this->siteAccessList,
+            'choices' => array_combine($this->siteAccessList, $this->siteAccessList),
             'choice_translation_domain' => false,
             'multiple' => true,
             'expanded' => true,

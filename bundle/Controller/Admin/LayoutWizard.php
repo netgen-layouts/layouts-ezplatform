@@ -21,14 +21,8 @@ use function sprintf;
 
 final class LayoutWizard extends Controller
 {
-    private LayoutService $layoutService;
-
-    private LayoutTypeRegistry $layoutTypeRegistry;
-
-    public function __construct(LayoutService $layoutService, LayoutTypeRegistry $layoutTypeRegistry)
+    public function __construct(private LayoutService $layoutService, private LayoutTypeRegistry $layoutTypeRegistry)
     {
-        $this->layoutService = $layoutService;
-        $this->layoutTypeRegistry = $layoutTypeRegistry;
     }
 
     /**

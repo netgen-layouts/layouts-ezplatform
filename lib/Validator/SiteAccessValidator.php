@@ -18,19 +18,13 @@ use function is_string;
 final class SiteAccessValidator extends ConstraintValidator
 {
     /**
-     * @var string[]
-     */
-    private array $siteAccessList;
-
-    /**
      * @param string[] $siteAccessList
      */
-    public function __construct(array $siteAccessList)
+    public function __construct(private array $siteAccessList)
     {
-        $this->siteAccessList = $siteAccessList;
     }
 
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         if ($value === null) {
             return;

@@ -14,26 +14,14 @@ use function in_array;
 
 final class ContextProvider implements ContextProviderInterface
 {
-    private RequestStack $requestStack;
-
-    private ContentService $contentService;
-
-    /**
-     * @var string[]
-     */
-    private array $allowedRoutes;
-
     /**
      * @param string[] $allowedRoutes
      */
     public function __construct(
-        RequestStack $requestStack,
-        ContentService $contentService,
-        array $allowedRoutes
+        private RequestStack $requestStack,
+        private ContentService $contentService,
+        private array $allowedRoutes,
     ) {
-        $this->requestStack = $requestStack;
-        $this->contentService = $contentService;
-        $this->allowedRoutes = $allowedRoutes;
     }
 
     public function provideContext(Context $context): void

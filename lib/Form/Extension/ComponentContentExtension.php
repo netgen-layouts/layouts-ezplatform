@@ -25,7 +25,7 @@ final class ComponentContentExtension extends AbstractTypeExtension
 
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
-        $block = ($view->parent->parent->vars ?? [])['block'] ?? null;
+        $block = $view->parent?->parent?->vars['block'] ?? null;
         if (!$block instanceof Block) {
             return;
         }

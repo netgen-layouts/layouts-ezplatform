@@ -11,14 +11,11 @@ use Netgen\Layouts\Layout\Resolver\ValueObjectProviderInterface;
 
 final class ContentProvider implements ValueObjectProviderInterface
 {
-    private Repository $repository;
-
-    public function __construct(Repository $repository)
+    public function __construct(private Repository $repository)
     {
-        $this->repository = $repository;
     }
 
-    public function getValueObject($value): ?object
+    public function getValueObject(mixed $value): ?object
     {
         try {
             /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Content $content */
@@ -27,7 +24,7 @@ final class ContentProvider implements ValueObjectProviderInterface
             );
 
             return $content->contentInfo->mainLocationId !== null ? $content : null;
-        } catch (NotFoundException $e) {
+        } catch (NotFoundException) {
             return null;
         }
     }

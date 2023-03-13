@@ -16,7 +16,7 @@ use function count;
 
 final class RepositoryAccessVoterTest extends TestCase
 {
-    private MockObject $accessDecisionManagerMock;
+    private MockObject&AccessDecisionManagerInterface $accessDecisionManagerMock;
 
     private RepositoryAccessVoter $voter;
 

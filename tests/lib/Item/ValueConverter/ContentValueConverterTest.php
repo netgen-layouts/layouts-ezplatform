@@ -16,9 +16,9 @@ use PHPUnit\Framework\TestCase;
 
 final class ContentValueConverterTest extends TestCase
 {
-    private MockObject $locationServiceMock;
+    private MockObject&LocationService $locationServiceMock;
 
-    private MockObject $contentServiceMock;
+    private MockObject&ContentService $contentServiceMock;
 
     private ContentValueConverter $valueConverter;
 

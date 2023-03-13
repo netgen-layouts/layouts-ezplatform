@@ -16,7 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class ContentTypeTypeTest extends FormTestCase
 {
-    private MockObject $contentTypeServiceMock;
+    private MockObject&ContentTypeService $contentTypeServiceMock;
 
     /**
      * @covers \Netgen\Layouts\Ibexa\Form\ContentTypeType::__construct

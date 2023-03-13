@@ -16,20 +16,13 @@ use Symfony\Component\Validator\ConstraintValidatorInterface;
 
 final class ValidatorFactory implements ConstraintValidatorFactoryInterface
 {
-    private TestCase $testCase;
-
-    private BaseValidatorFactory $baseValidatorFactory;
-
     /**
      * @var array<string, \Symfony\Component\Validator\ConstraintValidatorInterface>
      */
     private array $validators;
 
-    public function __construct(TestCase $testCase, BaseValidatorFactory $baseValidatorFactory)
+    public function __construct(private TestCase $testCase, private BaseValidatorFactory $baseValidatorFactory)
     {
-        $this->testCase = $testCase;
-        $this->baseValidatorFactory = $baseValidatorFactory;
-
         $this->validators = [
             'nglayouts_ibexa_site_access' => new SiteAccessValidator(['eng', 'cro']),
             'nglayouts_ibexa_site_access_group' => new SiteAccessGroupValidator(

@@ -16,14 +16,8 @@ use function array_map;
 
 final class RelatedLayoutsLoader
 {
-    private LayoutService $layoutService;
-
-    private Connection $databaseConnection;
-
-    public function __construct(LayoutService $layoutService, Connection $databaseConnection)
+    public function __construct(private LayoutService $layoutService, private Connection $databaseConnection)
     {
-        $this->layoutService = $layoutService;
-        $this->databaseConnection = $databaseConnection;
     }
 
     /**

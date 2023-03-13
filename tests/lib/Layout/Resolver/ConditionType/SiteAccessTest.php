@@ -30,13 +30,11 @@ final class SiteAccessTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\SiteAccess::getConstraints
      *
      * @dataProvider validationDataProvider
      */
-    public function testValidation($value, bool $isValid): void
+    public function testValidation(mixed $value, bool $isValid): void
     {
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory(new ValidatorFactory($this, new BaseValidatorFactory($this)))
@@ -49,11 +47,9 @@ final class SiteAccessTest extends TestCase
     /**
      * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\SiteAccess::matches
      *
-     * @param mixed $value
-     *
      * @dataProvider matchesDataProvider
      */
-    public function testMatches($value, bool $matches): void
+    public function testMatches(mixed $value, bool $matches): void
     {
         $request = Request::create('/');
         $request->attributes->set('siteaccess', new IbexaSiteAccess('eng'));

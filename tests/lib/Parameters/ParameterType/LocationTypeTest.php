@@ -26,14 +26,11 @@ final class LocationTypeTest extends TestCase
 {
     use ParameterTypeTestTrait;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\Repository
-     */
-    private MockObject $repositoryMock;
+    private MockObject&Repository $repositoryMock;
 
-    private MockObject $valueObjectProviderMock;
+    private MockObject&ValueObjectProviderInterface $valueObjectProviderMock;
 
-    private MockObject $locationServiceMock;
+    private MockObject&LocationService $locationServiceMock;
 
     protected function setUp(): void
     {
@@ -236,13 +233,11 @@ final class LocationTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::getValueConstraints
      *
      * @dataProvider validationDataProvider
      */
-    public function testValidation($value, string $type, bool $required, bool $isValid): void
+    public function testValidation(mixed $value, string $type, bool $required, bool $isValid): void
     {
         if ($value !== null) {
             $this->locationServiceMock
@@ -250,12 +245,8 @@ final class LocationTypeTest extends TestCase
                 ->method('loadLocation')
                 ->with(self::identicalTo((int) $value))
                 ->willReturnCallback(
-                    static function () use ($value, $type): Location {
-                        if (!is_int($value) || $value <= 0) {
-                            throw new NotFoundException('location', $value);
-                        }
-
-                        return new Location(
+                    static fn (): Location => match (true) {
+                        is_int($value) && $value > 0 => new Location(
                             [
                                 'id' => $value,
                                 'content' => new Content(
@@ -264,7 +255,8 @@ final class LocationTypeTest extends TestCase
                                     ],
                                 ),
                             ],
-                        );
+                        ),
+                        default => throw new NotFoundException('location', $value),
                     },
                 );
         }
@@ -304,14 +296,11 @@ final class LocationTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     * @param mixed $convertedValue
-     *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::fromHash
      *
      * @dataProvider fromHashDataProvider
      */
-    public function testFromHash($value, $convertedValue): void
+    public function testFromHash(mixed $value, mixed $convertedValue): void
     {
         self::assertSame(
             $convertedValue,
@@ -341,13 +330,11 @@ final class LocationTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::isValueEmpty
      *
      * @dataProvider emptyDataProvider
      */
-    public function testIsValueEmpty($value, bool $isEmpty): void
+    public function testIsValueEmpty(mixed $value, bool $isEmpty): void
     {
         self::assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
     }

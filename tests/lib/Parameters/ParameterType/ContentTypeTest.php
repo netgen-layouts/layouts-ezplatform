@@ -27,16 +27,13 @@ final class ContentTypeTest extends TestCase
 {
     use ParameterTypeTestTrait;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\Repository
-     */
-    private MockObject $repositoryMock;
+    private MockObject&Repository $repositoryMock;
 
-    private MockObject $valueObjectProviderMock;
+    private MockObject&ValueObjectProviderInterface $valueObjectProviderMock;
 
-    private MockObject $contentServiceMock;
+    private MockObject&ContentService $contentServiceMock;
 
-    private MockObject $contentTypeServiceMock;
+    private MockObject&ContentTypeService $contentTypeServiceMock;
 
     protected function setUp(): void
     {
@@ -68,16 +65,10 @@ final class ContentTypeTest extends TestCase
             ->expects(self::any())
             ->method('loadContentType')
             ->willReturnCallback(
-                static function (int $type): IbexaContentType {
-                    if ($type === 24) {
-                        return new IbexaContentType(['identifier' => 'user']);
-                    }
-
-                    if ($type === 42) {
-                        return new IbexaContentType(['identifier' => 'image']);
-                    }
-
-                    return new IbexaContentType(['identifier' => 'article']);
+                static fn (int $type): IbexaContentType => match ($type) {
+                    24 => new IbexaContentType(['identifier' => 'user']),
+                    42 => new IbexaContentType(['identifier' => 'image']),
+                    default => new IbexaContentType(['identifier' => 'article']),
                 },
             );
 
@@ -262,13 +253,11 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::getValueConstraints
      *
      * @dataProvider validationDataProvider
      */
-    public function testValidation($value, int $type, bool $required, bool $isValid): void
+    public function testValidation(mixed $value, int $type, bool $required, bool $isValid): void
     {
         if ($value !== null) {
             $this->contentServiceMock
@@ -276,12 +265,9 @@ final class ContentTypeTest extends TestCase
                 ->method('loadContentInfo')
                 ->with(self::identicalTo((int) $value))
                 ->willReturnCallback(
-                    static function () use ($value, $type): ContentInfo {
-                        if (!is_int($value) || $value <= 0) {
-                            throw new NotFoundException('content', $value);
-                        }
-
-                        return new ContentInfo(['id' => $value, 'contentTypeId' => $type]);
+                    static fn (): ContentInfo => match (true) {
+                        is_int($value) && $value > 0 => new ContentInfo(['id' => $value, 'contentTypeId' => $type]),
+                        default => throw new NotFoundException('content', $value),
                     },
                 );
         }
@@ -321,14 +307,11 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     * @param mixed $convertedValue
-     *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::fromHash
      *
      * @dataProvider fromHashDataProvider
      */
-    public function testFromHash($value, $convertedValue): void
+    public function testFromHash(mixed $value, mixed $convertedValue): void
     {
         self::assertSame(
             $convertedValue,
@@ -358,13 +341,11 @@ final class ContentTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::isValueEmpty
      *
      * @dataProvider emptyDataProvider
      */
-    public function testIsValueEmpty($value, bool $isEmpty): void
+    public function testIsValueEmpty(mixed $value, bool $isEmpty): void
     {
         self::assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
     }

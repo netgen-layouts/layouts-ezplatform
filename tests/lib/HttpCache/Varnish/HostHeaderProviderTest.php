@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 final class HostHeaderProviderTest extends TestCase
 {
-    private MockObject $configResolverMock;
+    private MockObject&ConfigResolverInterface $configResolverMock;
 
     private HostHeaderProvider $hostHeaderProvider;
 

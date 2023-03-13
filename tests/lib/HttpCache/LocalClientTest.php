@@ -11,7 +11,7 @@ use Toflar\Psr6HttpCacheStore\Psr6StoreInterface;
 
 final class LocalClientTest extends TestCase
 {
-    private MockObject $cacheStoreMock;
+    private MockObject&Psr6StoreInterface $cacheStoreMock;
 
     private LocalClient $client;
 

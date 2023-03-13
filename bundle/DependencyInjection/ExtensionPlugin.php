@@ -28,14 +28,8 @@ final class ExtensionPlugin extends BaseExtensionPlugin
         'design',
     ];
 
-    private ContainerBuilder $container;
-
-    private ExtensionInterface $extension;
-
-    public function __construct(ContainerBuilder $container, ExtensionInterface $extension)
+    public function __construct(private ContainerBuilder $container, private ExtensionInterface $extension)
     {
-        $this->container = $container;
-        $this->extension = $extension;
     }
 
     /**
@@ -129,7 +123,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
 
         $processor->mapConfig(
             $config,
-            static function ($config, $scope, ContextualizerInterface $c): void {
+            static function (array $config, string $scope, ContextualizerInterface $c): void {
                 $c->setContextualParameter('ibexa_component.parent_locations', $scope, $config['ibexa_component']['parent_locations']);
                 $c->setContextualParameter('ibexa_component.default_parent_location', $scope, $config['ibexa_component']['default_parent_location']);
             },

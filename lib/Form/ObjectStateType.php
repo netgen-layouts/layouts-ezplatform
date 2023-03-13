@@ -15,11 +15,8 @@ use function is_array;
 
 final class ObjectStateType extends AbstractType
 {
-    private ObjectStateService $objectStateService;
-
-    public function __construct(ObjectStateService $objectStateService)
+    public function __construct(private ObjectStateService $objectStateService)
     {
-        $this->objectStateService = $objectStateService;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

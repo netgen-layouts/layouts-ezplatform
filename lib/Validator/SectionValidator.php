@@ -21,14 +21,11 @@ use function is_string;
  */
 final class SectionValidator extends ConstraintValidator
 {
-    private Repository $repository;
-
-    public function __construct(Repository $repository)
+    public function __construct(private Repository $repository)
     {
-        $this->repository = $repository;
     }
 
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         if ($value === null) {
             return;
@@ -46,7 +43,7 @@ final class SectionValidator extends ConstraintValidator
             $this->repository->sudo(
                 static fn (Repository $repository): APISection => $repository->getSectionService()->loadSectionByIdentifier($value),
             );
-        } catch (NotFoundException $e) {
+        } catch (NotFoundException) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('%identifier%', $value)
                 ->addViolation();

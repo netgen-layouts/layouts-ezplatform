@@ -19,14 +19,11 @@ use function is_scalar;
  */
 final class TagValidator extends ConstraintValidator
 {
-    private TagsService $tagsService;
-
-    public function __construct(TagsService $tagsService)
+    public function __construct(private TagsService $tagsService)
     {
-        $this->tagsService = $tagsService;
     }
 
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         if ($value === null) {
             return;
@@ -45,7 +42,7 @@ final class TagValidator extends ConstraintValidator
                 $this->tagsService->sudo(
                     static fn (TagsService $tagsService): APITag => $tagsService->loadTag((int) $value),
                 );
-            } catch (NotFoundException $e) {
+            } catch (NotFoundException) {
                 $this->context->buildViolation($constraint->message)
                     ->setParameter('%tagId%', (string) $value)
                     ->addViolation();

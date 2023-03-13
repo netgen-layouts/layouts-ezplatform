@@ -26,20 +26,11 @@ final class LayoutWizardType extends AbstractType
 
     public const ACTION_TYPE_COPY_LAYOUT = 'copy_layout';
 
-    private LayoutService $layoutService;
-
-    private LayoutTypeRegistry $layoutTypeRegistry;
-
-    private bool $isEnterprise;
-
     public function __construct(
-        LayoutService $layoutService,
-        LayoutTypeRegistry $layoutTypeRegistry,
-        bool $isEnterprise
+        private LayoutService $layoutService,
+        private LayoutTypeRegistry $layoutTypeRegistry,
+        private bool $isEnterprise,
     ) {
-        $this->layoutService = $layoutService;
-        $this->layoutTypeRegistry = $layoutTypeRegistry;
-        $this->isEnterprise = $isEnterprise;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

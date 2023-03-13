@@ -22,16 +22,13 @@ use Symfony\Component\Validator\Validation;
 
 final class ContentTest extends TestCase
 {
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\Repository
-     */
-    private MockObject $repositoryMock;
+    private MockObject&Repository $repositoryMock;
 
-    private MockObject $contentServiceMock;
+    private MockObject&ContentService $contentServiceMock;
 
-    private MockObject $contentExtractorMock;
+    private MockObject&ContentExtractorInterface $contentExtractorMock;
 
-    private MockObject $valueObjectProviderMock;
+    private MockObject&ValueObjectProviderInterface $valueObjectProviderMock;
 
     private Content $targetType;
 

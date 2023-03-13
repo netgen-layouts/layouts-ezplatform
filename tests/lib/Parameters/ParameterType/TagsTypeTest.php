@@ -15,16 +15,11 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
 use Symfony\Component\Validator\Validation;
 
-use function is_int;
-
 final class TagsTypeTest extends TestCase
 {
     use ParameterTypeTestTrait;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\Netgen\TagsBundle\API\Repository\TagsService
-     */
-    private MockObject $tagsServiceMock;
+    private MockObject&TagsService $tagsServiceMock;
 
     protected function setUp(): void
     {
@@ -216,14 +211,11 @@ final class TagsTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     * @param mixed $convertedValue
-     *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::fromHash
      *
      * @dataProvider fromHashDataProvider
      */
-    public function testFromHash($value, $convertedValue): void
+    public function testFromHash(mixed $value, mixed $convertedValue): void
     {
         self::assertSame(
             $convertedValue,
@@ -305,42 +297,19 @@ final class TagsTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $values
-     *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::getValueConstraints
      *
      * @dataProvider validationDataProvider
      */
-    public function testValidation($values, bool $required, bool $isValid): void
+    public function testValidation(mixed $values, bool $required, bool $isValid): void
     {
-        $args = [];
-        $returns = [];
-
         if ($values !== null) {
-            foreach ($values as $i => $value) {
-                if ($value !== null) {
-                    $args[] = [self::identicalTo($value)];
-                    $returns[] = self::returnCallback(
-                        static function () use ($value): Tag {
-                            if (!is_int($value) || $value <= 0) {
-                                throw new NotFoundException('tag', $value);
-                            }
-
-                            return new Tag(['id' => $value]);
-                        },
-                    );
-                }
-            }
-
             $this->tagsServiceMock
                 ->method('loadTag')
                 ->willReturnCallback(
-                    static function (int $id): Tag {
-                        if ($id > 0) {
-                            return new Tag(['id' => $id]);
-                        }
-
-                        throw new NotFoundException('tag', $id);
+                    static fn (int $id): Tag => match (true) {
+                        $id > 0 => new Tag(['id' => $id]),
+                        default => throw new NotFoundException('tag', $id),
                     },
                 );
         }

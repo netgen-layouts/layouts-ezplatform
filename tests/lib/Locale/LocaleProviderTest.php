@@ -18,11 +18,11 @@ use function array_values;
 
 final class LocaleProviderTest extends TestCase
 {
-    private MockObject $languageServiceMock;
+    private MockObject&LanguageService $languageServiceMock;
 
-    private MockObject $localeConverterMock;
+    private MockObject&LocaleConverterInterface $localeConverterMock;
 
-    private MockObject $configResolverMock;
+    private MockObject&ConfigResolverInterface $configResolverMock;
 
     private LocaleProvider $localeProvider;
 

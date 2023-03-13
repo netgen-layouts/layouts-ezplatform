@@ -15,14 +15,8 @@ use Netgen\Layouts\Context\Context;
  */
 final class ContentProvider implements ContentProviderInterface
 {
-    private LocationService $locationService;
-
-    private Context $context;
-
-    public function __construct(LocationService $locationService, Context $context)
+    public function __construct(private LocationService $locationService, private Context $context)
     {
-        $this->locationService = $locationService;
-        $this->context = $context;
     }
 
     public function provideContent(): ?Content

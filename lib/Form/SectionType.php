@@ -15,11 +15,8 @@ use function in_array;
 
 final class SectionType extends AbstractType
 {
-    private SectionService $sectionService;
-
-    public function __construct(SectionService $sectionService)
+    public function __construct(private SectionService $sectionService)
     {
-        $this->sectionService = $sectionService;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

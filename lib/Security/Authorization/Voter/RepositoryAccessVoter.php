@@ -10,7 +10,6 @@ use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 
-use function is_string;
 use function str_starts_with;
 
 /**
@@ -33,23 +32,16 @@ final class RepositoryAccessVoter extends Voter
         'ROLE_NGLAYOUTS_API' => 'api',
     ];
 
-    private RoleHierarchyInterface $roleHierarchy;
-
-    private AccessDecisionManagerInterface $accessDecisionManager;
-
     public function __construct(
-        RoleHierarchyInterface $roleHierarchy,
-        AccessDecisionManagerInterface $accessDecisionManager
+        private RoleHierarchyInterface $roleHierarchy,
+        private AccessDecisionManagerInterface $accessDecisionManager,
     ) {
-        $this->roleHierarchy = $roleHierarchy;
-        $this->accessDecisionManager = $accessDecisionManager;
     }
 
     /**
-     * @param mixed $subject
      * @param mixed[] $attributes
      */
-    public function vote(TokenInterface $token, $subject, array $attributes): int
+    public function vote(TokenInterface $token, mixed $subject, array $attributes): int
     {
         // abstain vote by default in case none of the attributes are supported
         $vote = self::ACCESS_ABSTAIN;
@@ -73,20 +65,12 @@ final class RepositoryAccessVoter extends Voter
         return $vote;
     }
 
-    /**
-     * @param string $attribute
-     * @param mixed $subject
-     */
-    protected function supports($attribute, $subject): bool
+    protected function supports(string $attribute, mixed $subject): bool
     {
-        return is_string($attribute) && str_starts_with($attribute, 'ROLE_NGLAYOUTS_');
+        return str_starts_with($attribute, 'ROLE_NGLAYOUTS_');
     }
 
-    /**
-     * @param string $attribute
-     * @param mixed $subject
-     */
-    protected function voteOnAttribute($attribute, $subject, TokenInterface $token): bool
+    protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
         if (!isset(self::ATTRIBUTE_TO_POLICY_MAP[$attribute])) {
             return false;

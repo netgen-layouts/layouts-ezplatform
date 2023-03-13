@@ -17,24 +17,12 @@ use Symfony\Component\HttpFoundation\RequestStack;
  */
 final class PageLayoutResolver implements PageLayoutResolverInterface
 {
-    private PageLayoutResolverInterface $innerResolver;
-
-    private ConfigResolverInterface $configResolver;
-
-    private RequestStack $requestStack;
-
-    private string $baseViewLayout;
-
     public function __construct(
-        PageLayoutResolverInterface $innerResolver,
-        ConfigResolverInterface $configResolver,
-        RequestStack $requestStack,
-        string $baseViewLayout
+        private PageLayoutResolverInterface $innerResolver,
+        private ConfigResolverInterface $configResolver,
+        private RequestStack $requestStack,
+        private string $baseViewLayout,
     ) {
-        $this->innerResolver = $innerResolver;
-        $this->configResolver = $configResolver;
-        $this->requestStack = $requestStack;
-        $this->baseViewLayout = $baseViewLayout;
     }
 
     public function resolvePageLayout(): string

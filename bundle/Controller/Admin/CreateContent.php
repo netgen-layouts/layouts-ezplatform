@@ -12,16 +12,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class CreateContent extends Controller
 {
-    private LocationService $locationService;
-
-    private ContentTypeService $contentTypeService;
-
     public function __construct(
-        LocationService $locationService,
-        ContentTypeService $contentTypeService
+        private LocationService $locationService,
+        private ContentTypeService $contentTypeService,
     ) {
-        $this->locationService = $locationService;
-        $this->contentTypeService = $contentTypeService;
     }
 
     /**

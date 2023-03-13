@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 final class TagValidatorTest extends ValidatorTestCase
 {
-    private MockObject $tagsServiceMock;
+    private MockObject&TagsService $tagsServiceMock;
 
     protected function setUp(): void
     {

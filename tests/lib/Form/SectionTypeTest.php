@@ -16,7 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class SectionTypeTest extends FormTestCase
 {
-    private MockObject $sectionServiceMock;
+    private MockObject&SectionService $sectionServiceMock;
 
     /**
      * @covers \Netgen\Layouts\Ibexa\Form\SectionType::__construct

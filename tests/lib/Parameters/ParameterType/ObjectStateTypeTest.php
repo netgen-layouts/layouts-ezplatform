@@ -23,12 +23,9 @@ final class ObjectStateTypeTest extends TestCase
 {
     use ParameterTypeTestTrait;
 
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\Ibexa\Contracts\Core\Repository\Repository
-     */
-    private MockObject $repositoryMock;
+    private MockObject&Repository $repositoryMock;
 
-    private MockObject $objectStateServiceMock;
+    private MockObject&ObjectStateService $objectStateServiceMock;
 
     protected function setUp(): void
     {
@@ -157,13 +154,11 @@ final class ObjectStateTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType::getValueConstraints
      *
      * @dataProvider validationDataProvider
      */
-    public function testValidation($value, bool $required, bool $isValid): void
+    public function testValidation(mixed $value, bool $required, bool $isValid): void
     {
         $group1 = new ObjectStateGroup(['identifier' => 'group1']);
         $group2 = new ObjectStateGroup(['identifier' => 'group2']);
@@ -211,13 +206,11 @@ final class ObjectStateTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType::getValueConstraints
      *
      * @dataProvider validationWithEmptyValuesDataProvider
      */
-    public function testValidationWithEmptyValues($value, bool $required, bool $isValid): void
+    public function testValidationWithEmptyValues(mixed $value, bool $required, bool $isValid): void
     {
         $this->objectStateServiceMock
             ->expects(self::never())
@@ -268,14 +261,11 @@ final class ObjectStateTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     * @param mixed $convertedValue
-     *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType::fromHash
      *
      * @dataProvider fromHashDataProvider
      */
-    public function testFromHash($value, $convertedValue, bool $multiple): void
+    public function testFromHash(mixed $value, mixed $convertedValue, bool $multiple): void
     {
         self::assertSame(
             $convertedValue,
@@ -337,13 +327,11 @@ final class ObjectStateTypeTest extends TestCase
     }
 
     /**
-     * @param mixed $value
-     *
      * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType::isValueEmpty
      *
      * @dataProvider emptyDataProvider
      */
-    public function testIsValueEmpty($value, bool $isEmpty): void
+    public function testIsValueEmpty(mixed $value, bool $isEmpty): void
     {
         self::assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
     }

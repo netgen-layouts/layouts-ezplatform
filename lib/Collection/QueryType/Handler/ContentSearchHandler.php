@@ -39,21 +39,14 @@ final class ContentSearchHandler implements QueryTypeHandlerInterface
     use Traits\SectionFilterTrait;
     use Traits\SortTrait;
 
-    private SearchService $searchService;
-
-    private ConfigResolverInterface $configResolver;
-
     public function __construct(
         LocationService $locationService,
-        SearchService $searchService,
         SectionHandler $sectionHandler,
         ObjectStateHandler $objectStateHandler,
         ContentProviderInterface $contentProvider,
-        ConfigResolverInterface $configResolver
+        private SearchService $searchService,
+        private ConfigResolverInterface $configResolver,
     ) {
-        $this->searchService = $searchService;
-        $this->configResolver = $configResolver;
-
         $this->setSectionHandler($sectionHandler);
         $this->setObjectStateHandler($objectStateHandler);
         $this->setContentProvider($contentProvider);

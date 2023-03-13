@@ -14,25 +14,20 @@ use function array_shift;
 
 final class IbexaRuntime
 {
-    private Repository $repository;
-
-    public function __construct(Repository $repository)
+    public function __construct(private Repository $repository)
     {
-        $this->repository = $repository;
     }
 
     /**
      * Returns the content name.
-     *
-     * @param int|string $contentId
      */
-    public function getContentName($contentId): string
+    public function getContentName(int|string $contentId): string
     {
         try {
             $content = $this->loadContent((int) $contentId);
 
             return $content->getName() ?? '';
-        } catch (Throwable $t) {
+        } catch (Throwable) {
             return '';
         }
     }
@@ -40,11 +35,9 @@ final class IbexaRuntime
     /**
      * Returns the location path.
      *
-     * @param int|string|\Ibexa\Contracts\Core\Repository\Values\Content\Location $location
-     *
      * @return string[]
      */
-    public function getLocationPath($location): array
+    public function getLocationPath(int|string|Location $location): array
     {
         try {
             if (!$location instanceof Location) {
@@ -62,7 +55,7 @@ final class IbexaRuntime
             }
 
             return $translatedNames;
-        } catch (Throwable $t) {
+        } catch (Throwable) {
             return [];
         }
     }
@@ -70,11 +63,9 @@ final class IbexaRuntime
     /**
      * Returns the main location path for provided content.
      *
-     * @param int|string|\Ibexa\Contracts\Core\Repository\Values\Content\Content $content
-     *
      * @return string[]
      */
-    public function getContentPath($content): array
+    public function getContentPath(int|string|Content $content): array
     {
         try {
             if (!$content instanceof Content) {
@@ -82,7 +73,7 @@ final class IbexaRuntime
             }
 
             return $this->getLocationPath((int) $content->contentInfo->mainLocationId);
-        } catch (Throwable $t) {
+        } catch (Throwable) {
             return [];
         }
     }
@@ -96,7 +87,7 @@ final class IbexaRuntime
             $contentType = $this->loadContentType($identifier);
 
             return $contentType->getName() ?? '';
-        } catch (Throwable $t) {
+        } catch (Throwable) {
             return '';
         }
     }

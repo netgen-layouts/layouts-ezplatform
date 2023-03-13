@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ContentFieldHandlerTest extends TestCase
 {
-    private MockObject $contentProviderMock;
+    private MockObject&ContentProviderInterface $contentProviderMock;
 
     private ContentFieldHandler $handler;
 

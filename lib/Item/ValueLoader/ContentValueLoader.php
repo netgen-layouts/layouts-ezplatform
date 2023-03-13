@@ -11,18 +11,15 @@ use Throwable;
 
 final class ContentValueLoader implements ValueLoaderInterface
 {
-    private ContentService $contentService;
-
-    public function __construct(ContentService $contentService)
+    public function __construct(private ContentService $contentService)
     {
-        $this->contentService = $contentService;
     }
 
     public function load($id): ?ContentInfo
     {
         try {
             $contentInfo = $this->contentService->loadContentInfo((int) $id);
-        } catch (Throwable $t) {
+        } catch (Throwable) {
             return null;
         }
 
@@ -37,7 +34,7 @@ final class ContentValueLoader implements ValueLoaderInterface
     {
         try {
             $contentInfo = $this->contentService->loadContentInfoByRemoteId((string) $remoteId);
-        } catch (Throwable $t) {
+        } catch (Throwable) {
             return null;
         }
 

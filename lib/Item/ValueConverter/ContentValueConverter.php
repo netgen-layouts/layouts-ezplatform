@@ -14,16 +14,10 @@ use Netgen\Layouts\Item\ValueConverterInterface;
  */
 final class ContentValueConverter implements ValueConverterInterface
 {
-    private LocationService $locationService;
-
-    private ContentService $contentService;
-
     public function __construct(
-        LocationService $locationService,
-        ContentService $contentService
+        private LocationService $locationService,
+        private ContentService $contentService,
     ) {
-        $this->locationService = $locationService;
-        $this->contentService = $contentService;
     }
 
     public function supports(object $object): bool

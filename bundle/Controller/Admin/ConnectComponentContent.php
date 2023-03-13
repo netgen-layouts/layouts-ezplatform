@@ -16,14 +16,8 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 final class ConnectComponentContent extends Controller
 {
-    private BlockService $blockService;
-
-    private ContentService $contentService;
-
-    public function __construct(BlockService $blockService, ContentService $contentService)
+    public function __construct(private BlockService $blockService, private ContentService $contentService)
     {
-        $this->blockService = $blockService;
-        $this->contentService = $contentService;
     }
 
     /**
@@ -37,7 +31,7 @@ final class ConnectComponentContent extends Controller
 
         try {
             $content = $this->contentService->loadContent($contentId);
-        } catch (NotFoundException|UnauthorizedException $e) {
+        } catch (NotFoundException|UnauthorizedException) {
             throw new BadRequestHttpException();
         }
 

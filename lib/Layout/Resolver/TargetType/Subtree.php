@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ibexa\Layout\Resolver\TargetType;
 
-use Ibexa\Contracts\Core\Repository\Values\Content\Location as IbexaLocation;
 use Netgen\Layouts\Ibexa\ContentProvider\ContentExtractorInterface;
 use Netgen\Layouts\Ibexa\Utils\RemoteIdConverter;
 use Netgen\Layouts\Ibexa\Validator\Constraint as IbexaConstraints;
@@ -15,20 +14,11 @@ use Symfony\Component\Validator\Constraints;
 
 final class Subtree extends TargetType implements ValueObjectProviderInterface
 {
-    private ContentExtractorInterface $contentExtractor;
-
-    private ValueObjectProviderInterface $valueObjectProvider;
-
-    private RemoteIdConverter $remoteIdConverter;
-
     public function __construct(
-        ContentExtractorInterface $contentExtractor,
-        ValueObjectProviderInterface $valueObjectProvider,
-        RemoteIdConverter $remoteIdConverter
+        private ContentExtractorInterface $contentExtractor,
+        private ValueObjectProviderInterface $valueObjectProvider,
+        private RemoteIdConverter $remoteIdConverter,
     ) {
-        $this->contentExtractor = $contentExtractor;
-        $this->valueObjectProvider = $valueObjectProvider;
-        $this->remoteIdConverter = $remoteIdConverter;
     }
 
     public static function getType(): string
@@ -51,22 +41,20 @@ final class Subtree extends TargetType implements ValueObjectProviderInterface
      */
     public function provideValue(Request $request): ?array
     {
-        $location = $this->contentExtractor->extractLocation($request);
-
-        return $location instanceof IbexaLocation ? $location->path : null;
+        return $this->contentExtractor->extractLocation($request)?->path;
     }
 
-    public function getValueObject($value): ?object
+    public function getValueObject(mixed $value): ?object
     {
         return $this->valueObjectProvider->getValueObject($value);
     }
 
-    public function export($value): ?string
+    public function export(mixed $value): ?string
     {
         return $this->remoteIdConverter->toLocationRemoteId((int) $value);
     }
 
-    public function import($value): ?int
+    public function import(mixed $value): ?int
     {
         return $this->remoteIdConverter->toLocationId((string) $value) ?? 0;
     }

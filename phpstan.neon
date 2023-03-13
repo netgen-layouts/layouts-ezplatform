@@ -13,10 +13,6 @@ parameters:
         - '#expects string\|null, Doctrine\\DBAL\\Query\\Expression\\CompositeExpression given#'
 
         # Ibexa CMS
-        -
-            message: '#Call to function is_string\(\) with string will always evaluate to true.#'
-            path: lib/Security/Authorization/Voter/RepositoryAccessVoter.php
-
         - "#Casting to (int|string) something that's already (int|string).#"
 
         - '#Parameter \#2 \$validParameters of method Netgen\\Layouts\\Ibexa\\Block\\BlockDefinition\\Configuration\\Provider\\IbexaConfigProvider::buildViewTypes#'
