@@ -9,12 +9,11 @@ use Netgen\Layouts\Persistence\Doctrine\QueryHandler\TargetHandlerInterface;
 use Netgen\Layouts\Persistence\Values\LayoutResolver\RuleGroup;
 use Netgen\Layouts\Persistence\Values\Value;
 use Netgen\Layouts\Tests\Layout\Resolver\TargetHandler\Doctrine\TargetHandlerTestBase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
+#[CoversClass(Subtree::class)]
 final class SubtreeTest extends TargetHandlerTestBase
 {
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetHandler\Doctrine\Subtree::handleQuery
-     */
     public function testMatchRules(): void
     {
         $rules = $this->handler->matchRules(

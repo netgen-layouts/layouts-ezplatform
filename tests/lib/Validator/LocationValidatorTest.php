@@ -13,11 +13,13 @@ use Ibexa\Core\Repository\Values\ContentType\ContentType;
 use Netgen\Layouts\Ibexa\Validator\Constraint\Location;
 use Netgen\Layouts\Ibexa\Validator\LocationValidator;
 use Netgen\Layouts\Tests\TestCase\ValidatorTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
+#[CoversClass(LocationValidator::class)]
 final class LocationValidatorTest extends ValidatorTestCase
 {
     private MockObject&Repository $repositoryMock;
@@ -31,10 +33,6 @@ final class LocationValidatorTest extends ValidatorTestCase
         $this->constraint = new Location(['allowedTypes' => ['user']]);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::__construct
-     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::validate
-     */
     public function testValidateValid(): void
     {
         $this->locationServiceMock
@@ -53,10 +51,6 @@ final class LocationValidatorTest extends ValidatorTestCase
         $this->assertValid(true, 42);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::__construct
-     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::validate
-     */
     public function testValidateInvalidWithWrongType(): void
     {
         $this->locationServiceMock
@@ -75,10 +69,6 @@ final class LocationValidatorTest extends ValidatorTestCase
         $this->assertValid(false, 42);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::__construct
-     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::validate
-     */
     public function testValidateInvalidWithNonExistingLocation(): void
     {
         $this->locationServiceMock
@@ -90,10 +80,6 @@ final class LocationValidatorTest extends ValidatorTestCase
         $this->assertValid(false, 42);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::__construct
-     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::validate
-     */
     public function testValidateNull(): void
     {
         $this->locationServiceMock
@@ -103,9 +89,6 @@ final class LocationValidatorTest extends ValidatorTestCase
         $this->assertValid(true, null);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::validate
-     */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->expectException(UnexpectedTypeException::class);
@@ -115,9 +98,6 @@ final class LocationValidatorTest extends ValidatorTestCase
         $this->assertValid(true, 'value');
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\LocationValidator::validate
-     */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
         $this->expectException(UnexpectedTypeException::class);

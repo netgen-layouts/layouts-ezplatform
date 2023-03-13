@@ -7,10 +7,12 @@ namespace Netgen\Layouts\Ibexa\Tests\Item\ValueUrlGenerator;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use Netgen\Layouts\Ibexa\Item\ValueUrlGenerator\ContentValueUrlGenerator;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
+#[CoversClass(ContentValueUrlGenerator::class)]
 final class ContentValueUrlGeneratorTest extends TestCase
 {
     private MockObject&UrlGeneratorInterface $urlGeneratorMock;
@@ -24,10 +26,6 @@ final class ContentValueUrlGeneratorTest extends TestCase
         $this->urlGenerator = new ContentValueUrlGenerator($this->urlGeneratorMock);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueUrlGenerator\ContentValueUrlGenerator::__construct
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueUrlGenerator\ContentValueUrlGenerator::generateDefaultUrl
-     */
     public function testGenerateDefaultUrl(): void
     {
         $this->urlGeneratorMock
@@ -42,9 +40,6 @@ final class ContentValueUrlGeneratorTest extends TestCase
         self::assertSame('/content/path', $this->urlGenerator->generateDefaultUrl(new ContentInfo(['id' => 42])));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueUrlGenerator\ContentValueUrlGenerator::generateAdminUrl
-     */
     public function testGenerateAdminUrl(): void
     {
         $this->urlGeneratorMock
@@ -59,9 +54,6 @@ final class ContentValueUrlGeneratorTest extends TestCase
         self::assertSame('/admin/content/path', $this->urlGenerator->generateAdminUrl(new ContentInfo(['id' => 42])));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueUrlGenerator\ContentValueUrlGenerator::generate
-     */
     public function testGenerate(): void
     {
         $this->urlGeneratorMock

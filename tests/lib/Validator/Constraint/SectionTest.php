@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ibexa\Tests\Validator\Constraint;
 
 use Netgen\Layouts\Ibexa\Validator\Constraint\Section;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(Section::class)]
 final class SectionTest extends TestCase
 {
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\Constraint\Section::validatedBy
-     */
     public function testValidatedBy(): void
     {
         $constraint = new Section();

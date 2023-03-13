@@ -6,9 +6,11 @@ namespace Netgen\Bundle\LayoutsIbexaBundle\Tests\Security;
 
 use Ibexa\Bundle\Core\DependencyInjection\Configuration\ConfigBuilderInterface;
 use Netgen\Bundle\LayoutsIbexaBundle\Security\PolicyProvider;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(PolicyProvider::class)]
 final class PolicyProviderTest extends TestCase
 {
     private MockObject&ConfigBuilderInterface $configBuilderMock;
@@ -22,9 +24,6 @@ final class PolicyProviderTest extends TestCase
         $this->policyProvider = new PolicyProvider();
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Security\PolicyProvider::addPolicies
-     */
     public function testAddPolicies(): void
     {
         $this->configBuilderMock

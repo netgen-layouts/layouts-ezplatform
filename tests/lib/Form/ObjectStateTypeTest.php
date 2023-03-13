@@ -9,19 +9,17 @@ use Ibexa\Core\Repository\Values\ObjectState\ObjectState;
 use Ibexa\Core\Repository\Values\ObjectState\ObjectStateGroup;
 use Netgen\Layouts\Ibexa\Form\ObjectStateType;
 use Netgen\Layouts\Tests\TestCase\FormTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+#[CoversClass(ObjectStateType::class)]
 final class ObjectStateTypeTest extends FormTestCase
 {
     private MockObject&ObjectStateService $objectStateServiceMock;
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Form\ObjectStateType::__construct
-     * @covers \Netgen\Layouts\Ibexa\Form\ObjectStateType::getObjectStates
-     */
     public function testSubmitValidData(): void
     {
         $this->configureObjectStateService();
@@ -46,18 +44,11 @@ final class ObjectStateTypeTest extends FormTestCase
         self::assertSame($submittedData, $form->getData());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Form\ObjectStateType::getParent
-     */
     public function testGetParent(): void
     {
         self::assertSame(ChoiceType::class, $this->formType->getParent());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Form\ObjectStateType::configureOptions
-     * @covers \Netgen\Layouts\Ibexa\Form\ObjectStateType::getObjectStates
-     */
     public function testConfigureOptions(): void
     {
         $this->configureObjectStateService();

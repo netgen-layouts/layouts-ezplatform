@@ -12,11 +12,14 @@ use Ibexa\Core\Repository\Values\ContentType\ContentType as IbexaContentType;
 use Netgen\Layouts\Ibexa\ContentProvider\ContentExtractorInterface;
 use Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\ContentType;
 use Netgen\Layouts\Ibexa\Tests\Validator\RepositoryValidatorFactory;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
 
+#[CoversClass(ContentType::class)]
 final class ContentTypeTest extends TestCase
 {
     private MockObject&Repository $repositoryMock;
@@ -51,18 +54,11 @@ final class ContentTypeTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\ContentType::__construct
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\ContentType::getType
-     */
     public function testGetType(): void
     {
         self::assertSame('ibexa_content_type', $this->conditionType::getType());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\ContentType::getConstraints
-     */
     public function testValidation(): void
     {
         $this->contentTypeServiceMock
@@ -79,9 +75,6 @@ final class ContentTypeTest extends TestCase
         self::assertCount(0, $errors);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\ContentType::getConstraints
-     */
     public function testValidationWithInvalidValue(): void
     {
         $this->contentTypeServiceMock
@@ -98,11 +91,7 @@ final class ContentTypeTest extends TestCase
         self::assertNotCount(0, $errors);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\ContentType::matches
-     *
-     * @dataProvider matchesDataProvider
-     */
+    #[DataProvider('matchesDataProvider')]
     public function testMatches(mixed $value, bool $matches): void
     {
         $request = Request::create('/');
@@ -126,9 +115,6 @@ final class ContentTypeTest extends TestCase
         self::assertSame($matches, $this->conditionType->matches($request, $value));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\ContentType::matches
-     */
     public function testMatchesWithNoContent(): void
     {
         $request = Request::create('/');

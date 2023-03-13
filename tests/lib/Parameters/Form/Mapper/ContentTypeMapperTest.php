@@ -8,8 +8,10 @@ use Netgen\Layouts\Ibexa\Form\ContentTypeType;
 use Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ContentTypeMapper;
 use Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentTypeType as ParameterType;
 use Netgen\Layouts\Parameters\ParameterDefinition;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ContentTypeMapper::class)]
 final class ContentTypeMapperTest extends TestCase
 {
     private ContentTypeMapper $mapper;
@@ -19,17 +21,11 @@ final class ContentTypeMapperTest extends TestCase
         $this->mapper = new ContentTypeMapper();
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ContentTypeMapper::getFormType
-     */
     public function testGetFormType(): void
     {
         self::assertSame(ContentTypeType::class, $this->mapper->getFormType());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ContentTypeMapper::mapOptions
-     */
     public function testMapOptions(): void
     {
         self::assertSame(

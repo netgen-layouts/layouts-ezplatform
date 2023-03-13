@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ibexa\Tests\Layout\Resolver\TargetType;
 
 use Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfo;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
 
+#[CoversClass(SemanticPathInfo::class)]
 final class SemanticPathInfoTest extends TestCase
 {
     private SemanticPathInfo $targetType;
@@ -18,19 +21,12 @@ final class SemanticPathInfoTest extends TestCase
         $this->targetType = new SemanticPathInfo();
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfo::getType
-     */
     public function testGetType(): void
     {
         self::assertSame('ibexa_semantic_path_info', $this->targetType::getType());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfo::getConstraints
-     *
-     * @dataProvider validationDataProvider
-     */
+    #[DataProvider('validationDataProvider')]
     public function testValidation(mixed $value, bool $isValid): void
     {
         $validator = Validation::createValidator();
@@ -39,9 +35,6 @@ final class SemanticPathInfoTest extends TestCase
         self::assertSame($isValid, $errors->count() === 0);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfo::provideValue
-     */
     public function testProvideValue(): void
     {
         $request = Request::create('/the/answer');
@@ -53,9 +46,6 @@ final class SemanticPathInfoTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfo::provideValue
-     */
     public function testProvideValueWithEmptySemanticPathInfo(): void
     {
         $request = Request::create('/the/answer');
@@ -67,9 +57,6 @@ final class SemanticPathInfoTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\SemanticPathInfo::provideValue
-     */
     public function testProvideValueWithNoSemanticPathInfo(): void
     {
         $request = Request::create('/the/answer');

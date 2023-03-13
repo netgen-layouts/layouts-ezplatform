@@ -8,9 +8,11 @@ use Exception;
 use Ibexa\Contracts\Core\Repository\ContentService;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ContentValueLoader::class)]
 final class ContentValueLoaderTest extends TestCase
 {
     private MockObject&ContentService $contentServiceMock;
@@ -24,10 +26,6 @@ final class ContentValueLoaderTest extends TestCase
         $this->valueLoader = new ContentValueLoader($this->contentServiceMock);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader::__construct
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader::load
-     */
     public function testLoad(): void
     {
         $contentInfo = new ContentInfo(
@@ -47,9 +45,6 @@ final class ContentValueLoaderTest extends TestCase
         self::assertSame($contentInfo, $this->valueLoader->load(52));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader::load
-     */
     public function testLoadWithNoContent(): void
     {
         $this->contentServiceMock
@@ -61,9 +56,6 @@ final class ContentValueLoaderTest extends TestCase
         self::assertNull($this->valueLoader->load(52));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader::load
-     */
     public function testLoadWithNonPublishedContent(): void
     {
         $this->contentServiceMock
@@ -82,9 +74,6 @@ final class ContentValueLoaderTest extends TestCase
         self::assertNull($this->valueLoader->load(52));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader::load
-     */
     public function testLoadWithNoMainLocation(): void
     {
         $this->contentServiceMock
@@ -102,9 +91,6 @@ final class ContentValueLoaderTest extends TestCase
         self::assertNull($this->valueLoader->load(52));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader::loadByRemoteId
-     */
     public function testLoadByRemoteId(): void
     {
         $contentInfo = new ContentInfo(
@@ -124,9 +110,6 @@ final class ContentValueLoaderTest extends TestCase
         self::assertSame($contentInfo, $this->valueLoader->loadByRemoteId('abc'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader::loadByRemoteId
-     */
     public function testLoadByRemoteIdWithNoContent(): void
     {
         $this->contentServiceMock
@@ -138,9 +121,6 @@ final class ContentValueLoaderTest extends TestCase
         self::assertNull($this->valueLoader->loadByRemoteId('abc'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader::loadByRemoteId
-     */
     public function testLoadByRemoteIdWithNonPublishedContent(): void
     {
         $this->contentServiceMock
@@ -159,9 +139,6 @@ final class ContentValueLoaderTest extends TestCase
         self::assertNull($this->valueLoader->loadByRemoteId('abc'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueLoader\ContentValueLoader::loadByRemoteId
-     */
     public function testLoadByRemoteIdWithNoMainLocation(): void
     {
         $this->contentServiceMock

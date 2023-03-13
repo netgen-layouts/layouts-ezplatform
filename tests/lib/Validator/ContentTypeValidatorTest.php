@@ -12,6 +12,8 @@ use Ibexa\Core\Repository\Values\ContentType\ContentTypeGroup;
 use Netgen\Layouts\Ibexa\Validator\Constraint\ContentType;
 use Netgen\Layouts\Ibexa\Validator\ContentTypeValidator;
 use Netgen\Layouts\Tests\TestCase\ValidatorTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
@@ -19,6 +21,7 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 use function array_map;
 
+#[CoversClass(ContentTypeValidator::class)]
 final class ContentTypeValidatorTest extends ValidatorTestCase
 {
     private MockObject&Repository $repositoryMock;
@@ -35,12 +38,8 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
     /**
      * @param string[] $groups
      * @param string[] $allowedTypes
-     *
-     * @covers \Netgen\Layouts\Ibexa\Validator\ContentTypeValidator::__construct
-     * @covers \Netgen\Layouts\Ibexa\Validator\ContentTypeValidator::validate
-     *
-     * @dataProvider  validateDataProvider
      */
+    #[DataProvider('validateDataProvider')]
     public function testValidate(string $identifier, array $groups, array $allowedTypes, bool $isValid): void
     {
         $this->contentTypeServiceMock
@@ -67,10 +66,6 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
         $this->assertValid($isValid, $identifier);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\ContentTypeValidator::__construct
-     * @covers \Netgen\Layouts\Ibexa\Validator\ContentTypeValidator::validate
-     */
     public function testValidateNull(): void
     {
         $this->contentTypeServiceMock
@@ -80,10 +75,6 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
         $this->assertValid(true, null);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\ContentTypeValidator::__construct
-     * @covers \Netgen\Layouts\Ibexa\Validator\ContentTypeValidator::validate
-     */
     public function testValidateInvalid(): void
     {
         $this->contentTypeServiceMock
@@ -95,9 +86,6 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
         $this->assertValid(false, 'unknown');
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\ContentTypeValidator::validate
-     */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->expectException(UnexpectedTypeException::class);
@@ -107,9 +95,6 @@ final class ContentTypeValidatorTest extends ValidatorTestCase
         $this->assertValid(true, 'value');
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\ContentTypeValidator::validate
-     */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
         $this->expectException(UnexpectedTypeException::class);

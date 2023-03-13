@@ -6,10 +6,12 @@ namespace Netgen\Bundle\LayoutsIbexaBundle\Tests\DependencyInjection\CompilerPas
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractContainerBuilderTestCase;
 use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\HttpCache\VarnishClientPass;
+use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 use Symfony\Component\DependencyInjection\Reference;
 
+#[CoversClass(VarnishClientPass::class)]
 final class VarnishClientPassTest extends AbstractContainerBuilderTestCase
 {
     protected function setUp(): void
@@ -19,9 +21,6 @@ final class VarnishClientPassTest extends AbstractContainerBuilderTestCase
         $this->container->addCompilerPass(new VarnishClientPass());
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\HttpCache\VarnishClientPass::process
-     */
     public function testProcess(): void
     {
         $this->setDefinition('netgen_layouts.http_cache.client.varnish', new Definition(null, [null, null]));
@@ -36,9 +35,6 @@ final class VarnishClientPassTest extends AbstractContainerBuilderTestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\HttpCache\VarnishClientPass::process
-     */
     public function testProcessWithNoVarnishClient(): void
     {
         $this->setDefinition('netgen_layouts.ibexa.http_cache.varnish.host_header_provider', new Definition());
@@ -48,9 +44,6 @@ final class VarnishClientPassTest extends AbstractContainerBuilderTestCase
         $this->assertContainerBuilderNotHasService('netgen_layouts.http_cache.client.varnish');
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\HttpCache\VarnishClientPass::process
-     */
     public function testProcessWithNoHostHeaderProvider(): void
     {
         $this->setDefinition('netgen_layouts.http_cache.client.varnish', new Definition(null, [null, null]));
@@ -63,9 +56,6 @@ final class VarnishClientPassTest extends AbstractContainerBuilderTestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\HttpCache\VarnishClientPass::process
-     */
     public function testProcessWithEmptyContainer(): void
     {
         $this->compile();

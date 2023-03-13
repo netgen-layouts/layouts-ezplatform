@@ -8,8 +8,10 @@ use Netgen\Layouts\Ibexa\Form\SectionType;
 use Netgen\Layouts\Ibexa\Parameters\Form\Mapper\SectionMapper;
 use Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType as ParameterType;
 use Netgen\Layouts\Parameters\ParameterDefinition;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(SectionMapper::class)]
 final class SectionMapperTest extends TestCase
 {
     private SectionMapper $mapper;
@@ -19,17 +21,11 @@ final class SectionMapperTest extends TestCase
         $this->mapper = new SectionMapper();
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\SectionMapper::getFormType
-     */
     public function testGetFormType(): void
     {
         self::assertSame(SectionType::class, $this->mapper->getFormType());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\SectionMapper::mapOptions
-     */
     public function testMapOptions(): void
     {
         self::assertSame(

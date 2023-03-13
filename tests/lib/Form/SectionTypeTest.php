@@ -8,20 +8,18 @@ use Ibexa\Contracts\Core\Repository\SectionService;
 use Ibexa\Contracts\Core\Repository\Values\Content\Section;
 use Netgen\Layouts\Ibexa\Form\SectionType;
 use Netgen\Layouts\Tests\TestCase\FormTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+#[CoversClass(SectionType::class)]
 final class SectionTypeTest extends FormTestCase
 {
     private MockObject&SectionService $sectionServiceMock;
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::__construct
-     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::getSections
-     */
     public function testSubmitValidData(): void
     {
         $this->configureSectionService();
@@ -43,10 +41,6 @@ final class SectionTypeTest extends FormTestCase
         self::assertSame($submittedData, $form->getData());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::__construct
-     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::getSections
-     */
     public function testSubmitValidDataWithAllSectionsAllowed(): void
     {
         $this->configureSectionService();
@@ -67,10 +61,6 @@ final class SectionTypeTest extends FormTestCase
         self::assertSame($submittedData, $form->getData());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::__construct
-     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::getSections
-     */
     public function testSubmitNonAllowedSections(): void
     {
         $this->configureSectionService();
@@ -92,18 +82,11 @@ final class SectionTypeTest extends FormTestCase
         self::assertSame([], $form->getData());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::getParent
-     */
     public function testGetParent(): void
     {
         self::assertSame(ChoiceType::class, $this->formType->getParent());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::configureOptions
-     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::getSections
-     */
     public function testConfigureOptions(): void
     {
         $this->configureSectionService();
@@ -122,10 +105,6 @@ final class SectionTypeTest extends FormTestCase
         self::assertSame(['Media' => 'media'], $options['choices']);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::configureOptions
-     * @covers \Netgen\Layouts\Ibexa\Form\SectionType::getSections
-     */
     public function testConfigureOptionsWithInvalidSection(): void
     {
         $this->expectException(InvalidOptionsException::class);

@@ -9,8 +9,10 @@ use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
 use Netgen\Layouts\Ibexa\Item\ValueConverter\LocationValueConverter;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(LocationValueConverter::class)]
 final class LocationValueConverterTest extends TestCase
 {
     private LocationValueConverter $valueConverter;
@@ -20,18 +22,12 @@ final class LocationValueConverterTest extends TestCase
         $this->valueConverter = new LocationValueConverter();
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\LocationValueConverter::supports
-     */
     public function testSupports(): void
     {
         self::assertTrue($this->valueConverter->supports(new Location()));
         self::assertFalse($this->valueConverter->supports(new ContentInfo()));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\LocationValueConverter::getValueType
-     */
     public function testGetValueType(): void
     {
         self::assertSame(
@@ -42,9 +38,6 @@ final class LocationValueConverterTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\LocationValueConverter::getId
-     */
     public function testGetId(): void
     {
         self::assertSame(
@@ -55,9 +48,6 @@ final class LocationValueConverterTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\LocationValueConverter::getRemoteId
-     */
     public function testGetRemoteId(): void
     {
         self::assertSame(
@@ -68,9 +58,6 @@ final class LocationValueConverterTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\LocationValueConverter::getName
-     */
     public function testGetName(): void
     {
         self::assertSame(
@@ -94,9 +81,6 @@ final class LocationValueConverterTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\LocationValueConverter::getIsVisible
-     */
     public function testGetIsVisible(): void
     {
         self::assertTrue(
@@ -106,9 +90,6 @@ final class LocationValueConverterTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\LocationValueConverter::getObject
-     */
     public function testGetObject(): void
     {
         $object = new Location(['id' => 42]);

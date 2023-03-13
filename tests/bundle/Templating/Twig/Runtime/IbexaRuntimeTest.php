@@ -15,9 +15,11 @@ use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
 use Ibexa\Core\Repository\Values\ContentType\ContentType;
 use Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(IbexaRuntime::class)]
 final class IbexaRuntimeTest extends TestCase
 {
     private MockObject&Repository $repositoryMock;
@@ -39,11 +41,6 @@ final class IbexaRuntimeTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::__construct
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getContentName
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContent
-     */
     public function testGetContentName(): void
     {
         $this->mockServices();
@@ -51,10 +48,6 @@ final class IbexaRuntimeTest extends TestCase
         self::assertSame('Content name 42', $this->runtime->getContentName(42));
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getContentName
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContent
-     */
     public function testGetContentNameWithException(): void
     {
         $this->contentServiceMock
@@ -66,11 +59,6 @@ final class IbexaRuntimeTest extends TestCase
         self::assertSame('', $this->runtime->getContentName(42));
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getLocationPath
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContent
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadLocation
-     */
     public function testGetLocationPath(): void
     {
         $this->mockServices();
@@ -85,11 +73,6 @@ final class IbexaRuntimeTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getLocationPath
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContent
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadLocation
-     */
     public function testGetLocationPathWithException(): void
     {
         $this->locationServiceMock
@@ -101,12 +84,6 @@ final class IbexaRuntimeTest extends TestCase
         self::assertSame([], $this->runtime->getLocationPath(22));
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getContentPath
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getLocationPath
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContent
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadLocation
-     */
     public function testGetContentPath(): void
     {
         $this->mockServices();
@@ -121,12 +98,6 @@ final class IbexaRuntimeTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getContentPath
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getLocationPath
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContent
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadLocation
-     */
     public function testGetContentPathWithException(): void
     {
         $this->contentServiceMock
@@ -138,10 +109,6 @@ final class IbexaRuntimeTest extends TestCase
         self::assertSame([], $this->runtime->getContentPath(22));
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getContentTypeName
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContentType
-     */
     public function testGetContentTypeName(): void
     {
         $this->mockServices();
@@ -165,10 +132,6 @@ final class IbexaRuntimeTest extends TestCase
         self::assertSame('Content type some_type', $this->runtime->getContentTypeName('some_type'));
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getContentTypeName
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContentType
-     */
     public function testGetContentTypeNameWithNoTranslatedName(): void
     {
         $this->mockServices();
@@ -192,10 +155,6 @@ final class IbexaRuntimeTest extends TestCase
         self::assertSame('English content type some_type', $this->runtime->getContentTypeName('some_type'));
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::getContentTypeName
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\Twig\Runtime\IbexaRuntime::loadContentType
-     */
     public function testGetContentTypeNameWithException(): void
     {
         $this->contentTypeServiceMock

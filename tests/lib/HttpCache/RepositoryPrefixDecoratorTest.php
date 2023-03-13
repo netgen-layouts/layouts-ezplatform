@@ -7,9 +7,11 @@ namespace Netgen\Layouts\Ibexa\Tests\HttpCache;
 use Ibexa\HttpCache\RepositoryTagPrefix;
 use Netgen\Layouts\HttpCache\ClientInterface;
 use Netgen\Layouts\Ibexa\HttpCache\RepositoryPrefixDecorator;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(RepositoryPrefixDecorator::class)]
 final class RepositoryPrefixDecoratorTest extends TestCase
 {
     private MockObject&ClientInterface $clientMock;
@@ -29,10 +31,6 @@ final class RepositoryPrefixDecoratorTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\HttpCache\RepositoryPrefixDecorator::__construct
-     * @covers \Netgen\Layouts\Ibexa\HttpCache\RepositoryPrefixDecorator::purge
-     */
     public function testPurge(): void
     {
         $this->repositoryTagPrefixMock
@@ -48,10 +46,6 @@ final class RepositoryPrefixDecoratorTest extends TestCase
         $this->repositoryPrefixDecorator->purge(['tag-1', 'tag-2']);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\HttpCache\RepositoryPrefixDecorator::__construct
-     * @covers \Netgen\Layouts\Ibexa\HttpCache\RepositoryPrefixDecorator::commit
-     */
     public function testCommit(): void
     {
         $this->clientMock

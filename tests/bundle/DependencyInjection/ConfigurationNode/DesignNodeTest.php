@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\LayoutsIbexaBundle\Tests\DependencyInjection\ConfigurationNode;
 
+use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin;
+use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
+#[CoversClass(ExtensionPlugin::class)]
 final class DesignNodeTest extends ConfigurationNodeTestBase
 {
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::addConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
-     */
     public function testDesignSettings(): void
     {
         $config = [
@@ -29,12 +27,6 @@ final class DesignNodeTest extends ConfigurationNodeTestBase
         self::assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::addConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::validateCurrentDesign
-     */
     public function testValidDesign(): void
     {
         $config = [
@@ -59,12 +51,6 @@ final class DesignNodeTest extends ConfigurationNodeTestBase
         self::assertSame('test1', $config['system']['default']['design']);
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::addConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::validateCurrentDesign
-     */
     public function testStandardDesign(): void
     {
         $config = [
@@ -89,12 +75,6 @@ final class DesignNodeTest extends ConfigurationNodeTestBase
         self::assertSame('standard', $config['system']['default']['design']);
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::addConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::validateCurrentDesign
-     */
     public function testInvalidDesignThrowsInvalidConfigurationException(): void
     {
         $this->expectException(InvalidConfigurationException::class);

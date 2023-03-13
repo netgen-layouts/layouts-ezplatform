@@ -10,8 +10,10 @@ use Netgen\Layouts\Ibexa\Parameters\Form\Mapper\LocationMapper;
 use Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType as ParameterType;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\Layouts\Parameters\ValueObjectProviderInterface;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(LocationMapper::class)]
 final class LocationMapperTest extends TestCase
 {
     private LocationMapper $mapper;
@@ -21,17 +23,11 @@ final class LocationMapperTest extends TestCase
         $this->mapper = new LocationMapper();
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\LocationMapper::getFormType
-     */
     public function testGetFormType(): void
     {
         self::assertSame(ContentBrowserType::class, $this->mapper->getFormType());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\LocationMapper::mapOptions
-     */
     public function testMapOptions(): void
     {
         $mappedOptions = $this->mapper->mapOptions(
@@ -60,9 +56,6 @@ final class LocationMapperTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\LocationMapper::mapOptions
-     */
     public function testMapOptionsEmptyAllowedTypes(): void
     {
         $mappedOptions = $this->mapper->mapOptions(

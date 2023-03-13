@@ -6,8 +6,10 @@ namespace Netgen\Layouts\Ibexa\Tests\Layout\Resolver\Form\ConditionType\Mapper;
 
 use Netgen\Layouts\Ibexa\Form\ContentTypeType;
 use Netgen\Layouts\Ibexa\Layout\Resolver\Form\ConditionType\Mapper\ContentType;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ContentType::class)]
 final class ContentTypeTest extends TestCase
 {
     private ContentType $mapper;
@@ -17,17 +19,11 @@ final class ContentTypeTest extends TestCase
         $this->mapper = new ContentType();
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\Form\ConditionType\Mapper\ContentType::getFormType
-     */
     public function testGetFormType(): void
     {
         self::assertSame(ContentTypeType::class, $this->mapper->getFormType());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\Form\ConditionType\Mapper\ContentType::getFormOptions
-     */
     public function testGetFormOptions(): void
     {
         self::assertSame(

@@ -9,10 +9,12 @@ use Netgen\Layouts\API\Values\Block\Block;
 use Netgen\Layouts\Block\BlockDefinition\Configuration\ViewType;
 use Netgen\Layouts\Ibexa\Block\BlockDefinition\Configuration\Provider\IbexaConfigProvider;
 use Netgen\Layouts\Parameters\Parameter;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
+#[CoversClass(IbexaConfigProvider::class)]
 final class IbexaConfigProviderTest extends TestCase
 {
     private MockObject&ConfigResolverInterface $configResolverMock;
@@ -34,12 +36,6 @@ final class IbexaConfigProviderTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Block\BlockDefinition\Configuration\Provider\IbexaConfigProvider::__construct
-     * @covers \Netgen\Layouts\Ibexa\Block\BlockDefinition\Configuration\Provider\IbexaConfigProvider::buildViewTypes
-     * @covers \Netgen\Layouts\Ibexa\Block\BlockDefinition\Configuration\Provider\IbexaConfigProvider::humanize
-     * @covers \Netgen\Layouts\Ibexa\Block\BlockDefinition\Configuration\Provider\IbexaConfigProvider::provideViewTypes
-     */
     public function testProvideViewTypes(): void
     {
         $blockUuid = Uuid::uuid4();
@@ -151,9 +147,6 @@ final class IbexaConfigProviderTest extends TestCase
         self::assertNull($viewTypes['view_style_2']->getValidParameters());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Block\BlockDefinition\Configuration\Provider\IbexaConfigProvider::provideViewTypes
-     */
     public function testProvideViewTypesWithoutBlock(): void
     {
         self::assertSame([], $this->configProvider->provideViewTypes());

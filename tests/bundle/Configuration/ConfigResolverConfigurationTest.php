@@ -8,9 +8,11 @@ use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Netgen\Bundle\LayoutsBundle\Configuration\ConfigurationInterface;
 use Netgen\Bundle\LayoutsBundle\Exception\ConfigurationException;
 use Netgen\Bundle\LayoutsIbexaBundle\Configuration\ConfigResolverConfiguration;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ConfigResolverConfiguration::class)]
 final class ConfigResolverConfigurationTest extends TestCase
 {
     private MockObject&ConfigResolverInterface $configResolverMock;
@@ -30,10 +32,6 @@ final class ConfigResolverConfigurationTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Configuration\ConfigResolverConfiguration::__construct
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Configuration\ConfigResolverConfiguration::hasParameter
-     */
     public function testHasParameter(): void
     {
         $this->configResolverMock
@@ -49,9 +47,6 @@ final class ConfigResolverConfigurationTest extends TestCase
         self::assertTrue($this->configuration->hasParameter('some_param'));
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Configuration\ConfigResolverConfiguration::hasParameter
-     */
     public function testHasParameterWithNoParameter(): void
     {
         $this->configResolverMock
@@ -69,9 +64,6 @@ final class ConfigResolverConfigurationTest extends TestCase
         self::assertTrue($this->configuration->hasParameter('some_param'));
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Configuration\ConfigResolverConfiguration::hasParameter
-     */
     public function testHasParameterWithNoFallbackParameter(): void
     {
         $this->configResolverMock
@@ -89,9 +81,6 @@ final class ConfigResolverConfigurationTest extends TestCase
         self::assertFalse($this->configuration->hasParameter('some_param'));
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Configuration\ConfigResolverConfiguration::getParameter
-     */
     public function testGetParameter(): void
     {
         $this->configResolverMock
@@ -113,9 +102,6 @@ final class ConfigResolverConfigurationTest extends TestCase
         self::assertSame('some_param_value', $this->configuration->getParameter('some_param'));
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Configuration\ConfigResolverConfiguration::getParameter
-     */
     public function testGetFallbackParameter(): void
     {
         $this->configResolverMock
@@ -143,9 +129,6 @@ final class ConfigResolverConfigurationTest extends TestCase
         self::assertSame('some_param_value', $this->configuration->getParameter('some_param'));
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Configuration\ConfigResolverConfiguration::getParameter
-     */
     public function testGetParameterThrowsConfigurationException(): void
     {
         $this->expectException(ConfigurationException::class);

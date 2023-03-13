@@ -7,10 +7,13 @@ namespace Netgen\Layouts\Ibexa\Tests\Validator;
 use Netgen\Layouts\Ibexa\Validator\Constraint\SiteAccessGroup;
 use Netgen\Layouts\Ibexa\Validator\SiteAccessGroupValidator;
 use Netgen\Layouts\Tests\TestCase\ValidatorTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
+#[CoversClass(SiteAccessGroupValidator::class)]
 final class SiteAccessGroupValidatorTest extends ValidatorTestCase
 {
     protected function setUp(): void
@@ -20,20 +23,12 @@ final class SiteAccessGroupValidatorTest extends ValidatorTestCase
         $this->constraint = new SiteAccessGroup();
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\SiteAccessGroupValidator::__construct
-     * @covers \Netgen\Layouts\Ibexa\Validator\SiteAccessGroupValidator::validate
-     *
-     * @dataProvider validateDataProvider
-     */
+    #[DataProvider('validateDataProvider')]
     public function testValidate(?string $identifier, bool $isValid): void
     {
         $this->assertValid($isValid, $identifier);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\SiteAccessGroupValidator::validate
-     */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->expectException(UnexpectedTypeException::class);
@@ -43,9 +38,6 @@ final class SiteAccessGroupValidatorTest extends ValidatorTestCase
         $this->assertValid(true, 'value');
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\SiteAccessGroupValidator::validate
-     */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
         $this->expectException(UnexpectedTypeException::class);

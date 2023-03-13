@@ -6,8 +6,10 @@ namespace Netgen\Layouts\Ibexa\Tests\Layout\Resolver\Form\TargetType\Mapper;
 
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 use Netgen\Layouts\Ibexa\Layout\Resolver\Form\TargetType\Mapper\Content;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(Content::class)]
 final class ContentTest extends TestCase
 {
     private Content $mapper;
@@ -17,17 +19,11 @@ final class ContentTest extends TestCase
         $this->mapper = new Content();
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\Form\TargetType\Mapper\Content::getFormType
-     */
     public function testGetFormType(): void
     {
         self::assertSame(ContentBrowserType::class, $this->mapper->getFormType());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\Form\TargetType\Mapper\Content::getFormOptions
-     */
     public function testGetFormOptions(): void
     {
         self::assertSame(

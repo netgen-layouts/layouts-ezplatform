@@ -10,11 +10,14 @@ use Netgen\Layouts\Ibexa\Tests\Validator\TagsServiceValidatorFactory;
 use Netgen\Layouts\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
 use Netgen\TagsBundle\API\Repository\Values\Tags\Tag;
 use Netgen\TagsBundle\Core\Repository\TagsService;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
 use Symfony\Component\Validator\Validation;
 
+#[CoversClass(TagsType::class)]
 final class TagsTypeTest extends TestCase
 {
     use ParameterTypeTestTrait;
@@ -28,10 +31,6 @@ final class TagsTypeTest extends TestCase
         $this->type = new TagsType($this->tagsServiceMock);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::__construct
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::getIdentifier
-     */
     public function testGetIdentifier(): void
     {
         self::assertSame('netgen_tags', $this->type::getIdentifier());
@@ -40,11 +39,8 @@ final class TagsTypeTest extends TestCase
     /**
      * @param array<string, mixed> $options
      * @param array<string, mixed> $resolvedOptions
-     *
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::configureOptions
-     *
-     * @dataProvider validOptionsDataProvider
      */
+    #[DataProvider('validOptionsDataProvider')]
     public function testValidOptions(array $options, array $resolvedOptions): void
     {
         $parameter = $this->getParameterDefinition($options);
@@ -53,11 +49,8 @@ final class TagsTypeTest extends TestCase
 
     /**
      * @param array<string, mixed> $options
-     *
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::configureOptions
-     *
-     * @dataProvider invalidOptionsDataProvider
      */
+    #[DataProvider('invalidOptionsDataProvider')]
     public function testInvalidOptions(array $options): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -210,11 +203,7 @@ final class TagsTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::fromHash
-     *
-     * @dataProvider fromHashDataProvider
-     */
+    #[DataProvider('fromHashDataProvider')]
     public function testFromHash(mixed $value, mixed $convertedValue): void
     {
         self::assertSame(
@@ -240,9 +229,6 @@ final class TagsTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::export
-     */
     public function testExport(): void
     {
         $this->tagsServiceMock
@@ -254,9 +240,6 @@ final class TagsTypeTest extends TestCase
         self::assertSame('abc', $this->type->export($this->getParameterDefinition(), 42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::export
-     */
     public function testExportWithNonExistingTag(): void
     {
         $this->tagsServiceMock
@@ -268,9 +251,6 @@ final class TagsTypeTest extends TestCase
         self::assertNull($this->type->export($this->getParameterDefinition(), 42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::import
-     */
     public function testImport(): void
     {
         $this->tagsServiceMock
@@ -282,9 +262,6 @@ final class TagsTypeTest extends TestCase
         self::assertSame(42, $this->type->import($this->getParameterDefinition(), 'abc'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::import
-     */
     public function testImportWithNonExistingTag(): void
     {
         $this->tagsServiceMock
@@ -296,11 +273,7 @@ final class TagsTypeTest extends TestCase
         self::assertNull($this->type->import($this->getParameterDefinition(), 'abc'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType::getValueConstraints
-     *
-     * @dataProvider validationDataProvider
-     */
+    #[DataProvider('validationDataProvider')]
     public function testValidation(mixed $values, bool $required, bool $isValid): void
     {
         if ($values !== null) {

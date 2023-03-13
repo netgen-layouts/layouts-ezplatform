@@ -6,8 +6,10 @@ namespace Netgen\Layouts\Ibexa\Tests\Layout\Resolver\Form\TargetType\Mapper;
 
 use Netgen\ContentBrowser\Form\Type\ContentBrowserType;
 use Netgen\Layouts\Ibexa\Layout\Resolver\Form\TargetType\Mapper\Location;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(Location::class)]
 final class LocationTest extends TestCase
 {
     private Location $mapper;
@@ -17,17 +19,11 @@ final class LocationTest extends TestCase
         $this->mapper = new Location();
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\Form\TargetType\Mapper\Location::getFormType
-     */
     public function testGetFormType(): void
     {
         self::assertSame(ContentBrowserType::class, $this->mapper->getFormType());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\Form\TargetType\Mapper\Location::getFormOptions
-     */
     public function testGetFormOptions(): void
     {
         self::assertSame(

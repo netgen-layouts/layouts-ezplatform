@@ -8,10 +8,13 @@ use Ibexa\Core\MVC\Symfony\SiteAccess as IbexaSiteAccess;
 use Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\SiteAccess;
 use Netgen\Layouts\Ibexa\Tests\Validator\ValidatorFactory;
 use Netgen\Layouts\Tests\TestCase\ValidatorFactory as BaseValidatorFactory;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
 
+#[CoversClass(SiteAccess::class)]
 final class SiteAccessTest extends TestCase
 {
     private SiteAccess $conditionType;
@@ -21,19 +24,12 @@ final class SiteAccessTest extends TestCase
         $this->conditionType = new SiteAccess();
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\SiteAccess::getType
-     */
     public function testGetType(): void
     {
         self::assertSame('ibexa_site_access', $this->conditionType::getType());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\SiteAccess::getConstraints
-     *
-     * @dataProvider validationDataProvider
-     */
+    #[DataProvider('validationDataProvider')]
     public function testValidation(mixed $value, bool $isValid): void
     {
         $validator = Validation::createValidatorBuilder()
@@ -44,11 +40,7 @@ final class SiteAccessTest extends TestCase
         self::assertSame($isValid, $errors->count() === 0);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\SiteAccess::matches
-     *
-     * @dataProvider matchesDataProvider
-     */
+    #[DataProvider('matchesDataProvider')]
     public function testMatches(mixed $value, bool $matches): void
     {
         $request = Request::create('/');
@@ -57,9 +49,6 @@ final class SiteAccessTest extends TestCase
         self::assertSame($matches, $this->conditionType->matches($request, $value));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ConditionType\SiteAccess::matches
-     */
     public function testMatchesWithNoSiteAccess(): void
     {
         $request = Request::create('/');

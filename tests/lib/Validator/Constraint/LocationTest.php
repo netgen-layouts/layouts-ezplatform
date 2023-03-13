@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ibexa\Tests\Validator\Constraint;
 
 use Netgen\Layouts\Ibexa\Validator\Constraint\Location;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(Location::class)]
 final class LocationTest extends TestCase
 {
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\Constraint\Location::validatedBy
-     */
     public function testValidatedBy(): void
     {
         $constraint = new Location();

@@ -13,11 +13,13 @@ use Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree;
 use Netgen\Layouts\Ibexa\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Ibexa\Utils\RemoteIdConverter;
 use Netgen\Layouts\Layout\Resolver\ValueObjectProviderInterface;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
 
+#[CoversClass(Subtree::class)]
 final class SubtreeTest extends TestCase
 {
     private MockObject&Repository $repositoryMock;
@@ -57,17 +59,11 @@ final class SubtreeTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::getType
-     */
     public function testGetType(): void
     {
         self::assertSame('ibexa_subtree', $this->targetType::getType());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::getConstraints
-     */
     public function testValidation(): void
     {
         $this->locationServiceMock
@@ -84,9 +80,6 @@ final class SubtreeTest extends TestCase
         self::assertCount(0, $errors);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::getConstraints
-     */
     public function testValidationWithInvalidValue(): void
     {
         $this->locationServiceMock
@@ -103,10 +96,6 @@ final class SubtreeTest extends TestCase
         self::assertCount(0, $errors);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::__construct
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::provideValue
-     */
     public function testProvideValue(): void
     {
         $location = new Location(
@@ -126,10 +115,6 @@ final class SubtreeTest extends TestCase
         self::assertSame([1, 2, 42], $this->targetType->provideValue($request));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::__construct
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::provideValue
-     */
     public function testProvideValueWithNoLocation(): void
     {
         $request = Request::create('/');
@@ -143,9 +128,6 @@ final class SubtreeTest extends TestCase
         self::assertNull($this->targetType->provideValue($request));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::getValueObject
-     */
     public function testGetValueObject(): void
     {
         $location = new Location();
@@ -159,9 +141,6 @@ final class SubtreeTest extends TestCase
         self::assertSame($location, $this->targetType->getValueObject(42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::export
-     */
     public function testExport(): void
     {
         $this->locationServiceMock
@@ -173,9 +152,6 @@ final class SubtreeTest extends TestCase
         self::assertSame('abc', $this->targetType->export(42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::export
-     */
     public function testExportWithInvalidValue(): void
     {
         $this->locationServiceMock
@@ -187,9 +163,6 @@ final class SubtreeTest extends TestCase
         self::assertNull($this->targetType->export(42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::import
-     */
     public function testImport(): void
     {
         $this->locationServiceMock
@@ -201,9 +174,6 @@ final class SubtreeTest extends TestCase
         self::assertSame(42, $this->targetType->import('abc'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Subtree::import
-     */
     public function testImportWithInvalidValue(): void
     {
         $this->locationServiceMock

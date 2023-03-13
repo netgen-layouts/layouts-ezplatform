@@ -10,8 +10,10 @@ use Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ContentMapper;
 use Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType as ParameterType;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\Layouts\Parameters\ValueObjectProviderInterface;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ContentMapper::class)]
 final class ContentMapperTest extends TestCase
 {
     private ContentMapper $mapper;
@@ -21,17 +23,11 @@ final class ContentMapperTest extends TestCase
         $this->mapper = new ContentMapper();
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ContentMapper::getFormType
-     */
     public function testGetFormType(): void
     {
         self::assertSame(ContentBrowserType::class, $this->mapper->getFormType());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ContentMapper::mapOptions
-     */
     public function testMapOptions(): void
     {
         $mappedOptions = $this->mapper->mapOptions(
@@ -60,9 +56,6 @@ final class ContentMapperTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ContentMapper::mapOptions
-     */
     public function testMapOptionsEmptyAllowedTypes(): void
     {
         $mappedOptions = $this->mapper->mapOptions(

@@ -9,6 +9,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\Language;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Ibexa\Core\MVC\Symfony\Locale\LocaleConverterInterface;
 use Netgen\Layouts\Ibexa\Locale\LocaleProvider;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use function array_keys;
 use function array_values;
 
+#[CoversClass(LocaleProvider::class)]
 final class LocaleProviderTest extends TestCase
 {
     private MockObject&LanguageService $languageServiceMock;
@@ -39,11 +41,6 @@ final class LocaleProviderTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Locale\LocaleProvider::__construct
-     * @covers \Netgen\Layouts\Ibexa\Locale\LocaleProvider::getAvailableLocales
-     * @covers \Netgen\Layouts\Ibexa\Locale\LocaleProvider::getPosixLocale
-     */
     public function testGetAvailableLocales(): void
     {
         $this->languageServiceMock
@@ -72,11 +69,6 @@ final class LocaleProviderTest extends TestCase
         self::assertSame(['Croatian', 'English'], array_values($availableLocales));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Locale\LocaleProvider::__construct
-     * @covers \Netgen\Layouts\Ibexa\Locale\LocaleProvider::getAvailableLocales
-     * @covers \Netgen\Layouts\Ibexa\Locale\LocaleProvider::getPosixLocale
-     */
     public function testGetAvailableLocalesWithInvalidPosixLocale(): void
     {
         $this->languageServiceMock
@@ -98,10 +90,6 @@ final class LocaleProviderTest extends TestCase
         self::assertSame([], $availableLocales);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Locale\LocaleProvider::getPosixLocale
-     * @covers \Netgen\Layouts\Ibexa\Locale\LocaleProvider::getRequestLocales
-     */
     public function testGetRequestLocales(): void
     {
         $this->configResolverMock
@@ -135,10 +123,6 @@ final class LocaleProviderTest extends TestCase
         self::assertSame(['en', 'hr'], $requestLocales);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Locale\LocaleProvider::getPosixLocale
-     * @covers \Netgen\Layouts\Ibexa\Locale\LocaleProvider::getRequestLocales
-     */
     public function testGetRequestLocalesWithInvalidPosixLocale(): void
     {
         $this->configResolverMock
@@ -166,10 +150,6 @@ final class LocaleProviderTest extends TestCase
         self::assertSame([], $requestLocales);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Locale\LocaleProvider::getPosixLocale
-     * @covers \Netgen\Layouts\Ibexa\Locale\LocaleProvider::getRequestLocales
-     */
     public function testGetRequestLocalesWithNonExistingPosixLocale(): void
     {
         $this->configResolverMock

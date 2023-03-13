@@ -11,9 +11,11 @@ use Ibexa\Core\Base\Exceptions\NotFoundException;
 use Ibexa\Core\Repository\Repository;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Netgen\Layouts\Ibexa\Utils\RemoteIdConverter;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(RemoteIdConverter::class)]
 final class RemoteIdConverterTest extends TestCase
 {
     private MockObject&LocationService $locationServiceMock;
@@ -53,10 +55,6 @@ final class RemoteIdConverterTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::__construct
-     * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::toLocationId
-     */
     public function testToLocationId(): void
     {
         $this->locationServiceMock
@@ -68,9 +66,6 @@ final class RemoteIdConverterTest extends TestCase
         self::assertSame(42, $this->converter->toLocationId('abc'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::toLocationId
-     */
     public function testToLocationIdWithNonExistentRemoteId(): void
     {
         $this->locationServiceMock
@@ -82,9 +77,6 @@ final class RemoteIdConverterTest extends TestCase
         self::assertNull($this->converter->toLocationId('abc'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::toLocationRemoteId
-     */
     public function testToLocationRemoteId(): void
     {
         $this->locationServiceMock
@@ -96,9 +88,6 @@ final class RemoteIdConverterTest extends TestCase
         self::assertSame('abc', $this->converter->toLocationRemoteId(42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::toLocationRemoteId
-     */
     public function testToLocationRemoteIdWithNonExistentId(): void
     {
         $this->locationServiceMock
@@ -110,9 +99,6 @@ final class RemoteIdConverterTest extends TestCase
         self::assertNull($this->converter->toLocationRemoteId(42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::toContentId
-     */
     public function testToContentId(): void
     {
         $this->contentServiceMock
@@ -124,9 +110,6 @@ final class RemoteIdConverterTest extends TestCase
         self::assertSame(42, $this->converter->toContentId('abc'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::toContentId
-     */
     public function testToContentIdWithNonExistentRemoteId(): void
     {
         $this->contentServiceMock
@@ -138,9 +121,6 @@ final class RemoteIdConverterTest extends TestCase
         self::assertNull($this->converter->toContentId('abc'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::toContentRemoteId
-     */
     public function testToContentRemoteId(): void
     {
         $this->contentServiceMock
@@ -152,9 +132,6 @@ final class RemoteIdConverterTest extends TestCase
         self::assertSame('abc', $this->converter->toContentRemoteId(42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Utils\RemoteIdConverter::toContentRemoteId
-     */
     public function testToContentRemoteIdWithNonExistentId(): void
     {
         $this->contentServiceMock

@@ -11,11 +11,14 @@ use Ibexa\Core\Repository\Values\ObjectState\ObjectStateGroup;
 use Netgen\Layouts\Ibexa\Validator\Constraint\ObjectState;
 use Netgen\Layouts\Ibexa\Validator\ObjectStateValidator;
 use Netgen\Layouts\Tests\TestCase\ValidatorTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
+#[CoversClass(ObjectStateValidator::class)]
 final class ObjectStateValidatorTest extends ValidatorTestCase
 {
     private MockObject&Repository $repositoryMock;
@@ -31,13 +34,8 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
 
     /**
      * @param string[] $allowedStates
-     *
-     * @covers \Netgen\Layouts\Ibexa\Validator\ObjectStateValidator::__construct
-     * @covers \Netgen\Layouts\Ibexa\Validator\ObjectStateValidator::loadStateIdentifiers
-     * @covers \Netgen\Layouts\Ibexa\Validator\ObjectStateValidator::validate
-     *
-     * @dataProvider validateDataProvider
      */
+    #[DataProvider('validateDataProvider')]
     public function testValidate(string $identifier, array $allowedStates, bool $isValid): void
     {
         $group1 = new ObjectStateGroup(['identifier' => 'group1']);
@@ -90,11 +88,6 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
         $this->assertValid($isValid, $identifier);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\ObjectStateValidator::__construct
-     * @covers \Netgen\Layouts\Ibexa\Validator\ObjectStateValidator::loadStateIdentifiers
-     * @covers \Netgen\Layouts\Ibexa\Validator\ObjectStateValidator::validate
-     */
     public function testValidateNull(): void
     {
         $this->objectStateServiceMock
@@ -108,9 +101,6 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
         $this->assertValid(true, null);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\ObjectStateValidator::validate
-     */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->expectException(UnexpectedTypeException::class);
@@ -120,9 +110,6 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
         $this->assertValid(true, 'value');
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\ObjectStateValidator::validate
-     */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
         $this->expectException(UnexpectedTypeException::class);
@@ -131,9 +118,6 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
         $this->assertValid(true, 42);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\ObjectStateValidator::validate
-     */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValueFormat(): void
     {
         $this->expectException(UnexpectedTypeException::class);

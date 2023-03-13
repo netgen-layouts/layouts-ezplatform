@@ -15,6 +15,8 @@ use Netgen\Layouts\Ibexa\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\Layouts\Parameters\ValueObjectProviderInterface;
 use Netgen\Layouts\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
@@ -22,6 +24,7 @@ use Symfony\Component\Validator\Validation;
 
 use function is_int;
 
+#[CoversClass(LocationType::class)]
 final class LocationTypeTest extends TestCase
 {
     use ParameterTypeTestTrait;
@@ -55,10 +58,6 @@ final class LocationTypeTest extends TestCase
         $this->type = new LocationType($this->repositoryMock, $this->valueObjectProviderMock);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::__construct
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::getIdentifier
-     */
     public function testGetIdentifier(): void
     {
         self::assertSame('ibexa_location', $this->type::getIdentifier());
@@ -67,11 +66,8 @@ final class LocationTypeTest extends TestCase
     /**
      * @param array<string, mixed> $options
      * @param array<string, mixed> $resolvedOptions
-     *
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::configureOptions
-     *
-     * @dataProvider validOptionsDataProvider
      */
+    #[DataProvider('validOptionsDataProvider')]
     public function testValidOptions(array $options, array $resolvedOptions): void
     {
         $parameter = $this->getParameterDefinition($options);
@@ -80,11 +76,8 @@ final class LocationTypeTest extends TestCase
 
     /**
      * @param array<string, mixed> $options
-     *
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::configureOptions
-     *
-     * @dataProvider invalidOptionsDataProvider
      */
+    #[DataProvider('invalidOptionsDataProvider')]
     public function testInvalidOptions(array $options): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -176,9 +169,6 @@ final class LocationTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::export
-     */
     public function testExport(): void
     {
         $this->locationServiceMock
@@ -190,9 +180,6 @@ final class LocationTypeTest extends TestCase
         self::assertSame('abc', $this->type->export($this->getParameterDefinition(), 42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::export
-     */
     public function testExportWithNonExistingLocation(): void
     {
         $this->locationServiceMock
@@ -204,9 +191,6 @@ final class LocationTypeTest extends TestCase
         self::assertNull($this->type->export($this->getParameterDefinition(), 42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::import
-     */
     public function testImport(): void
     {
         $this->locationServiceMock
@@ -218,9 +202,6 @@ final class LocationTypeTest extends TestCase
         self::assertSame(42, $this->type->import($this->getParameterDefinition(), 'abc'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::import
-     */
     public function testImportWithNonExistingLocation(): void
     {
         $this->locationServiceMock
@@ -232,11 +213,7 @@ final class LocationTypeTest extends TestCase
         self::assertNull($this->type->import($this->getParameterDefinition(), 'abc'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::getValueConstraints
-     *
-     * @dataProvider validationDataProvider
-     */
+    #[DataProvider('validationDataProvider')]
     public function testValidation(mixed $value, string $type, bool $required, bool $isValid): void
     {
         if ($value !== null) {
@@ -295,11 +272,7 @@ final class LocationTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::fromHash
-     *
-     * @dataProvider fromHashDataProvider
-     */
+    #[DataProvider('fromHashDataProvider')]
     public function testFromHash(mixed $value, mixed $convertedValue): void
     {
         self::assertSame(
@@ -329,11 +302,7 @@ final class LocationTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::isValueEmpty
-     *
-     * @dataProvider emptyDataProvider
-     */
+    #[DataProvider('emptyDataProvider')]
     public function testIsValueEmpty(mixed $value, bool $isEmpty): void
     {
         self::assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
@@ -350,9 +319,6 @@ final class LocationTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType::getValueObject
-     */
     public function testGetValueObject(): void
     {
         $location = new Location();

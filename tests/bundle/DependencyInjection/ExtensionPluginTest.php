@@ -8,15 +8,13 @@ use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Netgen\Bundle\LayoutsBundle\DependencyInjection\NetgenLayoutsExtension;
 use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin;
 use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\NetgenLayoutsIbexaExtension;
+use PHPUnit\Framework\Attributes\CoversClass;
 
 use function array_merge;
 
+#[CoversClass(ExtensionPlugin::class)]
 final class ExtensionPluginTest extends AbstractExtensionTestCase
 {
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::__construct
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::appendConfigurationFiles
-     */
     public function testAppendFromPlugin(): void
     {
         $extension = new NetgenLayoutsExtension();

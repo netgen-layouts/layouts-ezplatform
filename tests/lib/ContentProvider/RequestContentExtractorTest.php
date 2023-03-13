@@ -10,9 +10,11 @@ use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
 use Netgen\Layouts\Ibexa\ContentProvider\RequestContentExtractor;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
+#[CoversClass(RequestContentExtractor::class)]
 final class RequestContentExtractorTest extends TestCase
 {
     private RequestContentExtractor $contentExtractor;
@@ -22,9 +24,6 @@ final class RequestContentExtractorTest extends TestCase
         $this->contentExtractor = new RequestContentExtractor();
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\ContentProvider\RequestContentExtractor::extractContent
-     */
     public function testProvideContent(): void
     {
         $content = new Content(
@@ -50,9 +49,6 @@ final class RequestContentExtractorTest extends TestCase
         self::assertSame($content, $this->contentExtractor->extractContent($request));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\ContentProvider\RequestContentExtractor::extractContent
-     */
     public function testProvideContentWithoutContentView(): void
     {
         $request = Request::create('/');
@@ -61,9 +57,6 @@ final class RequestContentExtractorTest extends TestCase
         self::assertNull($this->contentExtractor->extractContent($request));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\ContentProvider\RequestContentExtractor::extractLocation
-     */
     public function testProvideLocation(): void
     {
         $location = new Location(['id' => 42]);
@@ -76,9 +69,6 @@ final class RequestContentExtractorTest extends TestCase
         self::assertSame($location, $this->contentExtractor->extractLocation($request));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\ContentProvider\RequestContentExtractor::extractLocation
-     */
     public function testProvideLocationWithoutLocationView(): void
     {
         $request = Request::create('/');

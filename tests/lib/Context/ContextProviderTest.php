@@ -9,11 +9,13 @@ use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use Netgen\Layouts\Context\Context;
 use Netgen\Layouts\Ibexa\Context\ContextProvider;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+#[CoversClass(ContextProvider::class)]
 final class ContextProviderTest extends TestCase
 {
     private RequestStack $requestStack;
@@ -38,10 +40,6 @@ final class ContextProviderTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Context\ContextProvider::__construct
-     * @covers \Netgen\Layouts\Ibexa\Context\ContextProvider::provideContext
-     */
     public function testProvideContextWithLocationId(): void
     {
         $request = Request::create('/');
@@ -56,9 +54,6 @@ final class ContextProviderTest extends TestCase
         self::assertSame(42, $this->context->get('ibexa_location_id'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Context\ContextProvider::provideContext
-     */
     public function testProvideContextWithContentId(): void
     {
         $request = Request::create('/');
@@ -85,9 +80,6 @@ final class ContextProviderTest extends TestCase
         self::assertSame(24, $this->context->get('ibexa_location_id'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Context\ContextProvider::provideContext
-     */
     public function testProvideContextWithNoLocationIdAndContentId(): void
     {
         $request = Request::create('/');
@@ -100,9 +92,6 @@ final class ContextProviderTest extends TestCase
         self::assertFalse($this->context->has('ibexa_location_id'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Context\ContextProvider::provideContext
-     */
     public function testProvideContextWithInvalidRoute(): void
     {
         $request = Request::create('/');
@@ -115,9 +104,6 @@ final class ContextProviderTest extends TestCase
         self::assertFalse($this->context->has('ibexa_location_id'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Context\ContextProvider::provideContext
-     */
     public function testProvideContextWithNoRequest(): void
     {
         $this->contextProvider->provideContext($this->context);

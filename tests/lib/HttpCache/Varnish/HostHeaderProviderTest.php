@@ -6,9 +6,11 @@ namespace Netgen\Layouts\Ibexa\Tests\HttpCache\Varnish;
 
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Netgen\Layouts\Ibexa\HttpCache\Varnish\HostHeaderProvider;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(HostHeaderProvider::class)]
 final class HostHeaderProviderTest extends TestCase
 {
     private MockObject&ConfigResolverInterface $configResolverMock;
@@ -21,10 +23,6 @@ final class HostHeaderProviderTest extends TestCase
         $this->hostHeaderProvider = new HostHeaderProvider($this->configResolverMock);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\HttpCache\Varnish\HostHeaderProvider::__construct
-     * @covers \Netgen\Layouts\Ibexa\HttpCache\Varnish\HostHeaderProvider::provideHostHeader
-     */
     public function testProvideHostHeader(): void
     {
         $this->configResolverMock

@@ -15,11 +15,13 @@ use Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content;
 use Netgen\Layouts\Ibexa\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Ibexa\Utils\RemoteIdConverter;
 use Netgen\Layouts\Layout\Resolver\ValueObjectProviderInterface;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
 
+#[CoversClass(Content::class)]
 final class ContentTest extends TestCase
 {
     private MockObject&Repository $repositoryMock;
@@ -59,18 +61,11 @@ final class ContentTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::__construct
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::getType
-     */
     public function testGetType(): void
     {
         self::assertSame('ibexa_content', $this->targetType::getType());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::getConstraints
-     */
     public function testValidation(): void
     {
         $this->contentServiceMock
@@ -87,9 +82,6 @@ final class ContentTest extends TestCase
         self::assertCount(0, $errors);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::getConstraints
-     */
     public function testValidationWithInvalidValue(): void
     {
         $this->contentServiceMock
@@ -106,9 +98,6 @@ final class ContentTest extends TestCase
         self::assertCount(0, $errors);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::provideValue
-     */
     public function testProvideValue(): void
     {
         $content = new IbexaContent(
@@ -136,9 +125,6 @@ final class ContentTest extends TestCase
         self::assertSame(42, $this->targetType->provideValue($request));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::provideValue
-     */
     public function testProvideValueWithNoContent(): void
     {
         $request = Request::create('/');
@@ -152,9 +138,6 @@ final class ContentTest extends TestCase
         self::assertNull($this->targetType->provideValue($request));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::getValueObject
-     */
     public function testGetValueObject(): void
     {
         $content = new IbexaContent();
@@ -168,9 +151,6 @@ final class ContentTest extends TestCase
         self::assertSame($content, $this->targetType->getValueObject(42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::export
-     */
     public function testExport(): void
     {
         $this->contentServiceMock
@@ -182,9 +162,6 @@ final class ContentTest extends TestCase
         self::assertSame('abc', $this->targetType->export(42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::export
-     */
     public function testExportWithInvalidValue(): void
     {
         $this->contentServiceMock
@@ -196,9 +173,6 @@ final class ContentTest extends TestCase
         self::assertNull($this->targetType->export(42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::import
-     */
     public function testImport(): void
     {
         $this->contentServiceMock
@@ -210,9 +184,6 @@ final class ContentTest extends TestCase
         self::assertSame(42, $this->targetType->import('abc'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Content::import
-     */
     public function testImportWithInvalidValue(): void
     {
         $this->contentServiceMock

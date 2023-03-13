@@ -10,9 +10,11 @@ use Netgen\Layouts\API\Values\Block\Block;
 use Netgen\Layouts\Block\DynamicParameters;
 use Netgen\Layouts\Ibexa\Block\BlockDefinition\Handler\ContentFieldHandler;
 use Netgen\Layouts\Ibexa\ContentProvider\ContentProviderInterface;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ContentFieldHandler::class)]
 final class ContentFieldHandlerTest extends TestCase
 {
     private MockObject&ContentProviderInterface $contentProviderMock;
@@ -26,18 +28,11 @@ final class ContentFieldHandlerTest extends TestCase
         $this->handler = new ContentFieldHandler($this->contentProviderMock);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Block\BlockDefinition\Handler\ContentFieldHandler::isContextual
-     */
     public function testIsContextual(): void
     {
         self::assertTrue($this->handler->isContextual(new Block()));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Block\BlockDefinition\Handler\ContentFieldHandler::__construct
-     * @covers \Netgen\Layouts\Ibexa\Block\BlockDefinition\Handler\ContentFieldHandler::getDynamicParameters
-     */
     public function testGetDynamicParameters(): void
     {
         $content = new Content();

@@ -9,9 +9,11 @@ use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Core\Base\Exceptions\NotFoundException;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Netgen\Layouts\Ibexa\Layout\Resolver\ValueObjectProvider\LocationProvider;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(LocationProvider::class)]
 final class LocationProviderTest extends TestCase
 {
     private MockObject&Repository $repositoryMock;
@@ -43,10 +45,6 @@ final class LocationProviderTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ValueObjectProvider\LocationProvider::__construct
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ValueObjectProvider\LocationProvider::getValueObject
-     */
     public function testGetValueObject(): void
     {
         $location = new Location();
@@ -60,9 +58,6 @@ final class LocationProviderTest extends TestCase
         self::assertSame($location, $this->valueObjectProvider->getValueObject(42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\ValueObjectProvider\LocationProvider::getValueObject
-     */
     public function testGetValueObjectWithNonExistentLocation(): void
     {
         $this->locationServiceMock

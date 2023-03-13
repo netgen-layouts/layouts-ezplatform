@@ -16,6 +16,8 @@ use Netgen\Layouts\Ibexa\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\Layouts\Parameters\ValueObjectProviderInterface;
 use Netgen\Layouts\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
@@ -23,6 +25,7 @@ use Symfony\Component\Validator\Validation;
 
 use function is_int;
 
+#[CoversClass(ContentType::class)]
 final class ContentTypeTest extends TestCase
 {
     use ParameterTypeTestTrait;
@@ -75,10 +78,6 @@ final class ContentTypeTest extends TestCase
         $this->type = new ContentType($this->repositoryMock, $this->valueObjectProviderMock);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::__construct
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::getIdentifier
-     */
     public function testGetIdentifier(): void
     {
         self::assertSame('ibexa_content', $this->type::getIdentifier());
@@ -87,11 +86,8 @@ final class ContentTypeTest extends TestCase
     /**
      * @param array<string, mixed> $options
      * @param array<string, mixed> $resolvedOptions
-     *
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::configureOptions
-     *
-     * @dataProvider validOptionsDataProvider
      */
+    #[DataProvider('validOptionsDataProvider')]
     public function testValidOptions(array $options, array $resolvedOptions): void
     {
         $parameter = $this->getParameterDefinition($options);
@@ -100,11 +96,8 @@ final class ContentTypeTest extends TestCase
 
     /**
      * @param array<string, mixed> $options
-     *
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::configureOptions
-     *
-     * @dataProvider invalidOptionsDataProvider
      */
+    #[DataProvider('invalidOptionsDataProvider')]
     public function testInvalidOptions(array $options): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -196,9 +189,6 @@ final class ContentTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::export
-     */
     public function testExport(): void
     {
         $this->contentServiceMock
@@ -210,9 +200,6 @@ final class ContentTypeTest extends TestCase
         self::assertSame('abc', $this->type->export($this->getParameterDefinition(), 42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::export
-     */
     public function testExportWithNonExistingContent(): void
     {
         $this->contentServiceMock
@@ -224,9 +211,6 @@ final class ContentTypeTest extends TestCase
         self::assertNull($this->type->export($this->getParameterDefinition(), 42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::import
-     */
     public function testImport(): void
     {
         $this->contentServiceMock
@@ -238,9 +222,6 @@ final class ContentTypeTest extends TestCase
         self::assertSame(42, $this->type->import($this->getParameterDefinition(), 'abc'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::import
-     */
     public function testImportWithNonExistingContent(): void
     {
         $this->contentServiceMock
@@ -252,11 +233,7 @@ final class ContentTypeTest extends TestCase
         self::assertNull($this->type->import($this->getParameterDefinition(), 'abc'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::getValueConstraints
-     *
-     * @dataProvider validationDataProvider
-     */
+    #[DataProvider('validationDataProvider')]
     public function testValidation(mixed $value, int $type, bool $required, bool $isValid): void
     {
         if ($value !== null) {
@@ -306,11 +283,7 @@ final class ContentTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::fromHash
-     *
-     * @dataProvider fromHashDataProvider
-     */
+    #[DataProvider('fromHashDataProvider')]
     public function testFromHash(mixed $value, mixed $convertedValue): void
     {
         self::assertSame(
@@ -340,11 +313,7 @@ final class ContentTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::isValueEmpty
-     *
-     * @dataProvider emptyDataProvider
-     */
+    #[DataProvider('emptyDataProvider')]
     public function testIsValueEmpty(mixed $value, bool $isEmpty): void
     {
         self::assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));
@@ -361,9 +330,6 @@ final class ContentTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType::getValueObject
-     */
     public function testGetValueObject(): void
     {
         $content = new Content();

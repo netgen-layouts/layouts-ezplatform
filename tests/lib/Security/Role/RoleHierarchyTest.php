@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace Netgen\Layouts\Ibexa\Tests\Security\Role;
 
 use Netgen\Layouts\Ibexa\Security\Role\RoleHierarchy;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 use function count;
 
+#[CoversClass(RoleHierarchy::class)]
 final class RoleHierarchyTest extends TestCase
 {
     /**
-     * @covers \Netgen\Layouts\Ibexa\Security\Role\RoleHierarchy::__construct
-     *
      * @param string[] $expectedReachableRoles
-     *
-     * @dataProvider getReachableRolesDataProvider
      */
+    #[DataProvider('getReachableRolesDataProvider')]
     public function testGetReachableRoleNames(string $startingRole, array $expectedReachableRoles): void
     {
         $role = new RoleHierarchy(

@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace Netgen\Bundle\LayoutsIbexaBundle\Tests\DependencyInjection\ConfigurationNode;
 
+use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin;
+use PHPUnit\Framework\Attributes\CoversClass;
+
 use function array_keys;
 
+#[CoversClass(ExtensionPlugin::class)]
 final class ViewNodeTest extends ConfigurationNodeTestBase
 {
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::addConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::fixUpViewConfig
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
-     */
     public function testViewSettings(): void
     {
         $config = [
@@ -58,12 +56,6 @@ final class ViewNodeTest extends ConfigurationNodeTestBase
         self::assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::addConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::fixUpViewConfig
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
-     */
     public function testViewSettingsWithSystemNodeAndDefaultScope(): void
     {
         $config = [
@@ -141,12 +133,6 @@ final class ViewNodeTest extends ConfigurationNodeTestBase
         self::assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::addConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::fixUpViewConfig
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
-     */
     public function testViewSettingsWithSystemNodeAndNonDefaultScope(): void
     {
         $config = [
@@ -244,12 +230,6 @@ final class ViewNodeTest extends ConfigurationNodeTestBase
         self::assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::addConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::fixUpViewConfig
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
-     */
     public function testViewSettingsRulePositionsWithSystemNodeAndTwoScopes(): void
     {
         $config = [
@@ -339,12 +319,6 @@ final class ViewNodeTest extends ConfigurationNodeTestBase
         );
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::addConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::fixUpViewConfig
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
-     */
     public function testViewSettingsRulePositionsWithSystemNodeAndDefaultScope(): void
     {
         $config = [
@@ -405,12 +379,6 @@ final class ViewNodeTest extends ConfigurationNodeTestBase
         );
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::addConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::fixUpViewConfig
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
-     */
     public function testViewSettingsWithMatchWithArrayValues(): void
     {
         $config = [
@@ -451,12 +419,6 @@ final class ViewNodeTest extends ConfigurationNodeTestBase
         self::assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::addConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::fixUpViewConfig
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
-     */
     public function testViewSettingsWithEmptyMatch(): void
     {
         $config = [
@@ -497,12 +459,6 @@ final class ViewNodeTest extends ConfigurationNodeTestBase
         self::assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::addConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::fixUpViewConfig
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
-     */
     public function testViewSettingsWithNoParameters(): void
     {
         $config = [
@@ -538,11 +494,6 @@ final class ViewNodeTest extends ConfigurationNodeTestBase
         self::assertInjectedConfigurationEqual($expectedConfig, $config);
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::addConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::postProcessConfiguration
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\ExtensionPlugin::preProcessConfiguration
-     */
     public function testUnknownSettingsAreRemoved(): void
     {
         $config = [

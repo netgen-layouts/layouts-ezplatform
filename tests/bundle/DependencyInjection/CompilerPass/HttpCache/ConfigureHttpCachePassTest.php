@@ -9,10 +9,13 @@ use Ibexa\HttpCache\PurgeClient\VarnishPurgeClient;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractContainerBuilderTestCase;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\ContainerBuilderHasAliasConstraint;
 use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use stdClass;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 
+#[CoversClass(ConfigureHttpCachePass::class)]
 final class ConfigureHttpCachePassTest extends AbstractContainerBuilderTestCase
 {
     protected function setUp(): void
@@ -22,11 +25,7 @@ final class ConfigureHttpCachePassTest extends AbstractContainerBuilderTestCase
         $this->container->addCompilerPass(new ConfigureHttpCachePass());
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
-     *
-     * @dataProvider processDataProvider
-     */
+    #[DataProvider('processDataProvider')]
     public function testProcess(string $definitionClass, bool $clientEnabled): void
     {
         $this->setDefinition('netgen_layouts.http_cache.client', new Definition());
@@ -42,9 +41,6 @@ final class ConfigureHttpCachePassTest extends AbstractContainerBuilderTestCase
             );
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
-     */
     public function testProcessWithNoSupportedClient(): void
     {
         $this->setDefinition('netgen_layouts.http_cache.client', new Definition());
@@ -63,9 +59,6 @@ final class ConfigureHttpCachePassTest extends AbstractContainerBuilderTestCase
         ];
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\HttpCache\ConfigureHttpCachePass::process
-     */
     public function testProcessWithEmptyContainer(): void
     {
         $this->compile();

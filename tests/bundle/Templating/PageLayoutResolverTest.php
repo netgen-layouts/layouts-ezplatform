@@ -7,11 +7,13 @@ namespace Netgen\Bundle\LayoutsIbexaBundle\Tests\Templating;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use Netgen\Bundle\LayoutsBundle\Templating\PageLayoutResolverInterface;
 use Netgen\Bundle\LayoutsIbexaBundle\Templating\PageLayoutResolver;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+#[CoversClass(PageLayoutResolver::class)]
 final class PageLayoutResolverTest extends TestCase
 {
     private MockObject&PageLayoutResolverInterface $innerResolverMock;
@@ -36,10 +38,6 @@ final class PageLayoutResolverTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\PageLayoutResolver::__construct
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\PageLayoutResolver::resolvePageLayout
-     */
     public function testResolvePageLayout(): void
     {
         $request = Request::create('/');
@@ -62,9 +60,6 @@ final class PageLayoutResolverTest extends TestCase
         self::assertSame('resolved_layout.html.twig', $this->resolver->resolvePageLayout());
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\PageLayoutResolver::resolvePageLayout
-     */
     public function testResolvePageLayoutWitNoRequest(): void
     {
         $this->requestStackMock
@@ -88,9 +83,6 @@ final class PageLayoutResolverTest extends TestCase
         self::assertSame('default_layout.html.twig', $this->resolver->resolvePageLayout());
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\Templating\PageLayoutResolver::resolvePageLayout
-     */
     public function testResolvePageLayoutWithDisabledLayout(): void
     {
         $request = Request::create('/');

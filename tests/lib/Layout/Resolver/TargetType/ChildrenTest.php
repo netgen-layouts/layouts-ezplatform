@@ -13,11 +13,13 @@ use Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Children;
 use Netgen\Layouts\Ibexa\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Ibexa\Utils\RemoteIdConverter;
 use Netgen\Layouts\Layout\Resolver\ValueObjectProviderInterface;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
 
+#[CoversClass(Children::class)]
 final class ChildrenTest extends TestCase
 {
     private MockObject&Repository $repositoryMock;
@@ -57,17 +59,11 @@ final class ChildrenTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Children::getType
-     */
     public function testGetType(): void
     {
         self::assertSame('ibexa_children', $this->targetType::getType());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Children::getConstraints
-     */
     public function testValidation(): void
     {
         $this->locationServiceMock
@@ -84,9 +80,6 @@ final class ChildrenTest extends TestCase
         self::assertCount(0, $errors);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Children::getConstraints
-     */
     public function testValidationWithInvalidValue(): void
     {
         $this->locationServiceMock
@@ -103,10 +96,6 @@ final class ChildrenTest extends TestCase
         self::assertCount(0, $errors);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Children::__construct
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Children::provideValue
-     */
     public function testProvideValue(): void
     {
         $location = new Location(
@@ -126,10 +115,6 @@ final class ChildrenTest extends TestCase
         self::assertSame(84, $this->targetType->provideValue($request));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Children::__construct
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Children::provideValue
-     */
     public function testProvideValueWithNoLocation(): void
     {
         $request = Request::create('/');
@@ -143,9 +128,6 @@ final class ChildrenTest extends TestCase
         self::assertNull($this->targetType->provideValue($request));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Children::getValueObject
-     */
     public function testGetValueObject(): void
     {
         $location = new Location();
@@ -159,9 +141,6 @@ final class ChildrenTest extends TestCase
         self::assertSame($location, $this->targetType->getValueObject(42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Children::export
-     */
     public function testExport(): void
     {
         $this->locationServiceMock
@@ -173,9 +152,6 @@ final class ChildrenTest extends TestCase
         self::assertSame('abc', $this->targetType->export(42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Children::export
-     */
     public function testExportWithInvalidValue(): void
     {
         $this->locationServiceMock
@@ -187,9 +163,6 @@ final class ChildrenTest extends TestCase
         self::assertNull($this->targetType->export(42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Children::import
-     */
     public function testImport(): void
     {
         $this->locationServiceMock
@@ -201,9 +174,6 @@ final class ChildrenTest extends TestCase
         self::assertSame(42, $this->targetType->import('abc'));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Layout\Resolver\TargetType\Children::import
-     */
     public function testImportWithInvalidValue(): void
     {
         $this->locationServiceMock

@@ -6,9 +6,11 @@ namespace Netgen\Bundle\LayoutsIbexaBundle\Tests\DependencyInjection\CompilerPas
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractContainerBuilderTestCase;
 use Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\ComponentPass;
+use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
 
+#[CoversClass(ComponentPass::class)]
 final class ComponentPassTest extends AbstractContainerBuilderTestCase
 {
     protected function setUp(): void
@@ -18,9 +20,6 @@ final class ComponentPassTest extends AbstractContainerBuilderTestCase
         $this->container->addCompilerPass(new ComponentPass());
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\ComponentPass::process
-     */
     public function testProcess(): void
     {
         $this->setParameter(
@@ -97,9 +96,6 @@ final class ComponentPassTest extends AbstractContainerBuilderTestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Bundle\LayoutsIbexaBundle\DependencyInjection\CompilerPass\ComponentPass::process
-     */
     public function testProcessWithEmptyContainer(): void
     {
         $this->compile();

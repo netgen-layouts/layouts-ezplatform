@@ -11,9 +11,11 @@ use Ibexa\Core\Base\Exceptions\NotFoundException;
 use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
 use Netgen\Layouts\Ibexa\Parameters\ValueObjectProvider\ContentProvider;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ContentProvider::class)]
 final class ContentProviderTest extends TestCase
 {
     private MockObject&Repository $repositoryMock;
@@ -45,10 +47,6 @@ final class ContentProviderTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ValueObjectProvider\ContentProvider::__construct
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ValueObjectProvider\ContentProvider::getValueObject
-     */
     public function testGetValueObject(): void
     {
         $content = new Content(
@@ -70,9 +68,6 @@ final class ContentProviderTest extends TestCase
         self::assertSame($content, $this->valueObjectProvider->getValueObject(42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ValueObjectProvider\ContentProvider::getValueObject
-     */
     public function testGetValueObjectWithNonExistentLocation(): void
     {
         $this->contentServiceMock
@@ -84,9 +79,6 @@ final class ContentProviderTest extends TestCase
         self::assertNull($this->valueObjectProvider->getValueObject(42));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ValueObjectProvider\ContentProvider::getValueObject
-     */
     public function testGetValueObjectWithNoMainLocation(): void
     {
         $content = new Content(

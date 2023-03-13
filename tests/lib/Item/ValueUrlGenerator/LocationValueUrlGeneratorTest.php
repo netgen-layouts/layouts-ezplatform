@@ -8,10 +8,12 @@ use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Netgen\Layouts\Ibexa\Item\ValueUrlGenerator\LocationValueUrlGenerator;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
+#[CoversClass(LocationValueUrlGenerator::class)]
 final class LocationValueUrlGeneratorTest extends TestCase
 {
     private MockObject&UrlGeneratorInterface $urlGeneratorMock;
@@ -25,10 +27,6 @@ final class LocationValueUrlGeneratorTest extends TestCase
         $this->urlGenerator = new LocationValueUrlGenerator($this->urlGeneratorMock);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueUrlGenerator\LocationValueUrlGenerator::__construct
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueUrlGenerator\LocationValueUrlGenerator::generateDefaultUrl
-     */
     public function testGenerateDefaultUrl(): void
     {
         $this->urlGeneratorMock
@@ -43,9 +41,6 @@ final class LocationValueUrlGeneratorTest extends TestCase
         self::assertSame('/location/path', $this->urlGenerator->generateDefaultUrl(new Location(['id' => 42])));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueUrlGenerator\LocationValueUrlGenerator::generateAdminUrl
-     */
     public function testGenerateAdminUrl(): void
     {
         $this->urlGeneratorMock
@@ -62,9 +57,6 @@ final class LocationValueUrlGeneratorTest extends TestCase
         self::assertSame('/admin/location/path', $this->urlGenerator->generateAdminUrl($location));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueUrlGenerator\LocationValueUrlGenerator::generate
-     */
     public function testGenerate(): void
     {
         $this->urlGeneratorMock

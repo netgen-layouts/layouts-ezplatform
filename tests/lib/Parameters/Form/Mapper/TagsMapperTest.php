@@ -9,8 +9,10 @@ use Netgen\Layouts\Ibexa\Parameters\Form\Mapper\TagsMapper;
 use Netgen\Layouts\Ibexa\Parameters\ParameterType\TagsType as ParameterType;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\TagsBundle\API\Repository\TagsService;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(TagsMapper::class)]
 final class TagsMapperTest extends TestCase
 {
     private TagsMapper $mapper;
@@ -20,17 +22,11 @@ final class TagsMapperTest extends TestCase
         $this->mapper = new TagsMapper();
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\TagsMapper::getFormType
-     */
     public function testGetFormType(): void
     {
         self::assertSame(ContentBrowserMultipleType::class, $this->mapper->getFormType());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\TagsMapper::mapOptions
-     */
     public function testMapOptions(): void
     {
         self::assertSame(

@@ -10,10 +10,12 @@ use Netgen\Layouts\Block\BlockDefinition;
 use Netgen\Layouts\Ibexa\Block\BlockDefinition\Handler\ComponentHandler;
 use Netgen\Layouts\Ibexa\Form\Extension\ComponentContentExtension;
 use Netgen\Layouts\Tests\Block\Stubs\BlockDefinitionHandler;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 
+#[CoversClass(ComponentContentExtension::class)]
 final class ComponentContentExtensionTest extends TestCase
 {
     private ComponentContentExtension $extension;
@@ -23,25 +25,16 @@ final class ComponentContentExtensionTest extends TestCase
         $this->extension = new ComponentContentExtension();
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Form\Extension\ComponentContentExtension::getExtendedType
-     */
     public function testGetExtendedType(): void
     {
         self::assertSame(ContentBrowserType::class, $this->extension->getExtendedType());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Form\Extension\ComponentContentExtension::getExtendedTypes
-     */
     public function testGetExtendedTypes(): void
     {
         self::assertSame([ContentBrowserType::class], $this->extension::getExtendedTypes());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Form\Extension\ComponentContentExtension::buildView
-     */
     public function testBuildView(): void
     {
         $formView = new FormView();
@@ -67,9 +60,6 @@ final class ComponentContentExtensionTest extends TestCase
         self::assertContains('ibexa_component_content', $formView->vars['block_prefixes']);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Form\Extension\ComponentContentExtension::buildView
-     */
     public function testBuildViewWithWrongBlock(): void
     {
         $formView = new FormView();
@@ -95,9 +85,6 @@ final class ComponentContentExtensionTest extends TestCase
         self::assertNotContains('ibexa_component_content', $formView->vars['block_prefixes']);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Form\Extension\ComponentContentExtension::buildView
-     */
     public function testBuildViewWithoutBlock(): void
     {
         $formView = new FormView();

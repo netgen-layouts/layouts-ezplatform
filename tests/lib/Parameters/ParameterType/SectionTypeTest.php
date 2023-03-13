@@ -12,6 +12,8 @@ use Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType;
 use Netgen\Layouts\Ibexa\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\Layouts\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
@@ -19,6 +21,7 @@ use Symfony\Component\Validator\Validation;
 
 use function is_array;
 
+#[CoversClass(SectionType::class)]
 final class SectionTypeTest extends TestCase
 {
     use ParameterTypeTestTrait;
@@ -48,9 +51,6 @@ final class SectionTypeTest extends TestCase
         $this->type = new SectionType();
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType::getIdentifier
-     */
     public function testGetIdentifier(): void
     {
         self::assertSame('ibexa_section', $this->type::getIdentifier());
@@ -59,11 +59,8 @@ final class SectionTypeTest extends TestCase
     /**
      * @param array<string, mixed> $options
      * @param array<string, mixed> $resolvedOptions
-     *
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType::configureOptions
-     *
-     * @dataProvider validOptionsDataProvider
      */
+    #[DataProvider('validOptionsDataProvider')]
     public function testValidOptions(array $options, array $resolvedOptions): void
     {
         $parameter = $this->getParameterDefinition($options);
@@ -72,11 +69,8 @@ final class SectionTypeTest extends TestCase
 
     /**
      * @param array<string, mixed> $options
-     *
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType::configureOptions
-     *
-     * @dataProvider invalidOptionsDataProvider
      */
+    #[DataProvider('invalidOptionsDataProvider')]
     public function testInvalidOptions(array $options): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -159,11 +153,7 @@ final class SectionTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType::getValueConstraints
-     *
-     * @dataProvider validationDataProvider
-     */
+    #[DataProvider('validationDataProvider')]
     public function testValidation(mixed $value, bool $required, bool $isValid): void
     {
         $options = [];
@@ -213,11 +203,7 @@ final class SectionTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType::fromHash
-     *
-     * @dataProvider fromHashDataProvider
-     */
+    #[DataProvider('fromHashDataProvider')]
     public function testFromHash(mixed $value, mixed $convertedValue, bool $multiple): void
     {
         self::assertSame(
@@ -279,11 +265,7 @@ final class SectionTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\SectionType::isValueEmpty
-     *
-     * @dataProvider emptyDataProvider
-     */
+    #[DataProvider('emptyDataProvider')]
     public function testIsValueEmpty(mixed $value, bool $isEmpty): void
     {
         self::assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));

@@ -11,9 +11,11 @@ use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
 use Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ContentValueConverter::class)]
 final class ContentValueConverterTest extends TestCase
 {
     private MockObject&LocationService $locationServiceMock;
@@ -58,19 +60,12 @@ final class ContentValueConverterTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter::__construct
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter::supports
-     */
     public function testSupports(): void
     {
         self::assertTrue($this->valueConverter->supports(new ContentInfo()));
         self::assertFalse($this->valueConverter->supports(new Location()));
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter::getValueType
-     */
     public function testGetValueType(): void
     {
         self::assertSame(
@@ -81,9 +76,6 @@ final class ContentValueConverterTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter::getId
-     */
     public function testGetId(): void
     {
         self::assertSame(
@@ -94,9 +86,6 @@ final class ContentValueConverterTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter::getRemoteId
-     */
     public function testGetRemoteId(): void
     {
         self::assertSame(
@@ -107,9 +96,6 @@ final class ContentValueConverterTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter::getName
-     */
     public function testGetName(): void
     {
         self::assertSame(
@@ -120,9 +106,6 @@ final class ContentValueConverterTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter::getIsVisible
-     */
     public function testGetIsVisible(): void
     {
         self::assertTrue(
@@ -132,9 +115,6 @@ final class ContentValueConverterTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Item\ValueConverter\ContentValueConverter::getObject
-     */
     public function testGetObject(): void
     {
         $object = new ContentInfo(['id' => 42]);

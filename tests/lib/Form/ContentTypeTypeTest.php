@@ -9,19 +9,17 @@ use Ibexa\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Core\Repository\Values\ContentType\ContentTypeGroup;
 use Netgen\Layouts\Ibexa\Form\ContentTypeType;
 use Netgen\Layouts\Tests\TestCase\FormTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+#[CoversClass(ContentTypeType::class)]
 final class ContentTypeTypeTest extends FormTestCase
 {
     private MockObject&ContentTypeService $contentTypeServiceMock;
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Form\ContentTypeType::__construct
-     * @covers \Netgen\Layouts\Ibexa\Form\ContentTypeType::getContentTypes
-     */
     public function testSubmitValidData(): void
     {
         $this->configureContentTypeService();
@@ -46,18 +44,11 @@ final class ContentTypeTypeTest extends FormTestCase
         self::assertSame($submittedData, $form->getData());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Form\ContentTypeType::getParent
-     */
     public function testGetParent(): void
     {
         self::assertSame(ChoiceType::class, $this->formType->getParent());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Form\ContentTypeType::configureOptions
-     * @covers \Netgen\Layouts\Ibexa\Form\ContentTypeType::getContentTypes
-     */
     public function testConfigureOptions(): void
     {
         $this->configureContentTypeService();

@@ -12,6 +12,8 @@ use Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType;
 use Netgen\Layouts\Ibexa\Tests\Validator\RepositoryValidatorFactory;
 use Netgen\Layouts\Parameters\ParameterDefinition;
 use Netgen\Layouts\Tests\Parameters\ParameterType\ParameterTypeTestTrait;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
@@ -19,6 +21,7 @@ use Symfony\Component\Validator\Validation;
 
 use function is_array;
 
+#[CoversClass(ObjectStateType::class)]
 final class ObjectStateTypeTest extends TestCase
 {
     use ParameterTypeTestTrait;
@@ -48,9 +51,6 @@ final class ObjectStateTypeTest extends TestCase
         $this->type = new ObjectStateType();
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType::getIdentifier
-     */
     public function testGetIdentifier(): void
     {
         self::assertSame('ibexa_object_state', $this->type::getIdentifier());
@@ -59,11 +59,8 @@ final class ObjectStateTypeTest extends TestCase
     /**
      * @param array<string, mixed> $options
      * @param array<string, mixed> $resolvedOptions
-     *
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType::configureOptions
-     *
-     * @dataProvider validOptionsDataProvider
      */
+    #[DataProvider('validOptionsDataProvider')]
     public function testValidOptions(array $options, array $resolvedOptions): void
     {
         $parameter = $this->getParameterDefinition($options);
@@ -72,11 +69,8 @@ final class ObjectStateTypeTest extends TestCase
 
     /**
      * @param array<string, mixed> $options
-     *
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType::configureOptions
-     *
-     * @dataProvider invalidOptionsDataProvider
      */
+    #[DataProvider('invalidOptionsDataProvider')]
     public function testInvalidOptions(array $options): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -153,11 +147,7 @@ final class ObjectStateTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType::getValueConstraints
-     *
-     * @dataProvider validationDataProvider
-     */
+    #[DataProvider('validationDataProvider')]
     public function testValidation(mixed $value, bool $required, bool $isValid): void
     {
         $group1 = new ObjectStateGroup(['identifier' => 'group1']);
@@ -205,11 +195,7 @@ final class ObjectStateTypeTest extends TestCase
         self::assertSame($isValid, $errors->count() === 0);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType::getValueConstraints
-     *
-     * @dataProvider validationWithEmptyValuesDataProvider
-     */
+    #[DataProvider('validationWithEmptyValuesDataProvider')]
     public function testValidationWithEmptyValues(mixed $value, bool $required, bool $isValid): void
     {
         $this->objectStateServiceMock
@@ -260,11 +246,7 @@ final class ObjectStateTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType::fromHash
-     *
-     * @dataProvider fromHashDataProvider
-     */
+    #[DataProvider('fromHashDataProvider')]
     public function testFromHash(mixed $value, mixed $convertedValue, bool $multiple): void
     {
         self::assertSame(
@@ -326,11 +308,7 @@ final class ObjectStateTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType::isValueEmpty
-     *
-     * @dataProvider emptyDataProvider
-     */
+    #[DataProvider('emptyDataProvider')]
     public function testIsValueEmpty(mixed $value, bool $isEmpty): void
     {
         self::assertSame($isEmpty, $this->type->isValueEmpty(new ParameterDefinition(), $value));

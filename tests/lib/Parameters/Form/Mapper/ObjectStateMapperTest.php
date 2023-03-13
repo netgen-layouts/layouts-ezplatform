@@ -8,8 +8,10 @@ use Netgen\Layouts\Ibexa\Form\ObjectStateType;
 use Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ObjectStateMapper;
 use Netgen\Layouts\Ibexa\Parameters\ParameterType\ObjectStateType as ParameterType;
 use Netgen\Layouts\Parameters\ParameterDefinition;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ObjectStateMapper::class)]
 final class ObjectStateMapperTest extends TestCase
 {
     private ObjectStateMapper $mapper;
@@ -19,17 +21,11 @@ final class ObjectStateMapperTest extends TestCase
         $this->mapper = new ObjectStateMapper();
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ObjectStateMapper::getFormType
-     */
     public function testGetFormType(): void
     {
         self::assertSame(ObjectStateType::class, $this->mapper->getFormType());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Parameters\Form\Mapper\ObjectStateMapper::mapOptions
-     */
     public function testMapOptions(): void
     {
         self::assertSame(

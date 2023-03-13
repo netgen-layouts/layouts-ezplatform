@@ -6,6 +6,8 @@ namespace Netgen\Layouts\Ibexa\Tests\Security\Authorization\Voter;
 
 use Netgen\Layouts\Ibexa\Security\Authorization\Voter\RepositoryAccessVoter;
 use Netgen\Layouts\Ibexa\Security\Role\RoleHierarchy;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -14,6 +16,7 @@ use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 
 use function count;
 
+#[CoversClass(RepositoryAccessVoter::class)]
 final class RepositoryAccessVoterTest extends TestCase
 {
     private MockObject&AccessDecisionManagerInterface $accessDecisionManagerMock;
@@ -40,14 +43,8 @@ final class RepositoryAccessVoterTest extends TestCase
 
     /**
      * @param array<string, bool> $repoAccess
-     *
-     * @covers \Netgen\Layouts\Ibexa\Security\Authorization\Voter\RepositoryAccessVoter::__construct
-     * @covers \Netgen\Layouts\Ibexa\Security\Authorization\Voter\RepositoryAccessVoter::supports
-     * @covers \Netgen\Layouts\Ibexa\Security\Authorization\Voter\RepositoryAccessVoter::vote
-     * @covers \Netgen\Layouts\Ibexa\Security\Authorization\Voter\RepositoryAccessVoter::voteOnAttribute
-     *
-     * @dataProvider voteDataProvider
      */
+    #[DataProvider('voteDataProvider')]
     public function testVote(string $attribute, array $repoAccess, int $voteResult): void
     {
         $token = $this->createMock(TokenInterface::class);

@@ -10,11 +10,13 @@ use Netgen\Layouts\Ibexa\Validator\TagValidator;
 use Netgen\Layouts\Tests\TestCase\ValidatorTestCase;
 use Netgen\TagsBundle\API\Repository\Values\Tags\Tag as APITag;
 use Netgen\TagsBundle\Core\Repository\TagsService;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
+#[CoversClass(TagValidator::class)]
 final class TagValidatorTest extends ValidatorTestCase
 {
     private MockObject&TagsService $tagsServiceMock;
@@ -26,10 +28,6 @@ final class TagValidatorTest extends ValidatorTestCase
         $this->constraint = new Tag();
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\TagValidator::__construct
-     * @covers \Netgen\Layouts\Ibexa\Validator\TagValidator::validate
-     */
     public function testValidateValid(): void
     {
         $this->tagsServiceMock
@@ -41,10 +39,6 @@ final class TagValidatorTest extends ValidatorTestCase
         $this->assertValid(true, 42);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\TagValidator::__construct
-     * @covers \Netgen\Layouts\Ibexa\Validator\TagValidator::validate
-     */
     public function testValidateNull(): void
     {
         $this->tagsServiceMock
@@ -54,10 +48,6 @@ final class TagValidatorTest extends ValidatorTestCase
         $this->assertValid(true, null);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\TagValidator::__construct
-     * @covers \Netgen\Layouts\Ibexa\Validator\TagValidator::validate
-     */
     public function testValidateInvalid(): void
     {
         $this->tagsServiceMock
@@ -69,9 +59,6 @@ final class TagValidatorTest extends ValidatorTestCase
         $this->assertValid(false, 42);
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\TagValidator::validate
-     */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidConstraint(): void
     {
         $this->expectException(UnexpectedTypeException::class);
@@ -81,9 +68,6 @@ final class TagValidatorTest extends ValidatorTestCase
         $this->assertValid(true, 'value');
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\Validator\TagValidator::validate
-     */
     public function testValidateThrowsUnexpectedTypeExceptionWithInvalidValue(): void
     {
         $this->expectException(UnexpectedTypeException::class);

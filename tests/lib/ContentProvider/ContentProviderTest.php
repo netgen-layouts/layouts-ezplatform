@@ -9,9 +9,11 @@ use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\Content\Location;
 use Netgen\Layouts\Context\Context;
 use Netgen\Layouts\Ibexa\ContentProvider\ContentProvider;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ContentProvider::class)]
 final class ContentProviderTest extends TestCase
 {
     private MockObject&LocationService $locationServiceMock;
@@ -31,11 +33,6 @@ final class ContentProviderTest extends TestCase
         );
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\ContentProvider\ContentProvider::__construct
-     * @covers \Netgen\Layouts\Ibexa\ContentProvider\ContentProvider::loadLocation
-     * @covers \Netgen\Layouts\Ibexa\ContentProvider\ContentProvider::provideContent
-     */
     public function testProvideContent(): void
     {
         $content = new Content();
@@ -56,10 +53,6 @@ final class ContentProviderTest extends TestCase
         self::assertSame($content, $this->contentProvider->provideContent());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\ContentProvider\ContentProvider::loadLocation
-     * @covers \Netgen\Layouts\Ibexa\ContentProvider\ContentProvider::provideContent
-     */
     public function testProvideContentWithoutContent(): void
     {
         $this->locationServiceMock
@@ -69,10 +62,6 @@ final class ContentProviderTest extends TestCase
         self::assertNull($this->contentProvider->provideContent());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\ContentProvider\ContentProvider::loadLocation
-     * @covers \Netgen\Layouts\Ibexa\ContentProvider\ContentProvider::provideLocation
-     */
     public function testProvideLocation(): void
     {
         $location = new Location();
@@ -88,10 +77,6 @@ final class ContentProviderTest extends TestCase
         self::assertSame($location, $this->contentProvider->provideLocation());
     }
 
-    /**
-     * @covers \Netgen\Layouts\Ibexa\ContentProvider\ContentProvider::loadLocation
-     * @covers \Netgen\Layouts\Ibexa\ContentProvider\ContentProvider::provideLocation
-     */
     public function testProvideLocationWithoutLocation(): void
     {
         $this->locationServiceMock
