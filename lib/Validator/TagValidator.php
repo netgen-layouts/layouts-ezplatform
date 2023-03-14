@@ -40,7 +40,7 @@ final class TagValidator extends ConstraintValidator
         if (!$constraint->allowInvalid) {
             try {
                 $this->tagsService->sudo(
-                    static fn (TagsService $tagsService): APITag => $tagsService->loadTag((int) $value),
+                    fn (): APITag => $this->tagsService->loadTag((int) $value),
                 );
             } catch (NotFoundException) {
                 $this->context->buildViolation($constraint->message)

@@ -42,7 +42,7 @@ final class LocationValidator extends ConstraintValidator
         try {
             /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location $location */
             $location = $this->repository->sudo(
-                static fn (Repository $repository): IbexaLocation => $repository->getLocationService()->loadLocation((int) $value),
+                fn (): IbexaLocation => $this->repository->getLocationService()->loadLocation((int) $value),
             );
 
             if (count($constraint->allowedTypes) > 0) {

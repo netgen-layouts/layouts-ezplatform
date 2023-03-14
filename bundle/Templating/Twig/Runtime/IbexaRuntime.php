@@ -98,7 +98,7 @@ final class IbexaRuntime
     private function loadContent(int $contentId): Content
     {
         return $this->repository->sudo(
-            static fn (Repository $repository): Content => $repository->getContentService()->loadContent($contentId),
+            fn (): Content => $this->repository->getContentService()->loadContent($contentId),
         );
     }
 
@@ -108,7 +108,7 @@ final class IbexaRuntime
     private function loadLocation(int $locationId): Location
     {
         return $this->repository->sudo(
-            static fn (Repository $repository): Location => $repository->getLocationService()->loadLocation($locationId),
+            fn (): Location => $this->repository->getLocationService()->loadLocation($locationId),
         );
     }
 
@@ -118,7 +118,7 @@ final class IbexaRuntime
     private function loadContentType(string $identifier): ContentType
     {
         return $this->repository->sudo(
-            static fn (Repository $repository): ContentType => $repository->getContentTypeService()->loadContentTypeByIdentifier($identifier),
+            fn (): ContentType => $this->repository->getContentTypeService()->loadContentTypeByIdentifier($identifier),
         );
     }
 }

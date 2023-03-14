@@ -49,7 +49,7 @@ final class LocationType extends ParameterType implements ValueObjectProviderInt
         try {
             /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location $location */
             $location = $this->repository->sudo(
-                static fn (Repository $repository): Location => $repository->getLocationService()->loadLocation((int) $value),
+                fn (): Location => $this->repository->getLocationService()->loadLocation((int) $value),
             );
 
             return $location->remoteId;
@@ -63,7 +63,7 @@ final class LocationType extends ParameterType implements ValueObjectProviderInt
         try {
             /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location $location */
             $location = $this->repository->sudo(
-                static fn (Repository $repository): Location => $repository->getLocationService()->loadLocationByRemoteId((string) $value),
+                fn (): Location => $this->repository->getLocationService()->loadLocationByRemoteId((string) $value),
             );
 
             return (int) $location->id;

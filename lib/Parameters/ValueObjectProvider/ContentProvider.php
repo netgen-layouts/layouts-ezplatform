@@ -20,7 +20,7 @@ final class ContentProvider implements ValueObjectProviderInterface
         try {
             /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Content $content */
             $content = $this->repository->sudo(
-                static fn (Repository $repository): Content => $repository->getContentService()->loadContent((int) $value),
+                fn (): Content => $this->repository->getContentService()->loadContent((int) $value),
             );
 
             return $content->contentInfo->mainLocationId !== null ? $content : null;

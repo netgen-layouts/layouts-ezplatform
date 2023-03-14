@@ -73,7 +73,7 @@ final class TagsType extends ParameterType
         try {
             /** @var \Netgen\TagsBundle\API\Repository\Values\Tags\Tag $tag */
             $tag = $this->tagsService->sudo(
-                static fn (TagsService $tagsService): Tag => $tagsService->loadTag((int) $value),
+                fn (): Tag => $this->tagsService->loadTag((int) $value),
             );
 
             return $tag->remoteId;
@@ -87,10 +87,10 @@ final class TagsType extends ParameterType
         try {
             /** @var \Netgen\TagsBundle\API\Repository\Values\Tags\Tag $tag */
             $tag = $this->tagsService->sudo(
-                static fn (TagsService $tagsService): Tag => $tagsService->loadTagByRemoteId((string) $value),
+                fn (): Tag => $this->tagsService->loadTagByRemoteId((string) $value),
             );
 
-            return (int) $tag->id;
+            return $tag->id;
         } catch (NotFoundException) {
             return null;
         }

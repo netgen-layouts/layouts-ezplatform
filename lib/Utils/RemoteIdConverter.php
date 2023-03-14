@@ -20,7 +20,7 @@ final class RemoteIdConverter
         try {
             /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location $location */
             $location = $this->repository->sudo(
-                static fn (Repository $repository): Location => $repository->getLocationService()->loadLocationByRemoteId($remoteId),
+                fn (): Location => $this->repository->getLocationService()->loadLocationByRemoteId($remoteId),
             );
 
             return (int) $location->id;
@@ -34,7 +34,7 @@ final class RemoteIdConverter
         try {
             /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Location $location */
             $location = $this->repository->sudo(
-                static fn (Repository $repository): Location => $repository->getLocationService()->loadLocation($id),
+                fn (): Location => $this->repository->getLocationService()->loadLocation($id),
             );
 
             return $location->remoteId;
@@ -48,7 +48,7 @@ final class RemoteIdConverter
         try {
             /** @var \Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
-                static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfoByRemoteId($remoteId),
+                fn (): ContentInfo => $this->repository->getContentService()->loadContentInfoByRemoteId($remoteId),
             );
 
             return $contentInfo->id;
@@ -62,7 +62,7 @@ final class RemoteIdConverter
         try {
             /** @var \Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo $contentInfo */
             $contentInfo = $this->repository->sudo(
-                static fn (Repository $repository): ContentInfo => $repository->getContentService()->loadContentInfo($id),
+                fn (): ContentInfo => $this->repository->getContentService()->loadContentInfo($id),
             );
 
             return $contentInfo->remoteId;
