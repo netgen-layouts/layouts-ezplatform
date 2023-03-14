@@ -18,7 +18,7 @@ final class ContentProvider implements ValueObjectProviderInterface
         $this->repository = $repository;
     }
 
-    public function getValueObject($value): ?object
+    public function getValueObject($value): ?Content
     {
         try {
             /** @var \eZ\Publish\API\Repository\Values\Content\Content $content */
