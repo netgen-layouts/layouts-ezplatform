@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ibexa\Layout\Resolver\TargetType;
 
-use Ibexa\Contracts\Core\Repository\Values\Content\Location as IbexaLocation;
 use Netgen\Layouts\Ibexa\ContentProvider\ContentExtractorInterface;
 use Netgen\Layouts\Ibexa\Utils\RemoteIdConverter;
 use Netgen\Layouts\Ibexa\Validator\Constraint as IbexaConstraints;
@@ -39,9 +38,7 @@ final class Children extends TargetType implements ValueObjectProviderInterface
 
     public function provideValue(Request $request): ?int
     {
-        $location = $this->contentExtractor->extractLocation($request);
-
-        return $location instanceof IbexaLocation ? (int) $location->parentLocationId : null;
+        return $this->contentExtractor->extractLocation($request)?->parentLocationId;
     }
 
     public function getValueObject(mixed $value): ?object

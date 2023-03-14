@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ibexa\Layout\Resolver\TargetType;
 
-use Ibexa\Contracts\Core\Repository\Values\Content\Content as IbexaContent;
 use Netgen\Layouts\Ibexa\ContentProvider\ContentExtractorInterface;
 use Netgen\Layouts\Ibexa\Utils\RemoteIdConverter;
 use Netgen\Layouts\Ibexa\Validator\Constraint as IbexaConstraints;
@@ -39,9 +38,7 @@ final class Content extends TargetType implements ValueObjectProviderInterface
 
     public function provideValue(Request $request): ?int
     {
-        $content = $this->contentExtractor->extractContent($request);
-
-        return $content instanceof IbexaContent ? (int) $content->id : null;
+        return $this->contentExtractor->extractContent($request)?->id;
     }
 
     public function getValueObject(mixed $value): ?object

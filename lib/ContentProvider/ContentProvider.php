@@ -21,12 +21,7 @@ final class ContentProvider implements ContentProviderInterface
 
     public function provideContent(): ?Content
     {
-        $location = $this->loadLocation();
-        if (!$location instanceof Location) {
-            return null;
-        }
-
-        return $location->getContent();
+        return $this->loadLocation()?->getContent();
     }
 
     public function provideLocation(): ?Location
