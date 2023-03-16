@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <psalm
-    errorLevel="3"
+    errorLevel="2"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
@@ -14,53 +14,6 @@
     </projectFiles>
 
     <issueHandlers>
-        <!-- Symfony -->
-
-        <UndefinedInterfaceMethod>
-            <errorLevel type="suppress">
-                <referencedMethod name="Symfony\Component\Security\Core\Role\RoleHierarchyInterface::getReachableRoles" />
-                <referencedMethod name="Doctrine\DBAL\Driver\ResultStatement::fetchAllAssociative" />
-            </errorLevel>
-        </UndefinedInterfaceMethod>
-
-        <DuplicateArrayKey>
-            <errorLevel type="suppress">
-                <file name="bundle/DependencyInjection/ExtensionPlugin.php" />
-            </errorLevel>
-        </DuplicateArrayKey>
-
-        <UndefinedMethod>
-            <errorLevel type="suppress">
-                <referencedMethod name="Symfony\Component\Security\Core\Role\Role::getRole" />
-            </errorLevel>
-        </UndefinedMethod>
-
-        <InternalClass>
-            <errorLevel type="suppress">
-                <referencedClass name="Symfony\Component\Security\Core\Role\Role" />
-            </errorLevel>
-        </InternalClass>
-
-        <TooManyArguments>
-            <errorLevel type="suppress">
-                <referencedFunction name="Symfony\Component\Security\Core\Role\Role::__construct" />
-            </errorLevel>
-        </TooManyArguments>
-
-        <InternalMethod>
-            <errorLevel type="suppress">
-                <file name="lib/Security/Authorization/Voter/RepositoryAccessVoter.php" />
-                <referencedMethod name="Symfony\Component\Security\Core\Role\Role::__construct" />
-            </errorLevel>
-        </InternalMethod>
-
-        <InaccessibleMethod>
-            <errorLevel type="suppress">
-                <file name="lib/Security/Authorization/Voter/RepositoryAccessVoter.php" />
-                <referencedMethod name="Symfony\Component\Security\Core\Role\Role::__construct" />
-            </errorLevel>
-        </InaccessibleMethod>
-
         <!-- Doctrine DBAL -->
 
         <ImplicitToStringCast>
@@ -83,6 +36,8 @@
             </errorLevel>
         </InternalMethod>
 
+        <RedundantCastGivenDocblockType errorLevel="suppress" />
+
         <!-- Symfony -->
 
         <PossiblyUndefinedMethod>
@@ -90,5 +45,13 @@
                 <referencedMethod name="Symfony\Component\Config\Definition\Builder\NodeDefinition::addDefaultsIfNotSet" />
             </errorLevel>
         </PossiblyUndefinedMethod>
+
+        <!-- Issues with Psalm -->
+
+        <MissingTemplateParam errorLevel="suppress" />
     </issueHandlers>
+
+    <plugins>
+        <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin" />
+    </plugins>
 </psalm>

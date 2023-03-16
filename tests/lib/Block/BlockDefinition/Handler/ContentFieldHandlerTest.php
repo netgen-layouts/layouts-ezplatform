@@ -52,8 +52,8 @@ final class ContentFieldHandlerTest extends TestCase
 
         $this->handler->getDynamicParameters($params, new Block());
 
-        self::assertArrayHasKey('content', $params);
-        self::assertArrayHasKey('location', $params);
+        self::assertTrue($params->offsetExists('content'));
+        self::assertTrue($params->offsetExists('location'));
 
         self::assertSame($content, $params['content']);
         self::assertSame($location, $params['location']);

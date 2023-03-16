@@ -30,7 +30,7 @@ final class LayoutWizardCallback extends Controller
      */
     public function __invoke(Location $location, Request $request): RedirectResponse
     {
-        $wizardId = sprintf('_layouts_ibexa_wizard/%s', (string) $request->query->get('wizardId', ''));
+        $wizardId = sprintf('_layouts_ibexa_wizard/%s', $request->query->get('wizardId', ''));
         if (!$request->getSession()->has($wizardId)) {
             return $this->redirectToRoute(
                 UrlAliasGenerator::INTERNAL_CONTENT_VIEW_ROUTE,

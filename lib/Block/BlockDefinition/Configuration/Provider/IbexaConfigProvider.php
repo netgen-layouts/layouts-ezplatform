@@ -29,7 +29,7 @@ final class IbexaConfigProvider implements ConfigProviderInterface
     /**
      * @var array<string, \Netgen\Layouts\Block\BlockDefinition\Configuration\ViewType[]>
      */
-    private array $viewTypes;
+    private array $viewTypes = [];
 
     /**
      * @param array<string, string[]> $groupsBySiteAccess
@@ -57,6 +57,7 @@ final class IbexaConfigProvider implements ConfigProviderInterface
                 continue;
             }
 
+            /** @var array<string, mixed[]> $contentView */
             $contentView = $this->configResolver->getParameter($this->configResolverParameterName, null, $siteAccess);
 
             foreach ($contentView as $view => $viewConfigList) {
@@ -70,6 +71,8 @@ final class IbexaConfigProvider implements ConfigProviderInterface
                     if (in_array($contentTypeIdentifier, $contentTypeMatch, true)) {
                         $validViews[$view] = $view;
                         $validParameters[$view] ??= null;
+
+                        /** @var array<string>|null $viewConfigValidParameters */
                         $viewConfigValidParameters = $viewConfig['params']['valid_parameters'] ?? null;
 
                         if (is_array($viewConfigValidParameters)) {

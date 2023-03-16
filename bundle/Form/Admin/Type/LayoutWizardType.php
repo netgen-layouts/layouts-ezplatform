@@ -158,13 +158,12 @@ final class LayoutWizardType extends AbstractType
 
     public function finishView(FormView $view, FormInterface $form, array $options): void
     {
-        /** @var \Netgen\Layouts\Layout\Type\LayoutTypeInterface $layoutType */
         foreach ($this->layoutTypeRegistry->getLayoutTypes(true) as $layoutType) {
-            if (!isset($view['layout_type'][$layoutType->getIdentifier()])) {
-                continue;
-            }
+            $formView = $view['layout_type'][$layoutType->getIdentifier()] ?? null;
 
-            $view['layout_type'][$layoutType->getIdentifier()]->vars['layout_type'] = $layoutType;
+            if ($formView instanceof FormView) {
+                $formView->vars['layout_type'] = $layoutType;
+            }
         }
     }
 }
