@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Netgen\Layouts\Ibexa\Tests\Security\Authorization\Voter;
 
+use Ibexa\Core\MVC\Symfony\Security\Authorization\Attribute;
 use Netgen\Layouts\Ibexa\Security\Authorization\Voter\RepositoryAccessVoter;
 use Netgen\Layouts\Ibexa\Security\Role\RoleHierarchy;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -45,7 +46,7 @@ final class RepositoryAccessVoterTest extends TestCase
      * @param array<string, bool> $repoAccess
      */
     #[DataProvider('voteDataProvider')]
-    public function testVote(string $attribute, array $repoAccess, int $voteResult): void
+    public function testVote(mixed $attribute, array $repoAccess, int $voteResult): void
     {
         $token = $this->createMock(TokenInterface::class);
 
@@ -81,6 +82,7 @@ final class RepositoryAccessVoterTest extends TestCase
             ['ROLE_NGLAYOUTS_UNKNOWN', [], VoterInterface::ACCESS_DENIED],
 
             ['ROLE_UNSUPPORTED', [], VoterInterface::ACCESS_ABSTAIN],
+            [new Attribute(), [], VoterInterface::ACCESS_ABSTAIN],
         ];
     }
 }

@@ -10,6 +10,7 @@ use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 
+use function is_string;
 use function str_starts_with;
 
 /**
@@ -47,7 +48,7 @@ final class RepositoryAccessVoter extends Voter
         $vote = self::ACCESS_ABSTAIN;
 
         foreach ($attributes as $attribute) {
-            if (!$this->supports($attribute, $subject)) {
+            if (!is_string($attribute) || !$this->supports($attribute, $subject)) {
                 continue;
             }
 
