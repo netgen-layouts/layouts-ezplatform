@@ -19,15 +19,8 @@
         <UndefinedInterfaceMethod>
             <errorLevel type="suppress">
                 <referencedMethod name="Symfony\Component\Security\Core\Role\RoleHierarchyInterface::getReachableRoles" />
-                <referencedMethod name="Doctrine\DBAL\Driver\ResultStatement::fetchAllAssociative" />
             </errorLevel>
         </UndefinedInterfaceMethod>
-
-        <DuplicateArrayKey>
-            <errorLevel type="suppress">
-                <file name="bundle/DependencyInjection/ExtensionPlugin.php" />
-            </errorLevel>
-        </DuplicateArrayKey>
 
         <UndefinedMethod>
             <errorLevel type="suppress">
@@ -41,25 +34,11 @@
             </errorLevel>
         </InternalClass>
 
-        <TooManyArguments>
+        <PossiblyUndefinedMethod>
             <errorLevel type="suppress">
-                <referencedFunction name="Symfony\Component\Security\Core\Role\Role::__construct" />
+                <referencedMethod name="Symfony\Component\Config\Definition\Builder\NodeDefinition::addDefaultsIfNotSet" />
             </errorLevel>
-        </TooManyArguments>
-
-        <InternalMethod>
-            <errorLevel type="suppress">
-                <file name="lib/Security/Authorization/Voter/RepositoryAccessVoter.php" />
-                <referencedMethod name="Symfony\Component\Security\Core\Role\Role::__construct" />
-            </errorLevel>
-        </InternalMethod>
-
-        <InaccessibleMethod>
-            <errorLevel type="suppress">
-                <file name="lib/Security/Authorization/Voter/RepositoryAccessVoter.php" />
-                <referencedMethod name="Symfony\Component\Security\Core\Role\Role::__construct" />
-            </errorLevel>
-        </InaccessibleMethod>
+        </PossiblyUndefinedMethod>
 
         <!-- Doctrine DBAL -->
 
@@ -77,17 +56,10 @@
 
         <!-- eZ Platform -->
 
-        <UndefinedDocblockClass>
-            <errorLevel type="suppress">
-                <referencedClass name="EzSystems\PlatformHttpCacheBundle\RequestAwarePurger" />
-            </errorLevel>
-        </UndefinedDocblockClass>
-
         <UndefinedClass>
             <errorLevel type="suppress">
                 <referencedClass name="EzSystems\PlatformHttpCacheBundle\RequestAwarePurger" />
                 <referencedClass name="eZ\Publish\SPI\FieldType\Nameable" />
-                <referencedClass name="Symfony\Component\Security\Core\Role\Role" />
             </errorLevel>
         </UndefinedClass>
 
@@ -96,13 +68,5 @@
                 <referencedMethod name="EzSystems\PlatformHttpCacheBundle\RepositoryTagPrefix::getRepositoryPrefix" />
             </errorLevel>
         </InternalMethod>
-
-        <!-- Symfony -->
-
-        <PossiblyUndefinedMethod>
-            <errorLevel type="suppress">
-                <referencedMethod name="Symfony\Component\Config\Definition\Builder\NodeDefinition::addDefaultsIfNotSet" />
-            </errorLevel>
-        </PossiblyUndefinedMethod>
     </issueHandlers>
 </psalm>

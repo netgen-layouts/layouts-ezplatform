@@ -4,9 +4,6 @@ includes:
     - vendor/phpstan/phpstan-symfony/rules.neon
 
 parameters:
-    dynamicConstantNames:
-        - Symfony\Component\HttpKernel\Kernel::VERSION_ID
-
     ignoreErrors:
         # Symfony
 
@@ -28,5 +25,3 @@ parameters:
         - "#Casting to (int|string) something that's already (int|string).#"
 
         - '#EzSystems\\PlatformHttpCacheBundle\\RequestAwarePurger#'
-
-        - '#Parameter \#2 \$validParameters of method Netgen\\Layouts\\Ez\\Block\\BlockDefinition\\Configuration\\Provider\\EzPlatformConfigProvider::buildViewTypes#'

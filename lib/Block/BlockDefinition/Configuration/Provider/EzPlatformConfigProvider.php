@@ -73,6 +73,7 @@ final class EzPlatformConfigProvider implements ConfigProviderInterface
                 continue;
             }
 
+            /** @var array<string, mixed[]> $contentView */
             $contentView = $this->configResolver->getParameter($this->configResolverParameterName, null, $siteAccess);
 
             foreach ($contentView as $view => $viewConfigList) {
@@ -87,10 +88,13 @@ final class EzPlatformConfigProvider implements ConfigProviderInterface
                         $validViews[$view] = $view;
                         $validParameters[$view] ??= null;
 
-                        if (is_array($viewConfig['params']['valid_parameters'] ?? null)) {
+                        /** @var array<string>|null $viewConfigValidParameters */
+                        $viewConfigValidParameters = $viewConfig['params']['valid_parameters'] ?? null;
+
+                        if (is_array($viewConfigValidParameters)) {
                             $validParameters[$view] = is_array($validParameters[$view]) ?
-                                array_merge($validParameters[$view], $viewConfig['params']['valid_parameters']) :
-                                $viewConfig['params']['valid_parameters'];
+                                array_merge($validParameters[$view], $viewConfigValidParameters) :
+                                $viewConfigValidParameters;
                         }
                     }
                 }
