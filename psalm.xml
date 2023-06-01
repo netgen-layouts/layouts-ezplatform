@@ -40,11 +40,11 @@
 
         <!-- Symfony -->
 
-        <PossiblyUndefinedMethod>
+        <UndefinedMethod>
             <errorLevel type="suppress">
                 <referencedMethod name="Symfony\Component\Config\Definition\Builder\NodeDefinition::addDefaultsIfNotSet" />
             </errorLevel>
-        </PossiblyUndefinedMethod>
+        </UndefinedMethod>
 
         <!-- Issues with Psalm -->
 
