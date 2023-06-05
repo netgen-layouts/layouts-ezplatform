@@ -122,7 +122,6 @@ final class ContentValidatorTest extends ValidatorTestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentService', 'getContentTypeService']);
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
@@ -130,17 +129,14 @@ final class ContentValidatorTest extends ValidatorTestCase
             );
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('getContentService')
             ->willReturn($this->contentServiceMock);
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('getContentTypeService')
             ->willReturn($this->contentTypeServiceMock);
 
         $this->contentTypeServiceMock
-            ->expects(self::any())
             ->method('loadContentType')
             ->willReturnCallback(
                 static fn (int $type): ContentType => $type === 24 ?

@@ -31,7 +31,6 @@ final class RemoteIdConverterTest extends TestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService', 'getContentService']);
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
@@ -39,12 +38,10 @@ final class RemoteIdConverterTest extends TestCase
             );
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('getLocationService')
             ->willReturn($this->locationServiceMock);
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('getContentService')
             ->willReturn($this->contentServiceMock);
 

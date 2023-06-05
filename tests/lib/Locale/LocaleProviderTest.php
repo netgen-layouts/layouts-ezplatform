@@ -47,7 +47,6 @@ final class LocaleProviderTest extends TestCase
     public function testGetAvailableLocales(): void
     {
         $this->languageServiceMock
-            ->expects(self::any())
             ->method('loadLanguages')
             ->willReturn(
                 [
@@ -80,7 +79,6 @@ final class LocaleProviderTest extends TestCase
     public function testGetAvailableLocalesWithInvalidPosixLocale(): void
     {
         $this->languageServiceMock
-            ->expects(self::any())
             ->method('loadLanguages')
             ->willReturn(
                 [

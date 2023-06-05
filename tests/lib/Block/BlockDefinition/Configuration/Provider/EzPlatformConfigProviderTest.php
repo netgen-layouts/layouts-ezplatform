@@ -57,7 +57,6 @@ final class EzPlatformConfigProviderTest extends TestCase
         );
 
         $this->configResolverMock
-            ->expects(self::any())
             ->method('getParameter')
             ->with(self::identicalTo('content_view'), self::isNull(), self::identicalTo('cro'))
             ->willReturn(

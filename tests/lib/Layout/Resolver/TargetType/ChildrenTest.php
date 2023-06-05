@@ -41,7 +41,6 @@ final class ChildrenTest extends TestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService']);
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
@@ -49,7 +48,6 @@ final class ChildrenTest extends TestCase
             );
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('getLocationService')
             ->willReturn($this->locationServiceMock);
 
@@ -121,7 +119,6 @@ final class ChildrenTest extends TestCase
         $request = Request::create('/');
 
         $this->contentExtractorMock
-            ->expects(self::any())
             ->method('extractLocation')
             ->with(self::identicalTo($request))
             ->willReturn($location);
@@ -138,7 +135,6 @@ final class ChildrenTest extends TestCase
         $request = Request::create('/');
 
         $this->contentExtractorMock
-            ->expects(self::any())
             ->method('extractLocation')
             ->with(self::identicalTo($request))
             ->willReturn(null);
