@@ -112,14 +112,12 @@ final class LocationValidatorTest extends ValidatorTestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getLocationService']);
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
                 fn (callable $callback) => $callback($this->repositoryMock),
             );
         $this->repositoryMock
-            ->expects(self::any())
             ->method('getLocationService')
             ->willReturn($this->locationServiceMock);
 

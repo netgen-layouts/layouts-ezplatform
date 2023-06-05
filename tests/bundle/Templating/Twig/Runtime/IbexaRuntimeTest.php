@@ -114,7 +114,6 @@ final class IbexaRuntimeTest extends TestCase
         $this->mockServices();
 
         $this->contentTypeServiceMock
-            ->expects(self::any())
             ->method('loadContentTypeByIdentifier')
             ->willReturnCallback(
                 static fn (string $identifier): ContentType => new ContentType(
@@ -137,7 +136,6 @@ final class IbexaRuntimeTest extends TestCase
         $this->mockServices();
 
         $this->contentTypeServiceMock
-            ->expects(self::any())
             ->method('loadContentTypeByIdentifier')
             ->willReturnCallback(
                 static fn (string $identifier): ContentType => new ContentType(
@@ -183,7 +181,6 @@ final class IbexaRuntimeTest extends TestCase
         );
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
@@ -191,17 +188,14 @@ final class IbexaRuntimeTest extends TestCase
             );
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('getLocationService')
             ->willReturn($this->locationServiceMock);
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('getContentService')
             ->willReturn($this->contentServiceMock);
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('getContentTypeService')
             ->willReturn($this->contentTypeServiceMock);
     }
@@ -209,7 +203,6 @@ final class IbexaRuntimeTest extends TestCase
     private function mockServices(): void
     {
         $this->locationServiceMock
-            ->expects(self::any())
             ->method('loadLocation')
             ->willReturnCallback(
                 static fn ($locationId): Location => new Location(
@@ -225,7 +218,6 @@ final class IbexaRuntimeTest extends TestCase
             );
 
         $this->contentServiceMock
-            ->expects(self::any())
             ->method('loadContent')
             ->willReturnCallback(
                 static fn ($contentId): Content => new Content(

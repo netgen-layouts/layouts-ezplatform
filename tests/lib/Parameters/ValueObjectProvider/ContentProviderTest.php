@@ -30,12 +30,10 @@ final class ContentProviderTest extends TestCase
         $this->contentServiceMock = $this->createMock(ContentService::class);
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('getContentService')
             ->willReturn($this->contentServiceMock);
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
@@ -60,7 +58,6 @@ final class ContentProviderTest extends TestCase
         );
 
         $this->contentServiceMock
-            ->expects(self::any())
             ->method('loadContent')
             ->with(self::identicalTo(42))
             ->willReturn($content);
@@ -71,7 +68,6 @@ final class ContentProviderTest extends TestCase
     public function testGetValueObjectWithNonExistentLocation(): void
     {
         $this->contentServiceMock
-            ->expects(self::any())
             ->method('loadContent')
             ->with(self::identicalTo(42))
             ->willThrowException(new NotFoundException('content', 42));
@@ -92,7 +88,6 @@ final class ContentProviderTest extends TestCase
         );
 
         $this->contentServiceMock
-            ->expects(self::any())
             ->method('loadContent')
             ->with(self::identicalTo(42))
             ->willReturn($content);

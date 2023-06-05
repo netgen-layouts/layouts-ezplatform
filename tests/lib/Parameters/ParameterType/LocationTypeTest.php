@@ -43,7 +43,6 @@ final class LocationTypeTest extends TestCase
         $this->valueObjectProviderMock = $this->createMock(ValueObjectProviderInterface::class);
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
@@ -51,7 +50,6 @@ final class LocationTypeTest extends TestCase
             );
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('getLocationService')
             ->willReturn($this->locationServiceMock);
 

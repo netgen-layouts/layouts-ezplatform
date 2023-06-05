@@ -84,7 +84,6 @@ final class ConfigResolverConfigurationTest extends TestCase
     public function testGetParameter(): void
     {
         $this->configResolverMock
-            ->expects(self::any())
             ->method('hasParameter')
             ->with(self::identicalTo('some_param'), self::identicalTo('netgen_layouts'))
             ->willReturn(true);
@@ -105,7 +104,6 @@ final class ConfigResolverConfigurationTest extends TestCase
     public function testGetFallbackParameter(): void
     {
         $this->configResolverMock
-            ->expects(self::any())
             ->method('hasParameter')
             ->with(self::identicalTo('some_param'), self::identicalTo('netgen_layouts'))
             ->willReturn(false);

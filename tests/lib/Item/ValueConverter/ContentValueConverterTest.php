@@ -30,7 +30,6 @@ final class ContentValueConverterTest extends TestCase
         $this->contentServiceMock = $this->createMock(ContentService::class);
 
         $this->locationServiceMock
-            ->expects(self::any())
             ->method('loadLocation')
             ->with(self::isType('int'))
             ->willReturnCallback(
@@ -38,7 +37,6 @@ final class ContentValueConverterTest extends TestCase
             );
 
         $this->contentServiceMock
-            ->expects(self::any())
             ->method('loadContentByContentInfo')
             ->with(self::isInstanceOf(ContentInfo::class))
             ->willReturn(

@@ -36,7 +36,6 @@ final class ObjectStateTypeTest extends TestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getObjectStateService']);
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
@@ -44,7 +43,6 @@ final class ObjectStateTypeTest extends TestCase
             );
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('getObjectStateService')
             ->willReturn($this->objectStateServiceMock);
 

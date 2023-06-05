@@ -47,7 +47,6 @@ final class ContentTypeTest extends TestCase
         $this->valueObjectProviderMock = $this->createMock(ValueObjectProviderInterface::class);
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
@@ -55,17 +54,14 @@ final class ContentTypeTest extends TestCase
             );
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('getContentService')
             ->willReturn($this->contentServiceMock);
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('getContentTypeService')
             ->willReturn($this->contentTypeServiceMock);
 
         $this->contentTypeServiceMock
-            ->expects(self::any())
             ->method('loadContentType')
             ->willReturnCallback(
                 static fn (int $type): IbexaContentType => match ($type) {

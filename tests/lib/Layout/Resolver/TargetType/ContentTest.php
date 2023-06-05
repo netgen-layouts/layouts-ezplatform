@@ -42,7 +42,6 @@ final class ContentTest extends TestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentService']);
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
@@ -50,7 +49,6 @@ final class ContentTest extends TestCase
             );
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('getContentService')
             ->willReturn($this->contentServiceMock);
 
@@ -117,7 +115,6 @@ final class ContentTest extends TestCase
         $request = Request::create('/');
 
         $this->contentExtractorMock
-            ->expects(self::any())
             ->method('extractContent')
             ->with(self::identicalTo($request))
             ->willReturn($content);
@@ -130,7 +127,6 @@ final class ContentTest extends TestCase
         $request = Request::create('/');
 
         $this->contentExtractorMock
-            ->expects(self::any())
             ->method('extractContent')
             ->with(self::identicalTo($request))
             ->willReturn(null);

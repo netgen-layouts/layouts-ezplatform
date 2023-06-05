@@ -36,7 +36,6 @@ final class ContentTypeTypeTest extends TestCase
         $this->repositoryMock = $this->createPartialMock(Repository::class, ['sudo', 'getContentTypeService']);
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('sudo')
             ->with(self::anything())
             ->willReturnCallback(
@@ -44,7 +43,6 @@ final class ContentTypeTypeTest extends TestCase
             );
 
         $this->repositoryMock
-            ->expects(self::any())
             ->method('getContentTypeService')
             ->willReturn($this->contentTypeServiceMock);
 
