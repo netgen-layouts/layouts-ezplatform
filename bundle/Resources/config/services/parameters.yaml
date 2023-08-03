@@ -11,6 +11,7 @@ services:
         class: Netgen\Layouts\Ez\Parameters\ValueObjectProvider\LocationProvider
         arguments:
             - "@ezpublish.api.repository"
+            - "@netgen_layouts.error.handler"
 
     netgen_layouts.ezplatform.parameters.parameter_type.content:
         class: Netgen\Layouts\Ez\Parameters\ParameterType\ContentType
@@ -24,6 +25,7 @@ services:
         class: Netgen\Layouts\Ez\Parameters\ValueObjectProvider\ContentProvider
         arguments:
             - "@ezpublish.api.repository"
+            - "@netgen_layouts.error.handler"
 
     netgen_layouts.ezplatform.parameters.parameter_type.content_type:
         class: Netgen\Layouts\Ez\Parameters\ParameterType\ContentTypeType

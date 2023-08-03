@@ -10,6 +10,7 @@ use eZ\Publish\API\Repository\Values\Content\ContentInfo;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
+use Netgen\Layouts\Error\ErrorHandlerInterface;
 use Netgen\Layouts\Ez\Parameters\ValueObjectProvider\ContentProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -40,6 +41,7 @@ final class ContentProviderTest extends TestCase
 
         $this->valueObjectProvider = new ContentProvider(
             $this->repositoryMock,
+            $this->createMock(ErrorHandlerInterface::class),
         );
     }
 

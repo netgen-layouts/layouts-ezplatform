@@ -8,6 +8,7 @@ use eZ\Publish\API\Repository\LocationService;
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\Repository\Values\Content\Location;
+use Netgen\Layouts\Error\ErrorHandlerInterface;
 use Netgen\Layouts\Ez\Parameters\ValueObjectProvider\LocationProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -38,6 +39,7 @@ final class LocationProviderTest extends TestCase
 
         $this->valueObjectProvider = new LocationProvider(
             $this->repositoryMock,
+            $this->createMock(ErrorHandlerInterface::class),
         );
     }
 

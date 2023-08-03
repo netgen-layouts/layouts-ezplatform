@@ -7,15 +7,19 @@ namespace Netgen\Layouts\Ez\Parameters\ValueObjectProvider;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
 use eZ\Publish\API\Repository\Repository;
 use eZ\Publish\API\Repository\Values\Content\Content;
+use Netgen\Layouts\Error\ErrorHandlerInterface;
 use Netgen\Layouts\Parameters\ValueObjectProviderInterface;
 
 final class ContentProvider implements ValueObjectProviderInterface
 {
     private Repository $repository;
 
-    public function __construct(Repository $repository)
+    private ErrorHandlerInterface $errorHandler;
+
+    public function __construct(Repository $repository, ErrorHandlerInterface $errorHandler)
     {
         $this->repository = $repository;
+        $this->errorHandler = $errorHandler;
     }
 
     public function getValueObject($value): ?Content
@@ -28,6 +32,8 @@ final class ContentProvider implements ValueObjectProviderInterface
 
             return $content->contentInfo->mainLocationId !== null ? $content : null;
         } catch (NotFoundException $e) {
+            $this->errorHandler->handleError($e);
+
             return null;
         }
     }
