@@ -16,7 +16,7 @@ final class PageLayoutResolverTest extends TestCase
 {
     private MockObject $innerResolverMock;
 
-    private MockObject$configResolverMock;
+    private MockObject $configResolverMock;
 
     private MockObject $requestStackMock;
 
