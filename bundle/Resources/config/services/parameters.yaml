@@ -3,6 +3,7 @@ services:
         class: Netgen\Layouts\Ibexa\Parameters\ValueObjectProvider\LocationProvider
         arguments:
             - "@ibexa.api.repository"
+            - "@netgen_layouts.error.handler"
 
     netgen_layouts.ibexa.parameters.parameter_type.location:
         class: Netgen\Layouts\Ibexa\Parameters\ParameterType\LocationType
@@ -16,6 +17,7 @@ services:
         class: Netgen\Layouts\Ibexa\Parameters\ValueObjectProvider\ContentProvider
         arguments:
             - "@ibexa.api.repository"
+            - "@netgen_layouts.error.handler"
 
     netgen_layouts.ibexa.parameters.parameter_type.content:
         class: Netgen\Layouts\Ibexa\Parameters\ParameterType\ContentType

@@ -8,6 +8,7 @@ use Ibexa\Contracts\Core\Repository\LocationService;
 use Ibexa\Contracts\Core\Repository\Repository;
 use Ibexa\Core\Base\Exceptions\NotFoundException;
 use Ibexa\Core\Repository\Values\Content\Location;
+use Netgen\Layouts\Error\ErrorHandlerInterface;
 use Netgen\Layouts\Ibexa\Parameters\ValueObjectProvider\LocationProvider;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -40,6 +41,7 @@ final class LocationProviderTest extends TestCase
 
         $this->valueObjectProvider = new LocationProvider(
             $this->repositoryMock,
+            $this->createMock(ErrorHandlerInterface::class),
         );
     }
 

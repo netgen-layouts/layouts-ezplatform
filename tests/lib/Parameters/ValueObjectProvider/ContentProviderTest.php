@@ -10,6 +10,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\ContentInfo;
 use Ibexa\Core\Base\Exceptions\NotFoundException;
 use Ibexa\Core\Repository\Values\Content\Content;
 use Ibexa\Core\Repository\Values\Content\VersionInfo;
+use Netgen\Layouts\Error\ErrorHandlerInterface;
 use Netgen\Layouts\Ibexa\Parameters\ValueObjectProvider\ContentProvider;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -42,6 +43,7 @@ final class ContentProviderTest extends TestCase
 
         $this->valueObjectProvider = new ContentProvider(
             $this->repositoryMock,
+            $this->createMock(ErrorHandlerInterface::class),
         );
     }
 
