@@ -20,7 +20,6 @@
 {%- block ezcomponent_content_widget -%}
     {% set parent_locations = ezpublish.configResolver.parameter('ezcomponent.parent_locations', 'netgen_layouts') %}
     {% set default_parent_location = ezpublish.configResolver.parameter('ezcomponent.default_parent_location', 'netgen_layouts') %}
-
     {% set content_type_identifier = form.parent['content_type_identifier'].vars.value %}
     {% set start_location = parent_locations[content_type_identifier] ?? default_parent_location %}
 
