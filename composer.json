@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "netgen/layouts-core": "~1.4.3",
+        "netgen/layouts-core": "~1.4.5",
         "netgen/content-browser-ezplatform": "^1.4",
         "ezsystems/ezplatform-admin-ui": "^1.5 || ^2.3",
         "ezsystems/ezplatform-http-cache": "^1.0 || ^2.3"
