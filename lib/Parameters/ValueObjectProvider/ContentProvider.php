@@ -18,6 +18,10 @@ final class ContentProvider implements ValueObjectProviderInterface
 
     public function getValueObject(mixed $value): ?Content
     {
+        if ($value === null) {
+            return null;
+        }
+
         try {
             /** @var \Ibexa\Contracts\Core\Repository\Values\Content\Content $content */
             $content = $this->repository->sudo(
@@ -26,7 +30,7 @@ final class ContentProvider implements ValueObjectProviderInterface
 
             return $content->contentInfo->mainLocationId !== null ? $content : null;
         } catch (NotFoundException $e) {
-            $this->errorHandler->handleError($e);
+            $this->errorHandler->logError($e);
 
             return null;
         }
