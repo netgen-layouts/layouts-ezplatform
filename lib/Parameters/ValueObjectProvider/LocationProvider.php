@@ -24,6 +24,10 @@ final class LocationProvider implements ValueObjectProviderInterface
 
     public function getValueObject($value): ?Location
     {
+        if ($value === null) {
+            return null;
+        }
+
         try {
             return $this->repository->sudo(
                 static fn (Repository $repository): Location => $repository->getLocationService()->loadLocation((int) $value),
