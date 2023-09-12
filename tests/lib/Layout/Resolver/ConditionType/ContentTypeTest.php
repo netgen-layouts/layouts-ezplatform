@@ -124,7 +124,7 @@ final class ContentTypeTest extends TestCase
         self::assertFalse($this->conditionType->matches($request, ['article']));
     }
 
-    public static function matchesDataProvider(): array
+    public static function matchesDataProvider(): iterable
     {
         return [
             ['not_array', false],

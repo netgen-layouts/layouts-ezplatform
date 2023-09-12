@@ -126,7 +126,7 @@ final class ObjectStateValidatorTest extends ValidatorTestCase
         $this->assertValid(true, 'state');
     }
 
-    public static function validateDataProvider(): array
+    public static function validateDataProvider(): iterable
     {
         return [
             ['group1|state1', [], true],

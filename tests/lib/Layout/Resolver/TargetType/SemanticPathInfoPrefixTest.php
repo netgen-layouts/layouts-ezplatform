@@ -67,7 +67,7 @@ final class SemanticPathInfoPrefixTest extends TestCase
     /**
      * Provider for testing target type validation.
      */
-    public static function validationDataProvider(): array
+    public static function validationDataProvider(): iterable
     {
         return [
             ['/some/route', true],

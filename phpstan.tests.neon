@@ -10,7 +10,7 @@ parameters:
         - '#Unreachable statement - code above always terminates.#'
 
         # Disable errors about missing value types in PHPUnit data providers
-        - '#Method .+Test(Base)?::\w+DataProvider\(\) return type has no value type specified in iterable type array.#'
+        - '#Method .+Test(Base)?::\w+DataProvider\(\) return type has no value type specified in iterable type iterable.#'
 
         # Disable errors for various tests that verify the instance of the value
         - '#Call to static method PHPUnit\\Framework\\Assert::assertInstanceOf\(\)#'
