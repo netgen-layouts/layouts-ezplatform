@@ -22,9 +22,7 @@ use function is_array;
  */
 final class TagsType extends ParameterType
 {
-    public function __construct(private TagsService $tagsService)
-    {
-    }
+    public function __construct(private TagsService $tagsService) {}
 
     public static function getIdentifier(): string
     {

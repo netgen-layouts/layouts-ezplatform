@@ -16,9 +16,7 @@ use function array_map;
 
 final class RelatedLayoutsLoader
 {
-    public function __construct(private LayoutService $layoutService, private Connection $databaseConnection)
-    {
-    }
+    public function __construct(private LayoutService $layoutService, private Connection $databaseConnection) {}
 
     /**
      * Returns all layouts related to provided location and its content, sorted by name.

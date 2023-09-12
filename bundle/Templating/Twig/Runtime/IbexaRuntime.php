@@ -14,9 +14,7 @@ use function array_shift;
 
 final class IbexaRuntime
 {
-    public function __construct(private Repository $repository)
-    {
-    }
+    public function __construct(private Repository $repository) {}
 
     /**
      * Returns the content name.

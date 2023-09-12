@@ -22,8 +22,7 @@ class ConfigResolverConfiguration implements ConfigurationInterface
     public function __construct(
         private ConfigResolverInterface $configResolver,
         private ConfigurationInterface $fallbackConfiguration,
-    ) {
-    }
+    ) {}
 
     public function hasParameter(string $parameterName): bool
     {

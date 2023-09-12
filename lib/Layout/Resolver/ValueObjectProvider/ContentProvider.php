@@ -11,9 +11,7 @@ use Netgen\Layouts\Layout\Resolver\ValueObjectProviderInterface;
 
 final class ContentProvider implements ValueObjectProviderInterface
 {
-    public function __construct(private Repository $repository)
-    {
-    }
+    public function __construct(private Repository $repository) {}
 
     public function getValueObject(mixed $value): ?Content
     {

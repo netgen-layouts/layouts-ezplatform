@@ -16,9 +16,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 final class ConnectComponentContent extends Controller
 {
-    public function __construct(private BlockService $blockService, private ContentService $contentService)
-    {
-    }
+    public function __construct(private BlockService $blockService, private ContentService $contentService) {}
 
     /**
      * Connects the provided content with the provided component block.

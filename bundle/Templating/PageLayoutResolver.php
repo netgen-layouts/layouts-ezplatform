@@ -22,8 +22,7 @@ final class PageLayoutResolver implements PageLayoutResolverInterface
         private ConfigResolverInterface $configResolver,
         private RequestStack $requestStack,
         private string $baseViewLayout,
-    ) {
-    }
+    ) {}
 
     public function resolvePageLayout(): string
     {

@@ -17,8 +17,7 @@ final class ContentValueConverter implements ValueConverterInterface
     public function __construct(
         private LocationService $locationService,
         private ContentService $contentService,
-    ) {
-    }
+    ) {}
 
     public function supports(object $object): bool
     {

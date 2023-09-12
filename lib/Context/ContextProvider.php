@@ -21,8 +21,7 @@ final class ContextProvider implements ContextProviderInterface
         private RequestStack $requestStack,
         private ContentService $contentService,
         private array $allowedRoutes,
-    ) {
-    }
+    ) {}
 
     public function provideContext(Context $context): void
     {

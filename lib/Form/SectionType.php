@@ -15,9 +15,7 @@ use function in_array;
 
 final class SectionType extends AbstractType
 {
-    public function __construct(private SectionService $sectionService)
-    {
-    }
+    public function __construct(private SectionService $sectionService) {}
 
     public function configureOptions(OptionsResolver $resolver): void
     {

@@ -27,9 +27,7 @@ final class ObjectStateValidator extends ConstraintValidator
      */
     private array $stateIdentifiers = [];
 
-    public function __construct(private Repository $repository)
-    {
-    }
+    public function __construct(private Repository $repository) {}
 
     public function validate(mixed $value, Constraint $constraint): void
     {

@@ -36,8 +36,7 @@ final class RepositoryAccessVoter extends Voter
     public function __construct(
         private RoleHierarchyInterface $roleHierarchy,
         private AccessDecisionManagerInterface $accessDecisionManager,
-    ) {
-    }
+    ) {}
 
     /**
      * @param mixed[] $attributes

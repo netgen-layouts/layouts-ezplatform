@@ -12,9 +12,7 @@ use Netgen\Layouts\Parameters\ValueObjectProviderInterface;
 
 final class ContentProvider implements ValueObjectProviderInterface
 {
-    public function __construct(private Repository $repository, private ErrorHandlerInterface $errorHandler)
-    {
-    }
+    public function __construct(private Repository $repository, private ErrorHandlerInterface $errorHandler) {}
 
     public function getValueObject(mixed $value): ?Content
     {

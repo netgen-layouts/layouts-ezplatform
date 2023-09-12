@@ -21,9 +21,7 @@ use function sprintf;
 
 final class LayoutWizard extends Controller
 {
-    public function __construct(private LayoutService $layoutService, private LayoutTypeRegistry $layoutTypeRegistry)
-    {
-    }
+    public function __construct(private LayoutService $layoutService, private LayoutTypeRegistry $layoutTypeRegistry) {}
 
     /**
      * Renders a 1:1 wizard used to create layout+mapping combination on-the-fly.

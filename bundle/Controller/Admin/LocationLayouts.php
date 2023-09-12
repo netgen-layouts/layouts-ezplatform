@@ -19,8 +19,7 @@ final class LocationLayouts extends Controller
         private ContentService $contentService,
         private LayoutResolverInterface $layoutResolver,
         private RelatedLayoutsLoader $relatedLayoutsLoader,
-    ) {
-    }
+    ) {}
 
     /**
      * Renders a template that shows all layouts applied to provided location.

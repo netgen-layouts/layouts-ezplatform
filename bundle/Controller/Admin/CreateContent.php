@@ -15,8 +15,7 @@ final class CreateContent extends Controller
     public function __construct(
         private LocationService $locationService,
         private ContentTypeService $contentTypeService,
-    ) {
-    }
+    ) {}
 
     /**
      * Creates a content and redirects to route that edits the content.

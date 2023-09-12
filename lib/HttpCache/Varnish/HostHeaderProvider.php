@@ -9,9 +9,7 @@ use Netgen\Layouts\HttpCache\Varnish\HostHeaderProviderInterface;
 
 final class HostHeaderProvider implements HostHeaderProviderInterface
 {
-    public function __construct(private ConfigResolverInterface $configResolver)
-    {
-    }
+    public function __construct(private ConfigResolverInterface $configResolver) {}
 
     public function provideHostHeader(): string
     {

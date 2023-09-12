@@ -39,8 +39,7 @@ final class IbexaConfigProvider implements ConfigProviderInterface
         private array $groupsBySiteAccess,
         private string $parameterName,
         private string $configResolverParameterName,
-    ) {
-    }
+    ) {}
 
     public function provideViewTypes(?Block $block = null): array
     {

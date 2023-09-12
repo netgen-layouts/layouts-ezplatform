@@ -25,8 +25,7 @@ final class LocaleProvider implements LocaleProviderInterface
         private LanguageService $languageService,
         private LocaleConverterInterface $localeConverter,
         private ConfigResolverInterface $configResolver,
-    ) {
-    }
+    ) {}
 
     public function getAvailableLocales(): array
     {

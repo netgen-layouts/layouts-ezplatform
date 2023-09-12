@@ -10,9 +10,7 @@ use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
 final class Configuration extends SiteAccessConfiguration
 {
-    public function __construct(private ExtensionInterface $extension)
-    {
-    }
+    public function __construct(private ExtensionInterface $extension) {}
 
     public function getConfigTreeBuilder(): TreeBuilder
     {

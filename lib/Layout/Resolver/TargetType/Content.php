@@ -18,8 +18,7 @@ final class Content extends TargetType implements ValueObjectProviderInterface
         private ContentExtractorInterface $contentExtractor,
         private ValueObjectProviderInterface $valueObjectProvider,
         private RemoteIdConverter $remoteIdConverter,
-    ) {
-    }
+    ) {}
 
     public static function getType(): string
     {

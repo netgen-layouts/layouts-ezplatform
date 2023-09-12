@@ -19,9 +19,7 @@ use Symfony\Component\Validator\Constraints;
  */
 final class LocationType extends ParameterType implements ValueObjectProviderInterface
 {
-    public function __construct(private Repository $repository, private ValueObjectProviderInterface $valueObjectProvider)
-    {
-    }
+    public function __construct(private Repository $repository, private ValueObjectProviderInterface $valueObjectProvider) {}
 
     public static function getIdentifier(): string
     {

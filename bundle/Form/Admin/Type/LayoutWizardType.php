@@ -30,8 +30,7 @@ final class LayoutWizardType extends AbstractType
         private LayoutService $layoutService,
         private LayoutTypeRegistry $layoutTypeRegistry,
         private bool $isEnterprise,
-    ) {
-    }
+    ) {}
 
     public function configureOptions(OptionsResolver $resolver): void
     {

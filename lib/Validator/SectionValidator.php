@@ -21,9 +21,7 @@ use function is_string;
  */
 final class SectionValidator extends ConstraintValidator
 {
-    public function __construct(private Repository $repository)
-    {
-    }
+    public function __construct(private Repository $repository) {}
 
     public function validate(mixed $value, Constraint $constraint): void
     {

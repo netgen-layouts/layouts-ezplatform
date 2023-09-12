@@ -25,9 +25,7 @@ use function is_string;
  */
 final class ContentTypeValidator extends ConstraintValidator
 {
-    public function __construct(private Repository $repository)
-    {
-    }
+    public function __construct(private Repository $repository) {}
 
     public function validate(mixed $value, Constraint $constraint): void
     {

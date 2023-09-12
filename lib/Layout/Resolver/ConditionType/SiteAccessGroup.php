@@ -19,9 +19,7 @@ final class SiteAccessGroup extends ConditionType
     /**
      * @param array<string, string[]> $groupsBySiteAccess
      */
-    public function __construct(private array $groupsBySiteAccess)
-    {
-    }
+    public function __construct(private array $groupsBySiteAccess) {}
 
     public static function getType(): string
     {

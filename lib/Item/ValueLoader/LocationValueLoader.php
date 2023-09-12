@@ -11,9 +11,7 @@ use Throwable;
 
 final class LocationValueLoader implements ValueLoaderInterface
 {
-    public function __construct(private LocationService $locationService)
-    {
-    }
+    public function __construct(private LocationService $locationService) {}
 
     public function load($id): ?Location
     {

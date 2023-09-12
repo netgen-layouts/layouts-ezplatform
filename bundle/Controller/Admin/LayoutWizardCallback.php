@@ -21,9 +21,7 @@ use function sprintf;
 
 final class LayoutWizardCallback extends Controller
 {
-    public function __construct(private LayoutService $layoutService, private LayoutResolverService $layoutResolverService)
-    {
-    }
+    public function __construct(private LayoutService $layoutService, private LayoutResolverService $layoutResolverService) {}
 
     /**
      * Creates a new 1:1 mapping based on data located in the session.

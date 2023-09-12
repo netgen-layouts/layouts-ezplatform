@@ -12,9 +12,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 final class IsEnterpriseVersionListener implements EventSubscriberInterface
 {
-    public function __construct(private bool $isEnterpriseVersion)
-    {
-    }
+    public function __construct(private bool $isEnterpriseVersion) {}
 
     public static function getSubscribedEvents(): array
     {

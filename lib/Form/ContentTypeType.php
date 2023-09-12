@@ -15,9 +15,7 @@ use function is_array;
 
 final class ContentTypeType extends AbstractType
 {
-    public function __construct(private ContentTypeService $contentTypeService)
-    {
-    }
+    public function __construct(private ContentTypeService $contentTypeService) {}
 
     public function configureOptions(OptionsResolver $resolver): void
     {

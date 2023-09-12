@@ -28,9 +28,7 @@ final class ExtensionPlugin extends BaseExtensionPlugin
         'design',
     ];
 
-    public function __construct(private ContainerBuilder $container, private ExtensionInterface $extension)
-    {
-    }
+    public function __construct(private ContainerBuilder $container, private ExtensionInterface $extension) {}
 
     /**
      * Pre-processes the configuration before it is resolved.
