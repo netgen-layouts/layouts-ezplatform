@@ -74,7 +74,7 @@ final class SiteAccessTest extends TestCase
     /**
      * Provider for testing condition type validation.
      */
-    public static function validationDataProvider(): array
+    public static function validationDataProvider(): iterable
     {
         return [
             [['cro'], true],
@@ -86,7 +86,7 @@ final class SiteAccessTest extends TestCase
         ];
     }
 
-    public static function matchesDataProvider(): array
+    public static function matchesDataProvider(): iterable
     {
         return [
             ['not_array', false],

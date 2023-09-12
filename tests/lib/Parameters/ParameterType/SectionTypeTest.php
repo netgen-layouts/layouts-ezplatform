@@ -88,7 +88,7 @@ final class SectionTypeTest extends TestCase
     /**
      * Provider for testing valid parameter attributes.
      */
-    public static function validOptionsDataProvider(): array
+    public static function validOptionsDataProvider(): iterable
     {
         return [
             [
@@ -140,7 +140,7 @@ final class SectionTypeTest extends TestCase
     /**
      * Provider for testing invalid parameter attributes.
      */
-    public static function invalidOptionsDataProvider(): array
+    public static function invalidOptionsDataProvider(): iterable
     {
         return [
             [
@@ -199,7 +199,7 @@ final class SectionTypeTest extends TestCase
     /**
      * Provider for testing valid parameter values.
      */
-    public static function validationDataProvider(): array
+    public static function validationDataProvider(): iterable
     {
         return [
             ['standard', false, true],
@@ -242,7 +242,7 @@ final class SectionTypeTest extends TestCase
         );
     }
 
-    public static function fromHashDataProvider(): array
+    public static function fromHashDataProvider(): iterable
     {
         return [
             [
@@ -303,7 +303,7 @@ final class SectionTypeTest extends TestCase
     /**
      * Provider for testing if the value is empty.
      */
-    public static function emptyDataProvider(): array
+    public static function emptyDataProvider(): iterable
     {
         return [
             [null, true],

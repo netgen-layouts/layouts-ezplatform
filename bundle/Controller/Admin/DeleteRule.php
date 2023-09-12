@@ -49,7 +49,5 @@ final class DeleteRule extends Controller
         return new Response('', Response::HTTP_NO_CONTENT);
     }
 
-    public function checkPermissions(): void
-    {
-    }
+    public function checkPermissions(): void {}
 }

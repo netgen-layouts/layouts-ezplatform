@@ -54,7 +54,7 @@ final class SiteAccessGroupValidatorTest extends ValidatorTestCase
         $this->assertValid(true, 42);
     }
 
-    public static function validateDataProvider(): array
+    public static function validateDataProvider(): iterable
     {
         return [
             ['frontend', true],

@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 abstract class ComponentTestBase extends BlockTestCase
 {
-    public static function parametersDataProvider(): array
+    public static function parametersDataProvider(): iterable
     {
         return [
             [
@@ -60,7 +60,7 @@ abstract class ComponentTestBase extends BlockTestCase
         ];
     }
 
-    public static function invalidParametersDataProvider(): array
+    public static function invalidParametersDataProvider(): iterable
     {
         return [
             [

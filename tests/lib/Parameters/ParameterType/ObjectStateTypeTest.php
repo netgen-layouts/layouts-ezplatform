@@ -88,7 +88,7 @@ final class ObjectStateTypeTest extends TestCase
     /**
      * Provider for testing valid parameter attributes.
      */
-    public static function validOptionsDataProvider(): array
+    public static function validOptionsDataProvider(): iterable
     {
         return [
             [
@@ -140,7 +140,7 @@ final class ObjectStateTypeTest extends TestCase
     /**
      * Provider for testing invalid parameter attributes.
      */
-    public static function invalidOptionsDataProvider(): array
+    public static function invalidOptionsDataProvider(): iterable
     {
         return [
             [
@@ -235,7 +235,7 @@ final class ObjectStateTypeTest extends TestCase
         self::assertSame($isValid, $errors->count() === 0);
     }
 
-    public static function validationDataProvider(): array
+    public static function validationDataProvider(): iterable
     {
         return [
             ['group1|state2', false, true],
@@ -255,7 +255,7 @@ final class ObjectStateTypeTest extends TestCase
         ];
     }
 
-    public static function validationWithEmptyValuesDataProvider(): array
+    public static function validationWithEmptyValuesDataProvider(): iterable
     {
         return [
             [[], false, true],
@@ -288,7 +288,7 @@ final class ObjectStateTypeTest extends TestCase
         );
     }
 
-    public static function fromHashDataProvider(): array
+    public static function fromHashDataProvider(): iterable
     {
         return [
             [
@@ -349,7 +349,7 @@ final class ObjectStateTypeTest extends TestCase
     /**
      * Provider for testing if the value is empty.
      */
-    public static function emptyDataProvider(): array
+    public static function emptyDataProvider(): iterable
     {
         return [
             [null, true],

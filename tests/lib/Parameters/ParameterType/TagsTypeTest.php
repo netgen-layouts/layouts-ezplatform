@@ -73,7 +73,7 @@ final class TagsTypeTest extends TestCase
     /**
      * Provider for testing valid parameter attributes.
      */
-    public static function validOptionsDataProvider(): array
+    public static function validOptionsDataProvider(): iterable
     {
         return [
             [
@@ -174,7 +174,7 @@ final class TagsTypeTest extends TestCase
     /**
      * Provider for testing invalid parameter attributes.
      */
-    public static function invalidOptionsDataProvider(): array
+    public static function invalidOptionsDataProvider(): iterable
     {
         return [
             [
@@ -234,7 +234,7 @@ final class TagsTypeTest extends TestCase
         );
     }
 
-    public static function fromHashDataProvider(): array
+    public static function fromHashDataProvider(): iterable
     {
         return [
             [
@@ -354,7 +354,7 @@ final class TagsTypeTest extends TestCase
         self::assertSame($isValid, $errors->count() === 0);
     }
 
-    public static function validationDataProvider(): array
+    public static function validationDataProvider(): iterable
     {
         return [
             [[12], false, true],
