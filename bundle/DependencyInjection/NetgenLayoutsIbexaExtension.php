@@ -55,6 +55,10 @@ final class NetgenLayoutsIbexaExtension extends Extension implements PrependExte
         if (array_key_exists('NetgenTagsBundle', $activatedBundles)) {
             $loader->load('netgen_tags/services.yaml');
         }
+
+        if (array_key_exists('NetgenLayoutsDebugBundle', $activatedBundles)) {
+            $loader->load('debug/services.yaml');
+        }
     }
 
     public function prepend(ContainerBuilder $container): void

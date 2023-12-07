@@ -1,0 +1,7 @@
+services:
+    netgen_layouts.ibexa.debug.data_collector.layout_url_generator:
+        class: Netgen\Bundle\LayoutsIbexaBundle\Debug\DataCollector\LayoutUrlGenerator
+        decorates: netgen_layouts.debug.data_collector.layout_url_generator
+        arguments:
+            - "@.inner"
+            - "%ibexa.site_access.groups%"
