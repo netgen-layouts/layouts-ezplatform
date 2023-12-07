@@ -15,8 +15,7 @@ final class LayoutUrlGenerator implements LayoutUrlGeneratorInterface
     public function __construct(
         private LayoutUrlGeneratorInterface $innerGenerator,
         private array $siteAccessGroups,
-    ) {
-    }
+    ) {}
 
     public function generateLayoutUrl(UuidInterface $layoutId, array $parameters = []): string
     {
