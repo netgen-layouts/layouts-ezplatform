@@ -21,7 +21,7 @@ final class LayoutUrlGenerator implements LayoutUrlGeneratorInterface
      */
     public function __construct(
         LayoutUrlGeneratorInterface $innerGenerator,
-        array $siteAccessGroups,
+        array $siteAccessGroups
     ) {
         $this->innerGenerator = $innerGenerator;
         $this->siteAccessGroups = $siteAccessGroups;
