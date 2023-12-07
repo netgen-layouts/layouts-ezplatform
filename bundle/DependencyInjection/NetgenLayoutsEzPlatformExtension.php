@@ -62,6 +62,10 @@ final class NetgenLayoutsEzPlatformExtension extends Extension implements Prepen
             $loader->load('eztags/services.yaml');
         }
 
+        if (array_key_exists('NetgenLayoutsDebugBundle', $activatedBundles)) {
+            $loader->load('debug/services.yaml');
+        }
+
         $loader->load(
             // Nameable interface for field types does not exist in eZ Platform v3
             interface_exists(Nameable::class) ?
