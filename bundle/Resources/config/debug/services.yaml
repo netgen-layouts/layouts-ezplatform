@@ -1,3 +1,7 @@
+parameters:
+    netgen_layouts.ibexa.data_collector.site_access_group_name: 'admin_group'
+    netgen_layouts.ibexa.data_collector.default_site_access_name: 'admin'
+
 services:
     netgen_layouts.ibexa.debug.data_collector.layout_url_generator:
         class: Netgen\Bundle\LayoutsIbexaBundle\Debug\DataCollector\LayoutUrlGenerator
@@ -5,3 +9,5 @@ services:
         arguments:
             - "@.inner"
             - "%ibexa.site_access.groups%"
+            - "%netgen_layouts.ibexa.data_collector.site_access_group_name%"
+            - "%netgen_layouts.ibexa.data_collector.default_site_access_name%"
