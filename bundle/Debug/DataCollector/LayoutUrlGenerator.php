@@ -16,20 +16,28 @@ final class LayoutUrlGenerator implements LayoutUrlGeneratorInterface
      */
     private array $siteAccessGroups;
 
+    private string $siteAccessGroupName;
+
+    private string $defaultSiteAccessName;
+
     /**
      * @param array<string, string[]> $siteAccessGroups
      */
     public function __construct(
         LayoutUrlGeneratorInterface $innerGenerator,
-        array $siteAccessGroups
+        array $siteAccessGroups,
+        string $siteAccessGroupName,
+        string $defaultSiteAccessName
     ) {
         $this->innerGenerator = $innerGenerator;
         $this->siteAccessGroups = $siteAccessGroups;
+        $this->siteAccessGroupName = $siteAccessGroupName;
+        $this->defaultSiteAccessName = $defaultSiteAccessName;
     }
 
     public function generateLayoutUrl(UuidInterface $layoutId, array $parameters = []): string
     {
-        $adminSiteAccess = $this->siteAccessGroups['admin_group'][0] ?? 'admin';
+        $adminSiteAccess = $this->siteAccessGroups[$this->siteAccessGroupName][0] ?? $this->defaultSiteAccessName;
 
         return $this->innerGenerator->generateLayoutUrl($layoutId, ['siteaccess' => $adminSiteAccess]);
     }

@@ -1,3 +1,7 @@
+parameters:
+    netgen_layouts.ezplatform.data_collector.site_access_group_name: 'admin_group'
+    netgen_layouts.ezplatform.data_collector.default_site_access_name: 'admin'
+
 services:
     netgen_layouts.ezplatform.debug.data_collector.layout_url_generator:
         class: Netgen\Bundle\LayoutsEzPlatformBundle\Debug\DataCollector\LayoutUrlGenerator
@@ -5,3 +9,5 @@ services:
         arguments:
             - "@netgen_layouts.ezplatform.debug.data_collector.layout_url_generator.inner"
             - "%ezpublish.siteaccess.groups%"
+            - "%netgen_layouts.ezplatform.data_collector.site_access_group_name%"
+            - "%netgen_layouts.ezplatform.data_collector.default_site_access_name%"
