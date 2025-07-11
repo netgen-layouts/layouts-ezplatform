@@ -34,7 +34,7 @@
         "webpack-cli": "^3.3.10"
     },
     "resolutions": {
-        "minimatch": "^9.0.0"
+        "minimatch": "^3.0.0"
     },
     "scripts": {
         "dev": "webpack --mode=development",
