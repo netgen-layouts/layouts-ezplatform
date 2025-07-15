@@ -35,6 +35,7 @@
         "netgen/layouts-ezplatform-site-api": "Integrate Netgen Layouts with eZ Platform Site API to boost your site-building productivity with eZ Platform"
     },
     "scripts": {
+        "pre-command-run": "@putenv SYMFONY_DEPRECATIONS_HELPER=max[self]=0&quiet[]=indirect&quiet[]=other",
         "test": "@php vendor/bin/phpunit --colors=always",
         "coverage": "@php -dzend_extension=xdebug.so -dxdebug.mode=coverage vendor/bin/phpunit --coverage-html=coverage --colors=always",
         "phpstan": "@php vendor/bin/phpstan analyse -c phpstan.neon --level=8 --ansi lib bundle",
