@@ -63,7 +63,7 @@ final class Content extends TargetType implements ValueObjectProviderInterface
         return $this->remoteIdConverter->toContentRemoteId((int) $value);
     }
 
-    public function import($value): ?int
+    public function import($value): int
     {
         return $this->remoteIdConverter->toContentId((string) $value) ?? 0;
     }

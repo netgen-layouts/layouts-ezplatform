@@ -21,7 +21,7 @@ use PHPUnit\Framework\TestCase;
 final class EzPlatformRuntimeTest extends TestCase
 {
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository,
+     * @var \PHPUnit\Framework\MockObject\MockObject&\eZ\Publish\API\Repository\Repository
      */
     private MockObject $repositoryMock;
 

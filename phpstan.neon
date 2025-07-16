@@ -17,6 +17,10 @@ parameters:
         - '#Cannot call method fetchAllAssociative\(\) on Doctrine\\DBAL\\ForwardCompatibility\\Result\|int#'
         - '#expects string\|null, Doctrine\\DBAL\\Query\\Expression\\CompositeExpression given#'
 
+        # Symfony
+        - '#with generic interface Symfony\\Component\\(Form|OptionsResolver)\\\w+ but does not specify its types: (TData|TArray)#'
+        - '#extends generic class Symfony\\Component\\Form\\\w+ but does not specify its types: TData#'
+
         # eZ Platform
         -
             message: '#Call to function is_string\(\) with string will always evaluate to true.#'

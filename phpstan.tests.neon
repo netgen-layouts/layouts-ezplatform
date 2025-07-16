@@ -16,3 +16,7 @@ parameters:
 
         # Disable errors for various tests that verify the instance of the value
         - '#Call to static method PHPUnit\\Framework\\Assert::assertInstanceOf\(\)#'
+
+        # Symfony
+
+        - '#with generic interface Symfony\\Component\\Form\\\w+ does not specify its types: TData#'

@@ -63,7 +63,7 @@ final class Children extends TargetType implements ValueObjectProviderInterface
         return $this->remoteIdConverter->toLocationRemoteId((int) $value);
     }
 
-    public function import($value): ?int
+    public function import($value): int
     {
         return $this->remoteIdConverter->toLocationId((string) $value) ?? 0;
     }

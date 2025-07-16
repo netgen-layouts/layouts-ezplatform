@@ -20,7 +20,7 @@ final class ContentValueUrlGenerator implements ValueUrlGeneratorInterface
         $this->urlGenerator = $urlGenerator;
     }
 
-    public function generate(object $object): ?string
+    public function generate(object $object): string
     {
         return $this->urlGenerator->generate(
             UrlAliasRouter::URL_ALIAS_ROUTE_NAME,
